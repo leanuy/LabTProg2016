@@ -14,7 +14,7 @@
 [Cliente]*-*[Favoriteable]
 [Album]+-1..*[Tema]
 [Artista]1-*[Album]
-[Genero]1-1..*[Album]
+[Genero]1..*-*[Album]
 [Cliente]*-*[Usuario]
 [Genero]+-*[Genero]
 [Tema]<:-[TemaWeb]
@@ -73,3 +73,5 @@ nombre
 año
 img
 ]
+
+
