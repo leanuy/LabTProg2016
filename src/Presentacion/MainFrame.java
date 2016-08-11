@@ -16,6 +16,11 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        this.setSize(1600, 900);
+        this.internalAltaPerfil.setSize(1422, 800);
+        this.internalAltaPerfil.setVisible(false);
+        this.setTitle("ESPOTIFY");
+        
     }
 
     /**
@@ -27,21 +32,102 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        internalAltaPerfil = new javax.swing.JInternalFrame();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        SesionDropDown = new javax.swing.JMenu();
+        cerrarOption = new javax.swing.JMenuItem();
+        AltasDropDown = new javax.swing.JMenu();
+        AltaPerfil = new javax.swing.JMenuItem();
+        ConsultasDropDown = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        internalAltaPerfil.setClosable(true);
+        internalAltaPerfil.setIconifiable(true);
+        internalAltaPerfil.setMaximizable(true);
+        internalAltaPerfil.setTitle("Alta Perfil");
+        internalAltaPerfil.setToolTipText("");
+        internalAltaPerfil.setPreferredSize(new java.awt.Dimension(1422, 800));
+        try {
+            internalAltaPerfil.setSelected(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
+        internalAltaPerfil.setVisible(true);
+
+        javax.swing.GroupLayout internalAltaPerfilLayout = new javax.swing.GroupLayout(internalAltaPerfil.getContentPane());
+        internalAltaPerfil.getContentPane().setLayout(internalAltaPerfilLayout);
+        internalAltaPerfilLayout.setHorizontalGroup(
+            internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1410, Short.MAX_VALUE)
+        );
+        internalAltaPerfilLayout.setVerticalGroup(
+            internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 769, Short.MAX_VALUE)
+        );
+
+        SesionDropDown.setText("Sesion");
+
+        cerrarOption.setText("Cerrar");
+        cerrarOption.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cerrarOptionActionPerformed(evt);
+            }
+        });
+        SesionDropDown.add(cerrarOption);
+
+        jMenuBar1.add(SesionDropDown);
+
+        AltasDropDown.setText("Altas");
+
+        AltaPerfil.setText("Alta Perfil");
+        AltaPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AltaPerfilActionPerformed(evt);
+            }
+        });
+        AltasDropDown.add(AltaPerfil);
+
+        jMenuBar1.add(AltasDropDown);
+
+        ConsultasDropDown.setText("Consultas");
+        jMenuBar1.add(ConsultasDropDown);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(78, 78, 78)
+                .addComponent(internalAltaPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(internalAltaPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        try {
+            internalAltaPerfil.setMaximum(true);
+        } catch (java.beans.PropertyVetoException e1) {
+            e1.printStackTrace();
+        }
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cerrarOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarOptionActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cerrarOptionActionPerformed
+
+    private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
+        this.internalAltaPerfil.setVisible(true);
+    }//GEN-LAST:event_AltaPerfilActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +165,12 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AltaPerfil;
+    private javax.swing.JMenu AltasDropDown;
+    private javax.swing.JMenu ConsultasDropDown;
+    private javax.swing.JMenu SesionDropDown;
+    private javax.swing.JMenuItem cerrarOption;
+    private javax.swing.JInternalFrame internalAltaPerfil;
+    private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
