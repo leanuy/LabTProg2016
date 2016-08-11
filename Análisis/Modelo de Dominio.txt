@@ -14,9 +14,11 @@
 [Cliente]*-*[Favoriteable]
 [Album]+-1..*[Tema]
 [Artista]1-*[Album]
-[Genero]1-1..*[Album]
+[Genero]1..*-*[Album]
 [Cliente]*-*[Usuario]
 [Genero]+-*[Genero]
+[Tema]<:-[TemaWeb]
+[Tema]<:-[TemaArchivo]
 
 
 [Usuario
@@ -44,16 +46,24 @@ url
 
 [Lista
 |
-nom
+nombre
 img
 ]
 
 [Tema
 |
-nom
+nombre
 duracion
 num
+]
+
+[TemaWeb
+|
 url
+]
+
+[TemaArchivo
+|
 archivo
 ]
 
