@@ -1,0 +1,104 @@
+Alta Perfil
+[alt]
+	cliente
+		AltaCliente
+		[loop ingresó cosas mal]
+			[opt]	quiere
+					AltaCliente
+	artista
+		AltaArtista
+		[loop ingresó cosas mal]
+			[opt]	quiere
+					AltaArtista
+
+Alta Álbum
+ExisteArtista() : [bool, List<Genero>]
+[opt]
+	existe=true
+		[loop quiere temas]
+			IngresaTema //recuerda tema
+		AltaAlbum
+
+Seguir Usuario
+AltaSeguir
+
+Dejar de Seguir
+BajaSeguir
+
+Consulta Cliente
+ListarClientes
+ConsultaCliente
+
+Consulta Artista
+ListarArtistas
+ConsultaArtista
+
+Consulta Álbum
+[alt]
+	quiere genero
+		ListarGeneros
+	quiere artista
+		ListarArtistas
+ConsultaAlbum
+[loop] quiere descargar mas
+	[opt] quiere
+		DescargarTema
+
+Alta Genero
+AltaGenero
+
+AltaLista
+[alt]
+	particular
+		AltaListaParticular
+	defecto
+		AltaListaDefecto
+
+AgregarTemaLista
+//turbio
+[alt]
+	particular
+		ListarClientes
+		ListarListasDeCliente
+	defecto
+		ListarListasDefecto
+EjecucionCUListarTemas
+AgregarTemaLista(tema, lista)
+
+QuitarTemaLista
+[alt]
+	particular
+		ListarClientes
+		ListarListasDeCliente
+	defecto
+		ListarListasDefecto
+ListarTemasLista(Lista l)
+RemoverTemaLista
+
+PublicarLista
+ListarClientes
+ListarListasDeCliente
+PublicarLista
+
+GuardarFavorito
+ListarClientes
+EjecucionCUListarFavoriteables
+AgregarFavorito(Cliente, Favoriteable)
+
+EliminarTemaListaAlbum
+ListarClientes
+ListarFavsDeCliente
+RemoverFavorito
+
+ConsultaLista
+[alt]
+	Genero
+		ListarGeneros
+	Cliente
+		ListarClientes
+		ListarListasDeCliente
+ConsultaLista
+[loop] quiere descargar mas
+	[opt] quiere
+		DescargarTema
+
