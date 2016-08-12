@@ -20,6 +20,9 @@ public class MainFrame extends javax.swing.JFrame {
         this.internalAltaPerfil.setSize(1422, 800);
         this.internalAltaPerfil.setVisible(false);
         this.setTitle("ESPOTIFY");
+        this.internalAltaAlbum.setSize(1422, 800);
+        this.internalAltaAlbum.setVisible(false);
+        this.setTitle("ESPOTIFY");
         
     }
 
@@ -33,11 +36,13 @@ public class MainFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         internalAltaPerfil = new javax.swing.JInternalFrame();
+        internalAltaAlbum = new javax.swing.JInternalFrame();
         jMenuBar1 = new javax.swing.JMenuBar();
         SesionDropDown = new javax.swing.JMenu();
         cerrarOption = new javax.swing.JMenuItem();
         AltasDropDown = new javax.swing.JMenu();
         AltaPerfil = new javax.swing.JMenuItem();
+        AltaAlbum = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,11 +64,25 @@ public class MainFrame extends javax.swing.JFrame {
         internalAltaPerfil.getContentPane().setLayout(internalAltaPerfilLayout);
         internalAltaPerfilLayout.setHorizontalGroup(
             internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1410, Short.MAX_VALUE)
+            .addGap(0, 1420, Short.MAX_VALUE)
         );
         internalAltaPerfilLayout.setVerticalGroup(
             internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 769, Short.MAX_VALUE)
+            .addGap(0, 778, Short.MAX_VALUE)
+        );
+
+        internalAltaAlbum.setTitle("Alta Album");
+        internalAltaAlbum.setVisible(true);
+
+        javax.swing.GroupLayout internalAltaAlbumLayout = new javax.swing.GroupLayout(internalAltaAlbum.getContentPane());
+        internalAltaAlbum.getContentPane().setLayout(internalAltaAlbumLayout);
+        internalAltaAlbumLayout.setHorizontalGroup(
+            internalAltaAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 214, Short.MAX_VALUE)
+        );
+        internalAltaAlbumLayout.setVerticalGroup(
+            internalAltaAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 55, Short.MAX_VALUE)
         );
 
         SesionDropDown.setText("Sesion");
@@ -88,6 +107,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         AltasDropDown.add(AltaPerfil);
 
+        AltaAlbum.setText("Alta Album");
+        AltaAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AltaAlbumActionPerformed(evt);
+            }
+        });
+        AltasDropDown.add(AltaAlbum);
+
         jMenuBar1.add(AltasDropDown);
 
         ConsultasDropDown.setText("Consultas");
@@ -100,15 +127,19 @@ public class MainFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addContainerGap()
+                .addComponent(internalAltaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(internalAltaPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(internalAltaPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(internalAltaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(internalAltaPerfil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -128,6 +159,10 @@ public class MainFrame extends javax.swing.JFrame {
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
         this.internalAltaPerfil.setVisible(true);
     }//GEN-LAST:event_AltaPerfilActionPerformed
+
+    private void AltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaAlbumActionPerformed
+        this.internalAltaAlbum.setVisible(true);
+    }//GEN-LAST:event_AltaAlbumActionPerformed
 
     /**
      * @param args the command line arguments
@@ -165,11 +200,13 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AltaAlbum;
     private javax.swing.JMenuItem AltaPerfil;
     private javax.swing.JMenu AltasDropDown;
     private javax.swing.JMenu ConsultasDropDown;
     private javax.swing.JMenu SesionDropDown;
     private javax.swing.JMenuItem cerrarOption;
+    private javax.swing.JInternalFrame internalAltaAlbum;
     private javax.swing.JInternalFrame internalAltaPerfil;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
