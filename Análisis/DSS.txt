@@ -11,13 +11,16 @@ Alta Perfil
 			[opt]	quiere
 					AltaArtista
 
+
 Alta Álbum
 ExisteArtista() : [bool, List<Genero>]
-[opt]
-	existe=true
-		[loop quiere temas]
+[alt]	existe=true
+		IngresaTema //recuerda tema
+		[loop quiere más temas]
 			IngresaTema //recuerda tema
+		//ListarGeneros para que no se los tenga que sabe de memoria.
 		AltaAlbum
+//no se pide pero debería haber opción de cancelar.
 
 Seguir Usuario
 AltaSeguir
@@ -37,23 +40,28 @@ Consulta Álbum
 [alt]
 	quiere genero
 		ListarGeneros
-		SeleccionarGenero(Genero g): List<Album>
+		ListarAlbumesDeGenero(Genero g): List<Album>
 	quiere artista
 		ListarArtistas
-		SeleccionarArtista(Artista a): List<Album>
+		ListarAlbumesDeArtista(Artista a): List<Album>
 ConsultaAlbum
 [loop] quiere descargar mas
-	[opt] quiere
-		DescargarTema
+	DescargarTema
+
+
 
 Alta Genero
+[opt]
+	ListarGeneros
 AltaGenero
 
 AltaLista
 [alt]
 	particular
+		ListarClientes
 		AltaListaParticular
 	defecto
+		ListarGeneros
 		AltaListaDefecto
 
 AgregarTemaLista
@@ -100,7 +108,5 @@ ConsultaLista
 		ListarClientes
 		ListarListasDeCliente
 ConsultaLista
-[loop] quiere descargar mas
-	[opt] quiere
-		DescargarTema
-
+[loop] quiere descargar mas temas
+	DescargarTema

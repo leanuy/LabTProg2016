@@ -1,6 +1,6 @@
 Comunicación:
 
-ALTA ARTISTA
+ALTA USUARIO
 0:) —>:CtrlUsuarios								AltaCliente(d:DataCliente)
 1:) :CtrlUsuarios—<global>—>CtrlUsuarios			ok:=ValidarDatosUsuario(d)
 2a[ok]:) :CtrlUsuarios—<self>						ok:=!ExisteUsuarioCorreo(d.correo)
@@ -90,7 +90,7 @@ CONSULTA CLIENTE
 
 0:) —>:CtrlUsuarios								ConsultaCliente(nombre:string) : DataClienteExt
 1:) :CtrlUsuarios—<asoc>—>Set<Cliente>				c:=find(nombre)
-2*:) :	CtrlUsuarios—<local>—c:Cliente				lst.add(c.getDataExt())
+2:) :	CtrlUsuarios—<local>—c:Cliente				lst.add(c.getDataExt())
 …/getDataExt tiene lógica bastante pero fácil. recorrer cosas.
 
 [DataClienteExt|
@@ -107,21 +107,39 @@ CONSULTA ARTISTA
 2*:) :	CtrlUsuarios—<local>—a:Artista				lst.add(a.getDataExt())
 
 CONSULTA ALBUM
-0:) —>:CtrlUsuarios								list:= ListarGeneros(): List<String>
-1*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Genero>		g:=next()
-2*:) :	CtrlUsuarios—<local>—g:Genero				lst.add(g.getNombre())
-3:) CtrlUsuarios—<asoc>—>Set<Album>				SeleccionarGenero(Genero g): List<String>
+0:) —>:CtrlMusica								lst:=ListarGeneros() : List<string>
+1*[foreach]:) :CtrlMusica—<asoc>—> Set<Genero>		g:=next()
+2*:) :CtrlMusica—<local>—>g:Genero				lst.add(g.getNombre())
 
-0:) —>:CtrlUsuarios								list:= ListarArtistas() : List<String>
-1*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Artista>		a:=next()
-2*:) :	CtrlUsuarios—<local>—a:Artista				lst.add(a.getNombre())
-3:) CtrlUsuarios—<asoc>—>Set<Album>				SeleccionarArtista(Artista a)
+0:)—>:CtrlMusica								ListarAlbumesDeGenero(nomGenero: string) : List<string>
+1:) :CtrlMusica—<self>							g:=BuscarGenero(nomGenero)
+…
+2a[g!=NULL]:) :CtrlMusica—<local>—>g:Genero		ListarAlbumes()
+…
 
-4*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Album>		al:= next()
-5*:) —>:CtrlUsuarios—<local>—al:Album				lst.add(al.getNombre())
-6:)—>:CtrlUsuarios—<asoc>—ALGO				ConsultaAlbum(String Nombre): DataAlbumExt
-7:)—>:CtrlUsuarios—<asoc>—OTRO ALGO			DescargarTema(String tema):mp3
+0:)—>:CtrlMusica								ListarAlbumesDeArtista(nomArtista:string) : List<string>
+1:) :CtrlMusica—<global> CtrlUsuarios				cu:=getInstancia()
+2:) :CtrlMusica—<local> cu:CtrlUsuarios				ListarAlbumesDeArtista(nomArtista)
+2.1:) cu:CtrlUsuarios—<self>						a:=BuscarArtista(nomArtista)
+…
+2.2a[a!=NULL]:) cu:CtrlUsuarios—<local>—>a:Artista	ListarAlbumes()
+…
 
+0:) —>:CtrlMusica								ConsultaAlbum(nomAlbum:string) : DataAlbum //se recuerda género o artista del álbum.
+1:) :CtrlMusica—<self>							al:=BuscarAlbum(nomAlbum, g) OR BuscarAlbum(nomAlbum, a)
+…
+2:) :CtrlMusica—<local>al:Album					al.getData()
+
+[DataAlbum|
+-nombre:string
+-año:int
+-generos:List<string>
+-img:string
+-temas:List<DataTema>]
+
+[DataTema|
+…
+]
 
 
 
