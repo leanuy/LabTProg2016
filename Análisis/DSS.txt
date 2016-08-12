@@ -37,8 +37,10 @@ Consulta Álbum
 [alt]
 	quiere genero
 		ListarGeneros
+		SeleccionarGenero(Genero g): List<Album>
 	quiere artista
 		ListarArtistas
+		SeleccionarArtista(Artista a): List<Album>
 ConsultaAlbum
 [loop] quiere descargar mas
 	[opt] quiere
