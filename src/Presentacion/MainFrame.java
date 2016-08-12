@@ -38,6 +38,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         internalAltaAlbum = new javax.swing.JInternalFrame();
         internalAltaPerfil = new javax.swing.JInternalFrame();
+        AltaPerfil_nickname_label = new javax.swing.JLabel();
+        AltaPerfil_nickname_input = new javax.swing.JTextField();
+        AltaPerfil_nombre_label = new javax.swing.JLabel();
+        AltaPerfil_nombre_input = new javax.swing.JTextField();
+        AltaPerfil_apellido_label = new javax.swing.JLabel();
+        AltaPerfil_apellido_input = new javax.swing.JTextField();
+        AltaPerfil_email_label = new javax.swing.JLabel();
+        AltaPerfil_email_input = new javax.swing.JTextField();
+        AltaPerfil_fechanacimiento_label = new javax.swing.JLabel();
+        AltaPerfil_tipousuario_label = new javax.swing.JLabel();
+        AltaPerfil_tipousuario_input = new javax.swing.JComboBox<>();
+        AltaPerfil_botonimagen_button = new javax.swing.JButton();
+        AltaPerfil_url_label = new javax.swing.JLabel();
+        AltaPerfil_url_input = new javax.swing.JTextField();
+        AltaPerfil_bio_label = new javax.swing.JLabel();
+        AltaPerfil_bio_container = new javax.swing.JScrollPane();
+        AltaPerfil_bio_input = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         SesionDropDown = new javax.swing.JMenu();
         cerrarOption = new javax.swing.JMenuItem();
@@ -71,6 +88,7 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(internalAltaAlbum);
 
         internalAltaPerfil.setClosable(true);
+        internalAltaPerfil.setResizable(true);
         internalAltaPerfil.setTitle("Alta Perfil");
         internalAltaPerfil.setToolTipText("");
         internalAltaPerfil.setPreferredSize(new java.awt.Dimension(1422, 800));
@@ -81,15 +99,102 @@ public class MainFrame extends javax.swing.JFrame {
         }
         internalAltaPerfil.setVisible(true);
 
+        AltaPerfil_nickname_label.setText("Nickname");
+
+        AltaPerfil_nombre_label.setText("Nombre");
+
+        AltaPerfil_apellido_label.setText("Apellido");
+
+        AltaPerfil_email_label.setText("Email");
+
+        AltaPerfil_fechanacimiento_label.setText("Fecha de nacimiento");
+
+        AltaPerfil_tipousuario_label.setText("Tipo de Usuario");
+
+        AltaPerfil_tipousuario_input.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cliente", "Artista" }));
+
+        AltaPerfil_botonimagen_button.setText("Elegir imágen de perfil");
+
+        AltaPerfil_url_label.setText("Página web");
+
+        AltaPerfil_bio_label.setText("Bio");
+
+        AltaPerfil_bio_input.setColumns(20);
+        AltaPerfil_bio_input.setRows(5);
+        AltaPerfil_bio_container.setViewportView(AltaPerfil_bio_input);
+
         javax.swing.GroupLayout internalAltaPerfilLayout = new javax.swing.GroupLayout(internalAltaPerfil.getContentPane());
         internalAltaPerfil.getContentPane().setLayout(internalAltaPerfilLayout);
         internalAltaPerfilLayout.setHorizontalGroup(
             internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 667, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, internalAltaPerfilLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AltaPerfil_fechanacimiento_label)
+                    .addComponent(AltaPerfil_botonimagen_button)
+                    .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, internalAltaPerfilLayout.createSequentialGroup()
+                            .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(AltaPerfil_nombre_label)
+                                .addComponent(AltaPerfil_nickname_label)
+                                .addComponent(AltaPerfil_apellido_label)
+                                .addComponent(AltaPerfil_email_label)
+                                .addComponent(AltaPerfil_tipousuario_label))
+                            .addGap(62, 62, 62)
+                            .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(AltaPerfil_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(AltaPerfil_nickname_input, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(AltaPerfil_apellido_input)
+                                        .addComponent(AltaPerfil_email_input, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(AltaPerfil_tipousuario_input, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(internalAltaPerfilLayout.createSequentialGroup()
+                            .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(AltaPerfil_url_label)
+                                .addComponent(AltaPerfil_bio_label))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(AltaPerfil_url_input, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                                .addComponent(AltaPerfil_bio_container)))))
+                .addGap(274, 274, 274))
         );
         internalAltaPerfilLayout.setVerticalGroup(
             internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(internalAltaPerfilLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AltaPerfil_nickname_label)
+                    .addComponent(AltaPerfil_nickname_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AltaPerfil_nombre_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AltaPerfil_nombre_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AltaPerfil_apellido_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AltaPerfil_apellido_label))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AltaPerfil_email_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AltaPerfil_email_label))
+                .addGap(18, 18, 18)
+                .addComponent(AltaPerfil_fechanacimiento_label)
+                .addGap(25, 25, 25)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AltaPerfil_tipousuario_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AltaPerfil_tipousuario_label))
+                .addGap(18, 18, 18)
+                .addComponent(AltaPerfil_botonimagen_button)
+                .addGap(18, 18, 18)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AltaPerfil_url_label)
+                    .addComponent(AltaPerfil_url_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(AltaPerfil_bio_container, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AltaPerfil_bio_label))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(internalAltaPerfil);
@@ -191,6 +296,23 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AltaAlbum;
     private javax.swing.JMenuItem AltaPerfil;
+    private javax.swing.JTextField AltaPerfil_apellido_input;
+    private javax.swing.JLabel AltaPerfil_apellido_label;
+    private javax.swing.JScrollPane AltaPerfil_bio_container;
+    private javax.swing.JTextArea AltaPerfil_bio_input;
+    private javax.swing.JLabel AltaPerfil_bio_label;
+    private javax.swing.JButton AltaPerfil_botonimagen_button;
+    private javax.swing.JTextField AltaPerfil_email_input;
+    private javax.swing.JLabel AltaPerfil_email_label;
+    private javax.swing.JLabel AltaPerfil_fechanacimiento_label;
+    private javax.swing.JTextField AltaPerfil_nickname_input;
+    private javax.swing.JLabel AltaPerfil_nickname_label;
+    private javax.swing.JTextField AltaPerfil_nombre_input;
+    private javax.swing.JLabel AltaPerfil_nombre_label;
+    private javax.swing.JComboBox<String> AltaPerfil_tipousuario_input;
+    private javax.swing.JLabel AltaPerfil_tipousuario_label;
+    private javax.swing.JTextField AltaPerfil_url_input;
+    private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JMenu AltasDropDown;
     private javax.swing.JMenu ConsultasDropDown;
     private javax.swing.JMenu SesionDropDown;
