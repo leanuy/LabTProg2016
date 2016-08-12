@@ -1,4 +1,6 @@
 Comunicación:
+
+ALTA ARTISTA
 0:) —>:CtrlUsuarios								AltaCliente(d:DataCliente)
 1:) :CtrlUsuarios—<global>—>CtrlUsuarios			ok:=ValidarDatosUsuario(d)
 2a[ok]:) :CtrlUsuarios—<self>						ok:=!ExisteUsuarioCorreo(d.correo)
@@ -26,10 +28,14 @@ Comunicación:
 4aaa[ok]:) :CtrlUsuarios—<local>—>a:Artista			create(a)
 5aaa:) :CtrlUsuarios—<asoc>—>Set<Artista>			add(a)
 
-[DataUsuario]<:-[DataArtista|
+[DataUsuario]<:-[DataArtista]
 -bio:string
 -url:string]
 
+
+
+
+ALTA ALBUM
 0:) —>:CtrlMusica								ExisteArtista(nomArtista:string) : [ok: bool, lst: List<Genero>]
 1:) :CtrlMusica—<global>—> CtrlUsuarios				cu:=getInstancia()
 2:) :CtrlMusica—<local>—>cu:CtrlUsuarios			ok:=BuscarUsuarioNick(nomArtista).EsArtista()
@@ -56,33 +62,78 @@ Comunicación:
 3aa[ok]:) :CtrlMusica—<local> al:Album				create(d,lst,a)
 4aa:) :CtrlMusica —<asoc> Set<Album>				add(al)
 
-[DataAlbum|
+[DataAlbum]
 -nombre:string
 -año:int
 -generos:Set<String>
 -img:string]
 
+
+
+
+SEGUIR USUARIO
 0:) —>:CtrlUsuarios								AltaSeguir(nomSeguidor, nomSeguido : string)
 1:) :CtrlUsuarios—<self>							seguidor:=BuscarUsuarioNick(nomSeguidor)
 2a[seguidor!=NULL]:) :CtrlUsuarios —<self>			seguido:=BuscarUsuarioNick(nomSeguido)
 3aa[seguido!=NULL]:) :CtrlUsuarios—<self>			seguidor.Seguir(seguido)
 
+DEJAR DE SEGUIR USUARIO
 0:) —>:CtrlUsuarios								BajaSeguir(nomSeguidor, nomSeguido : string)
 1:) :CtrlUsuarios—<self>							seguidor:=BuscarUsuarioNick(nomSeguidor)
 2a[seguidor!=NULL]:) :CtrlUsuarios —<self>			seguido:=BuscarUsuarioNick(nomSeguido)
 3aa[seguido!=NULL]:) :CtrlUsuarios—<self>			seguidor.DejarDeSeguir(seguido)
 
+CONSULTA CLIENTE
 0:) —>:CtrlUsuarios								lst:= ListarClientes() : List<String>
 1*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Cliente>		c:=next()
 2*:) :	CtrlUsuarios—<local>—c:Cliente				lst.add(c.getNombre())
 
 0:) —>:CtrlUsuarios								ConsultaCliente(nombre:string) : DataClienteExt
-1:) :CtrlUsuarios—<asoc>—>Set<Cliente>			c:=find(nombre)
+1:) :CtrlUsuarios—<asoc>—>Set<Cliente>				c:=find(nombre)
 2*:) :	CtrlUsuarios—<local>—c:Cliente				lst.add(c.getDataExt())
 …/getDataExt tiene lógica bastante pero fácil. recorrer cosas.
 
 [DataClienteExt|
 …
 ]
+
+CONSULTA ARTISTA
+0:) —>:CtrlUsuarios								list:= ListarArtistas() : List<String>
+1*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Artista>		a:=next()
+2*:) :	CtrlUsuarios—<local>—a:Artista				lst.add(a.getNombre())
+
+0:) —>:CtrlUsuarios								ConsultaArtista(nombre:string) : DataArtistaExt
+1:) :CtrlUsuarios—<asoc>—>Set<Artista>				a:=find(nombre)
+2*:) :	CtrlUsuarios—<local>—a:Artista				lst.add(a.getDataExt())
+
+CONSULTA ALBUM
+0:) —>:CtrlUsuarios								list:= ListarGeneros(): List<String>
+1*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Genero>		g:=next()
+2*:) :	CtrlUsuarios—<local>—g:Genero				lst.add(g.getNombre())
+3:) CtrlUsuarios—<asoc>—>Set<Album>				SeleccionarGenero(Genero g): List<String>
+
+0:) —>:CtrlUsuarios								list:= ListarArtistas() : List<String>
+1*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Artista>		a:=next()
+2*:) :	CtrlUsuarios—<local>—a:Artista				lst.add(a.getNombre())
+3:) CtrlUsuarios—<asoc>—>Set<Album>				SeleccionarArtista(Artista a)
+
+4*[foreach]:) :CtrlUsuarios—<asoc>—>Set<Album>		al:= next()
+5*:) —>:CtrlUsuarios—<local>—al:Album				lst.add(al.getNombre())
+6:)—>:CtrlUsuarios—<asoc>—ALGO				ConsultaAlbum(String Nombre): DataAlbumExt
+7:)—>:CtrlUsuarios—<asoc>—OTRO ALGO			DescargarTema(String tema):mp3
+
+
+
+
+
+[DataAlbumExt]
+-nombre:string
+-año:int
+-generos:Set<String>
+-img:string]
+-temas:Set<String>
+
+
+
 
 
