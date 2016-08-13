@@ -1,0 +1,112 @@
+Alta Perfil
+[alt]
+	cliente
+		AltaCliente
+		[loop ingresó cosas mal]
+			[opt]	quiere
+					AltaCliente
+	artista
+		AltaArtista
+		[loop ingresó cosas mal]
+			[opt]	quiere
+					AltaArtista
+
+
+Alta Álbum
+ExisteArtista() : [bool, List<Genero>]
+[alt]	existe=true
+		IngresaTema //recuerda tema
+		[loop quiere más temas]
+			IngresaTema //recuerda tema
+		//ListarGeneros para que no se los tenga que sabe de memoria.
+		AltaAlbum
+//no se pide pero debería haber opción de cancelar.
+
+Seguir Usuario
+AltaSeguir
+
+Dejar de Seguir
+BajaSeguir
+
+Consulta Cliente
+ListarClientes
+ConsultaCliente
+
+Consulta Artista
+ListarArtistas
+ConsultaArtista
+
+Consulta Álbum
+[alt]
+	quiere genero
+		ListarGeneros
+		ListarAlbumesDeGenero(Genero g): List<Album>
+	quiere artista
+		ListarArtistas
+		ListarAlbumesDeArtista(Artista a): List<Album>
+ConsultaAlbum
+[loop] quiere descargar mas
+	DescargarTema
+
+
+
+Alta Genero
+[opt]
+	ListarGeneros
+AltaGenero
+
+AltaLista
+[alt]
+	particular
+		ListarClientes
+		AltaListaParticular
+	defecto
+		ListarGeneros
+		AltaListaDefecto
+
+AgregarTemaLista
+//turbio
+[alt]
+	particular
+		ListarClientes
+		ListarListasDeCliente
+	defecto
+		ListarListasDefecto
+EjecucionCUListarTemas
+AgregarTemaLista(tema, lista)
+
+QuitarTemaLista
+[alt]
+	particular
+		ListarClientes
+		ListarListasDeCliente
+	defecto
+		ListarListasDefecto
+ListarTemasLista(Lista l)
+RemoverTemaLista
+
+PublicarLista
+ListarClientes
+ListarListasDeCliente
+PublicarLista
+
+GuardarFavorito
+ListarClientes
+EjecucionCUListarFavoriteables
+AgregarFavorito(Cliente, Favoriteable)
+
+EliminarTemaListaAlbum
+ListarClientes
+ListarFavsDeCliente
+RemoverFavorito
+
+ConsultaLista
+[alt]
+	Genero
+		ListarGeneros
+	Cliente
+		ListarClientes
+		ListarListasDeCliente
+ConsultaLista
+[loop] quiere descargar mas temas
+	DescargarTema
