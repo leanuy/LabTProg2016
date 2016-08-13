@@ -112,10 +112,7 @@
     <Container class="javax.swing.JInternalFrame" name="internalAltaPerfil">
       <Properties>
         <Property name="closable" type="boolean" value="true"/>
-<<<<<<< HEAD
-=======
         <Property name="resizable" type="boolean" value="true"/>
->>>>>>> 2febf15628629f73584367e9f5181bd802efb1af
         <Property name="title" type="java.lang.String" value="Alta Perfil"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
         <Property name="maximum" type="boolean" value="true"/>
