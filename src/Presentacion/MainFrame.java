@@ -88,6 +88,10 @@ public class MainFrame extends javax.swing.JFrame {
         getContentPane().add(internalAltaAlbum);
 
         internalAltaPerfil.setClosable(true);
+<<<<<<< HEAD
+=======
+        internalAltaPerfil.setResizable(true);
+>>>>>>> 2febf15628629f73584367e9f5181bd802efb1af
         internalAltaPerfil.setTitle("Alta Perfil");
         internalAltaPerfil.setToolTipText("");
         internalAltaPerfil.setPreferredSize(new java.awt.Dimension(1422, 800));
