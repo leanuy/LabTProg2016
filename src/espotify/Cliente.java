@@ -1,0 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package espotify;
+
+import java.util.HashMap;
+
+/**
+ *
+ * @author JavierM42
+ */
+public class Cliente extends Usuario {
+    private final HashMap<String,Usuario> seguidos;
+    private final HashMap<String,Particular> listas;
+    
+    public Cliente()
+    {
+        this.seguidos=new HashMap<>();
+        this.listas=new HashMap<>();
+    }
+}
