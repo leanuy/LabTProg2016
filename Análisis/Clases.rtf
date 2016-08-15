@@ -1,0 +1,255 @@
+[Usuario]<:-[Cliente]
+[Usuario]<:-[Artista]
+[Lista]<:-[Defecto]
+[Lista]<:-[Particular]
+[Particular]<:-[Privada]
+[Particular]<:-[Publica]
+[Favoriteable]<:--[Publica]
+[Favoriteable]<:--[Defecto]
+[Favoriteable]<:--[Album]
+[Favoriteable]<:--[Tema]
+
+[Cliente]*->*[Favoriteable]
+[Cliente]*->*[Usuario]
+[Tema]<:-[TemaWeb]
+[Tema]<:-[TemaArchivo]
+
+[CtrlUsuarios]->*[Cliente]
+[CtrlMusica]->*[Genero]
+[Artista]1->*[Album]
+[Genero]1..*<->*[Album]
+[Cliente]1->*[Particular]
+[Genero]1<-*[Defecto]
+[CtrlListas]->*[Defecto]
+[Lista]*->*[Tema]
+[Album]+->1..*[Tema]
+[Genero]+->*[Genero]
+
+
+
+[Usuario
+|
+-nick : string
+-nombre : string
+-apellido : string
+-correo : string
+-fNac : Date
+-img : string
+|
++<static>ValidarDatosUsuario(d : DataUsuario):bool
++Seguir(u:Usuario)
++DejarDeSeguir(u:Usuario)
++PublicarLista(nombreLista: String) 
+]
+
+[Genero
+|
+-nombre : string
+|
++ListarAlbumes():List<String>
++BuscarAlbum(nombre:string):Album
++AltaLista(d:DataDefecto)
+]
+
+[Cliente
+||
++AltaLista(d:DataParticular)
++ListarListas() 
++ListarTemasLista(nomLista)
+]
+
+[Artista
+|
+-bio : string
+-url : string
+|
++TieneAlbum(nombre:string):bool
++<static>ValidarDatosArtista(d : DataArtista): bool
++ListarAlbumes()
++BuscarAlbum(nombre:string):Album
+]
+
+[Lista
+|
+-nombre : string
+-img : string
+|
++ ListarTemas() 
++RemoverTema(nomTema, albumTema)
+]
+
+[Particular
+||
++getData()]
+
+[Privada
+||
++DevolverComoPublica(): Publica]
+
+[Defecto
+||
++getData()]
+
+[Tema
+|
+-nombre : string
+-duracion : string
+-num : int
+|
++ getData() :DataTema
+]
+
+[TemaWeb
+|
+-url : string
+]
+
+[TemaArchivo
+|
+-archivo : string
+]
+
+[Album
+|
+-nombre : string
+-año : int
+-img : string
+|
++<static>ValidarAlbum(d:DataAlbum,lst:List<Tema>)
++AltaAlbum(d:DataAlbum,lst:List<Tema>) 
++getData():DataAlbumExt
+]
+
+[CtrlUsuarios
+|
+-instancia:CtrlUsuarios
+|
++getInstancia():CtrlUsuarios
++AltaCliente(d:DataCliente)
++ExisteUsuarioCorreo(correo : string) : bool
++ExisteUsuarioNick(nick : string) : bool
++AltaArtista(d:DataArtista)
++BuscarUsuarioNick(nomArtista : string) : Usuario
++AltaSeguir(nomSeguidor, nomSeguido : string)
++ListarClientes() : List<String>
++ConsultaCliente(nombre:string) : DataClienteExt
++ListarArtistas() : List<String>
++ConsultaArtsta(nombre:string) : DataArtistaExt
++ListarAlbumesDeArtista(nomArtista):List<String>
++BuscarArtista(nomArtista):Artista
++CrearLista(d:DataParticular)
++BuscarCliente(nombre:string):Cliente
++ListarListasDeCliente(nomCliente) 
++ListarTemasLista(nomCliente: string, nomLista)
++ PublicarLista(nombreLista, nickname: String)
+
+]
+
+[CtrlMusica
+|
+-instancia:CtrlMusica
+|
++getInstancia():CtrlMusica
++ExisteArtista(nomArtista:string) : List<Genero> 
++ListarGeneros() : List<Genero>
++IngresaTema(d:DataTema) 
++ValidarTema(d:DataTema)
++AltaAlbum(d:DataAlbum)
++ListarAlbumesDeGenero(nomGenero: string) : List<string>
++BuscarGenero(nomGenero:string):Genero
++ListarAlbumesDeArtista(nomArtista:string) : List<string>
++ConsultaAlbum(nomAlbum:string) : DataAlbumExt
++AltaGenero(d:DataGenero) 
++CrearLista(d:DataDefecto)
++BuscarGenero(nombre:string):Genero
+]
+
+[CtrlListas
+|
+-instancia:CtrlListas
+|
++getInstancia():CtrlListas
++AltaListaParticular(d:DataParticular) 
++AltaListaDefecto(d:DataDefecto)
++ListarListasdeCliente(nomCliente : string) : List<DataLista> 
++ListarListasDefecto(): List<DataDefecto> 
++ListarTemasLista(nomLista : string) : List<DataTema> 
++ RemoverTemaLista(nomTema, albumTema)
++ PublicarLista(nombreLista, nickname: String) 
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//datas
+
+[DataCliente]-:>[DataUsuario|
+-nick:string
+-nombre:string
+-apellido:string
+-correo:string
+-fNac:Date
+-img]
+
+[DataUsuario]<:-[DataArtista|
+-bio:string
+-url:string] 
+[DataTema|
+-nombre:string
+-duracion:int?
+-numero:int]
+[DataTema]<:-[DataTemaWeb|-url:string]
+[DataTema]<:-[DataTemaArchivo|-archivo:string?]
+
+[DataAlbum|
+-nombre:string
+-año:int
+-generos:Set<String>
+-img:string] 
+
+[DataClienteExt|
+…
+]
+
+[DataArtistaExt|
+…
+] 
+
+[DataAlbum]<:-[DataAlbumExt|
+-temas:List<DataTema>]
+
+[DataGenero|
+-nombre:string
+-padre:string]
+
+[DataLista]<:-[DataParticular|
+-nomCliente:string
+]
+
+[DataLista]<:-[DataDefecto|
+-genero:string
+] 
+
+[DataLista|
+-nombre:string
+-img:string]
+
+
