@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espotify;
+package espotify.Datatypes;
 
 /**
  *
  * @author JavierM42
  */
-public class TemaUrl extends Tema {
-    private String url;
-
-    public String getUrl() {
-        return url;
-    }
+public class DataCliente extends DataUsuario{
+    
 }

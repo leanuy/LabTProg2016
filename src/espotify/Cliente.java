@@ -5,10 +5,19 @@
  */
 package espotify;
 
+import java.util.HashMap;
+
 /**
  *
  * @author JavierM42
  */
 public class Cliente extends Usuario {
+    private final HashMap<String,Usuario> seguidos;
+    private final HashMap<String,Particular> listas;
     
+    public Cliente()
+    {
+        this.seguidos=new HashMap<>();
+        this.listas=new HashMap<>();
+    }
 }

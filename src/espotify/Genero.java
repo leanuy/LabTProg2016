@@ -1,14 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
 
-/**
- *
- * @author JavierM42
- */
+import java.util.HashMap;
+
 public class Genero {
+    //attrs
     private String nombre;
+    private final HashMap<String,Genero> subgeneros;
+    private final HashMap<String,Album> albums;
+
+    //getters
+    public String getNombre() {
+        return nombre;
+    }
+    //constructores
+    public Genero()
+    {
+        this.subgeneros=new HashMap<>();
+        this.albums=new HashMap<>();
+    }
 }

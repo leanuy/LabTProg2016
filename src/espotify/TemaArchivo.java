@@ -11,4 +11,8 @@ package espotify;
  */
 public abstract class TemaArchivo extends Tema{
     private String archivo;
+
+    public String getArchivo() {
+        return archivo;
+    }
 }

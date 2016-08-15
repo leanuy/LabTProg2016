@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package espotify;
+package espotify.Datatypes;
 
-import java.util.Date; //ni idea, es un template, capaz usamos otra cosa para dates.
+import java.util.Date;
 
 /**
  *
  * @author JavierM42
  */
-public class Usuario {
+public class DataUsuario {
     private String nick;
     private String nombre;
     private String apellido;
@@ -22,24 +22,20 @@ public class Usuario {
     public String getNick() {
         return nick;
     }
-
     public String getNombre() {
         return nombre;
     }
-
     public String getApellido() {
         return apellido;
     }
-
     public String getCorreo() {
         return correo;
     }
-
     public Date getfNac() {
         return fNac;
     }
-
     public String getImg() {
         return img;
     }
+
 }
