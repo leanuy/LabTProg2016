@@ -22,13 +22,17 @@ public class Cliente extends Usuario {
         this.listas=new HashMap<>();
     }
     
-    public DataClienteExt CrearDataClienteExt() {
+    public DataClienteExt getDataClienteExt() {
         DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg());
         return dc;
     }
     
-    public void Seguir(Usuario u){
+    public void Seguir(Usuario u) throws Exception{
         String clave = u.getNick();
+        Usuario u2 = this.seguidos.get(clave);
+        if(u2 != null){
+            throw new Exception("Ya se esta siguiendo a ese usuario");
+        }
         this.seguidos.put(clave, u);
     }
     
