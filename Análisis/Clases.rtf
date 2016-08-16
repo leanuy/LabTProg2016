@@ -37,8 +37,6 @@
 -img : string
 |
 +<static>ValidarDatosUsuario(d : DataUsuario):bool
-+Seguir(u:Usuario)
-+DejarDeSeguir(u:Usuario)
 +PublicarLista(nombreLista: String) 
 ]
 
@@ -56,6 +54,8 @@
 +AltaLista(d:DataParticular)
 +ListarListas() 
 +ListarTemasLista(nomLista)
++Seguir(u:Usuario)
++DejarDeSeguir(u:Usuario)
 ]
 
 [Artista
@@ -131,6 +131,7 @@
 +AltaArtista(d:DataArtista)
 +BuscarUsuarioNick(nomArtista : string) : Usuario
 +AltaSeguir(nomSeguidor, nomSeguido : string)
++BajaSeguir(nomSeguidor, nomSeguido : string)
 +ListarClientes() : List<String>
 +ConsultaCliente(nombre:string) : DataClienteExt
 +ListarArtistas() : List<String>
@@ -251,5 +252,6 @@
 [DataLista|
 -nombre:string
 -img:string]
+
 
 

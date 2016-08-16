@@ -59,4 +59,38 @@ public class CtrlUsuarios {
         DataArtistaExt da = a.CrearDataArtistaExt();
         return da;
     }
+    
+    public void AltaSeguir(String nomSeguidor, String nomSeguido){
+        Cliente c = clientes.get(nomSeguidor);
+        if (c==null){
+            // todo: throw exception
+        }
+        Usuario u = clientes.get(nomSeguido);
+        if (u==null){
+            u = artistas.get(nomSeguido);
+        }
+        if (u==null){
+            // todo: throw exception
+        }
+        if (c!=null && u!=null){    //este if esta para que no aparezca un warning
+            c.Seguir(u);
+        }
+    }
+    
+    public void DejarDeSeguir(String nomSeguidor, String nomSeguido){
+        Cliente c = clientes.get(nomSeguidor);
+        if (c==null){
+            // todo: throw exception
+        }
+        Usuario u = clientes.get(nomSeguido);
+        if (u==null){
+            u = artistas.get(nomSeguido);
+        }
+        if (u==null){
+            // todo: throw exception
+        }
+        if (c!=null && u!=null){    //este if esta para que no aparezca un warning
+            c.DejarDeSeguir(u);
+        }
+    }
 }
