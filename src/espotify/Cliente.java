@@ -5,6 +5,7 @@
  */
 package espotify;
 
+import espotify.Datatypes.DataClienteExt;
 import java.util.HashMap;
 
 /**
@@ -19,5 +20,10 @@ public class Cliente extends Usuario {
     {
         this.seguidos=new HashMap<>();
         this.listas=new HashMap<>();
+    }
+    
+    public DataClienteExt CrearDataClienteExt() {
+        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg());
+        return dc;
     }
 }
