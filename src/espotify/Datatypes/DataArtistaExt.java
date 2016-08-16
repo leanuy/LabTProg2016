@@ -23,12 +23,7 @@ public class DataArtistaExt extends DataUsuario {
     }
     
     public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fNac, String img, String bio, String url){
-        this.nick = nick;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = correo;
-        this.fNac = fNac;
-        this.img = img;
+        super(nick, nombre, apellido, correo, fNac, img);
         this.bio = bio;
         this.url = url;
     }
