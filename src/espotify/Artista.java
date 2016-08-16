@@ -24,7 +24,7 @@ public class Artista extends Usuario{
       albums = new HashMap<>();
     }
 
-    public DataArtistaExt CrearDataArtistaExt() {
+    public DataArtistaExt getDataArtistaExt() {
         DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), getBio(), getUrl());
         return da;
     }

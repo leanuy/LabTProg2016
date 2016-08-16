@@ -42,7 +42,7 @@ public class CtrlUsuarios {
     
     public DataClienteExt ConsultaCliente(String s){
         Cliente c = clientes.get(s);
-        DataClienteExt dc = c.CrearDataClienteExt();
+        DataClienteExt dc = c.getDataClienteExt();
         return dc;
     }
     
@@ -56,41 +56,37 @@ public class CtrlUsuarios {
     
     public DataArtistaExt ConsultaArtista(String s){
         Artista a = artistas.get(s);
-        DataArtistaExt da = a.CrearDataArtistaExt();
+        DataArtistaExt da = a.getDataArtistaExt();
         return da;
     }
     
-    public void AltaSeguir(String nomSeguidor, String nomSeguido){
+    public void AltaSeguir(String nomSeguidor, String nomSeguido) throws Exception{
         Cliente c = clientes.get(nomSeguidor);
         if (c==null){
-            // todo: throw exception
+            throw new Exception("No existe el usuario que quiere seguir");
         }
         Usuario u = clientes.get(nomSeguido);
         if (u==null){
             u = artistas.get(nomSeguido);
         }
         if (u==null){
-            // todo: throw exception
+            throw new Exception("no existe ese usuario a seguir");
         }
-        if (c!=null && u!=null){    //este if esta para que no aparezca un warning
-            c.Seguir(u);
-        }
+        c.Seguir(u);
     }
     
-    public void DejarDeSeguir(String nomSeguidor, String nomSeguido){
+    public void DejarDeSeguir(String nomSeguidor, String nomSeguido) throws Exception{
         Cliente c = clientes.get(nomSeguidor);
         if (c==null){
-            // todo: throw exception
+            throw new Exception("No existe el usuario que quiere seguir");
         }
         Usuario u = clientes.get(nomSeguido);
         if (u==null){
             u = artistas.get(nomSeguido);
         }
         if (u==null){
-            // todo: throw exception
+            throw new Exception("no existe el usuario que se quiere dejar de seguir");
         }
-        if (c!=null && u!=null){    //este if esta para que no aparezca un warning
-            c.DejarDeSeguir(u);
-        }
+        c.DejarDeSeguir(u);
     }
 }
