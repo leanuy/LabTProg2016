@@ -5,7 +5,7 @@
  */
 package espotify.Datatypes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -22,7 +22,7 @@ public class DataArtistaExt extends DataUsuario {
         return url;
     }
     
-    public DataArtistaExt(String nick, String nombre, String apellido, String correo, Date fNac, String img, String bio, String url){
+    public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fNac, String img, String bio, String url){
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;

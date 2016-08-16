@@ -5,7 +5,7 @@
  */
 package espotify.Datatypes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.util.Date;
 public class DataClienteExt extends DataUsuario {
     
 
-    public DataClienteExt(String nick, String nombre, String apellido, String correo, Date fNac, String img) {
+    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, String img) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
