@@ -16,6 +16,8 @@ public class Espotify {
      */
     public static void main(String[] args) {
         // TODO code application logic here ESTE MAIN VUELA DESPUES Y LA APP ARRANCA DESDE EL FRAME.. LO VEMOS
+        CtrlMusica c = CtrlMusica.getInstancia();
+        
     }
     
 }

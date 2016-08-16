@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.Datatypes.DataGenero;
 import java.util.HashMap;
 
 public class Genero {
@@ -13,9 +14,18 @@ public class Genero {
         return nombre;
     }
     //constructores
-    public Genero()
+    public Genero(String nombre)
     {
+        this.nombre = nombre;
         this.subgeneros=new HashMap<>();
         this.albums=new HashMap<>();
+    }
+    public Genero(DataGenero d)
+    {
+        this(d.getNombre());
+    }
+
+    void AddHijo(Genero g) {
+        subgeneros.put(g.getNombre(), g);
     }
 }
