@@ -5,6 +5,11 @@
  */
 package Presentacion;
 
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Toolkit;
+
 /**
  *
  * @author leandro
@@ -16,13 +21,11 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        this.setSize(1000, 600);
+        this.setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+        
+        
+        //MainPanel.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
-        this.internalAltaPerfil.setSize(1422, 800);
-        this.internalAltaPerfil.setVisible(false);
-        this.setTitle("ESPOTIFY");
-        this.internalAltaAlbum.setSize(1422, 800);
-        this.internalAltaAlbum.setVisible(false);
         this.setTitle("ESPOTIFY");
         
     }
@@ -260,6 +263,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void AltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaAlbumActionPerformed
         AltaAlbum album = new AltaAlbum();
+        //album.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth())/2, (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight())/2);
         MainPanel.add(album);
         //ver que agregar y hacer visible
         album.setVisible(true);
