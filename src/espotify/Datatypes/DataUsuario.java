@@ -38,4 +38,13 @@ public class DataUsuario {
         return img;
     }
 
+    public DataUsuario(String nick, String nombre, String apellido, String correo, Date fNac, String img) {
+        this.nick = nick;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.fNac = fNac;
+        this.img = img;
+    }
+    
 }
