@@ -13,17 +13,10 @@ import java.util.Calendar;
  */
 public class DataClienteExt extends DataUsuario {
     
-    /**
-     *
-     * @param nick
-     * @param nombre
-     * @param apellido
-     * @param correo
-     * @param fNac
-     * @param img
-     */
+
     public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, String img) {
         super(nick, nombre, apellido, correo, fNac, img);
+
     }
     
 }
