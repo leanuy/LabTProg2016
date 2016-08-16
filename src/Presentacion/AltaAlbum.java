@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
@@ -13,16 +15,14 @@ import javax.swing.ListModel;
  * @author leandro
  */
 public class AltaAlbum extends javax.swing.JInternalFrame {
-
+    DefaultListModel modeloTemas; 
     /**
      * Creates new form AltaAlbum
      */
     public AltaAlbum() {
         initComponents();
-        //ListModel   model = null;   prueba.. revisar. y agregar mas
-        //ListaGeneros.setModel(model);
-        
-        
+        modeloTemas = new DefaultListModel();
+        ListaTemas.setModel(modeloTemas);
     }
     
     
@@ -261,11 +261,38 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private void buttonQuitarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonQuitarTemaActionPerformed
         // TODO ver que hay un tema seleccionado, y sacarlo del modelo de la lista
         // si hay mas de uno sacarlos todos?? o dejar seleccionar de a uno.
+        int seleccionado;
+        if (ListaTemas.getSelectedValuesList().size() > 1){
+            int opcion = JOptionPane.showConfirmDialog(this, "Esta quitando mas de un elemento de la lista", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+            if(opcion == JOptionPane.CANCEL_OPTION || opcion ==JOptionPane.NO_OPTION){
+                return;
+            }
+            int[] seleccionados = ListaTemas.getSelectedIndices();
+              System.out.println(seleccionados.length);
+                            System.out.println(seleccionados);
+                            System.out.println(modeloTemas.size());
+            for(int i = seleccionados.length - 1; i >= 0; i--){
+                System.out.println(i);
+                modeloTemas.remove(seleccionados[i]);
+            }
+            System.out.println(seleccionados.length);
+        }else{
+            seleccionado = ListaTemas.getSelectedIndex();
+            modeloTemas.remove(seleccionado);
+        }
+        //ListaTemas.
+        
     }//GEN-LAST:event_buttonQuitarTemaActionPerformed
 
     private void buttonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarTemaActionPerformed
         // TODO abrir el jdialog ue agregue el tema y si esta todo ok ponerlo en la lista.
         // ver que carajo agregar de cada tema
+                            System.out.println(modeloTemas.size());
+        String tema = JOptionPane.showInputDialog(this, "Ingrese el path al tema o el link al mismo");
+                                    System.out.println(modeloTemas.size());
+
+        modeloTemas.addElement(tema);
+        
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
 
     private void buttonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarImagenActionPerformed
