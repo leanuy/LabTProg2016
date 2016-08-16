@@ -36,8 +36,12 @@ public class Cliente extends Usuario {
         this.seguidos.put(clave, u);
     }
     
-    public void DejarDeSeguir(Usuario u){
+    public void DejarDeSeguir(Usuario u) throws Exception{
         String clave = u.getNick();
+        Usuario u2 = this.seguidos.get(clave);
+        if (u2 == null){
+            throw new Exception("El usuario no puede dejar de seguir alguien que no seguía");
+        }
         this.seguidos.remove(clave);
     }
 }

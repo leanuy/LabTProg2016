@@ -5,7 +5,7 @@
  */
 package espotify.Datatypes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -16,7 +16,7 @@ public class DataUsuario {
     protected String nombre;
     protected String apellido;
     protected String correo;
-    protected Date fNac;
+    protected Calendar fNac;
     protected String img;
 
     public String getNick() {
@@ -31,7 +31,7 @@ public class DataUsuario {
     public String getCorreo() {
         return correo;
     }
-    public Date getfNac() {
+    public Calendar getfNac() {
         return fNac;
     }
     public String getImg() {
