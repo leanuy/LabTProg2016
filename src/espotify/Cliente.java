@@ -26,4 +26,14 @@ public class Cliente extends Usuario {
         DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg());
         return dc;
     }
+    
+    public void Seguir(Usuario u){
+        String clave = u.getNick();
+        this.seguidos.put(clave, u);
+    }
+    
+    public void DejarDeSeguir(Usuario u){
+        String clave = u.getNick();
+        this.seguidos.remove(clave);
+    }
 }
