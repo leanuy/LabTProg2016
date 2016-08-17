@@ -104,7 +104,7 @@
                           <Component id="jScrollPane1" min="-2" pref="369" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
+                              <Component id="buttonConfirmarALtaAlbum" alignment="1" max="32767" attributes="0"/>
                               <Component id="buttonAgregarTema" alignment="1" max="32767" attributes="0"/>
                               <Component id="buttonQuitarTema" alignment="1" min="-2" pref="158" max="-2" attributes="0"/>
                           </Group>
@@ -192,7 +192,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="buttonQuitarTema" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="43" max="-2" attributes="0"/>
+                          <Component id="buttonConfirmarALtaAlbum" min="-2" pref="43" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" min="-2" pref="251" max="-2" attributes="0"/>
                   </Group>
@@ -309,7 +309,7 @@
             <Property name="text" type="java.lang.String" value="(solo archivos .jpg o .png)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="buttonConfirmarALtaAlbum">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar Alta Album"/>
           </Properties>

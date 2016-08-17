@@ -5,8 +5,10 @@
  */
 package Presentacion;
 
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 
@@ -15,14 +17,20 @@ import javax.swing.ListModel;
  * @author leandro
  */
 public class AltaAlbum extends javax.swing.JInternalFrame {
+    
     DefaultListModel modeloTemas; 
+    DefaultListModel modeloGeneros;
+    
     /**
      * Creates new form AltaAlbum
      */
     public AltaAlbum() {
         initComponents();
         modeloTemas = new DefaultListModel();
+        modeloGeneros = new DefaultListModel();
         ListaTemas.setModel(modeloTemas);
+        ListaGeneros.setModel(modeloGeneros);
+        buttonConfirmarALtaAlbum.setEnabled(false);
     }
     
     
@@ -56,7 +64,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         buttonAgregarImagen = new javax.swing.JButton();
         pathALaImagen = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buttonConfirmarALtaAlbum = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Alta Album");
@@ -139,7 +147,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 
         jLabel2.setText("(solo archivos .jpg o .png)");
 
-        jButton1.setText("Confirmar Alta Album");
+        buttonConfirmarALtaAlbum.setText("Confirmar Alta Album");
 
         javax.swing.GroupLayout PanelSeleccionArtistaLayout = new javax.swing.GroupLayout(PanelSeleccionArtista);
         PanelSeleccionArtista.setLayout(PanelSeleccionArtistaLayout);
@@ -153,7 +161,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
                         .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonAgregarTema, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonQuitarTema, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -220,7 +228,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonQuitarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(118, 118, 118)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -249,8 +257,18 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 
     private void buttonBuscarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarArtistaActionPerformed
         //crear interfaz ver si la hacemos local o solo la use una vez y devuelva
+        ArrayList<String> generos = null;
         try{
             //Llamado a la operacion de busqueda, devuelve lo que corresponde
+            buttonConfirmarALtaAlbum.setEnabled(true);
+            //generos = operacion de la interfaz;
+            if(generos != null){
+                for(String s : generos){
+                    modeloGeneros.addElement(s); 
+                }
+            }else{
+                modeloGeneros.addElement("Sin generos");
+            }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(), "Atencion!!!",JOptionPane.WARNING_MESSAGE);
             nombreArtista.setText("");
@@ -287,10 +305,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private void buttonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarTemaActionPerformed
         // TODO abrir el jdialog ue agregue el tema y si esta todo ok ponerlo en la lista.
         // ver que carajo agregar de cada tema
-                            System.out.println(modeloTemas.size());
         String tema = JOptionPane.showInputDialog(this, "Ingrese el path al tema o el link al mismo");
-                                    System.out.println(modeloTemas.size());
-
         modeloTemas.addElement(tema);
         
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
@@ -298,6 +313,11 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private void buttonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarImagenActionPerformed
         // TODO abrir un file chooser y que file por tipo de archivo. solo jpg o png. mostrar path luego en textfield editable
         // avisar y no seleccionar si archivo no tiene la extension deseada.
+        JFileChooser fc = new JFileChooser();
+        int selected = fc.showDialog(this, "Seleccionar");
+        fc.setDialogTitle("Choose a file");
+        this.getContentPane().add(fc);
+        fc.setVisible(true);
         
     }//GEN-LAST:event_buttonAgregarImagenActionPerformed
 
@@ -321,8 +341,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonAgregarImagen;
     private javax.swing.JButton buttonAgregarTema;
     private javax.swing.JButton buttonBuscarArtista;
+    private javax.swing.JButton buttonConfirmarALtaAlbum;
     private javax.swing.JButton buttonQuitarTema;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
