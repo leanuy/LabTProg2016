@@ -6,6 +6,7 @@
 package espotify;
 
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataParticular;
 import java.util.HashMap;
 
 /**
@@ -43,5 +44,12 @@ public class Cliente extends Usuario {
             throw new Exception("El usuario no puede dejar de seguir alguien que no seguía");
         }
         this.seguidos.remove(clave);
+    }
+
+    void AltaLista(DataParticular d) throws Exception {
+        if(!listas.containsKey(d.getNombre()))
+            listas.put(d.getNombre(), new Privada(d));
+        else
+            throw new Exception("El cliente ya tiene una lista con ese nombre");
     }
 }

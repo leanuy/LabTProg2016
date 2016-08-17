@@ -1,12 +1,15 @@
 package espotify;
 
+import espotify.Datatypes.DataDefecto;
+import espotify.Datatypes.DataParticular;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CtrlListas {
-    private CtrlListas instancia;
+    private static CtrlListas instancia;
     private final HashMap<String,Defecto> listas;
     
-    public CtrlListas getInstancia()
+    public static CtrlListas getInstancia()
     {
         if(instancia==null)
             instancia=new CtrlListas();
@@ -14,8 +17,39 @@ public class CtrlListas {
     }
     
     //constructores
-    public CtrlListas()
+    private CtrlListas()
     {
         this.listas=new HashMap<>();
     }
+    
+    //otros métodos
+    
+    public ArrayList<String> ListarClientes()
+    {
+        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        return cu.ListarClientes();
+    }
+    
+    public ArrayList<Genero> ListarGeneros()
+    {
+        CtrlMusica cm = CtrlMusica.getInstancia();
+        return cm.ListarGeneros();
+    }
+    
+    public void AltaListaParticular(DataParticular d) throws Exception
+    {
+        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        cu.AltaLista(d);
+    }
+    
+    public void AltaListaDefecto(DataDefecto d) throws Exception
+    {
+        CtrlMusica cm = CtrlMusica.getInstancia();
+        Genero g = cm.BuscarGenero(d.getGenero());
+        if(g!=null)
+            listas.put(d.getNombre(), new Defecto(d,g));
+        else
+            throw new Exception("No existe un género con ese nombre");
+    }
+    
 }

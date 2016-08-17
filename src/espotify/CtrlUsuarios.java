@@ -1,32 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
 
 import espotify.Datatypes.DataArtistaExt;
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataParticular;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- *
- * @author JavierM42
- */
 public class CtrlUsuarios {
-    private CtrlUsuarios instancia;
+    private static CtrlUsuarios instancia;
     private final HashMap<String,Cliente> clientes;
     private final HashMap<String,Artista> artistas;
     
-    public CtrlUsuarios getInstancia()
+    public static CtrlUsuarios getInstancia()
     {
         if(instancia==null)
             instancia=new CtrlUsuarios();
         return instancia;
     }
     
-    public CtrlUsuarios()
+    private CtrlUsuarios()
     {
         this.clientes=new HashMap<>();
         this.artistas=new HashMap<>();
@@ -88,5 +80,13 @@ public class CtrlUsuarios {
             throw new Exception("no existe el usuario que se quiere dejar de seguir");
         }
         c.DejarDeSeguir(u);
+    }
+
+    void AltaLista(DataParticular d) throws Exception {
+        Cliente c = clientes.get(d.getNomCliente());
+        if(c!=null)
+            c.AltaLista(d);
+        else
+            throw new Exception("No existe un cliente con ese nombre");
     }
 }

@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.Datatypes.DataDefecto;
 import java.util.HashMap;
 
 public class Genero {
@@ -18,4 +19,5 @@ public class Genero {
         this.subgeneros=new HashMap<>();
         this.albums=new HashMap<>();
     }
+
 }
