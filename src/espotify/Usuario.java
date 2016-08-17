@@ -5,6 +5,7 @@
  */
 package espotify;
 
+import espotify.Datatypes.DataUsuario;
 import java.util.Calendar;
 
 /**
@@ -41,5 +42,18 @@ public class Usuario {
 
     public String getImg() {
         return img;
+    }
+    
+    static boolean ValidarDatosUsuario(DataUsuario d) {
+        return !(d.getNick().equals("") || d.getNombre().equals("") || d.getApellido().equals("") || d.getCorreo().equals(""));
+    }
+
+    public Usuario(DataUsuario d){
+        this.nick = d.getNick();
+        this.nombre = d.getNombre();
+        this.apellido = d.getApellido();
+        this.correo = d.getCorreo();
+        this.fNac = d.getfNac();
+        this.img = d.getImg();
     }
 }
