@@ -9,8 +9,7 @@ public abstract class Particular extends Lista{
     public Particular(String nombre, String img) {
         super(nombre, img);
     }
-    
-    public Particular(DataLista d ) {
+    public Particular(DataLista d) {
         super(d);
     }
 }
