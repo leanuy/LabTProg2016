@@ -139,6 +139,21 @@ public class CtrlUsuarios {
     private boolean ExisteUsuarioNick(String nick) {
         return clientes.containsKey(nick) || artistas.containsKey(nick);
     }
+    
+    private Cliente BuscarCliente(String nick) {
+        if(clientes.containsKey(nick)){
+            return clientes.get(nick);
+        }else{
+            return null;
+        }
+    }
+    private Artista BuscarArtista(String nick) {
+        if(artistas.containsKey(nick)){
+            return artistas.get(nick);
+        }else{
+            return null;
+        }
+    }
 
     void PublicarLista(String nomLista, String nick) throws Exception {
         Cliente c = clientes.get(nick);
