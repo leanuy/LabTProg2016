@@ -6,6 +6,7 @@
 package espotify;
 
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataUsuario;
 import java.util.HashMap;
 
 /**
@@ -16,8 +17,8 @@ public class Cliente extends Usuario {
     private final HashMap<String,Usuario> seguidos;
     private final HashMap<String,Particular> listas;
     
-    public Cliente()
-    {
+    public Cliente(DataUsuario d) {
+        super(d);
         this.seguidos=new HashMap<>();
         this.listas=new HashMap<>();
     }

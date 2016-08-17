@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
 import java.util.HashMap;
 
@@ -19,9 +20,17 @@ public class Artista extends Usuario{
     }
     
     //constructores
-    public Artista()
+    public Artista(DataArtista d)
     {
+      super(d);
       albums = new HashMap<>();
+      bio=d.getBio();
+      url=d.getUrl();
+    }
+    
+    //otros métodos
+    static boolean ValidarDatosArtista(DataArtista d) {
+        return Usuario.ValidarDatosUsuario(d);
     }
 
     public DataArtistaExt getDataArtistaExt() {

@@ -1,19 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
 
+import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
+import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataClienteExt;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
-/**
- *
- * @author JavierM42
- */
+
 public class CtrlUsuarios {
     private CtrlUsuarios instancia;
     private final HashMap<String,Cliente> clientes;
@@ -89,4 +86,59 @@ public class CtrlUsuarios {
         }
         c.DejarDeSeguir(u);
     }
+    
+    public void AltaCliente(DataCliente d) throws Exception
+    {
+        if(Usuario.ValidarDatosUsuario(d))
+        {
+            if(!ExisteUsuarioCorreo(d.getCorreo()))
+            {
+                if(!ExisteUsuarioNick(d.getNick()))
+                {
+                    Cliente c = new Cliente(d);
+                    clientes.put(d.getNick(), c);
+                } else
+                    throw new Exception("Ya existe un usuario con ese nick");
+            } else
+                throw new Exception("Ya existe un usuario con ese correo");
+        } else
+            throw new Exception("Los datos ingresados no son correctos");
+    }
+    
+    public void AltaArtista(DataArtista d) throws Exception
+    {
+        if(Artista.ValidarDatosArtista(d))
+        {
+            if(!ExisteUsuarioCorreo(d.getCorreo()))
+            {
+                if(!ExisteUsuarioNick(d.getNick()))
+                {
+                    Artista c = new Artista(d);
+                    artistas.put(d.getNick(), c);
+                } else
+                    throw new Exception("Ya existe un usuario con ese nick");
+            } else
+                throw new Exception("Ya existe un usuario con ese correo");
+        } else
+            throw new Exception("Los datos ingresados no son correctos");
+    }
+
+    private boolean ExisteUsuarioCorreo(String correo) {
+        boolean salida = false;
+        Iterator<Entry<String,Cliente>> iterator = clientes.entrySet().iterator();
+        while (iterator.hasNext() && !salida) {
+                Map.Entry<String,Cliente> entry = (Map.Entry<String,Cliente>) iterator.next();
+                salida = entry.getValue().getCorreo().equals(correo);
+        }
+        Iterator<Entry<String,Artista>> iterator2 = artistas.entrySet().iterator();
+        while (iterator2.hasNext() && !salida) {
+                Map.Entry<String,Artista> entry = (Map.Entry<String,Artista>) iterator2.next();
+                salida = entry.getValue().getCorreo().equals(correo);
+        }
+        return salida;       
+    }
+    private boolean ExisteUsuarioNick(String nick) {
+        return clientes.containsKey(nick) || artistas.containsKey(nick);
+    }
+    
 }
