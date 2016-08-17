@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import javax.swing.ListModel;
  */
 public class AltaAlbum extends javax.swing.JInternalFrame {
     
+
     private DefaultListModel modeloTemas; 
     private DefaultListModel modeloGeneros;
     private String pathAImagen;
@@ -36,7 +38,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         ListaTemas.setModel(modeloTemas);
         ListaGeneros.setModel(modeloGeneros);
         buttonConfirmarALtaAlbum.setEnabled(false);
-        PanelSDatosAlbum.setEnabled(true);
     }
     
     
@@ -272,7 +273,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         try{
             //Llamado a la operacion de busqueda, devuelve lo que corresponde
             buttonConfirmarALtaAlbum.setEnabled(true);
-            PanelSDatosAlbum.setEnabled(true);
             //generos = operacion de la interfaz;
             if(generos != null){
                 for(String s : generos){
@@ -348,8 +348,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);
-        
+        fc.setVisible(false);        
     }//GEN-LAST:event_buttonAgregarImagenActionPerformed
 
     private void anioDeCreacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioDeCreacionActionPerformed
