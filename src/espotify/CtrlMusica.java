@@ -1,15 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
 
 import espotify.Datatypes.DataGenero;
+import espotify.Interfaces.IAltaGenero;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CtrlMusica {
+public class CtrlMusica implements IAltaGenero{
     private static CtrlMusica instancia;
     private final HashMap<String,Genero> generos;
     private final Genero generoBase;

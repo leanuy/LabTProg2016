@@ -4,13 +4,18 @@ import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataClienteExt;
+import espotify.Interfaces.IAltaPerfil;
+import espotify.Interfaces.IAltaSeguir;
+import espotify.Interfaces.IConsultaArtista;
+import espotify.Interfaces.IConsultaCliente;
+import espotify.Interfaces.IDejarDeSeguir;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class CtrlUsuarios {
+public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil{
     private static CtrlUsuarios instancia;
     private final HashMap<String,Cliente> clientes;
     private final HashMap<String,Artista> artistas;
@@ -140,10 +145,10 @@ public class CtrlUsuarios {
         return clientes.containsKey(nick) || artistas.containsKey(nick);
     }
     
-    private Cliente BuscarCliente(String nick) {
+    public Cliente BuscarCliente(String nick) {
             return clientes.get(nick);
     }
-    private Artista BuscarArtista(String nick) {
+    public Artista BuscarArtista(String nick) {
             return artistas.get(nick);
     }
 
