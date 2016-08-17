@@ -18,4 +18,10 @@ public class CtrlListas {
     {
         this.listas=new HashMap<>();
     }
+    
+    public void PublicarLista(String nomLista, String nick) throws Exception
+    {
+        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        cu.PublicarLista(nomLista,nick);
+    }
 }

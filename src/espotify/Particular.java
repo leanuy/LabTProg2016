@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
 
-/**
- *
- * @author JavierM42
- */
 public abstract class Particular extends Lista{
     
+    abstract Publica HacerPublica() throws Exception;
+
+    public Particular(String nombre, String img) {
+        super(nombre, img);
+    }
 }

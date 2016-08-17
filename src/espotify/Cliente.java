@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
 
 import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataUsuario;
 import java.util.HashMap;
 
-/**
- *
- * @author JavierM42
- */
 public class Cliente extends Usuario {
     private final HashMap<String,Usuario> seguidos;
     private final HashMap<String,Particular> listas;
@@ -44,5 +35,12 @@ public class Cliente extends Usuario {
             throw new Exception("El usuario no puede dejar de seguir alguien que no seguía");
         }
         this.seguidos.remove(clave);
+    }
+
+    void PublicarLista(String nomLista) throws Exception {
+       Particular l = listas.get(nomLista);
+       Publica l2 = l.HacerPublica();
+       listas.remove(nomLista);
+       listas.put(nomLista, l2);
     }
 }
