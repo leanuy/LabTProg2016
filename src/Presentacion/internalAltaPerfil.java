@@ -16,6 +16,9 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
      */
     public internalAltaPerfil() {
         initComponents();
+        biotxt.setEnabled(false);
+        urltxt.setEnabled(false);
+        clienteRadio.setSelected(true);
     }
 
     /**
@@ -41,26 +44,20 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         fechalabel = new javax.swing.JLabel();
         imglabel = new javax.swing.JLabel();
         imagentxt = new javax.swing.JTextField();
-        imgButton = new javax.swing.JButton();
+        imgbtn = new javax.swing.JButton();
         title = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        clienteRadio = new javax.swing.JRadioButton();
+        artistaRadio = new javax.swing.JRadioButton();
         biolabel = new javax.swing.JLabel();
-        biotxt = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        bioscroll = new javax.swing.JScrollPane();
+        biotxt = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         urltxt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        Confirmbtn = new javax.swing.JButton();
 
         setClosable(true);
 
         nickLabel.setText("Nickname:");
-
-        nicktxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nicktxtActionPerformed(evt);
-            }
-        });
 
         nomlabel.setText("Nombre:");
 
@@ -74,53 +71,31 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
 
         imglabel.setText("Imagen (opcional):");
 
-        imagentxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imagentxtActionPerformed(evt);
-            }
-        });
-
-        imgButton.setText("Browse...");
-        imgButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imgButtonActionPerformed(evt);
-            }
-        });
+        imgbtn.setText("Browse...");
 
         title.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         title.setText("Alta de Perfil");
 
-        tipoUserGroup.add(jRadioButton1);
-        jRadioButton1.setText("Cliente");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+        tipoUserGroup.add(clienteRadio);
+        clienteRadio.setText("Cliente");
+
+        tipoUserGroup.add(artistaRadio);
+        artistaRadio.setText("Artista");
+        artistaRadio.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                artistaRadioItemStateChanged(evt);
             }
         });
-
-        tipoUserGroup.add(jRadioButton2);
-        jRadioButton2.setText("Artista");
 
         biolabel.setText("Biografía:");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        biotxt.setViewportView(jTextArea1);
+        biotxt.setColumns(20);
+        biotxt.setRows(5);
+        bioscroll.setViewportView(biotxt);
 
         jLabel1.setText("URL:");
 
-        urltxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                urltxtActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Confirmar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        Confirmbtn.setText("Confirmar");
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
@@ -141,9 +116,9 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenedorLayout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(clienteRadio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jRadioButton2)
+                        .addComponent(artistaRadio)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(contenedorLayout.createSequentialGroup()
                         .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -156,11 +131,11 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                     .addComponent(nicktxt)
                                     .addComponent(imagentxt, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(imgButton))
+                                .addComponent(imgbtn))
                             .addGroup(contenedorLayout.createSequentialGroup()
                                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton1)
-                                    .addComponent(biotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Confirmbtn)
+                                    .addComponent(bioscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 8, Short.MAX_VALUE)))
                         .addContainerGap())))
@@ -172,8 +147,8 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 .addComponent(title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(clienteRadio)
+                    .addComponent(artistaRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nickLabel)
@@ -198,17 +173,17 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(imagentxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imglabel)
-                    .addComponent(imgButton))
+                    .addComponent(imgbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(biolabel)
-                    .addComponent(biotxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bioscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(Confirmbtn)
                 .addContainerGap())
         );
 
@@ -226,47 +201,38 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void imagentxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imagentxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imagentxtActionPerformed
-
-    private void imgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgButtonActionPerformed
-
-    private void nicktxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nicktxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nicktxtActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
-    private void urltxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urltxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_urltxtActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void artistaRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_artistaRadioItemStateChanged
+        if(biotxt.isEnabled())
+        {
+            biotxt.setEnabled(false);
+            urltxt.setEnabled(false);
+            urltxt.setText("");
+            biotxt.setText("");
+        }
+        else
+        {
+            biotxt.setEnabled(true);
+            urltxt.setEnabled(true);
+        }
+    }//GEN-LAST:event_artistaRadioItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Confirmbtn;
     private javax.swing.JLabel apelabel;
     private javax.swing.JTextField apetxt;
+    private javax.swing.JRadioButton artistaRadio;
     private javax.swing.JLabel biolabel;
-    private javax.swing.JScrollPane biotxt;
+    private javax.swing.JScrollPane bioscroll;
+    private javax.swing.JTextArea biotxt;
+    private javax.swing.JRadioButton clienteRadio;
     private javax.swing.JPanel contenedor;
     private javax.swing.JLabel fechalabel;
     private javax.swing.JTextField imagentxt;
-    private javax.swing.JButton imgButton;
+    private javax.swing.JButton imgbtn;
     private javax.swing.JLabel imglabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel maillabel;
     private javax.swing.JTextField mailtxt;
     private javax.swing.JLabel nickLabel;

@@ -57,9 +57,9 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="clienteRadio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="artistaRadio" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -74,12 +74,12 @@
                                       <Component id="imagentxt" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="imgButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="imgbtn" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="biotxt" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
+                                      <Component id="bioscroll" min="-2" max="-2" attributes="0"/>
                                       <Component id="urltxt" min="-2" pref="146" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
@@ -98,8 +98,8 @@
                   <Component id="title" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="clienteRadio" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="artistaRadio" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -130,12 +130,12 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="imagentxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="imglabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="imgButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="imgbtn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="biolabel" min="-2" max="-2" attributes="0"/>
-                      <Component id="biotxt" min="-2" max="-2" attributes="0"/>
+                      <Component id="bioscroll" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -143,7 +143,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -156,9 +156,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="nicktxt">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nicktxtActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="nomtxt">
         </Component>
@@ -199,17 +196,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="imagentxt">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imagentxtActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="imgButton">
+        <Component class="javax.swing.JButton" name="imgbtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Browse..."/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="imgButtonActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="title">
           <Properties>
@@ -219,38 +210,38 @@
             <Property name="text" type="java.lang.String" value="Alta de Perfil"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+        <Component class="javax.swing.JRadioButton" name="clienteRadio">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="tipoUserGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Cliente"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton1ActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+        <Component class="javax.swing.JRadioButton" name="artistaRadio">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="tipoUserGroup"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Artista"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="artistaRadioItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="biolabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Biograf&#xed;a:"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="biotxt">
+        <Container class="javax.swing.JScrollPane" name="bioscroll">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="jTextArea1">
+            <Component class="javax.swing.JTextArea" name="biotxt">
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="rows" type="int" value="5"/>
@@ -264,17 +255,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="urltxt">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="urltxtActionPerformed"/>
-          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="Confirmbtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
