@@ -5,19 +5,19 @@
  */
 package espotify;
 
-import java.util.Date; //ni idea, es un template, capaz usamos otra cosa para dates.
+import java.util.Calendar;
 
 /**
  *
  * @author JavierM42
  */
 public class Usuario {
-    private String nick;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private Date fNac;
-    private String img;
+    protected String nick;
+    protected String nombre;
+    protected String apellido;
+    protected String correo;
+    protected Calendar fNac;
+    protected String img;
 
     public String getNick() {
         return nick;
@@ -35,7 +35,7 @@ public class Usuario {
         return correo;
     }
 
-    public Date getfNac() {
+    public Calendar getfNac() {
         return fNac;
     }
 

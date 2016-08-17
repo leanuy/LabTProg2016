@@ -5,19 +5,19 @@
  */
 package espotify.Datatypes;
 
-import java.util.Date;
+import java.util.Calendar;
 
 /**
  *
  * @author JavierM42
  */
 public class DataUsuario {
-    private String nick;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private Date fNac;
-    private String img;
+    protected String nick;
+    protected String nombre;
+    protected String apellido;
+    protected String correo;
+    protected Calendar fNac;
+    protected String img;
 
     public String getNick() {
         return nick;
@@ -31,14 +31,14 @@ public class DataUsuario {
     public String getCorreo() {
         return correo;
     }
-    public Date getfNac() {
+    public Calendar getfNac() {
         return fNac;
     }
     public String getImg() {
         return img;
     }
 
-    public DataUsuario(String nick, String nombre, String apellido, String correo, Date fNac, String img) {
+    public DataUsuario(String nick, String nombre, String apellido, String correo, Calendar fNac, String img) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
