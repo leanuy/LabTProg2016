@@ -49,7 +49,7 @@ public class CtrlMusica {
     }
 
     private boolean ExisteGenero(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return generos.containsKey(nombre);
     }
     
     
