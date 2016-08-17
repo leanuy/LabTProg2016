@@ -12,18 +12,18 @@ import java.util.Map.Entry;
 
 
 public class CtrlUsuarios {
-    private CtrlUsuarios instancia;
+    private static CtrlUsuarios instancia;
     private final HashMap<String,Cliente> clientes;
     private final HashMap<String,Artista> artistas;
     
-    public CtrlUsuarios getInstancia()
+    public static CtrlUsuarios getInstancia()
     {
         if(instancia==null)
             instancia=new CtrlUsuarios();
         return instancia;
     }
     
-    public CtrlUsuarios()
+    private CtrlUsuarios()
     {
         this.clientes=new HashMap<>();
         this.artistas=new HashMap<>();
