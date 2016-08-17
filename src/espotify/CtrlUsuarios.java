@@ -140,10 +140,10 @@ public class CtrlUsuarios {
         return clientes.containsKey(nick) || artistas.containsKey(nick);
     }
     
-    private Cliente BuscarCliente(String nick) {
+    public Cliente BuscarCliente(String nick) {
             return clientes.get(nick);
     }
-    private Artista BuscarArtista(String nick) {
+    public Artista BuscarArtista(String nick) {
             return artistas.get(nick);
     }
 
