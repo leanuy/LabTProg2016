@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-
 public class CtrlUsuarios {
     private static CtrlUsuarios instancia;
     private final HashMap<String,Cliente> clientes;
@@ -139,6 +138,16 @@ public class CtrlUsuarios {
     }
     private boolean ExisteUsuarioNick(String nick) {
         return clientes.containsKey(nick) || artistas.containsKey(nick);
+    }
+
+    void PublicarLista(String nomLista, String nick) throws Exception {
+        Cliente c = clientes.get(nick);
+        if(c!=null)
+        {
+            c.PublicarLista(nomLista);
+        }
+        else
+            throw new Exception("El cliente no existe");
     }
     
 }

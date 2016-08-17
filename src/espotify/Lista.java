@@ -3,9 +3,9 @@ package espotify;
 import java.util.ArrayList;
 
 public abstract class Lista {
-    private String nombre;
-    private String img;
-    private final ArrayList<Tema> temas;
+    protected String nombre;
+    protected String img;
+    protected final ArrayList<Tema> temas;
 
     public String getNombre() {
         return nombre;
@@ -14,8 +14,11 @@ public abstract class Lista {
         return img;
     }
     
-    public Lista()
+    public Lista(String nombre, String img)
     {
+        this.nombre=nombre;
+        this.img=img;
         this.temas=new ArrayList<>();
     }
+
 }
