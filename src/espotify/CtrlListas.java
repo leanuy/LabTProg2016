@@ -112,10 +112,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
         if(ValidarNombreListaDefecto(d.getNombre()))
         {
             Genero g = cm.BuscarGenero(d.getGenero());
-            if(g!=null)
-                listas.put(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
-            else
-                throw new Exception("No existe un género con ese nombre");
+            listas.put(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
         }
         else
             throw new Exception("El nombre de la lista es vacío o está repetido");
