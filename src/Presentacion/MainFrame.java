@@ -5,6 +5,11 @@
  */
 package Presentacion;
 
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Toolkit;
+
 /**
  *
  * @author leandro
@@ -16,13 +21,11 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
-        this.setSize(1000, 600);
+        this.setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
+        
+        
+        //MainPanel.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
-        this.internalAltaPerfil.setSize(1422, 800);
-        this.internalAltaPerfil.setVisible(false);
-        this.setTitle("ESPOTIFY");
-        this.internalAltaAlbum.setSize(1422, 800);
-        this.internalAltaAlbum.setVisible(false);
         this.setTitle("ESPOTIFY");
         
     }
@@ -55,6 +58,7 @@ public class MainFrame extends javax.swing.JFrame {
         AltaPerfil_bio_label = new javax.swing.JLabel();
         AltaPerfil_bio_container = new javax.swing.JScrollPane();
         AltaPerfil_bio_input = new javax.swing.JTextArea();
+        MainPanel = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         SesionDropDown = new javax.swing.JMenu();
         cerrarOption = new javax.swing.JMenuItem();
@@ -62,12 +66,6 @@ public class MainFrame extends javax.swing.JFrame {
         AltaPerfil = new javax.swing.JMenuItem();
         AltaAlbum = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBounds(new java.awt.Rectangle(0, 0, 200, 700));
-        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(3200, 1800));
-        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -82,13 +80,10 @@ public class MainFrame extends javax.swing.JFrame {
         );
         internalAltaAlbumLayout.setVerticalGroup(
             internalAltaAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 231, Short.MAX_VALUE)
         );
 
-        getContentPane().add(internalAltaAlbum);
-
         internalAltaPerfil.setClosable(true);
-        internalAltaPerfil.setResizable(true);
         internalAltaPerfil.setTitle("Alta Perfil");
         internalAltaPerfil.setToolTipText("");
         internalAltaPerfil.setPreferredSize(new java.awt.Dimension(1422, 800));
@@ -194,15 +189,27 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGroup(internalAltaPerfilLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AltaPerfil_bio_container, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(AltaPerfil_bio_label))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
-        getContentPane().add(internalAltaPerfil);
-        try {
-            internalAltaPerfil.setMaximum(true);
-        } catch (java.beans.PropertyVetoException e1) {
-            e1.printStackTrace();
-        }
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBounds(new java.awt.Rectangle(0, 0, 200, 700));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setMaximumSize(new java.awt.Dimension(3200, 1800));
+        getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
+
+        javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
+        MainPanel.setLayout(MainPanelLayout);
+        MainPanelLayout.setHorizontalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 669, Short.MAX_VALUE)
+        );
+        MainPanelLayout.setVerticalGroup(
+            MainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 409, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(MainPanel);
 
         SesionDropDown.setText("Sesion");
 
@@ -251,11 +258,15 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarOptionActionPerformed
 
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
-        this.internalAltaPerfil.setVisible(true);
+        
     }//GEN-LAST:event_AltaPerfilActionPerformed
 
     private void AltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaAlbumActionPerformed
-        this.internalAltaAlbum.setVisible(true);
+        AltaAlbum album = new AltaAlbum();
+        //album.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth())/2, (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight())/2);
+        MainPanel.add(album);
+        //ver que agregar y hacer visible
+        album.setVisible(true);
     }//GEN-LAST:event_AltaAlbumActionPerformed
 
     /**
@@ -315,6 +326,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JMenu AltasDropDown;
     private javax.swing.JMenu ConsultasDropDown;
+    private javax.swing.JPanel MainPanel;
     private javax.swing.JMenu SesionDropDown;
     private javax.swing.JMenuItem cerrarOption;
     private javax.swing.JInternalFrame internalAltaAlbum;
