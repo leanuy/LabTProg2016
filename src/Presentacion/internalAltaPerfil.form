@@ -57,25 +57,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="clienteRadio" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="artistaRadio" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="nomtxt" max="32767" attributes="0"/>
-                                      <Component id="apetxt" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jFormattedTextField1" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="mailtxt" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="nicktxt" max="32767" attributes="0"/>
-                                      <Component id="imagentxt" alignment="0" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="imgbtn" min="-2" max="-2" attributes="0"/>
-                              </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
@@ -84,8 +66,32 @@
                                   </Group>
                                   <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                               </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="imagentxt" max="32767" attributes="0"/>
+                                      <Component id="jFormattedTextField1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="imgbtn" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="clienteRadio" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="artistaRadio" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="nicktxt" alignment="0" pref="146" max="32767" attributes="0"/>
+                                  <Component id="nomtxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="mailtxt" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="apetxt" alignment="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
