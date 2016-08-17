@@ -6,6 +6,7 @@
 package espotify;
 
 import espotify.Datatypes.DataGenero;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CtrlMusica {
@@ -29,11 +30,20 @@ public class CtrlMusica {
     
     //otros métodos
     
+    public ArrayList<String> ListarGeneros()
+    {
+        ArrayList<String> a = new ArrayList<>();
+         generos.keySet().stream().forEach((key) -> {
+             a.add(key);
+         });
+         return a;
+    }
+    
     public void AltaGenero(DataGenero d) throws Exception
     {
         if(!ExisteGenero(d.getNombre()))
         {
-            if(d.getPadre()=="")
+            if(d.getPadre().equals(""))
                 d.setPadre("Genero");
             if(ExisteGenero(d.getPadre()))
             {
