@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class CtrlMusica implements IAltaGenero{
+
     private static CtrlMusica instancia;
     private final HashMap<String,Genero> generos;
     private final Genero generoBase;
@@ -59,5 +60,9 @@ public class CtrlMusica implements IAltaGenero{
     }
     
     
-    
+
+    Genero BuscarGenero(String genero) {
+        return generos.get(genero);
+    }
+
 }

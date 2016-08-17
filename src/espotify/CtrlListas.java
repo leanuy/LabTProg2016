@@ -1,6 +1,9 @@
 package espotify;
 
+
 import espotify.Datatypes.DataTema;
+import espotify.Datatypes.DataDefecto;
+import espotify.Datatypes.DataParticular;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -72,5 +75,27 @@ public class CtrlListas {
         
     }
     
+    
+    public ArrayList<String> ListarGeneros()
+    {
+        CtrlMusica cm = CtrlMusica.getInstancia();
+        return cm.ListarGeneros();
+    }
+    
+    public void AltaListaParticular(DataParticular d) throws Exception
+    {
+        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        cu.AltaLista(d);
+    }
+    
+    public void AltaListaDefecto(DataDefecto d) throws Exception
+    {
+        CtrlMusica cm = CtrlMusica.getInstancia();
+        Genero g = cm.BuscarGenero(d.getGenero());
+        if(g!=null)
+            listas.put(d.getNombre(), new Defecto(d,g));
+        else
+            throw new Exception("No existe un género con ese nombre");
+    }
     
 }

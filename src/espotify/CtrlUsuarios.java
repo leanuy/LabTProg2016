@@ -10,6 +10,7 @@ import espotify.Interfaces.IAltaSeguir;
 import espotify.Interfaces.IConsultaArtista;
 import espotify.Interfaces.IConsultaCliente;
 import espotify.Interfaces.IDejarDeSeguir;
+import espotify.Datatypes.DataParticular;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -182,5 +183,12 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         else
             throw new Exception("El cliente no existe");
     }
-    
+
+    void AltaLista(DataParticular d) throws Exception {
+        Cliente c = clientes.get(d.getNomCliente());
+        if(c!=null)
+            c.AltaLista(d);
+        else
+            throw new Exception("No existe un cliente con ese nombre");
+    }
 }

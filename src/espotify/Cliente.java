@@ -4,6 +4,7 @@ import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataUsuario;
 import java.util.ArrayList;
+import espotify.Datatypes.DataParticular;
 import java.util.HashMap;
 
 public class Cliente extends Usuario {
@@ -60,5 +61,12 @@ public class Cliente extends Usuario {
             return l.ListarTemas();
         else
             throw new Exception("El cliente no tiene una lista con ese nombre");
+    }
+    
+    void AltaLista(DataParticular d) throws Exception {
+        if(!listas.containsKey(d.getNombre()))
+            listas.put(d.getNombre(), new Privada(d));
+        else
+            throw new Exception("El cliente ya tiene una lista con ese nombre");
     }
 }

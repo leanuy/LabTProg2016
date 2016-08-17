@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.Datatypes.DataGenero;
+import espotify.Datatypes.DataDefecto;
 import java.util.HashMap;
 
 public class Genero {
