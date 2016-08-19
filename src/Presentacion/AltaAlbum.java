@@ -292,7 +292,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         // TODO ver que hay un tema seleccionado, y sacarlo del modelo de la lista
         // si hay mas de uno sacarlos todos?? o dejar seleccionar de a uno.
         int seleccionado;
-        if (ListaTemas.getSelectedValuesList().size() > 1){
+        int cantidadSeleccionados = ListaTemas.getSelectedValuesList().size();
+        if (cantidadSeleccionados > 1){
             int opcion = JOptionPane.showConfirmDialog(this, "Esta quitando mas de un elemento de la lista", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
             if(opcion == JOptionPane.CANCEL_OPTION || opcion ==JOptionPane.NO_OPTION){
                 return;
@@ -307,8 +308,10 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             }
             System.out.println(seleccionados.length);
         }else{
-            seleccionado = ListaTemas.getSelectedIndex();
-            modeloTemas.remove(seleccionado);
+            if(cantidadSeleccionados != 0){
+                seleccionado = ListaTemas.getSelectedIndex();
+                modeloTemas.remove(seleccionado);
+            }
         }
         //ListaTemas.
         
