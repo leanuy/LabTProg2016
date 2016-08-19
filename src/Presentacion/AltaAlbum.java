@@ -5,7 +5,11 @@
  */
 package Presentacion;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -18,8 +22,9 @@ import javax.swing.ListModel;
  */
 public class AltaAlbum extends javax.swing.JInternalFrame {
     
-    DefaultListModel modeloTemas; 
-    DefaultListModel modeloGeneros;
+    private DefaultListModel modeloTemas; 
+    private DefaultListModel modeloGeneros;
+    private String pathAImagen;
     
     /**
      * Creates new form AltaAlbum
@@ -31,6 +36,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         ListaTemas.setModel(modeloTemas);
         ListaGeneros.setModel(modeloGeneros);
         buttonConfirmarALtaAlbum.setEnabled(false);
+        PanelSDatosAlbum.setEnabled(true);
     }
     
     
@@ -47,7 +53,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         LabelnombreArtista = new javax.swing.JLabel();
         nombreArtista = new javax.swing.JTextField();
         buttonBuscarArtista = new javax.swing.JButton();
-        PanelSeleccionArtista = new javax.swing.JPanel();
+        PanelSDatosAlbum = new javax.swing.JPanel();
         ScrollListaArtistas = new javax.swing.JScrollPane();
         ListaGeneros = new javax.swing.JList<>();
         LabelGeneros = new javax.swing.JLabel();
@@ -148,73 +154,78 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         jLabel2.setText("(solo archivos .jpg o .png)");
 
         buttonConfirmarALtaAlbum.setText("Confirmar Alta Album");
+        buttonConfirmarALtaAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConfirmarALtaAlbumActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout PanelSeleccionArtistaLayout = new javax.swing.GroupLayout(PanelSeleccionArtista);
-        PanelSeleccionArtista.setLayout(PanelSeleccionArtistaLayout);
-        PanelSeleccionArtistaLayout.setHorizontalGroup(
-            PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSeleccionArtistaLayout.createSequentialGroup()
+        javax.swing.GroupLayout PanelSDatosAlbumLayout = new javax.swing.GroupLayout(PanelSDatosAlbum);
+        PanelSDatosAlbum.setLayout(PanelSDatosAlbumLayout);
+        PanelSDatosAlbumLayout.setHorizontalGroup(
+            PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelSDatosAlbumLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelTemas)
-                    .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                    .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(69, 69, 69)
-                        .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonAgregarTema, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonQuitarTema, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+            .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
-                        .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                    .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
+                        .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(LabelAnioCreacion)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(anioDeCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                            .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                                 .addComponent(LabelNombreALbum)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(nombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                            .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                                 .addComponent(buttonAgregarImagen)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pathALaImagen)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                        .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                        .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                                 .addComponent(LabelGeneros)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel1))
                             .addComponent(ScrollListaArtistas))
                         .addGap(25, 25, 25))))
         );
-        PanelSeleccionArtistaLayout.setVerticalGroup(
-            PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+        PanelSDatosAlbumLayout.setVerticalGroup(
+            PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(LabelNombreALbum)
                     .addComponent(nombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelGeneros)
                     .addComponent(jLabel1))
-                .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(LabelAnioCreacion)
                             .addComponent(anioDeCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(buttonAgregarImagen)
                             .addComponent(pathALaImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                    .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addComponent(ScrollListaArtistas, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(7, 7, 7)
@@ -222,8 +233,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LabelTemas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelSeleccionArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(PanelSeleccionArtistaLayout.createSequentialGroup()
+                .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                         .addComponent(buttonAgregarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonQuitarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -240,7 +251,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             .addComponent(PanelBusquedaDeArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(PanelSeleccionArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelSDatosAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -248,7 +259,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(PanelBusquedaDeArtista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelSeleccionArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(PanelSDatosAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -261,6 +272,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         try{
             //Llamado a la operacion de busqueda, devuelve lo que corresponde
             buttonConfirmarALtaAlbum.setEnabled(true);
+            PanelSDatosAlbum.setEnabled(true);
             //generos = operacion de la interfaz;
             if(generos != null){
                 for(String s : generos){
@@ -314,10 +326,26 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         // TODO abrir un file chooser y que file por tipo de archivo. solo jpg o png. mostrar path luego en textfield editable
         // avisar y no seleccionar si archivo no tiene la extension deseada.
         JFileChooser fc = new JFileChooser();
-        int selected = fc.showDialog(this, "Seleccionar");
-        fc.setDialogTitle("Choose a file");
         this.getContentPane().add(fc);
         fc.setVisible(true);
+        
+        int selected = fc.showDialog(this, "Seleccionar");
+        if(selected == JFileChooser.APPROVE_OPTION){
+            File file = fc.getSelectedFile();
+            try {
+                pathAImagen = file.getCanonicalPath();
+                String ext = getExtension(file);
+                if(!"jpg".equals(ext) && !"png".equals(ext)){
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
+                    fc.setVisible(false);
+                    return;
+                }
+                pathALaImagen.setText(pathAImagen);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        fc.setVisible(false);
         
     }//GEN-LAST:event_buttonAgregarImagenActionPerformed
 
@@ -325,7 +353,36 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         // TODO add your handling code here: ppuuuta aprete dos veces la label
     }//GEN-LAST:event_anioDeCreacionActionPerformed
 
+    private void buttonConfirmarALtaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarALtaAlbumActionPerformed
+        String ext = pathALaImagen.getText();
+        if(!getExtensionDeString(ext)){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //seguir con el proceso de carga de temas etc...
+    }//GEN-LAST:event_buttonConfirmarALtaAlbumActionPerformed
 
+    private String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
+    }
+    
+    private boolean getExtensionDeString(String s) {
+        boolean ext = false;
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = "jpg".equals(s.substring(i+1).toLowerCase()) || "png".equals(s.substring(i+1).toLowerCase());
+        }
+        return ext;
+    }
+           
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LabelAnioCreacion;
     private javax.swing.JLabel LabelGeneros;
@@ -335,7 +392,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private javax.swing.JList<String> ListaGeneros;
     private javax.swing.JList<String> ListaTemas;
     private javax.swing.JPanel PanelBusquedaDeArtista;
-    private javax.swing.JPanel PanelSeleccionArtista;
+    private javax.swing.JPanel PanelSDatosAlbum;
     private javax.swing.JScrollPane ScrollListaArtistas;
     private javax.swing.JTextField anioDeCreacion;
     private javax.swing.JButton buttonAgregarImagen;

@@ -26,7 +26,7 @@
           <Component id="PanelBusquedaDeArtista" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="PanelSeleccionArtista" max="32767" attributes="0"/>
+              <Component id="PanelSDatosAlbum" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -36,7 +36,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="PanelBusquedaDeArtista" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="PanelSeleccionArtista" max="32767" attributes="0"/>
+              <Component id="PanelSDatosAlbum" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -91,7 +91,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="PanelSeleccionArtista">
+    <Container class="javax.swing.JPanel" name="PanelSDatosAlbum">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -313,6 +313,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar Alta Album"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonConfirmarALtaAlbumActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
