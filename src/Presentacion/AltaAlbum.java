@@ -6,6 +6,7 @@
 package Presentacion;
 
 
+import espotify.Datatypes.DataAlbum;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private DefaultListModel modeloTemas; 
     private DefaultListModel modeloGeneros;
     private String pathAImagen;
+    private boolean primeraVez;
     
     /**
      * Creates new form AltaAlbum
@@ -38,6 +40,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         ListaGeneros.setModel(modeloGeneros);
         buttonConfirmarALtaAlbum.setEnabled(false);
         PanelSDatosAlbum.setEnabled(true);
+        primeraVez = true;
     }
     
     
@@ -280,7 +283,10 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                     modeloGeneros.addElement(s); 
                 }
             }else{
-                modeloGeneros.addElement("Sin generos");
+                if(primeraVez){
+                    modeloGeneros.addElement("Sin generos");
+                    primeraVez = false;
+                }
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this,e.getMessage(), "Atencion!!!",JOptionPane.WARNING_MESSAGE);
@@ -300,14 +306,9 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 return;
             }
             int[] seleccionados = ListaTemas.getSelectedIndices();
-              System.out.println(seleccionados.length);
-                            System.out.println(seleccionados);
-                            System.out.println(modeloTemas.size());
             for(int i = seleccionados.length - 1; i >= 0; i--){
-                System.out.println(i);
                 modeloTemas.remove(seleccionados[i]);
             }
-            System.out.println(seleccionados.length);
         }else{
             if(cantidadSeleccionados != 0){
                 seleccionado = ListaTemas.getSelectedIndex();
@@ -362,7 +363,25 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        //seguir con el proceso de carga de temas etc...
+        int year = 0;
+        try{
+            year = Integer.parseInt(anioDeCreacion.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(this, "Año de creacion invalido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        ArrayList<String> genders = new ArrayList();
+        
+        int[] seleccionados = ListaGeneros.getSelectedIndices();
+        if (seleccionados.length != 0){
+            for(int j = 0; j < seleccionados.length; ++j){
+                genders.add((String)modeloGeneros.getElementAt(seleccionados[j]));
+            }
+        }else{
+            genders = null;
+        }
+        DataAlbum nuevoAlbum = new DataAlbum(nombreAlbum.getText(),year,genders,ext);
+        //crear el album y luego cargarle los temas...
     }//GEN-LAST:event_buttonConfirmarALtaAlbumActionPerformed
 
     private String getExtension(File f) {
