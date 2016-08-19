@@ -75,6 +75,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         pathALaImagen = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         buttonConfirmarALtaAlbum = new javax.swing.JButton();
+        buttonCancelarAltaAlbum = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Alta Album");
@@ -164,6 +165,13 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             }
         });
 
+        buttonCancelarAltaAlbum.setText("Cancelar Alta");
+        buttonCancelarAltaAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarAltaAlbumActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanelSDatosAlbumLayout = new javax.swing.GroupLayout(PanelSDatosAlbum);
         PanelSDatosAlbum.setLayout(PanelSDatosAlbumLayout);
         PanelSDatosAlbumLayout.setHorizontalGroup(
@@ -178,8 +186,9 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                         .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(buttonAgregarTema, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonQuitarTema, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(buttonQuitarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buttonCancelarAltaAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(93, Short.MAX_VALUE))
             .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +210,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                                 .addComponent(buttonAgregarImagen)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(pathALaImagen)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                                 .addComponent(LabelGeneros)
@@ -237,13 +246,15 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(LabelTemas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(PanelSDatosAlbumLayout.createSequentialGroup()
                         .addComponent(buttonAgregarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buttonQuitarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(118, 118, 118)
-                        .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(71, 71, 71)
+                        .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonCancelarAltaAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(65, Short.MAX_VALUE))
         );
@@ -384,6 +395,10 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         //crear el album y luego cargarle los temas...
     }//GEN-LAST:event_buttonConfirmarALtaAlbumActionPerformed
 
+    private void buttonCancelarAltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarAltaAlbumActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_buttonCancelarAltaAlbumActionPerformed
+
     private String getExtension(File f) {
         String ext = null;
         String s = f.getName();
@@ -418,6 +433,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonAgregarImagen;
     private javax.swing.JButton buttonAgregarTema;
     private javax.swing.JButton buttonBuscarArtista;
+    private javax.swing.JButton buttonCancelarAltaAlbum;
     private javax.swing.JButton buttonConfirmarALtaAlbum;
     private javax.swing.JButton buttonQuitarTema;
     private javax.swing.JLabel jLabel1;
