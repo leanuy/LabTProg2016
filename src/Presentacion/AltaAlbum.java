@@ -399,6 +399,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_buttonCancelarAltaAlbumActionPerformed
 
+
     private String getExtension(File f) {
         String ext = null;
         String s = f.getName();
