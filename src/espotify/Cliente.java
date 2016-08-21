@@ -1,7 +1,9 @@
 package espotify;
 
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataUsuario;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cliente extends Usuario {
@@ -42,5 +44,21 @@ public class Cliente extends Usuario {
        Publica l2 = l.HacerPublica();
        listas.remove(nomLista);
        listas.put(nomLista, l2);
+    }
+
+    ArrayList<String> ListarListas() {
+        ArrayList a = new ArrayList();
+        listas.keySet().stream().forEach((key) -> {
+            a.add(key);
+        });
+        return a;
+    }
+
+    ArrayList<DataTema> ListarTemasDeLista(String nombre) throws Exception {
+        Lista l = listas.get(nombre);
+        if(l!=null)
+            return l.ListarTemas();
+        else
+            throw new Exception("El cliente no tiene una lista con ese nombre");
     }
 }

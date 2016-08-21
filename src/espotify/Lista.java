@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.Datatypes.DataTema;
 import java.util.ArrayList;
 
 public abstract class Lista {
@@ -19,6 +20,13 @@ public abstract class Lista {
         this.nombre=nombre;
         this.img=img;
         this.temas=new ArrayList<>();
+    }
+
+    ArrayList<DataTema> ListarTemas() {
+        ArrayList<DataTema> a = new ArrayList();
+        for (Tema t: temas)
+            a.add(t.getData());
+        return a;
     }
 
 }
