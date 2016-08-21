@@ -1,5 +1,14 @@
 package Presentacion;
 
+import espotify.Datatypes.DataArtista;
+import espotify.Datatypes.DataCliente;
+import espotify.Fabrica;
+import espotify.Interfaces.IAltaPerfil;
+import java.awt.event.WindowEvent;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
+
 
 
 public class internalAltaPerfil extends javax.swing.JInternalFrame {
@@ -24,6 +33,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         tipoUserGroup = new javax.swing.ButtonGroup();
+        okDialog = new javax.swing.JDialog();
         contenedor = new javax.swing.JPanel();
         nickLabel = new javax.swing.JLabel();
         nicktxt = new javax.swing.JTextField();
@@ -38,7 +48,6 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         imglabel = new javax.swing.JLabel();
         imagentxt = new javax.swing.JTextField();
         imgbtn = new javax.swing.JButton();
-        title = new javax.swing.JLabel();
         clienteRadio = new javax.swing.JRadioButton();
         artistaRadio = new javax.swing.JRadioButton();
         biolabel = new javax.swing.JLabel();
@@ -48,7 +57,22 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         urltxt = new javax.swing.JTextField();
         Confirmbtn = new javax.swing.JButton();
 
+        okDialog.setTitle("Ok");
+        okDialog.setResizable(false);
+
+        javax.swing.GroupLayout okDialogLayout = new javax.swing.GroupLayout(okDialog.getContentPane());
+        okDialog.getContentPane().setLayout(okDialogLayout);
+        okDialogLayout.setHorizontalGroup(
+            okDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 214, Short.MAX_VALUE)
+        );
+        okDialogLayout.setVerticalGroup(
+            okDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 57, Short.MAX_VALUE)
+        );
+
         setClosable(true);
+        setTitle("Alta de Perfil");
 
         nickLabel.setText("Nickname:");
 
@@ -58,16 +82,13 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
 
         maillabel.setText("Correo:");
 
-        fechatxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        fechatxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
 
-        fechalabel.setText("Fecha de Nacimiento (dd/mm/aaaa):");
+        fechalabel.setText("Fecha de Nacimiento (dd/mm/aa):");
 
         imglabel.setText("Imagen (opcional):");
 
         imgbtn.setText("Browse...");
-
-        title.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        title.setText("Alta de Perfil");
 
         tipoUserGroup.add(clienteRadio);
         clienteRadio.setText("Cliente");
@@ -102,7 +123,6 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
             .addGroup(contenedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(title)
                     .addComponent(imglabel)
                     .addComponent(nickLabel)
                     .addComponent(nomlabel)
@@ -114,21 +134,6 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(contenedorLayout.createSequentialGroup()
-                                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Confirmbtn)
-                                    .addComponent(bioscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 8, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
-                                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(imagentxt)
-                                    .addComponent(fechatxt))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(imgbtn)))
-                        .addContainerGap())
-                    .addGroup(contenedorLayout.createSequentialGroup()
                         .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(contenedorLayout.createSequentialGroup()
                                 .addComponent(clienteRadio)
@@ -139,14 +144,27 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 .addComponent(nomtxt, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(mailtxt, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(apetxt, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(contenedorLayout.createSequentialGroup()
+                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Confirmbtn)
+                            .addComponent(bioscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
+                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fechatxt)
+                            .addGroup(contenedorLayout.createSequentialGroup()
+                                .addComponent(imagentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(imgbtn)
+                        .addGap(22, 22, 22))))
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(title)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clienteRadio)
                     .addComponent(artistaRadio))
@@ -185,7 +203,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Confirmbtn)
-                .addContainerGap())
+                .addGap(53, 53, 53))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,7 +214,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -218,7 +236,70 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_artistaRadioItemStateChanged
 
     private void ConfirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmbtnActionPerformed
-    //    ctrl = Fabrica.getIAltaPerfil();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
+        if(clienteRadio.isSelected())
+        {
+
+            try
+            {
+                Calendar fNac = Calendar.getInstance(); //TODO
+                SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
+                fNac.setTime(sdf.parse(fechatxt.getText()));
+                DataCliente d = new DataCliente(
+                                nicktxt.getText(),
+                                nomtxt.getText(),
+                                apetxt.getText(),
+                                mailtxt.getText(),
+                                fNac,
+                                imagentxt.getText());
+                ctrl.AltaCliente(d);
+                ResetCampos();
+                JOptionPane.showMessageDialog(okDialog,
+                "Operación completada con éxito",
+                "OK",
+                JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(okDialog,
+                e.getMessage(),
+                "Error",
+                JOptionPane.PLAIN_MESSAGE);
+            }
+        }
+        else
+        {
+            try
+            {
+                Calendar fNac = Calendar.getInstance(); //TODO
+                SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
+                fNac.setTime(sdf.parse(fechatxt.getText()));
+                DataArtista d = new DataArtista(
+                                biotxt.getText(),
+                                urltxt.getText(),
+                                nicktxt.getText(),
+                                nomtxt.getText(),
+                                apetxt.getText(),
+                                mailtxt.getText(),
+                                fNac,
+                                imagentxt.getText());
+                ctrl.AltaArtista(d);
+                ResetCampos();
+                JOptionPane.showMessageDialog(okDialog,
+                "Operación completada con éxito",
+                "OK",
+                JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(okDialog,
+                e.getMessage(),
+                "Error",
+                JOptionPane.PLAIN_MESSAGE);
+            }
+        }    
+        
+            
     }//GEN-LAST:event_ConfirmbtnActionPerformed
 
 
@@ -244,8 +325,19 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     private javax.swing.JTextField nicktxt;
     private javax.swing.JLabel nomlabel;
     private javax.swing.JTextField nomtxt;
+    private javax.swing.JDialog okDialog;
     private javax.swing.ButtonGroup tipoUserGroup;
-    private javax.swing.JLabel title;
     private javax.swing.JTextField urltxt;
     // End of variables declaration//GEN-END:variables
+
+    private void ResetCampos() {
+        nicktxt.setText("");
+        nomtxt.setText("");
+        apetxt.setText("");
+        mailtxt.setText("");
+        fechatxt.setText("");
+        imagentxt.setText("");
+        biotxt.setText("");
+        urltxt.setText("");
+    }
 }
