@@ -10,7 +10,8 @@ public class Artista extends Usuario{
     private String bio;
     private String url;
     private final HashMap<String,Album> albums;
-
+// Cuando se agraga un album que la Key sea el nombre del album, asi lo implemente en otro lugar
+    
     //getters
     public String getBio() {
         return bio;
@@ -34,7 +35,7 @@ public class Artista extends Usuario{
     }
 
     public DataArtistaExt getDataArtistaExt() {
-        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), getBio(), getUrl());
+        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), getBio(), getUrl(), albums);
         return da;
     }
 }
