@@ -2,6 +2,7 @@ package espotify;
 
 import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataUsuario;
+import espotify.Datatypes.DataParticular;
 import java.util.HashMap;
 
 public class Cliente extends Usuario {
@@ -37,10 +38,18 @@ public class Cliente extends Usuario {
         this.seguidos.remove(clave);
     }
 
+
     void PublicarLista(String nomLista) throws Exception {
        Particular l = listas.get(nomLista);
        Publica l2 = l.HacerPublica();
        listas.remove(nomLista);
        listas.put(nomLista, l2);
+    }
+    
+    void AltaLista(DataParticular d) throws Exception {
+        if(!listas.containsKey(d.getNombre()))
+            listas.put(d.getNombre(), new Privada(d));
+        else
+            throw new Exception("El cliente ya tiene una lista con ese nombre");
     }
 }
