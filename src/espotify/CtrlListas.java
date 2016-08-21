@@ -25,6 +25,7 @@ public class CtrlListas {
         this.listas=new HashMap<>();
     }
     
+
     public void PublicarLista(String nomLista, String nick) throws Exception
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
@@ -92,7 +93,7 @@ public class CtrlListas {
         CtrlMusica cm = CtrlMusica.getInstancia();
         Genero g = cm.BuscarGenero(d.getGenero());
         if(g!=null)
-            listas.put(d.getNombre(), new Defecto(d,g));
+            listas.put(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
         else
             throw new Exception("No existe un género con ese nombre");
     }

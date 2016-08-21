@@ -21,7 +21,7 @@ public abstract class Lista {
         this.nombre=nombre;
         this.img=img;
         this.temas=new ArrayList<>();
-    }
+        }
     public Lista(DataLista d)
     {
         this.nombre = d.getNombre();
