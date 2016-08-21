@@ -62,4 +62,8 @@ public class CtrlMusica implements IAltaGenero{
     Genero BuscarGenero(String genero) {
         return generos.get(genero);
     }
+
+
+
+
 }
