@@ -1,6 +1,5 @@
 package espotify;
 
-
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataParticular;
@@ -39,7 +38,6 @@ public class CtrlListas implements IAltaLista{
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.ListarClientes();
     }
-    
     public ArrayList<String> ListarListasDeCliente(String nick) throws Exception
     {
         nickMEM=nick;
