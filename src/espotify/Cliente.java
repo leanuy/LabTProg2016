@@ -40,6 +40,7 @@ public class Cliente extends Usuario {
         this.seguidos.remove(clave);
     }
 
+
     void PublicarLista(String nomLista) throws Exception {
        Particular l = listas.get(nomLista);
        Publica l2 = l.HacerPublica();

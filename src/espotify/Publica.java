@@ -4,10 +4,10 @@ import espotify.Datatypes.DataLista;
 
 public class Publica extends Particular implements Favoriteable {
 
-    Publica(Privada p) {
+    public Publica(Privada p) {
         super(p.getNombre(), p.getImg());
-    }
-    
+    }    
+
     public Publica(DataLista d) {
         super(d);
     }
