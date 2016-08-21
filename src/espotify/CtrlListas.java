@@ -2,10 +2,11 @@ package espotify;
 
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataParticular;
+import espotify.Interfaces.IAltaLista;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CtrlListas {
+public class CtrlListas implements IAltaLista{
     private static CtrlListas instancia;
     private final HashMap<String,Defecto> listas;
     
