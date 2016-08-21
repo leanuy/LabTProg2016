@@ -36,7 +36,7 @@ public class CtrlListas {
         return cu.ListarClientes();
     }
     
-    public ArrayList<Stirng> ListarGeneros()
+    public ArrayList<String> ListarGeneros()
     {
         CtrlMusica cm = CtrlMusica.getInstancia();
         return cm.ListarGeneros();
