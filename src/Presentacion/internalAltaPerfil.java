@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
-/**
- *
- * @author JavierM42
- */
+
+
 public class internalAltaPerfil extends javax.swing.JInternalFrame {
 
     /**
@@ -40,7 +33,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         nomlabel = new javax.swing.JLabel();
         apelabel = new javax.swing.JLabel();
         maillabel = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        fechatxt = new javax.swing.JFormattedTextField();
         fechalabel = new javax.swing.JLabel();
         imglabel = new javax.swing.JLabel();
         imagentxt = new javax.swing.JTextField();
@@ -65,7 +58,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
 
         maillabel.setText("Correo:");
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
+        fechatxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         fechalabel.setText("Fecha de Nacimiento (dd/mm/aaaa):");
 
@@ -96,6 +89,11 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         jLabel1.setText("URL:");
 
         Confirmbtn.setText("Confirmar");
+        Confirmbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConfirmbtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
@@ -126,7 +124,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
                                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(imagentxt)
-                                    .addComponent(jFormattedTextField1))
+                                    .addComponent(fechatxt))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(imgbtn)))
                         .addContainerGap())
@@ -170,7 +168,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                     .addComponent(maillabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechatxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fechalabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -219,6 +217,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_artistaRadioItemStateChanged
 
+    private void ConfirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmbtnActionPerformed
+    //    ctrl = Fabrica.getIAltaPerfil();
+    }//GEN-LAST:event_ConfirmbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Confirmbtn;
@@ -231,10 +233,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton clienteRadio;
     private javax.swing.JPanel contenedor;
     private javax.swing.JLabel fechalabel;
+    private javax.swing.JFormattedTextField fechatxt;
     private javax.swing.JTextField imagentxt;
     private javax.swing.JButton imgbtn;
     private javax.swing.JLabel imglabel;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel maillabel;
     private javax.swing.JTextField mailtxt;
