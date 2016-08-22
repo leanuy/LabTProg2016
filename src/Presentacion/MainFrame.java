@@ -258,6 +258,9 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarOptionActionPerformed
 
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
+        internalAltaPerfil frameAltaPerfil = new internalAltaPerfil();
+        MainPanel.add(frameAltaPerfil);
+        frameAltaPerfil.setVisible(true);
         
     }//GEN-LAST:event_AltaPerfilActionPerformed
 
