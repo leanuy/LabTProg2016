@@ -9,6 +9,7 @@ package Presentacion;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,6 +67,7 @@ public class MainFrame extends javax.swing.JFrame {
         AltaPerfil = new javax.swing.JMenuItem();
         AltaAlbum = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
+        ConsultaAlbumMenuItem = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -246,6 +248,15 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar1.add(AltasDropDown);
 
         ConsultasDropDown.setText("Consultas");
+
+        ConsultaAlbumMenuItem.setText("Consulta Album");
+        ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaAlbumMenuItemActionPerformed(evt);
+            }
+        });
+        ConsultasDropDown.add(ConsultaAlbumMenuItem);
+
         jMenuBar1.add(ConsultasDropDown);
 
         setJMenuBar(jMenuBar1);
@@ -268,6 +279,20 @@ public class MainFrame extends javax.swing.JFrame {
         //ver que agregar y hacer visible
         album.setVisible(true);
     }//GEN-LAST:event_AltaAlbumActionPerformed
+
+    private void ConsultaAlbumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumMenuItemActionPerformed
+            Object[] options = {"Artista","Genero"};
+            int opcion = JOptionPane.showOptionDialog(this, "Desea consultar album por Artista o por Genero?","Elija una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+            if(opcion == 0 ){
+               ConsultaAlbumPorArtista consAlbArt = new ConsultaAlbumPorArtista();
+               MainPanel.add(consAlbArt);
+               consAlbArt.setVisible(true);
+            }else{
+               ConsultaAlbumPorGenero consAlbGen = new ConsultaAlbumPorGenero();
+               MainPanel.add(consAlbGen);
+               consAlbGen.setVisible(true);
+            }
+    }//GEN-LAST:event_ConsultaAlbumMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,6 +350,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField AltaPerfil_url_input;
     private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JMenu AltasDropDown;
+    private javax.swing.JMenuItem ConsultaAlbumMenuItem;
     private javax.swing.JMenu ConsultasDropDown;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JMenu SesionDropDown;
