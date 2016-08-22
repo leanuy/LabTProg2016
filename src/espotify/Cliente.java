@@ -23,6 +23,8 @@ public class Cliente extends Usuario {
     }
     
     public void Seguir(Usuario u) throws Exception{
+        if(this.equals(u))
+            throw new Exception("Un usuario no puede seguirse a sí mismo.");
         String clave = u.getNick();
         Usuario u2 = this.seguidos.get(clave);
         if(u2 != null){
