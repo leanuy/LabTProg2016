@@ -70,4 +70,12 @@ public class Cliente extends Usuario {
         else
             throw new Exception("El cliente ya tiene una lista con ese nombre");
     }
+
+    void QuitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws Exception {
+        Lista l = listas.get(nombre);
+        if(l!=null)
+            l.QuitarTema(nomTema,nomAlbum);
+        else
+            throw new Exception("El cliente no tiene una lista con ese nombre");
+    }
 }

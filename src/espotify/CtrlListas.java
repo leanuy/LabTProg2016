@@ -70,9 +70,17 @@ public class CtrlListas implements IAltaLista{
         }
     }
     
-    public void RemoverTemaLista(String nomTema)
+    public void RemoverTemaLista(String nomTema, String nomAlbum) throws Exception
     {
-        
+        if(nickMEM.equals("")) //listaron las por defecto
+        {
+            listas.get(nomListaMEM).QuitarTema(nomTema,nomAlbum);
+        }
+        else
+        {
+            CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+            cu.QuitarTemaDeLista(nickMEM,nomListaMEM,nomTema,nomAlbum);
+        }
     }
     
     

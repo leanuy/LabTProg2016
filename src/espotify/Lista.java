@@ -36,4 +36,11 @@ public abstract class Lista {
         return a;
     }
 
+    void QuitarTema(String nomTema,String nomAlbum) {
+        for (Tema t: temas){
+            if(t.getNombre().equals(nomTema) && t.getNombreAlbum().equals(nomAlbum))
+                temas.remove(t);
+        }
+    }
+
 }
