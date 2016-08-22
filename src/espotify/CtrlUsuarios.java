@@ -200,7 +200,7 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
     
     @Override
     public String[] DevolverArtistas(){
-        int cant = clientes.size();
+        int cant = artistas.size();
         String[] a;
         a = new String[cant];
         int i = 0;
