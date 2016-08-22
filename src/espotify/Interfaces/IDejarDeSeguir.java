@@ -1,9 +1,10 @@
 package espotify.Interfaces;
 
-import java.util.ArrayList;
+
 
 public interface IDejarDeSeguir {
     
-    public ArrayList<String> ListarClientes();
+    public String[] DevolverClientes();
+    public String[] getSeguidos(String usr);
     public void DejarDeSeguir(String nomSeguidor, String nomSeguido) throws Exception;
 }

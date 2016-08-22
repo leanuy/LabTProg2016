@@ -66,6 +66,11 @@ public class MainFrame extends javax.swing.JFrame {
         AltaPerfil = new javax.swing.JMenuItem();
         AltaAlbum = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
+        ConsultaClienteMI = new javax.swing.JMenuItem();
+        ConsultaArtistaMI = new javax.swing.JMenuItem();
+        SocialMenu = new javax.swing.JMenu();
+        SeguirMItem = new javax.swing.JMenuItem();
+        DejarSeguirMItem = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -195,7 +200,6 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 200, 700));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setMaximumSize(new java.awt.Dimension(3200, 1800));
         getContentPane().setLayout(new javax.swing.OverlayLayout(getContentPane()));
 
         javax.swing.GroupLayout MainPanelLayout = new javax.swing.GroupLayout(MainPanel);
@@ -246,7 +250,44 @@ public class MainFrame extends javax.swing.JFrame {
         jMenuBar1.add(AltasDropDown);
 
         ConsultasDropDown.setText("Consultas");
+
+        ConsultaClienteMI.setText("Consulta perfil Cliente");
+        ConsultaClienteMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaClienteMIActionPerformed(evt);
+            }
+        });
+        ConsultasDropDown.add(ConsultaClienteMI);
+
+        ConsultaArtistaMI.setText("Consulta perfil Artista");
+        ConsultaArtistaMI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaArtistaMIActionPerformed(evt);
+            }
+        });
+        ConsultasDropDown.add(ConsultaArtistaMI);
+
         jMenuBar1.add(ConsultasDropDown);
+
+        SocialMenu.setText("Social");
+
+        SeguirMItem.setText("Seguir Usuario");
+        SeguirMItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeguirMItemActionPerformed(evt);
+            }
+        });
+        SocialMenu.add(SeguirMItem);
+
+        DejarSeguirMItem.setText("Dejar de Seguir Usuario");
+        DejarSeguirMItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DejarSeguirMItemActionPerformed(evt);
+            }
+        });
+        SocialMenu.add(DejarSeguirMItem);
+
+        jMenuBar1.add(SocialMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -271,6 +312,30 @@ public class MainFrame extends javax.swing.JFrame {
         //ver que agregar y hacer visible
         album.setVisible(true);
     }//GEN-LAST:event_AltaAlbumActionPerformed
+
+    private void SeguirMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirMItemActionPerformed
+        SeguirUsuario seguir = new SeguirUsuario();
+        MainPanel.add(seguir);
+        seguir.setVisible(true);
+    }//GEN-LAST:event_SeguirMItemActionPerformed
+
+    private void DejarSeguirMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarSeguirMItemActionPerformed
+        DejarSeguirUsuario dejar = new DejarSeguirUsuario();
+        MainPanel.add(dejar);
+        dejar.setVisible(true);
+    }//GEN-LAST:event_DejarSeguirMItemActionPerformed
+
+    private void ConsultaClienteMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteMIActionPerformed
+        ConsultaCliente cons = new ConsultaCliente();
+        MainPanel.add(cons);
+        cons.setVisible(true);
+    }//GEN-LAST:event_ConsultaClienteMIActionPerformed
+
+    private void ConsultaArtistaMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaArtistaMIActionPerformed
+        ConsultaArtista art = new ConsultaArtista();
+        MainPanel.add(art);
+        art.setVisible(true);
+    }//GEN-LAST:event_ConsultaArtistaMIActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,9 +393,14 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField AltaPerfil_url_input;
     private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JMenu AltasDropDown;
+    private javax.swing.JMenuItem ConsultaArtistaMI;
+    private javax.swing.JMenuItem ConsultaClienteMI;
     private javax.swing.JMenu ConsultasDropDown;
+    private javax.swing.JMenuItem DejarSeguirMItem;
     private javax.swing.JPanel MainPanel;
+    private javax.swing.JMenuItem SeguirMItem;
     private javax.swing.JMenu SesionDropDown;
+    private javax.swing.JMenu SocialMenu;
     private javax.swing.JMenuItem cerrarOption;
     private javax.swing.JInternalFrame internalAltaAlbum;
     private javax.swing.JInternalFrame internalAltaPerfil;

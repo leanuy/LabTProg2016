@@ -1,9 +1,9 @@
 package espotify.Interfaces;
 
-import java.util.ArrayList;
 
 
 public interface IAltaSeguir {
-    public ArrayList<String> ListarClientes();
+    public String[] DevolverClientes();
+    public String[] DevolverArtistas();
     public void AltaSeguir(String nomSeguidor, String nomSeguido) throws Exception;
 }
