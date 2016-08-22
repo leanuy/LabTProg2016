@@ -59,7 +59,6 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
-        Select.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         Select.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SelectActionPerformed(evt);
