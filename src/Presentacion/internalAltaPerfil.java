@@ -258,6 +258,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 "Operación completada con éxito",
                 "OK",
                 JOptionPane.PLAIN_MESSAGE);
+                this.dispose();
             }
             catch(Exception e)
             {
@@ -289,6 +290,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 "Operación completada con éxito",
                 "OK",
                 JOptionPane.PLAIN_MESSAGE);
+                this.dispose();
             }
             catch(Exception e)
             {
