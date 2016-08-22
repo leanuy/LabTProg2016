@@ -191,4 +191,14 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         else
             throw new Exception("No existe un cliente con ese nombre");
     }
+
+    void QuitarTemaDeLista(String nick, String nomLista, String nomTema,String nomAlbum) throws Exception {
+        Cliente c = BuscarCliente(nick);
+        if(c!=null)
+        {
+            c.QuitarTemaDeLista(nomLista,nomTema,nomAlbum);
+        }
+        else
+            throw new Exception("El cliente no existe");
+    }
 }
