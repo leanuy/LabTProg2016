@@ -4,11 +4,13 @@ import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataTema;
 import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IAltaSeguir;
 import espotify.Interfaces.IConsultaArtista;
 import espotify.Interfaces.IConsultaCliente;
 import espotify.Interfaces.IDejarDeSeguir;
+import espotify.Datatypes.DataParticular;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -152,11 +154,31 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
             return artistas.get(nick);
     }
 
-    void PublicarLista(String nomLista, String nick) throws Exception {
+    public void PublicarLista(String nomLista, String nick) throws Exception {
         Cliente c = clientes.get(nick);
         if(c!=null)
         {
             c.PublicarLista(nomLista);
+        }
+        else
+            throw new Exception("El cliente no existe");
+    }
+
+    public ArrayList<String> ListarListasDeCliente(String nick) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        if(c!=null)
+        {
+            return c.ListarListas();
+        }
+        else
+            throw new Exception("El cliente no existe");
+    }
+
+    public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        if(c!=null)
+        {
+            return c.ListarTemasDeLista(nombre);
         }
         else
             throw new Exception("El cliente no existe");
@@ -178,7 +200,7 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
     
     @Override
     public String[] DevolverArtistas(){
-        int cant = clientes.size();
+        int cant = artistas.size();
         String[] a;
         a = new String[cant];
         int i = 0;
@@ -195,5 +217,23 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         DataClienteExt dc = this.ConsultaCliente(usr);
         String[] seg = dc.getSeguidos();
         return seg;
+    }
+
+    void AltaLista(DataParticular d) throws Exception {
+        Cliente c = clientes.get(d.getNomCliente());
+        if(c!=null)
+            c.AltaLista(d);
+        else
+            throw new Exception("No existe un cliente con ese nombre");
+    }
+
+    void QuitarTemaDeLista(String nick, String nomLista, String nomTema,String nomAlbum) throws Exception {
+        Cliente c = BuscarCliente(nick);
+        if(c!=null)
+        {
+            c.QuitarTemaDeLista(nomLista,nomTema,nomAlbum);
+        }
+        else
+            throw new Exception("El cliente no existe");
     }
 }
