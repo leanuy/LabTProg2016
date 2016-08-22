@@ -183,4 +183,38 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
             throw new Exception("El cliente no existe");
     }
     
+    @Override
+    public String[] DevolverClientes(){
+        int cant = clientes.size();
+        String[] a;
+        a = new String[cant];
+        int i = 0;
+        for(Entry<String, Cliente> entry : clientes.entrySet()) {
+            String key = entry.getKey();
+            a[i] = key;
+            i++;
+        }
+        return a;
+    }
+    
+    @Override
+    public String[] DevolverArtistas(){
+        int cant = clientes.size();
+        String[] a;
+        a = new String[cant];
+        int i = 0;
+        for(Entry<String, Artista> entry : artistas.entrySet()) {
+            String key = entry.getKey();
+            a[i] = key;
+            i++;
+        }
+        return a;
+    }    
+    
+    @Override
+    public String[] getSeguidos(String usr){
+        DataClienteExt dc = this.ConsultaCliente(usr);
+        String[] seg = dc.getSeguidos();
+        return seg;
+    }
 }

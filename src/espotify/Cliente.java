@@ -17,7 +17,7 @@ public class Cliente extends Usuario {
     }
     
     public DataClienteExt getDataClienteExt() {
-        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg());
+        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), seguidos, listas);
         return dc;
     }
     
