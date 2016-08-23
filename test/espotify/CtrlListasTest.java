@@ -204,6 +204,14 @@ public class CtrlListasTest {
         d = new DataParticular("TesterLista", "Repetido", "");
         instance.AltaListaParticular(d);
     }
+    
+    @Test (expected=Exception.class)
+    public void testAltaListaParticular5() throws Exception {
+        System.out.println("AltaListaParticular:nombre de lista vacío");
+        DataParticular d = new DataParticular("TesterLista", "", "");
+        CtrlListas instance = CtrlListas.getInstancia();
+        instance.AltaListaParticular(d);
+    }
 
     /**
      * Test of AltaListaDefecto method, of class CtrlListas.

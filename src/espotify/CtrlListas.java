@@ -99,7 +99,7 @@ public class CtrlListas implements IAltaLista{
     public void AltaListaDefecto(DataDefecto d) throws Exception
     {
         CtrlMusica cm = CtrlMusica.getInstancia();
-        if(ValidarNombreListaDefecto(d))
+        if(ValidarNombreListaDefecto(d.getNombre()))
         {
             Genero g = cm.BuscarGenero(d.getGenero());
             if(g!=null)
@@ -111,8 +111,8 @@ public class CtrlListas implements IAltaLista{
             throw new Exception("El nombre de la lista es vacío o está repetido");
     }
 
-    private boolean ValidarNombreListaDefecto(DataDefecto d) {
-        return !d.getNombre().equals("") && !listas.containsKey(d.getNombre());
+    private boolean ValidarNombreListaDefecto(String d) {
+        return !d.equals("") && !listas.containsKey(d);
     }
     
 }
