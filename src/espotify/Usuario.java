@@ -4,6 +4,8 @@ import espotify.Datatypes.DataUsuario;
 import java.util.Calendar;
 
 public class Usuario {
+
+
     protected String nick;
     protected String nombre;
     protected String apellido;
@@ -36,9 +38,21 @@ public class Usuario {
     }
     
     static boolean ValidarDatosUsuario(DataUsuario d) {
-        return !(d.getNick().equals("") || d.getNombre().equals("") || d.getApellido().equals("") || d.getCorreo().equals(""));
+        return ValidarCorreo(d.getCorreo()) && !(d.getNick().equals("") || d.getNombre().equals("") || d.getApellido().equals(""));
     }
 
+    private static boolean ValidarCorreo(String s) {
+        boolean ok = s.contains("@");
+        if(ok)
+        {
+            int arroba = s.indexOf("@");
+            s=s.substring(arroba+1);
+            ok = !s.contains("@") && s.contains(".");
+        }
+        return ok;
+        
+    }
+    
     public Usuario(DataUsuario d){
         this.nick = d.getNick();
         this.nombre = d.getNombre();
