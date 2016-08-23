@@ -5,8 +5,12 @@
  */
 package Presentacion;
 
+import espotify.Datatypes.DataAlbumExt;
+import espotify.Fabrica;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,17 +21,28 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     /**
      * Creates new form ConsultaAlbumPorGenero
      */
+    
+    private DefaultListModel modelito;
+    private DefaultListModel modelitoAlbums;
+    
     public ConsultaAlbumPorGenero() {
         initComponents();
-        this.setSize(900,800);
         
         //pedir lista de generos y llenar el model
-        DefaultListModel modelito = new DefaultListModel();
-     /*   ArrayList<String> genders = inter.ListarGeneros()
-        for(String g : genders){
-            modelito.addElement(g);
-        }*/
+        modelito = new DefaultListModel();
+        modelitoAlbums = new DefaultListModel();
         generos.setModel(modelito);
+        ListaAlbumsGenero.setModel(modelitoAlbums);
+        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+        ArrayList<String> genders = null;
+        try{
+            genders = inter.ListarArtistas();
+            for(String s : genders){
+                modelito.addElement(s);
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     /**
@@ -41,9 +56,9 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
 
         ConsultaAlbumXGenPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        ObtenerAlbumsGeneroButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        ListaAlbumsGenero = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
         ConsultarAlbumButton = new javax.swing.JButton();
         SalirButton = new javax.swing.JButton();
@@ -57,16 +72,31 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Seleccionar Genero");
 
-        jButton1.setText("Obtener Albunes del Genero");
+        ObtenerAlbumsGeneroButton.setText("Obtener Albums del Genero");
+        ObtenerAlbumsGeneroButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ObtenerAlbumsGeneroButtonActionPerformed(evt);
+            }
+        });
 
-        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        ListaAlbumsGenero.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(ListaAlbumsGenero);
 
         jLabel2.setText("Albums");
 
         ConsultarAlbumButton.setText("Consultar Album");
+        ConsultarAlbumButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultarAlbumButtonActionPerformed(evt);
+            }
+        });
 
         SalirButton.setText("Salir");
+        SalirButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirButtonActionPerformed(evt);
+            }
+        });
 
         generos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(generos);
@@ -93,7 +123,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(ObtenerAlbumsGeneroButton)))
                 .addGap(0, 65, Short.MAX_VALUE))
         );
         ConsultaAlbumXGenPanelLayout.setVerticalGroup(
@@ -101,7 +131,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
             .addGroup(ConsultaAlbumXGenPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(ConsultaAlbumXGenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(ObtenerAlbumsGeneroButton)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -134,16 +164,52 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ObtenerAlbumsGeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObtenerAlbumsGeneroButtonActionPerformed
+        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+        ArrayList<DataAlbumExt> dataAlbums = null;
+        try{
+            dataAlbums = inter.ListarAlbumesDeGenero();
+            for(DataAlbumExt d : dataAlbums){
+                modelitoAlbums.addElement(d.getNombre());
+            } 
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_ObtenerAlbumsGeneroButtonActionPerformed
+
+    private void SalirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_SalirButtonActionPerformed
+
+    private void ConsultarAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarAlbumButtonActionPerformed
+        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+        DataAlbumExt dataAlbum = null;
+        String nomAlbum = null;
+        int[] opcion;
+        try{
+            opcion = ListaAlbumsGenero.getSelectedIndices();
+            if(opcion.length != 1){
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un solo album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
+                this.dispose();
+            }
+            nomAlbum = nomAlbum = (String)modelitoAlbums.getElementAt(ListaAlbumsGenero.getSelectedIndex());
+            dataAlbum = inter.ConsultaAlbum(nomAlbum);
+            //llamar otro frame y mandarle el dataalbum
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_ConsultarAlbumButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ConsultaAlbumXGenPanel;
     private javax.swing.JButton ConsultarAlbumButton;
+    private javax.swing.JList<String> ListaAlbumsGenero;
+    private javax.swing.JButton ObtenerAlbumsGeneroButton;
     private javax.swing.JButton SalirButton;
     private javax.swing.JList<String> generos;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
