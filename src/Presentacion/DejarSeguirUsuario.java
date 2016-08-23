@@ -142,6 +142,13 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
+        Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
+        IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
+        String[] seguid = interf.getSeguidos(Seguidor);
+        NickSeguido.removeAllItems();
+        for(String stri : seguid) {
+            NickSeguido.addItem(stri);
+        }
     }//GEN-LAST:event_DejarButtonActionPerformed
 
     private void NickSeguidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NickSeguidorActionPerformed
@@ -149,6 +156,7 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
         IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
         String[] seguid = interf.getSeguidos(Seguidor);
+        NickSeguido.removeAllItems();
         for(String stri : seguid) {
             NickSeguido.addItem(stri);
         }
