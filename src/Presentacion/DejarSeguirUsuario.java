@@ -59,14 +59,12 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
             }
         });
 
-        NickSeguidor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         NickSeguidor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NickSeguidorActionPerformed(evt);
             }
         });
 
-        NickSeguido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         NickSeguido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 NickSeguidoActionPerformed(evt);
@@ -135,16 +133,13 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         if (Seguidor.isEmpty() || Seguido.isEmpty()){
             JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
         }else{
-            if(Seguidor.equals(Seguido)){
-                JOptionPane.showMessageDialog(this, "Un usuario no puede seguirse a si mismo", "ATENCION", JOptionPane.WARNING_MESSAGE);
-            }else{
-                IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
+            IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
 
-                try{
-                interf.DejarDeSeguir(Seguidor,Seguido);
-                }catch (Exception e){
-                    JOptionPane.showMessageDialog(this, e, "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
+            try{
+            interf.DejarDeSeguir(Seguidor,Seguido);
+            JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_DejarButtonActionPerformed

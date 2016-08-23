@@ -4,6 +4,7 @@ import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataUsuario;
 import java.util.ArrayList;
+import espotify.Datatypes.DataParticular;
 import java.util.HashMap;
 
 public class Cliente extends Usuario {
@@ -22,6 +23,8 @@ public class Cliente extends Usuario {
     }
     
     public void Seguir(Usuario u) throws Exception{
+        if(this.equals(u))
+            throw new Exception("Un usuario no puede seguirse a sí mismo.");
         String clave = u.getNick();
         Usuario u2 = this.seguidos.get(clave);
         if(u2 != null){
@@ -38,6 +41,7 @@ public class Cliente extends Usuario {
         }
         this.seguidos.remove(clave);
     }
+
 
     void PublicarLista(String nomLista) throws Exception {
        Particular l = listas.get(nomLista);
@@ -58,6 +62,21 @@ public class Cliente extends Usuario {
         Lista l = listas.get(nombre);
         if(l!=null)
             return l.ListarTemas();
+        else
+            throw new Exception("El cliente no tiene una lista con ese nombre");
+    }
+
+    void AltaLista(DataParticular d) throws Exception {
+        if(!listas.containsKey(d.getNombre()))
+            listas.put(d.getNombre(), new Privada(d));
+        else
+            throw new Exception("El cliente ya tiene una lista con ese nombre");
+    }
+
+    void QuitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws Exception {
+        Lista l = listas.get(nombre);
+        if(l!=null)
+            l.QuitarTema(nomTema,nomAlbum);
         else
             throw new Exception("El cliente no tiene una lista con ese nombre");
     }
