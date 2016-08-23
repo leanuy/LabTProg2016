@@ -67,18 +67,23 @@ public class Cliente extends Usuario {
     }
 
     void AltaLista(DataParticular d) throws Exception {
-<span class="fc bfc" id="L70" title="All 2 branches covered.">        if(!listas.containsKey(d.getNombre()))</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if(ValidarNombreLista(d.getNombre()))</span>
 <span class="fc" id="L71">            listas.put(d.getNombre(), new Privada(d));</span>
         else
 <span class="fc" id="L73">            throw new Exception(&quot;El cliente ya tiene una lista con ese nombre&quot;);</span>
 <span class="fc" id="L74">    }</span>
+    
+    private boolean ValidarNombreLista(String nom)
+    {
+<span class="fc bfc" id="L78" title="All 4 branches covered.">        return !nom.equals(&quot;&quot;) &amp;&amp; !listas.containsKey(nom);</span>
+    }
 
     void QuitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws Exception {
-<span class="nc" id="L77">        Lista l = listas.get(nombre);</span>
-<span class="nc bnc" id="L78" title="All 2 branches missed.">        if(l!=null)</span>
-<span class="nc" id="L79">            l.QuitarTema(nomTema,nomAlbum);</span>
+<span class="nc" id="L82">        Lista l = listas.get(nombre);</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        if(l!=null)</span>
+<span class="nc" id="L84">            l.QuitarTema(nomTema,nomAlbum);</span>
         else
-<span class="nc" id="L81">            throw new Exception(&quot;El cliente no tiene una lista con ese nombre&quot;);</span>
-<span class="nc" id="L82">    }</span>
+<span class="nc" id="L86">            throw new Exception(&quot;El cliente no tiene una lista con ese nombre&quot;);</span>
+<span class="nc" id="L87">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.5.201505241946</span></div></body></html>
