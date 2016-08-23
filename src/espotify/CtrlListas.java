@@ -99,11 +99,20 @@ public class CtrlListas implements IAltaLista{
     public void AltaListaDefecto(DataDefecto d) throws Exception
     {
         CtrlMusica cm = CtrlMusica.getInstancia();
-        Genero g = cm.BuscarGenero(d.getGenero());
-        if(g!=null)
-            listas.put(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
+        if(ValidarNombreListaDefecto(d))
+        {
+            Genero g = cm.BuscarGenero(d.getGenero());
+            if(g!=null)
+                listas.put(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
+            else
+                throw new Exception("No existe un género con ese nombre");
+        }
         else
-            throw new Exception("No existe un género con ese nombre");
+            throw new Exception("El nombre de la lista es vacío o está repetido");
+    }
+
+    private boolean ValidarNombreListaDefecto(DataDefecto d) {
+        return !d.getNombre().equals("") && !listas.containsKey(d.getNombre());
     }
     
 }
