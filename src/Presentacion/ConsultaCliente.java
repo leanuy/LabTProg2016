@@ -8,6 +8,7 @@ package Presentacion;
 import espotify.Datatypes.DataClienteExt;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaCliente;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
@@ -85,18 +86,8 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Listas:");
 
-        SeguidosList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(SeguidosList);
 
-        ListasList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane2.setViewportView(ListasList);
 
         jTextField1.setText("IMAGEN");
@@ -134,13 +125,13 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel7))
                                 .addGap(31, 31, 31)
                                 .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1)
                                     .addComponent(jScrollPane2)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Conteiner4Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(70, 70, 70)))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         Conteiner4Layout.setVerticalGroup(
             Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,10 +204,16 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         ApellidoText.setText(dc.getApellido());
         CorreoText.setText(dc.getCorreo());
         Calendar fn = dc.getfNac();
-        FechaText.setText(fn.toString());
+        String fecha = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        if (fn != null){
+            fecha = sdf.format(fn.getTime());
+        }
+        FechaText.setText(fecha);
         String[] b = dc.getSeguidos();
         SeguidosList.setListData(b);
         String[] c = dc.getListas();
+        ListasList.clearSelection();
         ListasList.setListData(c);
     }//GEN-LAST:event_SelectActionPerformed
 
