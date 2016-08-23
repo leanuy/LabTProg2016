@@ -2,13 +2,19 @@ package espotify;
 
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataDefecto;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 public class Genero {
     //attrs
     private String nombre;
     private final HashMap<String,Genero> subgeneros;
     private final HashMap<String,Album> albums;
+
+    Genero(String nombre, String genero) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     //getters
     public String getNombre() {
@@ -28,6 +34,19 @@ public class Genero {
 
     void AddHijo(Genero g) {
         subgeneros.put(g.getNombre(), g);
+    }
+
+    DataGenero getData(String padre) {
+        return new DataGenero(nombre, padre);
+    }
+
+    DataGenero ListarseRecursivo(String nomPadre) {
+        DataGenero d = this.getData(nomPadre);
+        for(Entry<String, Genero> entry : subgeneros.entrySet()) {
+            Genero g = entry.getValue();
+            d.getHijos().add(g.ListarseRecursivo(this.nombre));
+        }
+        return d;
     }
 
 }

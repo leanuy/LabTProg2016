@@ -2,6 +2,7 @@ package espotify;
 
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataDefecto;
+import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
 import espotify.Interfaces.IAltaLista;
 import java.util.ArrayList;
@@ -84,7 +85,7 @@ public class CtrlListas implements IAltaLista{
     }
     
     
-    public ArrayList<String> ListarGeneros()
+    public DataGenero ListarGeneros()
     {
         CtrlMusica cm = CtrlMusica.getInstancia();
         return cm.ListarGeneros();
