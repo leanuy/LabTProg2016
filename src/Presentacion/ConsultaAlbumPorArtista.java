@@ -30,16 +30,16 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         ListaArtistas.setModel(modelito);
         modelitoAlbums = new DefaultListModel();
         ListaAlbunesArtista.setModel(modelitoAlbums);
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
-        ArrayList<String> artists = null;
-        try{
-            artists = inter.ListarArtistas();
-            for(String s : artists){
-                modelito.addElement(s);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
-        }
+//        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+//        ArrayList<String> artists = null;
+//        try{
+//            artists = inter.ListarArtistas();
+//            for(String s : artists){
+//                modelito.addElement(s);
+//            }
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+//        }
     }
 
     /**
@@ -158,16 +158,16 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TraerAlbumsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraerAlbumsButtonActionPerformed
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
-        ArrayList<DataAlbumExt> dataAlbums = null;
-        try{
-            dataAlbums = inter.ListarAlbumesDeArtista();
-            for(DataAlbumExt d : dataAlbums){
-                modelitoAlbums.addElement(d.getNombre());
-            } 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
-        }
+//        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+//        ArrayList<DataAlbumExt> dataAlbums = null;
+//        try{
+//            dataAlbums = inter.ListarAlbumesDeArtista();
+//            for(DataAlbumExt d : dataAlbums){
+//                modelitoAlbums.addElement(d.getNombre());
+//            } 
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+//        }
     }//GEN-LAST:event_TraerAlbumsButtonActionPerformed
 
     private void SalirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirButtonActionPerformed
@@ -175,22 +175,22 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SalirButtonActionPerformed
 
     private void ConsultaAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumButtonActionPerformed
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
-        DataAlbumExt dataAlbum = null;
-        String nomAlbum = null;
-        int[] opciones;
-        try{
-            opciones = ListaAlbunesArtista.getSelectedIndices();
-            if(opciones.length != 1){
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un solo album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
-                this.dispose();
-            }
-            nomAlbum = (String)modelitoAlbums.getElementAt(ListaAlbunesArtista.getSelectedIndex());
-            dataAlbum = inter.ConsultaAlbum(nomAlbum);
-            //llamar otro frame y mandarle el dataalbum
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
-        }
+//        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+//        DataAlbumExt dataAlbum = null;
+//        String nomAlbum = null;
+//        int[] opciones;
+//        try{
+//            opciones = ListaAlbunesArtista.getSelectedIndices();
+//            if(opciones.length != 1){
+//                JOptionPane.showMessageDialog(this, "Debe seleccionar un solo album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
+//                this.dispose();
+//            }
+//            nomAlbum = (String)modelitoAlbums.getElementAt(ListaAlbunesArtista.getSelectedIndex());
+//            dataAlbum = inter.ConsultaAlbum(nomAlbum);
+//            //llamar otro frame y mandarle el dataalbum
+//        }catch(Exception e){
+//            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+//        }
     }//GEN-LAST:event_ConsultaAlbumButtonActionPerformed
 
 
