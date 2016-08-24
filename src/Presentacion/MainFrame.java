@@ -65,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         AltasDropDown = new javax.swing.JMenu();
         AltaPerfil = new javax.swing.JMenuItem();
         AltaAlbum = new javax.swing.JMenuItem();
+        AltaLista = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
         ConsultaClienteMI = new javax.swing.JMenuItem();
         ConsultaArtistaMI = new javax.swing.JMenuItem();
@@ -247,6 +248,15 @@ public class MainFrame extends javax.swing.JFrame {
         });
         AltasDropDown.add(AltaAlbum);
 
+        AltaLista.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        AltaLista.setText("Alta Lista");
+        AltaLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AltaListaActionPerformed(evt);
+            }
+        });
+        AltasDropDown.add(AltaLista);
+
         jMenuBar1.add(AltasDropDown);
 
         ConsultasDropDown.setText("Consultas");
@@ -337,6 +347,12 @@ public class MainFrame extends javax.swing.JFrame {
         art.setVisible(true);
     }//GEN-LAST:event_ConsultaArtistaMIActionPerformed
 
+    private void AltaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaListaActionPerformed
+        AltaLista frameAltaLista = new AltaLista();
+        MainPanel.add(frameAltaLista);
+        frameAltaLista.setVisible(true);
+    }//GEN-LAST:event_AltaListaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -374,6 +390,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AltaAlbum;
+    private javax.swing.JMenuItem AltaLista;
     private javax.swing.JMenuItem AltaPerfil;
     private javax.swing.JTextField AltaPerfil_apellido_input;
     private javax.swing.JLabel AltaPerfil_apellido_label;
