@@ -52,8 +52,6 @@ public class AltaLista extends javax.swing.JInternalFrame {
         defectoRadio = new javax.swing.JRadioButton();
         particularRadio = new javax.swing.JRadioButton();
         nombretxt = new javax.swing.JTextField();
-        defectopanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         pathimgtxt = new javax.swing.JTextField();
         imgbtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -63,6 +61,10 @@ public class AltaLista extends javax.swing.JInternalFrame {
         clientlist = new javax.swing.JList<>();
         jLabel4 = new javax.swing.JLabel();
         confirmbtn = new javax.swing.JButton();
+        defectopanel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
 
         javax.swing.GroupLayout okDialogLayout = new javax.swing.GroupLayout(okDialog.getContentPane());
         okDialog.getContentPane().setLayout(okDialogLayout);
@@ -90,25 +92,6 @@ public class AltaLista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Acá van a ir los géneros.");
-
-        javax.swing.GroupLayout defectopanelLayout = new javax.swing.GroupLayout(defectopanel);
-        defectopanel.setLayout(defectopanelLayout);
-        defectopanelLayout.setHorizontalGroup(
-            defectopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, defectopanelLayout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(40, 40, 40))
-        );
-        defectopanelLayout.setVerticalGroup(
-            defectopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(defectopanelLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         imgbtn.setText("Browse...");
         imgbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,19 +113,18 @@ public class AltaLista extends javax.swing.JInternalFrame {
         particularpanelLayout.setHorizontalGroup(
             particularpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(particularpanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(clientscrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(clientscrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         particularpanelLayout.setVerticalGroup(
             particularpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(particularpanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(particularpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(clientscrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(clientscrollpane, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,12 +135,37 @@ public class AltaLista extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel2.setText("Género:");
+
+        jScrollPane1.setViewportView(jTree1);
+
+        javax.swing.GroupLayout defectopanelLayout = new javax.swing.GroupLayout(defectopanel);
+        defectopanel.setLayout(defectopanelLayout);
+        defectopanelLayout.setHorizontalGroup(
+            defectopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(defectopanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        defectopanelLayout.setVerticalGroup(
+            defectopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(defectopanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(defectopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout mainpanelLayout = new javax.swing.GroupLayout(mainpanel);
         mainpanel.setLayout(mainpanelLayout);
         mainpanelLayout.setHorizontalGroup(
             mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainpanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(mainpanelLayout.createSequentialGroup()
                         .addComponent(defectoRadio)
@@ -167,32 +174,28 @@ public class AltaLista extends javax.swing.JInternalFrame {
                     .addGroup(mainpanelLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainpanelLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(12, 12, 12))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainpanelLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(2, 2, 2)))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(mainpanelLayout.createSequentialGroup()
+                                .addComponent(pathimgtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(imgbtn))))
+                    .addGroup(mainpanelLayout.createSequentialGroup()
                         .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(mainpanelLayout.createSequentialGroup()
-                                .addComponent(pathimgtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(imgbtn))
-                            .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(mainpanelLayout.createSequentialGroup()
-                        .addComponent(particularpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(defectopanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainpanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(confirmbtn)
-                .addContainerGap())
+                                .addGap(65, 65, 65)
+                                .addComponent(confirmbtn))
+                            .addComponent(particularpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(defectopanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         mainpanelLayout.setVerticalGroup(
             mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainpanelLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(defectoRadio)
                     .addComponent(particularRadio))
@@ -206,47 +209,70 @@ public class AltaLista extends javax.swing.JInternalFrame {
                     .addComponent(pathimgtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imgbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(defectopanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(particularpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(mainpanelLayout.createSequentialGroup()
+                        .addComponent(particularpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(confirmbtn)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(confirmbtn))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainpanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void particularRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_particularRadioItemStateChanged
+    private void confirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmbtnActionPerformed
         if(particularRadio.isSelected())
         {
-            particularpanel.setVisible(true);
-            defectopanel.setVisible(false);
+            try
+            {
+
+                IAltaLista ctrl = Fabrica.getIAltaLista();
+                String nomCli = clientlist.getSelectedValue();
+                DataParticular d = new DataParticular(nomCli, nombretxt.getText(),pathimgtxt.getText());
+                ctrl.AltaListaParticular(d);
+                JOptionPane.showMessageDialog(okDialog,
+                    "Operación completada con éxito",
+                    "OK",
+                    JOptionPane.PLAIN_MESSAGE);
+                this.dispose();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(okDialog,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.PLAIN_MESSAGE);
+            }
         }
         else
         {
             particularpanel.setVisible(false);
             defectopanel.setVisible(true);
         }
-    }//GEN-LAST:event_particularRadioItemStateChanged
+    }//GEN-LAST:event_confirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
-JFileChooser fc = new JFileChooser();
+        JFileChooser fc = new JFileChooser();
         String pathAImagen;
         this.getContentPane().add(fc);
         fc.setVisible(true);
-        
+
         int selected = fc.showDialog(this, "Seleccionar");
         if(selected == JFileChooser.APPROVE_OPTION){
             File file = fc.getSelectedFile();
@@ -263,39 +289,21 @@ JFileChooser fc = new JFileChooser();
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false); 
+        fc.setVisible(false);
     }//GEN-LAST:event_imgbtnActionPerformed
 
-    private void confirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmbtnActionPerformed
+    private void particularRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_particularRadioItemStateChanged
         if(particularRadio.isSelected())
         {
-            try
-            {
-                
-                IAltaLista ctrl = Fabrica.getIAltaLista();
-                String nomCli = clientlist.getSelectedValue();
-                DataParticular d = new DataParticular(nomCli, nombretxt.getText(),pathimgtxt.getText());
-                ctrl.AltaListaParticular(d);
-                JOptionPane.showMessageDialog(okDialog,
-                "Operación completada con éxito",
-                "OK",
-                JOptionPane.PLAIN_MESSAGE);
-                this.dispose();
-            }
-            catch(Exception e)
-            {
-                JOptionPane.showMessageDialog(okDialog,
-                e.getMessage(),
-                "Error",
-                JOptionPane.PLAIN_MESSAGE);
-            }
+            particularpanel.setVisible(true);
+            defectopanel.setVisible(false);
         }
         else
         {
             particularpanel.setVisible(false);
             defectopanel.setVisible(true);
         }
-    }//GEN-LAST:event_confirmbtnActionPerformed
+    }//GEN-LAST:event_particularRadioItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -309,6 +317,8 @@ JFileChooser fc = new JFileChooser();
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTree jTree1;
     private javax.swing.JPanel mainpanel;
     private javax.swing.JTextField nombretxt;
     private javax.swing.JDialog okDialog;
