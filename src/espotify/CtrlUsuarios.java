@@ -173,6 +173,15 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         else
             throw new Exception("El cliente no existe");
     }
+    
+    ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        if(c!=null)
+        {
+            return c.ListarListasPrivadas();
+        }
+        else
+            throw new Exception("El cliente no existe");    }
 
     public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws Exception{
         Cliente c = BuscarCliente(nick);
@@ -236,4 +245,5 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         else
             throw new Exception("El cliente no existe");
     }
+
 }
