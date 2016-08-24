@@ -27,13 +27,9 @@ public class CtrlMusica implements IAltaGenero{
     
     //otros métodos
     
-    public ArrayList<String> ListarGeneros()
+    public DataGenero ListarGeneros()
     {
-        ArrayList<String> a = new ArrayList<>();
-         generos.keySet().stream().forEach((key) -> {
-             a.add(key);
-         });
-         return a;
+        return generoBase.ListarseRecursivo("");
     }
     
     public void AltaGenero(DataGenero d) throws Exception
