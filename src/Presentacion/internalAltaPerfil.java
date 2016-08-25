@@ -5,8 +5,13 @@ import espotify.Datatypes.DataCliente;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaPerfil;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
@@ -22,6 +27,8 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         urltxt.setEnabled(false);
         clienteRadio.setSelected(true);
     }
+    
+    BufferedImage img = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,6 +96,11 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         imglabel.setText("Imagen (opcional):");
 
         imgbtn.setText("Browse...");
+        imgbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imgbtnActionPerformed(evt);
+            }
+        });
 
         tipoUserGroup.add(clienteRadio);
         clienteRadio.setText("Cliente");
@@ -251,7 +263,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                imagentxt.getText());
+                                img);
                 ctrl.AltaCliente(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -283,7 +295,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                imagentxt.getText());
+                                img);
                 ctrl.AltaArtista(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -303,6 +315,32 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         
             
     }//GEN-LAST:event_ConfirmbtnActionPerformed
+
+    private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fc = new JFileChooser();
+        this.getContentPane().add(fc);
+        fc.setVisible(true);
+        
+        int selected = fc.showDialog(this, "Seleccionar");
+        if(selected == JFileChooser.APPROVE_OPTION){
+            File file = fc.getSelectedFile();
+            try {
+                String ext = getExtension(file);
+                if(!"jpg".equals(ext) && !"png".equals(ext)){
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
+                    fc.setVisible(false);
+                    return;
+                }
+                img = ImageIO.read(file);
+                String pathAImagen = file.getCanonicalPath();
+                imagentxt.setText(pathAImagen);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        fc.setVisible(false);    
+    }//GEN-LAST:event_imgbtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -341,5 +379,15 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         imagentxt.setText("");
         biotxt.setText("");
         urltxt.setText("");
+    }
+    
+        private String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
     }
 }

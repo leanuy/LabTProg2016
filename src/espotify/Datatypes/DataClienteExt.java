@@ -2,6 +2,7 @@ package espotify.Datatypes;
 
 import espotify.Particular;
 import espotify.Usuario;
+import java.awt.image.BufferedImage;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class DataClienteExt extends DataUsuario {
         return lis;
     }
     
-    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, String img, HashMap<String,Usuario> seguidos, HashMap<String,Particular> listas) {
+    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, HashMap<String,Usuario> seguidos, HashMap<String,Particular> listas) {
         super(nick, nombre, apellido, correo, fNac, img);
         int cant = seguidos.size();
         seg = new String[cant];
