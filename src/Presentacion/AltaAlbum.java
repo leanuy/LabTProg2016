@@ -3,6 +3,8 @@ package Presentacion;
 
 import espotify.Datatypes.DataAlbum;
 import espotify.Datatypes.DataGenero;
+import espotify.Fabrica;
+import espotify.Interfaces.IAltaGenero;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -272,54 +274,26 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 
     private void buttonBuscarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarArtistaActionPerformed
         //crear interfaz ver si la hacemos local o solo la use una vez y devuelva
-        ArrayList<String> generos = null;
-        ArrayList<DataGenero> listaDataGenero = new ArrayList();
-        DataGenero d1 = new DataGenero("Genero","");
-        DataGenero d2 = new DataGenero("Rock","Genero");
-        DataGenero d3 = new DataGenero("Cumbia","Genero");
-        DataGenero d4 = new DataGenero("Cumbia cheta","Genero");
-        DataGenero d5 = new DataGenero("Cumbia plancha","Genero");
-        DataGenero d6 = new DataGenero("Rock clasico","Genero");
-        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(d1.getNombre());
+        IAltaGenero inter =  Fabrica.getIAltaGenero();                 
+        DataGenero generoBase = inter.ListarGeneros();
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
-        
-        DefaultMutableTreeNode d11 = new DefaultMutableTreeNode(d2.getNombre());
-        DefaultMutableTreeNode d22 = new DefaultMutableTreeNode(d3.getNombre());
-        DefaultMutableTreeNode d33 = new DefaultMutableTreeNode(d4.getNombre());
-        DefaultMutableTreeNode d44 = new DefaultMutableTreeNode(d5.getNombre());
-        DefaultMutableTreeNode d55 = new DefaultMutableTreeNode(d6.getNombre());
-        
-        
-        modeloTree.insertNodeInto(d11,raiz,0);
-        modeloTree.insertNodeInto(d22, raiz, 1);
-        modeloTree.insertNodeInto(d33, d22, 0);
-        modeloTree.insertNodeInto(d44, d22, 1);
-        modeloTree.insertNodeInto(d55, d11, 0);
-        
-        
-        try{
-            //Llamado a la operacion de busqueda, devuelve lo que corresponde
-            buttonConfirmarALtaAlbum.setEnabled(true);
-            PanelSDatosAlbum.setEnabled(true);
-            //generos = operacion de la interfaz;
-            if(generos != null){
-                for(String s : generos){
-                    modeloGeneros.addElement(s); 
-                }
-            }else{
-                if(primeraVez){
-                    modeloGeneros.addElement("Sin generos");
-                    primeraVez = false;
-                }
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this,e.getMessage(), "Atencion!!!",JOptionPane.WARNING_MESSAGE);
-            nombreArtista.setText("");
-        }
+        cargarArbol(generoBase,raiz);
         
     }//GEN-LAST:event_buttonBuscarArtistaActionPerformed
 
+    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
+        int i = 0;
+        for(DataGenero d: g.getHijos()){
+            DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
+            modeloTree.insertNodeInto(nodito,padre,i);
+            i++;
+            cargarArbol(d,nodito);
+        }
+    
+    }
+    
     private void buttonQuitarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonQuitarTemaActionPerformed
         // TODO ver que hay un tema seleccionado, y sacarlo del modelo de la lista
         // si hay mas de uno sacarlos todos?? o dejar seleccionar de a uno.
