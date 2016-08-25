@@ -47,6 +47,9 @@ public class AltaGenero extends javax.swing.JInternalFrame {
             i++;
             cargarArbol(d,nodito);
         }
+        for (i = 0; i < ArbolGeneros.getRowCount(); i++) {
+            ArbolGeneros.expandRow(i);
+        }
     }
 
     /**
