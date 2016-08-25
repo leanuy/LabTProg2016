@@ -13,5 +13,4 @@ public interface IConsultaLista {
     public ArrayList<String> ListarListasDeCliente(String nick) throws Exception;
     public DataLista DarInfoParticular(String nomLista, String nick) throws Exception;
     public DataLista DarInfoDefecto(String nomLista) throws Exception;
-
 }

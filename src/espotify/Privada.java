@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.Datatypes.DataParticular;
+import java.awt.image.BufferedImage;
 
 public class Privada extends Particular {
 
@@ -13,7 +14,7 @@ public class Privada extends Particular {
         return new Publica(this);
     }
 
-    public Privada(String nombre, String img) {
+    public Privada(String nombre, BufferedImage img) {
         super(nombre, img);
     }
     

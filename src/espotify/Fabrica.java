@@ -6,6 +6,7 @@ import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IAltaSeguir;
 import espotify.Interfaces.IConsultaArtista;
 import espotify.Interfaces.IConsultaCliente;
+import espotify.Interfaces.IConsultaLista;
 import espotify.Interfaces.IDejarDeSeguir;
 import espotify.Interfaces.IPublicarLista;
 
@@ -39,6 +40,10 @@ public abstract class Fabrica {
         return CtrlListas.getInstancia();
     }
     public static IPublicarLista getIPublicarLista()
+    {
+        return CtrlListas.getInstancia();
+    }
+    public static IConsultaLista getIConsultaLista()
     {
         return CtrlListas.getInstancia();
     }
