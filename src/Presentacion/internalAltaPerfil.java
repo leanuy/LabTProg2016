@@ -317,7 +317,6 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ConfirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
-        // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
         this.getContentPane().add(fc);
         fc.setVisible(true);

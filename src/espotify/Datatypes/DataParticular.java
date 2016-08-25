@@ -1,5 +1,7 @@
 package espotify.Datatypes;
 
+import java.awt.image.BufferedImage;
+
 public class DataParticular extends DataLista{
     private String nomCliente;
 
@@ -7,7 +9,7 @@ public class DataParticular extends DataLista{
         return nomCliente;
     }
 
-    public DataParticular(String nomCliente, String nombre, String img) {
+    public DataParticular(String nomCliente, String nombre, BufferedImage img) {
         super(nombre, img);
         this.nomCliente = nomCliente;
     }

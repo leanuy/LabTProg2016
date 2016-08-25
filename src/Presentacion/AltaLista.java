@@ -6,9 +6,11 @@ import espotify.Datatypes.DataParticular;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -20,6 +22,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
 
     private DefaultTreeModel modeloTree;
 
+    BufferedImage img = null;
     /**
      * Creates new form AltaLista
      */
@@ -270,7 +273,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
             {
                 IAltaLista ctrl = Fabrica.getIAltaLista();
                 String nomCli = clientlist.getSelectedValue();
-                DataParticular d = new DataParticular(nomCli, nombretxt.getText(),pathimgtxt.getText());
+                DataParticular d = new DataParticular(nomCli, nombretxt.getText(),img);
                 ctrl.AltaListaParticular(d);
                 JOptionPane.showMessageDialog(okDialog,
                     "Operación completada con éxito",
@@ -295,7 +298,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 String nomGenero = "";
                 if (node != null)
                     nomGenero = (String)node.getUserObject();
-                DataDefecto d = new DataDefecto(nomGenero, nombretxt.getText(),pathimgtxt.getText());
+                DataDefecto d = new DataDefecto(nomGenero, nombretxt.getText(),img);
                 ctrl.AltaListaDefecto(d);
                 JOptionPane.showMessageDialog(okDialog,
                     "Operación completada con éxito",
@@ -314,28 +317,28 @@ public class AltaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_confirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
-        JFileChooser fc = new JFileChooser();
-        String pathAImagen;
+                JFileChooser fc = new JFileChooser();
         this.getContentPane().add(fc);
         fc.setVisible(true);
-
+        
         int selected = fc.showDialog(this, "Seleccionar");
         if(selected == JFileChooser.APPROVE_OPTION){
             File file = fc.getSelectedFile();
             try {
-                pathAImagen = file.getCanonicalPath();
                 String ext = getExtension(file);
                 if(!"jpg".equals(ext) && !"png".equals(ext)){
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
                     fc.setVisible(false);
                     return;
                 }
+                img = ImageIO.read(file);
+                String pathAImagen = file.getCanonicalPath();
                 pathimgtxt.setText(pathAImagen);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);
+        fc.setVisible(false);   
     }//GEN-LAST:event_imgbtnActionPerformed
 
     private void particularRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_particularRadioItemStateChanged
