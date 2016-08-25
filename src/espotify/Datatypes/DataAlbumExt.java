@@ -9,4 +9,8 @@ public class DataAlbumExt extends DataAlbum{
         super(nombre, anio, generos, img);
         this.temas = temas;
     }
+    
+    public ArrayList<DataTema> getTemas(){
+        return this.temas;
+    }
 }
