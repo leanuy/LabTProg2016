@@ -4,6 +4,7 @@ import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -50,7 +51,7 @@ public class CtrlListasTest {
     @Test
     public void testPublicarLista1() throws Exception {
         System.out.println("PublicarLista: ok");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica", "");
+        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);      
         instance.PublicarLista("Mi Lista Publica", "TesterLista");
@@ -59,7 +60,7 @@ public class CtrlListasTest {
     @Test (expected=Exception.class)
     public void testPublicarLista2() throws Exception {
         System.out.println("PublicarLista: nombre de usuario incorrecto");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder", "");
+        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);      
         instance.PublicarLista("Mi Lista Publica", "TesterListakas.dbg");
@@ -68,7 +69,7 @@ public class CtrlListasTest {
     @Test (expected=Exception.class)
     public void testPublicarLista3() throws Exception {
         System.out.println("PublicarLista: nombre de lista incorrecto");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder por el nombre", "");
+        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder por el nombre", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);      
         instance.PublicarLista("Mi Lista Publicanbasdf", "TesterLista");
@@ -168,7 +169,7 @@ public class CtrlListasTest {
     @Test
     public void testAltaListaParticular1() throws Exception {
         System.out.println("AltaListaParticular: caso ok");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista", "");
+        DataParticular d = new DataParticular("TesterLista", "Mi Lista", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);
     }
@@ -176,7 +177,7 @@ public class CtrlListasTest {
     @Test (expected=Exception.class)
     public void testAltaListaParticular2() throws Exception {
         System.out.println("AltaListaParticular:usuario inexistente");
-        DataParticular d = new DataParticular("no existo yey", "Mi Lista", "");
+        DataParticular d = new DataParticular("no existo yey", "Mi Lista", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);
     }
@@ -184,27 +185,27 @@ public class CtrlListasTest {
     @Test
     public void testAltaListaParticular3() throws Exception {
         System.out.println("AltaListaParticular:dos clientes con listas de igual nombre");
-        DataParticular d = new DataParticular("TesterLista", "Lista que comparte nombre", "");
+        DataParticular d = new DataParticular("TesterLista", "Lista que comparte nombre", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);
-        d = new DataParticular("TesterLista2", "Lista que comparte nombre", "");
+        d = new DataParticular("TesterLista2", "Lista que comparte nombre", null);
         instance.AltaListaParticular(d);
     }
     
     @Test (expected=Exception.class)
     public void testAltaListaParticular4() throws Exception {
         System.out.println("AltaListaParticular:nombre de lista repetido");
-        DataParticular d = new DataParticular("TesterLista", "Repetido", "");
+        DataParticular d = new DataParticular("TesterLista", "Repetido", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);
-        d = new DataParticular("TesterLista", "Repetido", "");
+        d = new DataParticular("TesterLista", "Repetido", null);
         instance.AltaListaParticular(d);
     }
     
     @Test (expected=Exception.class)
     public void testAltaListaParticular5() throws Exception {
         System.out.println("AltaListaParticular:nombre de lista vacío");
-        DataParticular d = new DataParticular("TesterLista", "", "");
+        DataParticular d = new DataParticular("TesterLista", "", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaParticular(d);
     }
@@ -215,7 +216,7 @@ public class CtrlListasTest {
     @Test
     public void testAltaListaDefecto1() throws Exception {
         System.out.println("AltaListaDefecto: género=Genero");
-        DataDefecto d = new DataDefecto("Genero", "Lista genérica", "");
+        DataDefecto d = new DataDefecto("Genero", "Lista genérica", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaDefecto(d);
     }
@@ -223,7 +224,7 @@ public class CtrlListasTest {
     @Test (expected=Exception.class)
     public void testAltaListaDefecto2() throws Exception {
         System.out.println("AltaListaDefecto: género inexistente");
-        DataDefecto d = new DataDefecto("aksdnlfaesufmx", "Lista que no va a andar", "");
+        DataDefecto d = new DataDefecto("aksdnlfaesufmx", "Lista que no va a andar", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaDefecto(d);
     }
@@ -231,7 +232,7 @@ public class CtrlListasTest {
     @Test (expected=Exception.class)
     public void testAltaListaDefecto3() throws Exception {
         System.out.println("AltaListaDefecto: nombre repetido");
-        DataDefecto d = new DataDefecto("Genero", "Soy una lista con un nombre comun", "");
+        DataDefecto d = new DataDefecto("Genero", "Soy una lista con un nombre comun", null);
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaDefecto(d);
         instance.AltaListaDefecto(d);
