@@ -23,4 +23,28 @@ public class DataGenero {
         this.padre = padre;
         this.hijos=new ArrayList<>();
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (this == null) {
+            return false;
+        }
+        if (this.getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        // igualdades propias de la clase
+        boolean result = true;
+        DataGenero dt = (DataGenero) obj;
+        if(!dt.getNombre().endsWith(nombre))
+            result &= false;
+        
+        if(!dt.getPadre().endsWith(padre))
+            result &= false;
+        result &= dt.getHijos().equals(hijos);
+        return result;
+    }
 }
