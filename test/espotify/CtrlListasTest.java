@@ -160,10 +160,6 @@ public class CtrlListasTest {
         System.out.println("ListarGeneros");
         CtrlListas instance = null;
         ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.ListarGeneros();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

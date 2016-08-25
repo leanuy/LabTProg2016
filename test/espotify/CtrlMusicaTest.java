@@ -46,24 +46,6 @@ public class CtrlMusicaTest {
     }
 
     /**
-     * Test of AltaGenero method, of class CtrlMusica.
-     */
-    @Test
-    public void testAltaGenero() throws Exception {
-        System.out.println("AltaGenero: género sin padre");
-        DataGenero d = new DataGenero("Rock", "");
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        instance.AltaGenero(d);
-        System.out.println("ListarGeneros: dos géneros.");
-        ArrayList<String> expResult = new ArrayList<>();
-        expResult.add("Rock");
-        expResult.add("Genero");
-        ArrayList<String> result = instance.ListarGeneros();
-        assertEquals(expResult, result);
-    }
-    
-    
-    /**
      * Test of BuscarGenero method, of class CtrlMusica.
      */
     @Ignore

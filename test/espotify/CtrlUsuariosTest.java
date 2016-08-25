@@ -8,6 +8,9 @@ import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -58,14 +61,22 @@ public class CtrlUsuariosTest {
     @Ignore
     @Test
     public void testConsultaCliente() {
+        //tests de santiago que hice yo -JM42
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, "");
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try {
+            instance.AltaCliente(d);
+        } catch (Exception ex) {
+            Logger.getLogger(CtrlUsuariosTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         System.out.println("ConsultaCliente");
-        String s = "";
-        CtrlUsuarios instance = null;
-        DataClienteExt expResult = null;
+        String s = "clienteconsultado";
+        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, "", new HashMap<String,Usuario>(), new HashMap<String,Particular>());
         DataClienteExt result = instance.ConsultaCliente(s);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

@@ -65,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         cerrarOption = new javax.swing.JMenuItem();
         AltasDropDown = new javax.swing.JMenu();
         AltaPerfil = new javax.swing.JMenuItem();
+        AltaGeneroMItem = new javax.swing.JMenuItem();
         AltaAlbum = new javax.swing.JMenuItem();
         AltaLista = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
@@ -243,6 +244,15 @@ public class MainFrame extends javax.swing.JFrame {
         });
         AltasDropDown.add(AltaPerfil);
 
+        AltaGeneroMItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        AltaGeneroMItem.setText("Alta Género");
+        AltaGeneroMItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AltaGeneroMItemActionPerformed(evt);
+            }
+        });
+        AltasDropDown.add(AltaGeneroMItem);
+
         AltaAlbum.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         AltaAlbum.setText("Alta Album");
         AltaAlbum.addActionListener(new java.awt.event.ActionListener() {
@@ -280,13 +290,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         ConsultasDropDown.add(ConsultaArtistaMI);
-        ConsultaAlbumMenuItem.setText("Consulta Album");
-        ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaAlbumMenuItemActionPerformed(evt);
-            }
-        });
-        ConsultasDropDown.add(ConsultaAlbumMenuItem);
 
         jMenuBar1.add(ConsultasDropDown);
 
@@ -319,6 +322,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         ListasMenu.add(PublicarListaMItem);
+
+        ConsultaAlbumMenuItem.setText("Consulta Album");
+        ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaAlbumMenuItemActionPerformed(evt);
+            }
+        });
+        ListasMenu.add(ConsultaAlbumMenuItem);
 
         jMenuBar1.add(ListasMenu);
 
@@ -380,6 +391,7 @@ public class MainFrame extends javax.swing.JFrame {
         PublicarLista framePublicarLista = new PublicarLista();
         MainPanel.add(framePublicarLista);
         framePublicarLista.setVisible(true);    }//GEN-LAST:event_PublicarListaMItemActionPerformed
+
     private void ConsultaAlbumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumMenuItemActionPerformed
             Object[] options = {"Artista","Genero"};
             int opcion = JOptionPane.showOptionDialog(this, "Desea consultar album por Artista o por Genero?","Elija una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
@@ -393,6 +405,12 @@ public class MainFrame extends javax.swing.JFrame {
                consAlbGen.setVisible(true);
             }
     }//GEN-LAST:event_ConsultaAlbumMenuItemActionPerformed
+
+    private void AltaGeneroMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroMItemActionPerformed
+        AltaGenero frameAltaGenero = new AltaGenero();
+        MainPanel.add(frameAltaGenero);
+        frameAltaGenero.setVisible(true);
+    }//GEN-LAST:event_AltaGeneroMItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -431,6 +449,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AltaAlbum;
+    private javax.swing.JMenuItem AltaGeneroMItem;
     private javax.swing.JMenuItem AltaLista;
     private javax.swing.JMenuItem AltaPerfil;
     private javax.swing.JTextField AltaPerfil_apellido_input;
@@ -451,9 +470,9 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JTextField AltaPerfil_url_input;
     private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JMenu AltasDropDown;
+    private javax.swing.JMenuItem ConsultaAlbumMenuItem;
     private javax.swing.JMenuItem ConsultaArtistaMI;
     private javax.swing.JMenuItem ConsultaClienteMI;
-    private javax.swing.JMenuItem ConsultaAlbumMenuItem;
     private javax.swing.JMenu ConsultasDropDown;
     private javax.swing.JMenuItem DejarSeguirMItem;
     private javax.swing.JMenu ListasMenu;
