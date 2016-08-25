@@ -101,7 +101,7 @@ public class CtrlUsuariosTest {
     @Test
     public void testConsultaArtista() {
         System.out.println("ConsultaArtista");
-        String s = "";
+        String s = null;
         CtrlUsuarios instance = null;
         DataArtistaExt expResult = null;
         DataArtistaExt result = instance.ConsultaArtista(s);
@@ -199,6 +199,7 @@ public class CtrlUsuariosTest {
     
     /**
      * Test of AltaArtista method, of class CtrlUsuarios.
+     * @return 
      */
     @Test
     public void testAltaArtista1() throws Exception {

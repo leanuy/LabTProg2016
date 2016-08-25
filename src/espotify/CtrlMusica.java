@@ -85,7 +85,7 @@ public class CtrlMusica implements IAltaGenero{
         return generos.get(nombre);
     }
     
-    private HashMap<String, Genero> ValidarGeneros(ArrayList<String> lista_generos) throws Exception {
+    HashMap<String, Genero> ValidarGeneros(ArrayList<String> lista_generos) throws Exception {
         HashMap<String, Genero> lista = new HashMap<>();
         for (String nombre_genero : lista_generos) {
             if (this.ExisteGenero(nombre_genero)) {
