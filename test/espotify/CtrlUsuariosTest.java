@@ -64,7 +64,7 @@ public class CtrlUsuariosTest {
         //tests de santiago que hice yo -JM42
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, "");
+        DataCliente d = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         try {
             instance.AltaCliente(d);
@@ -74,7 +74,7 @@ public class CtrlUsuariosTest {
         
         System.out.println("ConsultaCliente");
         String s = "clienteconsultado";
-        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, "", new HashMap<String,Usuario>(), new HashMap<String,Particular>());
+        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new HashMap<String,Usuario>(), new HashMap<String,Particular>());
         DataClienteExt result = instance.ConsultaCliente(s);
         assertEquals(expResult, result);
     }
@@ -148,7 +148,7 @@ public class CtrlUsuariosTest {
         System.out.println("AltaCliente: ingreso normal");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, "");
+        DataCliente d = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaCliente(d);
     }
@@ -158,7 +158,7 @@ public class CtrlUsuariosTest {
         System.out.println("AltaCliente: campo vacío");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("", "Javier", "Morales", "javiermorales42@hotmail.com", cal, "");
+        DataCliente d = new DataCliente("", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaCliente(d);
     }
@@ -168,10 +168,10 @@ public class CtrlUsuariosTest {
         System.out.println("AltaCliente: nick repetido.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("b", "Javier", "Morales", "javiermorales422@hotmail.com", cal, "");
+        DataCliente d = new DataCliente("b", "Javier", "Morales", "javiermorales422@hotmail.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaCliente(d);
-        d = new DataCliente("b", "Javier", "Morales", "javiermorales4222@hotmail.com", cal, "");
+        d = new DataCliente("b", "Javier", "Morales", "javiermorales4222@hotmail.com", cal, null);
         instance.AltaCliente(d);
     }
 
@@ -180,10 +180,10 @@ public class CtrlUsuariosTest {
         System.out.println("AltaCliente: correo repetido.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("d", "Javier", "Morales", "a@hotmail.com", cal, "");
+        DataCliente d = new DataCliente("d", "Javier", "Morales", "a@hotmail.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaCliente(d);
-        d = new DataCliente("e", "Javier", "Morales", "a@hotmail.com", cal, "");
+        d = new DataCliente("e", "Javier", "Morales", "a@hotmail.com", cal, null);
         instance.AltaCliente(d);
     }
     
@@ -192,7 +192,7 @@ public class CtrlUsuariosTest {
         System.out.println("AltaCliente: correo sin formato de correo.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("e", "Javier", "Morales", "hola", cal, "");
+        DataCliente d = new DataCliente("e", "Javier", "Morales", "hola", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaCliente(d);
     }
@@ -205,7 +205,7 @@ public class CtrlUsuariosTest {
         System.out.println("AltaArtista: ingreso normal");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, "");
+        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaArtista(d);
     }
@@ -215,7 +215,7 @@ public class CtrlUsuariosTest {
         System.out.println("AltaArtista: campo vacío");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","", "Axl", "Rose", "axl2@rose.com", cal, "");
+        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","", "Axl", "Rose", "axl2@rose.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaArtista(d);
     }
@@ -225,10 +225,10 @@ public class CtrlUsuariosTest {
         System.out.println("AltaArtista: nick repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl3@rose.com", cal, "");
+        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl3@rose.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaArtista(d);
-        d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl33@rose.com", cal, "");
+        d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl33@rose.com", cal, null);
         instance.AltaArtista(d);
     }
     
@@ -237,10 +237,10 @@ public class CtrlUsuariosTest {
         System.out.println("AltaArtista: correo repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, "");
+        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaArtista(d);
-        d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, "");
+        d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null);
         instance.AltaArtista(d);
     }
     
@@ -249,7 +249,7 @@ public class CtrlUsuariosTest {
         System.out.println("AltaArtista: correo sin formato de correo");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4rose.com", cal, "");
+        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4rose.com", cal, null);
         CtrlUsuarios instance = CtrlUsuarios.getInstancia();
         instance.AltaArtista(d);
     }
