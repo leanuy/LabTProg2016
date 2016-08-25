@@ -3,14 +3,14 @@ package espotify.Datatypes;
 import java.util.ArrayList;
 
 public class DataAlbumExt extends DataAlbum{
-    private ArrayList<DataTema> temas;
-
-    public DataAlbumExt(ArrayList<DataTema> temas, String nombre, int anio, ArrayList<String> generos, String img) {
-        super(nombre, anio, generos, img);
-        this.temas = temas;
+    private final ArrayList<DataTema> temas;
+    
+    public ArrayList<DataTema> getTemas() {
+        return this.temas;
     }
     
-    public ArrayList<DataTema> getTemas(){
-        return this.temas;
+    public DataAlbumExt(ArrayList<DataTema> temas, String nombre, int anio, ArrayList<String> generos, String img, String nickArtista) {
+        super(nombre, anio, generos, img, nickArtista);
+        this.temas = temas;
     }
 }
