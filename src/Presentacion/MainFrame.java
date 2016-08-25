@@ -72,6 +72,7 @@ public class MainFrame extends javax.swing.JFrame {
         ConsultaClienteMI = new javax.swing.JMenuItem();
         ConsultaArtistaMI = new javax.swing.JMenuItem();
         ConsultaAlbumMenuItem = new javax.swing.JMenuItem();
+        ConsultaListaMenuItem = new javax.swing.JMenuItem();
         SocialMenu = new javax.swing.JMenu();
         SeguirMItem = new javax.swing.JMenuItem();
         DejarSeguirMItem = new javax.swing.JMenuItem();
@@ -299,6 +300,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         ConsultasDropDown.add(ConsultaAlbumMenuItem);
 
+        ConsultaListaMenuItem.setText("Consulta Lista");
+        ConsultaListaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaListaMenuItemActionPerformed(evt);
+            }
+        });
+        ConsultasDropDown.add(ConsultaListaMenuItem);
+
         jMenuBar1.add(ConsultasDropDown);
 
         SocialMenu.setText("Social");
@@ -414,6 +423,10 @@ public class MainFrame extends javax.swing.JFrame {
         frameAltaGenero.setVisible(true);
     }//GEN-LAST:event_AltaGeneroMItemActionPerformed
 
+    private void ConsultaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaListaMenuItemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ConsultaListaMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -475,6 +488,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem ConsultaAlbumMenuItem;
     private javax.swing.JMenuItem ConsultaArtistaMI;
     private javax.swing.JMenuItem ConsultaClienteMI;
+    private javax.swing.JMenuItem ConsultaListaMenuItem;
     private javax.swing.JMenu ConsultasDropDown;
     private javax.swing.JMenuItem DejarSeguirMItem;
     private javax.swing.JMenu ListasMenu;
