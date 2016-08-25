@@ -18,10 +18,6 @@ public class Genero {
     private final HashMap<String,Genero> subgeneros;
     private final HashMap<List<String>, Album> albums;
 
-    Genero(String nombre, String genero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     //getters
     public String getNombre() {
         return nombre;

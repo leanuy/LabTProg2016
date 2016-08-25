@@ -381,7 +381,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 //        }else{
 //            genders = null;
 //        }
-        DataAlbum nuevoAlbum = new DataAlbum(nombreAlbum.getText(),year,genders,ext);
+        //DataAlbum nuevoAlbum = new DataAlbum(nombreAlbum.getText(),year,genders,ext);
         //crear el album y luego cargarle los temas...
     }//GEN-LAST:event_buttonConfirmarALtaAlbumActionPerformed
 
