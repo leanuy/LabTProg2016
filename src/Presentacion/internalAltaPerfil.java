@@ -5,8 +5,11 @@ import espotify.Datatypes.DataCliente;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaPerfil;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 
@@ -46,7 +49,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         fechatxt = new javax.swing.JFormattedTextField();
         fechalabel = new javax.swing.JLabel();
         imglabel = new javax.swing.JLabel();
-        imagentxt = new javax.swing.JTextField();
+        pathimgtxt = new javax.swing.JTextField();
         imgbtn = new javax.swing.JButton();
         clienteRadio = new javax.swing.JRadioButton();
         artistaRadio = new javax.swing.JRadioButton();
@@ -89,6 +92,11 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         imglabel.setText("Imagen (opcional):");
 
         imgbtn.setText("Browse...");
+        imgbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                imgbtnActionPerformed(evt);
+            }
+        });
 
         tipoUserGroup.add(clienteRadio);
         clienteRadio.setText("Cliente");
@@ -155,7 +163,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                         .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fechatxt)
                             .addGroup(contenedorLayout.createSequentialGroup()
-                                .addComponent(imagentxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pathimgtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(imgbtn)
@@ -190,7 +198,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                     .addComponent(fechalabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(imagentxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pathimgtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imglabel)
                     .addComponent(imgbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -251,7 +259,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                imagentxt.getText());
+                                pathimgtxt.getText());
                 ctrl.AltaCliente(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -283,7 +291,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                imagentxt.getText());
+                                pathimgtxt.getText());
                 ctrl.AltaArtista(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -304,6 +312,31 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
             
     }//GEN-LAST:event_ConfirmbtnActionPerformed
 
+    private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
+        JFileChooser fc = new JFileChooser();
+        String pathAImagen;
+        this.getContentPane().add(fc);
+        fc.setVisible(true);
+
+        int selected = fc.showDialog(this, "Seleccionar");
+        if(selected == JFileChooser.APPROVE_OPTION){
+            File file = fc.getSelectedFile();
+            try {
+                pathAImagen = file.getCanonicalPath();
+                String ext = getExtension(file);
+                if(!"jpg".equals(ext) && !"png".equals(ext)){
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
+                    fc.setVisible(false);
+                    return;
+                }
+                pathimgtxt.setText(pathAImagen);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        fc.setVisible(false);
+    }//GEN-LAST:event_imgbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Confirmbtn;
@@ -317,7 +350,6 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     private javax.swing.JPanel contenedor;
     private javax.swing.JLabel fechalabel;
     private javax.swing.JFormattedTextField fechatxt;
-    private javax.swing.JTextField imagentxt;
     private javax.swing.JButton imgbtn;
     private javax.swing.JLabel imglabel;
     private javax.swing.JLabel jLabel1;
@@ -328,6 +360,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     private javax.swing.JLabel nomlabel;
     private javax.swing.JTextField nomtxt;
     private javax.swing.JDialog okDialog;
+    private javax.swing.JTextField pathimgtxt;
     private javax.swing.ButtonGroup tipoUserGroup;
     private javax.swing.JTextField urltxt;
     // End of variables declaration//GEN-END:variables
@@ -338,8 +371,18 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         apetxt.setText("");
         mailtxt.setText("");
         fechatxt.setText("");
-        imagentxt.setText("");
+        pathimgtxt.setText("");
         biotxt.setText("");
         urltxt.setText("");
+    }
+    
+    private String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
     }
 }
