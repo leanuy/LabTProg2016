@@ -1,5 +1,6 @@
 package espotify.Datatypes;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
@@ -7,7 +8,7 @@ public class DataAlbum {
     private final String nombre;
     private final int anio;
     private final ArrayList<String> generos;
-    private final String img;
+    private final BufferedImage img;
     private final String nickArtista; //nickname
 
     public String getNombre() {
@@ -19,7 +20,7 @@ public class DataAlbum {
     public ArrayList<String> getGeneros() {
         return generos;
     }
-    public String getImg() {
+    public BufferedImage getImg() {
         return img;
     }
     
@@ -27,7 +28,7 @@ public class DataAlbum {
         return nickArtista;
     }
 
-    public DataAlbum(String nombre, int anio, ArrayList<String> generos, String img, String artista) {
+    public DataAlbum(String nombre, int anio, ArrayList<String> generos, BufferedImage img, String artista) {
         this.nombre = nombre;
         this.anio = anio;
         this.generos = generos;

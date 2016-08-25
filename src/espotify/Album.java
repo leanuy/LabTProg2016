@@ -4,6 +4,7 @@ import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataTemaArchivo;
 import espotify.Datatypes.DataTemaWeb;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -13,7 +14,7 @@ public class Album implements Favoriteable {
     //attrs
     private final String nombre;
     private final int anio;
-    private final String img;
+    private final BufferedImage img;
     private final Artista artista;
     private HashMap<String, Genero> generos;
     private final ArrayList<Tema> temas;
@@ -27,7 +28,7 @@ public class Album implements Favoriteable {
         return anio;
     }
 
-    public String getImg() {
+    public BufferedImage getImg() {
         return img;
     }
 
