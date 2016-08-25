@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.Datatypes.DataLista;
+import espotify.Datatypes.DataParticular;
 
 public abstract class Particular extends Lista{
     
@@ -12,4 +13,5 @@ public abstract class Particular extends Lista{
     public Particular(DataLista d ) {
         super(d);
     }
+    
 }

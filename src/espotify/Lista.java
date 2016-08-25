@@ -42,5 +42,13 @@ public abstract class Lista {
                 temas.remove(t);
         }
     }
+    
+    public DataLista getData()
+    {
+        ArrayList<DataTema> lst = new ArrayList<>();
+        for(Tema t:temas)
+            lst.add(t.getData());
+        return new DataLista(nombre, img, lst);
+    }
 
 }

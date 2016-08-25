@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataUsuario;
 import java.util.ArrayList;
@@ -93,6 +94,14 @@ public class Cliente extends Usuario {
         Lista l = listas.get(nombre);
         if(l!=null)
             l.QuitarTema(nomTema,nomAlbum);
+        else
+            throw new Exception("El cliente no tiene una lista con ese nombre");
+    }
+
+    DataLista DarInfoLista(String nomLista) throws Exception{
+        Lista l = listas.get(nomLista);
+        if(l!=null)
+            return l.getData();
         else
             throw new Exception("El cliente no tiene una lista con ese nombre");
     }
