@@ -6,6 +6,7 @@ import espotify.Datatypes.DataUsuario;
 import java.util.ArrayList;
 import espotify.Datatypes.DataParticular;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Cliente extends Usuario {
     private final HashMap<String,Usuario> seguidos;
@@ -57,6 +58,16 @@ public class Cliente extends Usuario {
         });
         return a;
     }
+    
+    ArrayList<String> ListarListasPrivadas() {
+        ArrayList<String> a = new ArrayList();
+        for(Map.Entry<String, Particular> entry : listas.entrySet()) {
+            Particular p = entry.getValue();
+            if(p instanceof Privada)
+                a.add(p.getNombre());
+        }
+        return a;
+    }
 
     ArrayList<DataTema> ListarTemasDeLista(String nombre) throws Exception {
         Lista l = listas.get(nombre);
@@ -80,4 +91,6 @@ public class Cliente extends Usuario {
         else
             throw new Exception("El cliente no tiene una lista con ese nombre");
     }
+
+
 }

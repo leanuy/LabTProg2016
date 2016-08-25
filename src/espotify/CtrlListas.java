@@ -5,10 +5,11 @@ import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
 import espotify.Interfaces.IAltaLista;
+import espotify.Interfaces.IPublicarLista;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class CtrlListas implements IAltaLista{
+public class CtrlListas implements IAltaLista, IPublicarLista{
     private static CtrlListas instancia;
     private String nickMEM;
     private String nomListaMEM;
@@ -44,6 +45,11 @@ public class CtrlListas implements IAltaLista{
         nickMEM=nick;
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.ListarListasDeCliente(nick);
+    }
+    public ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws Exception
+    {
+        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        return cu.ListarListasPrivadasDeCliente(nick);
     }
     
     public ArrayList<String> ListarListasDefecto()
