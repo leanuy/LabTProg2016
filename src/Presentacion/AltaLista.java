@@ -1,12 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
+import espotify.Datatypes.DataDefecto;
+import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
 import espotify.Fabrica;
+import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import java.io.File;
 import java.io.IOException;
@@ -14,12 +12,13 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeSelectionModel;
 
-/**
- *
- * @author JavierM42
- */
 public class AltaLista extends javax.swing.JInternalFrame {
+
+    private DefaultTreeModel modeloTree;
 
     /**
      * Creates new form AltaLista
@@ -35,8 +34,29 @@ public class AltaLista extends javax.swing.JInternalFrame {
         for(String str : a) {
             model.addElement(str);
         }
+        
+        ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        IAltaLista inter =  Fabrica.getIAltaLista();                 
+        DataGenero generoBase = inter.ListarGeneros();
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
+        modeloTree  = new DefaultTreeModel(raiz);
+        ArbolGeneros.setModel(modeloTree);
+        cargarArbol(generoBase,raiz);
     }
 
+    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
+        int i = 0;
+        for(DataGenero d: g.getHijos()){
+            DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
+            modeloTree.insertNodeInto(nodito,padre,i);
+            i++;
+            cargarArbol(d,nodito);
+        }
+        for (i = 0; i < ArbolGeneros.getRowCount(); i++) {
+            ArbolGeneros.expandRow(i);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -64,7 +84,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
         defectopanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
+        ArbolGeneros = new javax.swing.JTree();
 
         javax.swing.GroupLayout okDialogLayout = new javax.swing.GroupLayout(okDialog.getContentPane());
         okDialog.getContentPane().setLayout(okDialogLayout);
@@ -138,7 +158,8 @@ public class AltaLista extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Género:");
 
-        jScrollPane1.setViewportView(jTree1);
+        ArbolGeneros.setModel(null);
+        jScrollPane1.setViewportView(ArbolGeneros);
 
         javax.swing.GroupLayout defectopanelLayout = new javax.swing.GroupLayout(defectopanel);
         defectopanel.setLayout(defectopanelLayout);
@@ -241,7 +262,6 @@ public class AltaLista extends javax.swing.JInternalFrame {
         {
             try
             {
-
                 IAltaLista ctrl = Fabrica.getIAltaLista();
                 String nomCli = clientlist.getSelectedValue();
                 DataParticular d = new DataParticular(nomCli, nombretxt.getText(),pathimgtxt.getText());
@@ -262,8 +282,28 @@ public class AltaLista extends javax.swing.JInternalFrame {
         }
         else
         {
-            particularpanel.setVisible(false);
-            defectopanel.setVisible(true);
+            try
+            {
+                IAltaLista ctrl = Fabrica.getIAltaLista();
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
+                String nomGenero = "";
+                if (node != null)
+                    nomGenero = (String)node.getUserObject();
+                DataDefecto d = new DataDefecto(nomGenero, nombretxt.getText(),pathimgtxt.getText());
+                ctrl.AltaListaDefecto(d);
+                JOptionPane.showMessageDialog(okDialog,
+                    "Operación completada con éxito",
+                    "OK",
+                    JOptionPane.PLAIN_MESSAGE);
+                this.dispose();
+            }
+            catch(Exception e)
+            {
+                JOptionPane.showMessageDialog(okDialog,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.PLAIN_MESSAGE);
+            }
         }
     }//GEN-LAST:event_confirmbtnActionPerformed
 
@@ -307,6 +347,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTree ArbolGeneros;
     private javax.swing.JList<String> clientlist;
     private javax.swing.JScrollPane clientscrollpane;
     private javax.swing.JButton confirmbtn;
@@ -318,7 +359,6 @@ public class AltaLista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTree jTree1;
     private javax.swing.JPanel mainpanel;
     private javax.swing.JTextField nombretxt;
     private javax.swing.JDialog okDialog;

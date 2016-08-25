@@ -39,7 +39,7 @@ public class AltaGenero extends javax.swing.JInternalFrame {
 
     }
     
-        private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
+    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
         int i = 0;
         for(DataGenero d: g.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
