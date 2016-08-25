@@ -281,7 +281,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
         cargarArbol(generoBase,raiz);
-
+        buttonConfirmarALtaAlbum.setEnabled(true);
         
     }//GEN-LAST:event_buttonBuscarArtistaActionPerformed
 
@@ -323,8 +323,14 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private void buttonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarTemaActionPerformed
         // TODO abrir el jdialog ue agregue el tema y si esta todo ok ponerlo en la lista.
         // ver que carajo agregar de cada tema
-        String tema = JOptionPane.showInputDialog(this, "Ingrese el path al tema o el link al mismo");
-        modeloTemas.addElement(tema);
+       // String tema = JOptionPane.showInputDialog(this, "Ingrese el path al tema o el link al mismo");
+        //modeloTemas.addElement(tema);
+        
+        DialogoIngresoTema ingTema = new DialogoIngresoTema(null,"Ingrese el Tema",true); 
+        ingTema.setLocationRelativeTo(this);
+        
+        ingTema.setVisible(true);
+        
         
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
 
