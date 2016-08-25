@@ -5,10 +5,12 @@ import espotify.Datatypes.DataCliente;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaPerfil;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -25,6 +27,8 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         urltxt.setEnabled(false);
         clienteRadio.setSelected(true);
     }
+    
+    BufferedImage img = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -259,7 +263,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                pathimgtxt.getText());
+                                img);
                 ctrl.AltaCliente(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -291,7 +295,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                pathimgtxt.getText());
+                                img);
                 ctrl.AltaArtista(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -313,28 +317,28 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ConfirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
+        // TODO add your handling code here:
         JFileChooser fc = new JFileChooser();
-        String pathAImagen;
         this.getContentPane().add(fc);
         fc.setVisible(true);
-
+        
         int selected = fc.showDialog(this, "Seleccionar");
         if(selected == JFileChooser.APPROVE_OPTION){
             File file = fc.getSelectedFile();
             try {
-                pathAImagen = file.getCanonicalPath();
                 String ext = getExtension(file);
                 if(!"jpg".equals(ext) && !"png".equals(ext)){
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
                     fc.setVisible(false);
                     return;
                 }
-                pathimgtxt.setText(pathAImagen);
+                img = ImageIO.read(file);
+                String pathAImagen = file.getCanonicalPath();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);
+        fc.setVisible(false);    
     }//GEN-LAST:event_imgbtnActionPerformed
 
 
