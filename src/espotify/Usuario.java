@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.Datatypes.DataUsuario;
+import java.awt.image.BufferedImage;
 import java.util.Calendar;
 
 public class Usuario {
@@ -11,7 +12,7 @@ public class Usuario {
     protected String apellido;
     protected String correo;
     protected Calendar fNac;
-    protected String img;
+    protected BufferedImage img;
 
     public String getNick() {
         return nick;
@@ -33,7 +34,7 @@ public class Usuario {
         return fNac;
     }
 
-    public String getImg() {
+    public BufferedImage getImg() {
         return img;
     }
     

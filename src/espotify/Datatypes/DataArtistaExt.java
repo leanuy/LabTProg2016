@@ -1,6 +1,7 @@
 package espotify.Datatypes;
 
 import espotify.Album;
+import java.awt.image.BufferedImage;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class DataArtistaExt extends DataUsuario {
         return alb;
     }
     
-    public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fNac, String img, String bio, String url, HashMap<String,Album> albums){
+    public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String bio, String url, HashMap<String,Album> albums){
 
         super(nick, nombre, apellido, correo, fNac, img);
 
