@@ -20,6 +20,14 @@ public class Artista extends Usuario{
         return url;
     }
     
+    public void addAlbum(Album album) {
+        this.albums.put(album.getNombre(), album);
+    }
+
+    public boolean TieneAlbum(String album) {
+        return this.albums.containsKey(album);
+    }
+    
     //constructores
     public Artista(DataArtista d)
     {

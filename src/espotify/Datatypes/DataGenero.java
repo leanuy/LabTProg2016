@@ -23,9 +23,4 @@ public class DataGenero {
         this.padre = padre;
         this.hijos=new ArrayList<>();
     }
-
-    public void setPadre(String padre) {
-        this.padre = padre;
-    }
-
 }

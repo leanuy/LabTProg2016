@@ -5,12 +5,18 @@ import espotify.Datatypes.DataDefecto;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+
+
 
 public class Genero {
     //attrs
     private String nombre;
     private final HashMap<String,Genero> subgeneros;
-    private final HashMap<String,Album> albums;
+    private final HashMap<List<String>, Album> albums;
 
     Genero(String nombre, String genero) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -29,11 +35,18 @@ public class Genero {
     }
     public Genero(DataGenero d)
     {
-        this(d.getNombre());
+        this.nombre = d.getNombre();
+        this.subgeneros = new HashMap<>();
+        this.albums = new HashMap<>();
     }
 
     void AddHijo(Genero g) {
         subgeneros.put(g.getNombre(), g);
+    }
+    
+    public void AddAlbum(Album album) {
+        List<String> key = Arrays.asList(album.getNickArtista(), album.getNombre());
+        this.albums.putIfAbsent(key, album);
     }
 
     DataGenero getData(String padre) {
