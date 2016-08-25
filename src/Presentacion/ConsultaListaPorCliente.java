@@ -9,12 +9,12 @@ package Presentacion;
  *
  * @author JavierM42
  */
-public class ConsultaLista extends javax.swing.JInternalFrame {
+public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form ConsultaLista
+     * Creates new form ConsultaListaPorCliente
      */
-    public ConsultaLista() {
+    public ConsultaListaPorCliente() {
         initComponents();
     }
 
@@ -31,11 +31,11 @@ public class ConsultaLista extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 486, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 330, Short.MAX_VALUE)
+            .addGap(0, 317, Short.MAX_VALUE)
         );
 
         pack();

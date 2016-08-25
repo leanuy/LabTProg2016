@@ -422,7 +422,17 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_AltaGeneroMItemActionPerformed
 
     private void ConsultaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaListaMenuItemActionPerformed
-        // TODO add your handling code here:
+        Object[] options = {"Cliente","Genero"};
+        int opcion = JOptionPane.showOptionDialog(this, "Desea consultar album por Cliente o por Género?","Elija una opción", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+        if(opcion == 0 ){
+           ConsultaListaPorCliente consListaCli = new ConsultaListaPorCliente();
+           MainPanel.add(consListaCli);
+           consListaCli.setVisible(true);
+        }else{
+           ConsultaListaPorGenero consListaGen = new ConsultaListaPorGenero();
+           MainPanel.add(consListaGen);
+           consListaGen.setVisible(true);
+        }
     }//GEN-LAST:event_ConsultaListaMenuItemActionPerformed
 
     /**
