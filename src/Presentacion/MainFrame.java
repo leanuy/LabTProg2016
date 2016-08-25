@@ -71,12 +71,12 @@ public class MainFrame extends javax.swing.JFrame {
         ConsultasDropDown = new javax.swing.JMenu();
         ConsultaClienteMI = new javax.swing.JMenuItem();
         ConsultaArtistaMI = new javax.swing.JMenuItem();
+        ConsultaAlbumMenuItem = new javax.swing.JMenuItem();
         SocialMenu = new javax.swing.JMenu();
         SeguirMItem = new javax.swing.JMenuItem();
         DejarSeguirMItem = new javax.swing.JMenuItem();
         ListasMenu = new javax.swing.JMenu();
         PublicarListaMItem = new javax.swing.JMenuItem();
-        ConsultaAlbumMenuItem = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -291,6 +291,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         ConsultasDropDown.add(ConsultaArtistaMI);
 
+        ConsultaAlbumMenuItem.setText("Consulta Album");
+        ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ConsultaAlbumMenuItemActionPerformed(evt);
+            }
+        });
+        ConsultasDropDown.add(ConsultaAlbumMenuItem);
+
         jMenuBar1.add(ConsultasDropDown);
 
         SocialMenu.setText("Social");
@@ -322,14 +330,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         ListasMenu.add(PublicarListaMItem);
-
-        ConsultaAlbumMenuItem.setText("Consulta Album");
-        ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaAlbumMenuItemActionPerformed(evt);
-            }
-        });
-        ListasMenu.add(ConsultaAlbumMenuItem);
 
         jMenuBar1.add(ListasMenu);
 
