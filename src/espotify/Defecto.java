@@ -16,4 +16,9 @@ public class Defecto extends Lista implements Favoriteable{
         genero=g;
     }
     
+    public String getNomGenero()
+    {
+        return genero.getNombre();
+    }
+
 }
