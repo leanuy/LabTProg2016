@@ -4,6 +4,7 @@ import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;

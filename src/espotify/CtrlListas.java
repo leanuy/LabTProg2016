@@ -3,13 +3,16 @@ package espotify;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
+import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataParticular;
 import espotify.Interfaces.IAltaLista;
+import espotify.Interfaces.IConsultaLista;
 import espotify.Interfaces.IPublicarLista;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
-public class CtrlListas implements IAltaLista, IPublicarLista{
+public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
     private static CtrlListas instancia;
     private String nickMEM;
     private String nomListaMEM;
@@ -120,6 +123,30 @@ public class CtrlListas implements IAltaLista, IPublicarLista{
 
     private boolean ValidarNombreListaDefecto(String d) {
         return !d.equals("") && !listas.containsKey(d);
+    }
+
+    public ArrayList<String> ListarListasDeGenero(String nomGenero) {
+        ArrayList<String> a = new ArrayList();
+        for(Map.Entry<String, Defecto> entry : listas.entrySet()) {
+            Defecto d = entry.getValue();
+            if(d.getNomGenero().equals(nomGenero))
+                a.add(d.getNombre());
+        }
+        return a;
+    }
+    
+    public DataLista DarInfoDefecto(String nomLista) throws Exception
+    {
+        Defecto d = listas.get(nomLista);
+        if(d==null)
+            throw new Exception("No hay una lista con ese nombre");
+        return d.getData();
+    }
+    
+    public DataLista DarInfoParticular(String nomLista, String nick) throws Exception
+    {
+        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        return cu.DarInfoLista(nomLista, nick);
     }
     
 }

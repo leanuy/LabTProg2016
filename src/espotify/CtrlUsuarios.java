@@ -4,6 +4,7 @@ import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataTema;
 import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IAltaSeguir;
@@ -246,4 +247,11 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
             throw new Exception("El cliente no existe");
     }
 
+    DataLista DarInfoLista(String nomLista, String nick) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        if(c!=null)
+            return c.DarInfoLista(nomLista);
+        else
+            throw new Exception("El cliente no existe");
+    }
 }

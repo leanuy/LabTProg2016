@@ -2,21 +2,23 @@ package espotify;
 
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataLista;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public abstract class Lista {
     protected String nombre;
-    protected String img;
+    protected BufferedImage img;
     protected final ArrayList<Tema> temas;
 
     public String getNombre() {
         return nombre;
     }
-    public String getImg() {
+    public BufferedImage getImg() {
         return img;
     }
     
-    public Lista(String nombre, String img)
+    
+    public Lista(String nombre, BufferedImage img)
     {
         this.nombre=nombre;
         this.img=img;
@@ -41,6 +43,14 @@ public abstract class Lista {
             if(t.getNombre().equals(nomTema) && t.getNombreAlbum().equals(nomAlbum))
                 temas.remove(t);
         }
+    }
+    
+    public DataLista getData()
+    {
+        ArrayList<DataTema> lst = new ArrayList<>();
+        for(Tema t:temas)
+            lst.add(t.getData());
+        return new DataLista(nombre, img, lst);
     }
 
 }
