@@ -90,10 +90,7 @@ public class CtrlMusica implements IAltaGenero{
         for (String nombre_genero : lista_generos) {
             if (this.ExisteGenero(nombre_genero)) {
                 Genero genero = this.getGenero(nombre_genero);
-                Genero res = lista.putIfAbsent(nombre_genero, genero);
-                if(res == null){
-                    
-                }
+                lista.putIfAbsent(nombre_genero, genero);
             } else {
                 throw new Exception("El género " + nombre_genero + " no existe y por lo tanto no se puede agregar al album.");
             }

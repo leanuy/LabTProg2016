@@ -31,12 +31,8 @@ public class Album implements Favoriteable {
         return img;
     }
 
-    public Artista getArtista() {
-        return this.artista;
-    }
-
-    public HashMap<String, Genero> getGeneros() {
-        return this.generos;
+    public String getNickArtista() {
+        return this.artista.getNick();
     }
 
     public void addGeneros(HashMap<String, Genero> generos) {

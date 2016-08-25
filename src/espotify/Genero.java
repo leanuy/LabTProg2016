@@ -45,7 +45,7 @@ public class Genero {
     }
     
     public void AddAlbum(Album album) {
-        List<String> key = Arrays.asList(album.getArtista().getNick(), album.getNombre());
+        List<String> key = Arrays.asList(album.getNickArtista(), album.getNombre());
         this.albums.putIfAbsent(key, album);
     }
 
