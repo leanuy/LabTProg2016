@@ -44,10 +44,12 @@ public abstract class Fabrica {
     {
         return CtrlListas.getInstancia();
     }
+
     public static IConsultaLista getIConsultaLista()
     {
         return CtrlListas.getInstancia();
     }
+
     public static IAltaAlbum getIAltaAlbum()
     {
         return CtrlMusica.getInstancia();
