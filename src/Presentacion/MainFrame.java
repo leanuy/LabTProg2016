@@ -395,14 +395,16 @@ public class MainFrame extends javax.swing.JFrame {
     private void ConsultaAlbumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumMenuItemActionPerformed
             Object[] options = {"Artista","Genero"};
             int opcion = JOptionPane.showOptionDialog(this, "Desea consultar album por Artista o por Genero?","Elija una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
-            if(opcion == 0 ){
+            if(opcion == JOptionPane.OK_OPTION ){
                ConsultaAlbumPorArtista consAlbArt = new ConsultaAlbumPorArtista();
                MainPanel.add(consAlbArt);
                consAlbArt.setVisible(true);
             }else{
-               ConsultaAlbumPorGenero consAlbGen = new ConsultaAlbumPorGenero();
-               MainPanel.add(consAlbGen);
-               consAlbGen.setVisible(true);
+                if(opcion == JOptionPane.NO_OPTION){
+                    ConsultaAlbumPorGenero consAlbGen = new ConsultaAlbumPorGenero();
+                    MainPanel.add(consAlbGen);
+                    consAlbGen.setVisible(true);
+                }
             }
     }//GEN-LAST:event_ConsultaAlbumMenuItemActionPerformed
 
