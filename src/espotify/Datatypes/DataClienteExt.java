@@ -42,5 +42,4 @@ public class DataClienteExt extends DataUsuario {
             i++;
         }
     }
-    
 }
