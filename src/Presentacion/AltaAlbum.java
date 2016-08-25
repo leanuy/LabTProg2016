@@ -274,12 +274,14 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 
     private void buttonBuscarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarArtistaActionPerformed
         //crear interfaz ver si la hacemos local o solo la use una vez y devuelva
+
         IAltaGenero inter =  Fabrica.getIAltaGenero();                 
         DataGenero generoBase = inter.ListarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
         cargarArbol(generoBase,raiz);
+
         
     }//GEN-LAST:event_buttonBuscarArtistaActionPerformed
 
