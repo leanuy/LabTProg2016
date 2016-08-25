@@ -25,4 +25,11 @@ public class Tema implements Favoriteable {
     DataTema getData() {
         return new DataTema(nombre, duracion, num);
     }
+
+    public Tema(DataTema dt, Album album) {
+        this.nombre = dt.getNombre();
+        this.duracion = dt.getDuracion();
+        this.num = dt.getNum();
+        this.album = album;
+    }
 }
