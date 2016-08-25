@@ -3,12 +3,13 @@ package espotify;
 import espotify.Datatypes.DataGenero;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Datatypes.DataAlbumExt;
+import espotify.Interfaces.IAltaAlbum;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
-public class CtrlMusica implements IAltaGenero{
+public class CtrlMusica implements IAltaGenero, IAltaAlbum{
 
     private static CtrlMusica instancia;
     private final HashMap<String,Genero> generos;

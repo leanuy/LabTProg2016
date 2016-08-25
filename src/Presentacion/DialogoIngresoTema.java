@@ -49,6 +49,8 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
         PathLocal = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         ExaminarButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        DuracionTextField = new javax.swing.JTextField();
 
         URLaTemaRadioButton.setText("Ingresar link al tema");
         URLaTemaRadioButton.addActionListener(new java.awt.event.ActionListener() {
@@ -84,37 +86,48 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
             }
         });
 
+        jLabel4.setText("Duracion");
+
         javax.swing.GroupLayout PanelIngresoTemasLayout = new javax.swing.GroupLayout(PanelIngresoTemas);
         PanelIngresoTemas.setLayout(PanelIngresoTemasLayout);
         PanelIngresoTemasLayout.setHorizontalGroup(
             PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                    .addGap(0, 23, Short.MAX_VALUE)
+                    .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(NombreTema, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(PathLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(ExaminarButton)
+                    .addGap(50, 50, 50))
+                .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                    .addGap(77, 77, 77)
+                    .addComponent(jLabel4)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(DuracionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(URLaTemaRadioButton)
+                        .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(URLdelTema)
+                            .addGap(141, 141, 141)))))
             .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(PathLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(NombreTema, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelIngresoTemasLayout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(URLdelTema, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(URLaTemaRadioButton, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ExaminarButton))
-                    .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addComponent(AceptarButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(CancelarButton)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(240, 240, 240)
+                .addComponent(AceptarButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CancelarButton)
+                .addGap(14, 14, 14))
         );
         PanelIngresoTemasLayout.setVerticalGroup(
             PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,7 +136,11 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                 .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NombreTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(DuracionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
                 .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(PathLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
@@ -138,14 +155,14 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                 .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AceptarButton)
                     .addComponent(CancelarButton))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelIngresoTemas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(PanelIngresoTemas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -166,12 +183,20 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     }//GEN-LAST:event_URLaTemaRadioButtonActionPerformed
 
     private void CancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarButtonActionPerformed
-        this.hide();
+        this.dispose();
     }//GEN-LAST:event_CancelarButtonActionPerformed
 
     private void AceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarButtonActionPerformed
+        int duration = 0;
         if(URLaTemaRadioButton.isSelected()){
-            //DataTemaWeb
+            try{
+                duration = Integer.parseInt(DuracionTextField.getText());
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Duracion invalida", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            AltaAlbum.cargarTema(true,URLdelTema.getText(),null,NombreTema.getText(), duration);
+            this.dispose();
         }else{
             //DataTemaArchivo
         }
@@ -215,6 +240,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AceptarButton;
     private javax.swing.JButton CancelarButton;
+    private javax.swing.JTextField DuracionTextField;
     private javax.swing.JButton ExaminarButton;
     private javax.swing.JTextField NombreTema;
     private javax.swing.JPanel PanelIngresoTemas;
@@ -224,5 +250,6 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

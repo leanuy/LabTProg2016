@@ -3,7 +3,10 @@ package Presentacion;
 
 import espotify.Datatypes.DataAlbum;
 import espotify.Datatypes.DataGenero;
+import espotify.Datatypes.DataTema;
+import espotify.Datatypes.DataTemaWeb;
 import espotify.Fabrica;
+import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +20,8 @@ import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 public class AltaAlbum extends javax.swing.JInternalFrame {
     
@@ -25,6 +30,14 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private DefaultTreeModel modeloTree;
     private String pathAImagen;
     private boolean primeraVez;
+    private static int numeroTema;
+    private static ArrayList<DataTema> listaTemas;
+    
+    private static boolean web;
+    private static String url;
+    private static File file;
+    private static String nombre;
+    private static int duracion;
     
     /**
      * Creates new form AltaAlbum
@@ -37,6 +50,16 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         buttonConfirmarALtaAlbum.setEnabled(false);
         PanelSDatosAlbum.setEnabled(true);
         primeraVez = true;
+        numeroTema = 1;
+        listaTemas = new ArrayList();
+        web = false;
+        url = "";
+        file = null;
+        nombre = "";
+        duracion = 0;
+        
+        ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
+        
     }
     
     
@@ -64,7 +87,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaTemas = new javax.swing.JList<>();
         LabelTemas = new javax.swing.JLabel();
-        buttonQuitarTema = new javax.swing.JButton();
         buttonAgregarImagen = new javax.swing.JButton();
         pathALaImagen = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -136,13 +158,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         LabelTemas.setFont(new java.awt.Font("DejaVu Sans", 1, 14)); // NOI18N
         LabelTemas.setText("Temas");
 
-        buttonQuitarTema.setText("Quitar Tema");
-        buttonQuitarTema.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonQuitarTemaActionPerformed(evt);
-            }
-        });
-
         buttonAgregarImagen.setText("Agregar Imagen");
         buttonAgregarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,7 +204,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(77, 77, 77)
                                     .addGroup(PanelSDatosAlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(buttonQuitarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(buttonAgregarTema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(buttonCancelarAltaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,8 +241,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32)
                         .addComponent(buttonAgregarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buttonQuitarTema, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonConfirmarALtaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -275,8 +287,14 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private void buttonBuscarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarArtistaActionPerformed
         //crear interfaz ver si la hacemos local o solo la use una vez y devuelva
 
-        IAltaGenero inter =  Fabrica.getIAltaGenero();                 
-        DataGenero generoBase = inter.ListarGeneros();
+        IAltaAlbum inter =  Fabrica.getIAltaAlbum();                 
+        DataGenero generoBase = null;
+        try {
+            generoBase = inter.ExisteArtista(nombreArtista.getText());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "El artista no existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -296,30 +314,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     
     }
     
-    private void buttonQuitarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonQuitarTemaActionPerformed
-        // TODO ver que hay un tema seleccionado, y sacarlo del modelo de la lista
-        // si hay mas de uno sacarlos todos?? o dejar seleccionar de a uno.
-        int seleccionado;
-        int cantidadSeleccionados = ListaTemas.getSelectedValuesList().size();
-        if (cantidadSeleccionados > 1){
-            int opcion = JOptionPane.showConfirmDialog(this, "Esta quitando mas de un elemento de la lista", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
-            if(opcion == JOptionPane.CANCEL_OPTION || opcion ==JOptionPane.NO_OPTION){
-                return;
-            }
-            int[] seleccionados = ListaTemas.getSelectedIndices();
-            for(int i = seleccionados.length - 1; i >= 0; i--){
-                modeloTemas.remove(seleccionados[i]);
-            }
-        }else{
-            if(cantidadSeleccionados != 0){
-                seleccionado = ListaTemas.getSelectedIndex();
-                modeloTemas.remove(seleccionado);
-            }
-        }
-        //ListaTemas.
-        
-    }//GEN-LAST:event_buttonQuitarTemaActionPerformed
-
     private void buttonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarTemaActionPerformed
         // TODO abrir el jdialog ue agregue el tema y si esta todo ok ponerlo en la lista.
         // ver que carajo agregar de cada tema
@@ -331,6 +325,14 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         
         ingTema.setVisible(true);
         
+        if(web){
+            DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema);
+            listaTemas.add(dt);
+            modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+        }else{
+            // tema archivo.
+        }
+        numeroTema++;
         
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
 
@@ -370,6 +372,14 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if("".equals(nombreAlbum.getText())){
+            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre al album", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(listaTemas.size() == 0){
+            JOptionPane.showMessageDialog(this, "Debe ingresar al menos un tema al album", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         int year = 0;
         try{
             year = Integer.parseInt(anioDeCreacion.getText());
@@ -377,7 +387,16 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Año de creacion invalido.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
         ArrayList<String> genders = new ArrayList();
+        TreePath[] path = ArbolGeneros.getSelectionPaths();
+        if(path == null){
+            JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un genero", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        for (TreePath pat : path) {
+            genders.add((String)pat.getLastPathComponent());
+        }
         
 //        int[] seleccionados = ListaGeneros.getSelectedIndices();
 //        if (seleccionados.length != 0){
@@ -387,14 +406,21 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 //        }else{
 //            genders = null;
 //        }
-        //DataAlbum nuevoAlbum = new DataAlbum(nombreAlbum.getText(),year,genders,ext);
+        //DataAlbumExt nuevoAlbum = new DataAlbum(nombreAlbum.getText(),year,genders,ext);
         //crear el album y luego cargarle los temas...
     }//GEN-LAST:event_buttonConfirmarALtaAlbumActionPerformed
 
     private void buttonCancelarAltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarAltaAlbumActionPerformed
         this.dispose();
     }//GEN-LAST:event_buttonCancelarAltaAlbumActionPerformed
-
+    
+    public static void cargarTema(boolean webx,String urlx,File filex,String nombrex, int duracionx){
+        web = webx;
+        url = urlx;
+        file = filex;
+        nombre = nombrex;
+        duracion = duracionx;
+    }
 
     private String getExtension(File f) {
         String ext = null;
@@ -431,7 +457,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private javax.swing.JButton buttonBuscarArtista;
     private javax.swing.JButton buttonCancelarAltaAlbum;
     private javax.swing.JButton buttonConfirmarALtaAlbum;
-    private javax.swing.JButton buttonQuitarTema;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
