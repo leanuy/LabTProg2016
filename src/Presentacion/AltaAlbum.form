@@ -113,7 +113,6 @@
                                       <Component id="jScrollPane1" min="-2" pref="369" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="buttonQuitarTema" max="32767" attributes="0"/>
                                           <Component id="buttonAgregarTema" max="32767" attributes="0"/>
                                           <Component id="buttonConfirmarALtaAlbum" alignment="0" max="32767" attributes="0"/>
                                           <Component id="buttonCancelarAltaAlbum" min="-2" pref="158" max="-2" attributes="0"/>
@@ -164,8 +163,6 @@
                           <Component id="jScrollPane2" min="-2" pref="127" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Component id="buttonAgregarTema" min="-2" pref="42" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="buttonQuitarTema" min="-2" pref="42" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="buttonConfirmarALtaAlbum" min="-2" pref="43" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -259,14 +256,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Temas"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="buttonQuitarTema">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Quitar Tema"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonQuitarTemaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonAgregarImagen">
           <Properties>
