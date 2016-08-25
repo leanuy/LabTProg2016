@@ -39,7 +39,7 @@ public class AltaGenero extends javax.swing.JInternalFrame {
 
     }
     
-        private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
+    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
         int i = 0;
         for(DataGenero d: g.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
@@ -131,7 +131,7 @@ public class AltaGenero extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 24, Short.MAX_VALUE))
         );
 
         pack();
