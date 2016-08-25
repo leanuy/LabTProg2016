@@ -25,8 +25,8 @@ public class CtrlListasTest {
     public static void setUpClass() {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         try {
-            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), "unaimg.jpg"));
-            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), "unaimg.jpg"));
+            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null));
+            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null));
         } catch (Exception ex) {
             Logger.getLogger(CtrlListasTest.class.getName()).log(Level.SEVERE, null, ex);
         }
