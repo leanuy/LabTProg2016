@@ -260,7 +260,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testBuscarCliente() {
+    public void testBuscarCliente() throws Exception{
         System.out.println("BuscarCliente");
         String nick = "";
         CtrlUsuarios instance = null;
@@ -276,7 +276,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testBuscarArtista() {
+    public void testBuscarArtista() throws Exception {
         System.out.println("BuscarArtista");
         String nick = "";
         CtrlUsuarios instance = null;

@@ -1,8 +1,12 @@
 package espotify;
 
+import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Artista extends Usuario{
 
@@ -37,6 +41,11 @@ public class Artista extends Usuario{
       url=d.getUrl();
     }
     
+    public DataAlbumExt getDataAlbumExt(String nomAlbum) throws Exception {
+        Album album = BuscarAlbum(nomAlbum);
+        return album.getDataExt();
+    }
+    
     //otros métodos
     static boolean ValidarDatosArtista(DataArtista d) {
         return Usuario.ValidarDatosUsuario(d);
@@ -45,5 +54,25 @@ public class Artista extends Usuario{
     public DataArtistaExt getDataArtistaExt() {
         DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), getBio(), getUrl(), albums);
         return da;
+    }
+    
+    private Album BuscarAlbum(String nombre) throws Exception {
+        Album album = albums.get(nombre);
+        if (album == null){
+            throw new Exception("No existe un álbum con ese nombre!");
+        }
+        return album;
+    }
+    
+    public ArrayList<String> ListarAlbumes(){
+        ArrayList<String> listaAlbums = new ArrayList();
+        Iterator it = albums.entrySet().iterator();
+        Album actual;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            actual = (Album) pair.getValue();
+            listaAlbums.add(actual.getNombre());
+        }
+        return listaAlbums;
     }
 }

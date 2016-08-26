@@ -51,7 +51,7 @@ public class CtrlMusicaTest {
      */
     @Ignore
     @Test
-    public void testBuscarGenero() {
+    public void testBuscarGenero() throws Exception{
         System.out.println("BuscarGenero");
         String genero = "";
         CtrlMusica instance = null;
