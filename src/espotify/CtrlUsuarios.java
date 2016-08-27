@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
 import espotify.Datatypes.DataCliente;
@@ -148,12 +149,14 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         return clientes.containsKey(nick) || artistas.containsKey(nick);
     }
     
-    public Cliente BuscarCliente(String nick) {
-            return clientes.get(nick);
+    public Cliente BuscarCliente(String nick) throws Exception {
+        Cliente cliente = clientes.get(nick);
+        if (cliente == null) {
+            throw new Exception("No existe ese cliente!");
+        }
+        return cliente;
     }
-    public Artista BuscarArtista(String nick) {
-            return artistas.get(nick);
-    }
+
 
     public void PublicarLista(String nomLista, String nick) throws Exception {
         Cliente c = clientes.get(nick);
@@ -167,31 +170,17 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
 
     public ArrayList<String> ListarListasDeCliente(String nick) throws Exception{
         Cliente c = BuscarCliente(nick);
-        if(c!=null)
-        {
-            return c.ListarListas();
-        }
-        else
-            throw new Exception("El cliente no existe");
+        return c.ListarListas();
     }
     
     ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws Exception{
         Cliente c = BuscarCliente(nick);
-        if(c!=null)
-        {
-            return c.ListarListasPrivadas();
-        }
-        else
-            throw new Exception("El cliente no existe");    }
+        return c.ListarListasPrivadas();
+    }
 
     public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws Exception{
         Cliente c = BuscarCliente(nick);
-        if(c!=null)
-        {
-            return c.ListarTemasDeLista(nombre);
-        }
-        else
-            throw new Exception("El cliente no existe");
+        return c.ListarTemasDeLista(nombre);
     }
     
     @Override
@@ -239,19 +228,31 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
 
     void QuitarTemaDeLista(String nick, String nomLista, String nomTema,String nomAlbum) throws Exception {
         Cliente c = BuscarCliente(nick);
-        if(c!=null)
-        {
-            c.QuitarTemaDeLista(nomLista,nomTema,nomAlbum);
-        }
-        else
-            throw new Exception("El cliente no existe");
+        c.QuitarTemaDeLista(nomLista,nomTema,nomAlbum);
     }
 
     DataLista DarInfoLista(String nomLista, String nick) throws Exception{
         Cliente c = BuscarCliente(nick);
-        if(c!=null)
-            return c.DarInfoLista(nomLista);
-        else
-            throw new Exception("El cliente no existe");
+        return c.DarInfoLista(nomLista);
+    }
+    
+    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws Exception{
+        Artista artista = BuscarArtista(nomArtista);
+        DataAlbumExt data_album_ext = artista.getDataAlbumExt(nomAlbum);
+        return data_album_ext;
+    }        
+
+    
+    public Artista BuscarArtista(String nombre) throws Exception {
+        Artista artista = artistas.get(nombre);
+        if (artista == null) {
+            throw new Exception("No existe un artista con ese nombre!");
+        }
+        return artista;
+    }
+    
+    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws Exception{
+        Artista artista = BuscarArtista(nomArtista);
+        return artista.ListarAlbumes();
     }
 }

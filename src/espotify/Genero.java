@@ -4,6 +4,8 @@ import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataDefecto;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -31,6 +33,22 @@ public class Genero {
         this.nombre = d.getNombre();
         this.subgeneros = new HashMap<>();
         this.albums = new HashMap<>();
+    }
+
+    public ArrayList<String[]> ListarAlbumes(){
+        ArrayList<String[]> listaAlbums = new ArrayList();
+        Iterator it = albums.entrySet().iterator();
+        Album actual;
+        String[] valores;
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            actual = (Album) pair.getValue();
+            valores = new String[2];
+            valores[0] = actual.getNombre();
+            valores[1] = actual.getClaveArtista();
+            listaAlbums.add(valores);
+        }
+        return listaAlbums;
     }
 
     void AddHijo(Genero g) {

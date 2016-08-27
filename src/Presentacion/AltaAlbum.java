@@ -2,17 +2,20 @@ package Presentacion;
 
 
 import espotify.Datatypes.DataAlbum;
+import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataTemaWeb;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
@@ -38,6 +41,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private static File file;
     private static String nombre;
     private static int duracion;
+    private BufferedImage img = null;
+    private String ArtistSelected;
     
     /**
      * Creates new form AltaAlbum
@@ -300,7 +305,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         ArbolGeneros.setModel(modeloTree);
         cargarArbol(generoBase,raiz);
         buttonConfirmarALtaAlbum.setEnabled(true);
-        
+        ArtistSelected = nombreArtista.getText();
     }//GEN-LAST:event_buttonBuscarArtistaActionPerformed
 
     private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
@@ -354,6 +359,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                     fc.setVisible(false);
                     return;
                 }
+                img = ImageIO.read(file);
                 pathALaImagen.setText(pathAImagen);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
@@ -395,19 +401,21 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             return;
         }
         for (TreePath pat : path) {
-            genders.add((String)pat.getLastPathComponent());
+            genders.add(pat.getLastPathComponent().toString());
         }
         
-//        int[] seleccionados = ListaGeneros.getSelectedIndices();
-//        if (seleccionados.length != 0){
-//            for(int j = 0; j < seleccionados.length; ++j){
-//                genders.add((String)modeloGeneros.getElementAt(seleccionados[j]));
-//            }
-//        }else{
-//            genders = null;
-//        }
-        //DataAlbumExt nuevoAlbum = new DataAlbum(nombreAlbum.getText(),year,genders,ext);
-        //crear el album y luego cargarle los temas...
+        
+        DataAlbumExt nuevoAlbum = new DataAlbumExt(listaTemas,nombreAlbum.getText(),year,genders,img,ArtistSelected);
+        
+        IAltaAlbum inter =  Fabrica.getIAltaAlbum();
+        try{
+            inter.AltaAlbum(nuevoAlbum);
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Alta Album exitosa", "Felicitaciones", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
     }//GEN-LAST:event_buttonConfirmarALtaAlbumActionPerformed
 
     private void buttonCancelarAltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarAltaAlbumActionPerformed

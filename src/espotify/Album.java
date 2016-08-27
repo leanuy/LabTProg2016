@@ -8,6 +8,8 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Album implements Favoriteable {
 
@@ -18,7 +20,7 @@ public class Album implements Favoriteable {
     private final Artista artista;
     private HashMap<String, Genero> generos;
     private final ArrayList<Tema> temas;
-
+    
     //getters
     public String getNombre() {
         return nombre;
@@ -93,5 +95,28 @@ public class Album implements Favoriteable {
         this.artista = artista;
         this.generos = generos;
         this.temas = this.ValidarTemas(dt.getTemas());
+    }
+    
+    public String getClaveArtista(){
+        return artista.getNick();
+    }
+    
+    public DataAlbumExt getDataExt() {
+        ArrayList<DataTema> data_temas = new ArrayList();
+        Iterator<Tema> it = temas.iterator();
+        Tema tema_actual;
+        while (it.hasNext()) {
+            tema_actual = it.next();
+            data_temas.add(tema_actual.getData());
+        }
+        Iterator itg = generos.entrySet().iterator();
+        Genero genero_actual;
+        ArrayList<String> nombre_generos = new ArrayList<String>();
+        while (it.hasNext()) {
+            Map.Entry pair = (Map.Entry)it.next();
+            genero_actual = (Genero) pair.getValue();
+            nombre_generos.add(genero_actual.getNombre());
+        }
+        return new DataAlbumExt(data_temas, this.nombre, this.anio, nombre_generos, this.img, artista.getNick());
     }
 }
