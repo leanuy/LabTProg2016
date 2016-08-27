@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import espotify.Excepciones.ClienteInexistenteException;
+import espotify.Excepciones.ListaInexistenteException;
+import espotify.Excepciones.YaPublicaException;
 import espotify.Fabrica;
 import espotify.Interfaces.IPublicarLista;
 import java.util.ArrayList;
@@ -124,9 +127,9 @@ public class PublicarLista extends javax.swing.JInternalFrame {
             for(String str : a) {
               listascmb.addItem(str);
             }
-        } catch (Exception e) {
+        } catch (ClienteInexistenteException e) {
             JOptionPane.showMessageDialog(new JDialog(),
-            e.getMessage(),
+            "El cliente seleccionado no existe",
             "Error",
             JOptionPane.PLAIN_MESSAGE);
         }
@@ -143,9 +146,15 @@ public class PublicarLista extends javax.swing.JInternalFrame {
         interf.PublicarLista(String.valueOf(listascmb.getSelectedItem()),String.valueOf(clientescmb.getSelectedItem()));
         JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
-        }        
+        catch (ClienteInexistenteException e){
+            JOptionPane.showMessageDialog(this, "El cliente seleccionado no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }     
+        catch (ListaInexistenteException e){
+            JOptionPane.showMessageDialog(this, "El cliente seleccionado no tiene una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }   
+        catch (YaPublicaException e){
+            JOptionPane.showMessageDialog(this, "La lista seleccionada ya es pública.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }   
     }//GEN-LAST:event_publicarbtnActionPerformed
 
 

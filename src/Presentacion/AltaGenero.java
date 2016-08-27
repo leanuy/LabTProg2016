@@ -6,6 +6,8 @@
 package Presentacion;
 
 import espotify.Datatypes.DataGenero;
+import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaGenero;
 import java.util.logging.Level;
@@ -149,8 +151,12 @@ public class AltaGenero extends javax.swing.JInternalFrame {
             ctrl.AltaGenero(new DataGenero(nom,nomPadre));
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             this.dispose();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (GeneroRepetidoException ex) {
+            JOptionPane.showMessageDialog(this, "Ya existe un género con ese nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (GeneroInexistenteException ex) {
+            JOptionPane.showMessageDialog(this, "El género padre no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_confirmarbtnActionPerformed

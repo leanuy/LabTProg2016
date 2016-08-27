@@ -6,6 +6,12 @@ import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataUsuario;
 import java.util.ArrayList;
 import espotify.Datatypes.DataParticular;
+import espotify.Excepciones.AutoSeguirseException;
+import espotify.Excepciones.ListaInexistenteException;
+import espotify.Excepciones.ListaRepetidaException;
+import espotify.Excepciones.SeguidoInexistenteException;
+import espotify.Excepciones.SeguidoRepetidoException;
+import espotify.Excepciones.YaPublicaException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,29 +30,29 @@ public class Cliente extends Usuario {
         return dc;
     }
     
-    public void Seguir(Usuario u) throws Exception{
+    public void Seguir(Usuario u) throws AutoSeguirseException, SeguidoRepetidoException{
         if(this.equals(u))
-            throw new Exception("Un usuario no puede seguirse a sí mismo.");
+            throw new AutoSeguirseException();
         String clave = u.getNick();
         Usuario u2 = this.seguidos.get(clave);
         if(u2 != null){
-            throw new Exception("Ya se esta siguiendo a ese usuario");
+            throw new SeguidoRepetidoException();
         }
         this.seguidos.put(clave, u);
     }
     
-    public void DejarDeSeguir(Usuario u) throws Exception{
+    public void DejarDeSeguir(Usuario u) throws SeguidoInexistenteException{
         String clave = u.getNick();
         Usuario u2 = this.seguidos.get(clave);
         if (u2 == null){
-            throw new Exception("El usuario no puede dejar de seguir alguien que no seguía");
+            throw new SeguidoInexistenteException();
         }
         this.seguidos.remove(clave);
     }
 
 
-    void PublicarLista(String nomLista) throws Exception {
-       Particular l = listas.get(nomLista);
+    void PublicarLista(String nomLista) throws YaPublicaException, ListaInexistenteException {
+       Particular l = BuscarLista(nomLista);
        Publica l2 = l.HacerPublica();
        listas.remove(nomLista);
        listas.put(nomLista, l2);
@@ -70,19 +76,15 @@ public class Cliente extends Usuario {
         return a;
     }
 
-    ArrayList<DataTema> ListarTemasDeLista(String nombre) throws Exception {
-        Lista l = listas.get(nombre);
-        if(l!=null)
-            return l.ListarTemas();
-        else
-            throw new Exception("El cliente no tiene una lista con ese nombre");
+    ArrayList<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
+        return BuscarLista(nombre).ListarTemas();
     }
 
-    void AltaLista(DataParticular d) throws Exception {
+    void AltaLista(DataParticular d) throws ListaRepetidaException {
         if(ValidarNombreLista(d.getNombre()))
             listas.put(d.getNombre(), new Privada(d));
         else
-            throw new Exception("El cliente ya tiene una lista con ese nombre");
+            throw new ListaRepetidaException();
     }
     
     private boolean ValidarNombreLista(String nom)
@@ -90,20 +92,21 @@ public class Cliente extends Usuario {
         return !nom.equals("") && !listas.containsKey(nom);
     }
 
-    void QuitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws Exception {
-        Lista l = listas.get(nombre);
-        if(l!=null)
-            l.QuitarTema(nomTema,nomAlbum);
-        else
-            throw new Exception("El cliente no tiene una lista con ese nombre");
+    void QuitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException {
+        BuscarLista(nomLista).QuitarTema(nomTema,nomAlbum);
     }
 
-    DataLista DarInfoLista(String nomLista) throws Exception{
-        Lista l = listas.get(nomLista);
+    DataLista DarInfoLista(String nomLista) throws ListaInexistenteException{
+        return BuscarLista(nomLista).getData();
+    }
+    
+    Particular BuscarLista(String nomLista) throws ListaInexistenteException
+    {
+        Particular l = listas.get(nomLista);
         if(l!=null)
-            return l.getData();
+            return l;
         else
-            throw new Exception("El cliente no tiene una lista con ese nombre");
+            throw new ListaInexistenteException();
     }
 
 

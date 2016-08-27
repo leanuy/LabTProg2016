@@ -3,6 +3,7 @@ package espotify;
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
+import espotify.Excepciones.AlbumInexistenteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -41,7 +42,7 @@ public class Artista extends Usuario{
       url=d.getUrl();
     }
     
-    public DataAlbumExt getDataAlbumExt(String nomAlbum) throws Exception {
+    public DataAlbumExt getDataAlbumExt(String nomAlbum) throws AlbumInexistenteException {
         Album album = BuscarAlbum(nomAlbum);
         return album.getDataExt();
     }
@@ -56,10 +57,10 @@ public class Artista extends Usuario{
         return da;
     }
     
-    private Album BuscarAlbum(String nombre) throws Exception {
+    private Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
         Album album = albums.get(nombre);
         if (album == null){
-            throw new Exception("No existe un álbum con ese nombre!");
+            throw new AlbumInexistenteException();
         }
         return album;
     }

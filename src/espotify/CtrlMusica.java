@@ -4,6 +4,14 @@ import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Datatypes.DataAlbumExt;
+import espotify.Excepciones.AlbumInexistenteException;
+import espotify.Excepciones.AlbumRepetidoException;
+import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.DuracionInvalidaException;
+import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Excepciones.GeneroRepetidoException;
+import espotify.Excepciones.NumeroTemaInvalidoException;
+import espotify.Excepciones.TemaRepetidoException;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IConsultaAlbum;
 import java.util.ArrayList;
@@ -34,7 +42,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
     }
     
     //otros métodos
-    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws Exception {
+    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws ArtistaInexistenteException, AlbumInexistenteException {
         CtrlUsuarios ctrl_usuarios = CtrlUsuarios.getInstancia();
         DataAlbumExt data_album_ext = ctrl_usuarios.ConsultaAlbum(nomAlbum, nomArtista);
         return data_album_ext;
@@ -47,7 +55,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
     }
     
     @Override
-    public void AltaGenero(DataGenero d) throws Exception
+    public void AltaGenero(DataGenero d) throws GeneroInexistenteException, GeneroRepetidoException
     {
         if(!ExisteGenero(d.getNombre()))
         {
@@ -64,13 +72,13 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
                 generos.get(d.getPadre()).AddHijo(g);
             }
             else
-                throw new Exception("No existe el género padre");
+                throw new GeneroInexistenteException("No existe el género padre");
         }
         else
-            throw new Exception("Ya existe un género con ese nombre");
+            throw new GeneroRepetidoException();
     }
     
-    public ArrayList<String[]> ListarAlbumesDeGenero(String nomGenero)throws Exception{
+    public ArrayList<String[]> ListarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException{
         Genero genero = BuscarGenero(nomGenero);
         return genero.ListarAlbumes();
     }
@@ -79,10 +87,10 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         return generos.containsKey(nombre);
     }
 
-    Genero BuscarGenero(String nombre) throws Exception{
+    Genero BuscarGenero(String nombre) throws GeneroInexistenteException{
        Genero genero = generos.get(nombre);
        if (genero == null){
-           throw new Exception("El género no existe!");
+           throw new GeneroInexistenteException("El género no existe!");
        }
        return genero;
     }
@@ -91,14 +99,14 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         CtrlUsuarios ctrl_usuarios = CtrlUsuarios.getInstancia();
         return ctrl_usuarios.ListarArtistas();
     }
-    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws Exception{
+    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
         CtrlUsuarios ctrl_usuarios = CtrlUsuarios.getInstancia();
         return ctrl_usuarios.ListarAlbumesDeArtista(nomArtista);
     }
     
     //AltaAlbum
     
-    public DataGenero ExisteArtista(String nickArtista) throws Exception {
+    public DataGenero ExisteArtista(String nickArtista) throws ArtistaInexistenteException {
         CtrlUsuarios ctrlUsuarios = CtrlUsuarios.getInstancia();
         Artista inst_artista = ctrlUsuarios.BuscarArtista(nickArtista);
         this.artistaMEM = inst_artista;
@@ -109,23 +117,23 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         return generos.get(nombre);
     }
     
-    HashMap<String, Genero> ValidarGeneros(ArrayList<String> lista_generos) throws Exception {
+    HashMap<String, Genero> ValidarGeneros(ArrayList<String> lista_generos) throws GeneroInexistenteException {
         HashMap<String, Genero> lista = new HashMap<>();
         for (String nombre_genero : lista_generos) {
             if (this.ExisteGenero(nombre_genero)) {
                 Genero genero = this.getGenero(nombre_genero);
                 lista.putIfAbsent(nombre_genero, genero);
             } else {
-                throw new Exception("El género " + nombre_genero + " no existe y por lo tanto no se puede agregar al album.");
+                throw new GeneroInexistenteException();
             }
         }
         return lista;
     }
     
-    public void AltaAlbum(DataAlbumExt d) throws Exception {
+    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException {
         //Validar unicidad de nombre para el album
         if (this.artistaMEM.TieneAlbum(d.getNombre())) {
-            throw new Exception("El artista que ha ingresado ya tiene un album con ese nombre. Por favor seleccione un nombre distinto.");
+            throw new AlbumRepetidoException();
         }
         //Validar lista de nombres de generos y generar un hash de generos para el album
         HashMap<String, Genero> lista_generos = this.ValidarGeneros(d.getGeneros());

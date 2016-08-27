@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package Presentacion;
+import espotify.Excepciones.AutoSeguirseException;
+import espotify.Excepciones.SeguidoInexistenteException;
+import espotify.Excepciones.SeguidoRepetidoException;
+import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaSeguir;
 import javax.swing.JOptionPane;
@@ -138,8 +142,17 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
             interf.AltaSeguir(Seguidor,Seguido);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             }
-            catch (Exception e){
-                JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            catch (SeguidorInexistenteException e){
+                JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            catch (SeguidoInexistenteException e){
+                JOptionPane.showMessageDialog(this, "El usuario a seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            catch (SeguidoRepetidoException e){
+                JOptionPane.showMessageDialog(this, "El seguidor ya sigue a este usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            catch (AutoSeguirseException e){
+                JOptionPane.showMessageDialog(this, "Un usuario no puede seguirse a sí mismo.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_SeguirButtonActionPerformed

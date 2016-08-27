@@ -6,6 +6,12 @@ import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataTemaWeb;
+import espotify.Excepciones.AlbumRepetidoException;
+import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.DuracionInvalidaException;
+import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Excepciones.NumeroTemaInvalidoException;
+import espotify.Excepciones.TemaRepetidoException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
@@ -296,7 +302,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         DataGenero generoBase = null;
         try {
             generoBase = inter.ExisteArtista(nombreArtista.getText());
-        } catch (Exception ex) {
+        } catch (ArtistaInexistenteException ex) {
             JOptionPane.showMessageDialog(this, "El artista no existe en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -410,8 +416,25 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         IAltaAlbum inter =  Fabrica.getIAltaAlbum();
         try{
             inter.AltaAlbum(nuevoAlbum);
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(AlbumRepetidoException e){
+            JOptionPane.showMessageDialog(this, "El artista que ha ingresado ya tiene un album con ese nombre. Por favor seleccione un nombre distinto.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        catch(GeneroInexistenteException e){
+            JOptionPane.showMessageDialog(this, "Uno de los géneros ingresados no existe y por lo tanto no se puede agregar al album.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        catch(DuracionInvalidaException e){
+            JOptionPane.showMessageDialog(this, "Uno de los temas ingresados no tiene una duración válida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        catch(NumeroTemaInvalidoException e){
+            JOptionPane.showMessageDialog(this, "Uno de los temas ingresados no tiene un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        catch(TemaRepetidoException e){
+            JOptionPane.showMessageDialog(this, "Se ingresaron dos temas con el mismo nombre. El nombre de tema debe ser único.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         JOptionPane.showMessageDialog(this, "Alta Album exitosa", "Felicitaciones", JOptionPane.INFORMATION_MESSAGE);

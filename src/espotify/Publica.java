@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.Datatypes.DataLista;
+import espotify.Excepciones.YaPublicaException;
 
 public class Publica extends Particular implements Favoriteable {
 
@@ -12,8 +13,8 @@ public class Publica extends Particular implements Favoriteable {
         super(d);
     }
     
-    public Publica HacerPublica() throws Exception
+    public Publica HacerPublica() throws YaPublicaException
     {
-        throw new Exception("La lista ya es pública");
+        throw new YaPublicaException();
     }
 }
