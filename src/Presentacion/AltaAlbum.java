@@ -373,9 +373,15 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 
     private void buttonConfirmarALtaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarALtaAlbumActionPerformed
         String ext = pathALaImagen.getText();
-        if(!getExtensionDeString(ext)){
+        if(!ext.equals("") && !getExtensionDeString(ext)){
             JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+        }
+        if(!ext.equals("")){
+            if(!(img instanceof BufferedImage)){
+                JOptionPane.showMessageDialog(this, "Imagen invalida", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
         if("".equals(nombreAlbum.getText())){
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre al album", "Error", JOptionPane.ERROR_MESSAGE);

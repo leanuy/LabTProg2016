@@ -227,8 +227,8 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
             try {
                 pathATema = file.getCanonicalPath();
                 String ext = getExtension(file);
-                if(!"wav".equals(ext) && !"mp3".equals(ext)){
-                    JOptionPane.showMessageDialog(this, "Debe seleccionar un archivo formato .wav o .mp3", "Error", JOptionPane.ERROR_MESSAGE);
+                if(!"mp3".equals(ext)){
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar un archivo formato .mp3", "Error", JOptionPane.ERROR_MESSAGE);
                     fc.setVisible(false);
                     return;
                 }
