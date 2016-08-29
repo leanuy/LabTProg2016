@@ -5,6 +5,11 @@ import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataParticular;
+import espotify.Excepciones.ClienteInexistenteException;
+import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Excepciones.ListaInexistenteException;
+import espotify.Excepciones.ListaRepetidaException;
+import espotify.Excepciones.YaPublicaException;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IConsultaLista;
 import espotify.Interfaces.IPublicarLista;
@@ -32,7 +37,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
     }
     
 
-    public void PublicarLista(String nomLista, String nick) throws Exception
+    public void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         cu.PublicarLista(nomLista,nick);
@@ -43,13 +48,13 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.ListarClientes();
     }
-    public ArrayList<String> ListarListasDeCliente(String nick) throws Exception
+    public ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException
     {
         nickMEM=nick;
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.ListarListasDeCliente(nick);
     }
-    public ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws Exception
+    public ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.ListarListasPrivadasDeCliente(nick);
@@ -65,7 +70,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
         return a;
     }
     
-    public ArrayList<DataTema> ListarTemasLista(String nombre) throws Exception
+    public ArrayList<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException
     {
         nomListaMEM =nombre;
         if(nickMEM.equals("")) //listaron las por defecto
@@ -80,7 +85,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
         }
     }
     
-    public void RemoverTemaLista(String nomTema, String nomAlbum) throws Exception
+    public void RemoverTemaLista(String nomTema, String nomAlbum) throws ListaInexistenteException, ClienteInexistenteException
     {
         if(nickMEM.equals("")) //listaron las por defecto
         {
@@ -100,13 +105,13 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
         return cm.ListarGeneros();
     }
     
-    public void AltaListaParticular(DataParticular d) throws Exception
+    public void AltaListaParticular(DataParticular d) throws ListaRepetidaException, ClienteInexistenteException
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         cu.AltaLista(d);
     }
     
-    public void AltaListaDefecto(DataDefecto d) throws Exception
+    public void AltaListaDefecto(DataDefecto d) throws ListaRepetidaException, GeneroInexistenteException
     {
         CtrlMusica cm = CtrlMusica.getInstancia();
         if(ValidarNombreListaDefecto(d.getNombre()))
@@ -115,7 +120,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
             listas.put(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
         }
         else
-            throw new Exception("El nombre de la lista es vacío o está repetido");
+            throw new ListaRepetidaException();
     }
 
     private boolean ValidarNombreListaDefecto(String d) {
@@ -132,18 +137,22 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista{
         return a;
     }
     
-    public DataLista DarInfoDefecto(String nomLista) throws Exception
+    public DataLista DarInfoDefecto(String nomLista) throws ListaInexistenteException
     {
-        Defecto d = listas.get(nomLista);
-        if(d==null)
-            throw new Exception("No hay una lista con ese nombre");
-        return d.getData();
+        return BuscarLista(nomLista).getData();
     }
     
-    public DataLista DarInfoParticular(String nomLista, String nick) throws Exception
+    public DataLista DarInfoParticular(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.DarInfoLista(nomLista, nick);
     }
     
+    public Defecto BuscarLista(String nomLista) throws ListaInexistenteException
+    {
+        Defecto d = listas.get(nomLista);
+        if(d==null)
+            throw new ListaInexistenteException();
+        return d;
+    }
 }

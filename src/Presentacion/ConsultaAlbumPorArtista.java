@@ -6,6 +6,8 @@
 package Presentacion;
 
 import espotify.Datatypes.DataAlbumExt;
+import espotify.Excepciones.AlbumInexistenteException;
+import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaAlbum;
 import java.util.ArrayList;
@@ -34,13 +36,9 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         ListaAlbunesArtista.setModel(modelitoAlbums);
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         ArrayList<String> artists = null;
-        try{
-            artists = inter.ListarArtistas();
-            for(String s : artists){
-                modelito.addElement(s);
-            }
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        artists = inter.ListarArtistas();
+        for(String s : artists){
+            modelito.addElement(s);
         }
     }
 
@@ -175,8 +173,8 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
             for(String d : dataAlbums){
                 modelitoAlbums.addElement(d);
             } 
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        }catch(ArtistaInexistenteException e){
+            JOptionPane.showMessageDialog(this, "El artista elegido no existe.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_TraerAlbumsButtonActionPerformed
 
@@ -198,8 +196,12 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
             nomAlbum = (String)modelitoAlbums.getElementAt(ListaAlbunesArtista.getSelectedIndex());
             dataAlbum = inter.ConsultaAlbum(nomAlbum,ArtistSelected);
             //llamar otro frame y mandarle el dataalbum
-        }catch(Exception e){
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        }
+        catch(ArtistaInexistenteException e){
+            JOptionPane.showMessageDialog(this, "No existe un artista con ese nick.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        }
+        catch(AlbumInexistenteException e){
+            JOptionPane.showMessageDialog(this, "No existe un álbum con ese nombre para el artista seleccionado.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_ConsultaAlbumButtonActionPerformed
 

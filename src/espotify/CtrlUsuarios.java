@@ -13,6 +13,19 @@ import espotify.Interfaces.IConsultaArtista;
 import espotify.Interfaces.IConsultaCliente;
 import espotify.Interfaces.IDejarDeSeguir;
 import espotify.Datatypes.DataParticular;
+import espotify.Excepciones.AlbumInexistenteException;
+import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.AutoSeguirseException;
+import espotify.Excepciones.ClienteInexistenteException;
+import espotify.Excepciones.CorreoRepetidoException;
+import espotify.Excepciones.FormatoIncorrectoException;
+import espotify.Excepciones.ListaInexistenteException;
+import espotify.Excepciones.ListaRepetidaException;
+import espotify.Excepciones.NickRepetidoException;
+import espotify.Excepciones.SeguidoInexistenteException;
+import espotify.Excepciones.SeguidoRepetidoException;
+import espotify.Excepciones.SeguidorInexistenteException;
+import espotify.Excepciones.YaPublicaException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -65,37 +78,37 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         return da;
     }
     
-    public void AltaSeguir(String nomSeguidor, String nomSeguido) throws Exception{
+    public void AltaSeguir(String nomSeguidor, String nomSeguido) throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
         Cliente c = clientes.get(nomSeguidor);
         if (c==null){
-            throw new Exception("No existe el usuario que quiere seguir");
+            throw new SeguidorInexistenteException();
         }
         Usuario u = clientes.get(nomSeguido);
         if (u==null){
             u = artistas.get(nomSeguido);
         }
         if (u==null){
-            throw new Exception("no existe ese usuario a seguir");
+            throw new SeguidoInexistenteException();
         }
         c.Seguir(u);
     }
     
-    public void DejarDeSeguir(String nomSeguidor, String nomSeguido) throws Exception{
+    public void DejarDeSeguir(String nomSeguidor, String nomSeguido) throws SeguidorInexistenteException,SeguidoInexistenteException{
         Cliente c = clientes.get(nomSeguidor);
         if (c==null){
-            throw new Exception("No existe el usuario que quiere seguir");
+            throw new SeguidorInexistenteException();
         }
         Usuario u = clientes.get(nomSeguido);
         if (u==null){
             u = artistas.get(nomSeguido);
         }
         if (u==null){
-            throw new Exception("no existe el usuario que se quiere dejar de seguir");
+            throw new SeguidoInexistenteException();
         }
         c.DejarDeSeguir(u);
     }
     
-    public void AltaCliente(DataCliente d) throws Exception
+    public void AltaCliente(DataCliente d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException
     {
         if(Usuario.ValidarDatosUsuario(d))
         {
@@ -106,14 +119,14 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
                     Cliente c = new Cliente(d);
                     clientes.put(d.getNick(), c);
                 } else
-                    throw new Exception("Ya existe un usuario con ese nick");
+                    throw new NickRepetidoException();
             } else
-                throw new Exception("Ya existe un usuario con ese correo");
+                throw new CorreoRepetidoException();
         } else
-            throw new Exception("Los datos ingresados no son correctos");
+            throw new FormatoIncorrectoException();
     }
     
-    public void AltaArtista(DataArtista d) throws Exception
+    public void AltaArtista(DataArtista d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException
     {
         if(Artista.ValidarDatosArtista(d))
         {
@@ -124,11 +137,11 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
                     Artista c = new Artista(d);
                     artistas.put(d.getNick(), c);
                 } else
-                    throw new Exception("Ya existe un usuario con ese nick");
+                    throw new NickRepetidoException();
             } else
-                throw new Exception("Ya existe un usuario con ese correo");
+                throw new CorreoRepetidoException();
         } else
-            throw new Exception("Los datos ingresados no son correctos");
+            throw new FormatoIncorrectoException();
     }
 
     private boolean ExisteUsuarioCorreo(String correo) {
@@ -149,36 +162,31 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         return clientes.containsKey(nick) || artistas.containsKey(nick);
     }
     
-    public Cliente BuscarCliente(String nick) throws Exception {
+    public Cliente BuscarCliente(String nick) throws ClienteInexistenteException {
         Cliente cliente = clientes.get(nick);
         if (cliente == null) {
-            throw new Exception("No existe ese cliente!");
+            throw new ClienteInexistenteException("No existe ese cliente!");
         }
         return cliente;
     }
 
 
-    public void PublicarLista(String nomLista, String nick) throws Exception {
-        Cliente c = clientes.get(nick);
-        if(c!=null)
-        {
-            c.PublicarLista(nomLista);
-        }
-        else
-            throw new Exception("El cliente no existe");
+    public void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException {
+        Cliente c = BuscarCliente(nick);
+        c.PublicarLista(nomLista);
     }
 
-    public ArrayList<String> ListarListasDeCliente(String nick) throws Exception{
+    public ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.ListarListas();
     }
     
-    ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws Exception{
+    ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.ListarListasPrivadas();
     }
 
-    public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws Exception{
+    public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws ClienteInexistenteException, ListaInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.ListarTemasDeLista(nombre);
     }
@@ -218,40 +226,40 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         return seg;
     }
 
-    void AltaLista(DataParticular d) throws Exception {
+    void AltaLista(DataParticular d) throws ClienteInexistenteException, ListaRepetidaException {
         Cliente c = clientes.get(d.getNomCliente());
         if(c!=null)
             c.AltaLista(d);
         else
-            throw new Exception("No existe un cliente con ese nombre");
+            throw new ClienteInexistenteException();
     }
 
-    void QuitarTemaDeLista(String nick, String nomLista, String nomTema,String nomAlbum) throws Exception {
+    void QuitarTemaDeLista(String nick, String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException, ClienteInexistenteException {
         Cliente c = BuscarCliente(nick);
         c.QuitarTemaDeLista(nomLista,nomTema,nomAlbum);
     }
 
-    DataLista DarInfoLista(String nomLista, String nick) throws Exception{
+    DataLista DarInfoLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.DarInfoLista(nomLista);
     }
     
-    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws Exception{
+    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws ArtistaInexistenteException, AlbumInexistenteException{
         Artista artista = BuscarArtista(nomArtista);
         DataAlbumExt data_album_ext = artista.getDataAlbumExt(nomAlbum);
         return data_album_ext;
     }        
 
     
-    public Artista BuscarArtista(String nombre) throws Exception {
+    public Artista BuscarArtista(String nombre) throws ArtistaInexistenteException {
         Artista artista = artistas.get(nombre);
         if (artista == null) {
-            throw new Exception("No existe un artista con ese nombre!");
+            throw new ArtistaInexistenteException();
         }
         return artista;
     }
     
-    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws Exception{
+    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
         Artista artista = BuscarArtista(nomArtista);
         return artista.ListarAlbumes();
     }

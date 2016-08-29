@@ -2,6 +2,8 @@ package Presentacion;
 
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataTema;
+import espotify.Excepciones.ClienteInexistenteException;
+import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaLista;
 import java.awt.event.ActionListener;
@@ -138,9 +140,9 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
                 listascmb.addItem(str);
             }
             listascmb.setEnabled(listas.size()>0);
-        } catch(Exception ex)
+        } catch(ClienteInexistenteException ex)
         {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El cliente elegido no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
         }        
     }//GEN-LAST:event_clientescmbActionPerformed
 
@@ -173,8 +175,11 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
                 for(DataTema dt : a) {
                     model.addElement(dt.getNomArtista() + " - " + dt.getNombre() + " (" + dt.getDuracion() + ")");
                 }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            } catch (ClienteInexistenteException ex) {
+                JOptionPane.showMessageDialog(this, "El cliente seleccionado no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+             catch (ListaInexistenteException ex) {
+                JOptionPane.showMessageDialog(this, "El cliente seleccionado no tiene una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
     }//GEN-LAST:event_consultarbtnActionPerformed
 

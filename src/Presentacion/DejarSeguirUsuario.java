@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import espotify.Excepciones.SeguidoInexistenteException;
+import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IDejarDeSeguir;
 import javax.swing.JOptionPane;
@@ -138,8 +140,11 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
             try{
             interf.DejarDeSeguir(Seguidor,Seguido);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
-            }catch (Exception e){
-                JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }catch (SeguidoInexistenteException e){
+                JOptionPane.showMessageDialog(this, "El usuario a dejar de seguir no existe o no era seguido por el seguidor.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            catch (SeguidorInexistenteException e){
+                JOptionPane.showMessageDialog(this, "El usuario seguidor no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());

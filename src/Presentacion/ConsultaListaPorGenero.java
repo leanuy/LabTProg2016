@@ -3,6 +3,7 @@ package Presentacion;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataTema;
+import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IConsultaLista;
@@ -159,19 +160,15 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listascmbActionPerformed
 
     private void ArbolGenerosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_ArbolGenerosValueChanged
-        try {
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
-            String nomGenero = "";
-            if (node != null)
-                nomGenero = (String)node.getUserObject();
-            listascmb.removeAllItems();
-            IConsultaLista inter = Fabrica.getIConsultaLista();
-            ArrayList<String> listas = inter.ListarListasDeGenero(nomGenero);
-            for(String str : listas) {
-                listascmb.addItem(str);
-            }
-        } catch (Exception ex) {
-            Logger.getLogger(ConsultaListaPorGenero.class.getName()).log(Level.SEVERE, null, ex);
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
+        String nomGenero = "";
+        if (node != null)
+            nomGenero = (String)node.getUserObject();
+        listascmb.removeAllItems();
+        IConsultaLista inter = Fabrica.getIConsultaLista();
+        ArrayList<String> listas = inter.ListarListasDeGenero(nomGenero);
+        for(String str : listas) {
+            listascmb.addItem(str);
         }
     }//GEN-LAST:event_ArbolGenerosValueChanged
 
@@ -202,8 +199,8 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
                 model.addElement(dt.getNomArtista() + " - " + dt.getNombre() + " (" + dt.getDuracion() + ")");
             }
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (ListaInexistenteException ex) {
+            JOptionPane.showMessageDialog(this, "No existe una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
         }   
     }//GEN-LAST:event_consultarbtnActionPerformed
 

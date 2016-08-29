@@ -2,6 +2,9 @@ package Presentacion;
 
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataCliente;
+import espotify.Excepciones.CorreoRepetidoException;
+import espotify.Excepciones.FormatoIncorrectoException;
+import espotify.Excepciones.NickRepetidoException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaPerfil;
 import java.awt.event.WindowEvent;
@@ -81,19 +84,19 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Alta de Perfil");
 
-        nickLabel.setText("Nickname:");
+        nickLabel.setText("Nickname*:");
 
-        nomlabel.setText("Nombre:");
+        nomlabel.setText("Nombre*:");
 
-        apelabel.setText("Apellido:");
+        apelabel.setText("Apellido*:");
 
-        maillabel.setText("Correo:");
+        maillabel.setText("Correo*:");
 
         fechatxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d/M/yy"))));
 
-        fechalabel.setText("Fecha de Nacimiento (dd/mm/aa):");
+        fechalabel.setText("Fecha de Nacimiento (dd/mm/aa)*:");
 
-        imglabel.setText("Imagen (opcional):");
+        imglabel.setText("Imagen:");
 
         imgbtn.setText("Browse...");
         imgbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -251,7 +254,6 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         if(clienteRadio.isSelected())
         {
-
             try
             {
                 Calendar fNac = Calendar.getInstance(); //TODO
@@ -271,6 +273,18 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 "OK",
                 JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
+            }
+            catch(NickRepetidoException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese nick", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(CorreoRepetidoException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese correo", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(FormatoIncorrectoException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "El formato de correo no es correcto, o algún campo obligatorio está vacío", "Error", JOptionPane.PLAIN_MESSAGE);
             }
             catch(Exception e)
             {
@@ -303,6 +317,18 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 "OK",
                 JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
+            }
+            catch(NickRepetidoException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese nick", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(CorreoRepetidoException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese correo", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(FormatoIncorrectoException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "El formato de correo no es correcto, o algún campo obligatorio está vacío", "Error", JOptionPane.PLAIN_MESSAGE);
             }
             catch(Exception e)
             {

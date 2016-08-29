@@ -4,6 +4,9 @@ import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataTemaArchivo;
 import espotify.Datatypes.DataTemaWeb;
+import espotify.Excepciones.DuracionInvalidaException;
+import espotify.Excepciones.NumeroTemaInvalidoException;
+import espotify.Excepciones.TemaRepetidoException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +49,7 @@ public class Album implements Favoriteable {
         return this.temas;
     }
 
-    private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws Exception {
+    private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException {
         int largo = data_temas.size();
         boolean orden[] = new boolean[largo];
         Arrays.fill(orden, true);
@@ -59,21 +62,21 @@ public class Album implements Favoriteable {
 
             //Validar Duracion
             if (dt.getDuracion() <= 0) {
-                throw new Exception("El tema " + dt.getNombre() + " tiene una duración no válida.");
+                throw new DuracionInvalidaException("El tema " + dt.getNombre() + " tiene una duración no válida.");
             }
             //Validar orden: validar que no haya otro tema con ese mismo numero de orden
             //Si el num es mayor a la cantidad de temas tambien tira una exepcion ya que de seguro el orden no es correcto.
             if (dt.getNum() <= 0 || dt.getNum() >= largo) {
-                throw new Exception("El tema " + dt.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
+                throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
             } else if (orden[dt.getNum() - 1] == true) {
-                throw new Exception("El tema " + dt.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");
+                throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");
             } else {
                 orden[dt.getNum() - 1] = true;
                 //Si el numero de orden es correcto lo marco como en uso.
             }
             //Validar unicidad de nombres
             if (nombres_temas.contains(dt.getNombre())) {
-                throw new Exception("Intenta ingresar mas de un tema con el nombre " + dt.getNombre() + ". Cada tema debe tener un nombre único en el álbum.");
+                throw new TemaRepetidoException("Intenta ingresar mas de un tema con el nombre " + dt.getNombre() + ". Cada tema debe tener un nombre único en el álbum.");
             } else {
                 nombres_temas.add(dt.getNombre());
             }
@@ -88,7 +91,7 @@ public class Album implements Favoriteable {
     }
 
     //constructores
-    public Album(DataAlbumExt dt, Artista artista, HashMap<String, Genero> generos) throws Exception {
+    public Album(DataAlbumExt dt, Artista artista, HashMap<String, Genero> generos) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException {
         this.nombre = dt.getNombre();
         this.anio = dt.getAnio();
         this.img = dt.getImg();

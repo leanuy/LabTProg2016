@@ -3,6 +3,9 @@ package Presentacion;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
+import espotify.Excepciones.ClienteInexistenteException;
+import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Excepciones.ListaRepetidaException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
@@ -281,12 +284,13 @@ public class AltaLista extends javax.swing.JInternalFrame {
                     JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
-            catch(Exception e)
+            catch(ListaRepetidaException e)
             {
-                JOptionPane.showMessageDialog(okDialog,
-                    e.getMessage(),
-                    "Error",
-                    JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(okDialog, "El cliente ya tiene una lista con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(ClienteInexistenteException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "No existe un cliente con ese nick.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
         }
         else
@@ -300,18 +304,16 @@ public class AltaLista extends javax.swing.JInternalFrame {
                     nomGenero = (String)node.getUserObject();
                 DataDefecto d = new DataDefecto(nomGenero, nombretxt.getText(),img);
                 ctrl.AltaListaDefecto(d);
-                JOptionPane.showMessageDialog(okDialog,
-                    "Operación completada con éxito",
-                    "OK",
-                    JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
-            catch(Exception e)
+            catch(ListaRepetidaException e)
             {
-                JOptionPane.showMessageDialog(okDialog,
-                    e.getMessage(),
-                    "Error",
-                    JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(okDialog, "Ya existe una lista por defecto con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(GeneroInexistenteException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "El género seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
             }
         }
     }//GEN-LAST:event_confirmbtnActionPerformed

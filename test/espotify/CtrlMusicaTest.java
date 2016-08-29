@@ -1,6 +1,11 @@
 package espotify;
 
 import espotify.Datatypes.DataGenero;
+import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.CorreoRepetidoException;
+import espotify.Excepciones.FormatoIncorrectoException;
+import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Excepciones.NickRepetidoException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.After;
@@ -51,7 +56,7 @@ public class CtrlMusicaTest {
      */
     @Ignore
     @Test
-    public void testBuscarGenero() throws Exception{
+    public void testBuscarGenero() throws GeneroInexistenteException {
         System.out.println("BuscarGenero");
         String genero = "";
         CtrlMusica instance = null;
@@ -69,7 +74,7 @@ public class CtrlMusicaTest {
      * No se esperan excepciones
      */
     @Test
-    public void testExisteArtista1() throws Exception {
+    public void testExisteArtista1() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
         System.out.println("ExisteArtista1: Existe artista. Debe devolver la lista de generos del sistema.");
 
         CtrlUsuariosTest ctrlUsuariosTest = new CtrlUsuariosTest();
@@ -88,8 +93,8 @@ public class CtrlMusicaTest {
      * Sin artistas ingresados en el sistema.
      * Se espera una exception de que el artista no esta en el sistema.
      */
-    @Test (expected = Exception.class)
-    public void testExisteArtista2() throws Exception {
+    @Test (expected = ArtistaInexistenteException.class)
+    public void testExisteArtista2() throws ArtistaInexistenteException {
         System.out.println("ExisteArtista: No existe artista");
         String nickArtista = "";
         CtrlMusica instance = CtrlMusica.getInstancia();
@@ -103,14 +108,14 @@ public class CtrlMusicaTest {
      * con artistas ingresados en el sistema. Se espera una exception de que el
      * artista no esta en el sistema.
      */
-    @Test(expected = Exception.class)
-    public void testExisteArtista3() throws Exception {
+    @Test(expected = ArtistaInexistenteException.class)
+    public void testExisteArtista3() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
         System.out.println("ExisteArtista: No existe artista");
         
         CtrlUsuariosTest ctrlUsuariosTest = new CtrlUsuariosTest();
         //Crear un artista ficticio:
-        ctrlUsuariosTest.testAltaArtista1(); //ToDo: Agregar mas artistas?
-
+        //ctrlUsuariosTest.testAltaArtista1(); //ToDo: Agregar mas artistas?
+        // Agus: este test estaba fallando porque agregabas el artista dos veces. Le comenté la línea. Ahora busca y falla sin agregar antes. -JM42
         String nickArtista = "";
         CtrlMusica instance = CtrlMusica.getInstancia();
         DataGenero expResult = null;
@@ -123,7 +128,7 @@ public class CtrlMusicaTest {
      * Caso 1: No se envian generos.
      */
     @Test
-    public void testValidarGeneros1() throws Exception {
+    public void testValidarGeneros1() throws GeneroInexistenteException {
         System.out.println("ValidarGeneros: no se envian generos");
 
         //Crear un artista ficticio:
@@ -137,8 +142,8 @@ public class CtrlMusicaTest {
      * Test of ValidarGeneros method, of class CtrlMusica.
      * Caso 2: Se envian generos que no son validos.
      */
-    @Test(expected = Exception.class)
-    public void testValidarGeneros2() throws Exception {
+    @Test(expected = GeneroInexistenteException.class)
+    public void testValidarGeneros2() throws GeneroInexistenteException {
         System.out.println("ValidarGeneros: no se envian generos");
 
         //Crear un artista ficticio:

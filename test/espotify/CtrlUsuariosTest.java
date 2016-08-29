@@ -6,6 +6,14 @@ import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
+import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.ClienteInexistenteException;
+import espotify.Excepciones.CorreoRepetidoException;
+import espotify.Excepciones.FormatoIncorrectoException;
+import espotify.Excepciones.ListaInexistenteException;
+import espotify.Excepciones.ListaRepetidaException;
+import espotify.Excepciones.NickRepetidoException;
+import espotify.Excepciones.YaPublicaException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -144,7 +152,7 @@ public class CtrlUsuariosTest {
      * Test of AltaCliente method, of class CtrlUsuarios.
      */
     @Test
-    public void testAltaCliente1() throws Exception {
+    public void testAltaCliente1() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: ingreso normal");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
@@ -153,8 +161,8 @@ public class CtrlUsuariosTest {
         instance.AltaCliente(d);
     }
     
-    @Test (expected=Exception.class)
-    public void testAltaCliente2() throws Exception {
+    @Test (expected=FormatoIncorrectoException.class)
+    public void testAltaCliente2() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: campo vacío");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
@@ -163,8 +171,8 @@ public class CtrlUsuariosTest {
         instance.AltaCliente(d);
     }
     
-    @Test (expected=Exception.class)
-    public void testAltaCliente3() throws Exception {
+    @Test (expected=NickRepetidoException.class)
+    public void testAltaCliente3() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: nick repetido.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
@@ -175,8 +183,8 @@ public class CtrlUsuariosTest {
         instance.AltaCliente(d);
     }
 
-    @Test (expected=Exception.class)
-    public void testAltaCliente4() throws Exception {
+    @Test (expected=CorreoRepetidoException.class)
+    public void testAltaCliente4() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: correo repetido.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
@@ -187,8 +195,8 @@ public class CtrlUsuariosTest {
         instance.AltaCliente(d);
     }
     
-    @Test (expected=Exception.class)
-    public void testAltaCliente5() throws Exception {
+    @Test (expected=FormatoIncorrectoException.class)
+    public void testAltaCliente5() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: correo sin formato de correo.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
@@ -202,7 +210,7 @@ public class CtrlUsuariosTest {
      * @return 
      */
     @Test
-    public void testAltaArtista1() throws Exception {
+    public void testAltaArtista1() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaArtista: ingreso normal");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
@@ -211,8 +219,8 @@ public class CtrlUsuariosTest {
         instance.AltaArtista(d);
     }
     
-    @Test (expected=Exception.class)
-    public void testAltaArtista2() throws Exception {
+    @Test (expected=FormatoIncorrectoException.class)
+    public void testAltaArtista2() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaArtista: campo vacío");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
@@ -221,8 +229,8 @@ public class CtrlUsuariosTest {
         instance.AltaArtista(d);
     }
     
-    @Test (expected=Exception.class)
-    public void testAltaArtista3() throws Exception {
+    @Test (expected=NickRepetidoException.class)
+    public void testAltaArtista3()throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
         System.out.println("AltaArtista: nick repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
@@ -233,8 +241,8 @@ public class CtrlUsuariosTest {
         instance.AltaArtista(d);
     }
     
-    @Test (expected=Exception.class)
-    public void testAltaArtista4() throws Exception {
+    @Test (expected=CorreoRepetidoException.class)
+    public void testAltaArtista4() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
         System.out.println("AltaArtista: correo repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
@@ -245,8 +253,8 @@ public class CtrlUsuariosTest {
         instance.AltaArtista(d);
     }
     
-    @Test (expected=Exception.class)
-    public void testAltaArtista5() throws Exception {
+    @Test (expected=FormatoIncorrectoException.class)
+    public void testAltaArtista5() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
         System.out.println("AltaArtista: correo sin formato de correo");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
@@ -260,7 +268,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testBuscarCliente() throws Exception{
+    public void testBuscarCliente() throws ClienteInexistenteException{
         System.out.println("BuscarCliente");
         String nick = "";
         CtrlUsuarios instance = null;
@@ -276,7 +284,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testBuscarArtista() throws Exception {
+    public void testBuscarArtista() throws ArtistaInexistenteException {
         System.out.println("BuscarArtista");
         String nick = "";
         CtrlUsuarios instance = null;
@@ -292,7 +300,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testPublicarLista() throws Exception {
+    public void testPublicarLista() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException {
         System.out.println("PublicarLista");
         String nomLista = "";
         String nick = "";
@@ -307,7 +315,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testListarListasDeCliente() throws Exception {
+    public void testListarListasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasDeCliente");
         String nick = "";
         CtrlUsuarios instance = null;
@@ -323,7 +331,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testListarTemasDeLista() throws Exception {
+    public void testListarTemasDeLista() throws ClienteInexistenteException, ListaInexistenteException {
         System.out.println("ListarTemasDeLista");
         String nick = "";
         String nombre = "";
@@ -386,7 +394,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testAltaLista() throws Exception {
+    public void testAltaLista() throws ClienteInexistenteException, ListaRepetidaException {
         System.out.println("AltaLista");
         DataParticular d = null;
         CtrlUsuarios instance = null;
@@ -400,7 +408,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testQuitarTemaDeLista() throws Exception {
+    public void testQuitarTemaDeLista() throws ListaInexistenteException, ClienteInexistenteException {
         System.out.println("QuitarTemaDeLista");
         String nick = "";
         String nomLista = "";
