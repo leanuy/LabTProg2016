@@ -16,7 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class DialogoIngresoTema extends javax.swing.JDialog {
 
-    private String pathATema;   
+    private String pathATema; 
+    private File selectedFile;
     
     /**
      * Creates new form DialogoIngresoTema
@@ -188,17 +189,30 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
 
     private void AceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarButtonActionPerformed
         int duration = 0;
+        try{
+            duration = Integer.parseInt(DuracionTextField.getText());
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Duracion invalida", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if("".equals(NombreTema.getText())){
+            JOptionPane.showMessageDialog(this, "Nombre de tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         if(URLaTemaRadioButton.isSelected()){
-            try{
-                duration = Integer.parseInt(DuracionTextField.getText());
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, "Duracion invalida", "Error", JOptionPane.ERROR_MESSAGE);
+            if("".equals(URLdelTema.getText())){
+                JOptionPane.showMessageDialog(this, "Link al tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             AltaAlbum.cargarTema(true,URLdelTema.getText(),null,NombreTema.getText(), duration);
             this.dispose();
         }else{
-            //DataTemaArchivo
+            if("".equals(PathLocal.getText())){
+                JOptionPane.showMessageDialog(this, "Cargue un tema", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            AltaAlbum.cargarTema(false,"",selectedFile,NombreTema.getText(), duration);
+            this.dispose();
         }
     }//GEN-LAST:event_AceptarButtonActionPerformed
 
@@ -219,6 +233,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                     return;
                 }
                 PathLocal.setText(pathATema);
+                selectedFile = file;
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }

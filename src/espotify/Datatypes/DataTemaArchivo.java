@@ -1,13 +1,15 @@
 package espotify.Datatypes;
 
-public abstract class DataTemaArchivo extends DataTema{
-    private String archivo;
+import java.io.File;
 
-    public String getArchivo() {
+public class DataTemaArchivo extends DataTema{
+    private File archivo;
+
+    public File getArchivo() {
         return archivo;
     }
 
-    public DataTemaArchivo(String archivo, String nombre, int duracion, int num) {
+    public DataTemaArchivo(File archivo, String nombre, int duracion, int num) {
         super(nombre, duracion, num);
         this.archivo = archivo;
     }

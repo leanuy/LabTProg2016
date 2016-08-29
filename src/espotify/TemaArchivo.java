@@ -1,11 +1,12 @@
 package espotify;
 
 import espotify.Datatypes.DataTemaArchivo;
+import java.io.File;
 
 public class TemaArchivo extends Tema{
-    private String archivo;
+    private File archivo;
 
-    public String getArchivo() {
+    public File getArchivo() {
         return archivo;
     }
     
