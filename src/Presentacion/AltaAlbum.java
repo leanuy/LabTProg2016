@@ -5,6 +5,7 @@ import espotify.Datatypes.DataAlbum;
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataTema;
+import espotify.Datatypes.DataTemaArchivo;
 import espotify.Datatypes.DataTemaWeb;
 import espotify.Excepciones.AlbumRepetidoException;
 import espotify.Excepciones.ArtistaInexistenteException;
@@ -155,12 +156,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         LabelNombreALbum.setText("Nombre del Album");
 
         LabelAnioCreacion.setText("Anio de creacion");
-
-        anioDeCreacion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                anioDeCreacionActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("(Seleccione los generos del arbol)");
 
@@ -341,7 +336,9 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             listaTemas.add(dt);
             modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
         }else{
-            // tema archivo.
+            DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema);
+            listaTemas.add(dta);
+            modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
         }
         numeroTema++;
         
@@ -374,15 +371,17 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         fc.setVisible(false);    
     }//GEN-LAST:event_buttonAgregarImagenActionPerformed
 
-    private void anioDeCreacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioDeCreacionActionPerformed
-        // TODO add your handling code here: ppuuuta aprete dos veces la label
-    }//GEN-LAST:event_anioDeCreacionActionPerformed
-
     private void buttonConfirmarALtaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarALtaAlbumActionPerformed
         String ext = pathALaImagen.getText();
-        if(!getExtensionDeString(ext)){
+        if(!ext.equals("") && !getExtensionDeString(ext)){
             JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+        }
+        if(!ext.equals("")){
+            if(!(img instanceof BufferedImage)){
+                JOptionPane.showMessageDialog(this, "Imagen invalida", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
         if("".equals(nombreAlbum.getText())){
             JOptionPane.showMessageDialog(this, "Debe ingresar un nombre al album", "Error", JOptionPane.ERROR_MESSAGE);
