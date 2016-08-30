@@ -24,12 +24,14 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
     
     private ArrayList<DataTema> temas;
     private DefaultListModel modeloTemas; 
+    private DataAlbumExt album;
     
     /**
      * Creates new form AlbumConsultado
      */
     public AlbumConsultado(DataAlbumExt data) {
         initComponents();
+        album = data;
         AlbumName.setText(data.getNombre());
         nickArtista.setText(data.getNickArtista());
         anioAlbum.setText(String.valueOf(data.getAnio()));
@@ -177,7 +179,7 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(AlbumName, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(anioAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -200,9 +202,13 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verFotoAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFotoAlbumActionPerformed
-        // TODO add your handling code here:
-        // un alma caritativa que sabe desplegar imagenes que abra un frame loco con la foto jeje.
-        
+        // TODO 
+        // 
+        if(album.getImg() == null){
+            JOptionPane.showMessageDialog(this, "El album no tiene imagen", "Atencion!.", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        //help please:un alma caritativa que sabe desplegar imagenes que abra un frame loco con la foto.
         
         
     }//GEN-LAST:event_verFotoAlbumActionPerformed
