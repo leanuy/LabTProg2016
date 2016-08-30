@@ -2,6 +2,7 @@ package espotify;
 
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
+import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
 import espotify.Excepciones.ClienteInexistenteException;
@@ -241,6 +242,93 @@ public class CtrlListasTest {
         CtrlListas instance = CtrlListas.getInstancia();
         instance.AltaListaDefecto(d);
         instance.AltaListaDefecto(d);
+    }
+    
+    @Test (expected=ListaRepetidaException.class)
+    public void testAltaListaDefecto4() throws ListaRepetidaException, GeneroInexistenteException {
+        System.out.println("AltaListaDefecto: nombre vacío");
+        DataDefecto d = new DataDefecto("Genero", "", null);
+        CtrlListas instance = CtrlListas.getInstancia();
+        instance.AltaListaDefecto(d);
+    }
+
+    /**
+     * Test of getInstancia method, of class CtrlListas.
+     */
+    @Ignore
+    @Test
+    public void testGetInstancia() {
+        System.out.println("getInstancia");
+        CtrlListas expResult = null;
+        CtrlListas result = CtrlListas.getInstancia();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ListarListasPrivadasDeCliente method, of class CtrlListas.
+     */
+    @Ignore
+    @Test
+    public void testListarListasPrivadasDeCliente() throws Exception {
+        System.out.println("ListarListasPrivadasDeCliente");
+        String nick = "";
+        CtrlListas instance = null;
+        ArrayList<String> expResult = null;
+        ArrayList<String> result = instance.ListarListasPrivadasDeCliente(nick);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of DarInfoDefecto method, of class CtrlListas.
+     */
+    @Ignore
+    @Test
+    public void testDarInfoDefecto() throws Exception {
+        System.out.println("DarInfoDefecto");
+        String nomLista = "";
+        CtrlListas instance = null;
+        DataLista expResult = null;
+        DataLista result = instance.DarInfoDefecto(nomLista);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of DarInfoParticular method, of class CtrlListas.
+     */
+    @Ignore
+    @Test
+    public void testDarInfoParticular() throws Exception {
+        System.out.println("DarInfoParticular");
+        String nomLista = "";
+        String nick = "";
+        CtrlListas instance = null;
+        DataLista expResult = null;
+        DataLista result = instance.DarInfoParticular(nomLista, nick);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of BuscarLista method, of class CtrlListas.
+     */
+    @Ignore
+    @Test
+    public void testBuscarLista() throws Exception {
+        System.out.println("BuscarLista");
+        String nomLista = "";
+        CtrlListas instance = null;
+        Defecto expResult = null;
+        Defecto result = instance.BuscarLista(nomLista);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }
