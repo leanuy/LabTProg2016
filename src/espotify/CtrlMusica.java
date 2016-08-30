@@ -69,7 +69,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
             {
                 Genero g = new Genero(d);
                 generos.put(d.getNombre(), g);
-                generos.get(d.getPadre()).AddHijo(g);
+                generos.get(padre).AddHijo(g);
             }
             else
                 throw new GeneroInexistenteException("No existe el género padre");
