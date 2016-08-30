@@ -57,7 +57,8 @@ public class Artista extends Usuario{
         return da;
     }
     
-    private Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
+
+    public Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
         Album album = albums.get(nombre);
         if (album == null){
             throw new AlbumInexistenteException();

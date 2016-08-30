@@ -9,10 +9,12 @@ import espotify.Datatypes.DataTemaArchivo;
 import espotify.Datatypes.DataTemaWeb;
 import espotify.Excepciones.AlbumRepetidoException;
 import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.CampoVacioException;
 import espotify.Excepciones.DuracionInvalidaException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.NumeroTemaInvalidoException;
 import espotify.Excepciones.TemaRepetidoException;
+import espotify.Excepciones.TemaTipoInvalidoException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
@@ -435,6 +437,10 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         catch(TemaRepetidoException e){
             JOptionPane.showMessageDialog(this, "Se ingresaron dos temas con el mismo nombre. El nombre de tema debe ser único.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
+        } catch (CampoVacioException ex) {
+            Logger.getLogger(AltaAlbum.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TemaTipoInvalidoException ex) {
+            Logger.getLogger(AltaAlbum.class.getName()).log(Level.SEVERE, null, ex);
         }
         JOptionPane.showMessageDialog(this, "Alta Album exitosa", "Felicitaciones", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
