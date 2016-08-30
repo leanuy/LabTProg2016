@@ -71,7 +71,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         file = null;
         nombre = "";
         duracion = 0;
-        
+        img = null;
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
         
     }
