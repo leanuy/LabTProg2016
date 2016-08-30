@@ -50,7 +50,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.ListarClientes();
     }
-    
+
     public ArrayList<String> ListarArtistas()
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
@@ -100,7 +100,6 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         }
     }
     
-
     @Override
     public ArrayList<String> ListarTemasLista2(String cl, String l) throws Exception  // Yo no paso x la funcion que guarda el nick!
     {
@@ -232,5 +231,4 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
             cu.AgregarTemaLista(dt,nickMEM, lista);
         }
     }
-    
 }

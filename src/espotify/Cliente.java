@@ -97,6 +97,7 @@ public class Cliente extends Usuario {
         else
             throw new Exception("El cliente no tiene una lista con ese nombre");
     }
+    
 
     void AltaLista(DataParticular d) throws ListaRepetidaException {
         if(ValidarNombreLista(d.getNombre()))
