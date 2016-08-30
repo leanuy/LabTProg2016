@@ -7,11 +7,13 @@ import espotify.Datatypes.DataAlbumExt;
 import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.AlbumRepetidoException;
 import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.CampoVacioException;
 import espotify.Excepciones.DuracionInvalidaException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Excepciones.NumeroTemaInvalidoException;
 import espotify.Excepciones.TemaRepetidoException;
+import espotify.Excepciones.TemaTipoInvalidoException;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IConsultaAlbum;
 import java.util.ArrayList;
@@ -83,7 +85,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         return genero.ListarAlbumes();
     }
     
-    private boolean ExisteGenero(String nombre) {
+    public boolean ExisteGenero(String nombre) {
         return generos.containsKey(nombre);
     }
 
@@ -117,7 +119,10 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         return generos.get(nombre);
     }
     
-    HashMap<String, Genero> ValidarGeneros(ArrayList<String> lista_generos) throws GeneroInexistenteException {
+    private HashMap<String, Genero> ValidarGeneros(ArrayList<String> lista_generos) throws GeneroInexistenteException, CampoVacioException {
+        if(lista_generos.isEmpty()){
+            throw new CampoVacioException("Un álbum debe tener al menos un género");
+        }
         HashMap<String, Genero> lista = new HashMap<>();
         for (String nombre_genero : lista_generos) {
             if (this.ExisteGenero(nombre_genero)) {
@@ -130,7 +135,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         return lista;
     }
     
-    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException {
+    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
         //Validar unicidad de nombre para el album
         if (this.artistaMEM.TieneAlbum(d.getNombre())) {
             throw new AlbumRepetidoException();

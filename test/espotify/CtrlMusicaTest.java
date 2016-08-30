@@ -2,14 +2,12 @@ package espotify;
 
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
-import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.CorreoRepetidoException;
 import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Excepciones.NickRepetidoException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -24,7 +22,7 @@ public class CtrlMusicaTest {
     }
     
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
     }
     
     @AfterClass
@@ -70,91 +68,7 @@ public class CtrlMusicaTest {
     }
     
     
-    /**
-     * Test of ExisteArtista method, of class CtrlMusica.
-     * caso base todo ok.
-     * No se esperan excepciones
-     */
-    @Test
-    public void testExisteArtista1() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
-        System.out.println("ExisteArtista1: Existe artista. Debe devolver la lista de generos del sistema.");
-
-        CtrlUsuariosTest ctrlUsuariosTest = new CtrlUsuariosTest();
-        //Crear un artista ficticio:
-        ctrlUsuariosTest.testAltaArtista1();
-        String nickArtista = "ElGordoAxl";
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        DataGenero expResult = instance.ListarGeneros();
-        DataGenero result = instance.ExisteArtista(nickArtista);
-        assertEquals(expResult, result);
-    }
     
-    /**
-     * Test of ExisteArtista method, of class CtrlMusica.
-     * nickArtista vacio.
-     * Sin artistas ingresados en el sistema.
-     * Se espera una exception de que el artista no esta en el sistema.
-     */
-    @Test (expected = ArtistaInexistenteException.class)
-    public void testExisteArtista2() throws ArtistaInexistenteException {
-        System.out.println("ExisteArtista: No existe artista");
-        String nickArtista = "";
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        DataGenero expResult = null;
-        DataGenero result = instance.ExisteArtista(nickArtista);
-        assertEquals(expResult, result);
-    }
-    
-    /**
-     * Test of ExisteArtista method, of class CtrlMusica. nickArtista vacio. 
-     * con artistas ingresados en el sistema. Se espera una exception de que el
-     * artista no esta en el sistema.
-     */
-    @Test(expected = ArtistaInexistenteException.class)
-    public void testExisteArtista3() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
-        System.out.println("ExisteArtista: No existe artista");
-        
-        CtrlUsuariosTest ctrlUsuariosTest = new CtrlUsuariosTest();
-        //Crear un artista ficticio:
-        //ctrlUsuariosTest.testAltaArtista1(); //ToDo: Agregar mas artistas?
-        // Agus: este test estaba fallando porque agregabas el artista dos veces. Le comenté la línea. Ahora busca y falla sin agregar antes. -JM42
-        String nickArtista = "";
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        DataGenero expResult = null;
-        DataGenero result = instance.ExisteArtista(nickArtista);
-        assertEquals(expResult, result);
-    }
-    
-        /**
-     * Test of ValidarGeneros method, of class CtrlMusica.
-     * Caso 1: No se envian generos.
-     */
-    @Test
-    public void testValidarGeneros1() throws GeneroInexistenteException {
-        System.out.println("ValidarGeneros: no se envian generos");
-
-        //Crear un artista ficticio:
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        HashMap<String, Genero> expResult = null;
-        ArrayList<String> lista_generos = new ArrayList<>();
-        HashMap<String, Genero> result = instance.ValidarGeneros(lista_generos);
-        assert(result.isEmpty());
-    }
-        /**
-     * Test of ValidarGeneros method, of class CtrlMusica.
-     * Caso 2: Se envian generos que no son validos.
-     */
-    @Test(expected = GeneroInexistenteException.class)
-    public void testValidarGeneros2() throws GeneroInexistenteException {
-        System.out.println("ValidarGeneros: no se envian generos");
-
-        //Crear un artista ficticio:
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        ArrayList<String> lista_generos = new ArrayList<>();
-        lista_generos.add("genero no existente");
-        HashMap<String, Genero> result = instance.ValidarGeneros(lista_generos);
-    }
-
     /**
      * Test of ConsultaAlbum method, of class CtrlMusica.
      */
@@ -270,50 +184,4 @@ public class CtrlMusicaTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of ExisteArtista method, of class CtrlMusica.
-     */
-    @Ignore
-    @Test
-    public void testExisteArtista() throws Exception {
-        System.out.println("ExisteArtista");
-        String nickArtista = "";
-        CtrlMusica instance = null;
-        DataGenero expResult = null;
-        DataGenero result = instance.ExisteArtista(nickArtista);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ValidarGeneros method, of class CtrlMusica.
-     */
-    @Ignore
-    @Test
-    public void testValidarGeneros() throws Exception {
-        System.out.println("ValidarGeneros");
-        ArrayList<String> lista_generos = null;
-        CtrlMusica instance = null;
-        HashMap<String, Genero> expResult = null;
-        HashMap<String, Genero> result = instance.ValidarGeneros(lista_generos);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of AltaAlbum method, of class CtrlMusica.
-     */
-    @Ignore
-    @Test
-    public void testAltaAlbum() throws Exception {
-        System.out.println("AltaAlbum");
-        DataAlbumExt d = null;
-        CtrlMusica instance = null;
-        instance.AltaAlbum(d);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
 }
