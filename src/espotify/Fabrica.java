@@ -68,6 +68,7 @@ public abstract class Fabrica {
     {
         CtrlDatosIniciales.CargarDatosIniciales();
     }    
+    
     public static IAgregarTemaLista getIAgregarTemaLista(){
         return CtrlListas.getInstancia();
     }

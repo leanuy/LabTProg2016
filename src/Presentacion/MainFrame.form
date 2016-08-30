@@ -376,6 +376,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
             </MenuItem>
+<<<<<<< 1535f471e8d3bfd10b61a2f9cbbe8928a4702fcd
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
@@ -391,6 +392,8 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cargarDatosDePruebaActionPerformed"/>
               </Events>
             </MenuItem>
+=======
+>>>>>>> Todo lo de agregar tema a lista
           </SubComponents>
         </Menu>
       </SubComponents>

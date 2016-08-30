@@ -50,7 +50,6 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
         return cu.ListarClientes();
     }
-
     public ArrayList<String> ListarArtistas()
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
