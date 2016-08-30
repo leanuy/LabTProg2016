@@ -7,12 +7,16 @@ import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
 import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.CorreoRepetidoException;
 import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Excepciones.NickRepetidoException;
+import espotify.Excepciones.SeguidoInexistenteException;
+import espotify.Excepciones.SeguidoRepetidoException;
+import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -121,33 +125,202 @@ public class CtrlUsuariosTest {
     /**
      * Test of AltaSeguir method, of class CtrlUsuarios.
      */
-    @Ignore
     @Test
     public void testAltaSeguir() throws Exception {
-        System.out.println("AltaSeguir");
-        String nomSeguidor = "";
-        String nomSeguido = "";
-        CtrlUsuarios instance = null;
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        }
+        catch(NickRepetidoException | CorreoRepetidoException e)
+        {}
+        
+        System.out.println("AltaSeguir: Normal a Cliente");
+        String nomSeguidor = "Seguidor";
+        String nomSeguido = "Seguido";
         instance.AltaSeguir(nomSeguidor, nomSeguido);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    @Test (expected=SeguidorInexistenteException.class)
+    public void testAltaSeguir2() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        System.out.println("AltaSeguir: Seguidor inexistente");
+        String nomSeguidor = "Seguidorasdfasfd";
+        String nomSeguido = "Seguido";
+        instance.AltaSeguir(nomSeguidor, nomSeguido);
+    }
+    
+    @Test (expected=SeguidoInexistenteException.class)
+    public void testAltaSeguir3() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        }
+        catch(NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
+        {}
+        
+        System.out.println("AltaSeguir: Seguido inexistente");
+        String nomSeguidor = "Seguidor";
+        String nomSeguido = "Seguidoasdf";
+        instance.AltaSeguir(nomSeguidor, nomSeguido);
+    }
+    
+    @Test
+    public void testAltaSeguir4() throws Exception {
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        DataArtista da = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null);
+        instance.AltaArtista(da);
+        }
+        catch(NickRepetidoException | CorreoRepetidoException e)
+        {}
+        
+        System.out.println("AltaSeguir: Normal a Artista");
+        String nomSeguidor = "Seguidor";
+        String nomSeguido = "ElGordoAxl";
+        instance.AltaSeguir(nomSeguidor, nomSeguido);
+    }
+    
+    @Test (expected=AutoSeguirseException.class)
+    public void testAltaSeguir5() throws Exception {
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        }
+        catch(NickRepetidoException | CorreoRepetidoException e)
+        {}
+        
+        System.out.println("AltaSeguir: Seguirse A si Mismo");
+        String nomSeguidor = "Seguidor";
+        String nomSeguido = "Seguidor";
+        instance.AltaSeguir(nomSeguidor, nomSeguido);
+    }
+    
+    @Test (expected=SeguidoRepetidoException.class)
+    public void testAltaSeguir6() throws Exception {
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        }
+        catch(NickRepetidoException | CorreoRepetidoException e)
+        {}
+        
+        System.out.println("AltaSeguir: Seguir dos veces");
+        String nomSeguidor = "Seguidor";
+        String nomSeguido = "Seguido";
+        try{
+        instance.AltaSeguir(nomSeguidor, nomSeguido);
+        } catch (Exception e){}
+        instance.AltaSeguir(nomSeguidor, nomSeguido);
     }
 
     /**
      * Test of DejarDeSeguir method, of class CtrlUsuarios.
      */
-    @Ignore
     @Test
     public void testDejarDeSeguir() throws Exception {
-        System.out.println("DejarDeSeguir");
-        String nomSeguidor = "";
-        String nomSeguido = "";
-        CtrlUsuarios instance = null;
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        instance.AltaSeguir("Seguidor", "Seguido");
+        }
+        catch(Exception e)
+        {}
+        
+        System.out.println("DejarDeSeguir: Normal");
+        String nomSeguidor = "Seguidor";
+        String nomSeguido = "Seguido";
         instance.DejarDeSeguir(nomSeguidor, nomSeguido);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
-
+    
+    @Test (expected=SeguidorInexistenteException.class)
+    public void testDejarDeSeguir2() throws Exception {
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        instance.AltaSeguir("Seguidor", "Seguido");
+        }
+        catch(Exception e)
+        {}
+        
+        System.out.println("DejarDeSeguir: Seguidor Inexistente");
+        String nomSeguidor = "Seguidorasdf";
+        String nomSeguido = "Seguido";
+        instance.DejarDeSeguir(nomSeguidor, nomSeguido);
+    }
+    
+    @Test (expected=SeguidoInexistenteException.class)
+    public void testDejarDeSeguir3() throws Exception {
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        instance.AltaSeguir("Seguidor", "Seguido");
+        }
+        catch(Exception e)
+        {}
+        
+        System.out.println("DejarDeSeguir: Seguido Inexistente");
+        String nomSeguidor = "Seguidor";
+        String nomSeguido = "Seguidoasdf";
+        instance.DejarDeSeguir(nomSeguidor, nomSeguido);
+    }
+    
+    @Test (expected=SeguidoInexistenteException.class)
+    public void testDejarDeSeguir4() throws Exception {
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try{
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("Seguidor2", "Javier", "Morales", "seguidor2@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        d = new DataCliente("Seguido2", "Javier", "Morales", "seguido2@hotmail.com", cal, null);
+        instance.AltaCliente(d);
+        }
+        catch(Exception e)
+        {}
+        
+        System.out.println("DejarDeSeguir: Seguido al que no seguían");
+        String nomSeguidor = "Seguidor2";
+        String nomSeguido = "Seguido2";
+        instance.DejarDeSeguir(nomSeguidor, nomSeguido);
+    }
+    
     /**
      * Test of AltaCliente method, of class CtrlUsuarios.
      */

@@ -1,10 +1,12 @@
 package espotify;
 
+import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.CorreoRepetidoException;
 import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Excepciones.NickRepetidoException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -151,6 +153,167 @@ public class CtrlMusicaTest {
         ArrayList<String> lista_generos = new ArrayList<>();
         lista_generos.add("genero no existente");
         HashMap<String, Genero> result = instance.ValidarGeneros(lista_generos);
+    }
+
+    /**
+     * Test of ConsultaAlbum method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testConsultaAlbum() throws Exception {
+        System.out.println("ConsultaAlbum");
+        String nomAlbum = "";
+        String nomArtista = "";
+        CtrlMusica instance = null;
+        DataAlbumExt expResult = null;
+        DataAlbumExt result = instance.ConsultaAlbum(nomAlbum, nomArtista);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ListarGeneros method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testListarGeneros() {
+        System.out.println("ListarGeneros");
+        CtrlMusica instance = null;
+        DataGenero expResult = null;
+        DataGenero result = instance.ListarGeneros();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of AltaGenero method, of class CtrlMusica.
+     */
+    @Test
+    public void testAltaGenero() throws Exception {
+        System.out.println("AltaGenero: Ingreso normal, padre nulo");
+        DataGenero d = new DataGenero("Rock", "");
+        CtrlMusica instance = CtrlMusica.getInstancia();
+        instance.AltaGenero(d);
+    }
+    @Test
+    public void testAltaGenero2() throws Exception {
+        System.out.println("AltaGenero: Ingreso normal, padre existente");
+        DataGenero d = new DataGenero("Metal", "");
+        CtrlMusica instance = CtrlMusica.getInstancia();
+        instance.AltaGenero(d);
+        //d = new DataGenero("Black Metal", "Metal");
+        //instance.AltaGenero(d);
+    }
+    @Test (expected = GeneroInexistenteException.class)
+    public void testAltaGenero3() throws Exception {
+        System.out.println("AltaGenero: Padre inexistente");
+        DataGenero d = new DataGenero("Cumbia Plancha", "Rombai");
+        CtrlMusica instance = CtrlMusica.getInstancia();
+        instance.AltaGenero(d);
+    }
+    
+    @Test (expected = GeneroRepetidoException.class)
+    public void testAltaGenero4() throws Exception {
+        System.out.println("AltaGenero: Género repetido");
+        DataGenero d = new DataGenero("Jazz", "");
+        CtrlMusica instance = CtrlMusica.getInstancia();
+        instance.AltaGenero(d);
+        instance.AltaGenero(d);
+    }
+
+    /**
+     * Test of ListarAlbumesDeGenero method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testListarAlbumesDeGenero() throws Exception {
+        System.out.println("ListarAlbumesDeGenero");
+        String nomGenero = "";
+        CtrlMusica instance = null;
+        ArrayList expResult = null;
+        ArrayList result = instance.ListarAlbumesDeGenero(nomGenero);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ListarArtistas method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testListarArtistas() {
+        System.out.println("ListarArtistas");
+        CtrlMusica instance = null;
+        ArrayList<String> expResult = null;
+        ArrayList<String> result = instance.ListarArtistas();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ListarAlbumesDeArtista method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testListarAlbumesDeArtista() throws Exception {
+        System.out.println("ListarAlbumesDeArtista");
+        String nomArtista = "";
+        CtrlMusica instance = null;
+        ArrayList<String> expResult = null;
+        ArrayList<String> result = instance.ListarAlbumesDeArtista(nomArtista);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ExisteArtista method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testExisteArtista() throws Exception {
+        System.out.println("ExisteArtista");
+        String nickArtista = "";
+        CtrlMusica instance = null;
+        DataGenero expResult = null;
+        DataGenero result = instance.ExisteArtista(nickArtista);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of ValidarGeneros method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testValidarGeneros() throws Exception {
+        System.out.println("ValidarGeneros");
+        ArrayList<String> lista_generos = null;
+        CtrlMusica instance = null;
+        HashMap<String, Genero> expResult = null;
+        HashMap<String, Genero> result = instance.ValidarGeneros(lista_generos);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of AltaAlbum method, of class CtrlMusica.
+     */
+    @Ignore
+    @Test
+    public void testAltaAlbum() throws Exception {
+        System.out.println("AltaAlbum");
+        DataAlbumExt d = null;
+        CtrlMusica instance = null;
+        instance.AltaAlbum(d);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
     }
     
 }
