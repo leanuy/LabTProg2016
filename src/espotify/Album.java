@@ -7,6 +7,7 @@ import espotify.Datatypes.DataTemaWeb;
 import espotify.Excepciones.DuracionInvalidaException;
 import espotify.Excepciones.NumeroTemaInvalidoException;
 import espotify.Excepciones.TemaRepetidoException;
+import espotify.Excepciones.TemaTipoInvalidoException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,10 +50,10 @@ public class Album implements Favoriteable {
         return this.temas;
     }
 
-    private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException {
+    private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, TemaTipoInvalidoException {
         int largo = data_temas.size();
         boolean orden[] = new boolean[largo];
-        Arrays.fill(orden, true);
+        Arrays.fill(orden, false);
 
         ArrayList<Tema> lista_temas = new ArrayList<>();
         ArrayList<String> nombres_temas = new ArrayList<>();
@@ -66,7 +67,8 @@ public class Album implements Favoriteable {
             }
             //Validar orden: validar que no haya otro tema con ese mismo numero de orden
             //Si el num es mayor a la cantidad de temas tambien tira una exepcion ya que de seguro el orden no es correcto.
-            if (dt.getNum() <= 0 || dt.getNum() > largo) {
+            System.out.println(dt.getNum());
+            if ((dt.getNum() <= 0) || (dt.getNum() > largo)) {
                 throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
             } else if (orden[dt.getNum() - 1] == true) {
                 throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");
@@ -83,15 +85,17 @@ public class Album implements Favoriteable {
             //Si el tema paso todas las validaciones
             if (dt instanceof DataTemaArchivo) {
                 lista_temas.add(new TemaArchivo((DataTemaArchivo) dt, this));
-            } else {
+            } else if (dt instanceof DataTemaWeb) {
                 lista_temas.add(new TemaWeb((DataTemaWeb) dt, this));
+            }else{
+                throw new TemaTipoInvalidoException();
             }
         }
         return lista_temas;
     }
 
     //constructores
-    public Album(DataAlbumExt dt, Artista artista, HashMap<String, Genero> generos) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException {
+    public Album(DataAlbumExt dt, Artista artista, HashMap<String, Genero> generos) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, TemaTipoInvalidoException {
         this.nombre = dt.getNombre();
         this.anio = dt.getAnio();
         this.img = dt.getImg();
