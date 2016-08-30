@@ -13,6 +13,7 @@ import espotify.Interfaces.IConsultaAlbum;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -29,17 +30,19 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
     
     public ConsultaAlbumPorArtista() {
         initComponents();
-        //this.setSize(900,800);
+        
         modelito = new DefaultListModel();
         ListaArtistas.setModel(modelito);
         modelitoAlbums = new DefaultListModel();
         ListaAlbunesArtista.setModel(modelitoAlbums);
+        ListaAlbunesArtista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         ArrayList<String> artists = null;
         artists = inter.ListarArtistas();
         for(String s : artists){
             modelito.addElement(s);
         }
+        ConsultaAlbumButton.setEnabled(false);
     }
 
     /**
@@ -172,7 +175,9 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
             dataAlbums = inter.ListarAlbumesDeArtista(ArtistSelected);
             for(String d : dataAlbums){
                 modelitoAlbums.addElement(d);
-            } 
+            }
+            ConsultaAlbumButton.setEnabled(true);
+            TraerAlbumsButton.setEnabled(false);
         }catch(ArtistaInexistenteException e){
             JOptionPane.showMessageDialog(this, "El artista elegido no existe.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
@@ -186,16 +191,18 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         DataAlbumExt dataAlbum = null;
         String nomAlbum = null;
+        AlbumConsultado ventanaAlbum;
         int[] opciones;
         try{
             opciones = ListaAlbunesArtista.getSelectedIndices();
             if(opciones.length != 1){
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un solo album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
-                this.dispose();
+                return;
             }
             nomAlbum = (String)modelitoAlbums.getElementAt(ListaAlbunesArtista.getSelectedIndex());
             dataAlbum = inter.ConsultaAlbum(nomAlbum,ArtistSelected);
-            //llamar otro frame y mandarle el dataalbum
+            ventanaAlbum = new AlbumConsultado(dataAlbum);
+            ventanaAlbum.setVisible(true);
         }
         catch(ArtistaInexistenteException e){
             JOptionPane.showMessageDialog(this, "No existe un artista con ese nick.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
