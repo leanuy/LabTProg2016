@@ -53,6 +53,9 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private BufferedImage img = null;
     private String ArtistSelected;
     
+    private static String nombreAnterior;
+    private static boolean nombreRepetido;
+    
     /**
      * Creates new form AltaAlbum
      */
@@ -73,7 +76,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         duracion = 0;
         img = null;
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.DISCONTIGUOUS_TREE_SELECTION);
-        
+        nombreRepetido = false;
+        nombreAnterior = "";
     }
     
     
@@ -333,16 +337,24 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         
         ingTema.setVisible(true);
         
-        if(web){
-            DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema);
-            listaTemas.add(dt);
-            modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+        if(nombreRepetido){
+            JOptionPane.showMessageDialog(this, "Nombre de tema Repetido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }else{
-            DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema);
-            listaTemas.add(dta);
-            modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
+            if(web){
+                DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema);
+                listaTemas.add(dt);
+                modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+            }else{
+                DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema);
+                listaTemas.add(dta);
+                modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
+            }
+            numeroTema++;
+            nombreAnterior = nombre;
         }
-        numeroTema++;
+        
+        
         
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
 
@@ -438,9 +450,11 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Se ingresaron dos temas con el mismo nombre. El nombre de tema debe ser único.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } catch (CampoVacioException ex) {
-            JOptionPane.showMessageDialog(this, "Hay un campo requerido que está vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "CAmpo vacio.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         } catch (TemaTipoInvalidoException ex) {
-            JOptionPane.showMessageDialog(this, "El tema debe contener un archivo o url de descarga.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Tipo de Tema Invalido", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
         JOptionPane.showMessageDialog(this, "Alta Album exitosa", "Felicitaciones", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
@@ -454,8 +468,15 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         web = webx;
         url = urlx;
         file = filex;
-        nombre = nombrex;
+ 
         duracion = duracionx;
+        
+        if(!nombreAnterior.equals(nombrex)){
+            nombre = nombrex;
+            nombreRepetido = false;
+        }else{
+            nombreRepetido = true;
+        }
     }
 
     private String getExtension(File f) {
