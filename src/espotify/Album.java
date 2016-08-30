@@ -66,7 +66,7 @@ public class Album implements Favoriteable {
             }
             //Validar orden: validar que no haya otro tema con ese mismo numero de orden
             //Si el num es mayor a la cantidad de temas tambien tira una exepcion ya que de seguro el orden no es correcto.
-            if (dt.getNum() <= 0 || dt.getNum() >= largo) {
+            if (dt.getNum() <= 0 || dt.getNum() > largo) {
                 throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
             } else if (orden[dt.getNum() - 1] == true) {
                 throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");

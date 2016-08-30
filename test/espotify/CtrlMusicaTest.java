@@ -2,12 +2,19 @@ package espotify;
 
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
+import espotify.Datatypes.DataTema;
+import espotify.Excepciones.AlbumRepetidoException;
 import espotify.Excepciones.ArtistaInexistenteException;
+import espotify.Excepciones.CampoVacioException;
 import espotify.Excepciones.CorreoRepetidoException;
+import espotify.Excepciones.DuracionInvalidaException;
 import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Excepciones.NickRepetidoException;
+import espotify.Excepciones.NumeroTemaInvalidoException;
+import espotify.Excepciones.TemaRepetidoException;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.After;
@@ -124,6 +131,31 @@ public class CtrlMusicaTest {
         DataGenero result = instance.ExisteArtista(nickArtista);
         assertEquals(expResult, result);
     }
+    
+    public void testAltaAlbum1() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
+        System.out.println("Alta Album - Test 1");
+        this.testExisteArtista1();
+        
+        //Crear DataTemas
+        ArrayList< DataTema> temas = new ArrayList<>();
+        temas.add(new DataTema("tema 1", 160, 1, "ElGordoAxl"));
+        temas.add(new DataTema("tema 2", 190, 2, "ElGordoAxl"));
+        temas.add(new DataTema("tema 3", 200, 3, "ElGordoAxl"));
+        temas.add(new DataTema("tema 4", 70,  4, "ElGordoAxl"));
+        temas.add(new DataTema("tema 5", 230, 5, "ElGordoAxl"));
+        
+        String nombre = "Album 1";
+        int anio = 2013;
+        ArrayList<String> generos = new ArrayList<>();
+        BufferedImage img = null;
+        String nickArtista = "ElGordoAxl";
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        
+    }
+    
+    
+    
+    
     
         /**
      * Test of ValidarGeneros method, of class CtrlMusica.
