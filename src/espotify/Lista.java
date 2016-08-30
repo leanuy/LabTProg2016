@@ -37,6 +37,14 @@ public abstract class Lista {
             a.add(t.getData());
         return a;
     }
+    
+    public ArrayList<Tema> DevolverTemas(){
+        return this.temas;
+    }
+    
+    public void AgregarTema(Tema t){
+        temas.add(t);
+    }
 
     void QuitarTema(String nomTema,String nomAlbum) {
         for (Tema t: temas){

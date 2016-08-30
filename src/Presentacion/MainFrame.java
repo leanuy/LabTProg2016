@@ -85,6 +85,7 @@ public class MainFrame extends javax.swing.JFrame {
         PublicarListaMItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         cargarDatosDePrueba = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -355,6 +356,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         ListasMenu.add(PublicarListaMItem);
 
+        jMenuItem1.setText("Agregar Tema a Lista");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        ListasMenu.add(jMenuItem1);
+
         jMenuBar1.add(ListasMenu);
 
         jMenu1.setText("Datos de Prueba");
@@ -479,6 +488,11 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.add(frameFavoritear);
         frameFavoritear.setVisible(true);
     }//GEN-LAST:event_favoritearMItemActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        AgregarTemaLista frameAgregarTemaLista = new AgregarTemaLista();
+        MainPanel.add(frameAgregarTemaLista);
+        frameAgregarTemaLista.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -557,5 +571,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JInternalFrame internalAltaPerfil;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.Interfaces.IAgregarTemaLista;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
@@ -66,5 +67,8 @@ public abstract class Fabrica {
     public static void CargarDatosIniciales() throws Exception
     {
         CtrlDatosIniciales.CargarDatosIniciales();
+    }    
+    public static IAgregarTemaLista getIAgregarTemaLista(){
+        return CtrlListas.getInstancia();
     }
 }
