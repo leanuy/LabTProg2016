@@ -202,6 +202,7 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verFotoAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFotoAlbumActionPerformed
+
         // TODO 
         // 
         if(album.getImg() == null){
@@ -209,6 +210,7 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
             return;
         }
         //help please:un alma caritativa que sabe desplegar imagenes que abra un frame loco con la foto.
+
         
         
     }//GEN-LAST:event_verFotoAlbumActionPerformed
