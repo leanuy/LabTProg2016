@@ -69,11 +69,29 @@ public class Cliente extends Usuario {
         }
         return a;
     }
+    
+        ArrayList<String> ListarListasPublicas() {
+        ArrayList<String> a = new ArrayList();
+        for(Map.Entry<String, Particular> entry : listas.entrySet()) {
+            Particular p = entry.getValue();
+            if(!(p instanceof Privada))
+                a.add(p.getNombre());
+        }
+        return a;
+    }
 
     ArrayList<DataTema> ListarTemasDeLista(String nombre) throws Exception {
         Lista l = listas.get(nombre);
         if(l!=null)
             return l.ListarTemas();
+        else
+            throw new Exception("El cliente no tiene una lista con ese nombre");
+    }
+    
+    ArrayList<Tema> ListarTemasDeLista2(String nombre) throws Exception {
+        Lista l = listas.get(nombre);
+        if(l!=null)
+            return l.DevolverTemas();
         else
             throw new Exception("El cliente no tiene una lista con ese nombre");
     }
@@ -106,5 +124,12 @@ public class Cliente extends Usuario {
             throw new Exception("El cliente no tiene una lista con ese nombre");
     }
 
+    public void AgregarTemaLista(Tema t, String lis) throws Exception{
+        Lista l = listas.get(lis);
+        if(l==null){
+            throw new Exception("La lista que tiene que existir no se encontro, algo esta mal");
+        }
+        l.AgregarTema(t);
+    }
 
 }

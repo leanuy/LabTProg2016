@@ -177,10 +177,20 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         Cliente c = BuscarCliente(nick);
         return c.ListarListasPrivadas();
     }
+    
+    ArrayList<String> ListarListasPublicasDeCliente(String nick) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarListasPublicas();
+    }
 
     public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws Exception{
         Cliente c = BuscarCliente(nick);
         return c.ListarTemasDeLista(nombre);
+    }
+    
+    public ArrayList<Tema> ListarTemasDeLista2(String nick, String nombre) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarTemasDeLista2(nombre);
     }
     
     @Override
@@ -254,5 +264,22 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
     public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws Exception{
         Artista artista = BuscarArtista(nomArtista);
         return artista.ListarAlbumes();
+    }
+    
+    public ArrayList<Tema> ListarTemasAlbum(String art, String alb) throws Exception
+    {
+        Artista artista = BuscarArtista(art);
+        Album al = artista.BuscarAlbum(alb);
+        ArrayList<Tema> temas = al.getTemas();
+        return temas;
+    }
+    
+    public void AgregarTemaLista(Tema t,String usr, String lista) throws Exception{
+        Cliente cliente = null;
+        cliente = clientes.get(usr);
+        if (cliente == null){
+            throw new Exception("No se encontro el cliente");
+        }
+        cliente.AgregarTemaLista(t, lista);
     }
 }

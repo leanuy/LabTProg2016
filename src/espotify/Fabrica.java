@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.Interfaces.IAgregarTemaLista;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
@@ -58,5 +59,9 @@ public abstract class Fabrica {
     
     public static IConsultaAlbum getIConsultaAlbum() {
         return CtrlMusica.getInstancia();
+    }
+    
+    public static IAgregarTemaLista getIAgregarTemaLista(){
+        return CtrlListas.getInstancia();
     }
 }

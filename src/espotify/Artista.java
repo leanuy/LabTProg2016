@@ -56,7 +56,7 @@ public class Artista extends Usuario{
         return da;
     }
     
-    private Album BuscarAlbum(String nombre) throws Exception {
+    public Album BuscarAlbum(String nombre) throws Exception {
         Album album = albums.get(nombre);
         if (album == null){
             throw new Exception("No existe un álbum con ese nombre!");
