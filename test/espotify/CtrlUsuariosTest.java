@@ -70,7 +70,6 @@ public class CtrlUsuariosTest {
     /**
      * Test of ConsultaCliente method, of class CtrlUsuarios.
      */
-    @Ignore
     @Test
     public void testConsultaCliente() {
         //tests de santiago que hice yo -JM42
@@ -109,17 +108,23 @@ public class CtrlUsuariosTest {
     /**
      * Test of ConsultaArtista method, of class CtrlUsuarios.
      */
-    @Ignore
     @Test
     public void testConsultaArtista() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataArtista d = new DataArtista("Soy un artista y me consultan","", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null);
+        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        try {
+            instance.AltaArtista(d);
+        } catch (Exception ex) {
+            Logger.getLogger(CtrlUsuariosTest.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         System.out.println("ConsultaArtista");
-        String s = null;
-        CtrlUsuarios instance = null;
-        DataArtistaExt expResult = null;
+        String s = "ArtistaConsultado";
+        DataArtistaExt expResult = new DataArtistaExt("ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "Soy un artista y me consultan", "", new HashMap<String,Album>());
         DataArtistaExt result = instance.ConsultaArtista(s);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**

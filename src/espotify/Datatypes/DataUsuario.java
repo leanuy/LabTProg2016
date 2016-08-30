@@ -7,6 +7,7 @@ package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
  *
@@ -47,5 +48,6 @@ public class DataUsuario {
         this.fNac = fNac;
         this.img = img;
     }
+
     
 }
