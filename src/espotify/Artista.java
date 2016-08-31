@@ -3,6 +3,7 @@ package espotify;
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
+import espotify.Datatypes.DataTema;
 import espotify.Excepciones.AlbumInexistenteException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,5 +74,12 @@ public class Artista extends Usuario{
             listaAlbums.add(actual.getNombre());
         }
         return listaAlbums;
+    }
+    
+    public Tema DevolverTema(DataTema dt){
+        String album = dt.getAlbum();
+        String tema = dt.getNombre();
+        Album a = albums.get(album);
+        return a.DevolverTema(tema);
     }
 }

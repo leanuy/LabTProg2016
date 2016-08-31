@@ -5,6 +5,8 @@ import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataParticular;
+import espotify.Excepciones.AlbumInexistenteException;
+import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
@@ -14,16 +16,17 @@ import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IConsultaLista;
 import espotify.Interfaces.IPublicarLista;
 import espotify.Interfaces.IAgregarTemaLista;
+import espotify.Interfaces.IQuitarTemaLista;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, IAgregarTemaLista{
+public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, IAgregarTemaLista, IQuitarTemaLista{
     private static CtrlListas instancia;
     private String nickMEM;
     private String nomListaMEM;
     private final HashMap<String,Defecto> listas;
-    private ArrayList<Tema> temasLista;
+    private ArrayList<DataTema> temasLista;
     
     public static CtrlListas getInstancia()
     {
@@ -101,20 +104,16 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     
 
     @Override
-    public ArrayList<String> ListarTemasLista2(String cl, String l) throws Exception  // Yo no paso x la funcion que guarda el nick!
+    public ArrayList<DataTema> ListarTemasLista2(String cl, String l) throws Exception  // Yo no paso x la funcion que guarda el nick!
     {
         if(cl==null){
             Lista lis = listas.get(l);
-            temasLista = lis.DevolverTemas();
+            temasLista = lis.ListarTemas();
         }else{
             CtrlUsuarios cu = CtrlUsuarios.getInstancia();
-            temasLista = cu.ListarTemasDeLista2(cl, l);
+            temasLista = cu.ListarTemasDeLista(cl, l);
         }
-        ArrayList a = new ArrayList();
-        for(Tema t : temasLista) {
-            a.add(t.getNombre());
-        }
-        return a;
+        return temasLista;
     }
     
     public void RemoverTemaLista(String nomTema, String nomAlbum) throws ListaInexistenteException, ClienteInexistenteException
@@ -194,41 +193,27 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         return cu.ListarAlbumesDeArtista(na);
     }
     
-    public ArrayList<String> ListarTemasAlbum(String art, String alb) throws Exception
+    public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException//,Exception
     {
         CtrlUsuarios cu = CtrlUsuarios.getInstancia();
-        temasLista = cu.ListarTemasAlbum(art, alb);
-        ArrayList<String> nombreTemas = new ArrayList();
-        String nombre;
-        for(Tema t : temasLista){
-            nombre = t.getNombre();
-            nombreTemas.add(nombre);
-        }
-        return nombreTemas;
+        return cu.ListarTemasAlbum(art, alb);
     }
     
     
-    public void AgregarTemaLista(String tema, String lista)throws Exception{
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
-        Tema dt = null;
-        String nombre;
-        for(Tema dt2 : temasLista){
-            nombre = dt2.getNombre();
-            if (nombre == null ? tema == null : nombre.equals(tema)){
-                dt = dt2;
-            }
+    public void AgregarTemaLista(DataTema dtema, String lista)throws Exception{
+        CtrlUsuarios cu = CtrlUsuarios.getInstancia();        
+        if(dtema==null){
+            throw new Exception("No se selecciono un tema valido");
         }
-        if (dt == null){
-            throw new Exception("El tema no se encuentra en los temas almacenados");
-        }
+        Tema t = cu.DevolverTema(dtema);
         if(nickMEM.equals("")){
             if(lista == null){
                 throw new Exception("No existe esa lista");
             }
             Lista l = listas.get(lista);
-            l.AgregarTema(dt);
+            l.AgregarTema(t);
         }else{
-            cu.AgregarTemaLista(dt,nickMEM, lista);
+            cu.AgregarTemaLista(t,nickMEM, lista);
         }
     }
     

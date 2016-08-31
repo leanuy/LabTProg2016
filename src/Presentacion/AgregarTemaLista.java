@@ -6,9 +6,13 @@
 package Presentacion;
 
 import espotify.Datatypes.DataTema;
+import espotify.Excepciones.AlbumInexistenteException;
+import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAgregarTemaLista;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -46,6 +50,7 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     }
     
     String ListaAGuardar = null;
+    DataTema[] listatemas = null;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -533,10 +538,15 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_AlbumBoxActionPerformed
 //--------------------------------------------------------------------------------
     private void AgregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarButtonActionPerformed
-        String tema = TemaBox.getName();
+        int i = TemaBox.getSelectedIndex();
         try{
             IAgregarTemaLista interf = Fabrica.getIAgregarTemaLista();
-            interf.AgregarTemaLista(tema, ListaAGuardar);
+            DataTema dt = null;
+            if (i == -1){
+                JOptionPane.showMessageDialog(this, "Selecciona un tema wachin!", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            dt = listatemas[i];
+            interf.AgregarTemaLista(dt, ListaAGuardar);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
@@ -580,20 +590,24 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SeleccionarArtistaActionPerformed
 
     private void SeleccionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarListaActionPerformed
-                IAgregarTemaLista interf = Fabrica.getIAgregarTemaLista();
+        IAgregarTemaLista interf = Fabrica.getIAgregarTemaLista();
         String cl = null;
         if (LPublicaButton.isSelected()){
             cl = String.valueOf(Cliente2Box.getSelectedItem());
         }
         String l = String.valueOf(Lista2Box.getSelectedItem());
         try{
-            ArrayList<String> listatemas = interf.ListarTemasLista2(cl, l);
-            int size = listatemas.size();
+            ArrayList<DataTema> lt = interf.ListarTemasLista2(cl, l);
+            int size = lt.size();
             String[] algo = new String[size];
+            listatemas = new DataTema[size];
             TemaBox.removeAll();
             int i = 0;
-            for (String tem: listatemas){
-                algo[i] = tem;
+            String tema;
+            for (DataTema tem: lt){
+                tema = tem.getNombre() + tem.getAlbum() + tem.getNomArtista();
+                algo[i] = tema;
+                listatemas[i] = tem;
                 i++;
             }
             TemaBox.setListData(algo);
@@ -625,21 +639,31 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     private void SeleccionarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarAlbumActionPerformed
         if(AlbumButton.isSelected()){        
             IAgregarTemaLista interf = Fabrica.getIAgregarTemaLista();
-            String ar = String.valueOf(ArtistaBox.getSelectedItem());
+            String ar = null;
+            ar = String.valueOf(ArtistaBox.getSelectedItem());
             String al = String.valueOf(AlbumBox.getSelectedItem());
-            try{
-                ArrayList<String> a = interf.ListarTemasAlbum(ar, al);
-                int size = a.size();
+            ArrayList<DataTema> lt=null;
+            try {
+                lt = interf.ListarTemasAlbum(ar, al);
+            } catch (ArtistaInexistenteException ex) {
+                JOptionPane.showMessageDialog(this, "No se selecciono ningun artista", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } catch (AlbumInexistenteException ex) {
+                JOptionPane.showMessageDialog(this, "No se selecciono ningun album", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            if(lt != null){
+                int size = lt.size();
                 String[] algo = new String[size];
+                listatemas = new DataTema[size];
                 TemaBox.removeAll();
                 int i = 0;
-                for (String s: a){
-                    algo[i] = s;
+                String tema;
+                for (DataTema tem: lt){
+                    tema = tem.getNombre() + tem.getAlbum() + tem.getNomArtista();
+                    algo[i] = tema;
+                    listatemas[i] = tem;
                     i++;
                 }
                 TemaBox.setListData(algo);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_SeleccionarAlbumActionPerformed

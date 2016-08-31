@@ -154,7 +154,7 @@ public class Cliente extends Usuario {
     public void AgregarTemaLista(Tema t, String lis) throws Exception{
         Lista l = listas.get(lis);
         if(l==null){
-            throw new Exception("La lista que tiene que existir no se encontro, algo esta mal");
+            throw new Exception("La lista que tiene que existir no se encontro");
         }
         l.AgregarTema(t);
     }
