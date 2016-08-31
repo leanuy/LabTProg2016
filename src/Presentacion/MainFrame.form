@@ -376,6 +376,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
             </MenuItem>
+<<<<<<< HEAD
 <<<<<<< 1535f471e8d3bfd10b61a2f9cbbe8928a4702fcd
           </SubComponents>
         </Menu>
@@ -394,6 +395,8 @@
             </MenuItem>
 =======
 >>>>>>> Todo lo de agregar tema a lista
+=======
+>>>>>>> 8147f90f58a3eccc14933ffba7d25d64980911cf
           </SubComponents>
         </Menu>
       </SubComponents>

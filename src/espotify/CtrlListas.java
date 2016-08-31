@@ -216,5 +216,4 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
             cu.AgregarTemaLista(t,nickMEM, lista);
         }
     }
-    
 }
