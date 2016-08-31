@@ -36,9 +36,9 @@ public abstract class CtrlDatosIniciales {
         cal.set(1927, 2, 23);
         dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, null);
         ctrlAltaPerfil.AltaCliente(dataCliente);
-        //cal.set(1937, 5, 8);
-        //d = new DataCliente("Eleven11", "Eleven", "", "Eleven11@gmail.com", cal, null);
-        //ctrl.AltaCliente(d);
+        cal.set(1937, 5, 8);
+        dataCliente = new DataCliente("Eleven11", "Eleven", " ", "Eleven11@gmail.com", cal, null);
+        ctrlAltaPerfil.AltaCliente(dataCliente);
         
         //ALTA DE SEGUIDORES
         IAltaSeguir ctrlSeguir = Fabrica.getIAltaSeguir();
