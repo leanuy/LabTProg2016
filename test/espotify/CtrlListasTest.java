@@ -10,6 +10,9 @@ import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Excepciones.YaPublicaException;
+import espotify.Interfaces.IAltaLista;
+import espotify.Interfaces.IAltaPerfil;
+import espotify.Interfaces.IPublicarLista;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,7 +33,7 @@ public class CtrlListasTest {
     
     @BeforeClass
     public static void setUpClass() {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        IAltaPerfil cu = Fabrica.getIAltaPerfil();
         try {
             cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null));
             cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null));
@@ -58,27 +61,30 @@ public class CtrlListasTest {
     public void testPublicarLista1() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
         System.out.println("PublicarLista: ok");
         DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica", null);
-        CtrlListas instance = CtrlListas.getInstancia();
-        instance.AltaListaParticular(d);      
-        instance.PublicarLista("Mi Lista Publica", "TesterLista");
+        IAltaLista instance = Fabrica.getIAltaLista();
+        instance.AltaListaParticular(d);
+        IPublicarLista ctrl = Fabrica.getIPublicarLista();
+        ctrl.PublicarLista("Mi Lista Publica", "TesterLista");
     }
     
     @Test (expected=ClienteInexistenteException.class)
     public void testPublicarLista2() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
         System.out.println("PublicarLista: nombre de usuario incorrecto");
         DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder", null);
-        CtrlListas instance = CtrlListas.getInstancia();
-        instance.AltaListaParticular(d);      
-        instance.PublicarLista("Mi Lista Publica", "TesterListakas.dbg");
+        IAltaLista instance = Fabrica.getIAltaLista();
+        instance.AltaListaParticular(d);   
+        IPublicarLista ctrl = Fabrica.getIPublicarLista();
+        ctrl.PublicarLista("Mi Lista Publica", "TesterListakas.dbg");
     }
     
     @Test (expected=ListaInexistenteException.class)
     public void testPublicarLista3() throws ClienteInexistenteException, ListaInexistenteException, ListaRepetidaException, YaPublicaException {
         System.out.println("PublicarLista: nombre de lista incorrecto");
         DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder por el nombre", null);
-        CtrlListas instance = CtrlListas.getInstancia();
-        instance.AltaListaParticular(d);      
-        instance.PublicarLista("Mi Lista Publicanbasdf", "TesterLista");
+        IAltaLista instance = Fabrica.getIAltaLista();
+        instance.AltaListaParticular(d); 
+        IPublicarLista ctrl = Fabrica.getIPublicarLista();
+        ctrl.PublicarLista("Mi Lista Publicanbasdf", "TesterLista");
     }
 
     /**
@@ -176,7 +182,7 @@ public class CtrlListasTest {
     public void testAltaListaParticular1() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular: caso ok");
         DataParticular d = new DataParticular("TesterLista", "Mi Lista", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaParticular(d);
     }
     
@@ -184,7 +190,7 @@ public class CtrlListasTest {
     public void testAltaListaParticular2() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:usuario inexistente");
         DataParticular d = new DataParticular("no existo yey", "Mi Lista", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaParticular(d);
     }
     
@@ -192,7 +198,7 @@ public class CtrlListasTest {
     public void testAltaListaParticular3() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:dos clientes con listas de igual nombre");
         DataParticular d = new DataParticular("TesterLista", "Lista que comparte nombre", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaParticular(d);
         d = new DataParticular("TesterLista2", "Lista que comparte nombre", null);
         instance.AltaListaParticular(d);
@@ -202,7 +208,7 @@ public class CtrlListasTest {
     public void testAltaListaParticular4() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:nombre de lista repetido");
         DataParticular d = new DataParticular("TesterLista", "Repetido", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaParticular(d);
         d = new DataParticular("TesterLista", "Repetido", null);
         instance.AltaListaParticular(d);
@@ -212,7 +218,7 @@ public class CtrlListasTest {
     public void testAltaListaParticular5() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:nombre de lista vacío");
         DataParticular d = new DataParticular("TesterLista", "", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaParticular(d);
     }
 
@@ -223,7 +229,7 @@ public class CtrlListasTest {
     public void testAltaListaDefecto1() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: género=Genero");
         DataDefecto d = new DataDefecto("Genero", "Lista genérica", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaDefecto(d);
     }
     
@@ -231,7 +237,7 @@ public class CtrlListasTest {
     public void testAltaListaDefecto2() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: género inexistente");
         DataDefecto d = new DataDefecto("aksdnlfaesufmx", "Lista que no va a andar", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaDefecto(d);
     }
     
@@ -239,7 +245,7 @@ public class CtrlListasTest {
     public void testAltaListaDefecto3() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: nombre repetido");
         DataDefecto d = new DataDefecto("Genero", "Soy una lista con un nombre comun", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaDefecto(d);
         instance.AltaListaDefecto(d);
     }
@@ -248,7 +254,7 @@ public class CtrlListasTest {
     public void testAltaListaDefecto4() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: nombre vacío");
         DataDefecto d = new DataDefecto("Genero", "", null);
-        CtrlListas instance = CtrlListas.getInstancia();
+        IAltaLista instance = Fabrica.getIAltaLista();
         instance.AltaListaDefecto(d);
     }
 

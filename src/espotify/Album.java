@@ -30,14 +30,6 @@ public class Album implements Favoriteable {
         return nombre;
     }
 
-    public int getAnio() {
-        return anio;
-    }
-
-    public BufferedImage getImg() {
-        return img;
-    }
-
     public String getNickArtista() {
         return this.artista.getNick();
     }
