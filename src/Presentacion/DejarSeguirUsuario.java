@@ -5,10 +5,13 @@
  */
 package Presentacion;
 
+import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IDejarDeSeguir;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -149,7 +152,12 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         }
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
         IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
-        String[] seguid = interf.getSeguidos(Seguidor);
+        String[] seguid=null;
+        try {
+            seguid = interf.getSeguidos(Seguidor);
+        } catch (ClienteInexistenteException ex) {
+            Logger.getLogger(DejarSeguirUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         NickSeguido.removeAllItems();
         for(String stri : seguid) {
             NickSeguido.addItem(stri);
@@ -160,7 +168,12 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
         IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
-        String[] seguid = interf.getSeguidos(Seguidor);
+        String[] seguid=null;
+        try {
+            seguid = interf.getSeguidos(Seguidor);
+        } catch (ClienteInexistenteException ex) {
+            Logger.getLogger(DejarSeguirUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         NickSeguido.removeAllItems();
         for(String stri : seguid) {
             NickSeguido.addItem(stri);

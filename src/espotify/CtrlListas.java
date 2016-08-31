@@ -44,35 +44,35 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
 
     public void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         cu.PublicarLista(nomLista,nick);
     }
     
     public ArrayList<String> ListarClientes()
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarClientes();
     }
     public ArrayList<String> ListarArtistas()
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarArtistas();
     }
     public ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException
     {
         nickMEM=nick;
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasDeCliente(nick);
     }
     public ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasPrivadasDeCliente(nick);
     }
     
     public ArrayList<String> ListarListasPubliasDeCliente(String nick) throws Exception
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasPublicasDeCliente(nick);
     }
     
@@ -97,7 +97,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         }
         else
         {
-            CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+            CtrlUsuarios cu = new CtrlUsuarios();
             return cu.ListarTemasDeLista(nickMEM,nombre);
         }
     }
@@ -110,7 +110,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
             Lista lis = listas.get(l);
             temasLista = lis.ListarTemas();
         }else{
-            CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+            CtrlUsuarios cu = new CtrlUsuarios();
             temasLista = cu.ListarTemasDeLista(cl, l);
         }
         return temasLista;
@@ -124,7 +124,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         }
         else
         {
-            CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+            CtrlUsuarios cu = new CtrlUsuarios();
             cu.QuitarTemaDeLista(nickMEM,nomListaMEM,nomTema,nomAlbum);
         }
     }
@@ -138,7 +138,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     
     public void AltaListaParticular(DataParticular d) throws ListaRepetidaException, ClienteInexistenteException
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         cu.AltaLista(d);
     }
     
@@ -175,7 +175,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     
     public DataLista DarInfoParticular(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.DarInfoLista(nomLista, nick);
     }
     
@@ -189,19 +189,19 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
 
     public ArrayList<String> ListarAlbumesDeArtista(String na) throws Exception
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarAlbumesDeArtista(na);
     }
     
     public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException//,Exception
     {
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();
+        CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarTemasAlbum(art, alb);
     }
     
     
     public void AgregarTemaLista(DataTema dtema, String lista)throws Exception{
-        CtrlUsuarios cu = CtrlUsuarios.getInstancia();        
+        CtrlUsuarios cu = new CtrlUsuarios();        
         if(dtema==null){
             throw new Exception("No se selecciono un tema valido");
         }

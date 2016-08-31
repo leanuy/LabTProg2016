@@ -22,23 +22,23 @@ public abstract class Fabrica {
     }
     public static IAltaPerfil getIAltaPerfil()
     {
-        return CtrlUsuarios.getInstancia();
+        return new CtrlUsuarios();
     }
     public static IAltaSeguir getIAltaSeguir()
     {
-        return CtrlUsuarios.getInstancia();
+        return new CtrlUsuarios();
     }
     public static IConsultaArtista getIConsultaArtista()
     {
-        return CtrlUsuarios.getInstancia();
+        return new CtrlUsuarios();
     }
     public static IConsultaCliente getIConsultaCliente()
     {
-        return CtrlUsuarios.getInstancia();
+        return new CtrlUsuarios();
     }
     public static IDejarDeSeguir getIDejarDeSeguir()
     {
-        return CtrlUsuarios.getInstancia();
+        return new CtrlUsuarios();
     }
     public static IAltaLista getIAltaLista()
     {
@@ -63,7 +63,7 @@ public abstract class Fabrica {
         return CtrlMusica.getInstancia();
     }
     public static IFavoritear getIFavoritear() {
-        return CtrlUsuarios.getInstancia();
+        return new CtrlUsuarios();
     }  
     
     public static IAgregarTemaLista getIAgregarTemaLista(){

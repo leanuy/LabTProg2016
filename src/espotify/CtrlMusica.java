@@ -45,7 +45,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
     
     //otros métodos
     public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws ArtistaInexistenteException, AlbumInexistenteException {
-        CtrlUsuarios ctrl_usuarios = CtrlUsuarios.getInstancia();
+        CtrlUsuarios ctrl_usuarios = new CtrlUsuarios();
         DataAlbumExt data_album_ext = ctrl_usuarios.ConsultaAlbum(nomAlbum, nomArtista);
         return data_album_ext;
     }
@@ -98,18 +98,18 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
     }
     
     public ArrayList<String> ListarArtistas(){
-        CtrlUsuarios ctrl_usuarios = CtrlUsuarios.getInstancia();
+        CtrlUsuarios ctrl_usuarios = new CtrlUsuarios();
         return ctrl_usuarios.ListarArtistas();
     }
     public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
-        CtrlUsuarios ctrl_usuarios = CtrlUsuarios.getInstancia();
+        CtrlUsuarios ctrl_usuarios = new CtrlUsuarios();
         return ctrl_usuarios.ListarAlbumesDeArtista(nomArtista);
     }
     
     //AltaAlbum
     
     public DataGenero ExisteArtista(String nickArtista) throws ArtistaInexistenteException {
-        CtrlUsuarios ctrlUsuarios = CtrlUsuarios.getInstancia();
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
         Artista inst_artista = ctrlUsuarios.BuscarArtista(nickArtista);
         this.artistaMEM = inst_artista;
         return this.ListarGeneros();
