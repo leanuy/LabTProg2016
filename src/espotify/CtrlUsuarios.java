@@ -274,12 +274,12 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         return artista.ListarAlbumes();
     }
     
-    public ArrayList<Tema> ListarTemasAlbum(String art, String alb) throws Exception
+    public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException
     {
         Artista artista = BuscarArtista(art);
         Album al = artista.BuscarAlbum(alb);
-        ArrayList<Tema> temas = al.getTemas();
-        return temas;
+        ArrayList<DataTema> datatemas = al.getDataTemas();
+        return datatemas;
     }
     
     public void AgregarTemaLista(Tema t,String usr, String lista) throws Exception{
@@ -289,5 +289,11 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
             throw new Exception("No se encontro el cliente");
         }
         cliente.AgregarTemaLista(t, lista);
+    }
+    
+    public Tema DevolverTema(DataTema dt){
+        String art = dt.getNomArtista();
+        Artista a = artistas.get(art);
+        return a.DevolverTema(dt);
     }
 }

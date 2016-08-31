@@ -12,6 +12,7 @@ import espotify.Interfaces.IDejarDeSeguir;
 import espotify.Interfaces.IPublicarLista;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IConsultaAlbum;
+import espotify.Interfaces.IQuitarTemaLista;
 
 public abstract class Fabrica {
     public static IAltaGenero getIAltaGenero()
@@ -62,6 +63,10 @@ public abstract class Fabrica {
     }
     
     public static IAgregarTemaLista getIAgregarTemaLista(){
+        return CtrlListas.getInstancia();
+    }
+    
+    public static IQuitarTemaLista getIQuitarTemaLista(){
         return CtrlListas.getInstancia();
     }
 }

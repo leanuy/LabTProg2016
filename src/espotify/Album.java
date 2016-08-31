@@ -46,8 +46,14 @@ public class Album implements Favoriteable {
         this.generos = generos;
     }
 
-    public ArrayList<Tema> getTemas() {
-        return this.temas;
+    public ArrayList<DataTema> getDataTemas() {
+        ArrayList<DataTema> datatema = new ArrayList<>();
+        DataTema dt;
+        for(Tema t : temas){
+            dt = t.getData();
+            datatema.add(dt);
+        }
+        return datatema;
     }
 
     private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, TemaTipoInvalidoException {
@@ -125,5 +131,15 @@ public class Album implements Favoriteable {
             nombre_generos.add(genero_actual.getNombre());
         }
         return new DataAlbumExt(data_temas, this.nombre, this.anio, nombre_generos, this.img, artista.getNick());
+    }
+    
+    public Tema DevolverTema(String nombretema){
+        Tema t = null;
+        for(Tema t2 : temas){
+            if(t2.getNombre()==nombretema){
+                t = t2;
+            }
+        }
+        return t;
     }
 }
