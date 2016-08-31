@@ -17,6 +17,8 @@ import espotify.Excepciones.NickRepetidoException;
 import espotify.Excepciones.NumeroTemaInvalidoException;
 import espotify.Excepciones.TemaRepetidoException;
 import espotify.Excepciones.TemaTipoInvalidoException;
+import espotify.Interfaces.IAltaAlbum;
+import espotify.Interfaces.IAltaGenero;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,9 +39,10 @@ public class AltaAlbumTest {
     public static void setUpClass() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, GeneroInexistenteException, GeneroRepetidoException {
         CtrlUsuariosTest ctrlUsuariosTest = new CtrlUsuariosTest();
         ctrlUsuariosTest.testAltaArtista1();
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        instance.AltaGenero(new DataGenero("Pop", ""));
-        instance.AltaGenero(new DataGenero("Jazz", ""));
+        
+        IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
+        iAltaGenero.AltaGenero(new DataGenero("Pop", ""));
+        iAltaGenero.AltaGenero(new DataGenero("Jazz", ""));
     }
 
     @AfterClass
@@ -47,7 +50,7 @@ public class AltaAlbumTest {
     }
 
     @Before
-    public void setUp() {
+    public void setUp(){
     }
 
     @After
@@ -93,9 +96,13 @@ public class AltaAlbumTest {
         System.out.println("ExisteArtista1: Existe artista. Debe devolver la lista de generos del sistema.");
 
         String nickArtista = "ElGordoAxl";
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        DataGenero expResult = instance.ListarGeneros();
-        DataGenero result = instance.ExisteArtista(nickArtista);
+        
+        IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
+        DataGenero expResult = iAltaGenero.ListarGeneros();
+        
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        DataGenero result = iAltaAlbum.ExisteArtista(nickArtista);
+        
         assertEquals(expResult, result);
     }
 
@@ -108,9 +115,9 @@ public class AltaAlbumTest {
     public void testExisteArtista2() throws ArtistaInexistenteException {
         System.out.println("ExisteArtista: No existe artista");
         String nickArtista = "";
-        CtrlMusica instance = CtrlMusica.getInstancia();
         DataGenero expResult = null;
-        DataGenero result = instance.ExisteArtista(nickArtista);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        DataGenero result = iAltaAlbum.ExisteArtista(nickArtista);
         assertEquals(expResult, result);
     }
 
@@ -135,11 +142,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     /**
@@ -165,8 +169,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     /**
@@ -194,8 +198,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     @Test(expected = AlbumRepetidoException.class)
@@ -215,12 +219,9 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.AltaAlbum(data);
     }
 
     @Test(expected = DuracionInvalidaException.class)
@@ -240,11 +241,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     @Test(expected = NumeroTemaInvalidoException.class)
@@ -265,11 +263,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     @Test(expected = NumeroTemaInvalidoException.class)
@@ -290,11 +285,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     @Test(expected = NumeroTemaInvalidoException.class)
@@ -315,11 +307,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     @Test(expected = TemaRepetidoException.class)
@@ -340,11 +329,8 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 
     @Test(expected = TemaTipoInvalidoException.class)
@@ -365,10 +351,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        CtrlMusica instance = CtrlMusica.getInstancia();
-        if (!instance.ExisteGenero("Pop")) {
-            instance.AltaGenero(new DataGenero("Pop", ""));
-        }
-        instance.AltaAlbum(data);
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(data);
     }
 }
