@@ -59,7 +59,7 @@ public class Usuario {
         this.nombre = d.getNombre();
         this.apellido = d.getApellido();
         this.correo = d.getCorreo();
-        this.fNac = d.getfNac();
+        this.fNac = (Calendar) d.getfNac().clone();
         this.img = d.getImg();
     }
 }
