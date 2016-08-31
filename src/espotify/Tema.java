@@ -27,7 +27,7 @@ public class Tema implements Favoriteable {
     }
 
     DataTema getData() {
-        return new DataTema(nombre, duracion, num,getNomArtista());
+        return new DataTema(nombre, duracion, num, getNomArtista(), getNombreAlbum());
     }
 
     public Tema(DataTema dt, Album album) {

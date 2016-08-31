@@ -190,10 +190,20 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         Cliente c = BuscarCliente(nick);
         return c.ListarListasPrivadas();
     }
+    
+    ArrayList<String> ListarListasPublicasDeCliente(String nick) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarListasPublicas();
+    }
 
     public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws ClienteInexistenteException, ListaInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.ListarTemasDeLista(nombre);
+    }
+    
+    public ArrayList<Tema> ListarTemasDeLista2(String nick, String nombre) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarTemasDeLista2(nombre);
     }
     
     @Override
@@ -307,14 +317,33 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         Artista a = BuscarArtista(nickArtista);
         return a.BuscarAlbum(nomAlbum);
     }
-    Tema DevolverTema(DataTema d) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public void DesFavoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException
     {
         Favoriteable f = BuscarFavoriteable(d);
         Cliente c = BuscarCliente(nick);
         c.DesFavoritear(f);
+    }
+    public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException
+    {
+        Artista artista = BuscarArtista(art);
+        Album al = artista.BuscarAlbum(alb);
+        ArrayList<DataTema> datatemas = al.getDataTemas();
+        return datatemas;
+    }
+    
+    public void AgregarTemaLista(Tema t,String usr, String lista) throws Exception{
+        Cliente cliente = null;
+        cliente = clientes.get(usr);
+        if (cliente == null){
+            throw new Exception("No se encontro el cliente");
+        }
+        cliente.AgregarTemaLista(t, lista);
+    }
+    
+    public Tema DevolverTema(DataTema dt){
+        String art = dt.getNomArtista();
+        Artista a = artistas.get(art);
+        return a.DevolverTema(dt);
     }
 }
