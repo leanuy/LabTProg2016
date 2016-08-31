@@ -7,6 +7,7 @@ import espotify.Datatypes.DataUsuario;
 import java.util.ArrayList;
 import espotify.Datatypes.DataParticular;
 import espotify.Excepciones.AutoSeguirseException;
+import espotify.Excepciones.FavoritoRepetidoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Excepciones.SeguidoInexistenteException;
@@ -18,11 +19,13 @@ import java.util.Map;
 public class Cliente extends Usuario {
     private final HashMap<String,Usuario> seguidos;
     private final HashMap<String,Particular> listas;
+    private final ArrayList<Favoriteable> favoritos;
     
     public Cliente(DataUsuario d) {
         super(d);
         this.seguidos=new HashMap<>();
         this.listas=new HashMap<>();
+        this.favoritos=new ArrayList<>();
     }
     
     public DataClienteExt getDataClienteExt() {
@@ -100,7 +103,7 @@ public class Cliente extends Usuario {
         return BuscarLista(nomLista).getData();
     }
     
-    Particular BuscarLista(String nomLista) throws ListaInexistenteException
+    public Particular BuscarLista(String nomLista) throws ListaInexistenteException
     {
         Particular l = listas.get(nomLista);
         if(l!=null)
@@ -109,5 +112,26 @@ public class Cliente extends Usuario {
             throw new ListaInexistenteException();
     }
 
+    void Favoritear(Favoriteable f) throws FavoritoRepetidoException {
+        if(!favoritos.contains(f))
+            favoritos.add(f);
+        else
+            throw new FavoritoRepetidoException();
+    }
+
+    Publica BuscarListaPublica(String nomLista) throws ListaInexistenteException {
+        Particular l = BuscarLista(nomLista);
+        if (l instanceof Publica)
+            return (Publica) l;
+        else
+            throw new ListaInexistenteException();
+    }
+
+    void DesFavoritear(Favoriteable f) throws FavoritoRepetidoException {
+        if(favoritos.contains(f))
+            favoritos.remove(f);
+        else
+            throw new FavoritoRepetidoException();
+    }
 
 }

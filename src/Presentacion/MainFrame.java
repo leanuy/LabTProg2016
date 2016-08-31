@@ -80,6 +80,7 @@ public class MainFrame extends javax.swing.JFrame {
         SocialMenu = new javax.swing.JMenu();
         SeguirMItem = new javax.swing.JMenuItem();
         DejarSeguirMItem = new javax.swing.JMenuItem();
+        favoritearMItem = new javax.swing.JMenuItem();
         ListasMenu = new javax.swing.JMenu();
         PublicarListaMItem = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
@@ -334,6 +335,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         SocialMenu.add(DejarSeguirMItem);
 
+        favoritearMItem.setText("Agregar a Favoritos");
+        favoritearMItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                favoritearMItemActionPerformed(evt);
+            }
+        });
+        SocialMenu.add(favoritearMItem);
+
         jMenuBar1.add(SocialMenu);
 
         ListasMenu.setText("Listas");
@@ -465,6 +474,12 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.PLAIN_MESSAGE);        }
     }//GEN-LAST:event_cargarDatosDePruebaActionPerformed
 
+    private void favoritearMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favoritearMItemActionPerformed
+        Favoritear frameFavoritear = new Favoritear();
+        MainPanel.add(frameFavoritear);
+        frameFavoritear.setVisible(true);
+    }//GEN-LAST:event_favoritearMItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -537,6 +552,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu SocialMenu;
     private javax.swing.JMenuItem cargarDatosDePrueba;
     private javax.swing.JMenuItem cerrarOption;
+    private javax.swing.JMenuItem favoritearMItem;
     private javax.swing.JInternalFrame internalAltaAlbum;
     private javax.swing.JInternalFrame internalAltaPerfil;
     private javax.swing.JMenu jMenu1;

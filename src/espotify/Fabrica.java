@@ -11,6 +11,7 @@ import espotify.Interfaces.IDejarDeSeguir;
 import espotify.Interfaces.IPublicarLista;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IConsultaAlbum;
+import espotify.Interfaces.IFavoritear;
 
 public abstract class Fabrica {
     public static IAltaGenero getIAltaGenero()
@@ -58,6 +59,9 @@ public abstract class Fabrica {
     
     public static IConsultaAlbum getIConsultaAlbum() {
         return CtrlMusica.getInstancia();
+    }
+    public static IFavoritear getIFavoritear() {
+        return CtrlUsuarios.getInstancia();
     }
     public static void CargarDatosIniciales() throws Exception
     {

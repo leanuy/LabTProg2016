@@ -1,10 +1,13 @@
 package espotify;
 
+import espotify.Datatypes.DataAlbum;
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataClienteExt;
+import espotify.Datatypes.DataDefecto;
+import espotify.Datatypes.DataFavoriteable;
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataTema;
 import espotify.Interfaces.IAltaPerfil;
@@ -18,6 +21,7 @@ import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.CorreoRepetidoException;
+import espotify.Excepciones.FavoritoRepetidoException;
 import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
@@ -26,13 +30,14 @@ import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
+import espotify.Interfaces.IFavoritear;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil{
+public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear{
     private static CtrlUsuarios instancia;
     private final HashMap<String,Cliente> clientes;
     private final HashMap<String,Artista> artistas;
@@ -262,5 +267,54 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
     public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
         Artista artista = BuscarArtista(nomArtista);
         return artista.ListarAlbumes();
+    }
+    
+    public void Favoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException
+    {
+        Favoriteable f = BuscarFavoriteable(d);
+        Cliente c = BuscarCliente(nick);
+        c.Favoritear(f);
+    }
+    
+    public Favoriteable BuscarFavoriteable(DataFavoriteable d) throws ListaInexistenteException, ClienteInexistenteException, ArtistaInexistenteException, AlbumInexistenteException
+    {
+        if (d instanceof DataLista)
+        {
+            if(d instanceof DataParticular)
+            {
+                DataParticular dp = (DataParticular) d;
+                return BuscarListaPublicaDeCliente(dp.getNomCliente(),dp.getNombre());
+            }
+            else if (d instanceof DataDefecto)
+                return CtrlListas.getInstancia().BuscarLista(((DataDefecto) d).getNombre());
+        } else if (d instanceof DataAlbum)
+        {
+            DataAlbum da = (DataAlbum) d;
+            return BuscarAlbumDeArtista(da.getNickArtista(),da.getNombre());
+        }
+        else if (d instanceof DataTema)
+            return DevolverTema((DataTema)d);
+        return null;
+    }
+    
+    Publica BuscarListaPublicaDeCliente(String nickCliente, String nomLista) throws ClienteInexistenteException, ListaInexistenteException
+    {
+        Cliente c = BuscarCliente(nickCliente);
+        return c.BuscarListaPublica(nomLista);
+    }
+    Album BuscarAlbumDeArtista(String nickArtista,String nomAlbum) throws ArtistaInexistenteException, AlbumInexistenteException
+    {
+        Artista a = BuscarArtista(nickArtista);
+        return a.BuscarAlbum(nomAlbum);
+    }
+    Tema DevolverTema(DataTema d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public void DesFavoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException
+    {
+        Favoriteable f = BuscarFavoriteable(d);
+        Cliente c = BuscarCliente(nick);
+        c.DesFavoritear(f);
     }
 }

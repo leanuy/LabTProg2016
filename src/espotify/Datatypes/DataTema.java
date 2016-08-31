@@ -1,6 +1,6 @@
 package espotify.Datatypes;
 
-public class DataTema {
+public class DataTema implements DataFavoriteable{
     private String nombre;
     private int duracion;
     private int num;
