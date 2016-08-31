@@ -7,8 +7,11 @@ package Presentacion;
 
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataTema;
+import espotify.Datatypes.DataTemaArchivo;
 import espotify.Datatypes.DataTemaWeb;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -19,11 +22,13 @@ import javax.swing.ListSelectionModel;
  *
  * @author leandro
  */
-public class AlbumConsultado extends javax.swing.JInternalFrame {
+public class AlbumConsultado extends javax.swing.JDialog {
     
     
     private ArrayList<DataTema> temas;
+    private ArrayList<String> genders;
     private DefaultListModel modeloTemas; 
+    private DefaultListModel modeloGenders; 
     private DataAlbumExt album;
     
     /**
@@ -36,11 +41,17 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
         nickArtista.setText(data.getNickArtista());
         anioAlbum.setText(String.valueOf(data.getAnio()));
         temas = data.getTemas();
-        modeloTemas = new DefaultListModel();        
+        genders = data.getGeneros();
+        modeloTemas = new DefaultListModel();  
+        modeloGenders = new DefaultListModel(); 
         ListaTemas.setModel(modeloTemas);
+        ListaGenders.setModel(modeloGenders);
         ListaTemas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         for(DataTema d : temas){
-            modeloTemas.addElement(String.valueOf(d.getNum())+ d.getNombre());
+            modeloTemas.addElement(String.valueOf(d.getNum())+ " - " +d.getNombre() + " - " + d.getDuracion());
+        }
+        for(String g: genders){
+            modeloGenders.addElement(g);
         }
     }
 
@@ -64,11 +75,11 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         nickArtista = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTree1 = new javax.swing.JTree();
         jLabel5 = new javax.swing.JLabel();
         descargarTema = new javax.swing.JButton();
         salirButton = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        ListaGenders = new javax.swing.JList<>();
 
         setTitle("Album Info");
 
@@ -87,16 +98,17 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
         ImagePanel.setLayout(ImagePanelLayout);
         ImagePanelLayout.setHorizontalGroup(
             ImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ImagePanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ImagePanelLayout.createSequentialGroup()
+                .addContainerGap(43, Short.MAX_VALUE)
                 .addComponent(verFotoAlbum)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addContainerGap())
         );
         ImagePanelLayout.setVerticalGroup(
             ImagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ImagePanelLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(verFotoAlbum)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(ListaTemas);
@@ -104,9 +116,6 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
         jLabel3.setText("Lista de Temas");
 
         jLabel4.setText("Artista:");
-
-        jTree1.setModel(null);
-        jScrollPane2.setViewportView(jTree1);
 
         jLabel5.setText("Generos del album:");
 
@@ -124,6 +133,10 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
             }
         });
 
+        ListaGenders.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaGenders.setToolTipText("");
+        jScrollPane3.setViewportView(ListaGenders);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,25 +145,27 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel3)
+                        .addGap(165, 165, 165))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(AlbumName, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                                        .addComponent(nickArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(anioAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3))
-                        .addGap(53, 53, 53))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(AlbumName, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
-                                .addComponent(nickArtista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(anioAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)))
                 .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -185,7 +200,7 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(ImagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -209,7 +224,8 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
             return;
         }
         //help please:un alma caritativa que sabe desplegar imagenes que abra un frame loco con la foto.
-        
+        ImagenAlbum frameImagen = new ImagenAlbum(album.getImg());
+        frameImagen.setVisible(true);
         
     }//GEN-LAST:event_verFotoAlbumActionPerformed
 
@@ -243,14 +259,38 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
         }else{
             JFileChooser fileChooser = new JFileChooser();  //en construccion
             fileChooser.setDialogTitle("Descargar Tema en...");   
-            fileChooser.setName(temaElegido.getNombre());
-
+            
+            File fileToSave = null;
+            fileChooser.setSelectedFile(new File(temaElegido.getNombre() + ".mp3"));
+            
             int userSelection = fileChooser.showSaveDialog(this);
-
+            
             if (userSelection == JFileChooser.APPROVE_OPTION) {
-                File fileToSave = fileChooser.getSelectedFile();
-                System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+                fileToSave = fileChooser.getSelectedFile();
+                //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
+                
+            }else{
+                return;
             }
+            if(fileToSave == null){
+                JOptionPane.showMessageDialog(this,"Problemas al seleccionar destino","Atencion!.",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            try{
+                File fileElegido = ((DataTemaArchivo)temaElegido).getArchivo();
+                
+                FileInputStream fis = new FileInputStream(fileElegido);
+                FileOutputStream alRes = new FileOutputStream(fileToSave);
+                alRes.flush();
+                byte[] buf = new byte[8192];
+                while (fis.read(buf, 0, 8192) != -1){
+                    alRes.write(buf);
+                }
+                alRes.close();
+                JOptionPane.showMessageDialog(this,"Tema descargado con exito!","Well Done!.",JOptionPane.INFORMATION_MESSAGE);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this,"Problemas al descargar el archivo, llame a soporte","Atencion!.",JOptionPane.ERROR_MESSAGE);
+            }    // WTF?????????        marca un coso rojo y ni idea
         }
     }//GEN-LAST:event_descargarTemaActionPerformed
 
@@ -258,6 +298,7 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AlbumName;
     private javax.swing.JPanel ImagePanel;
+    private javax.swing.JList<String> ListaGenders;
     private javax.swing.JList<String> ListaTemas;
     private javax.swing.JLabel anioAlbum;
     private javax.swing.JButton descargarTema;
@@ -267,8 +308,7 @@ public class AlbumConsultado extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTree jTree1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel nickArtista;
     private javax.swing.JButton salirButton;
     private javax.swing.JButton verFotoAlbum;
