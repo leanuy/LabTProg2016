@@ -6,9 +6,13 @@
 package Presentacion;
 
 
+import espotify.Fabrica;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -78,6 +82,8 @@ public class MainFrame extends javax.swing.JFrame {
         DejarSeguirMItem = new javax.swing.JMenuItem();
         ListasMenu = new javax.swing.JMenu();
         PublicarListaMItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        cargarDatosDePrueba = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -342,6 +348,18 @@ public class MainFrame extends javax.swing.JFrame {
 
         jMenuBar1.add(ListasMenu);
 
+        jMenu1.setText("Datos de Prueba");
+
+        cargarDatosDePrueba.setText("Cargar");
+        cargarDatosDePrueba.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarDatosDePruebaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(cargarDatosDePrueba);
+
+        jMenuBar1.add(jMenu1);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -437,6 +455,16 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ConsultaListaMenuItemActionPerformed
 
+    private void cargarDatosDePruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDatosDePruebaActionPerformed
+        try {
+            Fabrica.CargarDatosIniciales();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(new JDialog(),
+            "No se pudieron cargar los datos",
+            "Error",
+            JOptionPane.PLAIN_MESSAGE);        }
+    }//GEN-LAST:event_cargarDatosDePruebaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -507,9 +535,11 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem SeguirMItem;
     private javax.swing.JMenu SesionDropDown;
     private javax.swing.JMenu SocialMenu;
+    private javax.swing.JMenuItem cargarDatosDePrueba;
     private javax.swing.JMenuItem cerrarOption;
     private javax.swing.JInternalFrame internalAltaAlbum;
     private javax.swing.JInternalFrame internalAltaPerfil;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }

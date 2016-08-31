@@ -59,4 +59,8 @@ public abstract class Fabrica {
     public static IConsultaAlbum getIConsultaAlbum() {
         return CtrlMusica.getInstancia();
     }
+    public static void CargarDatosIniciales() throws Exception
+    {
+        CtrlDatosIniciales.CargarDatosIniciales();
+    }
 }
