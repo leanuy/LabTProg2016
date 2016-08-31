@@ -114,7 +114,7 @@ public class Album implements Favoriteable {
         Tema tema_actual;
         while (it.hasNext()) {
             tema_actual = it.next();
-            data_temas.add(tema_actual.getData());
+            data_temas.add(tema_actual.getData());   
         }
         Iterator itg = generos.entrySet().iterator();
         Genero genero_actual;
