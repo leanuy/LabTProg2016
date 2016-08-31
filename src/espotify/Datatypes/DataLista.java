@@ -3,7 +3,7 @@ package espotify.Datatypes;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public class DataLista {
+public class DataLista implements DataFavoriteable{
     private String nombre;
     protected BufferedImage img;
     private ArrayList<DataTema> temas;

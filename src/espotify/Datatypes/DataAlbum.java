@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
-public class DataAlbum {
+public class DataAlbum implements DataFavoriteable{
     private final String nombre;
     private final int anio;
     private final ArrayList<String> generos;
