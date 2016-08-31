@@ -202,6 +202,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
             nomAlbum = (String)modelitoAlbums.getElementAt(ListaAlbunesArtista.getSelectedIndex());
             dataAlbum = inter.ConsultaAlbum(nomAlbum,ArtistSelected);
             ventanaAlbum = new AlbumConsultado(dataAlbum);
+            
             ventanaAlbum.setVisible(true);
         }
         catch(ArtistaInexistenteException e){
