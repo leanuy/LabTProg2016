@@ -64,11 +64,7 @@ public abstract class Fabrica {
     }
     public static IFavoritear getIFavoritear() {
         return CtrlUsuarios.getInstancia();
-    }
-    public static void CargarDatosIniciales() throws Exception
-    {
-        CtrlDatosIniciales.CargarDatosIniciales();
-    }    
+    }  
     
     public static IAgregarTemaLista getIAgregarTemaLista(){
         return CtrlListas.getInstancia();

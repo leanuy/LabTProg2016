@@ -346,4 +346,9 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         Artista a = artistas.get(art);
         return a.DevolverTema(dt);
     }
+    
+    public static void clear()
+    {
+        instancia=null;
+    }
 }

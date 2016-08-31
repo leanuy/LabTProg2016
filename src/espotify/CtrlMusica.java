@@ -148,4 +148,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         });
         this.artistaMEM.addAlbum(album);
     }
+    
+    public static void clear()
+    {
+        instancia=null;
+    }
 }

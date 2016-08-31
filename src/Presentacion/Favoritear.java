@@ -56,6 +56,8 @@ public class Favoritear extends javax.swing.JInternalFrame {
         btnTemaAlbum = new javax.swing.JButton();
         btnListaDefecto = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setText("Cliente");
 
         jLabel2.setText("Cliente/ArtistaAlbum/NomListaDefecto");
@@ -114,9 +116,7 @@ public class Favoritear extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAlbum)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addComponent(btnAlbum, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnListaDefecto)
                         .addGap(26, 26, 26)))
