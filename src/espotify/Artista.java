@@ -10,12 +10,10 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class Artista extends Usuario{
-
     //attr
     private String bio;
     private String url;
     private final HashMap<String,Album> albums;
-// Cuando se agraga un album que la Key sea el nombre del album, asi lo implemente en otro lugar
     
     //getters
     public String getBio() {

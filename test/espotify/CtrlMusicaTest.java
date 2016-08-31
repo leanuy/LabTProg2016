@@ -7,6 +7,7 @@ import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Excepciones.NickRepetidoException;
+import espotify.Interfaces.IAltaGenero;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -108,14 +109,14 @@ public class CtrlMusicaTest {
     public void testAltaGenero() throws Exception {
         System.out.println("AltaGenero: Ingreso normal, padre nulo");
         DataGenero d = new DataGenero("Rock", "");
-        CtrlMusica instance = CtrlMusica.getInstancia();
+        IAltaGenero instance = Fabrica.getIAltaGenero();
         instance.AltaGenero(d);
     }
     @Test
     public void testAltaGenero2() throws Exception {
         System.out.println("AltaGenero: Ingreso normal, padre existente");
         DataGenero d = new DataGenero("Metal", "");
-        CtrlMusica instance = CtrlMusica.getInstancia();
+        IAltaGenero instance = Fabrica.getIAltaGenero();
         instance.AltaGenero(d);
         //d = new DataGenero("Black Metal", "Metal");
         //instance.AltaGenero(d);
@@ -124,7 +125,7 @@ public class CtrlMusicaTest {
     public void testAltaGenero3() throws Exception {
         System.out.println("AltaGenero: Padre inexistente");
         DataGenero d = new DataGenero("Cumbia Plancha", "Rombai");
-        CtrlMusica instance = CtrlMusica.getInstancia();
+        IAltaGenero instance = Fabrica.getIAltaGenero();
         instance.AltaGenero(d);
     }
     
@@ -132,7 +133,7 @@ public class CtrlMusicaTest {
     public void testAltaGenero4() throws Exception {
         System.out.println("AltaGenero: Género repetido");
         DataGenero d = new DataGenero("Jazz", "");
-        CtrlMusica instance = CtrlMusica.getInstancia();
+        IAltaGenero instance = Fabrica.getIAltaGenero();
         instance.AltaGenero(d);
         instance.AltaGenero(d);
     }

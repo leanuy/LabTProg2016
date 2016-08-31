@@ -18,6 +18,11 @@ import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
+import espotify.Interfaces.IAltaPerfil;
+import espotify.Interfaces.IAltaSeguir;
+import espotify.Interfaces.IConsultaArtista;
+import espotify.Interfaces.IConsultaCliente;
+import espotify.Interfaces.IDejarDeSeguir;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -76,9 +81,10 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
+
         try {
-            instance.AltaCliente(d);
+            ctrl.AltaCliente(d);
         } catch (Exception ex) {
             Logger.getLogger(CtrlUsuariosTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -86,6 +92,8 @@ public class CtrlUsuariosTest {
         System.out.println("ConsultaCliente");
         String s = "clienteconsultado";
         DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new HashMap<String,Usuario>(), new HashMap<String,Particular>());
+        IConsultaCliente instance = Fabrica.getIConsultaCliente();
+
         DataClienteExt result = instance.ConsultaCliente(s);
         assertEquals(expResult, result);
     }
@@ -113,9 +121,9 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataArtista d = new DataArtista("Soy un artista y me consultan","", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try {
-            instance.AltaArtista(d);
+            ctrl.AltaArtista(d);
         } catch (Exception ex) {
             Logger.getLogger(CtrlUsuariosTest.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -123,6 +131,7 @@ public class CtrlUsuariosTest {
         System.out.println("ConsultaArtista");
         String s = "ArtistaConsultado";
         DataArtistaExt expResult = new DataArtistaExt("ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "Soy un artista y me consultan", "", new HashMap<String,Album>());
+        IConsultaArtista instance = Fabrica.getIConsultaArtista();
         DataArtistaExt result = instance.ConsultaArtista(s);
         assertEquals(expResult, result);
     }
@@ -132,7 +141,7 @@ public class CtrlUsuariosTest {
      */
     @Test
     public void testAltaSeguir() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
@@ -147,12 +156,13 @@ public class CtrlUsuariosTest {
         System.out.println("AltaSeguir: Normal a Cliente");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguido";
-        instance.AltaSeguir(nomSeguidor, nomSeguido);
+        IAltaSeguir ctrl = Fabrica.getIAltaSeguir();
+        ctrl.AltaSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test (expected=SeguidorInexistenteException.class)
     public void testAltaSeguir2() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaSeguir instance = Fabrica.getIAltaSeguir();
         System.out.println("AltaSeguir: Seguidor inexistente");
         String nomSeguidor = "Seguidorasdfasfd";
         String nomSeguido = "Seguido";
@@ -161,14 +171,14 @@ public class CtrlUsuariosTest {
     
     @Test (expected=SeguidoInexistenteException.class)
     public void testAltaSeguir3() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         }
         catch(NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
         {}
@@ -176,19 +186,20 @@ public class CtrlUsuariosTest {
         System.out.println("AltaSeguir: Seguido inexistente");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguidoasdf";
+        IAltaSeguir instance = Fabrica.getIAltaSeguir();
         instance.AltaSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test
     public void testAltaSeguir4() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         DataArtista da = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null);
-        instance.AltaArtista(da);
+        ctrl.AltaArtista(da);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
         {}
@@ -196,17 +207,18 @@ public class CtrlUsuariosTest {
         System.out.println("AltaSeguir: Normal a Artista");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "ElGordoAxl";
+        IAltaSeguir instance = Fabrica.getIAltaSeguir();
         instance.AltaSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test (expected=AutoSeguirseException.class)
     public void testAltaSeguir5() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
         {}
@@ -214,19 +226,20 @@ public class CtrlUsuariosTest {
         System.out.println("AltaSeguir: Seguirse A si Mismo");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguidor";
+        IAltaSeguir instance = Fabrica.getIAltaSeguir();
         instance.AltaSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test (expected=SeguidoRepetidoException.class)
     public void testAltaSeguir6() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
         {}
@@ -234,6 +247,7 @@ public class CtrlUsuariosTest {
         System.out.println("AltaSeguir: Seguir dos veces");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguido";
+        IAltaSeguir instance = Fabrica.getIAltaSeguir();
         try{
         instance.AltaSeguir(nomSeguidor, nomSeguido);
         } catch (Exception e){}
@@ -245,15 +259,17 @@ public class CtrlUsuariosTest {
      */
     @Test
     public void testDejarDeSeguir() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
+        IAltaSeguir ctrl2 = Fabrica.getIAltaSeguir();
+
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        instance.AltaCliente(d);
-        instance.AltaSeguir("Seguidor", "Seguido");
+        ctrl.AltaCliente(d);
+        ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
         catch(Exception e)
         {}
@@ -261,20 +277,22 @@ public class CtrlUsuariosTest {
         System.out.println("DejarDeSeguir: Normal");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguido";
+        IDejarDeSeguir instance = Fabrica.getIDejarDeSeguir();
         instance.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test (expected=SeguidorInexistenteException.class)
     public void testDejarDeSeguir2() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
+        IAltaSeguir ctrl2 = Fabrica.getIAltaSeguir();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        instance.AltaCliente(d);
-        instance.AltaSeguir("Seguidor", "Seguido");
+        ctrl.AltaCliente(d);
+        ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
         catch(Exception e)
         {}
@@ -282,20 +300,22 @@ public class CtrlUsuariosTest {
         System.out.println("DejarDeSeguir: Seguidor Inexistente");
         String nomSeguidor = "Seguidorasdf";
         String nomSeguido = "Seguido";
+        IDejarDeSeguir instance = Fabrica.getIDejarDeSeguir();
         instance.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test (expected=SeguidoInexistenteException.class)
     public void testDejarDeSeguir3() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
+        IAltaSeguir ctrl2 = Fabrica.getIAltaSeguir();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        instance.AltaCliente(d);
-        instance.AltaSeguir("Seguidor", "Seguido");
+        ctrl.AltaCliente(d);
+        ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
         catch(Exception e)
         {}
@@ -303,19 +323,20 @@ public class CtrlUsuariosTest {
         System.out.println("DejarDeSeguir: Seguido Inexistente");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguidoasdf";
+        IDejarDeSeguir instance = Fabrica.getIDejarDeSeguir();
         instance.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test (expected=SeguidoInexistenteException.class)
     public void testDejarDeSeguir4() throws Exception {
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("Seguidor2", "Javier", "Morales", "seguidor2@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         d = new DataCliente("Seguido2", "Javier", "Morales", "seguido2@hotmail.com", cal, null);
-        instance.AltaCliente(d);
+        ctrl.AltaCliente(d);
         }
         catch(Exception e)
         {}
@@ -323,6 +344,7 @@ public class CtrlUsuariosTest {
         System.out.println("DejarDeSeguir: Seguido al que no seguían");
         String nomSeguidor = "Seguidor2";
         String nomSeguido = "Seguido2";
+        IDejarDeSeguir instance = Fabrica.getIDejarDeSeguir();
         instance.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
@@ -335,7 +357,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaCliente(d);
     }
     
@@ -345,7 +367,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaCliente(d);
     }
     
@@ -355,7 +377,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("b", "Javier", "Morales", "javiermorales422@hotmail.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaCliente(d);
         d = new DataCliente("b", "Javier", "Morales", "javiermorales4222@hotmail.com", cal, null);
         instance.AltaCliente(d);
@@ -367,7 +389,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("d", "Javier", "Morales", "a@hotmail.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaCliente(d);
         d = new DataCliente("e", "Javier", "Morales", "a@hotmail.com", cal, null);
         instance.AltaCliente(d);
@@ -379,7 +401,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         DataCliente d = new DataCliente("e", "Javier", "Morales", "hola", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaCliente(d);
     }
     
@@ -393,7 +415,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
         DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaArtista(d);
     }
     
@@ -403,7 +425,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
         DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","", "Axl", "Rose", "axl2@rose.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaArtista(d);
     }
     
@@ -413,7 +435,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
         DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl3@rose.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaArtista(d);
         d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl33@rose.com", cal, null);
         instance.AltaArtista(d);
@@ -425,7 +447,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
         DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaArtista(d);
         d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null);
         instance.AltaArtista(d);
@@ -437,7 +459,7 @@ public class CtrlUsuariosTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
         DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4rose.com", cal, null);
-        CtrlUsuarios instance = CtrlUsuarios.getInstancia();
+        IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.AltaArtista(d);
     }
 
