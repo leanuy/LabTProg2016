@@ -77,13 +77,6 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
     private boolean ExisteGenero(String nombre) {
         return GetGeneros().containsKey(nombre);
     }
-    @Override
-    public DataGenero ExisteArtista(String nickArtista) throws ArtistaInexistenteException {
-        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista inst_artista = ctrlUsuarios.BuscarArtista(nickArtista);
-        this.artistaMEM = inst_artista;
-        return this.ListarGeneros();
-    }
     
 //Operaciones    
     @Override

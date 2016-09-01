@@ -744,7 +744,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In The Navy", 193, 3));
 
         dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "dmode";
@@ -757,7 +756,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, "Enjoy The Silence", 261, 2));
 
         dataAlbumExt = new DataAlbumExt(temas, "Violator", 1990, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "clauper";
@@ -772,7 +770,6 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "She's So Unusual", 1983, generos, img, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "bruceTheBoss";
@@ -787,7 +784,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, "Dancing In The Dark", 238, 3));
 
         dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "tigerOfWales";
@@ -801,7 +797,6 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "It's Not Unusual", 1965, generos, img, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "tripleNelson";
@@ -811,7 +806,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCtnadagiopais", " Adagio De Mi País", 290, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Agua Y Sal", 2012, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "la_ley";
@@ -827,7 +821,6 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "MTV Unplugged", 2001, generos, img, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "chaiko";
@@ -837,7 +830,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCptswanlake", "Acto 2, Número 10, Escena (Moderato)", 160, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "El Lago De Los Cisnes", 1875, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "chaiko";
@@ -847,7 +839,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCptpiano", " Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 1318, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Concierto Para Piano No. 1 En Si Menor, Opus 23", 1875, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "nicoleneu";
@@ -858,7 +849,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, " No Quiero Estudiar", 132, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "lospimpi";
@@ -870,7 +860,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, "Por Ese Hombre", 285, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Hay Amores Que Matan", 1993, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "dyangounchained";
@@ -881,7 +870,6 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCdyporesehombre", "Por Ese Hombre", 313, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Un Loco Como Yo", 1993, generos, null, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "alcides";
@@ -893,7 +881,6 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "20 Grandes Éxitos", 1989, generos, img, nickArtista);
-        iAltaAlbum.ExisteArtista(nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
         
         //ALTA DE LISTAS
