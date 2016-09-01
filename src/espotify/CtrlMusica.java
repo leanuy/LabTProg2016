@@ -119,20 +119,21 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum{
         }
         return lista;
     }
-    @Override
-    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
-       
-//Validar unicidad de nombre para el album
-        if (this.artistaMEM.TieneAlbum(d.getNombre())) {
+    
+    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException,ArtistaInexistenteException {
+        //Validar unicidad de nombre para el album
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista inst_artista = ctrlUsuarios.BuscarArtista(d.getNickArtista());
+        if (inst_artista.TieneAlbum(d.getNombre())) {
             throw new AlbumRepetidoException();
         }
         //Validar lista de nombres de generos y generar un hash de generos para el album
         HashMap<String, Genero> lista_generos = this.ValidarGeneros(d.getGeneros());
-        Album album = new Album(d, this.artistaMEM, lista_generos);
+        Album album = new Album(d, inst_artista, lista_generos);
         lista_generos.entrySet().stream().forEach((entry) -> {
             entry.getValue().AddAlbum(album);
         });
-        this.artistaMEM.addAlbum(album);
+        inst_artista.addAlbum(album);
     }
     
 }
