@@ -184,6 +184,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     }//GEN-LAST:event_URLaTemaRadioButtonActionPerformed
 
     private void CancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarButtonActionPerformed
+        AltaAlbum.cargarTema(false,null,null,null, 0,false);
         this.dispose();
     }//GEN-LAST:event_CancelarButtonActionPerformed
 
@@ -204,14 +205,14 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Link al tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            AltaAlbum.cargarTema(true,URLdelTema.getText(),null,NombreTema.getText(), duration);
+            AltaAlbum.cargarTema(true,URLdelTema.getText(),null,NombreTema.getText(), duration, true);
             this.dispose();
         }else{
             if("".equals(PathLocal.getText())){
                 JOptionPane.showMessageDialog(this, "Cargue un tema", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            AltaAlbum.cargarTema(false,"",selectedFile,NombreTema.getText(), duration);
+            AltaAlbum.cargarTema(false,"",selectedFile,NombreTema.getText(), duration,true);
             this.dispose();
         }
     }//GEN-LAST:event_AceptarButtonActionPerformed

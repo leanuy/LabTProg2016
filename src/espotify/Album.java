@@ -51,8 +51,8 @@ public class Album implements Favoriteable {
         Iterator itg = generos.entrySet().iterator();
         Genero genero_actual;
         ArrayList<String> nombre_generos = new ArrayList<String>();
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+        while (itg.hasNext()) {
+            Map.Entry pair = (Map.Entry)itg.next();
             genero_actual = (Genero) pair.getValue();
             nombre_generos.add(genero_actual.getNombre());
         }

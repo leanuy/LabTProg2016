@@ -58,6 +58,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private static ArrayList<String> temasYaIngresados;
     private static String nombreAnterior;
     private static boolean nombreRepetido;
+    private static boolean entrar;
     
     /**
      * Creates new form AltaAlbum
@@ -364,27 +365,25 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         ingTema.setLocationRelativeTo(this);
         
         ingTema.setVisible(true);
-        
-        if(nombreRepetido){
-            JOptionPane.showMessageDialog(this, "Nombre de tema Repetido", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }else{
-            if(web){
-                DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema);
-                listaTemas.add(dt);
-                modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+        if(entrar){
+            if(nombreRepetido){
+                JOptionPane.showMessageDialog(this, "Nombre de tema Repetido", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }else{
-                DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema);
-                listaTemas.add(dta);
-                modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
+                if(web){
+                    DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema);
+                    listaTemas.add(dt);
+                    modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+                }else{
+                    DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema);
+                    listaTemas.add(dta);
+                    modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
+                }
+                numeroTema++;
+                temasYaIngresados.add(nombre);
+                nombreAnterior = nombre;
             }
-            numeroTema++;
-            temasYaIngresados.add(nombre);
-            nombreAnterior = nombre;
-        }
-        
-        
-        
+        }        
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
 
     private void buttonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarImagenActionPerformed
@@ -504,7 +503,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_buttonCancelarAltaAlbumActionPerformed
     
-    public static void cargarTema(boolean webx,String urlx,File filex,String nombrex, int duracionx){
+    public static void cargarTema(boolean webx,String urlx,File filex,String nombrex, int duracionx, boolean entra){
+        entrar = entra;
         web = webx;
         url = urlx;
         file = filex;
