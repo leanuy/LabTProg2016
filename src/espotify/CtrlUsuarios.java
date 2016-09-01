@@ -106,14 +106,16 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
     }
 
 //Listas
-    ArrayList<String> ListarClientes(){
+    @Override
+    public ArrayList<String> ListarClientes(){
         ArrayList a = new ArrayList();
         GetClientes().keySet().stream().forEach((key) -> {
             a.add(key);
         });
         return a;
     }
-    ArrayList<String> ListarArtistas(){
+    @Override
+    public ArrayList<String> ListarArtistas(){
         ArrayList a = new ArrayList();
         GetArtistas().keySet().stream().forEach((key) -> {
             a.add(key);
@@ -149,19 +151,6 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         }
         return a;
     }
-    @Override
-    public String[] DevolverArtistas(){
-        int cant =  GetArtistas().size();
-        String[] a;
-        a = new String[cant];
-        int i = 0;
-        for(Entry<String, Artista> entry : GetArtistas().entrySet()) {
-            String key = entry.getKey();
-            a[i] = key;
-            i++;
-        }
-        return a;
-    }    
     @Override
     public ArrayList<String> ListarSeguibles(String nomSeguidor) throws SeguidorInexistenteException
     {

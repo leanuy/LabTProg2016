@@ -12,6 +12,7 @@ import espotify.Interfaces.IConsultaCliente;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     public ConsultaCliente() {
         initComponents();
         IConsultaCliente interf = Fabrica.getIConsultaCliente();
-        String[] a = interf.DevolverClientes();
+        ArrayList<String> a = interf.ListarClientes();
         for(String str : a) {
             Select.addItem(str);
         }

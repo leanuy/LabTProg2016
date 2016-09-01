@@ -10,6 +10,7 @@ import espotify.Fabrica;
 import espotify.Interfaces.IConsultaArtista;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import javax.swing.ImageIcon;
 
@@ -25,7 +26,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
     public ConsultaArtista() {
         initComponents();
         IConsultaArtista interf = Fabrica.getIConsultaArtista();
-        String[] a = interf.DevolverArtistas();
+        ArrayList<String> a = interf.ListarArtistas();
         for(String str : a) {
             Select.addItem(str);
         }
