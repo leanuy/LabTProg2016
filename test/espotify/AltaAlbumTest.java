@@ -88,40 +88,6 @@ public class AltaAlbumTest {
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of ExisteArtista method, of class CtrlMusica. caso base todo ok. No
-     * se esperan excepciones
-     */
-    @Test
-    public void testExisteArtista() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
-        System.out.println("ExisteArtista1: Existe artista. Debe devolver la lista de generos del sistema.");
-
-        String nickArtista = "ElGordoAxl";
-        
-        IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
-        DataGenero expResult = iAltaGenero.ListarGeneros();
-        
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        DataGenero result = iAltaAlbum.ExisteArtista(nickArtista);
-        
-        assertEquals(expResult, result);
-        
-    }
-
-    /**
-     * Test of ExisteArtista method, of class CtrlMusica. nickArtista vacio. Sin
-     * artistas ingresados en el sistema. Se espera una exception de que el
-     * artista no esta en el sistema.
-     */
-    @Test(expected = ArtistaInexistenteException.class)
-    public void testExisteArtista2() throws ArtistaInexistenteException {
-        System.out.println("ExisteArtista: No existe artista");
-        String nickArtista = "";
-        DataGenero expResult = null;
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        DataGenero result = iAltaAlbum.ExisteArtista(nickArtista);
-        assertEquals(expResult, result);
-    }
 
     @Test
     public void testAltaAlbum() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
