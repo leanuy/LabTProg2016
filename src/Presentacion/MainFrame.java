@@ -6,13 +6,18 @@
 package Presentacion;
 
 
+import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
+import espotify.Datatypes.DataTema;
+import espotify.Datatypes.DataTemaWeb;
+import espotify.Datatypes.DataTemaArchivo;
 import espotify.Excepciones.NickRepetidoException;
 import espotify.Fabrica;
+import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
@@ -21,9 +26,14 @@ import espotify.Interfaces.IPublicarLista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -489,99 +499,136 @@ public class MainFrame extends javax.swing.JFrame {
     {
         //ALTA DE CLIENTES:
         IAltaPerfil ctrlAltaPerfil = Fabrica.getIAltaPerfil();
+        File file;
+        BufferedImage img;
         
+        
+        file = new File("./src/Presentacion/img/clientes/ElPadrino.png");
+        img = ImageIO.read(file);
         Calendar cal = Calendar.getInstance();
         cal.set(1972, 3, 8);
-        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, null);
+        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img);
         ctrlAltaPerfil.AltaCliente(dataCliente);
+        
+        file = new File("./src/Presentacion/img/clientes/ScarlettOHara.jpg");
+        img = ImageIO.read(file);
         cal.set(1984, 11, 27);
-        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, null);
+        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img);
         ctrlAltaPerfil.AltaCliente(dataCliente);
+        
+        file = new File("./src/Presentacion/img/clientes/PepeArgento.png");
+        img = ImageIO.read(file);
         cal.set(1955, 2, 14);
-        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, null);
+        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img);
         ctrlAltaPerfil.AltaCliente(dataCliente);
+        
         cal.set(1056, 3, 7);
         dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null);
         ctrlAltaPerfil.AltaCliente(dataCliente);
+        
+        file = new File("./src/Presentacion/img/clientes/BenKenobi.png");
+        img = ImageIO.read(file);
         cal.set(1914, 4, 2);
-        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, null);
+        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img);
         ctrlAltaPerfil.AltaCliente(dataCliente);
+        
+        file = new File("./src/Presentacion/img/clientes/lachiqui.jpg");
+        img = ImageIO.read(file);
         cal.set(1927, 2, 23);
-        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, null);
+        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img);
         ctrlAltaPerfil.AltaCliente(dataCliente);
+        
+        file = new File("./src/Presentacion/img/clientes/CachoBochinche.jpg");
+        img = ImageIO.read(file);
         cal.set(1937, 5, 8);
-        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, null);
+        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img);
         ctrlAltaPerfil.AltaCliente(dataCliente);
+        
+        file = new File("./src/Presentacion/img/clientes/eleven.jpg");
+        img = ImageIO.read(file);
         cal.set(1971, 12, 31);
-        dataCliente = new DataCliente("Eleven11", "Eleven", " ", "Eleven11@gmail.com", cal, null);
+        dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img);
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         DataArtista dataArtista;      
         String bio;
         
-        cal.set(1, 1, 1977);
+        file = new File("./src/Presentacion/img/artistas/VillagePeople.jpg");
+        img = ImageIO.read(file);
+        cal.set(1977, 1, 1);
         bio = "Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.";
-        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(14, 6, 1980);
+        file = new File("./src/Presentacion/img/artistas/DepecheMode.jpg");
+        img = ImageIO.read(file);
+        cal.set(1980, 6, 14);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(22, 6, 1953);
+        file = new File("./src/Presentacion/img/artistas/CyndiLauper.jpg");
+        img = ImageIO.read(file);
+        cal.set(1953, 6, 22);
         bio = "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.";
-        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, null);
+        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(23, 9, 1949);
+        file = new File("./src/Presentacion/img/artistas/BruceTheBoss.jpg");
+        img = ImageIO.read(file);
+        cal.set(1949, 9, 23);
         bio = "";
-        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, null);
+        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(1, 1, 1998);
+        file = new File("./src/Presentacion/img/artistas/LaTripleNelson.jpg");
+        img = ImageIO.read(file);
+        cal.set(1998, 1, 1);
         bio = "La Triple Nelson es un grupo de rock uruguayo formado en enero de 1998 e integrado inicialmente por Christian Cary (guitarra y voz), Fernando Paco"
         +" Pintos (bajo y coros) y Rubén Otonello (actualmente su nuevo baterista es Rafael Ugo).";
-        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(14, 2, 1987);
+        cal.set(1987, 2, 14);
         bio = "";
         dataArtista = new DataArtista(bio, "", "la_ley", "La", "Ley", "la_ley@tuta.io", cal, null);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(7, 6, 1940);
+        cal.set(1940, 6, 7);
         bio = "Sir Thomas John, conocido por su nombre artístico de Tom Jones, es un cantante británico. Ha vendido más de 100 millones de discos en todo el mundo.";
         dataArtista = new DataArtista(bio, "", "tigerOfWales", "Tom", "Jones", "tigerOfWales@tuta.io", cal, null);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(25, 4, 1840);
+        cal.set(1840, 4, 25);
         bio = "Piotr Ilich Chaikovski fue un compositor ruso del período del Romanticismo";
         dataArtista = new DataArtista(bio, "", "chaiko", "Piotr", "Tchaikovsky", "chaiko@tuta.io", cal, null);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(31, 10, 1980);
+        file = new File("./src/Presentacion/img/artistas/NicoleNeumann.jpg");
+        img = ImageIO.read(file);
+        cal.set(1980, 10, 31);
         bio = "";
-        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, null);
+        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(13, 8, 1981);
+        file = new File("./src/Presentacion/img/artistas/Pimpinela.jpg");
+        img = ImageIO.read(file);
+        cal.set(1981, 8, 13);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", " ", "lospimpi@gmail.com", cal, null);
+        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(5, 3, 1940);
+        cal.set(1940, 3, 5);
         bio = "José Gómez Romero, conocido artísticamente como Dyango es un cantante español de música romántica.";
-        dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", " ", "dyangounchained@gmail.com", cal, null);
+        dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", "Unchained", "dyangounchained@gmail.com", cal, null);
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
-        cal.set(17, 7, 1952);
+        cal.set(1952, 7, 17);
         bio = "Su carrera comienza en 1976 cuando forma la banda Los Playeros junto a su hermano Víctor. Al poco tiempo se mudan a San Luis donde comienzan a hacerse conocidos en la escena musical. Su éxito a nivel nacional llega a comienzos de los años 1990 cuando desembarca en Buenos Aires y graba el éxito Violeta"
         + ", originalmente compuesta e nterpretada en 1985 por el músico brasileño Luiz Caldas bajo el título «Fricote».";
-        dataArtista = new DataArtista(bio, "", "alcides", "Alcides", " ", "alcides@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "", "alcides", "Alcides", "Palacio", "alcides@tuta.io", cal, null);
         ctrlAltaPerfil.AltaArtista(dataArtista);
-        
-        
+            
         
         
         //ALTA DE SEGUIDORES
@@ -677,6 +724,177 @@ public class MainFrame extends javax.swing.JFrame {
         dataGenero = new DataGenero("Cumbia", "");
         ctrlAltaGenero.AltaGenero(dataGenero);
         
+        String nickArtista;
+        ArrayList<DataTema> temas;
+        ArrayList<String> generos;
+        DataAlbumExt dataAlbumExt;
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        File tema;
+
+        nickArtista = "vpeople";
+        generos = new ArrayList<>();
+        generos.add("Disco");
+        generos.add("Dance-pop");
+        generos.add("Pop Clásico");
+
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCvpymca", "YMCA", 268, 1));
+        tema = new File("./src/Presentacion/mp3/MachoMan.mp3");
+        temas.add(new DataTemaArchivo(tema, "Macho Man", 208, 2));
+        temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In The Navy", 193, 3));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "dmode";
+        generos = new ArrayList<>();
+        generos.add("Electropop");
+        temas = new ArrayList<>();
+        tema = new File("./src/Presentacion/mp3/PersonalJesus.mp3");
+        temas.add(new DataTemaArchivo(tema, "Personal Jesus", 296, 1));
+        tema = new File("./src/Presentacion/mp3/EnjoyTheSilence.mp3");
+        temas.add(new DataTemaArchivo(tema, "Enjoy The Silence", 261, 2));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Violator", 1990, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "clauper";
+        generos = new ArrayList<>();
+        generos.add("Pop Clásico");
+        generos.add("Dance-pop");
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", " Girls Just Want To Have Fun", 195, 1));
+        tema = new File("./src/Presentacion/mp3/TimeAfterTime.mp3");
+        temas.add(new DataTemaArchivo(tema, "Time After Time", 312, 2));
+        file = new File("./src/Presentacion/img/albums/ShesSoUnusual.PNG");
+        img = ImageIO.read(file);
+
+        dataAlbumExt = new DataAlbumExt(temas, "She's So Unusual", 1983, generos, img, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "bruceTheBoss";
+        generos = new ArrayList<>();
+        generos.add("Rock Clásico");
+        generos.add("Rock & Roll");
+        generos.add("Pop Clásico");
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCbsborninusa", "Born In The U.S.A.", 298, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCbsglorydays", "Glory Days", 323, 2));
+        tema = new File("./src/Presentacion/mp3/DancingInTheDark.mp3");
+        temas.add(new DataTemaArchivo(tema, "Dancing In The Dark", 238, 3));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "tigerOfWales";
+        generos = new ArrayList<>();
+        generos.add("Rock Clásico");
+        generos.add("Pop Clásico");
+        temas = new ArrayList<>();
+        tema = new File("./src/Presentacion/mp3/ItSNotUnusual.mp3");
+        temas.add(new DataTemaArchivo(tema, " It’s Not Unusual", 120, 1));
+        file = new File("./src/Presentacion/img/albums/ItsNotUnusual.jpeg");
+        img = ImageIO.read(file);
+
+        dataAlbumExt = new DataAlbumExt(temas, "It's Not Unusual", 1965, generos, img, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "tripleNelson";
+        generos = new ArrayList<>();
+        generos.add("Rock Latino");
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCtnadagiopais", " Adagio De Mi País", 290, 1));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Agua Y Sal", 2012, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "la_ley";
+        generos = new ArrayList<>();
+        generos.add("Rock Latino");
+        generos.add("Pop Clásico");
+        temas = new ArrayList<>();
+        tema = new File("./src/Presentacion/mp3/ElDuelo.mp3");
+        temas.add(new DataTemaArchivo(tema, "El Duelo", 323, 1));
+        tema = new File("./src/Presentacion/mp3/Mentira.mp3");
+        temas.add(new DataTemaArchivo(tema, "Mentira", 288, 2));
+        file = new File("./src/Presentacion/img/albums/mtvUnplugged.jpg");
+        img = ImageIO.read(file);
+
+        dataAlbumExt = new DataAlbumExt(temas, "MTV Unplugged", 2001, generos, img, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "chaiko";
+        generos = new ArrayList<>();
+        generos.add("Clásica");
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCptswanlake", "Acto 2, Número 10, Escena (Moderato)", 160, 1));
+
+        dataAlbumExt = new DataAlbumExt(temas, "El Lago De Los Cisnes", 1875, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "chaiko";
+        generos = new ArrayList<>();
+        generos.add("Clásica");
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCptpiano", " Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 1318, 1));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Concierto Para Piano No. 1 En Si Menor, Opus 23", 1875, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "nicoleneu";
+        generos = new ArrayList<>();
+        generos.add("Electropop");
+        temas = new ArrayList<>();
+        tema = new File("./src/Presentacion/mp3/NoQuieroEstudiar.mp3");
+        temas.add(new DataTemaArchivo(tema, " No Quiero Estudiar", 132, 1));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "lospimpi";
+        generos = new ArrayList<>();
+        generos.add("Pop Clásico");
+        generos.add("Balada");
+        temas = new ArrayList<>();
+        tema = new File("./src/Presentacion/mp3/PorEseHombre.mp3");
+        temas.add(new DataTemaArchivo(tema, "Por Ese Hombre", 285, 1));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Hay Amores Que Matan", 1993, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "dyangounchained";
+        generos = new ArrayList<>();
+        generos.add("Pop Clásico");
+        generos.add("Balada");
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCdyporesehombre", "Por Ese Hombre", 313, 1));
+
+        dataAlbumExt = new DataAlbumExt(temas, "Un Loco Como Yo", 1993, generos, null, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
+
+        nickArtista = "alcides";
+        generos = new ArrayList<>();
+        generos.add("Cumbia");
+        temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("bit.ly/SCvioleta", "Violeta", 116, 1));
+        file = new File("./src/Presentacion/img/albums/alcides20.jpg");
+        img = ImageIO.read(file);
+
+        dataAlbumExt = new DataAlbumExt(temas, "20 Grandes Éxitos", 1989, generos, img, nickArtista);
+        iAltaAlbum.ExisteArtista(nickArtista);
+        iAltaAlbum.AltaAlbum(dataAlbumExt);
         
         //ALTA DE LISTAS
         //DEFECTO
