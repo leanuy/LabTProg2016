@@ -138,19 +138,7 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         Cliente c = BuscarCliente(nick);
         return c.ListarTemasDeLista(nombre);
     }
-    @Override
-    public String[] DevolverClientes(){
-        int cant =  GetClientes().size();
-        String[] a;
-        a = new String[cant];
-        int i = 0;
-        for(Entry<String, Cliente> entry :  GetClientes().entrySet()) {
-            String key = entry.getKey();
-            a[i] = key;
-            i++;
-        }
-        return a;
-    }
+
     @Override
     public ArrayList<String> ListarSeguibles(String nomSeguidor) throws SeguidorInexistenteException
     {

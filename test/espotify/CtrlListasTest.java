@@ -54,53 +54,7 @@ public class CtrlListasTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of PublicarLista method, of class CtrlListas.
-     */
-    @Test
-    public void testPublicarLista1() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
-        System.out.println("PublicarLista: ok");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica", null);
-        IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(d);
-        IPublicarLista ctrl = Fabrica.getIPublicarLista();
-        ctrl.PublicarLista("Mi Lista Publica", "TesterLista");
-    }
     
-    @Test (expected=ClienteInexistenteException.class)
-    public void testPublicarLista2() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
-        System.out.println("PublicarLista: nombre de usuario incorrecto");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder", null);
-        IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(d);   
-        IPublicarLista ctrl = Fabrica.getIPublicarLista();
-        ctrl.PublicarLista("Mi Lista Publica", "TesterListakas.dbg");
-    }
-    
-    @Test (expected=ListaInexistenteException.class)
-    public void testPublicarLista3() throws ClienteInexistenteException, ListaInexistenteException, ListaRepetidaException, YaPublicaException {
-        System.out.println("PublicarLista: nombre de lista incorrecto");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder por el nombre", null);
-        IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(d); 
-        IPublicarLista ctrl = Fabrica.getIPublicarLista();
-        ctrl.PublicarLista("Mi Lista Publicanbasdf", "TesterLista");
-    }
-
-    /**
-     * Test of ListarClientes method, of class CtrlListas.
-     */
-    @Ignore
-    @Test
-    public void testListarClientes() {
-        System.out.println("ListarClientes");
-        CtrlListas instance = new CtrlListas();
-        ArrayList<String> expResult = new ArrayList<>();
-        ArrayList<String> result = instance.ListarClientes();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of ListarListasDeCliente method, of class CtrlListas.

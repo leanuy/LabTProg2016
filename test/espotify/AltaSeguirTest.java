@@ -34,12 +34,12 @@ public class AltaSeguirTest {
     }
 
     @Test
-    public void test1DevolverClientes() {
-        System.out.println("DevolverClientes");
-        String[] expResult = new String[1];
-        expResult[0] = "JavierM42";
-        String[] result = iAltaSeguir.DevolverClientes();
-        assertArrayEquals(expResult, result);
+    public void test1ListarClientes() {
+        System.out.println("ListarClientes");
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("JavierM42");
+        ArrayList<String> result = iAltaSeguir.ListarClientes();
+        assertEquals(expResult, result);
     }
     
     @Test

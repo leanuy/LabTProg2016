@@ -27,7 +27,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     public SeguirUsuario() {
         initComponents();
         interf = Fabrica.getIAltaSeguir();
-        String[] cl = interf.DevolverClientes();
+        ArrayList<String>cl = interf.ListarClientes();
         for(String str : cl) {
             NickSeguidor.addItem(str);
         }
