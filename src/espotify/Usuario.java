@@ -4,7 +4,7 @@ import espotify.Datatypes.DataUsuario;
 import java.awt.image.BufferedImage;
 import java.util.Calendar;
 
-public class Usuario {
+class Usuario {
 
 
     protected String nick;
@@ -14,27 +14,27 @@ public class Usuario {
     protected Calendar fNac;
     protected BufferedImage img;
 
-    public String getNick() {
+    String getNick() {
         return nick;
     }
 
-    public String getNombre() {
+    String getNombre() {
         return nombre;
     }
 
-    public String getApellido() {
+    String getApellido() {
         return apellido;
     }
 
-    public String getCorreo() {
+    String getCorreo() {
         return correo;
     }
 
-    public Calendar getfNac() {
+    Calendar getfNac() {
         return fNac;
     }
 
-    public BufferedImage getImg() {
+    BufferedImage getImg() {
         return img;
     }
     
@@ -54,7 +54,7 @@ public class Usuario {
         
     }
     
-    public Usuario(DataUsuario d){
+    Usuario(DataUsuario d){
         this.nick = d.getNick();
         this.nombre = d.getNombre();
         this.apellido = d.getApellido();

@@ -1,5 +1,5 @@
 package espotify;
 
-public interface Favoriteable {
+interface Favoriteable {
     
 }

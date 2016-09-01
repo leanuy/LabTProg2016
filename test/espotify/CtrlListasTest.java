@@ -94,7 +94,7 @@ public class CtrlListasTest {
     @Test
     public void testListarClientes() {
         System.out.println("ListarClientes");
-        CtrlListas instance = CtrlListas.getInstancia();
+        CtrlListas instance = new CtrlListas();
         ArrayList<String> expResult = new ArrayList<>();
         ArrayList<String> result = instance.ListarClientes();
         assertEquals(expResult, result);
@@ -266,7 +266,7 @@ public class CtrlListasTest {
     public void testGetInstancia() {
         System.out.println("getInstancia");
         CtrlListas expResult = null;
-        CtrlListas result = CtrlListas.getInstancia();
+        CtrlListas result = new CtrlListas();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

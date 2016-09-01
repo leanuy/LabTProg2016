@@ -6,7 +6,6 @@ import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
-import espotify.Tema;
 import java.util.ArrayList;
 
 

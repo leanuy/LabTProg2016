@@ -5,26 +5,26 @@ import espotify.Datatypes.DataLista;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-public abstract class Lista {
+abstract class Lista {
     protected String nombre;
     protected BufferedImage img;
     protected final ArrayList<Tema> temas;
 
-    public String getNombre() {
+    String getNombre() {
         return nombre;
     }
-    public BufferedImage getImg() {
+    BufferedImage getImg() {
         return img;
     }
     
     
-    public Lista(String nombre, BufferedImage img)
+    Lista(String nombre, BufferedImage img)
     {
         this.nombre=nombre;
         this.img=img;
         this.temas=new ArrayList<>();
         }
-    public Lista(DataLista d)
+    Lista(DataLista d)
     {
         this.nombre = d.getNombre();
         this.img = d.getImg();
@@ -38,11 +38,11 @@ public abstract class Lista {
         return a;
     }
     
-    public ArrayList<Tema> DevolverTemas(){
+/*KILL    ArrayList<Tema> DevolverTemas(){
         return this.temas;
-    }
+    }*/
     
-    public void AgregarTema(Tema t){
+    void AgregarTema(Tema t){
         temas.add(t);
     }
 
@@ -53,7 +53,7 @@ public abstract class Lista {
         }
     }
     
-    public DataLista getData()
+    DataLista getData()
     {
         ArrayList<DataTema> lst = new ArrayList<>();
         for(Tema t:temas)

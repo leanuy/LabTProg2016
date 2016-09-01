@@ -36,13 +36,16 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
 
+
 public class CtrlUsuariosTest {
-    
+    static CtrlUsuarios ctrl;    
+
     public CtrlUsuariosTest() {
     }
     
     @BeforeClass
     public static void setUpClass() {
+        ctrl = new CtrlUsuarios();
     }
     
     @AfterClass
@@ -62,21 +65,35 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testListarClientes() {
-        System.out.println("ListarClientes");
-        CtrlUsuarios instance = null;
-        ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.ListarClientes();
+    public void testListarClientes() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
+        /*IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
+        System.out.println("ListarClientes: un cliente");
+        ManejadorColecciones.clear();
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
+        ctrl.AltaCliente(d);
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("JavierM42");
+        ArrayList<String> result = ctrl.ListarClientes();
+        assertEquals(expResult, result);*/
+    }
+    
+    @Test
+    public void testListarClientes2() {
+        System.out.println("ListarClientes: lista vacía");
+        ManejadorColecciones.clear();
+        //CtrlUsuarios ctrl = new CtrlUsuarios();
+        ArrayList<String> expResult = new ArrayList<>();
+        ArrayList<String> result = ctrl.ListarClientes();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of ConsultaCliente method, of class CtrlUsuarios.
      */
     @Test
-    public void testConsultaCliente() {
+    public void testConsultaCliente() throws ClienteInexistenteException {
         //tests de santiago que hice yo -JM42
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
@@ -91,7 +108,7 @@ public class CtrlUsuariosTest {
         
         System.out.println("ConsultaCliente");
         String s = "clienteconsultado";
-        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new HashMap<String,Usuario>(), new HashMap<String,Particular>());
+        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new String[0], new String[0]);
         IConsultaCliente instance = Fabrica.getIConsultaCliente();
 
         DataClienteExt result = instance.ConsultaCliente(s);
@@ -104,13 +121,27 @@ public class CtrlUsuariosTest {
     @Ignore
     @Test
     public void testListarArtistas() {
+        System.out.println("ListarArtistas: lista vacía");
+        ManejadorColecciones.clear();
+        //CtrlUsuarios ctrl = new CtrlUsuarios();
+        ArrayList<String> expResult = new ArrayList<>();
+        //ArrayList<String> result = ctrl.ListarArtistas();
+        //assertEquals(expResult, result);
+    }
+    @Ignore
+    @Test
+    public void testListarArtistas2() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("ListarArtistas");
-        CtrlUsuarios instance = null;
-        ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.ListarArtistas();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ManejadorColecciones.clear();
+        //CtrlUsuarios ctrl = new CtrlUsuarios();
+        Calendar cal = Calendar.getInstance();
+        cal.set(1970, 5, 17);
+        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null);
+        ctrl.AltaArtista(d);
+        ArrayList<String> expResult = new ArrayList<>();
+        expResult.add("ElGordoAxl");
+        //ArrayList<String> result = ctrl.ListarArtistas();
+        //assertEquals(expResult, result);
     }
 
     /**
@@ -496,51 +527,27 @@ public class CtrlUsuariosTest {
     }
 
     /**
-     * Test of PublicarLista method, of class CtrlUsuarios.
-     */
-    @Ignore
-    @Test
-    public void testPublicarLista() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException {
-        System.out.println("PublicarLista");
-        String nomLista = "";
-        String nick = "";
-        CtrlUsuarios instance = null;
-        instance.PublicarLista(nomLista, nick);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of ListarListasDeCliente method, of class CtrlUsuarios.
      */
     @Ignore
     @Test
-    public void testListarListasDeCliente() throws ClienteInexistenteException {
+    public void testListarListasDeCliente() throws ClienteInexistenteException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ListaRepetidaException {
         System.out.println("ListarListasDeCliente");
-        String nick = "";
-        CtrlUsuarios instance = null;
-        ArrayList<String> expResult = null;
-        ArrayList<String> result = instance.ListarListasDeCliente(nick);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        ArrayList<String> expResult = new ArrayList<>();
 
-    /**
-     * Test of ListarTemasDeLista method, of class CtrlUsuarios.
-     */
-    @Ignore
-    @Test
-    public void testListarTemasDeLista() throws ClienteInexistenteException, ListaInexistenteException {
-        System.out.println("ListarTemasDeLista");
-        String nick = "";
-        String nombre = "";
-        CtrlUsuarios instance = null;
-        ArrayList<DataTema> expResult = null;
-        ArrayList<DataTema> result = instance.ListarTemasDeLista(nick, nombre);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //CtrlUsuarios ctrl = new CtrlUsuarios();
+        System.out.println("ListarListasDeCliente");
+        ManejadorColecciones.clear();
+        Calendar cal = Calendar.getInstance();
+        cal.set(1996, 5, 17);
+        DataCliente d = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
+        ctrl.AltaCliente(d);
+        CtrlListas ctrlListas = new CtrlListas();
+        ctrlListas.AltaListaParticular(new DataParticular("JavierM42","Lista1",null));
+        
+        expResult.add("Lista1");
+        //ArrayList<String> result = ctrl.ListarListasDeCliente("JavierM42");
+        //assertEquals(expResult, result);
     }
 
     /**
@@ -578,7 +585,7 @@ public class CtrlUsuariosTest {
      */
     @Ignore
     @Test
-    public void testGetSeguidos() {
+    public void testGetSeguidos() throws ClienteInexistenteException {
         System.out.println("getSeguidos");
         String usr = "";
         CtrlUsuarios instance = null;

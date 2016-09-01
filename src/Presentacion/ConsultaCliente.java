@@ -6,12 +6,15 @@
 package Presentacion;
 
 import espotify.Datatypes.DataClienteExt;
+import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaCliente;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -190,7 +193,12 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String usr = String.valueOf(Select.getSelectedItem());
         IConsultaCliente interf = Fabrica.getIConsultaCliente();
-        DataClienteExt dc = interf.ConsultaCliente(usr);
+        DataClienteExt dc=null;
+        try {
+            dc = interf.ConsultaCliente(usr);
+        } catch (ClienteInexistenteException ex) {
+            Logger.getLogger(ConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         NombreText.setText(dc.getNombre());
         ApellidoText.setText(dc.getApellido());
         CorreoText.setText(dc.getCorreo());

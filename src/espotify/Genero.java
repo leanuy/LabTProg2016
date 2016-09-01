@@ -11,31 +11,31 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class Genero {
+class Genero {
     //attrs
     private String nombre;
     private final HashMap<String,Genero> subgeneros;
     private final HashMap<List<String>, Album> albums;
 
     //getters
-    public String getNombre() {
+    String getNombre() {
         return nombre;
     }
     //constructores
-    public Genero(String nombre)
+    Genero(String nombre)
     {
         this.nombre = nombre;
         this.subgeneros=new HashMap<>();
         this.albums=new HashMap<>();
     }
-    public Genero(DataGenero d)
+     Genero(DataGenero d)
     {
         this.nombre = d.getNombre();
         this.subgeneros = new HashMap<>();
         this.albums = new HashMap<>();
     }
 
-    public ArrayList<String[]> ListarAlbumes(){
+     ArrayList<String[]> ListarAlbumes(){
         ArrayList<String[]> listaAlbums = new ArrayList();
         Iterator it = albums.entrySet().iterator();
         Album actual;
@@ -45,7 +45,7 @@ public class Genero {
             actual = (Album) pair.getValue();
             valores = new String[2];
             valores[0] = actual.getNombre();
-            valores[1] = actual.getClaveArtista();
+            valores[1] = actual.getNickArtista();
             listaAlbums.add(valores);
         }
         return listaAlbums;
@@ -55,7 +55,7 @@ public class Genero {
         subgeneros.put(g.getNombre(), g);
     }
     
-    public void AddAlbum(Album album) {
+     void AddAlbum(Album album) {
         List<String> key = Arrays.asList(album.getNickArtista(), album.getNombre());
         this.albums.putIfAbsent(key, album);
     }

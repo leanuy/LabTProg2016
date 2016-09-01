@@ -36,258 +36,43 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear{
-    private static CtrlUsuarios instancia;
-    private final HashMap<String,Cliente> clientes;
-    private final HashMap<String,Artista> artistas;
-    
-    public static CtrlUsuarios getInstancia()
+//Constructor
+    public CtrlUsuarios()
     {
-        if(instancia==null)
-            instancia=new CtrlUsuarios();
-        return instancia;
     }
-    
-    private CtrlUsuarios()
-    {
-        this.clientes=new HashMap<>();
-        this.artistas=new HashMap<>();
+//Acceso al Manejador
+    private void AgregarCliente(String nick, Cliente c) {
+        ManejadorColecciones.getInstancia().AgregarCliente(nick, c);
     }
-    
-    public ArrayList<String> ListarClientes(){
-        ArrayList a = new ArrayList();
-        clientes.keySet().stream().forEach((key) -> {
-            a.add(key);
-        });
-        return a;
+    private void AgregarArtista(String nick, Artista c) {
+        ManejadorColecciones.getInstancia().AgregarArtista(nick, c);
     }
-    
-    public DataClienteExt ConsultaCliente(String s){
-        Cliente c = clientes.get(s);
-        DataClienteExt dc = c.getDataClienteExt();
-        return dc;
+    Artista BuscarArtista(String nombre) throws ArtistaInexistenteException {
+        Artista artista = ManejadorColecciones.getInstancia().BuscarArtista(nombre);
+        if (artista == null)
+            throw new ArtistaInexistenteException();
+        return artista;
     }
-    
-    public ArrayList<String> ListarArtistas(){
-        ArrayList a = new ArrayList();
-        artistas.keySet().stream().forEach((key) -> {
-            a.add(key);
-        });
-        return a;
-    }
-    
-    public DataArtistaExt ConsultaArtista(String s){
-        Artista a = artistas.get(s);
-        DataArtistaExt da = a.getDataArtistaExt();
-        return da;
-    }
-    
-    public void AltaSeguir(String nomSeguidor, String nomSeguido) throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
-        Cliente c = clientes.get(nomSeguidor);
-        if (c==null){
-            throw new SeguidorInexistenteException();
-        }
-        Usuario u = clientes.get(nomSeguido);
-        if (u==null){
-            u = artistas.get(nomSeguido);
-        }
-        if (u==null){
-            throw new SeguidoInexistenteException();
-        }
-        c.Seguir(u);
-    }
-    
-    public void DejarDeSeguir(String nomSeguidor, String nomSeguido) throws SeguidorInexistenteException,SeguidoInexistenteException{
-        Cliente c = clientes.get(nomSeguidor);
-        if (c==null){
-            throw new SeguidorInexistenteException();
-        }
-        Usuario u = clientes.get(nomSeguido);
-        if (u==null){
-            u = artistas.get(nomSeguido);
-        }
-        if (u==null){
-            throw new SeguidoInexistenteException();
-        }
-        c.DejarDeSeguir(u);
-    }
-    
-    public void AltaCliente(DataCliente d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException
-    {
-        if(Usuario.ValidarDatosUsuario(d))
-        {
-            if(!ExisteUsuarioCorreo(d.getCorreo()))
-            {
-                if(!ExisteUsuarioNick(d.getNick()))
-                {
-                    Cliente c = new Cliente(d);
-                    clientes.put(d.getNick(), c);
-                } else
-                    throw new NickRepetidoException();
-            } else
-                throw new CorreoRepetidoException();
-        } else
-            throw new FormatoIncorrectoException();
-    }
-    
-    public void AltaArtista(DataArtista d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException
-    {
-        if(Artista.ValidarDatosArtista(d))
-        {
-            if(!ExisteUsuarioCorreo(d.getCorreo()))
-            {
-                if(!ExisteUsuarioNick(d.getNick()))
-                {
-                    Artista c = new Artista(d);
-                    artistas.put(d.getNick(), c);
-                } else
-                    throw new NickRepetidoException();
-            } else
-                throw new CorreoRepetidoException();
-        } else
-            throw new FormatoIncorrectoException();
-    }
-
-    private boolean ExisteUsuarioCorreo(String correo) {
-        boolean salida = false;
-        Iterator<Entry<String,Cliente>> iterator = clientes.entrySet().iterator();
-        while (iterator.hasNext() && !salida) {
-                Map.Entry<String,Cliente> entry = (Map.Entry<String,Cliente>) iterator.next();
-                salida = entry.getValue().getCorreo().equals(correo);
-        }
-        Iterator<Entry<String,Artista>> iterator2 = artistas.entrySet().iterator();
-        while (iterator2.hasNext() && !salida) {
-                Map.Entry<String,Artista> entry = (Map.Entry<String,Artista>) iterator2.next();
-                salida = entry.getValue().getCorreo().equals(correo);
-        }
-        return salida;       
-    }
-    private boolean ExisteUsuarioNick(String nick) {
-        return clientes.containsKey(nick) || artistas.containsKey(nick);
-    }
-    
-    public Cliente BuscarCliente(String nick) throws ClienteInexistenteException {
-        Cliente cliente = clientes.get(nick);
+    Cliente BuscarCliente(String nick) throws ClienteInexistenteException {
+        Cliente cliente = GetClientes().get(nick);
         if (cliente == null) {
             throw new ClienteInexistenteException("No existe ese cliente!");
         }
         return cliente;
     }
-
-
-    public void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException {
-        Cliente c = BuscarCliente(nick);
-        c.PublicarLista(nomLista);
+    private static HashMap<String, Artista> GetArtistas() {
+        return ManejadorColecciones.getInstancia().getArtistas();
+    }
+    private static HashMap<String, Cliente> GetClientes() {
+        return ManejadorColecciones.getInstancia().getClientes();
     }
 
-    public ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException{
-        Cliente c = BuscarCliente(nick);
-        return c.ListarListas();
-    }
-    
-    ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException{
-        Cliente c = BuscarCliente(nick);
-        return c.ListarListasPrivadas();
-    }
-    
-    ArrayList<String> ListarListasPublicasDeCliente(String nick) throws Exception{
-        Cliente c = BuscarCliente(nick);
-        return c.ListarListasPublicas();
-    }
-
-    public ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws ClienteInexistenteException, ListaInexistenteException{
-        Cliente c = BuscarCliente(nick);
-        return c.ListarTemasDeLista(nombre);
-    }
-    
-    public ArrayList<Tema> ListarTemasDeLista2(String nick, String nombre) throws Exception{
-        Cliente c = BuscarCliente(nick);
-        return c.ListarTemasDeLista2(nombre);
-    }
-    
-    @Override
-    public String[] DevolverClientes(){
-        int cant = clientes.size();
-        String[] a;
-        a = new String[cant];
-        int i = 0;
-        for(Entry<String, Cliente> entry : clientes.entrySet()) {
-            String key = entry.getKey();
-            a[i] = key;
-            i++;
-        }
-        return a;
-    }
-    
-    @Override
-    public String[] DevolverArtistas(){
-        int cant = artistas.size();
-        String[] a;
-        a = new String[cant];
-        int i = 0;
-        for(Entry<String, Artista> entry : artistas.entrySet()) {
-            String key = entry.getKey();
-            a[i] = key;
-            i++;
-        }
-        return a;
-    }    
-    
-    @Override
-    public String[] getSeguidos(String usr){
-        DataClienteExt dc = this.ConsultaCliente(usr);
-        String[] seg = dc.getSeguidos();
-        return seg;
-    }
-
-    void AltaLista(DataParticular d) throws ClienteInexistenteException, ListaRepetidaException {
-        Cliente c = clientes.get(d.getNomCliente());
-        if(c!=null)
-            c.AltaLista(d);
-        else
-            throw new ClienteInexistenteException();
-    }
-
-    void QuitarTemaDeLista(String nick, String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException, ClienteInexistenteException {
-        Cliente c = BuscarCliente(nick);
-        c.QuitarTemaDeLista(nomLista,nomTema,nomAlbum);
-    }
-
-    DataLista DarInfoLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException{
-        Cliente c = BuscarCliente(nick);
-        return c.DarInfoLista(nomLista);
-    }
-    
-    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws ArtistaInexistenteException, AlbumInexistenteException{
-        Artista artista = BuscarArtista(nomArtista);
-        DataAlbumExt data_album_ext = artista.getDataAlbumExt(nomAlbum);
-        return data_album_ext;
-    }        
-
-    
-    public Artista BuscarArtista(String nombre) throws ArtistaInexistenteException {
-        Artista artista = artistas.get(nombre);
-        if (artista == null) {
-            throw new ArtistaInexistenteException();
-        }
-        return artista;
-    }
-    
-    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
-        Artista artista = BuscarArtista(nomArtista);
-        return artista.ListarAlbumes();
-    }
-    
-    public void Favoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException
-    {
-        Favoriteable f = BuscarFavoriteable(d);
-        Cliente c = BuscarCliente(nick);
-        c.Favoritear(f);
-    }
-    
-    public Favoriteable BuscarFavoriteable(DataFavoriteable d) throws ListaInexistenteException, ClienteInexistenteException, ArtistaInexistenteException, AlbumInexistenteException
-    {
+//Otras búsquedas
+    private Favoriteable BuscarFavoriteable(DataFavoriteable d) throws ListaInexistenteException, ClienteInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
         if (d instanceof DataLista)
         {
             if(d instanceof DataParticular)
@@ -296,7 +81,7 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
                 return BuscarListaPublicaDeCliente(dp.getNomCliente(),dp.getNombre());
             }
             else if (d instanceof DataDefecto)
-                return CtrlListas.getInstancia().BuscarLista(((DataDefecto) d).getNombre());
+                return new CtrlListas().BuscarLista(((DataDefecto) d).getNombre());
         } else if (d instanceof DataAlbum)
         {
             DataAlbum da = (DataAlbum) d;
@@ -306,49 +91,249 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
             return DevolverTema((DataTema)d);
         return null;
     }
-    
-    Publica BuscarListaPublicaDeCliente(String nickCliente, String nomLista) throws ClienteInexistenteException, ListaInexistenteException
-    {
+    private Publica BuscarListaPublicaDeCliente(String nickCliente, String nomLista) throws ClienteInexistenteException, ListaInexistenteException {
         Cliente c = BuscarCliente(nickCliente);
         return c.BuscarListaPublica(nomLista);
     }
-    Album BuscarAlbumDeArtista(String nickArtista,String nomAlbum) throws ArtistaInexistenteException, AlbumInexistenteException
-    {
+    private Album BuscarAlbumDeArtista(String nickArtista,String nomAlbum) throws ArtistaInexistenteException, AlbumInexistenteException {
         Artista a = BuscarArtista(nickArtista);
         return a.BuscarAlbum(nomAlbum);
     }
-    
-    public void DesFavoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException
-    {
-        Favoriteable f = BuscarFavoriteable(d);
-        Cliente c = BuscarCliente(nick);
-        c.DesFavoritear(f);
+    Tema DevolverTema(DataTema dt) throws ArtistaInexistenteException{
+        Artista a = BuscarArtista(dt.getNomArtista());
+        return a.DevolverTema(dt);
     }
-    public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException
-    {
+
+//Listas
+    ArrayList<String> ListarClientes(){
+        ArrayList a = new ArrayList();
+        GetClientes().keySet().stream().forEach((key) -> {
+            a.add(key);
+        });
+        return a;
+    }
+    ArrayList<String> ListarArtistas(){
+        ArrayList a = new ArrayList();
+        GetArtistas().keySet().stream().forEach((key) -> {
+            a.add(key);
+        });
+        return a;
+    }
+    ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarListas();
+    }
+    ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarListasPrivadas();
+    }
+    ArrayList<String> ListarListasPublicasDeCliente(String nick) throws Exception{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarListasPublicas();
+    }
+    ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws ClienteInexistenteException, ListaInexistenteException{
+        Cliente c = BuscarCliente(nick);
+        return c.ListarTemasDeLista(nombre);
+    }
+    @Override
+    public String[] DevolverClientes(){
+        int cant =  GetClientes().size();
+        String[] a;
+        a = new String[cant];
+        int i = 0;
+        for(Entry<String, Cliente> entry :  GetClientes().entrySet()) {
+            String key = entry.getKey();
+            a[i] = key;
+            i++;
+        }
+        return a;
+    }
+    @Override
+    public String[] DevolverArtistas(){
+        int cant =  GetArtistas().size();
+        String[] a;
+        a = new String[cant];
+        int i = 0;
+        for(Entry<String, Artista> entry : GetArtistas().entrySet()) {
+            String key = entry.getKey();
+            a[i] = key;
+            i++;
+        }
+        return a;
+    }    
+    @Override
+    public String[] getSeguidos(String usr) throws ClienteInexistenteException {
+        DataClienteExt dc = this.ConsultaCliente(usr);
+        String[] seg = dc.getSeguidos();
+        return seg;
+    }
+    ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
+        Artista artista = BuscarArtista(nomArtista);
+        return artista.ListarAlbumes();
+    }
+    ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException {
         Artista artista = BuscarArtista(art);
         Album al = artista.BuscarAlbum(alb);
         ArrayList<DataTema> datatemas = al.getDataTemas();
         return datatemas;
     }
     
-    public void AgregarTemaLista(Tema t,String usr, String lista) throws Exception{
+    //Consultas
+    @Override
+    public DataClienteExt ConsultaCliente(String s) throws ClienteInexistenteException{
+        Cliente c = BuscarCliente(s);
+        DataClienteExt dc = c.getDataClienteExt();
+        return dc;
+    }
+    @Override
+    public DataArtistaExt ConsultaArtista(String s){
+        Artista a = GetArtistas().get(s);
+        DataArtistaExt da = a.getDataArtistaExt();
+        return da;
+    }
+    private boolean ExisteUsuarioCorreo(String correo) {
+        boolean salida = false;
+        Iterator<Entry<String,Cliente>> iterator = GetClientes().entrySet().iterator();
+        while (iterator.hasNext() && !salida) {
+                Map.Entry<String,Cliente> entry = (Map.Entry<String,Cliente>) iterator.next();
+                salida = entry.getValue().getCorreo().equals(correo);
+        }
+        Iterator<Entry<String,Artista>> iterator2 = GetArtistas().entrySet().iterator();
+        while (iterator2.hasNext() && !salida) {
+                Map.Entry<String,Artista> entry = (Map.Entry<String,Artista>) iterator2.next();
+                salida = entry.getValue().getCorreo().equals(correo);
+        }
+        return salida;       
+    }
+    private boolean ExisteUsuarioNick(String nick) {
+        return GetClientes().containsKey(nick) || GetArtistas().containsKey(nick);
+    }
+    DataLista DarInfoLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException{
+        Cliente c = BuscarCliente(nick);
+        return c.DarInfoLista(nomLista);
+    }
+    DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws ArtistaInexistenteException, AlbumInexistenteException{
+        Artista artista = BuscarArtista(nomArtista);
+        DataAlbumExt data_album_ext = artista.getDataAlbumExt(nomAlbum);
+        return data_album_ext;
+    }        
+
+    //Operaciones
+    @Override
+    public void AltaSeguir(String nomSeguidor, String nomSeguido) throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
+        Cliente c = null;
+        try {
+            c = BuscarCliente(nomSeguidor);
+        } catch (ClienteInexistenteException ex) {
+            throw new SeguidorInexistenteException();
+        }
+        Usuario u = null;
+        try
+        {
+            u = BuscarCliente(nomSeguido);
+        } catch (ClienteInexistenteException ex) {        }
+        if (u==null){
+            try
+            {
+                u = BuscarArtista(nomSeguido);
+            }
+            catch (ArtistaInexistenteException ex)
+            {
+                throw new SeguidoInexistenteException();
+            }
+        }
+        c.Seguir(u);
+    }
+    @Override
+    public void DejarDeSeguir(String nomSeguidor, String nomSeguido) throws SeguidorInexistenteException,SeguidoInexistenteException{
+        Cliente c = null;
+        try {
+            c = BuscarCliente(nomSeguidor);
+        } catch (ClienteInexistenteException ex) {
+            throw new SeguidorInexistenteException();
+        }
+        Usuario u = null;
+        try
+        {
+            u = BuscarCliente(nomSeguido);
+        } catch (ClienteInexistenteException ex) {        }
+        if (u==null){
+            try
+            {
+                u = BuscarArtista(nomSeguido);
+            }
+            catch (ArtistaInexistenteException ex)
+            {
+                throw new SeguidoInexistenteException();
+            }
+        }
+        c.DejarDeSeguir(u);
+    }
+    @Override
+    public void AltaCliente(DataCliente d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
+        if(Usuario.ValidarDatosUsuario(d))
+        {
+            if(!ExisteUsuarioCorreo(d.getCorreo()))
+            {
+                if(!ExisteUsuarioNick(d.getNick()))
+                {
+                    Cliente c = new Cliente(d);
+                    AgregarCliente(d.getNick(), c);
+                } else
+                    throw new NickRepetidoException();
+            } else
+                throw new CorreoRepetidoException();
+        } else
+            throw new FormatoIncorrectoException();
+    }
+    @Override
+    public void AltaArtista(DataArtista d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
+        if(Artista.ValidarDatosArtista(d))
+        {
+            if(!ExisteUsuarioCorreo(d.getCorreo()))
+            {
+                if(!ExisteUsuarioNick(d.getNick()))
+                {
+                    Artista c = new Artista(d);
+                    AgregarArtista(d.getNick(), c);
+                } else
+                    throw new NickRepetidoException();
+            } else
+                throw new CorreoRepetidoException();
+        } else
+            throw new FormatoIncorrectoException();
+    }
+    void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException {
+        Cliente c = BuscarCliente(nick);
+        c.PublicarLista(nomLista);
+    }
+    void AltaLista(DataParticular d) throws ClienteInexistenteException, ListaRepetidaException {
+        Cliente c = GetClientes().get(d.getNomCliente());
+        if(c!=null)
+            c.AltaLista(d);
+        else
+            throw new ClienteInexistenteException();
+    }
+    void QuitarTemaDeLista(String nick, String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException, ClienteInexistenteException {
+        Cliente c = BuscarCliente(nick);
+        c.QuitarTemaDeLista(nomLista,nomTema,nomAlbum);
+    }
+    public void Favoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        Favoriteable f = BuscarFavoriteable(d);
+        Cliente c = BuscarCliente(nick);
+        c.Favoritear(f);
+    }
+    public void DesFavoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        Favoriteable f = BuscarFavoriteable(d);
+        Cliente c = BuscarCliente(nick);
+        c.DesFavoritear(f);
+    }
+    void AgregarTemaLista(Tema t,String usr, String lista) throws Exception{
         Cliente cliente = null;
-        cliente = clientes.get(usr);
+        cliente = GetClientes().get(usr);
         if (cliente == null){
             throw new Exception("No se encontro el cliente");
         }
         cliente.AgregarTemaLista(t, lista);
-    }
-    
-    public Tema DevolverTema(DataTema dt){
-        String art = dt.getNomArtista();
-        Artista a = artistas.get(art);
-        return a.DevolverTema(dt);
-    }
-    
-    public static void clear()
-    {
-        instancia=null;
     }
 }

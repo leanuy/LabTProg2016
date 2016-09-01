@@ -16,24 +16,41 @@ import espotify.Excepciones.YaPublicaException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cliente extends Usuario {
+class Cliente extends Usuario {
     private final HashMap<String,Usuario> seguidos;
     private final HashMap<String,Particular> listas;
     private final ArrayList<Favoriteable> favoritos;
     
-    public Cliente(DataUsuario d) {
+    Cliente(DataUsuario d) {
         super(d);
         this.seguidos=new HashMap<>();
         this.listas=new HashMap<>();
         this.favoritos=new ArrayList<>();
     }
     
-    public DataClienteExt getDataClienteExt() {
-        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), seguidos, listas);
+    DataClienteExt getDataClienteExt() {
+        int cant = seguidos.size();
+        String[] seg = new String[cant];
+        int i = 0;
+        for(Map.Entry<String, Usuario> entry : seguidos.entrySet()) {
+            String key = entry.getKey();
+            seg[i] = key;
+            i++;
+        }
+        cant = listas.size();
+        String[] lis = new String[cant];
+        i = 0;
+        for(Map.Entry<String, Particular> entry : listas.entrySet()) {
+            Particular value = entry.getValue();
+            String nomb = value.getNombre();
+            lis[i] = nomb;
+            i++;
+        }
+        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), seg, lis);
         return dc;
     }
     
-    public void Seguir(Usuario u) throws AutoSeguirseException, SeguidoRepetidoException{
+    void Seguir(Usuario u) throws AutoSeguirseException, SeguidoRepetidoException{
         if(this.equals(u))
             throw new AutoSeguirseException();
         String clave = u.getNick();
@@ -43,8 +60,7 @@ public class Cliente extends Usuario {
         }
         this.seguidos.put(clave, u);
     }
-    
-    public void DejarDeSeguir(Usuario u) throws SeguidoInexistenteException{
+    void DejarDeSeguir(Usuario u) throws SeguidoInexistenteException{
         String clave = u.getNick();
         Usuario u2 = this.seguidos.get(clave);
         if (u2 == null){
@@ -79,7 +95,7 @@ public class Cliente extends Usuario {
         return a;
     }
     
-        ArrayList<String> ListarListasPublicas() {
+    ArrayList<String> ListarListasPublicas() {
         ArrayList<String> a = new ArrayList();
         for(Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular p = entry.getValue();
@@ -93,14 +109,6 @@ public class Cliente extends Usuario {
         return BuscarLista(nombre).ListarTemas();
     }
     
-    ArrayList<Tema> ListarTemasDeLista2(String nombre) throws Exception {
-        Lista l = listas.get(nombre);
-        if(l!=null)
-            return l.DevolverTemas();
-        else
-            throw new Exception("El cliente no tiene una lista con ese nombre");
-    }
-
     void AltaLista(DataParticular d) throws ListaRepetidaException {
         if(ValidarNombreLista(d.getNombre()))
             listas.put(d.getNombre(), new Privada(d));
@@ -108,8 +116,7 @@ public class Cliente extends Usuario {
             throw new ListaRepetidaException();
     }
     
-    private boolean ValidarNombreLista(String nom)
-    {
+    private boolean ValidarNombreLista(String nom) {
         return !nom.equals("") && !listas.containsKey(nom);
     }
 
@@ -121,8 +128,7 @@ public class Cliente extends Usuario {
         return BuscarLista(nomLista).getData();
     }
     
-    public Particular BuscarLista(String nomLista) throws ListaInexistenteException
-    {
+    Particular BuscarLista(String nomLista) throws ListaInexistenteException {
         Particular l = listas.get(nomLista);
         if(l!=null)
             return l;
@@ -151,7 +157,7 @@ public class Cliente extends Usuario {
         else
             throw new FavoritoRepetidoException();
     }
-    public void AgregarTemaLista(Tema t, String lis) throws Exception{
+    void AgregarTemaLista(Tema t, String lis) throws Exception{
         Lista l = listas.get(lis);
         if(l==null){
             throw new Exception("La lista que tiene que existir no se encontro");
