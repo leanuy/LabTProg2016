@@ -6,6 +6,7 @@
 package Presentacion;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,12 +22,12 @@ public class ImagenAlbum extends javax.swing.JDialog {
      */
     public ImagenAlbum(BufferedImage image) {
         initComponents();
-        jPanel1.setLayout(new BorderLayout());
-        JLabel fotis = new JLabel();
+        jPanel1.setLayout(new FlowLayout());
         fotis.removeAll();
         fotis.repaint();
         ImageIcon img = new ImageIcon(image);
         fotis.setIcon(img);
+        this.setSize(img.getIconWidth(), img.getIconHeight());
         fotis.setVisible(true);
         this.pack();
     }
@@ -41,6 +42,7 @@ public class ImagenAlbum extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        fotis = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Album Cover");
@@ -50,11 +52,17 @@ public class ImagenAlbum extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 742, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(116, 116, 116)
+                .addComponent(fotis, javax.swing.GroupLayout.PREFERRED_SIZE, 507, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 540, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(fotis, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -73,6 +81,7 @@ public class ImagenAlbum extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel fotis;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -177,7 +177,6 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
                 modelitoAlbums.addElement(d);
             }
             ConsultaAlbumButton.setEnabled(true);
-            TraerAlbumsButton.setEnabled(false);
         }catch(ArtistaInexistenteException e){
             JOptionPane.showMessageDialog(this, "El artista elegido no existe.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }

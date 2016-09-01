@@ -31,6 +31,7 @@ import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
 import espotify.Interfaces.IFavoritear;
+import espotify.Interfaces.IAltaAlbum;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
