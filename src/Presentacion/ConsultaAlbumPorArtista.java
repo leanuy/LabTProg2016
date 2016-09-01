@@ -165,6 +165,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
     private void TraerAlbumsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraerAlbumsButtonActionPerformed
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         ArrayList<String> dataAlbums = null;
+        modelitoAlbums.clear();
         if(ListaArtistas.isSelectionEmpty()){
             JOptionPane.showMessageDialog(this, "Debe seleccionar un artista", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
             return;
