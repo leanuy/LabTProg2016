@@ -365,6 +365,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         ingTema.setLocationRelativeTo(this);
         
         ingTema.setVisible(true);
+
         if(entrar){
             if(nombreRepetido){
                 JOptionPane.showMessageDialog(this, "Nombre de tema Repetido", "Error", JOptionPane.ERROR_MESSAGE);
@@ -383,7 +384,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 temasYaIngresados.add(nombre);
                 nombreAnterior = nombre;
             }
-        }        
+        }
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
 
     private void buttonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarImagenActionPerformed
