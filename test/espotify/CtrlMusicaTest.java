@@ -56,22 +56,7 @@ public class CtrlMusicaTest {
     
     
     
-    /**
-     * Test of ConsultaAlbum method, of class CtrlMusica.
-     */
-    @Ignore
-    @Test
-    public void testConsultaAlbum() throws Exception {
-        System.out.println("ConsultaAlbum");
-        String nomAlbum = "";
-        String nomArtista = "";
-        CtrlMusica instance = null;
-        DataAlbumExt expResult = null;
-        DataAlbumExt result = instance.ConsultaAlbum(nomAlbum, nomArtista);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+
 
     /**
      * Test of ListarGeneros method, of class CtrlMusica.

@@ -33,65 +33,20 @@ public class AltaAlbumTest {
 
     static IAltaAlbum iAltaAlbum;
     public AltaAlbumTest() {
+        iAltaAlbum = Fabrica.getIAltaAlbum();
     }
 
     @BeforeClass
     public static void setUpClass() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, GeneroInexistenteException, GeneroRepetidoException {
-        iAltaAlbum = Fabrica.getIAltaAlbum();
         new AltaPerfilTest().testAltaArtista1();
         IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
         iAltaGenero.AltaGenero(new DataGenero("Pop", ""));
         iAltaGenero.AltaGenero(new DataGenero("Jazz", ""));
     }
 
-    @AfterClass
-    public static void tearDownClass() {
-    }
-
-    @Before
-    public void setUp(){
-    }
-
-    @After
-    public void tearDown() {
-    }
-
-    /**
-     * Test of getInstancia method, of class CtrlMusica.
-     */
-    @Ignore
-    @Test
-    public void testGetInstancia() {
-        System.out.println("getInstancia");
-        CtrlMusica expResult = null;
-        CtrlMusica result = new CtrlMusica();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-
-    /**
-     * Test of ListarGeneros method, of class CtrlMusica.
-     */
-    @Ignore
-    @Test
-    public void testListarGeneros() {
-        System.out.println("ListarGeneros");
-        CtrlMusica instance = null;
-        DataGenero expResult = null;
-        DataGenero result = instance.ListarGeneros();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-
     @Test
     public void testAltaAlbum() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test 1");
-        //this.testExisteArtista();
-
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1));
@@ -108,7 +63,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 

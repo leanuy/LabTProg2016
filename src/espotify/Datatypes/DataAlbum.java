@@ -2,14 +2,15 @@ package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class DataAlbum implements DataFavoriteable{
-    private final String nombre;
-    private final int anio;
-    private final ArrayList<String> generos;
-    private final BufferedImage img;
-    private final String nickArtista; //nickname
+    protected final String nombre;
+    protected final int anio;
+    protected final ArrayList<String> generos;
+    protected final BufferedImage img;
+    protected final String nickArtista; //nickname
 
     public String getNombre() {
         return nombre;
@@ -35,4 +36,9 @@ public class DataAlbum implements DataFavoriteable{
         this.img = img;
         this.nickArtista = artista;
     }
+
+
+
+    
+    
 }
