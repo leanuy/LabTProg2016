@@ -26,13 +26,14 @@ import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
+import espotify.Interfaces.IAltaAlbum;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil{
+public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil {
     private static CtrlUsuarios instancia;
     private final HashMap<String,Cliente> clientes;
     private final HashMap<String,Artista> artistas;

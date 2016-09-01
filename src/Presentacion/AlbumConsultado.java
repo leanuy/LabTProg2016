@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
 
 /**
@@ -240,7 +241,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
             return;
         }
         String seleccion = (String)modeloTemas.getElementAt(indice);
-        int numeroTema = Integer.parseInt(seleccion.substring(0,1));
+        int numeroTema = Integer.parseInt(obtenerNumerodeLista(seleccion));
         DataTema temaElegido = null;
         //buscar el tema con ese numero. si es tema web sugerir el link si es archivo ver como abrir el chooser y que seleccione destino,
         for(DataTema da : temas){
@@ -254,8 +255,9 @@ public class AlbumConsultado extends javax.swing.JDialog {
             return;
         }
         if(temaElegido instanceof DataTemaWeb){
-            JOptionPane.showMessageDialog(this, "Puede escuchar el tema online en el siguiente link: "+ 
-                                            ((DataTemaWeb) temaElegido).getUrl(), temaElegido.getNombre(), JOptionPane.INFORMATION_MESSAGE);
+            JTextArea a = new JTextArea();
+            a.setText(((DataTemaWeb) temaElegido).getUrl());
+            JOptionPane.showMessageDialog(this, a,"Link a > " +  temaElegido.getNombre(), JOptionPane.INFORMATION_MESSAGE);
         }else{
             JFileChooser fileChooser = new JFileChooser();  //en construccion
             fileChooser.setDialogTitle("Descargar Tema en...");   
@@ -290,10 +292,15 @@ public class AlbumConsultado extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this,"Tema descargado con exito!","Well Done!.",JOptionPane.INFORMATION_MESSAGE);
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this,"Problemas al descargar el archivo, llame a soporte","Atencion!.",JOptionPane.ERROR_MESSAGE);
-            }    // WTF?????????        marca un coso rojo y ni idea
+            }    
         }
     }//GEN-LAST:event_descargarTemaActionPerformed
-
+    
+    private String obtenerNumerodeLista(String s){
+        int i = s.indexOf(" ");
+        String numero = s.substring(0, i);
+        return numero;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AlbumName;
