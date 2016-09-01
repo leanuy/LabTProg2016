@@ -89,42 +89,6 @@ public class CtrlMusicaTest {
     }
 
     /**
-     * Test of AltaGenero method, of class CtrlMusica.
-     */
-    @Test
-    public void testAltaGenero() throws Exception {
-        System.out.println("AltaGenero: Ingreso normal, padre nulo");
-        DataGenero d = new DataGenero("Rock", "");
-        IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
-    }
-    @Test
-    public void testAltaGenero2() throws Exception {
-        System.out.println("AltaGenero: Ingreso normal, padre existente");
-        DataGenero d = new DataGenero("Metal", "");
-        IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
-        //d = new DataGenero("Black Metal", "Metal");
-        //instance.AltaGenero(d);
-    }
-    @Test (expected = GeneroInexistenteException.class)
-    public void testAltaGenero3() throws Exception {
-        System.out.println("AltaGenero: Padre inexistente");
-        DataGenero d = new DataGenero("Cumbia Plancha", "Rombai");
-        IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
-    }
-    
-    @Test (expected = GeneroRepetidoException.class)
-    public void testAltaGenero4() throws Exception {
-        System.out.println("AltaGenero: Género repetido");
-        DataGenero d = new DataGenero("Jazz", "");
-        IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
-        instance.AltaGenero(d);
-    }
-
-    /**
      * Test of ListarAlbumesDeGenero method, of class CtrlMusica.
      */
     @Ignore

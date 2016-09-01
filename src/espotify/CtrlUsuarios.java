@@ -163,6 +163,28 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         return a;
     }    
     @Override
+    public ArrayList<String> ListarSeguibles(String nomSeguidor) throws SeguidorInexistenteException
+    {
+        Cliente c;
+        try {
+            c = BuscarCliente(nomSeguidor);
+        } catch (ClienteInexistenteException ex) {
+            throw new SeguidorInexistenteException();
+        }
+        ArrayList<String> a = new ArrayList<>();
+        for(Entry<String, Cliente> entry :  GetClientes().entrySet()) {
+            String key = entry.getKey();
+            if(!c.SigueA(key) && !key.equals(c.getNick()))
+                a.add(key);
+        }
+        for(Entry<String, Artista> entry : GetArtistas().entrySet()) {
+            String key = entry.getKey();
+            if(!c.SigueA(key))
+                a.add(key);
+        }
+        return a;
+    }
+    @Override
     public String[] getSeguidos(String usr) throws ClienteInexistenteException {
         DataClienteExt dc = this.ConsultaCliente(usr);
         String[] seg = dc.getSeguidos();

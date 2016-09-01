@@ -60,34 +60,8 @@ public class CtrlUsuariosTest {
     public void tearDown() {
     }
 
-    /**
-     * Test of ListarClientes method, of class CtrlUsuarios.
-     */
-    @Ignore
-    @Test
-    public void testListarClientes() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        /*IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        System.out.println("ListarClientes: un cliente");
-        ManejadorColecciones.clear();
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
-        ctrl.AltaCliente(d);
-        ArrayList<String> expResult = new ArrayList<>();
-        expResult.add("JavierM42");
-        ArrayList<String> result = ctrl.ListarClientes();
-        assertEquals(expResult, result);*/
-    }
-    
-    @Test
-    public void testListarClientes2() {
-        System.out.println("ListarClientes: lista vacía");
-        ManejadorColecciones.clear();
-        //CtrlUsuarios ctrl = new CtrlUsuarios();
-        ArrayList<String> expResult = new ArrayList<>();
-        ArrayList<String> result = ctrl.ListarClientes();
-        assertEquals(expResult, result);
-    }
+
+
 
     /**
      * Test of ConsultaCliente method, of class CtrlUsuarios.
@@ -165,124 +139,6 @@ public class CtrlUsuariosTest {
         IConsultaArtista instance = Fabrica.getIConsultaArtista();
         DataArtistaExt result = instance.ConsultaArtista(s);
         assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of AltaSeguir method, of class CtrlUsuarios.
-     */
-    @Test
-    public void testAltaSeguir() throws Exception {
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        instance.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        instance.AltaCliente(d);
-        }
-        catch(NickRepetidoException | CorreoRepetidoException e)
-        {}
-        
-        System.out.println("AltaSeguir: Normal a Cliente");
-        String nomSeguidor = "Seguidor";
-        String nomSeguido = "Seguido";
-        IAltaSeguir ctrl = Fabrica.getIAltaSeguir();
-        ctrl.AltaSeguir(nomSeguidor, nomSeguido);
-    }
-    
-    @Test (expected=SeguidorInexistenteException.class)
-    public void testAltaSeguir2() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
-        IAltaSeguir instance = Fabrica.getIAltaSeguir();
-        System.out.println("AltaSeguir: Seguidor inexistente");
-        String nomSeguidor = "Seguidorasdfasfd";
-        String nomSeguido = "Seguido";
-        instance.AltaSeguir(nomSeguidor, nomSeguido);
-    }
-    
-    @Test (expected=SeguidoInexistenteException.class)
-    public void testAltaSeguir3() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
-        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        ctrl.AltaCliente(d);
-        }
-        catch(NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
-        {}
-        
-        System.out.println("AltaSeguir: Seguido inexistente");
-        String nomSeguidor = "Seguidor";
-        String nomSeguido = "Seguidoasdf";
-        IAltaSeguir instance = Fabrica.getIAltaSeguir();
-        instance.AltaSeguir(nomSeguidor, nomSeguido);
-    }
-    
-    @Test
-    public void testAltaSeguir4() throws Exception {
-        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        ctrl.AltaCliente(d);
-        DataArtista da = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null);
-        ctrl.AltaArtista(da);
-        }
-        catch(NickRepetidoException | CorreoRepetidoException e)
-        {}
-        
-        System.out.println("AltaSeguir: Normal a Artista");
-        String nomSeguidor = "Seguidor";
-        String nomSeguido = "ElGordoAxl";
-        IAltaSeguir instance = Fabrica.getIAltaSeguir();
-        instance.AltaSeguir(nomSeguidor, nomSeguido);
-    }
-    
-    @Test (expected=AutoSeguirseException.class)
-    public void testAltaSeguir5() throws Exception {
-        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        ctrl.AltaCliente(d);
-        }
-        catch(NickRepetidoException | CorreoRepetidoException e)
-        {}
-        
-        System.out.println("AltaSeguir: Seguirse A si Mismo");
-        String nomSeguidor = "Seguidor";
-        String nomSeguido = "Seguidor";
-        IAltaSeguir instance = Fabrica.getIAltaSeguir();
-        instance.AltaSeguir(nomSeguidor, nomSeguido);
-    }
-    
-    @Test (expected=SeguidoRepetidoException.class)
-    public void testAltaSeguir6() throws Exception {
-        IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
-        ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
-        ctrl.AltaCliente(d);
-        }
-        catch(NickRepetidoException | CorreoRepetidoException e)
-        {}
-        
-        System.out.println("AltaSeguir: Seguir dos veces");
-        String nomSeguidor = "Seguidor";
-        String nomSeguido = "Seguido";
-        IAltaSeguir instance = Fabrica.getIAltaSeguir();
-        try{
-        instance.AltaSeguir(nomSeguidor, nomSeguido);
-        } catch (Exception e){}
-        instance.AltaSeguir(nomSeguidor, nomSeguido);
     }
 
     /**
@@ -379,120 +235,7 @@ public class CtrlUsuariosTest {
         instance.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
-    /**
-     * Test of AltaCliente method, of class CtrlUsuarios.
-     */
-    @Test
-    public void testAltaCliente1() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        System.out.println("AltaCliente: ingreso normal");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaCliente(d);
-    }
     
-    @Test (expected=FormatoIncorrectoException.class)
-    public void testAltaCliente2() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        System.out.println("AltaCliente: campo vacío");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaCliente(d);
-    }
-    
-    @Test (expected=NickRepetidoException.class)
-    public void testAltaCliente3() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        System.out.println("AltaCliente: nick repetido.");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("b", "Javier", "Morales", "javiermorales422@hotmail.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaCliente(d);
-        d = new DataCliente("b", "Javier", "Morales", "javiermorales4222@hotmail.com", cal, null);
-        instance.AltaCliente(d);
-    }
-
-    @Test (expected=CorreoRepetidoException.class)
-    public void testAltaCliente4() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        System.out.println("AltaCliente: correo repetido.");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("d", "Javier", "Morales", "a@hotmail.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaCliente(d);
-        d = new DataCliente("e", "Javier", "Morales", "a@hotmail.com", cal, null);
-        instance.AltaCliente(d);
-    }
-    
-    @Test (expected=FormatoIncorrectoException.class)
-    public void testAltaCliente5() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        System.out.println("AltaCliente: correo sin formato de correo.");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("e", "Javier", "Morales", "hola", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaCliente(d);
-    }
-    
-    /**
-     * Test of AltaArtista method, of class CtrlUsuarios.
-     * @return 
-     */
-    @Test
-    public void testAltaArtista1() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        System.out.println("AltaArtista: ingreso normal");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaArtista(d);
-    }
-    
-    @Test (expected=FormatoIncorrectoException.class)
-    public void testAltaArtista2() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
-        System.out.println("AltaArtista: campo vacío");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","", "Axl", "Rose", "axl2@rose.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaArtista(d);
-    }
-    
-    @Test (expected=NickRepetidoException.class)
-    public void testAltaArtista3()throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
-        System.out.println("AltaArtista: nick repetido");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl3@rose.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaArtista(d);
-        d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl33@rose.com", cal, null);
-        instance.AltaArtista(d);
-    }
-    
-    @Test (expected=CorreoRepetidoException.class)
-    public void testAltaArtista4() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
-        System.out.println("AltaArtista: correo repetido");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaArtista(d);
-        d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null);
-        instance.AltaArtista(d);
-    }
-    
-    @Test (expected=FormatoIncorrectoException.class)
-    public void testAltaArtista5() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
-        System.out.println("AltaArtista: correo sin formato de correo");
-        Calendar cal = Calendar.getInstance();
-        cal.set(1970, 5, 17);
-        DataArtista d = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4rose.com", cal, null);
-        IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.AltaArtista(d);
-    }
 
     /**
      * Test of BuscarCliente method, of class CtrlUsuarios.
@@ -550,35 +293,7 @@ public class CtrlUsuariosTest {
         //assertEquals(expResult, result);
     }
 
-    /**
-     * Test of DevolverClientes method, of class CtrlUsuarios.
-     */
-    @Ignore
-    @Test
-    public void testDevolverClientes() {
-        System.out.println("DevolverClientes");
-        CtrlUsuarios instance = null;
-        String[] expResult = null;
-        String[] result = instance.DevolverClientes();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
-    /**
-     * Test of DevolverArtistas method, of class CtrlUsuarios.
-     */
-    @Ignore
-    @Test
-    public void testDevolverArtistas() {
-        System.out.println("DevolverArtistas");
-        CtrlUsuarios instance = null;
-        String[] expResult = null;
-        String[] result = instance.DevolverArtistas();
-        assertArrayEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
 
     /**
      * Test of getSeguidos method, of class CtrlUsuarios.
