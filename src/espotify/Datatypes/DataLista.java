@@ -2,6 +2,7 @@ package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class DataLista implements DataFavoriteable{
     private String nombre;
@@ -29,6 +30,30 @@ public class DataLista implements DataFavoriteable{
         this.nombre = nombre;
         this.img = img;
         this.temas = temas;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final DataLista other = (DataLista) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        if (!Objects.equals(this.img, other.img)) {
+            return false;
+        }
+        if (!Objects.equals(this.temas, other.temas)) {
+            return false;
+        }
+        return true;
     }
     
     
