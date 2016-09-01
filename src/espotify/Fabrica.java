@@ -18,7 +18,7 @@ import espotify.Interfaces.IQuitarTemaLista;
 public abstract class Fabrica {
     public static IAltaGenero getIAltaGenero()
     {
-        return CtrlMusica.getInstancia();
+        return new CtrlMusica();
     }
     public static IAltaPerfil getIAltaPerfil()
     {
@@ -42,35 +42,35 @@ public abstract class Fabrica {
     }
     public static IAltaLista getIAltaLista()
     {
-        return CtrlListas.getInstancia();
+        return new CtrlListas();
     }
     public static IPublicarLista getIPublicarLista()
     {
-        return CtrlListas.getInstancia();
+        return new CtrlListas();
     }
 
     public static IConsultaLista getIConsultaLista()
     {
-        return CtrlListas.getInstancia();
+        return new CtrlListas();
     }
 
     public static IAltaAlbum getIAltaAlbum()
     {
-        return CtrlMusica.getInstancia();
+        return new CtrlMusica();
     }
     
     public static IConsultaAlbum getIConsultaAlbum() {
-        return CtrlMusica.getInstancia();
+        return new CtrlMusica();
     }
     public static IFavoritear getIFavoritear() {
         return new CtrlUsuarios();
     }  
     
     public static IAgregarTemaLista getIAgregarTemaLista(){
-        return CtrlListas.getInstancia();
+        return new CtrlListas();
     }
     
     public static IQuitarTemaLista getIQuitarTemaLista(){
-        return CtrlListas.getInstancia();
+        return new CtrlListas();
     }
 }

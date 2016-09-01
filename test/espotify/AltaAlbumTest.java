@@ -21,7 +21,6 @@ import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -32,11 +31,13 @@ import org.junit.Ignore;
 
 public class AltaAlbumTest {
 
+    static IAltaAlbum iAltaAlbum;
     public AltaAlbumTest() {
     }
 
     @BeforeClass
     public static void setUpClass() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, GeneroInexistenteException, GeneroRepetidoException {
+        iAltaAlbum = Fabrica.getIAltaAlbum();
         CtrlUsuariosTest ctrlUsuariosTest = new CtrlUsuariosTest();
         ctrlUsuariosTest.testAltaArtista1();
         
@@ -65,7 +66,7 @@ public class AltaAlbumTest {
     public void testGetInstancia() {
         System.out.println("getInstancia");
         CtrlMusica expResult = null;
-        CtrlMusica result = CtrlMusica.getInstancia();
+        CtrlMusica result = new CtrlMusica();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -100,10 +101,11 @@ public class AltaAlbumTest {
         IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
         DataGenero expResult = iAltaGenero.ListarGeneros();
         
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         DataGenero result = iAltaAlbum.ExisteArtista(nickArtista);
         
         assertEquals(expResult, result);
+        
     }
 
     /**
@@ -116,7 +118,7 @@ public class AltaAlbumTest {
         System.out.println("ExisteArtista: No existe artista");
         String nickArtista = "";
         DataGenero expResult = null;
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         DataGenero result = iAltaAlbum.ExisteArtista(nickArtista);
         assertEquals(expResult, result);
     }
@@ -142,7 +144,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -169,7 +171,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -198,7 +200,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -219,7 +221,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
         iAltaAlbum.AltaAlbum(data);
     }
@@ -241,7 +243,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -263,7 +265,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -285,7 +287,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -307,7 +309,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -329,7 +331,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 
@@ -351,7 +353,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.AltaAlbum(data);
     }
 }

@@ -25,74 +25,68 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     private static CtrlListas instancia;
     private String nickMEM;
     private String nomListaMEM;
-    private final HashMap<String,Defecto> listas;
     private ArrayList<DataTema> temasLista;
     
-    public static CtrlListas getInstancia()
+//Constructor
+    public CtrlListas()
     {
-        if(instancia==null)
-            instancia=new CtrlListas();
-        return instancia;
     }
-    
-    //constructores
-    private CtrlListas()
-    {
-        this.listas=new HashMap<>();
+//Acceso al Manejador
+    Defecto BuscarLista(String nomLista) throws ListaInexistenteException {
+        Defecto d = ManejadorColecciones.getInstancia().BuscarLista(nomLista);
+        if(d==null)
+            throw new ListaInexistenteException();
+        return d;
     }
-    
-
-    public void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException
-    {
-        CtrlUsuarios cu = new CtrlUsuarios();
-        cu.PublicarLista(nomLista,nick);
+    private static HashMap<String, Defecto> GetListas() {
+        return ManejadorColecciones.getInstancia().getListas();
     }
-    
-    public ArrayList<String> ListarClientes()
-    {
+//Listas
+    @Override
+    public ArrayList<String> ListarClientes() {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarClientes();
     }
-    public ArrayList<String> ListarArtistas()
-    {
+    @Override
+    public ArrayList<String> ListarArtistas() {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarArtistas();
     }
+    @Override
     public ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException
     {
         nickMEM=nick;
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasDeCliente(nick);
     }
+    @Override
     public ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException
     {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasPrivadasDeCliente(nick);
     }
-    
+    @Override
     public ArrayList<String> ListarListasPubliasDeCliente(String nick) throws Exception
     {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasPublicasDeCliente(nick);
     }
-    
     @Override
-    public ArrayList<String> ListarListasDefecto()
-    {
+    public ArrayList<String> ListarListasDefecto() {
         nickMEM="";
         ArrayList a = new ArrayList();
-        listas.keySet().stream().forEach((key) -> {
+        GetListas().keySet().stream().forEach((key) -> {
             a.add(key);
         });
         return a;
     }
-    
+    @Override
     public ArrayList<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException
     {
         nomListaMEM =nombre;
         if(nickMEM.equals("")) //listaron las por defecto
         {
-            Lista l = listas.get(nombre);
+            Lista l = BuscarLista(nombre);
             return l.ListarTemas();
         }
         else
@@ -101,13 +95,10 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
             return cu.ListarTemasDeLista(nickMEM,nombre);
         }
     }
-    
-
     @Override
-    public ArrayList<DataTema> ListarTemasLista2(String cl, String l) throws Exception  // Yo no paso x la funcion que guarda el nick!
-    {
+    public ArrayList<DataTema> ListarTemasLista2(String cl, String l) throws Exception {
         if(cl==null){
-            Lista lis = listas.get(l);
+            Lista lis = BuscarLista(l);
             temasLista = lis.ListarTemas();
         }else{
             CtrlUsuarios cu = new CtrlUsuarios();
@@ -115,91 +106,79 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         }
         return temasLista;
     }
-    
-    public void RemoverTemaLista(String nomTema, String nomAlbum) throws ListaInexistenteException, ClienteInexistenteException
-    {
-        if(nickMEM.equals("")) //listaron las por defecto
-        {
-            listas.get(nomListaMEM).QuitarTema(nomTema,nomAlbum);
-        }
-        else
-        {
-            CtrlUsuarios cu = new CtrlUsuarios();
-            cu.QuitarTemaDeLista(nickMEM,nomListaMEM,nomTema,nomAlbum);
-        }
-    }
-    
-    
-    public DataGenero ListarGeneros()
-    {
-        CtrlMusica cm = CtrlMusica.getInstancia();
+    @Override
+    public DataGenero ListarGeneros() {
+        CtrlMusica cm = new CtrlMusica();
         return cm.ListarGeneros();
     }
-    
-    public void AltaListaParticular(DataParticular d) throws ListaRepetidaException, ClienteInexistenteException
-    {
-        CtrlUsuarios cu = new CtrlUsuarios();
-        cu.AltaLista(d);
-    }
-    
-    public void AltaListaDefecto(DataDefecto d) throws ListaRepetidaException, GeneroInexistenteException
-    {
-        CtrlMusica cm = CtrlMusica.getInstancia();
-        if(ValidarNombreListaDefecto(d.getNombre()))
-        {
-            Genero g = cm.BuscarGenero(d.getGenero());
-            listas.put(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
-        }
-        else
-            throw new ListaRepetidaException();
-    }
-
-    private boolean ValidarNombreListaDefecto(String d) {
-        return !d.equals("") && !listas.containsKey(d);
-    }
-
+    @Override
     public ArrayList<String> ListarListasDeGenero(String nomGenero) {
         ArrayList<String> a = new ArrayList();
-        for(Map.Entry<String, Defecto> entry : listas.entrySet()) {
+        for(Map.Entry<String, Defecto> entry : GetListas().entrySet()) {
             Defecto d = entry.getValue();
             if(d.getNomGenero().equals(nomGenero))
                 a.add(d.getNombre());
         }
         return a;
     }
-    
-    public DataLista DarInfoDefecto(String nomLista) throws ListaInexistenteException
-    {
-        return BuscarLista(nomLista).getData();
-    }
-    
-    public DataLista DarInfoParticular(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException
-    {
-        CtrlUsuarios cu = new CtrlUsuarios();
-        return cu.DarInfoLista(nomLista, nick);
-    }
-    
-    public Defecto BuscarLista(String nomLista) throws ListaInexistenteException
-    {
-        Defecto d = listas.get(nomLista);
-        if(d==null)
-            throw new ListaInexistenteException();
-        return d;
-    }
-
-    public ArrayList<String> ListarAlbumesDeArtista(String na) throws Exception
-    {
+    @Override
+    public ArrayList<String> ListarAlbumesDeArtista(String na) throws Exception {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarAlbumesDeArtista(na);
     }
-    
-    public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException//,Exception
-    {
+    @Override
+    public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarTemasAlbum(art, alb);
     }
     
+//Consultas
+    @Override
+    public DataLista DarInfoDefecto(String nomLista) throws ListaInexistenteException {
+        return BuscarLista(nomLista).getData();
+    }
+    @Override
+    public DataLista DarInfoParticular(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException {
+        CtrlUsuarios cu = new CtrlUsuarios();
+        return cu.DarInfoLista(nomLista, nick);
+    }
+    private boolean ValidarNombreListaDefecto(String d) {
+        return !d.equals("") && !GetListas().containsKey(d);
+    }
     
+//Operaciones
+    @Override
+    public void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException {
+        CtrlUsuarios cu = new CtrlUsuarios();
+        cu.PublicarLista(nomLista,nick);
+    }
+    @Override
+    public void RemoverTemaLista(String nomTema, String nomAlbum) throws ListaInexistenteException, ClienteInexistenteException {
+        if(nickMEM.equals("")) //listaron las por defecto
+            BuscarLista(nomListaMEM).QuitarTema(nomTema,nomAlbum);
+        else
+        {
+            CtrlUsuarios cu = new CtrlUsuarios();
+            cu.QuitarTemaDeLista(nickMEM,nomListaMEM,nomTema,nomAlbum);
+        }
+    }
+    @Override
+    public void AltaListaParticular(DataParticular d) throws ListaRepetidaException, ClienteInexistenteException {
+        CtrlUsuarios cu = new CtrlUsuarios();
+        cu.AltaLista(d);
+    }
+    @Override
+    public void AltaListaDefecto(DataDefecto d) throws ListaRepetidaException, GeneroInexistenteException {
+        CtrlMusica cm = new CtrlMusica();
+        if(ValidarNombreListaDefecto(d.getNombre()))
+        {
+            Genero g = cm.BuscarGenero(d.getGenero());
+            ManejadorColecciones.getInstancia().AgregarLista(d.getNombre(), new Defecto(g, d.getNombre(), d.getImg()));
+        }
+        else
+            throw new ListaRepetidaException();
+    }
+    @Override
     public void AgregarTemaLista(DataTema dtema, String lista)throws Exception{
         CtrlUsuarios cu = new CtrlUsuarios();        
         if(dtema==null){
@@ -210,15 +189,11 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
             if(lista == null){
                 throw new Exception("No existe esa lista");
             }
-            Lista l = listas.get(lista);
+            Lista l = BuscarLista(lista);
             l.AgregarTema(t);
         }else{
             cu.AgregarTemaLista(t,nickMEM, lista);
         }
     }
     
-    public static void clear()
-    {
-        instancia=null;
-    }
 }

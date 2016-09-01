@@ -39,20 +39,6 @@ public class CtrlMusicaTest {
     }
 
     /**
-     * Test of getInstancia method, of class CtrlMusica.
-     */
-    @Ignore
-    @Test
-    public void testGetInstancia() {
-        System.out.println("getInstancia");
-        CtrlMusica expResult = null;
-        CtrlMusica result = CtrlMusica.getInstancia();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of BuscarGenero method, of class CtrlMusica.
      */
     @Ignore

@@ -10,30 +10,24 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Artista extends Usuario{
+class Artista extends Usuario{
     //attr
     private String bio;
     private String url;
     private final HashMap<String,Album> albums;
     
     //getters
-    public String getBio() {
-        return bio;
-    }
-    public String getUrl() {
-        return url;
-    }
     
-    public void addAlbum(Album album) {
+    void addAlbum(Album album) {
         this.albums.put(album.getNombre(), album);
     }
 
-    public boolean TieneAlbum(String album) {
+    boolean TieneAlbum(String album) {
         return this.albums.containsKey(album);
     }
     
     //constructores
-    public Artista(DataArtista d)
+    Artista(DataArtista d)
     {
       super(d);
       albums = new HashMap<>();
@@ -41,7 +35,7 @@ public class Artista extends Usuario{
       url=d.getUrl();
     }
     
-    public DataAlbumExt getDataAlbumExt(String nomAlbum) throws AlbumInexistenteException {
+    DataAlbumExt getDataAlbumExt(String nomAlbum) throws AlbumInexistenteException {
         Album album = BuscarAlbum(nomAlbum);
         return album.getDataExt();
     }
@@ -51,20 +45,19 @@ public class Artista extends Usuario{
         return Usuario.ValidarDatosUsuario(d);
     }
 
-    public DataArtistaExt getDataArtistaExt() {
-        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), getBio(), getUrl(), albums);
+    DataArtistaExt getDataArtistaExt() {
+        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), bio, url, albums);
         return da;
     }
     
-    public Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
+    Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
         Album album = albums.get(nombre);
-        if (album == null){
+        if (album == null)
             throw new AlbumInexistenteException();
-        }
         return album;
     }
     
-    public ArrayList<String> ListarAlbumes(){
+    ArrayList<String> ListarAlbumes(){
         ArrayList<String> listaAlbums = new ArrayList();
         Iterator it = albums.entrySet().iterator();
         Album actual;
@@ -76,7 +69,7 @@ public class Artista extends Usuario{
         return listaAlbums;
     }
     
-    public Tema DevolverTema(DataTema dt){
+    Tema DevolverTema(DataTema dt){
         String album = dt.getAlbum();
         String tema = dt.getNombre();
         Album a = albums.get(album);
