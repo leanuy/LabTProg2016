@@ -25,8 +25,8 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
 
     public DejarSeguirUsuario() {
         initComponents();
-        IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
         ArrayList<String> cl = interf.ListarClientes();
+
         for(String str : cl) {
             NickSeguidor.addItem(str);NickSeguido.addItem(str);
         }

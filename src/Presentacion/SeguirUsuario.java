@@ -18,13 +18,14 @@ import javax.swing.JOptionPane;
 
 public class SeguirUsuario extends javax.swing.JInternalFrame {
 
-    IAltaSeguir interf;
     /**
      * Creates new form SeguirUsuario
      */
+    
+    IAltaSeguir interf = Fabrica.getIAltaSeguir();
+    
     public SeguirUsuario() {
         initComponents();
-        interf = Fabrica.getIAltaSeguir();
         ArrayList<String>cl = interf.ListarClientes();
         for(String str : cl) {
             NickSeguidor.addItem(str);
