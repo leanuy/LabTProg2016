@@ -193,6 +193,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         ArrayList<String[]> Albums = null;
         modelitoAlbums.clear();
+        albumsIndex.clear();
         TreePath path = ArbolGeneros.getSelectionPath();
         if(path == null){
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un genero", "Error", JOptionPane.ERROR_MESSAGE);
