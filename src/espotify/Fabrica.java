@@ -12,6 +12,7 @@ import espotify.Interfaces.IDejarDeSeguir;
 import espotify.Interfaces.IPublicarLista;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IConsultaAlbum;
+import espotify.Interfaces.IDesFavoritear;
 import espotify.Interfaces.IFavoritear;
 import espotify.Interfaces.IQuitarTemaLista;
 
@@ -63,6 +64,9 @@ public abstract class Fabrica {
         return new CtrlMusica();
     }
     public static IFavoritear getIFavoritear() {
+        return new CtrlUsuarios();
+    }
+    public static IDesFavoritear getIDesFavoritear() {
         return new CtrlUsuarios();
     }  
     

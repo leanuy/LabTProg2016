@@ -103,11 +103,12 @@ public class MainFrame extends javax.swing.JFrame {
         SeguirMItem = new javax.swing.JMenuItem();
         DejarSeguirMItem = new javax.swing.JMenuItem();
         favoritearMItem = new javax.swing.JMenuItem();
+        desfavoritearMItem = new javax.swing.JMenuItem();
         ListasMenu = new javax.swing.JMenu();
         PublicarListaMItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         cargarDatosDePrueba = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -365,6 +366,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         SocialMenu.add(favoritearMItem);
+
+        desfavoritearMItem.setText("Quitar de Favoritos");
+        desfavoritearMItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                desfavoritearMItemActionPerformed(evt);
+            }
+        });
+        SocialMenu.add(desfavoritearMItem);
 
         jMenuBar1.add(SocialMenu);
 
@@ -939,6 +948,12 @@ public class MainFrame extends javax.swing.JFrame {
         frameAgregarTemaLista.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void desfavoritearMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desfavoritearMItemActionPerformed
+        DesFavoritear frameFavoritear = new DesFavoritear();
+        MainPanel.add(frameFavoritear);
+        frameFavoritear.setVisible(true);
+    }//GEN-LAST:event_desfavoritearMItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1011,6 +1026,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu SocialMenu;
     private javax.swing.JMenuItem cargarDatosDePrueba;
     private javax.swing.JMenuItem cerrarOption;
+    private javax.swing.JMenuItem desfavoritearMItem;
     private javax.swing.JMenuItem favoritearMItem;
     private javax.swing.JInternalFrame internalAltaAlbum;
     private javax.swing.JInternalFrame internalAltaPerfil;

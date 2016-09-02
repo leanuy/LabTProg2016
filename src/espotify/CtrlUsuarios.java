@@ -32,6 +32,7 @@ import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
 import espotify.Interfaces.IFavoritear;
 import espotify.Interfaces.IAltaAlbum;
+import espotify.Interfaces.IDesFavoritear;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,7 +41,7 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear{
+public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear{
 //Constructor
     public CtrlUsuarios()
     {
