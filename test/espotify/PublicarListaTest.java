@@ -46,7 +46,6 @@ public class PublicarListaTest {
             IAltaLista instance = Fabrica.getIAltaLista();
             instance.AltaListaParticular(d);
         } catch (Exception ex) {
-            Logger.getLogger(CtrlListasTest.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
