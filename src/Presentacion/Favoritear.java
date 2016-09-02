@@ -16,6 +16,7 @@ import espotify.Excepciones.FavoritoRepetidoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IFavoritear;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -32,6 +33,23 @@ public class Favoritear extends javax.swing.JInternalFrame {
      */
     public Favoritear() {
         initComponents();
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        ArrayList<String> cli = ifav.ListarClientes();
+        for(String c : cli)
+        {
+            clientescmb.addItem(c);
+            lstpubclicmb.addItem(c);
+        }
+        cli = ifav.ListarListasDefecto();
+        for(String c : cli)
+        {
+            lstdefcmb.addItem(c);
+        }
+        cli = ifav.ListarArtistas();
+        for(String c : cli)
+        {
+            artcmb.addItem(c);
+        }
     }
 
     /**
@@ -43,131 +61,198 @@ public class Favoritear extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nicktxt = new javax.swing.JTextField();
-        txt1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        txt2 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        txt3 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         btnListaPublica = new javax.swing.JButton();
         btnAlbum = new javax.swing.JButton();
         btnTemaAlbum = new javax.swing.JButton();
         btnListaDefecto = new javax.swing.JButton();
+        clientescmb = new javax.swing.JComboBox<>();
+        lstpubclicmb = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        lstpubtxt = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        lstdefcmb = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        artcmb = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
+        albtxt = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        tematxt = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("Agregar A Favoritos");
 
         jLabel1.setText("Cliente");
 
-        jLabel2.setText("Cliente/ArtistaAlbum/NomListaDefecto");
-
-        jLabel3.setText("NomLIstaPublica/NomAlbum");
-
-        jLabel4.setText("NomTema");
-
-        btnListaPublica.setText("Favoritear lista Publica");
+        btnListaPublica.setText("Agregar a Favoritos");
         btnListaPublica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaPublicaActionPerformed(evt);
             }
         });
 
-        btnAlbum.setText("Favoritear Album");
+        btnAlbum.setText("Agregar a Favoritos");
         btnAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlbumActionPerformed(evt);
             }
         });
 
-        btnTemaAlbum.setText("Favoritear Tema de Album");
+        btnTemaAlbum.setText("Agregar a Favoritos");
         btnTemaAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTemaAlbumActionPerformed(evt);
             }
         });
 
-        btnListaDefecto.setText("Favoritear lista por defecto");
+        btnListaDefecto.setText("Agregar a Favoritos");
         btnListaDefecto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListaDefectoActionPerformed(evt);
             }
         });
 
+        lstpubclicmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lstpubclicmbActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("Lista Pública:");
+
+        jLabel6.setText("Cliente:");
+
+        jLabel7.setText("Lista:");
+
+        jLabel8.setText("Lista por Defecto:");
+
+        jLabel9.setText("Nombre de Lista:");
+
+        lstdefcmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " " }));
+
+        jLabel10.setText("Álbum:");
+
+        jLabel11.setText("Artista:");
+
+        jLabel12.setText("Álbum:");
+
+        jLabel13.setText("Tema:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel7)
+                                .addComponent(lstpubclicmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lstpubtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5))
+                        .addGap(212, 212, 212)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(albtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(clientescmb, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lstdefcmb, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(artcmb, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel11))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(334, 334, 334)
+                        .addComponent(btnTemaAlbum)))
+                .addContainerGap(11, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnListaPublica)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(167, 167, 167)
+                        .addComponent(btnListaDefecto)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nicktxt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txt2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                        .addComponent(txt1, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAlbum, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnListaDefecto)
-                        .addGap(26, 26, 26)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnListaPublica))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(btnTemaAlbum)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(tematxt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13)
+                    .addComponent(btnAlbum))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nicktxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clientescmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel8))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lstpubclicmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lstdefcmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lstpubtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnListaPublica)
+                            .addComponent(btnListaDefecto)
+                            .addComponent(btnAlbum)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel10)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(artcmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(albtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                .addComponent(tematxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnListaPublica)
-                    .addComponent(btnAlbum))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTemaAlbum)
-                    .addComponent(btnListaDefecto))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addComponent(btnTemaAlbum)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListaDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaDefectoActionPerformed
-        DataDefecto d = new DataDefecto("", txt1.getText(), null);
+        DataDefecto d = new DataDefecto("", String.valueOf(lstdefcmb.getSelectedItem()), null);
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
-            ifav.Favoritear(nicktxt.getText(), d);
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (FavoritoRepetidoException ex) {
@@ -182,10 +267,11 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListaDefectoActionPerformed
 
     private void btnListaPublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPublicaActionPerformed
-        DataParticular d = new DataParticular(txt1.getText(),txt2.getText(),null);
+        DataParticular d = new DataParticular(String.valueOf(lstpubclicmb.getSelectedItem()),lstpubtxt.getText(),null);
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
-            ifav.Favoritear(nicktxt.getText(), d);
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (FavoritoRepetidoException ex) {
@@ -200,10 +286,11 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListaPublicaActionPerformed
 
     private void btnAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumActionPerformed
-        DataAlbum d = new DataAlbum(txt2.getText(), 0, null, null, txt1.getText());
+        DataAlbum d = new DataAlbum(albtxt.getText(), 0, null, null, String.valueOf(artcmb.getSelectedItem()));
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
-            ifav.Favoritear(nicktxt.getText(), d);
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (FavoritoRepetidoException ex) {
@@ -218,22 +305,49 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlbumActionPerformed
 
     private void btnTemaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTemaAlbumActionPerformed
-
+        DataTema d = new DataTema(tematxt.getText(), 0, 0, String.valueOf(artcmb.getSelectedItem()), albtxt.getText());
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        try {
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
+        } catch (ClienteInexistenteException ex) {
+            JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
+        } catch (FavoritoRepetidoException ex) {
+            JOptionPane.showMessageDialog(new JDialog(), "Ya ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
+        } catch (ListaInexistenteException ex) {
+            JOptionPane.showMessageDialog(new JDialog(), "La lista no existe", "Error", JOptionPane.PLAIN_MESSAGE);
+        } catch (ArtistaInexistenteException ex) {
+            JOptionPane.showMessageDialog(new JDialog(), "El artista seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
+        } catch (AlbumInexistenteException ex) {
+            JOptionPane.showMessageDialog(new JDialog(), "El album seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
+        }
     }//GEN-LAST:event_btnTemaAlbumActionPerformed
+
+    private void lstpubclicmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lstpubclicmbActionPerformed
+    }//GEN-LAST:event_lstpubclicmbActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField albtxt;
+    private javax.swing.JComboBox<String> artcmb;
     private javax.swing.JButton btnAlbum;
     private javax.swing.JButton btnListaDefecto;
     private javax.swing.JButton btnListaPublica;
     private javax.swing.JButton btnTemaAlbum;
+    private javax.swing.JComboBox<String> clientescmb;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField nicktxt;
-    private javax.swing.JTextField txt1;
-    private javax.swing.JTextField txt2;
-    private javax.swing.JTextField txt3;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox<String> lstdefcmb;
+    private javax.swing.JComboBox<String> lstpubclicmb;
+    private javax.swing.JTextField lstpubtxt;
+    private javax.swing.JTextField tematxt;
     // End of variables declaration//GEN-END:variables
 }
