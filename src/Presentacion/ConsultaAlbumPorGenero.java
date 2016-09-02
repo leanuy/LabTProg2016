@@ -193,6 +193,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     private void ObtenerAlbumsGeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObtenerAlbumsGeneroButtonActionPerformed
         ArrayList<String[]> Albums = null;
         modelitoAlbums.clear();
+        albumsIndex.clear();
         TreePath path = ArbolGeneros.getSelectionPath();
         if(path == null){
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un genero", "Error", JOptionPane.ERROR_MESSAGE);
