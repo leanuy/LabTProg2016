@@ -81,6 +81,14 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         return a;
     }
     @Override
+    public ArrayList<String> ListarListasDefecto2() {
+        ArrayList a = new ArrayList();
+        GetListas().keySet().stream().forEach((key) -> {
+            a.add(key);
+        });
+        return a;
+    }
+    @Override
     public ArrayList<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException
     {
         nomListaMEM =nombre;

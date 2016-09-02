@@ -92,7 +92,7 @@ public class AltaAlbumTest {
     @Test
     public void testAltaAlbum() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test 1");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -120,7 +120,7 @@ public class AltaAlbumTest {
     @Test(expected = CampoVacioException.class)
     public void testAltaAlbumSinGeneros() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test Sin generos");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -147,7 +147,7 @@ public class AltaAlbumTest {
     @Test(expected = GeneroInexistenteException.class)
     public void testAltaAlbumGeneroInexistente() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test con genero inexistente");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -173,7 +173,7 @@ public class AltaAlbumTest {
     @Test(expected = AlbumRepetidoException.class)
     public void testAltaAlbumRepetido() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test con album repetido");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -195,7 +195,7 @@ public class AltaAlbumTest {
     @Test(expected = DuracionInvalidaException.class)
     public void testAltaAlbumTemaDuracionInvalida() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception, DuracionInvalidaException {
         System.out.println("Alta Album - Test tema duracion invalida");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -216,7 +216,7 @@ public class AltaAlbumTest {
     @Test(expected = NumeroTemaInvalidoException.class)
     public void testAltaAlbumNumeroTemaInvalido1() throws NumeroTemaInvalidoException, GeneroInexistenteException, GeneroRepetidoException, AlbumRepetidoException, DuracionInvalidaException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
         System.out.println("Alta Album - Test numero de tema invalido por debajo");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -238,7 +238,7 @@ public class AltaAlbumTest {
     @Test(expected = NumeroTemaInvalidoException.class)
     public void testAltaAlbumNumeroTemaInvalido2() throws NumeroTemaInvalidoException, GeneroInexistenteException, GeneroRepetidoException, AlbumRepetidoException, DuracionInvalidaException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
         System.out.println("Alta Album - Test numero de tema invalido por arriba");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -260,7 +260,7 @@ public class AltaAlbumTest {
     @Test(expected = NumeroTemaInvalidoException.class)
     public void testAltaAlbumNumeroTemaInvalido3() throws NumeroTemaInvalidoException, GeneroInexistenteException, GeneroRepetidoException, AlbumRepetidoException, DuracionInvalidaException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
         System.out.println("Alta Album - Test numero de tema invalido por estar repetido");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -282,7 +282,7 @@ public class AltaAlbumTest {
     @Test(expected = TemaRepetidoException.class)
     public void testAltaAlbumNombreTemaRepetido() throws NumeroTemaInvalidoException, GeneroInexistenteException, GeneroRepetidoException, AlbumRepetidoException, DuracionInvalidaException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
         System.out.println("Alta Album - Test numero de tema invalido por estar repetido");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
@@ -304,7 +304,7 @@ public class AltaAlbumTest {
     @Test(expected = TemaTipoInvalidoException.class)
     public void testAltaAlbumDataTemaTipoInvalido() throws NumeroTemaInvalidoException, GeneroInexistenteException, GeneroRepetidoException, AlbumRepetidoException, DuracionInvalidaException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException {
         System.out.println("Alta Album - Test numero de tema invalido por estar repetido");
-        this.testExisteArtista();
+        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();

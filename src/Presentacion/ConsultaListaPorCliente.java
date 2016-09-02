@@ -6,6 +6,8 @@ import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaLista;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -17,13 +19,12 @@ import javax.swing.JOptionPane;
 
 public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
 
-    
+    IConsultaLista interf = Fabrica.getIConsultaLista();
     /**
      * Creates new form ConsultaListaPorCliente
      */
     public ConsultaListaPorCliente() {
         initComponents();
-        IConsultaLista interf = Fabrica.getIConsultaLista();
         ArrayList<String> cli = interf.ListarClientes();
         listascmb.setEnabled(false);
         for(String str : cli) {
@@ -131,7 +132,6 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String nomCliente = String.valueOf(clientescmb.getSelectedItem());
         listascmb.removeAllItems();
-        IConsultaLista interf = Fabrica.getIConsultaLista();
         try
         {
             listascmb.setEnabled(false);
@@ -151,12 +151,18 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
 
     private void consultarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtnActionPerformed
      String nomLista = String.valueOf(listascmb.getSelectedItem());
-            IConsultaLista interf = Fabrica.getIConsultaLista();
             try {
                 DataLista dl = interf.DarInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
 
                 //mostrar la imagen
-                BufferedImage image = dl.getImg();
+                BufferedImage imagen = dl.getImg();
+                BufferedImage image;
+                if(imagen == null){
+                    image = null;
+                }
+                else{
+                    image = getScaledImage(imagen,212,220);
+                }
                 ImgContainer.removeAll();
                 if (image != null){
                     ImageIcon img = new ImageIcon(image);
@@ -183,7 +189,29 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_consultarbtnActionPerformed
 
+    
+    
+    private BufferedImage getScaledImage(BufferedImage src, int w, int h){
+        int finalw = w;
+        int finalh = h;
+        double factor = 1.0d;
+        if(src.getWidth() > src.getHeight()){
+            factor = ((double)src.getHeight()/(double)src.getWidth());
+            finalh = (int)(finalw * factor);                
+        }else{
+            factor = ((double)src.getWidth()/(double)src.getHeight());
+            finalw = (int)(finalh * factor);
+        }   
 
+        BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
+        Graphics2D g2 = resizedImg.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(src, 0, 0, finalw, finalh, null);
+        g2.dispose();
+        return resizedImg;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ImgContainer;
     private javax.swing.JList<String> ListaTemas;

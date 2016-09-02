@@ -105,9 +105,10 @@ public class MainFrame extends javax.swing.JFrame {
         favoritearMItem = new javax.swing.JMenuItem();
         ListasMenu = new javax.swing.JMenu();
         PublicarListaMItem = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        QuitarTemaLista = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         cargarDatosDePrueba = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -385,6 +386,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         ListasMenu.add(jMenuItem1);
+
+        QuitarTemaLista.setText("Quitar Tema Lista");
+        QuitarTemaLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitarTemaListaActionPerformed(evt);
+            }
+        });
+        ListasMenu.add(QuitarTemaLista);
 
         jMenuBar1.add(ListasMenu);
 
@@ -939,6 +948,12 @@ public class MainFrame extends javax.swing.JFrame {
         frameAgregarTemaLista.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void QuitarTemaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTemaListaActionPerformed
+        QuitarTemaLista frameQuitarTemaLista = new QuitarTemaLista();
+        MainPanel.add(frameQuitarTemaLista);
+        frameQuitarTemaLista.setVisible(true);
+    }//GEN-LAST:event_QuitarTemaListaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1006,6 +1021,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu ListasMenu;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JMenuItem PublicarListaMItem;
+    private javax.swing.JMenuItem QuitarTemaLista;
     private javax.swing.JMenuItem SeguirMItem;
     private javax.swing.JMenu SesionDropDown;
     private javax.swing.JMenu SocialMenu;

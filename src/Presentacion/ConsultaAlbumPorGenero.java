@@ -33,6 +33,8 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     private DefaultListModel modelitoAlbums;
     private ArrayList<String[]> albumsIndex;
     
+    IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+    
     public ConsultaAlbumPorGenero() {
         initComponents();
         
@@ -40,7 +42,6 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         modelitoAlbums = new DefaultListModel();
         
         ListaAlbumsGenero.setModel(modelitoAlbums);
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         DataGenero genders = null;
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         genders = inter.ListarGeneros();
@@ -190,7 +191,6 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ObtenerAlbumsGeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObtenerAlbumsGeneroButtonActionPerformed
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         ArrayList<String[]> Albums = null;
         modelitoAlbums.clear();
         TreePath path = ArbolGeneros.getSelectionPath();
@@ -223,7 +223,6 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SalirButtonActionPerformed
 
     private void ConsultarAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarAlbumButtonActionPerformed
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         DataAlbumExt dataAlbum = null;
         String nomAlbum = null;
         int[] opcion;

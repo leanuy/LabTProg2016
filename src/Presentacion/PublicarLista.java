@@ -22,14 +22,12 @@ import javax.swing.JOptionPane;
  */
 public class PublicarLista extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form PublicarLista
-     */
+    IPublicarLista interf = Fabrica.getIPublicarLista();
+
     public PublicarLista() {
         initComponents();
         listascmb.setEnabled(false);
         publicarbtn.setEnabled(false);
-        IPublicarLista interf = Fabrica.getIPublicarLista();
         ArrayList<String> a = interf.ListarClientes();
         for(String str : a) {
             clientescmb.addItem(str);
@@ -118,7 +116,6 @@ public class PublicarLista extends javax.swing.JInternalFrame {
 
     private void clientescmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientescmbActionPerformed
         String cli = String.valueOf(clientescmb.getSelectedItem());
-        IPublicarLista interf = Fabrica.getIPublicarLista();
         listascmb.removeAllItems();
 
         try {
@@ -140,7 +137,6 @@ public class PublicarLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listascmbActionPerformed
 
     private void publicarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicarbtnActionPerformed
-        IPublicarLista interf = Fabrica.getIPublicarLista();
         try
         {
         interf.PublicarLista(String.valueOf(listascmb.getSelectedItem()),String.valueOf(clientescmb.getSelectedItem()));
