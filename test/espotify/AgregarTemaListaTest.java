@@ -1,27 +1,19 @@
 package espotify;
 
-import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaArchivo;
-import espotify.Datatypes.DataTemaWeb;
-import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Interfaces.IAgregarTemaLista;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IConsultaAlbum;
 import espotify.Interfaces.IPublicarLista;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Calendar;
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -117,6 +109,7 @@ public class AgregarTemaListaTest {
         ArrayList<DataTema> result = iAdd.ListarTemasLista("Mi Lista Pasdfublica");
     }
     
+    @Test
     public void ListarTemasLista2_1() throws Exception
     {
         System.out.println("Listar Temas de Lista_2");
@@ -125,6 +118,4 @@ public class AgregarTemaListaTest {
         assertEquals(expResult, result);
     }
 
-
-    
 }

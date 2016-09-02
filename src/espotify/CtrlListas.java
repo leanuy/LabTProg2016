@@ -187,7 +187,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         Tema t = cu.DevolverTema(dtema);
         if(nickMEM.equals("")){
             if(lista == null){
-                throw new Exception("No existe esa lista");
+                throw new ListaInexistenteException("No existe esa lista");
             }
             Lista l = BuscarLista(lista);
             l.AgregarTema(t);
