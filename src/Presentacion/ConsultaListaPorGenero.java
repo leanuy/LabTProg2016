@@ -7,6 +7,8 @@ import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IConsultaLista;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -29,8 +31,8 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
     public ConsultaListaPorGenero() {
         initComponents();
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        IAltaGenero inter =  Fabrica.getIAltaGenero();                 
-        DataGenero generoBase = inter.ListarGeneros();
+        IAltaGenero interfaz =  Fabrica.getIAltaGenero();                 
+        DataGenero generoBase = interfaz.ListarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -149,11 +151,8 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    
-    
-    
-    
-    
+    IConsultaLista interf = Fabrica.getIConsultaLista();
+
     
     private void listascmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listascmbActionPerformed
         
@@ -165,8 +164,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         if (node != null)
             nomGenero = (String)node.getUserObject();
         listascmb.removeAllItems();
-        IConsultaLista inter = Fabrica.getIConsultaLista();
-        ArrayList<String> listas = inter.ListarListasDeGenero(nomGenero);
+        ArrayList<String> listas = interf.ListarListasDeGenero(nomGenero);
         for(String str : listas) {
             listascmb.addItem(str);
         }
@@ -174,12 +172,18 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
 
     private void consultarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtnActionPerformed
         String nomLista = String.valueOf(listascmb.getSelectedItem());
-        IConsultaLista interf = Fabrica.getIConsultaLista();
         try {
             DataLista dl = interf.DarInfoDefecto(nomLista);
             
             //mostrar la imagen
-            BufferedImage image = dl.getImg();
+            BufferedImage imagen = dl.getImg();
+            BufferedImage image;
+            if(imagen == null){
+                image = null;
+            }
+            else{
+                image = getScaledImage(imagen,212,220);
+            }
             ImgContainer.removeAll();
             if (image != null){
                 ImageIcon img = new ImageIcon(image);
@@ -204,7 +208,27 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         }   
     }//GEN-LAST:event_consultarbtnActionPerformed
 
+    private BufferedImage getScaledImage(BufferedImage src, int w, int h){
+        int finalw = w;
+        int finalh = h;
+        double factor = 1.0d;
+        if(src.getWidth() > src.getHeight()){
+            factor = ((double)src.getHeight()/(double)src.getWidth());
+            finalh = (int)(finalw * factor);                
+        }else{
+            factor = ((double)src.getWidth()/(double)src.getHeight());
+            finalw = (int)(finalh * factor);
+        }   
 
+        BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
+        Graphics2D g2 = resizedImg.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(src, 0, 0, finalw, finalh, null);
+        g2.dispose();
+        return resizedImg;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree ArbolGeneros;
     private javax.swing.JLabel ImgContainer;

@@ -7,7 +7,6 @@ import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Fabrica;
-import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -26,14 +25,13 @@ public class AltaLista extends javax.swing.JInternalFrame {
     private DefaultTreeModel modeloTree;
 
     BufferedImage img = null;
-    /**
-     * Creates new form AltaLista
-     */
+    
+    IAltaLista ctrl = Fabrica.getIAltaLista();
+    
     public AltaLista() {
         initComponents();
         
         particularRadio.setSelected(true);
-        IAltaLista ctrl = Fabrica.getIAltaLista();
         ArrayList<String> a = ctrl.ListarClientes();
         DefaultListModel<String> model = new DefaultListModel<>();
         clientlist.setModel(model);
@@ -42,8 +40,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
         }
         
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        IAltaLista inter =  Fabrica.getIAltaLista();                 
-        DataGenero generoBase = inter.ListarGeneros();
+        DataGenero generoBase = ctrl.ListarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -274,7 +271,6 @@ public class AltaLista extends javax.swing.JInternalFrame {
         {
             try
             {
-                IAltaLista ctrl = Fabrica.getIAltaLista();
                 String nomCli = clientlist.getSelectedValue();
                 DataParticular d = new DataParticular(nomCli, nombretxt.getText(),img);
                 ctrl.AltaListaParticular(d);
@@ -297,7 +293,6 @@ public class AltaLista extends javax.swing.JInternalFrame {
         {
             try
             {
-                IAltaLista ctrl = Fabrica.getIAltaLista();
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
                 String nomGenero = "";
                 if (node != null)

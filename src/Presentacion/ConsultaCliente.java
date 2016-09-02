@@ -10,6 +10,8 @@ import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaCliente;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -27,9 +29,9 @@ import javax.swing.JPanel;
  */
 public class ConsultaCliente extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form ConsultaCliente
-     */
+    IConsultaCliente interf = Fabrica.getIConsultaCliente();
+    
+    
     public ConsultaCliente() {
         initComponents();
         IConsultaCliente interf = Fabrica.getIConsultaCliente();
@@ -193,7 +195,6 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
         // TODO add your handling code here:
         String usr = String.valueOf(Select.getSelectedItem());
-        IConsultaCliente interf = Fabrica.getIConsultaCliente();
         DataClienteExt dc=null;
         try {
             dc = interf.ConsultaCliente(usr);
@@ -216,23 +217,44 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         String[] c = dc.getListas();
         ListasList.clearSelection();
         ListasList.setListData(c);
-        BufferedImage image = dc.getImg();
+        BufferedImage imagen = dc.getImg();
+        BufferedImage image;
+        if(imagen == null){
+            image = null;
+        }else{
+            image = getScaledImage(imagen, 200,200);
+        }
         jLabel8.removeAll();
         if (image != null){
             ImageIcon img = new ImageIcon(image);
             jLabel8.setIcon(img);
             jLabel8.setVisible(true);
         }else{
-            jLabel8.setText("El usuario NO tiene imagen");
+            //jLabel8.setText("El usuario NO tiene imagen");
             jLabel8.setVisible(false);
         }   
     }//GEN-LAST:event_SelectActionPerformed
 
     
-    /*
-            String nick = ListBox.getName();
-        DataClienteExt dc = interface.ConsultaCliente(nick);
-    */
+    private BufferedImage getScaledImage(BufferedImage src, int w, int h){
+        int finalw = w;
+        int finalh = h;
+        double factor = 1.0d;
+        if(src.getWidth() > src.getHeight()){
+            factor = ((double)src.getHeight()/(double)src.getWidth());
+            finalh = (int)(finalw * factor);                
+        }else{
+            factor = ((double)src.getWidth()/(double)src.getHeight());
+            finalw = (int)(finalh * factor);
+        }   
+
+        BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
+        Graphics2D g2 = resizedImg.createGraphics();
+        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        g2.drawImage(src, 0, 0, finalw, finalh, null);
+        g2.dispose();
+        return resizedImg;
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ApellidoText;

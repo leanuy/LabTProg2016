@@ -15,6 +15,7 @@ public interface IAgregarTemaLista {
     public ArrayList<String> ListarListasDeCliente(String nick) throws Exception;
     public ArrayList<String> ListarListasDefecto();
     public ArrayList<String> ListarAlbumesDeArtista(String na) throws ArtistaInexistenteException;
+    public ArrayList<String> ListarListasDefecto2();
     public ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws Exception;
     public ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException;
     public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException;//, Exception;

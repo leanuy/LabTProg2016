@@ -60,9 +60,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private static boolean nombreRepetido;
     private static boolean entrar;
     
-    /**
-     * Creates new form AltaAlbum
-     */
+    IAltaAlbum inter =  Fabrica.getIAltaAlbum();                 
+
     public AltaAlbum() {
         initComponents();
         modeloTemas = new DefaultListModel();
@@ -88,7 +87,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         temasYaIngresados = new ArrayList();
         
         //cargar Generos
-        IAltaAlbum inter =  Fabrica.getIAltaAlbum();                 
         DataGenero generoBase = null;
         generoBase = inter.ListarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
@@ -455,7 +453,6 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         
         DataAlbumExt nuevoAlbum = new DataAlbumExt(listaTemas,nombreAlbum.getText(),year,genders,img,ArtistSelected);
         
-        IAltaAlbum inter =  Fabrica.getIAltaAlbum();
         try{
             inter.AltaAlbum(nuevoAlbum);
         }

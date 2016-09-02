@@ -162,8 +162,9 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
+
     private void TraerAlbumsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraerAlbumsButtonActionPerformed
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         ArrayList<String> dataAlbums = null;
         modelitoAlbums.clear();
         if(ListaArtistas.isSelectionEmpty()){
@@ -188,7 +189,6 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SalirButtonActionPerformed
 
     private void ConsultaAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumButtonActionPerformed
-        IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         DataAlbumExt dataAlbum = null;
         String nomAlbum = null;
         AlbumConsultado ventanaAlbum;
