@@ -32,6 +32,7 @@ import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
 import espotify.Interfaces.IFavoritear;
 import espotify.Interfaces.IAltaAlbum;
+import espotify.Interfaces.IDesFavoritear;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -40,7 +41,7 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear{
+public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista, IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear{
 //Constructor
     public CtrlUsuarios()
     {
@@ -106,14 +107,16 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
     }
 
 //Listas
-    ArrayList<String> ListarClientes(){
+    @Override
+    public ArrayList<String> ListarClientes(){
         ArrayList a = new ArrayList();
         GetClientes().keySet().stream().forEach((key) -> {
             a.add(key);
         });
         return a;
     }
-    ArrayList<String> ListarArtistas(){
+    @Override
+    public ArrayList<String> ListarArtistas(){
         ArrayList a = new ArrayList();
         GetArtistas().keySet().stream().forEach((key) -> {
             a.add(key);
@@ -128,40 +131,43 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         Cliente c = BuscarCliente(nick);
         return c.ListarListasPrivadas();
     }
-    ArrayList<String> ListarListasPublicasDeCliente(String nick) throws Exception{
+    @Override
+    public ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.ListarListasPublicas();
+    }
+    @Override
+    public ArrayList<String> ListarListasDefecto()
+    {
+        return new CtrlListas().ListarListasDefecto();
     }
     ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws ClienteInexistenteException, ListaInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.ListarTemasDeLista(nombre);
     }
+
     @Override
-    public String[] DevolverClientes(){
-        int cant =  GetClientes().size();
-        String[] a;
-        a = new String[cant];
-        int i = 0;
+    public ArrayList<String> ListarSeguibles(String nomSeguidor) throws SeguidorInexistenteException
+    {
+        Cliente c;
+        try {
+            c = BuscarCliente(nomSeguidor);
+        } catch (ClienteInexistenteException ex) {
+            throw new SeguidorInexistenteException();
+        }
+        ArrayList<String> a = new ArrayList<>();
         for(Entry<String, Cliente> entry :  GetClientes().entrySet()) {
             String key = entry.getKey();
-            a[i] = key;
-            i++;
+            if(!c.SigueA(key) && !key.equals(c.getNick()))
+                a.add(key);
+        }
+        for(Entry<String, Artista> entry : GetArtistas().entrySet()) {
+            String key = entry.getKey();
+            if(!c.SigueA(key))
+                a.add(key);
         }
         return a;
     }
-    @Override
-    public String[] DevolverArtistas(){
-        int cant =  GetArtistas().size();
-        String[] a;
-        a = new String[cant];
-        int i = 0;
-        for(Entry<String, Artista> entry : GetArtistas().entrySet()) {
-            String key = entry.getKey();
-            a[i] = key;
-            i++;
-        }
-        return a;
-    }    
     @Override
     public String[] getSeguidos(String usr) throws ClienteInexistenteException {
         DataClienteExt dc = this.ConsultaCliente(usr);

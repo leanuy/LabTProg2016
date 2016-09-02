@@ -165,4 +165,8 @@ class Cliente extends Usuario {
         l.AgregarTema(t);
     }
 
+    boolean SigueA(String nomSeguido) {
+        return seguidos.containsKey(nomSeguido);
+    }
+
 }

@@ -10,6 +10,9 @@ import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaSeguir;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 /**
  *
@@ -17,20 +20,16 @@ import javax.swing.JOptionPane;
  */
 public class SeguirUsuario extends javax.swing.JInternalFrame {
 
+    IAltaSeguir interf;
     /**
      * Creates new form SeguirUsuario
      */
     public SeguirUsuario() {
         initComponents();
-        IAltaSeguir interf = Fabrica.getIAltaSeguir();
-        String[] cl = interf.DevolverClientes();
+        interf = Fabrica.getIAltaSeguir();
+        ArrayList<String>cl = interf.ListarClientes();
         for(String str : cl) {
             NickSeguidor.addItem(str);
-            NickSeguido.addItem(str);
-        }
-        String[] ar = interf.DevolverArtistas();
-        for(String stri : ar) {
-            NickSeguido.addItem(stri);
         }
     }
     
@@ -158,8 +157,17 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SeguirButtonActionPerformed
 
     private void NickSeguidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NickSeguidorActionPerformed
-        // TODO add your handling code here:
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
+        NickSeguido.removeAllItems();
+        try {
+            ArrayList<String> ar = interf.ListarSeguibles(Seguidor);
+            for(String stri : ar) {
+                NickSeguido.addItem(stri);
+            }
+        } catch (SeguidorInexistenteException e){
+                JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_NickSeguidorActionPerformed
 
     private void NickSeguidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NickSeguidoActionPerformed

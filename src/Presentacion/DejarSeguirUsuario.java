@@ -10,6 +10,7 @@ import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IDejarDeSeguir;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -26,7 +27,7 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
     public DejarSeguirUsuario() {
         initComponents();
         IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
-        String[] cl = interf.DevolverClientes();
+        ArrayList<String> cl = interf.ListarClientes();
         for(String str : cl) {
             NickSeguidor.addItem(str);NickSeguido.addItem(str);
         }

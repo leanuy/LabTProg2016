@@ -15,7 +15,7 @@ import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.FavoritoRepetidoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
-import espotify.Interfaces.IFavoritear;
+import espotify.Interfaces.IDesFavoritear;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,14 +26,14 @@ import javax.swing.JOptionPane;
  *
  * @author JavierM42
  */
-public class Favoritear extends javax.swing.JInternalFrame {
+public class DesFavoritear extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form Favoritear
+     * Creates new form DesFavoritear
      */
-    public Favoritear() {
+    public DesFavoritear() {
         initComponents();
-        IFavoritear ifav = Fabrica.getIFavoritear();
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         ArrayList<String> cli = ifav.ListarClientes();
         for(String c : cli)
         {
@@ -205,9 +205,10 @@ public class Favoritear extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(clientescmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel8))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lstpubclicmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,10 +226,11 @@ public class Favoritear extends javax.swing.JInternalFrame {
                         .addGap(35, 35, 35)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel9)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(artcmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -249,14 +251,14 @@ public class Favoritear extends javax.swing.JInternalFrame {
 
     private void btnListaDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaDefectoActionPerformed
         DataDefecto d = new DataDefecto("", String.valueOf(lstdefcmb.getSelectedItem()), null);
-        IFavoritear ifav = Fabrica.getIFavoritear();
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), d);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (FavoritoRepetidoException ex) {
-            JOptionPane.showMessageDialog(new JDialog(), "Ya ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(new JDialog(), "No ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ListaInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "La lista no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ArtistaInexistenteException ex) {
@@ -268,14 +270,14 @@ public class Favoritear extends javax.swing.JInternalFrame {
 
     private void btnListaPublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPublicaActionPerformed
         DataParticular d = new DataParticular(String.valueOf(lstpubclicmb.getSelectedItem()),lstpubtxt.getText(),null);
-        IFavoritear ifav = Fabrica.getIFavoritear();
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), d);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (FavoritoRepetidoException ex) {
-            JOptionPane.showMessageDialog(new JDialog(), "Ya ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(new JDialog(), "No ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ListaInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "La lista no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ArtistaInexistenteException ex) {
@@ -287,14 +289,14 @@ public class Favoritear extends javax.swing.JInternalFrame {
 
     private void btnAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumActionPerformed
         DataAlbum d = new DataAlbum(albtxt.getText(), 0, null, null, String.valueOf(artcmb.getSelectedItem()));
-        IFavoritear ifav = Fabrica.getIFavoritear();
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), d);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (FavoritoRepetidoException ex) {
-            JOptionPane.showMessageDialog(new JDialog(), "Ya ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(new JDialog(), "No ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ListaInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "La lista no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ArtistaInexistenteException ex) {
@@ -306,14 +308,14 @@ public class Favoritear extends javax.swing.JInternalFrame {
 
     private void btnTemaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTemaAlbumActionPerformed
         DataTema d = new DataTema(tematxt.getText(), 0, 0, String.valueOf(artcmb.getSelectedItem()), albtxt.getText());
-        IFavoritear ifav = Fabrica.getIFavoritear();
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), d);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (FavoritoRepetidoException ex) {
-            JOptionPane.showMessageDialog(new JDialog(), "Ya ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(new JDialog(), "No ha marcado ese ítem como favorito", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ListaInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "La lista no existe", "Error", JOptionPane.PLAIN_MESSAGE);
         } catch (ArtistaInexistenteException ex) {

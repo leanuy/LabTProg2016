@@ -561,7 +561,7 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
             IAgregarTemaLista interf = Fabrica.getIAgregarTemaLista();
             String cl = String.valueOf(Cliente2Box.getSelectedItem());
             try{
-                ArrayList<String> a = interf.ListarListasPubliasDeCliente(cl);
+                ArrayList<String> a = interf.ListarListasPublicasDeCliente(cl);
                 Lista2Box.removeAllItems();
                 a.stream().forEach((s) -> {
                     Lista2Box.addItem(s);

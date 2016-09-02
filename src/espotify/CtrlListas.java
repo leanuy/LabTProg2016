@@ -66,7 +66,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         return cu.ListarListasPrivadasDeCliente(nick);
     }
     @Override
-    public ArrayList<String> ListarListasPubliasDeCliente(String nick) throws Exception
+    public ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException
     {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasPublicasDeCliente(nick);
@@ -122,7 +122,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         return a;
     }
     @Override
-    public ArrayList<String> ListarAlbumesDeArtista(String na) throws Exception {
+    public ArrayList<String> ListarAlbumesDeArtista(String na) throws ArtistaInexistenteException {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarAlbumesDeArtista(na);
     }
@@ -187,7 +187,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         Tema t = cu.DevolverTema(dtema);
         if(nickMEM.equals("")){
             if(lista == null){
-                throw new Exception("No existe esa lista");
+                throw new ListaInexistenteException("No existe esa lista");
             }
             Lista l = BuscarLista(lista);
             l.AgregarTema(t);
