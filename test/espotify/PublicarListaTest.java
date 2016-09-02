@@ -52,7 +52,6 @@ public class PublicarListaTest {
     @Test
     public void test2PublicarLista1() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
         System.out.println("PublicarLista: ok");
-
         iPublicarLista.PublicarLista("Mi Lista Publica", "TesterLista");
     }
     

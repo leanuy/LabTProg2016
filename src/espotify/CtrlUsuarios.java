@@ -130,7 +130,7 @@ public class CtrlUsuarios implements IConsultaCliente, IConsultaArtista, IAltaSe
         Cliente c = BuscarCliente(nick);
         return c.ListarListasPrivadas();
     }
-    ArrayList<String> ListarListasPublicasDeCliente(String nick) throws Exception{
+    ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException{
         Cliente c = BuscarCliente(nick);
         return c.ListarListasPublicas();
     }
