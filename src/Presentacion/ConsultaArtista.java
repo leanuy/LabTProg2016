@@ -77,7 +77,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Correo:");
 
-        jLabel5.setText("Fecha Naciomiento:");
+        jLabel5.setText("Fecha Nacimiento:");
 
         jScrollPane1.setViewportView(AlbumsList);
 
