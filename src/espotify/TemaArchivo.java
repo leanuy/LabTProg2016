@@ -15,7 +15,7 @@ class TemaArchivo extends Tema{
     @Override
     DataTema getData() {
         DataTema root = super.getData();
-        return new DataTemaArchivo(archivo,root.getNombre(),root.getDuracion(),root.getNum()); 
+        return new DataTemaArchivo(archivo,root.getNombre(),root.getDuracion(),root.getNum(), root.getNomArtista(), root.getAlbum()); 
     }  
     
 }

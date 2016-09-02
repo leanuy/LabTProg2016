@@ -42,7 +42,16 @@ abstract class Lista {
         return this.temas;
     }*/
     
-    void AgregarTema(Tema t){
+    void AgregarTema(Tema t) throws Exception{
+        boolean iguales = false;
+        for(Tema t2 : temas){
+            if(t == t2){
+                iguales = true;
+            }
+        }
+        if (iguales){
+            throw new Exception("El tema ya existe en la lista");
+        }
         temas.add(t);
     }
 

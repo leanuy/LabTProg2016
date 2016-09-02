@@ -14,19 +14,18 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-/**
- *
- * @author Santiago
- */
+
+
 public class SeguirUsuario extends javax.swing.JInternalFrame {
 
-    IAltaSeguir interf;
     /**
      * Creates new form SeguirUsuario
      */
+    
+    IAltaSeguir interf = Fabrica.getIAltaSeguir();
+    
     public SeguirUsuario() {
         initComponents();
-        interf = Fabrica.getIAltaSeguir();
         ArrayList<String>cl = interf.ListarClientes();
         for(String str : cl) {
             NickSeguidor.addItem(str);
@@ -135,7 +134,6 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
         if (Seguidor.isEmpty() || Seguido.isEmpty()){
             JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
         }else{
-            IAltaSeguir interf = Fabrica.getIAltaSeguir();
             try
             {
             interf.AltaSeguir(Seguidor,Seguido);

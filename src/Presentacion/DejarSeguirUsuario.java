@@ -21,13 +21,12 @@ import javax.swing.JOptionPane;
  */
 public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form DejarSeguirUsuario
-     */
+    IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
+
     public DejarSeguirUsuario() {
         initComponents();
-        IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
         ArrayList<String> cl = interf.ListarClientes();
+
         for(String str : cl) {
             NickSeguidor.addItem(str);NickSeguido.addItem(str);
         }
@@ -139,8 +138,6 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         if (Seguidor.isEmpty() || Seguido.isEmpty()){
             JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
         }else{
-            IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
-
             try{
             interf.DejarDeSeguir(Seguidor,Seguido);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
@@ -152,7 +149,6 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
             }
         }
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
-        IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
         String[] seguid=null;
         try {
             seguid = interf.getSeguidos(Seguidor);
@@ -168,7 +164,6 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
     private void NickSeguidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NickSeguidorActionPerformed
         // TODO add your handling code here:
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
-        IDejarDeSeguir interf = Fabrica.getIDejarDeSeguir();
         String[] seguid=null;
         try {
             seguid = interf.getSeguidos(Seguidor);
