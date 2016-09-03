@@ -1,8 +1,11 @@
 package espotify;
 
 import espotify.Datatypes.DataUsuario;
+import espotify.Excepciones.SeguidoRepetidoException;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 class Usuario {
 
@@ -13,6 +16,7 @@ class Usuario {
     protected String correo;
     protected Calendar fNac;
     protected BufferedImage img;
+    protected HashMap<String,Cliente> seguidores;
 
     String getNick() {
         return nick;
@@ -38,6 +42,10 @@ class Usuario {
         return img;
     }
     
+    HashMap<String,Cliente> getSeguidores(){
+        return this.seguidores;
+    }
+    
     static boolean ValidarDatosUsuario(DataUsuario d) {
         return ValidarCorreo(d.getCorreo()) && !(d.getNick().equals("") || d.getNombre().equals("") || d.getApellido().equals(""));
     }
@@ -51,7 +59,19 @@ class Usuario {
             ok = !s.contains("@") && s.contains(".");
         }
         return ok;
-        
+    }
+    
+    public void AgregarSeguidor(Cliente c)throws SeguidoRepetidoException{
+        String name2 = c.nick;
+        Cliente c2 = seguidores.get(name2);
+        if (c2 != null){
+            throw new SeguidoRepetidoException();
+        }
+        seguidores.put(name2, c);
+    }
+    
+    public void NoMeSiguenMas(Cliente c){
+        seguidores.remove(c.nick, c);
     }
     
     Usuario(DataUsuario d){
@@ -61,5 +81,6 @@ class Usuario {
         this.correo = d.getCorreo();
         this.fNac = (Calendar) d.getfNac().clone();
         this.img = d.getImg();
+        this.seguidores = new HashMap();
     }
 }

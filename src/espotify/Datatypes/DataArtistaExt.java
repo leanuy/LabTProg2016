@@ -2,6 +2,7 @@ package espotify.Datatypes;
 
 import espotify.Album;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -26,6 +27,22 @@ public class DataArtistaExt extends DataUsuario {
     
     public String[] getAlbums(){
         return alb;
+    }
+    
+    public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String bio, String url, HashMap<String,Album> albums, ArrayList<String> segdores){
+
+        super(nick, nombre, apellido, correo, fNac, img, segdores);
+
+        this.bio = bio;
+        this.url = url;
+        int cant = albums.size();
+        alb = new String[cant];
+        int i = 0;
+        for(Map.Entry<String, Album> entry : albums.entrySet()) {
+            String key = entry.getKey();
+            alb[i] = key;
+            i++;
+        }
     }
     
     public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String bio, String url, HashMap<String,Album> albums){

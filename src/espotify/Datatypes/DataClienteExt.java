@@ -1,6 +1,7 @@
 package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -21,6 +22,12 @@ public class DataClienteExt extends DataUsuario {
 
     public String[] getListas(){
         return lis;
+    }
+    
+    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String[]seg, String[]lis, ArrayList<String> segdores){
+        super(nick, nombre, apellido, correo, fNac, img, segdores);
+        this.seg=seg;
+        this.lis=lis;
     }
     
     public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String[]seg, String[]lis){

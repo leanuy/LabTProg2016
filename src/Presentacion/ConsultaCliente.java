@@ -68,6 +68,10 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         CorreoText = new javax.swing.JLabel();
         FechaText = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        SeguidoresList = new javax.swing.JList<>();
+        CantidadSeguidoresText = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -105,6 +109,10 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
 
         jLabel8.setText(" ");
 
+        jLabel9.setText("Seguidores:");
+
+        jScrollPane3.setViewportView(SeguidoresList);
+
         javax.swing.GroupLayout Conteiner4Layout = new javax.swing.GroupLayout(Conteiner4);
         Conteiner4.setLayout(Conteiner4Layout);
         Conteiner4Layout.setHorizontalGroup(
@@ -113,33 +121,43 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
                 .addGap(34, 34, 34)
                 .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Conteiner4Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(FechaText))
+                        .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Conteiner4Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(FechaText))
+                            .addGroup(Conteiner4Layout.createSequentialGroup()
+                                .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addGap(71, 71, 71)
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CantidadSeguidoresText, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(Conteiner4Layout.createSequentialGroup()
                         .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(31, 31, 31)
-                        .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(NombreText)
-                            .addComponent(ApellidoText)
-                            .addComponent(CorreoText)))
-                    .addComponent(jLabel1)
-                    .addComponent(Select, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Conteiner4Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(103, 103, Short.MAX_VALUE)
-                .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Conteiner4Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                            .addGroup(Conteiner4Layout.createSequentialGroup()
+                                .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(31, 31, 31)
+                                .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(NombreText)
+                                    .addComponent(ApellidoText)
+                                    .addComponent(CorreoText)))
+                            .addComponent(jLabel1)
+                            .addComponent(Select, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49))))
         );
         Conteiner4Layout.setVerticalGroup(
             Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,13 +187,27 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
                 .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(FechaText))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42))
+                    .addGroup(Conteiner4Layout.createSequentialGroup()
+                        .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(Conteiner4Layout.createSequentialGroup()
+                                .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel9))
+                                .addGap(120, 120, 120))
+                            .addGroup(Conteiner4Layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25))
+                    .addGroup(Conteiner4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(CantidadSeguidoresText, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,6 +249,16 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         String[] c = dc.getListas();
         ListasList.clearSelection();
         ListasList.setListData(c);
+        ArrayList<String> a = dc.getSeguidores();
+        int k = a.size();
+        String[] array = new String[k];
+        int i=0;
+        for(String seguidor : a){
+            array[i] = seguidor;
+            i++;
+        }
+        SeguidoresList.setListData(array);
+        CantidadSeguidoresText.setText("Total: " + k);
         BufferedImage imagen = dc.getImg();
         BufferedImage image;
         if(imagen == null){
@@ -258,11 +300,13 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ApellidoText;
+    private javax.swing.JLabel CantidadSeguidoresText;
     private javax.swing.JPanel Conteiner4;
     private javax.swing.JLabel CorreoText;
     private javax.swing.JLabel FechaText;
     private javax.swing.JList<String> ListasList;
     private javax.swing.JLabel NombreText;
+    private javax.swing.JList<String> SeguidoresList;
     private javax.swing.JList<String> SeguidosList;
     private javax.swing.JComboBox<String> Select;
     private javax.swing.JLabel jLabel1;
@@ -273,7 +317,9 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     // End of variables declaration//GEN-END:variables
 }

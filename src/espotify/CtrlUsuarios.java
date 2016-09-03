@@ -250,6 +250,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             }
         }
         c.Seguir(u);
+        u.AgregarSeguidor(c);
     }
     @Override
     public void DejarDeSeguir(String nomSeguidor, String nomSeguido) throws SeguidorInexistenteException,SeguidoInexistenteException{
@@ -275,6 +276,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             }
         }
         c.DejarDeSeguir(u);
+        u.NoMeSiguenMas(c);
     }
     @Override
     public void AltaCliente(DataCliente d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
