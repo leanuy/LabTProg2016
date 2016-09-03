@@ -174,7 +174,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         String[] seg = dc.getSeguidos();
         return seg;
     }
-    ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
+    @Override
+    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException{
         Artista artista = BuscarArtista(nomArtista);
         return artista.ListarAlbumes();
     }

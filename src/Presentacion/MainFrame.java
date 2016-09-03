@@ -6,11 +6,13 @@
 package Presentacion;
 
 
+import espotify.Datatypes.DataAlbum;
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
+import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataTemaWeb;
@@ -22,6 +24,7 @@ import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IAltaSeguir;
+import espotify.Interfaces.IFavoritear;
 import espotify.Interfaces.IPublicarLista;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -502,14 +505,16 @@ public class MainFrame extends javax.swing.JFrame {
     private void ConsultaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaListaMenuItemActionPerformed
         Object[] options = {"Cliente","Genero"};
         int opcion = JOptionPane.showOptionDialog(this, "Desea consultar lista por Cliente o por Género?","Elija una opción", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
-        if(opcion == 0 ){
+        if(opcion == JOptionPane.OK_OPTION ){
            ConsultaListaPorCliente consListaCli = new ConsultaListaPorCliente();
            MainPanel.add(consListaCli);
            consListaCli.setVisible(true);
         }else{
-           ConsultaListaPorGenero consListaGen = new ConsultaListaPorGenero();
-           MainPanel.add(consListaGen);
-           consListaGen.setVisible(true);
+            if(opcion == JOptionPane.NO_OPTION){
+                ConsultaListaPorGenero consListaGen = new ConsultaListaPorGenero();
+                MainPanel.add(consListaGen);
+                consListaGen.setVisible(true);
+            }
         }
     }//GEN-LAST:event_ConsultaListaMenuItemActionPerformed
 
@@ -933,6 +938,31 @@ public class MainFrame extends javax.swing.JFrame {
         ctrlPublicar.PublicarLista("De Todo Un Poco", "scarlettO");
         ctrlPublicar.PublicarLista("Para Las Chicas", "lachiqui");
         ctrlPublicar.PublicarLista("Fiesteras", "cbochinche");
+        
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        ifav.Favoritear("el_padrino", new DataDefecto("","Noche De La Nostalgia", null));
+        ifav.Favoritear("el_padrino", new DataDefecto("","Música Clásica", null));
+        ifav.Favoritear("scarlettO", new DataDefecto("","Música Clásica", null));
+        ifav.Favoritear("ppArgento", new DataDefecto("","Noche De La Nostalgia", null));
+        ifav.Favoritear("ppArgento", new DataDefecto("","Rock En Español", null));
+        ifav.Favoritear("Heisenberg", new DataParticular("el_padrino","Música Inspiradora",null));
+        ifav.Favoritear("cbochinche", new DataDefecto("","Noche De La Nostalgia", null));
+        ifav.Favoritear("cbochinche", new DataDefecto("","Rock En Español", null));
+        ifav.Favoritear("el_padrino", new DataAlbum("Violator", 0, null, null, "dmode"));
+        ifav.Favoritear("el_padrino", new DataAlbum("El Lago De Los Cisnes", 0, null, null, "chaiko"));
+        ifav.Favoritear("el_padrino", new DataAlbum("Concierto Para Piano No. 1 En Si Menor, Opus 23", 0, null, null, "chaiko"));
+        ifav.Favoritear("benKenobi", new DataAlbum("El Lago De Los Cisnes", 0, null, null, "chaiko"));
+        ifav.Favoritear("benKenobi", new DataAlbum("Concierto Para Piano No. 1 En Si Menor, Opus 23", 0, null, null, "chaiko"));
+        ifav.Favoritear("cbochinche", new DataAlbum("Hay Amores Que Matan", 0, null, null, "lospimpi"));
+        ifav.Favoritear("el_padrino", new DataTema("El Duelo", 0, 0, "la_ley","MTV Unplugged"));
+        ifav.Favoritear("ppArgento", new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"));
+        ifav.Favoritear("cbochinche", new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"));
+        ifav.Favoritear("Eleven11", new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"));
+
+
+
+
+
     }
     
     private void cargarDatosDePruebaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarDatosDePruebaActionPerformed
