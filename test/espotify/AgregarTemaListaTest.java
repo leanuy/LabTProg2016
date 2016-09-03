@@ -4,6 +4,7 @@ import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
+import espotify.Datatypes.DataTemaWeb;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
@@ -117,5 +118,12 @@ public class AgregarTemaListaTest {
         ArrayList<DataTema> expResult = new ArrayList<>();
         assertEquals(expResult, result);
     }
-
+    
+    @Test
+    public void TestAgregarTemaLista_1() throws Exception
+    {
+        System.out.println("Agregar Tema a Lista Generica");
+        DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
+        iAdd.AgregarTemaLista(web, "Lista genérica");
+    }
 }
