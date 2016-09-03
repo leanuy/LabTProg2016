@@ -743,6 +743,7 @@ public class MainFrame extends javax.swing.JFrame {
         ctrlAltaGenero.AltaGenero(dataGenero);
         
         String nickArtista;
+        String nombreAlbum;
         ArrayList<DataTema> temas;
         ArrayList<String> generos;
         DataAlbumExt dataAlbumExt;
@@ -750,40 +751,43 @@ public class MainFrame extends javax.swing.JFrame {
         File tema;
 
         nickArtista = "vpeople";
+        nombreAlbum = "Village People Live and Sleazy";
         generos = new ArrayList<>();
         generos.add("Disco");
         generos.add("Dance-pop");
         generos.add("Pop Clásico");
 
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCvpymca", "YMCA", 268, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCvpymca", "YMCA", 268, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/MachoMan.mp3");
-        temas.add(new DataTemaArchivo(tema, "Macho Man", 208, 2));
-        temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In The Navy", 193, 3));
+        temas.add(new DataTemaArchivo(tema, "Macho Man", 208, 2, nickArtista, nombreAlbum));
+        temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In The Navy", 193, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "dmode";
+        nombreAlbum = "Enjoy The Silence";
         generos = new ArrayList<>();
         generos.add("Electropop");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/PersonalJesus.mp3");
-        temas.add(new DataTemaArchivo(tema, "Personal Jesus", 296, 1));
+        temas.add(new DataTemaArchivo(tema, "Personal Jesus", 296, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/EnjoyTheSilence.mp3");
-        temas.add(new DataTemaArchivo(tema, "Enjoy The Silence", 261, 2));
+        temas.add(new DataTemaArchivo(tema, "Enjoy The Silence", 261, 2, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Violator", 1990, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "clauper";
+        nombreAlbum = "She's So Unusual";
         generos = new ArrayList<>();
         generos.add("Pop Clásico");
         generos.add("Dance-pop");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", " Girls Just Want To Have Fun", 195, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", " Girls Just Want To Have Fun", 195, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/TimeAfterTime.mp3");
-        temas.add(new DataTemaArchivo(tema, "Time After Time", 312, 2));
+        temas.add(new DataTemaArchivo(tema, "Time After Time", 312, 2, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/ShesSoUnusual.PNG");
         img = ImageIO.read(file);
 
@@ -791,26 +795,28 @@ public class MainFrame extends javax.swing.JFrame {
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "bruceTheBoss";
+        nombreAlbum = "Born In The U.S.A.";
         generos = new ArrayList<>();
         generos.add("Rock Clásico");
         generos.add("Rock & Roll");
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCbsborninusa", "Born In The U.S.A.", 298, 1));
-        temas.add(new DataTemaWeb("bit.ly/SCbsglorydays", "Glory Days", 323, 2));
+        temas.add(new DataTemaWeb("bit.ly/SCbsborninusa", "Born In The U.S.A.", 298, 1, nickArtista, nombreAlbum));
+        temas.add(new DataTemaWeb("bit.ly/SCbsglorydays", "Glory Days", 323, 2, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/DancingInTheDark.mp3");
-        temas.add(new DataTemaArchivo(tema, "Dancing In The Dark", 238, 3));
+        temas.add(new DataTemaArchivo(tema, "Dancing In The Dark", 238, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "tigerOfWales";
+        nombreAlbum = "It's Not Unusual";
         generos = new ArrayList<>();
         generos.add("Rock Clásico");
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/ItSNotUnusual.mp3");
-        temas.add(new DataTemaArchivo(tema, " It’s Not Unusual", 120, 1));
+        temas.add(new DataTemaArchivo(tema, " It’s Not Unusual", 120, 1, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/ItsNotUnusual.jpeg");
         img = ImageIO.read(file);
 
@@ -818,23 +824,25 @@ public class MainFrame extends javax.swing.JFrame {
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "tripleNelson";
+        nombreAlbum = "Agua Y Sal";
         generos = new ArrayList<>();
         generos.add("Rock Latino");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCtnadagiopais", " Adagio De Mi País", 290, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCtnadagiopais", " Adagio De Mi País", 290, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Agua Y Sal", 2012, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "la_ley";
+        nombreAlbum = "MTV Unplugged";
         generos = new ArrayList<>();
         generos.add("Rock Latino");
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/ElDuelo.mp3");
-        temas.add(new DataTemaArchivo(tema, "El Duelo", 323, 1));
+        temas.add(new DataTemaArchivo(tema, "El Duelo", 323, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/Mentira.mp3");
-        temas.add(new DataTemaArchivo(tema, "Mentira", 288, 2));
+        temas.add(new DataTemaArchivo(tema, "Mentira", 288, 2, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/mtvUnplugged.jpg");
         img = ImageIO.read(file);
 
@@ -842,59 +850,65 @@ public class MainFrame extends javax.swing.JFrame {
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "chaiko";
+        nombreAlbum = "El Lago De Los Cisnes";
         generos = new ArrayList<>();
         generos.add("Clásica");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCptswanlake", "Acto 2, Número 10, Escena (Moderato)", 160, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCptswanlake", "Acto 2, Número 10, Escena (Moderato)", 160, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "El Lago De Los Cisnes", 1875, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "chaiko";
+        nombreAlbum = "Concierto Para Piano No. 1 En Si Menor, Opus 23";
         generos = new ArrayList<>();
         generos.add("Clásica");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCptpiano", " Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 1318, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCptpiano", " Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 1318, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Concierto Para Piano No. 1 En Si Menor, Opus 23", 1875, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "nicoleneu";
+        nombreAlbum = "Primer Amor";
         generos = new ArrayList<>();
         generos.add("Electropop");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/NoQuieroEstudiar.mp3");
-        temas.add(new DataTemaArchivo(tema, " No Quiero Estudiar", 132, 1));
+        temas.add(new DataTemaArchivo(tema, " No Quiero Estudiar", 132, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "lospimpi";
+        nombreAlbum = "Hay Amores Que Matan";
         generos = new ArrayList<>();
         generos.add("Pop Clásico");
         generos.add("Balada");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/PorEseHombre.mp3");
-        temas.add(new DataTemaArchivo(tema, "Por Ese Hombre", 285, 1));
+        temas.add(new DataTemaArchivo(tema, "Por Ese Hombre", 285, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Hay Amores Que Matan", 1993, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "dyangounchained";
+        nombreAlbum = "Un Loco Como Yo";
         generos = new ArrayList<>();
         generos.add("Pop Clásico");
         generos.add("Balada");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCdyporesehombre", "Por Ese Hombre", 313, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCdyporesehombre", "Por Ese Hombre", 313, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Un Loco Como Yo", 1993, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
 
         nickArtista = "alcides";
+        nombreAlbum = "20 Grandes Éxitos";
         generos = new ArrayList<>();
         generos.add("Cumbia");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCvioleta", "Violeta", 116, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCvioleta", "Violeta", 116, 1, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/alcides20.jpg");
         img = ImageIO.read(file);
 

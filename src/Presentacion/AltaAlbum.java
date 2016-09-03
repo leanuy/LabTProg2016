@@ -55,6 +55,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private BufferedImage img = null;
     private String ArtistSelected;
     
+    
     private static ArrayList<String> temasYaIngresados;
     private static String nombreAnterior;
     private static boolean nombreRepetido;
@@ -359,29 +360,34 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     }
     
     private void buttonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarTemaActionPerformed
-        DialogoIngresoTema ingTema = new DialogoIngresoTema(null,"Ingrese el Tema",true); 
-        ingTema.setLocationRelativeTo(this);
-        
-        ingTema.setVisible(true);
+        if(!nombreAlbum.getText().isEmpty()){
+            nombreAlbum.setEnabled(false);
+            DialogoIngresoTema ingTema = new DialogoIngresoTema(null,"Ingrese el Tema",true); 
+            ingTema.setLocationRelativeTo(this);
 
-        if(entrar){
-            if(nombreRepetido){
-                JOptionPane.showMessageDialog(this, "Nombre de tema Repetido", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }else{
-                if(web){
-                    DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema);
-                    listaTemas.add(dt);
-                    modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+            ingTema.setVisible(true);
+
+            if(entrar){
+                if(nombreRepetido){
+                    JOptionPane.showMessageDialog(this, "Nombre de tema Repetido", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
                 }else{
-                    DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema);
-                    listaTemas.add(dta);
-                    modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
+                    if(web){
+                        DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema,ArtistSelected, nombreAlbum.getText());
+                        listaTemas.add(dt);
+                        modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+                    }else{
+                        DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema,ArtistSelected,nombreAlbum.getText());
+                        listaTemas.add(dta);
+                        modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
+                    }
+                    numeroTema++;
+                    temasYaIngresados.add(nombre);
+                    nombreAnterior = nombre;
                 }
-                numeroTema++;
-                temasYaIngresados.add(nombre);
-                nombreAnterior = nombre;
             }
+        }else{
+            JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre del Album", "Atencion!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
 
