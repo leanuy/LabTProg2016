@@ -52,11 +52,11 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1));
-        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2));
-        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3));
-        temas.add(new DataTemaArchivo(null, "tema 4", 70, 4));
-        temas.add(new DataTemaArchivo(null, "tema 5", 230, 5));
+        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaArchivo(null, "tema 4", 70, 4, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaArchivo(null, "tema 5", 230, 5, "ElGordoAxl", "Album 1"));
 
         String nombre = "Album 1";
         int anio = 2013;
@@ -79,11 +79,11 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1));
-        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2));
-        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3));
-        temas.add(new DataTemaWeb("url4", "tema 4", 70, 4));
-        temas.add(new DataTemaWeb("url5", "tema 5", 230, 5));
+        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 2"));
+        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album 2"));
+        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album 2"));
+        temas.add(new DataTemaWeb("url4", "tema 4", 70, 4, "ElGordoAxl", "Album 2"));
+        temas.add(new DataTemaWeb("url5", "tema 5", 230, 5, "ElGordoAxl", "Album 2"));
 
         String nombre = "Album 2";
         int anio = 2013;
@@ -106,9 +106,9 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1));
-        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2));
-        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3));
+        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album invalido"));
+        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album invalido"));
+        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album invalido"));
 
         String nombre = "Album invalido";
         int anio = 2013;
@@ -132,7 +132,7 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1));
+        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album valido"));
 
         String nombre = "Album valido";
         int anio = 2013;
@@ -154,7 +154,7 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", -20, 1));
+        temas.add(new DataTemaWeb("url1", "tema 1", -20, 1, "ElGordoAxl", "Album invalido"));
 
         String nombre = "Album invalido";
         int anio = 2013;
@@ -175,8 +175,8 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 123, 0));
-        temas.add(new DataTemaWeb("url1", "tema 1", 123, -3));
+        temas.add(new DataTemaWeb("url1", "tema 1", 123, 0, "ElGordoAxl", "Album invalido"));
+        temas.add(new DataTemaWeb("url1", "tema 1", 123, -3, "ElGordoAxl", "Album invalido"));
 
         String nombre = "Album invalido";
         int anio = 2013;
@@ -197,8 +197,8 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 123, 2));
-        temas.add(new DataTemaWeb("url1", "tema 1", 123, 345));
+        temas.add(new DataTemaWeb("url1", "tema 1", 123, 2, "ElGordoAxl", "Album invalido"));
+        temas.add(new DataTemaWeb("url1", "tema 1", 123, 345, "ElGordoAxl", "Album invalido"));
 
         String nombre = "Album invalido";
         int anio = 2013;
@@ -219,8 +219,8 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 123, 1));
-        temas.add(new DataTemaWeb("url1", "tema 2", 123, 1));
+        temas.add(new DataTemaWeb("url1", "tema 1", 123, 1, "ElGordoAxl", "Album invalido"));
+        temas.add(new DataTemaWeb("url1", "tema 2", 123, 1, "ElGordoAxl", "Album invalido"));
 
         String nombre = "Album invalido";
         int anio = 2013;
@@ -241,8 +241,8 @@ public class AltaAlbumTest {
 
         //Crear DataTemas
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 123, 1));
-        temas.add(new DataTemaWeb("url1", "tema 1", 123, 2));
+        temas.add(new DataTemaWeb("url1", "tema 1", 123, 1, "ElGordoAxl", "Album invalido"));
+        temas.add(new DataTemaWeb("url1", "tema 1", 123, 2, "ElGordoAxl", "Album invalido"));
 
         String nombre = "Album invalido";
         int anio = 2013;

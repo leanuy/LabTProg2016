@@ -8,11 +8,13 @@ import espotify.Datatypes.DataTemaWeb;
 import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.GeneroInexistenteException;
+import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IConsultaAlbum;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Ignore;
@@ -26,8 +28,8 @@ public class ConsultaAlbumTest {
     public ConsultaAlbumTest() {
     }
 
-    @BeforeClass
-    public static void setUpClass() throws Exception {
+    @Before
+    public void setUpMethod() throws Exception {
         ManejadorColecciones.clear();
         iConsultaAlbum = Fabrica.getIConsultaAlbum();
         new AltaPerfilTest().testAltaArtista1();
@@ -86,19 +88,21 @@ public class ConsultaAlbumTest {
         System.out.println("Consulta Album: ok");
         
         ArrayList< DataTema> temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1));
-        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2));
-        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3));
-        temas.add(new DataTemaArchivo(null, "tema 4", 70, 4));
-        temas.add(new DataTemaArchivo(null, "tema 5", 230, 5));
-        String nombre = "Album 1";
+        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Alb"));
+        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Alb"));
+        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Alb"));
+        temas.add(new DataTemaArchivo(null, "tema 4", 70, 4, "ElGordoAxl", "Alb"));
+        temas.add(new DataTemaArchivo(null, "tema 5", 230, 5, "ElGordoAxl", "Alb"));
+        String nombre = "Alb";
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
         BufferedImage img = null;
         String nickArtista = "ElGordoAxl";
         DataAlbumExt expResult = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
-        DataAlbumExt result = iConsultaAlbum.ConsultaAlbum("Album 1", "ElGordoAxl");
+        IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        iAltaAlbum.AltaAlbum(expResult);
+        DataAlbumExt result = iConsultaAlbum.ConsultaAlbum("Alb", "ElGordoAxl");
         assertEquals(expResult,result);
     }
     
