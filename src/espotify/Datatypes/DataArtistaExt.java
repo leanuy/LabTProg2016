@@ -63,6 +63,7 @@ public class DataArtistaExt extends DataUsuario {
 
     @Override
     public boolean equals(Object obj) {
+        System.out.println("Borrame");
         if (this == obj) {
             return true;
         }
@@ -77,9 +78,6 @@ public class DataArtistaExt extends DataUsuario {
             return false;
         }
         if (!Objects.equals(this.url, other.url)) {
-            return false;
-        }
-        if (!Arrays.deepEquals(this.alb, other.alb)) {
             return false;
         }
         if (!Objects.equals(this.nick, other.nick)) {
@@ -98,6 +96,9 @@ public class DataArtistaExt extends DataUsuario {
             return false;
         }
         if (!Objects.equals(this.img, other.img)) {
+            return false;
+        }
+        if (!Arrays.deepEquals(this.alb, other.alb)) {
             return false;
         }
         return true;
