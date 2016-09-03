@@ -46,7 +46,15 @@ class Artista extends Usuario{
     }
 
     DataArtistaExt getDataArtistaExt() {
-        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), bio, url, albums);
+        ArrayList<String> segdores = new ArrayList();
+        String namef;
+        Cliente c;
+        for(Map.Entry<String, Cliente> entry : this.seguidores.entrySet()){
+            c = entry.getValue();
+            namef = c.nick;
+            segdores.add(namef);
+        }
+        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), bio, url, albums, segdores);
         return da;
     }
     

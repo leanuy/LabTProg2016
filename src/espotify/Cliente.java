@@ -46,7 +46,15 @@ class Cliente extends Usuario {
             lis[i] = nomb;
             i++;
         }
-        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), seg, lis);
+        ArrayList<String> segdores = new ArrayList();
+        String namef;
+        Cliente c;
+        for(Map.Entry<String, Cliente> entry : this.seguidores.entrySet()){
+            c = entry.getValue();
+            namef = c.nick;
+            segdores.add(namef);
+        }
+        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), seg, lis, segdores);
         return dc;
     }
     
