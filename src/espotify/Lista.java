@@ -4,11 +4,13 @@ import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataLista;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 abstract class Lista {
     protected String nombre;
     protected BufferedImage img;
-    protected final ArrayList<Tema> temas;
+    protected final HashMap<String, Tema> themas;
 
     String getNombre() {
         return nombre;
@@ -22,19 +24,22 @@ abstract class Lista {
     {
         this.nombre=nombre;
         this.img=img;
-        this.temas=new ArrayList<>();
-        }
+        this.themas = new HashMap<>();
+    }
     Lista(DataLista d)
     {
         this.nombre = d.getNombre();
         this.img = d.getImg();
-        this.temas = new ArrayList<>();
+        this.themas = new HashMap<>();
     }
 
     ArrayList<DataTema> ListarTemas() {
         ArrayList<DataTema> a = new ArrayList();
-        for (Tema t: temas)
+        Tema t;
+        for(Map.Entry<String, Tema> entry : themas.entrySet()){
+            t = entry.getValue();
             a.add(t.getData());
+        }
         return a;
     }
     
@@ -43,31 +48,23 @@ abstract class Lista {
     }*/
     
     void AgregarTema(Tema t) throws Exception{
-        boolean iguales = false;
-        for(Tema t2 : temas){
-            if(t == t2){
-                iguales = true;
-            }
-        }
-        if (iguales){
+        String s = t.getNombre()+t.getNombreAlbum();
+        Tema t2 = themas.get(s);
+        if (t2 != null){
             throw new Exception("El tema ya existe en la lista");
         }
-        temas.add(t);
+        themas.put(s, t);
     }
 
     void QuitarTema(String nomTema,String nomAlbum) {
-        for (Tema t: temas){
-            if(t.getNombre().equals(nomTema) && t.getNombreAlbum().equals(nomAlbum))
-                temas.remove(t);
-        }
+        String s = nomTema+nomAlbum;
+        themas.remove(s);
     }
     
     DataLista getData()
     {
-        ArrayList<DataTema> lst = new ArrayList<>();
-        for(Tema t:temas)
-            lst.add(t.getData());
-        return new DataLista(nombre, img, lst);
+        ArrayList<DataTema> lst = this.ListarTemas();
+        DataLista dl = new DataLista(this.nombre, this.img, lst);
+        return dl;
     }
-
 }
