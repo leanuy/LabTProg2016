@@ -431,88 +431,112 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cerrarOptionActionPerformed
 
     private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
+        MainPanel.removeAll();
         internalAltaPerfil frameAltaPerfil = new internalAltaPerfil();
         MainPanel.add(frameAltaPerfil);
+        MainPanel.repaint();
         frameAltaPerfil.setVisible(true);
         
     }//GEN-LAST:event_AltaPerfilActionPerformed
 
     private void AltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaAlbumActionPerformed
+        MainPanel.removeAll();
         AltaAlbum album = new AltaAlbum();
         //album.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth())/2, (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight())/2);
         MainPanel.add(album);
+        MainPanel.repaint();
         //ver que agregar y hacer visible
         album.setVisible(true);
     }//GEN-LAST:event_AltaAlbumActionPerformed
 
     private void SeguirMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirMItemActionPerformed
+        MainPanel.removeAll();
         SeguirUsuario seguir = new SeguirUsuario();
         MainPanel.add(seguir);
+        MainPanel.repaint();
         seguir.setVisible(true);
     }//GEN-LAST:event_SeguirMItemActionPerformed
 
     private void DejarSeguirMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarSeguirMItemActionPerformed
+        MainPanel.removeAll();
         DejarSeguirUsuario dejar = new DejarSeguirUsuario();
         MainPanel.add(dejar);
+        MainPanel.repaint();
         dejar.setVisible(true);
     }//GEN-LAST:event_DejarSeguirMItemActionPerformed
 
     private void ConsultaClienteMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteMIActionPerformed
-        ConsultaCliente cons = new ConsultaCliente();
+         MainPanel.removeAll();
+       ConsultaCliente cons = new ConsultaCliente();
         MainPanel.add(cons);
+        MainPanel.repaint();
         cons.setVisible(true);
     }//GEN-LAST:event_ConsultaClienteMIActionPerformed
 
     private void ConsultaArtistaMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaArtistaMIActionPerformed
-        ConsultaArtista art = new ConsultaArtista();
+         MainPanel.removeAll();
+       ConsultaArtista art = new ConsultaArtista();
         MainPanel.add(art);
+        MainPanel.repaint();
         art.setVisible(true);
     }//GEN-LAST:event_ConsultaArtistaMIActionPerformed
 
     private void AltaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaListaActionPerformed
+        MainPanel.removeAll();
         AltaLista frameAltaLista = new AltaLista();
         MainPanel.add(frameAltaLista);
+        MainPanel.repaint();
         frameAltaLista.setVisible(true);
     }//GEN-LAST:event_AltaListaActionPerformed
 
     private void PublicarListaMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublicarListaMItemActionPerformed
+        MainPanel.removeAll();
         PublicarLista framePublicarLista = new PublicarLista();
         MainPanel.add(framePublicarLista);
+        MainPanel.repaint();
         framePublicarLista.setVisible(true);    }//GEN-LAST:event_PublicarListaMItemActionPerformed
 
     private void ConsultaAlbumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumMenuItemActionPerformed
+        MainPanel.removeAll();
             Object[] options = {"Artista","Genero"};
             int opcion = JOptionPane.showOptionDialog(this, "Desea consultar album por Artista o por Genero?","Elija una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
             if(opcion == JOptionPane.OK_OPTION ){
                ConsultaAlbumPorArtista consAlbArt = new ConsultaAlbumPorArtista();
                MainPanel.add(consAlbArt);
+               MainPanel.repaint();
                consAlbArt.setVisible(true);
             }else{
                 if(opcion == JOptionPane.NO_OPTION){
                     ConsultaAlbumPorGenero consAlbGen = new ConsultaAlbumPorGenero();
                     MainPanel.add(consAlbGen);
+                    MainPanel.repaint();
                     consAlbGen.setVisible(true);
                 }
             }
     }//GEN-LAST:event_ConsultaAlbumMenuItemActionPerformed
 
     private void AltaGeneroMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroMItemActionPerformed
+        MainPanel.removeAll();
         AltaGenero frameAltaGenero = new AltaGenero();
         MainPanel.add(frameAltaGenero);
+        MainPanel.repaint();
         frameAltaGenero.setVisible(true);
     }//GEN-LAST:event_AltaGeneroMItemActionPerformed
 
     private void ConsultaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaListaMenuItemActionPerformed
+        MainPanel.removeAll();
         Object[] options = {"Cliente","Genero"};
         int opcion = JOptionPane.showOptionDialog(this, "Desea consultar lista por Cliente o por Género?","Elija una opción", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
         if(opcion == JOptionPane.OK_OPTION ){
            ConsultaListaPorCliente consListaCli = new ConsultaListaPorCliente();
            MainPanel.add(consListaCli);
+           MainPanel.repaint();
            consListaCli.setVisible(true);
         }else{
             if(opcion == JOptionPane.NO_OPTION){
                 ConsultaListaPorGenero consListaGen = new ConsultaListaPorGenero();
                 MainPanel.add(consListaGen);
+                MainPanel.repaint();
                 consListaGen.setVisible(true);
             }
         }
@@ -991,24 +1015,32 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_cargarDatosDePruebaActionPerformed
 
     private void favoritearMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_favoritearMItemActionPerformed
+        MainPanel.removeAll();
         Favoritear frameFavoritear = new Favoritear();
         MainPanel.add(frameFavoritear);
+        MainPanel.repaint();
         frameFavoritear.setVisible(true);
     }//GEN-LAST:event_favoritearMItemActionPerformed
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        MainPanel.removeAll();
         AgregarTemaLista frameAgregarTemaLista = new AgregarTemaLista();
         MainPanel.add(frameAgregarTemaLista);
+        MainPanel.repaint();
         frameAgregarTemaLista.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void desfavoritearMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desfavoritearMItemActionPerformed
+        MainPanel.removeAll();
         DesFavoritear frameFavoritear = new DesFavoritear();
         MainPanel.add(frameFavoritear);
+        MainPanel.repaint();
         frameFavoritear.setVisible(true);
     }//GEN-LAST:event_desfavoritearMItemActionPerformed
     private void QuitarTemaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTemaListaActionPerformed
+        MainPanel.removeAll();
         QuitarTemaLista frameQuitarTemaLista = new QuitarTemaLista();
         MainPanel.add(frameQuitarTemaLista);
+        MainPanel.repaint();
         frameQuitarTemaLista.setVisible(true);
     }//GEN-LAST:event_QuitarTemaListaActionPerformed
 

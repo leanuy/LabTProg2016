@@ -45,13 +45,13 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
 
         Conteiner5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Select = new javax.swing.JComboBox<>();
+        Select = new javax.swing.JComboBox<String>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        AlbumsList = new javax.swing.JList<>();
+        AlbumsList = new javax.swing.JList<String>();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -65,6 +65,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         jTextArea1 = new javax.swing.JTextArea();
 
         setClosable(true);
+        setTitle("Consultar Perfil Artista");
 
         jLabel1.setText("Seleccione un Artista:");
 
