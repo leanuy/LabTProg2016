@@ -71,7 +71,6 @@ public class Favoritear extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lstpubtxt = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         lstdefcmb = new javax.swing.JComboBox<>();
@@ -79,9 +78,10 @@ public class Favoritear extends javax.swing.JInternalFrame {
         jLabel11 = new javax.swing.JLabel();
         artcmb = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
-        albtxt = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         tematxt = new javax.swing.JTextField();
+        lstpubcmb = new javax.swing.JComboBox<>();
+        albcmb = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Agregar A Favoritos");
@@ -138,9 +138,21 @@ public class Favoritear extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Artista:");
 
+        artcmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                artcmbActionPerformed(evt);
+            }
+        });
+
         jLabel12.setText("Álbum:");
 
         jLabel13.setText("Tema:");
+
+        albcmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                albcmbActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -150,17 +162,16 @@ public class Favoritear extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel7)
-                                .addComponent(lstpubclicmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lstpubtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel7)
+                            .addComponent(lstpubclicmb, 0, 116, Short.MAX_VALUE)
+                            .addComponent(jLabel5)
+                            .addComponent(lstpubcmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(212, 212, 212)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(albtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12)))
+                            .addComponent(jLabel12)
+                            .addComponent(albcmb, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)
@@ -205,36 +216,37 @@ public class Favoritear extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(clientescmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel8))
                         .addGap(29, 29, 29)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lstpubclicmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lstdefcmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lstpubtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnListaPublica)
-                            .addComponent(btnListaDefecto)
-                            .addComponent(btnAlbum)))
+                        .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel9)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(artcmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(albtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel12)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lstpubcmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(albcmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnListaPublica)
+                    .addComponent(btnListaDefecto)
+                    .addComponent(btnAlbum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,7 +279,7 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListaDefectoActionPerformed
 
     private void btnListaPublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPublicaActionPerformed
-        DataParticular d = new DataParticular(String.valueOf(lstpubclicmb.getSelectedItem()),lstpubtxt.getText(),null);
+        DataParticular d = new DataParticular(String.valueOf(lstpubclicmb.getSelectedItem()),String.valueOf(lstpubcmb.getSelectedItem()),null);
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
             ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
@@ -286,7 +298,7 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListaPublicaActionPerformed
 
     private void btnAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumActionPerformed
-        DataAlbum d = new DataAlbum(albtxt.getText(), 0, null, null, String.valueOf(artcmb.getSelectedItem()));
+        DataAlbum d = new DataAlbum(String.valueOf(albcmb.getSelectedItem()), 0, null, null, String.valueOf(artcmb.getSelectedItem()));
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
             ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
@@ -305,7 +317,7 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlbumActionPerformed
 
     private void btnTemaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTemaAlbumActionPerformed
-        DataTema d = new DataTema(tematxt.getText(), 0, 0, String.valueOf(artcmb.getSelectedItem()), albtxt.getText());
+        DataTema d = new DataTema(tematxt.getText(), 0, 0, String.valueOf(artcmb.getSelectedItem()), String.valueOf(albcmb.getSelectedItem()));
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
             ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
@@ -324,11 +336,47 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnTemaAlbumActionPerformed
 
     private void lstpubclicmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lstpubclicmbActionPerformed
+        String nomCliente = String.valueOf(lstpubclicmb.getSelectedItem());
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        lstpubcmb.removeAllItems();
+        try
+        {
+            lstpubcmb.setEnabled(false);
+            ArrayList<String> listas = ifav.ListarListasPublicasDeCliente(nomCliente);
+            for(String str : listas) {
+                lstpubcmb.addItem(str);
+            }
+            lstpubcmb.setEnabled(listas.size()>0);
+        } catch(ClienteInexistenteException ex)
+        {
+            JOptionPane.showMessageDialog(this, "El cliente elegido no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }   
     }//GEN-LAST:event_lstpubclicmbActionPerformed
+
+    private void artcmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artcmbActionPerformed
+        String nomArtista = String.valueOf(artcmb.getSelectedItem());
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        albcmb.removeAllItems();
+        try
+        {
+            albcmb.setEnabled(false);
+            ArrayList<String> albums = ifav.ListarAlbumesDeArtista(nomArtista);
+            for(String str : albums) {
+                albcmb.addItem(str);
+            }
+            albcmb.setEnabled(albums.size()>0);
+        } catch(ArtistaInexistenteException e){
+            JOptionPane.showMessageDialog(this, "El artista elegido no existe.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
+        }   
+    }//GEN-LAST:event_artcmbActionPerformed
+
+    private void albcmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albcmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_albcmbActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField albtxt;
+    private javax.swing.JComboBox<String> albcmb;
     private javax.swing.JComboBox<String> artcmb;
     private javax.swing.JButton btnAlbum;
     private javax.swing.JButton btnListaDefecto;
@@ -347,7 +395,7 @@ public class Favoritear extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<String> lstdefcmb;
     private javax.swing.JComboBox<String> lstpubclicmb;
-    private javax.swing.JTextField lstpubtxt;
+    private javax.swing.JComboBox<String> lstpubcmb;
     private javax.swing.JTextField tematxt;
     // End of variables declaration//GEN-END:variables
 }

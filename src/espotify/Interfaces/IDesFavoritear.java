@@ -14,4 +14,6 @@ public interface IDesFavoritear {
     public ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException;
     public ArrayList<String> ListarListasDefecto();
     public ArrayList<String> ListarArtistas();
+    public ArrayList<String> ListarAlbumesDeArtista(String nickArtista) throws ArtistaInexistenteException;
+
 }
