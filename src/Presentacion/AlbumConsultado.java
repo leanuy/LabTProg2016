@@ -49,7 +49,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
         ListaGenders.setModel(modeloGenders);
         ListaTemas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         for(DataTema d : temas){
-            modeloTemas.addElement(String.valueOf(d.getNum())+ " - " +d.getNombre() + " - " + d.getDuracion());
+            modeloTemas.addElement(String.valueOf(d.getNum())+ " - " +d.getNombre() + " (" + d.getDuracion()/60+":"+d.getDuracion()%60 + ")");
         }
         for(String g: genders){
             modeloGenders.addElement(g);

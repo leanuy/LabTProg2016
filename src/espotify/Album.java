@@ -114,7 +114,7 @@ public class Album implements Favoriteable {
     Tema DevolverTema(String nombretema){
         Tema t = null;
         for(Tema t2 : temas){
-            if(t2.getNombre()==nombretema){
+            if(t2.getNombre().equals(nombretema)){
                 t = t2;
             }
         }
