@@ -66,11 +66,11 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         clienteslabel = new javax.swing.JLabel();
         lista1label = new javax.swing.JLabel();
-        ClientesBox = new javax.swing.JComboBox<>();
+        ClientesBox = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
         ParticularButton = new javax.swing.JRadioButton();
         DefectoButton = new javax.swing.JRadioButton();
-        Lista1Box = new javax.swing.JComboBox<>();
+        Lista1Box = new javax.swing.JComboBox<String>();
         jLabel5 = new javax.swing.JLabel();
         LPublicaButton = new javax.swing.JRadioButton();
         LDefectoButton = new javax.swing.JRadioButton();
@@ -78,15 +78,15 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         cliente2label = new javax.swing.JLabel();
         lista2label = new javax.swing.JLabel();
         temalabel = new javax.swing.JLabel();
-        Lista2Box = new javax.swing.JComboBox<>();
-        Cliente2Box = new javax.swing.JComboBox<>();
+        Lista2Box = new javax.swing.JComboBox<String>();
+        Cliente2Box = new javax.swing.JComboBox<String>();
         artistalabel = new javax.swing.JLabel();
-        ArtistaBox = new javax.swing.JComboBox<>();
+        ArtistaBox = new javax.swing.JComboBox<String>();
         albumlabel = new javax.swing.JLabel();
-        AlbumBox = new javax.swing.JComboBox<>();
+        AlbumBox = new javax.swing.JComboBox<String>();
         AgregarButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TemaBox = new javax.swing.JList<>();
+        TemaBox = new javax.swing.JList<String>();
         SeleccionarCliente = new javax.swing.JButton();
         SeleccionarArtista = new javax.swing.JButton();
         SeleccionarLista = new javax.swing.JButton();
@@ -95,6 +95,7 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         SeleccionarAlbum = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Agregar Tema a Lista");
 
         clienteslabel.setText("Seleccione un Cliente:");
 

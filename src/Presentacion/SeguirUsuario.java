@@ -48,10 +48,11 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         SeguirButton = new javax.swing.JButton();
-        NickSeguidor = new javax.swing.JComboBox<>();
-        NickSeguido = new javax.swing.JComboBox<>();
+        NickSeguidor = new javax.swing.JComboBox<String>();
+        NickSeguido = new javax.swing.JComboBox<String>();
 
         setClosable(true);
+        setTitle("Seguir Usuario");
 
         jLabel1.setText("Nick usuario:");
 

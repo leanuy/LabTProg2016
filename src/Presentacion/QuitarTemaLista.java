@@ -43,20 +43,21 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ClientesBox = new javax.swing.JComboBox<>();
+        ClientesBox = new javax.swing.JComboBox<String>();
         SeleccionarClienteButton = new javax.swing.JButton();
         ClienteLabel = new javax.swing.JLabel();
         ListaLabel = new javax.swing.JLabel();
         SeleccionarListaButton = new javax.swing.JButton();
-        ListaBox = new javax.swing.JComboBox<>();
+        ListaBox = new javax.swing.JComboBox<String>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ListaTema = new javax.swing.JList<>();
+        ListaTema = new javax.swing.JList<String>();
         SeleccionarTemaLabel = new javax.swing.JLabel();
         QuitarButton = new javax.swing.JButton();
         ParticularButton = new javax.swing.JRadioButton();
         PorDefectoButton = new javax.swing.JRadioButton();
 
         setClosable(true);
+        setTitle("Quitar Tema de Lista");
 
         jLabel1.setText("Desea quitar el tema de una lista particular o una por defecto?");
 

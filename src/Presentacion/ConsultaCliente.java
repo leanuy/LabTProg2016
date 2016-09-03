@@ -51,7 +51,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         Conteiner4 = new javax.swing.JPanel();
-        Select = new javax.swing.JComboBox<>();
+        Select = new javax.swing.JComboBox<String>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -60,9 +60,9 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        SeguidosList = new javax.swing.JList<>();
+        SeguidosList = new javax.swing.JList<String>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        ListasList = new javax.swing.JList<>();
+        ListasList = new javax.swing.JList<String>();
         NombreText = new javax.swing.JLabel();
         ApellidoText = new javax.swing.JLabel();
         CorreoText = new javax.swing.JLabel();
@@ -70,6 +70,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setClosable(true);
+        setTitle("Consulta Perfil Cliente");
 
         Select.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

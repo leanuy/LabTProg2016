@@ -34,13 +34,6 @@ public class DataTema implements DataFavoriteable{
         this.nomArtista="";
     }
 
-    public DataTema(String nombre, int duracion, int num, String nomArtista) {
-        this.nombre = nombre;
-        this.duracion = duracion;
-        this.num = num;
-        this.nomArtista = nomArtista;
-    }
-
     public DataTema(String nombre, int duracion, int num, String nomArtista, String album) {
         this.nombre = nombre;
         this.duracion = duracion;
