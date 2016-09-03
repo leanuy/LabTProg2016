@@ -193,7 +193,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
             throw new Exception("No se selecciono un tema valido");
         }
         Tema t = cu.DevolverTema(dtema);
-        if(nickMEM.equals("")){
+        if(nickMEM==null || nickMEM.equals("")){
             if(lista == null){
                 throw new ListaInexistenteException("No existe esa lista");
             }
