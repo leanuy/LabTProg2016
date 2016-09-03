@@ -200,12 +200,14 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
             DefaultListModel<String> model = new DefaultListModel<>();
             ListaTemas.setModel(model);
             for(DataTema dt : a) {
-                model.addElement(dt.getNomArtista() + " - " + dt.getNombre() + " (" + dt.getDuracion() + ")");
+                model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion() + ")");
             }
 
         } catch (ListaInexistenteException ex) {
             JOptionPane.showMessageDialog(this, "No existe una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
         }   
+        
+        
     }//GEN-LAST:event_consultarbtnActionPerformed
 
     private BufferedImage getScaledImage(BufferedImage src, int w, int h){

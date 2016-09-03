@@ -179,7 +179,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
                 DefaultListModel<String> model = new DefaultListModel<>();
                 ListaTemas.setModel(model);
                 for(DataTema dt : a) {
-                    model.addElement(dt.getNomArtista() + " - " + dt.getNombre() + " (" + dt.getDuracion() + ")");
+                    model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion() + ")");
                 }
             } catch (ClienteInexistenteException ex) {
                 JOptionPane.showMessageDialog(this, "El cliente seleccionado no existe", "ERROR", JOptionPane.ERROR_MESSAGE);

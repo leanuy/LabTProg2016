@@ -19,6 +19,7 @@ import espotify.Datatypes.DataTemaWeb;
 import espotify.Datatypes.DataTemaArchivo;
 import espotify.Excepciones.NickRepetidoException;
 import espotify.Fabrica;
+import espotify.Interfaces.IAgregarTemaLista;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
@@ -764,7 +765,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCvpymca", "YMCA", 268, 1));
         tema = new File("./src/Presentacion/mp3/MachoMan.mp3");
         temas.add(new DataTemaArchivo(tema, "Macho Man", 208, 2));
-        temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In The Navy", 193, 3));
+        temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In the Navy", 193, 3));
 
         dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
@@ -786,7 +787,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Pop Clásico");
         generos.add("Dance-pop");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", " Girls Just Want To Have Fun", 195, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", "Girls Just Want To Have Fun", 195, 1));
         tema = new File("./src/Presentacion/mp3/TimeAfterTime.mp3");
         temas.add(new DataTemaArchivo(tema, "Time After Time", 312, 2));
         file = new File("./src/Presentacion/img/albums/ShesSoUnusual.PNG");
@@ -804,7 +805,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCbsborninusa", "Born In The U.S.A.", 298, 1));
         temas.add(new DataTemaWeb("bit.ly/SCbsglorydays", "Glory Days", 323, 2));
         tema = new File("./src/Presentacion/mp3/DancingInTheDark.mp3");
-        temas.add(new DataTemaArchivo(tema, "Dancing In The Dark", 238, 3));
+        temas.add(new DataTemaArchivo(tema, "Dancing In The Park", 238, 3));
 
         dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
@@ -815,7 +816,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/ItSNotUnusual.mp3");
-        temas.add(new DataTemaArchivo(tema, " It’s Not Unusual", 120, 1));
+        temas.add(new DataTemaArchivo(tema, "It’s Not Unusual", 120, 1));
         file = new File("./src/Presentacion/img/albums/ItsNotUnusual.jpeg");
         img = ImageIO.read(file);
 
@@ -826,7 +827,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos = new ArrayList<>();
         generos.add("Rock Latino");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCtnadagiopais", " Adagio De Mi País", 290, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCtnadagiopais", "Adagio De Mi País", 290, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Agua Y Sal", 2012, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
@@ -859,7 +860,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos = new ArrayList<>();
         generos.add("Clásica");
         temas = new ArrayList<>();
-        temas.add(new DataTemaWeb("bit.ly/SCptpiano", " Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 1318, 1));
+        temas.add(new DataTemaWeb("bit.ly/SCptpiano", "Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 1318, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Concierto Para Piano No. 1 En Si Menor, Opus 23", 1875, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
@@ -869,7 +870,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Electropop");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/NoQuieroEstudiar.mp3");
-        temas.add(new DataTemaArchivo(tema, " No Quiero Estudiar", 132, 1));
+        temas.add(new DataTemaArchivo(tema, "No Quiero Estudiar", 132, 1));
 
         dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
         iAltaAlbum.AltaAlbum(dataAlbumExt);
@@ -955,13 +956,50 @@ public class MainFrame extends javax.swing.JFrame {
         ifav.Favoritear("benKenobi", new DataAlbum("Concierto Para Piano No. 1 En Si Menor, Opus 23", 0, null, null, "chaiko"));
         ifav.Favoritear("cbochinche", new DataAlbum("Hay Amores Que Matan", 0, null, null, "lospimpi"));
         ifav.Favoritear("el_padrino", new DataTema("El Duelo", 0, 0, "la_ley","MTV Unplugged"));
-        ifav.Favoritear("ppArgento", new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"));
+        ifav.Favoritear("ppArgento", new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"));
         ifav.Favoritear("cbochinche", new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"));
         ifav.Favoritear("Eleven11", new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"));
 
-
-
-
+        IAgregarTemaLista iadd = Fabrica.getIAgregarTemaLista();
+        iadd.AgregarTemaLista(new DataTema("YMCA", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("Macho Man", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("In the Navy", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("Time After Time", 0, 0, "clauper","She\'s So Unusual"), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("Born In The U.S.A.", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("Dancing In The Park", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("Glory Days", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("It’s Not Unusual", 0, 0, "tigerOfWales","It's Not Unusual"), "Noche De La Nostalgia");
+        iadd.AgregarTemaLista(new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"), "Rock En Español");
+        iadd.AgregarTemaLista(new DataTema("El Duelo", 0, 0, "la_ley","MTV Unplugged"), "Rock En Español");
+        iadd.AgregarTemaLista(new DataTema("Mentira", 0, 0, "la_ley","MTV Unplugged"), "Rock En Español");
+        iadd.AgregarTemaLista(new DataTema("Acto 2, Número 10, Escena (Moderato)", 0, 0, "chaiko","El Lago De Los Cisnes"), "Música Clásica");
+        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Música Clásica");
+        iadd.ListarListasDeCliente("el_padrino");
+        iadd.AgregarTemaLista(new DataTema("Acto 2, Número 10, Escena (Moderato)", 0, 0, "chaiko","El Lago De Los Cisnes"), "Música Inspiradora");
+        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Música Inspiradora");
+        iadd.AgregarTemaLista(new DataTema("Personal Jesus", 0, 0, "dmode","Violator"), "Música Inspiradora");
+        iadd.ListarListasDeCliente("scarlettO");
+        iadd.AgregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "De Todo Un Poco");
+        iadd.AgregarTemaLista(new DataTema("Time After Time", 0, 0, "clauper","She\'s So Unusual"), "De Todo Un Poco");
+        iadd.ListarListasDeCliente("Heisenberg");
+        iadd.AgregarTemaLista(new DataTema("Personal Jesus", 0, 0, "dmode","Violator"), "Para Cocinar");
+        iadd.ListarListasDeCliente("lachiqui");
+        iadd.AgregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "Para Las Chicas");
+        iadd.AgregarTemaLista(new DataTema("It’s Not Unusual", 0, 0, "tigerOfWales","It's Not Unusual"), "Para Las Chicas");
+        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Para Las Chicas");
+        iadd.AgregarTemaLista(new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"), "Para Las Chicas");
+        iadd.AgregarTemaLista(new DataTema("Por Ese Hombre", 0, 0, "dyangounchained","Un Loco Como Yo"), "Para Las Chicas");
+        iadd.ListarListasDeCliente("cbochinche");
+        iadd.AgregarTemaLista(new DataTema("YMCA", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
+        iadd.AgregarTemaLista(new DataTema("Macho Man", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
+        iadd.AgregarTemaLista(new DataTema("In the Navy", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
+        iadd.AgregarTemaLista(new DataTema("Glory Days", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Fiesteras");
+        iadd.AgregarTemaLista(new DataTema("Violeta", 0, 0, "alcides","20 Grandes Éxitos"), "Fiesteras");
+        iadd.AgregarTemaLista(new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"), "Mis Favoritas");
+        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Mis Favoritas");
+        iadd.AgregarTemaLista(new DataTema("Por Ese Hombre", 0, 0, "lospimpi","Hay Amores Que Matan"), "Mis Favoritas");
+        iadd.ListarListasDefecto();
 
     }
     
