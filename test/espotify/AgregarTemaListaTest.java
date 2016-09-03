@@ -126,4 +126,10 @@ public class AgregarTemaListaTest {
         DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
         iAdd.AgregarTemaLista(web, "Lista genérica");
     }
+    
+    @Test (expected=ListaInexistenteException.class)
+    public void tirameExcepcion() throws Exception {
+        DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
+        iAdd.AgregarTemaLista(web, null);
+    }
 }

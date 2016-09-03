@@ -194,8 +194,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return dc;
     }
     @Override
-    public DataArtistaExt ConsultaArtista(String s){
-        Artista a = GetArtistas().get(s);
+    public DataArtistaExt ConsultaArtista(String s) throws ArtistaInexistenteException {
+        Artista a = BuscarArtista(s);
         DataArtistaExt da = a.getDataArtistaExt();
         return da;
     }

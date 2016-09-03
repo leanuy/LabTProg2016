@@ -83,7 +83,7 @@ public class PublicarListaTest {
     }
     
     @Test
-    public void test3ListarListasPrivadasDeCliente() throws ClienteInexistenteException{
+    public void test3ListarListasPrivadasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasPrivadasDeCliente:no hay");
         ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
         ArrayList<String> expResult = new ArrayList<>();
@@ -91,11 +91,17 @@ public class PublicarListaTest {
     }
     
     @Test (expected=ClienteInexistenteException.class)
-    public void testListarListasPrivadasDeCliente() throws ClienteInexistenteException{
+    public void testListarListasPrivadasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasPrivadasDeCliente:cliente inexistente");
         ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesasdfterLista");
     }
     
-
-    
+    @Test (expected=YaPublicaException.class)
+    public void tirameLaExcepcionPapa() throws YaPublicaException, ListaRepetidaException, ClienteInexistenteException, ListaInexistenteException {
+        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica D", null);
+        IAltaLista instance = Fabrica.getIAltaLista();
+        instance.AltaListaParticular(d);
+        iPublicarLista.PublicarLista("Mi Lista Publica", "TesterLista");
+        iPublicarLista.PublicarLista("Mi Lista Publica", "TesterLista");
+    }
 }
