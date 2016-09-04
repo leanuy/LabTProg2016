@@ -285,7 +285,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(okDialog,
-                e.getMessage(),
+                "Datos invalidos, revise",
                 "Error",
                 JOptionPane.PLAIN_MESSAGE);
             }

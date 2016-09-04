@@ -6,6 +6,7 @@
 package Presentacion;
 
 import espotify.Datatypes.DataArtistaExt;
+import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaArtista;
 import java.awt.Graphics2D;
@@ -14,6 +15,8 @@ import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -243,7 +246,12 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
     private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
         // TODO add your handling code here:
         String usr = String.valueOf(Select.getSelectedItem());
-        DataArtistaExt da = interf.ConsultaArtista(usr);
+        DataArtistaExt da;
+        try {
+            da = interf.ConsultaArtista(usr);
+        } catch (ArtistaInexistenteException ex) {
+            return;
+        }
         NombreText.setText(da.getNombre());
         ApellidoText.setText(da.getApellido());
         CorreoText.setText(da.getCorreo());
