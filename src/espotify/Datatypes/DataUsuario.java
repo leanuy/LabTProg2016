@@ -22,6 +22,7 @@ public class DataUsuario {
     protected Calendar fNac;
     protected BufferedImage img;
     protected ArrayList<String> seguidores;
+    protected String password;
 
     public String getNick() {
         return nick;
@@ -55,7 +56,7 @@ public class DataUsuario {
         this.seguidores = segdores;
     }
 
-    public DataUsuario(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img) {
+    public DataUsuario(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String pwd) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -64,5 +65,10 @@ public class DataUsuario {
         this.img = img;
         ArrayList<String> segdores = new ArrayList();
         this.seguidores = segdores;
+        this.password = pwd;
+    }
+
+    public String getPassword() {
+        return this.password;
     }
 }

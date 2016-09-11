@@ -24,7 +24,7 @@ public class ConsultaClienteTest {
         //tests de santiago que hice yo -JM42
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null);
+        DataCliente d = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null,"");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
 
         try {
@@ -34,7 +34,7 @@ public class ConsultaClienteTest {
         
         System.out.println("ConsultaCliente");
         String s = "clienteconsultado";
-        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new String[0], new String[0]);
+        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new String[0], new String[0],"");
         IConsultaCliente instance = Fabrica.getIConsultaCliente();
 
         DataClienteExt result = iConsultaCliente.ConsultaCliente(s);
