@@ -10,7 +10,7 @@ import java.util.Map;
 abstract class Lista {
     protected String nombre;
     protected BufferedImage img;
-    protected final HashMap<String, Tema> themas;
+    protected final HashMap<String, Tema> temas;
 
     String getNombre() {
         return nombre;
@@ -24,41 +24,43 @@ abstract class Lista {
     {
         this.nombre=nombre;
         this.img=img;
-        this.themas = new HashMap<>();
+        this.temas = new HashMap<>();
     }
     Lista(DataLista d)
     {
         this.nombre = d.getNombre();
         this.img = d.getImg();
-        this.themas = new HashMap<>();
+        this.temas = new HashMap<>();
+    }
+    Lista(Lista l)
+    {
+        this.nombre = l.getNombre();
+        this.img = l.getImg();
+        this.temas = l.temas;
     }
 
     ArrayList<DataTema> ListarTemas() {
         ArrayList<DataTema> a = new ArrayList();
         Tema t;
-        for(Map.Entry<String, Tema> entry : themas.entrySet()){
+        for(Map.Entry<String, Tema> entry : temas.entrySet()){
             t = entry.getValue();
             a.add(t.getData());
         }
         return a;
     }
     
-/*KILL    ArrayList<Tema> DevolverTemas(){
-        return this.temas;
-    }*/
-    
     void AgregarTema(Tema t) throws Exception{
         String s = t.getNombre()+t.getNombreAlbum();
-        Tema t2 = themas.get(s);
+        Tema t2 = temas.get(s);
         if (t2 != null){
             throw new Exception("El tema ya existe en la lista");
         }
-        themas.put(s, t);
+        temas.put(s, t);
     }
 
     void QuitarTema(String nomTema,String nomAlbum) {
         String s = nomTema+nomAlbum;
-        themas.remove(s);
+        temas.remove(s);
     }
     
     DataLista getData()
