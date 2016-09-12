@@ -2,8 +2,8 @@ package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
 
-public class DataParticular extends DataLista{
-    private String nomCliente;
+public class DataParticular extends DataLista {
+    private final String nomCliente;
 
     public String getNomCliente() {
         return nomCliente;

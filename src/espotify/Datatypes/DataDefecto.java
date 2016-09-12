@@ -3,7 +3,7 @@ package espotify.Datatypes;
 import java.awt.image.BufferedImage;
 
 public class DataDefecto extends DataLista {
-    private String genero;
+    private final String genero;
 
     public String getGenero() {
         return genero;

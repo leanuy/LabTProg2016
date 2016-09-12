@@ -4,17 +4,19 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DataLista implements DataFavoriteable{
-    private String nombre;
+public class DataLista implements DataFavoriteable {
+    private final String nombre;
     protected BufferedImage img;
-    private ArrayList<DataTema> temas;
+    private final ArrayList<DataTema> temas;
 
     public String getNombre() {
         return nombre;
     }
+    
     public BufferedImage getImg() {
         return img;
     }
+    
     public ArrayList<DataTema> getTemas() {
         return temas;
     }
@@ -50,10 +52,7 @@ public class DataLista implements DataFavoriteable{
         if (!Objects.equals(this.img, other.img)) {
             return false;
         }
-        if (!Objects.equals(this.temas, other.temas)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.temas, other.temas);
     }
     
     

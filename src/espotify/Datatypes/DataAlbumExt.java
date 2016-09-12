@@ -4,17 +4,19 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class DataAlbumExt extends DataAlbum{
+public class DataAlbumExt extends DataAlbum {
     private final ArrayList<DataTema> temas;
     
     public ArrayList<DataTema> getTemas() {
         return this.temas;
     }
     
-    public DataAlbumExt(ArrayList<DataTema> temas, String nombre, int anio, ArrayList<String> generos, BufferedImage img, String nickArtista) {
+    public DataAlbumExt(ArrayList<DataTema> temas, String nombre, int anio, ArrayList<String> generos,
+            BufferedImage img, String nickArtista) {
         super(nombre, anio, generos, img, nickArtista);
         this.temas = temas;
     }
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -42,10 +44,7 @@ public class DataAlbumExt extends DataAlbum{
         if (!Objects.equals(this.img, other.img)) {
             return false;
         }
-        if (!Objects.equals(this.temas, other.temas)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.temas, other.temas);
     }
     
     
