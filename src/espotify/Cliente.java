@@ -4,7 +4,6 @@ import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataUsuario;
-import java.util.ArrayList;
 import espotify.Datatypes.DataParticular;
 import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.FavoritoRepetidoException;
@@ -13,6 +12,8 @@ import espotify.Excepciones.ListaRepetidaException;
 import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.YaPublicaException;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,57 +22,61 @@ class Cliente extends Usuario {
     private final HashMap<String,Particular> listas;
     private final ArrayList<Favoriteable> favoritos;
     
-    Cliente(DataUsuario d) {
-        super(d);
-        this.seguidos=new HashMap<>();
-        this.listas=new HashMap<>();
-        this.favoritos=new ArrayList<>();
+    Cliente(DataUsuario data) {
+        super(data);
+        this.seguidos = new HashMap<>();
+        this.listas = new HashMap<>();
+        this.favoritos = new ArrayList<>();
     }
     
     DataClienteExt getDataClienteExt() {
         int cant = seguidos.size();
         String[] seg = new String[cant];
-        int i = 0;
-        for(Map.Entry<String, Usuario> entry : seguidos.entrySet()) {
+        int idx = 0;
+        for (Map.Entry<String, Usuario> entry : seguidos.entrySet()) {
             String key = entry.getKey();
-            seg[i] = key;
-            i++;
+            seg[idx] = key;
+            idx++;
         }
         cant = listas.size();
         String[] lis = new String[cant];
-        i = 0;
-        for(Map.Entry<String, Particular> entry : listas.entrySet()) {
+        idx = 0;
+        for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular value = entry.getValue();
             String nomb = value.getNombre();
-            lis[i] = nomb;
-            i++;
+            lis[idx] = nomb;
+            idx++;
         }
         ArrayList<String> segdores = new ArrayList();
         String namef;
-        Cliente c;
-        for(Map.Entry<String, Cliente> entry : this.seguidores.entrySet()){
-            c = entry.getValue();
-            namef = c.nick;
+        Cliente cli;
+        for (Map.Entry<String, Cliente> entry : this.seguidores.entrySet()) {
+            cli = entry.getValue();
+            namef = cli.nick;
             segdores.add(namef);
         }
-        DataClienteExt dc = new DataClienteExt(getNick(), getNombre(), getApellido(), getCorreo(), getfNac(), getImg(), seg, lis, segdores);
+        DataClienteExt dc = new DataClienteExt(getNick(),
+                getNombre(),getApellido(),getCorreo(),
+                getfNac(), getImg(), seg, lis, segdores);
         return dc;
     }
     
-    void Seguir(Usuario u) throws AutoSeguirseException, SeguidoRepetidoException{
-        if(this.equals(u))
+    void Seguir(Usuario u) throws AutoSeguirseException, SeguidoRepetidoException {
+        if (this.equals(u)) {
             throw new AutoSeguirseException();
+        }
         String clave = u.getNick();
         Usuario u2 = this.seguidos.get(clave);
-        if(u2 != null){
+        if (u2 != null) {
             throw new SeguidoRepetidoException();
         }
         this.seguidos.put(clave, u);
     }
-    void DejarDeSeguir(Usuario u) throws SeguidoInexistenteException{
+    
+    void DejarDeSeguir(Usuario u) throws SeguidoInexistenteException {
         String clave = u.getNick();
         Usuario u2 = this.seguidos.get(clave);
-        if (u2 == null){
+        if (u2 == null) {
             throw new SeguidoInexistenteException();
         }
         this.seguidos.remove(clave);
@@ -79,18 +84,18 @@ class Cliente extends Usuario {
 
 
     void PublicarLista(String nomLista) throws YaPublicaException, ListaInexistenteException {
-       Particular l = BuscarLista(nomLista);
-       Publica l2 = l.HacerPublica();
-       listas.remove(nomLista);
-       listas.put(nomLista, l2);
+        Particular lista = BuscarLista(nomLista);
+        Publica listaPublica = lista.HacerPublica();
+        listas.remove(nomLista);
+        listas.put(nomLista, listaPublica);
     }
 
     ArrayList<String> ListarListas() {
-        ArrayList a = new ArrayList();
+        ArrayList salida = new ArrayList();
         listas.keySet().stream().forEach((key) -> {
-            a.add(key);
+            salida.add(key);
         });
-        return a;
+        return salida;
     }
     
     ArrayList<String> ListarListasPrivadas() {
