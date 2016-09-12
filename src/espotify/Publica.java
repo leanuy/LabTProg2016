@@ -5,16 +5,16 @@ import espotify.Excepciones.YaPublicaException;
 
 public class Publica extends Particular implements Favoriteable {
 
-    public Publica(Privada p) {
-        super(p);
+    public Publica(Privada priv) {
+        super(priv);
     }    
 
-    public Publica(DataLista d) {
-        super(d);
+    public Publica(DataLista data) {
+        super(data);
     }
     
-    public Publica HacerPublica() throws YaPublicaException
-    {
+    @Override
+    public Publica HacerPublica() throws YaPublicaException {
         throw new YaPublicaException();
     }
 }

@@ -55,7 +55,7 @@ class Artista extends Usuario {
             segdores.add(namef);
         }
         DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(),
-                getCorreo(), getfNac(), getImg(), bio, url, albums, segdores);
+                getCorreo(), getFechaNac(), getImg(), bio, url, albums, segdores);
         return da;
     }
     

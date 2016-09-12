@@ -1,7 +1,6 @@
 package espotify;
 
 import espotify.Datatypes.DataParticular;
-import java.awt.image.BufferedImage;
 
 class Privada extends Particular {
 
@@ -9,8 +8,7 @@ class Privada extends Particular {
         super(d);
     }
     
-    Publica HacerPublica()
-    {
+    Publica HacerPublica() {
         return new Publica(this);
     }
     
