@@ -1,11 +1,9 @@
 package espotify;
 
-import espotify.Datatypes.DataDefecto;
-import espotify.Datatypes.DataLista;
 import java.awt.image.BufferedImage;
 
 
-class Defecto extends Lista implements Favoriteable{
+class Defecto extends Lista implements Favoriteable {
     private Genero genero;
 
     Defecto(Genero genero, String nombre, BufferedImage img) {
@@ -13,8 +11,7 @@ class Defecto extends Lista implements Favoriteable{
         this.genero = genero;
     }
     
-    String getNomGenero()
-    {
+    String getNomGenero() {
         return genero.getNombre();
     }
 

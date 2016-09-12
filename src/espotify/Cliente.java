@@ -99,23 +99,25 @@ class Cliente extends Usuario {
     }
     
     ArrayList<String> ListarListasPrivadas() {
-        ArrayList<String> a = new ArrayList();
-        for(Map.Entry<String, Particular> entry : listas.entrySet()) {
-            Particular p = entry.getValue();
-            if(p instanceof Privada)
-                a.add(p.getNombre());
+        ArrayList<String> salida = new ArrayList();
+        for (Map.Entry<String, Particular> entry : listas.entrySet()) {
+            Particular part = entry.getValue();
+            if (part instanceof Privada) {
+                salida.add(part.getNombre());
+            }
         }
-        return a;
+        return salida;
     }
     
     ArrayList<String> ListarListasPublicas() {
-        ArrayList<String> a = new ArrayList();
-        for(Map.Entry<String, Particular> entry : listas.entrySet()) {
-            Particular p = entry.getValue();
-            if(!(p instanceof Privada))
-                a.add(p.getNombre());
+        ArrayList<String> salida = new ArrayList();
+        for (Map.Entry<String, Particular> entry : listas.entrySet()) {
+            Particular part = entry.getValue();
+            if (!(part instanceof Privada)) {
+                salida.add(part.getNombre());
+            }
         }
-        return a;
+        return salida;
     }
 
     ArrayList<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
@@ -123,10 +125,11 @@ class Cliente extends Usuario {
     }
     
     void AltaLista(DataParticular d) throws ListaRepetidaException {
-        if(ValidarNombreLista(d.getNombre()))
+        if (ValidarNombreLista(d.getNombre())) {
             listas.put(d.getNombre(), new Privada(d));
-        else
+        } else {
             throw new ListaRepetidaException();
+        }
     }
     
     private boolean ValidarNombreLista(String nom) {
@@ -142,40 +145,45 @@ class Cliente extends Usuario {
     }
     
     Particular BuscarLista(String nomLista) throws ListaInexistenteException {
-        Particular l = listas.get(nomLista);
-        if(l!=null)
-            return l;
-        else
+        Particular lista = listas.get(nomLista);
+        if (lista != null) {
+            return lista;
+        } else {
             throw new ListaInexistenteException();
+        }
     }
 
     void Favoritear(Favoriteable f) throws FavoritoRepetidoException {
-        if(!favoritos.contains(f))
+        if (!favoritos.contains(f)) {
             favoritos.add(f);
-        else
+        } else {
             throw new FavoritoRepetidoException();
+        }
     }
 
     Publica BuscarListaPublica(String nomLista) throws ListaInexistenteException {
-        Particular l = BuscarLista(nomLista);
-        if (l instanceof Publica)
-            return (Publica) l;
-        else
+        Particular lista = BuscarLista(nomLista);
+        if (lista instanceof Publica) {
+            return (Publica) lista;
+        } else {
             throw new ListaInexistenteException();
+        }
     }
 
     void DesFavoritear(Favoriteable f) throws FavoritoRepetidoException {
-        if(favoritos.contains(f))
+        if (favoritos.contains(f)) {
             favoritos.remove(f);
-        else
+        } else {
             throw new FavoritoRepetidoException();
+        }
     }
-    void AgregarTemaLista(Tema t, String lis) throws Exception{
-        Lista l = listas.get(lis);
-        if(l==null){
+    
+    void AgregarTemaLista(Tema t, String lis) throws Exception {
+        Lista lista = listas.get(lis);
+        if (lista == null) {
             throw new Exception("La lista que tiene que existir no se encontro");
         }
-        l.AgregarTema(t);
+        lista.AgregarTema(t);
     }
 
     boolean SigueA(String nomSeguido) {
