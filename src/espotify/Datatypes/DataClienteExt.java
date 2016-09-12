@@ -30,8 +30,8 @@ public class DataClienteExt extends DataUsuario {
         this.lis=lis;
     }
     
-    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String[]seg, String[]lis){
-        super(nick, nombre, apellido, correo, fNac, img);
+    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String[]seg, String[]lis, String pwd){
+        super(nick, nombre, apellido, correo, fNac, img,pwd);
         this.seg=seg;
         this.lis=lis;
     }

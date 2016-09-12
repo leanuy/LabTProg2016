@@ -5,6 +5,7 @@ import espotify.Datatypes.DataCliente;
 import espotify.Excepciones.CorreoRepetidoException;
 import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.NickRepetidoException;
+import espotify.Excepciones.PasswordsDistintasException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaPerfil;
 import java.awt.event.WindowEvent;
@@ -63,6 +64,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         urltxt = new javax.swing.JTextField();
         Confirmbtn = new javax.swing.JButton();
+        pwdtxt = new javax.swing.JTextField();
+        pwdcnonfirmtxt = new javax.swing.JTextField();
+        nickLabel1 = new javax.swing.JLabel();
+        nickLabel2 = new javax.swing.JLabel();
 
         okDialog.setTitle("Ok");
         okDialog.setResizable(false);
@@ -128,6 +133,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
             }
         });
 
+        nickLabel1.setText("Contraseña*:");
+
+        nickLabel2.setText("Confirmación de Contraseña*:");
+
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
         contenedorLayout.setHorizontalGroup(
@@ -142,27 +151,14 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                     .addComponent(maillabel)
                     .addComponent(fechalabel)
                     .addComponent(biolabel)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(nickLabel1)
+                    .addComponent(nickLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(contenedorLayout.createSequentialGroup()
-                                .addComponent(clienteRadio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(artistaRadio))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(nicktxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
-                                .addComponent(nomtxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(mailtxt, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(apetxt, javax.swing.GroupLayout.Alignment.LEADING)))
+                        .addComponent(pwdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(contenedorLayout.createSequentialGroup()
-                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Confirmbtn)
-                            .addComponent(bioscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
                         .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fechatxt)
@@ -171,7 +167,24 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(imgbtn)
-                        .addGap(22, 22, 22))))
+                        .addGap(22, 22, 22))
+                    .addGroup(contenedorLayout.createSequentialGroup()
+                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(contenedorLayout.createSequentialGroup()
+                                    .addComponent(clienteRadio)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(artistaRadio))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(nicktxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                    .addComponent(nomtxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(mailtxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(apetxt, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addComponent(Confirmbtn)
+                            .addComponent(bioscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pwdcnonfirmtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(53, Short.MAX_VALUE))))
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,6 +197,14 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nickLabel)
                     .addComponent(nicktxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(4, 4, 4)
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pwdtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nickLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pwdcnonfirmtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nickLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nomtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -215,7 +236,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Confirmbtn)
-                .addGap(53, 53, 53))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -226,7 +247,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -255,13 +276,18 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 Calendar fNac = Calendar.getInstance(); //TODO
                 SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
                 fNac.setTime(sdf.parse(fechatxt.getText()));
+                String pwd = pwdtxt.getText();
+                String verif = pwdcnonfirmtxt.getText();
+                if(!pwd.equals(verif))
+                    throw new PasswordsDistintasException();
                 DataCliente d = new DataCliente(
                                 nicktxt.getText(),
                                 nomtxt.getText(),
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                img);
+                                img,
+                                pwd);
                 ctrl.AltaCliente(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -282,6 +308,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
             {
                 JOptionPane.showMessageDialog(okDialog, "El formato de correo no es correcto, o algún campo obligatorio está vacío", "Error", JOptionPane.PLAIN_MESSAGE);
             }
+            catch(PasswordsDistintasException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "Las contraseñas no coinciden.", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
             catch(Exception e)
             {
                 JOptionPane.showMessageDialog(okDialog,
@@ -297,6 +327,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 Calendar fNac = Calendar.getInstance(); //TODO
                 SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
                 fNac.setTime(sdf.parse(fechatxt.getText()));
+                String pwd = pwdtxt.getText();
+                String verif = pwdcnonfirmtxt.getText();
+                if(!pwd.equals(verif))
+                    throw new PasswordsDistintasException();
                 DataArtista d = new DataArtista(
                                 biotxt.getText(),
                                 urltxt.getText(),
@@ -305,7 +339,8 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                img);
+                                img,
+                                pwd);
                 ctrl.AltaArtista(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
@@ -325,6 +360,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
             catch(FormatoIncorrectoException e)
             {
                 JOptionPane.showMessageDialog(okDialog, "El formato de correo no es correcto, o algún campo obligatorio está vacío", "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(PasswordsDistintasException e)
+            {
+                JOptionPane.showMessageDialog(okDialog, "Las contraseñas no coinciden.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
             catch(Exception e)
             {
@@ -383,10 +422,14 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     private javax.swing.JLabel maillabel;
     private javax.swing.JTextField mailtxt;
     private javax.swing.JLabel nickLabel;
+    private javax.swing.JLabel nickLabel1;
+    private javax.swing.JLabel nickLabel2;
     private javax.swing.JTextField nicktxt;
     private javax.swing.JLabel nomlabel;
     private javax.swing.JTextField nomtxt;
     private javax.swing.JDialog okDialog;
+    private javax.swing.JTextField pwdcnonfirmtxt;
+    private javax.swing.JTextField pwdtxt;
     private javax.swing.ButtonGroup tipoUserGroup;
     private javax.swing.JTextField urltxt;
     // End of variables declaration//GEN-END:variables

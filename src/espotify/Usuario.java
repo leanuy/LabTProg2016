@@ -17,6 +17,7 @@ class Usuario {
     protected Calendar fNac;
     protected BufferedImage img;
     protected HashMap<String,Cliente> seguidores;
+    protected String password;
 
     String getNick() {
         return nick;
@@ -82,5 +83,6 @@ class Usuario {
         this.fNac = (Calendar) d.getfNac().clone();
         this.img = d.getImg();
         this.seguidores = new HashMap();
+        this.password= d.getPassword();
     }
 }

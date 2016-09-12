@@ -40,8 +40,8 @@ public class PublicarListaTest {
         iPublicarLista = Fabrica.getIPublicarLista();
         IAltaPerfil cu = Fabrica.getIAltaPerfil();
         try {
-            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null));
-            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null));
+            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
+            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
             DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica", null);
             IAltaLista instance = Fabrica.getIAltaLista();
             instance.AltaListaParticular(d);

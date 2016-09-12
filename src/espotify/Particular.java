@@ -15,5 +15,9 @@ abstract class Particular extends Lista{
     Particular(DataLista d ) {
         super(d);
     }
+    Particular(Lista l)
+    {
+        super(l);
+    }
     
 }

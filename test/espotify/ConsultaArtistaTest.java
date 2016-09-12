@@ -29,7 +29,7 @@ public class ConsultaArtistaTest {
         ManejadorColecciones.clear();
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataArtista d = new DataArtista("Soy un artista y me consultan","", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null);
+        DataArtista d = new DataArtista("Soy un artista y me consultan","", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null,"");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try {
             ctrl.AltaArtista(d);
@@ -38,7 +38,7 @@ public class ConsultaArtistaTest {
         
         System.out.println("ConsultaArtista");
         String s = "ArtistaConsultado";
-        DataArtistaExt expResult = new DataArtistaExt("ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "Soy un artista y me consultan", "", new HashMap<String,Album>());
+        DataArtistaExt expResult = new DataArtistaExt("ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "Soy un artista y me consultan", "", new HashMap<String,Album>(),"");
         DataArtistaExt result = iConsultaArtista.ConsultaArtista(s);
         assertEquals(expResult, result);
     }
@@ -56,7 +56,7 @@ public class ConsultaArtistaTest {
         iConsultaArtista = Fabrica.getIConsultaArtista();
         String bio = "Soy un artista y me consultan";
         String url = "elarti.com";
-        DataArtista d = new DataArtista(bio, url, "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null);
+        DataArtista d = new DataArtista(bio, url, "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null,"");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         ctrl.AltaArtista(d);
         DataArtistaExt dt = iConsultaArtista.ConsultaArtista("ArtistaConsultado");
@@ -66,11 +66,11 @@ public class ConsultaArtistaTest {
         assertEquals(dt, dt);
         assertEquals(false, dt.equals(null));
         assertEquals(false, dt.equals(d));
-        d = new DataArtista("otra bio", url, "OtroArtistaConsultado", "Artista", "Consultado", "otro_artista@consultado.com", cal, null);
+        d = new DataArtista("otra bio", url, "OtroArtistaConsultado", "Artista", "Consultado", "otro_artista@consultado.com", cal, null,"");
         ctrl.AltaArtista(d);
         DataArtistaExt otro_dt = iConsultaArtista.ConsultaArtista("OtroArtistaConsultado");
         assertEquals(false, dt.equals(otro_dt));
-        d = new DataArtista(bio, url, "AunOtroArtistaConsultado", "Artista", "Consultado", "otro_artista2@consultado.com", cal, null);
+        d = new DataArtista(bio, url, "AunOtroArtistaConsultado", "Artista", "Consultado", "otro_artista2@consultado.com", cal, null,"");
         ctrl.AltaArtista(d);
         otro_dt = iConsultaArtista.ConsultaArtista("AunOtroArtistaConsultado");
         assertEquals(false, dt.equals(otro_dt));

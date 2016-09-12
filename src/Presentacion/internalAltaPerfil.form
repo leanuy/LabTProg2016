@@ -72,32 +72,14 @@
                       <Component id="fechalabel" min="-2" max="-2" attributes="0"/>
                       <Component id="biolabel" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="nickLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="nickLabel2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="clienteRadio" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="artistaRadio" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="nicktxt" alignment="0" pref="146" max="32767" attributes="0"/>
-                                  <Component id="nomtxt" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="mailtxt" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="apetxt" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="pwdtxt" min="-2" pref="146" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
-                              <Component id="bioscroll" min="-2" max="-2" attributes="0"/>
-                              <Component id="urltxt" min="-2" pref="146" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -110,6 +92,28 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="imgbtn" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="clienteRadio" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="artistaRadio" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="nicktxt" alignment="0" pref="146" max="32767" attributes="0"/>
+                                      <Component id="nomtxt" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="mailtxt" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="apetxt" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="bioscroll" min="-2" max="-2" attributes="0"/>
+                              <Component id="urltxt" min="-2" pref="146" max="-2" attributes="0"/>
+                              <Component id="pwdcnonfirmtxt" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="53" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -127,6 +131,16 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="nickLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="nicktxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="pwdtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nickLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="pwdcnonfirmtxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nickLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -159,14 +173,14 @@
                       <Component id="biolabel" min="-2" max="-2" attributes="0"/>
                       <Component id="bioscroll" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="22" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="urltxt" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -280,6 +294,20 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfirmbtnActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="pwdtxt">
+        </Component>
+        <Component class="javax.swing.JTextField" name="pwdcnonfirmtxt">
+        </Component>
+        <Component class="javax.swing.JLabel" name="nickLabel1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Contrase&#xf1;a*:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="nickLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Confirmaci&#xf3;n de Contrase&#xf1;a*:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

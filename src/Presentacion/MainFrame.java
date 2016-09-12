@@ -555,47 +555,47 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
         Calendar cal = Calendar.getInstance();
         cal.set(1972, 3, 8);
-        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img);
+        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/ScarlettOHara.jpg");
         img = ImageIO.read(file);
         cal.set(1984, 11, 27);
-        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img);
+        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/PepeArgento.png");
         img = ImageIO.read(file);
         cal.set(1955, 2, 14);
-        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img);
+        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         cal.set(1056, 3, 7);
-        dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null);
+        dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/BenKenobi.png");
         img = ImageIO.read(file);
         cal.set(1914, 4, 2);
-        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img);
+        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/lachiqui.jpg");
         img = ImageIO.read(file);
         cal.set(1927, 2, 23);
-        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img);
+        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/CachoBochinche.jpg");
         img = ImageIO.read(file);
         cal.set(1937, 5, 8);
-        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img);
+        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/eleven.jpg");
         img = ImageIO.read(file);
         cal.set(1971, 12, 31);
-        dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img);
+        dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img,"");
         ctrlAltaPerfil.AltaCliente(dataCliente);
         
         DataArtista dataArtista;      
@@ -605,28 +605,28 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
         cal.set(1977, 1, 1);
         bio = "Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.";
-        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img);
+        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/DepecheMode.jpg");
         img = ImageIO.read(file);
         cal.set(1980, 6, 14);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img);
+        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/CyndiLauper.jpg");
         img = ImageIO.read(file);
         cal.set(1953, 6, 22);
         bio = "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.";
-        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img);
+        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/BruceTheBoss.jpg");
         img = ImageIO.read(file);
         cal.set(1949, 9, 23);
         bio = "";
-        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img);
+        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/LaTripleNelson.jpg");
@@ -634,47 +634,47 @@ public class MainFrame extends javax.swing.JFrame {
         cal.set(1998, 1, 1);
         bio = "La Triple Nelson es un grupo de rock uruguayo formado en enero de 1998 e integrado inicialmente por Christian Cary (guitarra y voz), Fernando Paco"
         +" Pintos (bajo y coros) y Rubén Otonello (actualmente su nuevo baterista es Rafael Ugo).";
-        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img);
+        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         cal.set(1987, 2, 14);
         bio = "";
-        dataArtista = new DataArtista(bio, "", "la_ley", "La", "Ley", "la_ley@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "", "la_ley", "La", "Ley", "la_ley@tuta.io", cal, null,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         cal.set(1940, 6, 7);
         bio = "Sir Thomas John, conocido por su nombre artístico de Tom Jones, es un cantante británico. Ha vendido más de 100 millones de discos en todo el mundo.";
-        dataArtista = new DataArtista(bio, "", "tigerOfWales", "Tom", "Jones", "tigerOfWales@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "", "tigerOfWales", "Tom", "Jones", "tigerOfWales@tuta.io", cal, null,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         cal.set(1840, 4, 25);
         bio = "Piotr Ilich Chaikovski fue un compositor ruso del período del Romanticismo";
-        dataArtista = new DataArtista(bio, "", "chaiko", "Piotr", "Tchaikovsky", "chaiko@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "", "chaiko", "Piotr", "Tchaikovsky", "chaiko@tuta.io", cal, null,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/NicoleNeumann.jpg");
         img = ImageIO.read(file);
         cal.set(1980, 10, 31);
         bio = "";
-        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img);
+        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/Pimpinela.jpg");
         img = ImageIO.read(file);
         cal.set(1981, 8, 13);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img);
+        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         cal.set(1940, 3, 5);
         bio = "José Gómez Romero, conocido artísticamente como Dyango es un cantante español de música romántica.";
-        dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", "Unchained", "dyangounchained@gmail.com", cal, null);
+        dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", "Unchained", "dyangounchained@gmail.com", cal, null,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
 
         cal.set(1952, 7, 17);
         bio = "Su carrera comienza en 1976 cuando forma la banda Los Playeros junto a su hermano Víctor. Al poco tiempo se mudan a San Luis donde comienzan a hacerse conocidos en la escena musical. Su éxito a nivel nacional llega a comienzos de los años 1990 cuando desembarca en Buenos Aires y graba el éxito Violeta"
         + ", originalmente compuesta e nterpretada en 1985 por el músico brasileño Luiz Caldas bajo el título «Fricote».";
-        dataArtista = new DataArtista(bio, "", "alcides", "Alcides", "Palacio", "alcides@tuta.io", cal, null);
+        dataArtista = new DataArtista(bio, "", "alcides", "Alcides", "Palacio", "alcides@tuta.io", cal, null,"");
         ctrlAltaPerfil.AltaArtista(dataArtista);
             
         

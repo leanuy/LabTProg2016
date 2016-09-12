@@ -47,8 +47,8 @@ public class AltaListaTest {
             IAltaPerfil cu = Fabrica.getIAltaPerfil();
             Calendar cal = Calendar.getInstance();
             cal.set(2001, 1, 1);
-            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null));
-            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null));
+            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null,""));
+            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null,""));
         } catch (Exception ex) {
         }
     }

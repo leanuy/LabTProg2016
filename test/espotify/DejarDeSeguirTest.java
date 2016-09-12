@@ -30,9 +30,9 @@ public class DejarDeSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
         ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
@@ -53,9 +53,9 @@ public class DejarDeSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
         ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
@@ -75,9 +75,9 @@ public class DejarDeSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
         ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
@@ -96,9 +96,9 @@ public class DejarDeSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor2", "Javier", "Morales", "seguidor2@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor2", "Javier", "Morales", "seguidor2@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido2", "Javier", "Morales", "seguido2@hotmail.com", cal, null);
+        d = new DataCliente("Seguido2", "Javier", "Morales", "seguido2@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
         }
         catch(Exception e)

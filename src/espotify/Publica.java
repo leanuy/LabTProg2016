@@ -6,7 +6,7 @@ import espotify.Excepciones.YaPublicaException;
 public class Publica extends Particular implements Favoriteable {
 
     public Publica(Privada p) {
-        super(p.getNombre(), p.getImg());
+        super(p);
     }    
 
     public Publica(DataLista d) {

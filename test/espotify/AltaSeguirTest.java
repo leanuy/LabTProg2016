@@ -71,9 +71,9 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
         instance.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
         instance.AltaCliente(d);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
@@ -100,9 +100,9 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
         }
         catch(NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
@@ -128,7 +128,7 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
@@ -146,9 +146,9 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null);
+        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null);
+        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
         ctrl.AltaCliente(d);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
