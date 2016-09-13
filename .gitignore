@@ -1,4 +1,7 @@
-/nbproject/private
-/build
-/dist
+servidor_cental/nbproject/private
+servidor_cental/build
+servidor_cental/dist
 /.jacocoverage
+/servidor_web/nbproject/private/
+/servidor_web/build/
+/servidor_web/dist/
