@@ -1,11 +1,11 @@
 package espotify.Excepciones;
 
 public class GeneroInexistenteException extends Exception {
-    public GeneroInexistenteException(){
+    public GeneroInexistenteException() {
         super();
     }
 
-    public GeneroInexistenteException(String message){
+    public GeneroInexistenteException(String message) {
         super(message);
     }
 }

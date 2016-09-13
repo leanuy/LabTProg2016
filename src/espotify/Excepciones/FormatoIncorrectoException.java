@@ -1,7 +1,7 @@
 package espotify.Excepciones;
 
 public class FormatoIncorrectoException extends Exception {
-    public FormatoIncorrectoException(){
+    public FormatoIncorrectoException() {
         super();
     }
 }
