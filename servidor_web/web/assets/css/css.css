@@ -1,0 +1,129 @@
+.main{
+    padding:0;
+}
+.navbar{
+    margin-bottom: 0!important;
+}
+.panel-default{
+    background-color: black;
+    border: 0px;
+}
+
+.panel-default .panel-heading{
+    background-color: #393B39;
+    color: white;
+}
+
+.panel-default table{
+    border-color: gray;
+    color: white;
+}
+.panel-default th{
+    color: gray;
+}
+.panel-default td{
+    vertical-align:middle!important;
+}
+.panel-default table tbody tr td {
+    border-top: 1px solid #393B39;
+}
+.panel-default table, .panel-default th {
+    border-color:black!important;
+}
+
+.btn-link{
+    color:gray;
+}
+.btn-link:hover{
+    color:#5cb85c;
+}
+.menu-izquierda{
+    height: 94vh;
+}
+.menu-izquierda, .menu-izquierda .list-group li{
+    background-color: #393B39;
+    color:white;
+}
+
+.menu-izquierda .list-group li{
+    border:none;
+    
+}
+
+.menu-izquierda{
+    position:fixed;
+    left:0;
+    margin-top:30px;
+}
+.contenido{
+    margin-top: 30px;
+}
+@media (min-width:992px){
+.contenido{
+    margin-left: 21%;
+    }
+}
+.reproductor{
+    background-color: #393B39;
+    position:fixed;
+    bottom:0;
+    width:inherit;
+    text-align: center;
+    padding-bottom: 10px;
+    color:white;
+    z-index: 1;
+}
+.btn-table{
+    width:10px;
+    padding-left: 0;
+}
+
+#album-title{
+    color: white;
+    font-size: 60px;
+}
+@media (max-width:991px){
+    .contenido{
+        margin-bottom: 110px;
+    }
+}
+
+.buscador input{
+    background-color: #393B39;
+    color:white;
+    border-color:black;
+}
+.menu-usuario ul{
+    background-color: #101010;
+}
+.menu-usuario .divider{
+    background-color:#393B39;
+}
+.menu-usuario a{
+    color:white!important;
+}
+.menu-usuario a:hover{
+    background-color: #393B39!important;
+    color:white!important;
+}
+.descripcion{
+    color:gray;
+}
+.btn-lg.round {
+	border-radius: 24px;
+}.btn-md.round {
+	border-radius: 20px;
+}.btn-sm.round {
+	border-radius: 15px;
+}.btn-xs.round {
+	border-radius: 5px;
+}
+
+.btn.btn-inverse{
+    background-color:#393B39;
+    color:white;
+}
+.main_row{
+    background-color: black;
+    margin: 0;
+}

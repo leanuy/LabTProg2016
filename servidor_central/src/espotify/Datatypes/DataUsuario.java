@@ -38,6 +38,9 @@ public class DataUsuario {
     public BufferedImage getImg() {
         return img;
     }
+    public String getImgURL() {
+        return "assets/img/profile.png"; //PROVISORIO;
+    }
     
     public ArrayList<String> getSeguidores() {
         return this.seguidores;

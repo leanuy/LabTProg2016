@@ -3,11 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/agustina/tpgr16/test/espotify/CtrlMusicaTest.java</file>
-            <file>file:/home/agustina/tpgr16/src/espotify/CtrlMusica.java</file>
-            <file>file:/home/agustina/tpgr16/src/espotify/Datatypes/DataAlbumExt.java</file>
-            <file>file:/home/agustina/tpgr16/src/espotify/Datatypes/DataTema.java</file>
-            <file>file:/home/agustina/tpgr16/src/espotify/Album.java</file>
+            <file>file:/home/agustina/tpgr16/servidor_central/src/espotify/Datatypes/DataUsuario.java</file>
         </group>
     </open-files>
 </project-private>
