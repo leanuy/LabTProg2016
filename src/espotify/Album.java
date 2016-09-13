@@ -28,44 +28,50 @@ public class Album implements Favoriteable {
     String getNombre() {
         return nombre;
     }
+    
     String getNickArtista() {
         return this.artista.getNick();
     }
+    
     ArrayList<DataTema> getDataTemas() {
-        ArrayList<DataTema> datatema = new ArrayList<>();
+        ArrayList<DataTema> salida = new ArrayList<>();
         DataTema dt;
-        for(Tema t : temas){
+        for (Tema t : temas) {
             dt = t.getData();
-            datatema.add(dt);
+            salida.add(dt);
         }
-        return datatema;
+        return salida;
     }
+    
     DataAlbumExt getDataExt() {
-        ArrayList<DataTema> data_temas = new ArrayList();
+        ArrayList<DataTema> dataTemas = new ArrayList();
         Iterator<Tema> it = temas.iterator();
-        Tema tema_actual;
+        Tema temaActual;
         while (it.hasNext()) {
-            tema_actual = it.next();
-            data_temas.add(tema_actual.getData());
+            temaActual = it.next();
+            dataTemas.add(temaActual.getData());
         }
         Iterator itg = generos.entrySet().iterator();
-        Genero genero_actual;
-        ArrayList<String> nombre_generos = new ArrayList<String>();
+        Genero generoActual;
+        ArrayList<String> nombreGeneros = new ArrayList<String>();
         while (itg.hasNext()) {
             Map.Entry pair = (Map.Entry)itg.next();
-            genero_actual = (Genero) pair.getValue();
-            nombre_generos.add(genero_actual.getNombre());
+            generoActual = (Genero) pair.getValue();
+            nombreGeneros.add(generoActual.getNombre());
         }
-        return new DataAlbumExt(data_temas, this.nombre, this.anio, nombre_generos, this.img, artista.getNick());
+        return new DataAlbumExt(dataTemas, this.nombre, this.anio,
+                nombreGeneros, this.img, artista.getNick());
     }
 
-    private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, TemaTipoInvalidoException {
+    private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws
+            DuracionInvalidaException, NumeroTemaInvalidoException,
+            TemaRepetidoException, TemaTipoInvalidoException {
         int largo = data_temas.size();
-        boolean orden[] = new boolean[largo];
+        boolean[] orden = new boolean[largo];
         Arrays.fill(orden, false);
 
-        ArrayList<Tema> lista_temas = new ArrayList<>();
-        ArrayList<String> nombres_temas = new ArrayList<>();
+        ArrayList<Tema> listaTemas = new ArrayList<>();
+        ArrayList<String> nombresTemas = new ArrayList<>();
 
         for (int i = 0; i < largo; i++) {
             DataTema dt = data_temas.get(i);
@@ -75,7 +81,8 @@ public class Album implements Favoriteable {
                 throw new DuracionInvalidaException("El tema " + dt.getNombre() + " tiene una duración no válida.");
             }
             //Validar orden: validar que no haya otro tema con ese mismo numero de orden
-            //Si el num es mayor a la cantidad de temas tambien tira una exepcion ya que de seguro el orden no es correcto.
+            //Si el num es mayor a la cantidad de temas tambien tira una exepcion
+            // ya que de seguro el orden no es correcto.
             if ((dt.getNum() <= 0) || (dt.getNum() > largo)) {
                 throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
             } else if (orden[dt.getNum() - 1] == true) {
@@ -85,24 +92,26 @@ public class Album implements Favoriteable {
                 //Si el numero de orden es correcto lo marco como en uso.
             }
             //Validar unicidad de nombres
-            if (nombres_temas.contains(dt.getNombre())) {
+            if (nombresTemas.contains(dt.getNombre())) {
                 throw new TemaRepetidoException("Intenta ingresar mas de un tema con el nombre " + dt.getNombre() + ". Cada tema debe tener un nombre único en el álbum.");
             } else {
-                nombres_temas.add(dt.getNombre());
+                nombresTemas.add(dt.getNombre());
             }
             //Si el tema paso todas las validaciones
             if (dt instanceof DataTemaArchivo) {
-                lista_temas.add(new TemaArchivo((DataTemaArchivo) dt, this));
+                listaTemas.add(new TemaArchivo((DataTemaArchivo) dt, this));
             } else if (dt instanceof DataTemaWeb) {
-                lista_temas.add(new TemaWeb((DataTemaWeb) dt, this));
-            }else{
+                listaTemas.add(new TemaWeb((DataTemaWeb) dt, this));
+            } else {
                 throw new TemaTipoInvalidoException();
             }
         }
-        return lista_temas;
+        return listaTemas;
     }
     //constructores
-    Album(DataAlbumExt dt, Artista artista, HashMap<String, Genero> generos) throws DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, TemaTipoInvalidoException {
+    Album(DataAlbumExt dt, Artista artista, HashMap<String, Genero> generos)
+            throws DuracionInvalidaException, NumeroTemaInvalidoException,
+            TemaRepetidoException, TemaTipoInvalidoException {
         this.nombre = dt.getNombre();
         this.anio = dt.getAnio();
         this.img = dt.getImg();
@@ -111,13 +120,13 @@ public class Album implements Favoriteable {
         this.temas = this.ValidarTemas(dt.getTemas());
     }
 
-    Tema DevolverTema(String nombretema){
-        Tema t = null;
-        for(Tema t2 : temas){
-            if(t2.getNombre().equals(nombretema)){
-                t = t2;
+    Tema DevolverTema(String nombretema) {
+        Tema salida = null;
+        for (Tema t2 : temas) {
+            if (t2.getNombre().equals(nombretema)) {
+                salida = t2;
             }
         }
-        return t;
+        return salida;
     }
 }

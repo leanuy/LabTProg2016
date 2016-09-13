@@ -1,19 +1,18 @@
 package espotify;
 
 import espotify.Datatypes.DataGenero;
-import espotify.Datatypes.DataDefecto;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
 
 class Genero {
     //attrs
-    private String nombre;
+    private final String nombre;
     private final HashMap<String,Genero> subgeneros;
     private final HashMap<List<String>, Album> albums;
 
@@ -22,20 +21,19 @@ class Genero {
         return nombre;
     }
     //constructores
-    Genero(String nombre)
-    {
+    Genero(String nombre) {
         this.nombre = nombre;
         this.subgeneros=new HashMap<>();
         this.albums=new HashMap<>();
     }
-     Genero(DataGenero d)
-    {
+    
+     Genero(DataGenero d) {
         this.nombre = d.getNombre();
         this.subgeneros = new HashMap<>();
         this.albums = new HashMap<>();
     }
 
-     ArrayList<String[]> ListarAlbumes(){
+    ArrayList<String[]> ListarAlbumes() {
         ArrayList<String[]> listaAlbums = new ArrayList();
         Iterator it = albums.entrySet().iterator();
         Album actual;
@@ -65,12 +63,12 @@ class Genero {
     }
 
     DataGenero ListarseRecursivo(String nomPadre) {
-        DataGenero d = this.getData(nomPadre);
-        for(Entry<String, Genero> entry : subgeneros.entrySet()) {
-            Genero g = entry.getValue();
-            d.getHijos().add(g.ListarseRecursivo(this.nombre));
+        DataGenero salida = this.getData(nomPadre);
+        for (Entry<String, Genero> entry : subgeneros.entrySet()) {
+            Genero hijo = entry.getValue();
+            salida.getHijos().add(hijo.ListarseRecursivo(this.nombre));
         }
-        return d;
+        return salida;
     }
 
 }

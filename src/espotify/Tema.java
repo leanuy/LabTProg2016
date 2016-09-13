@@ -3,20 +3,20 @@ package espotify;
 import espotify.Datatypes.DataTema;
 
 class Tema implements Favoriteable {
-    private String nombre;
-    private int duracion;
-    private int num;
-    private Album album;
+    private final String nombre;
+    private final int duracion;
+    private final int num;
+    private final Album album;
 
     String getNombre() {
         return nombre;
     }
-    String getNombreAlbum()
-    {
+    
+    String getNombreAlbum() {
         return album.getNombre();
     }
-    String getNomArtista()
-    {
+    
+    String getNomArtista() {
         return album.getNickArtista();
     }
 

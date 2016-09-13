@@ -2,22 +2,25 @@ package espotify.Datatypes;
 
 import java.util.Objects;
 
-public class DataTema implements DataFavoriteable{
-    private String nombre;
-    private int duracion;
-    private int num;
-    private String nomArtista;
+public class DataTema implements DataFavoriteable {
+    private final String nombre;
+    private final int duracion;
+    private final int num;
+    private final String nomArtista;
     private String album;
     
     public String getNombre() {
         return nombre;
     }
+    
     public int getDuracion() {
         return duracion;
     }
+    
     public int getNum() {
         return num;
     }
+    
     public String getNomArtista() {
         return nomArtista;
     }
@@ -31,7 +34,7 @@ public class DataTema implements DataFavoriteable{
         this.nombre = nombre;
         this.duracion = duracion;
         this.num = num;
-        this.nomArtista="";
+        this.nomArtista = "";
     }
 
     public DataTema(String nombre, int duracion, int num, String nomArtista, String album) {
@@ -44,7 +47,8 @@ public class DataTema implements DataFavoriteable{
 
     @Override
     public String toString() {
-        return "DataTema{" + "nombre=" + nombre + ", nomArtista=" + nomArtista + ", album=" + album + '}';
+        return "DataTema{" + "nombre=" + nombre + ", nomArtista=" +
+                nomArtista + ", album=" + album + '}';
     }
 
     @Override
@@ -68,10 +72,7 @@ public class DataTema implements DataFavoriteable{
         if (!Objects.equals(this.nomArtista, other.nomArtista)) {
             return false;
         }
-        if (!Objects.equals(this.album, other.album)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.album, other.album);
     }
     
     

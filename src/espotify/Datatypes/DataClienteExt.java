@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -16,24 +14,27 @@ public class DataClienteExt extends DataUsuario {
     private final String[] seg;
     private final String[] lis;
     
-    public String[] getSeguidos(){
+    public String[] getSeguidos() {
         return seg;
     }
 
-    public String[] getListas(){
+    public String[] getListas() {
         return lis;
     }
     
-    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String[]seg, String[]lis, ArrayList<String> segdores){
-        super(nick, nombre, apellido, correo, fNac, img, segdores);
-        this.seg=seg;
-        this.lis=lis;
+    public DataClienteExt(String nick, String nombre, String apellido, String correo,
+            Calendar fechaNac, BufferedImage img, String[]seg, String[] lis,
+            ArrayList<String> segdores) {
+        super(nick, nombre, apellido, correo, fechaNac, img, segdores);
+        this.seg = seg;
+        this.lis = lis;
     }
     
-    public DataClienteExt(String nick, String nombre, String apellido, String correo, Calendar fNac, BufferedImage img, String[]seg, String[]lis, String pwd){
-        super(nick, nombre, apellido, correo, fNac, img,pwd);
-        this.seg=seg;
-        this.lis=lis;
+    public DataClienteExt(String nick, String nombre, String apellido, String correo,
+            Calendar fechaNac, BufferedImage img, String[]seg, String[]lis, String pwd) {
+        super(nick, nombre, apellido, correo, fechaNac, img,pwd);
+        this.seg = seg;
+        this.lis = lis;
     }
 
     @Override
@@ -66,13 +67,10 @@ public class DataClienteExt extends DataUsuario {
         if (!Objects.equals(this.correo, other.correo)) {
             return false;
         }
-        if (!Objects.equals(this.fNac, other.fNac)) {
+        if (!Objects.equals(this.fechaNac, other.fechaNac)) {
             return false;
         }
-        if (!Objects.equals(this.img, other.img)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.img, other.img);
     }
     
     
