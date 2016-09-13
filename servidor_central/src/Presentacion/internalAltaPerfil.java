@@ -8,6 +8,7 @@ import espotify.Excepciones.NickRepetidoException;
 import espotify.Excepciones.PasswordsDistintasException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaPerfil;
+
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -254,25 +255,21 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void artistaRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_artistaRadioItemStateChanged
-        if(biotxt.isEnabled())
-        {
+        if(biotxt.isEnabled()) {
             biotxt.setEnabled(false);
             urltxt.setEnabled(false);
             urltxt.setText("");
             biotxt.setText("");
         }
-        else
-        {
+        else {
             biotxt.setEnabled(true);
             urltxt.setEnabled(true);
         }
     }//GEN-LAST:event_artistaRadioItemStateChanged
 
     private void ConfirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmbtnActionPerformed
-        if(clienteRadio.isSelected())
-        {
-            try
-            {
+        if(clienteRadio.isSelected()) {
+            try {
                 Calendar fNac = Calendar.getInstance(); //TODO
                 SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
                 fNac.setTime(sdf.parse(fechatxt.getText()));
@@ -291,40 +288,41 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 ctrl.AltaCliente(d);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
-                "Operación completada con éxito",
-                "OK",
-                JOptionPane.PLAIN_MESSAGE);
+                    "Operación completada con éxito",
+                    "OK",
+                    JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
-            catch(NickRepetidoException e)
-            {
-                JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese nick", "Error", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(CorreoRepetidoException e)
-            {
-                JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese correo", "Error", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(FormatoIncorrectoException e)
-            {
-                JOptionPane.showMessageDialog(okDialog, "El formato de correo no es correcto, o algún campo obligatorio está vacío", "Error", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(PasswordsDistintasException e)
-            {
-                JOptionPane.showMessageDialog(okDialog, "Las contraseñas no coinciden.", "Error", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(Exception e)
-            {
+            catch (NickRepetidoException e) {
                 JOptionPane.showMessageDialog(okDialog,
-                "Datos invalidos, revise",
-                "Error",
-                JOptionPane.PLAIN_MESSAGE);
+                        "Ya existe un usuario con ese nick",
+                        "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(CorreoRepetidoException e) {
+                JOptionPane.showMessageDialog(okDialog,
+                        "Ya existe un usuario con ese correo",
+                        "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch (FormatoIncorrectoException e) {
+                JOptionPane.showMessageDialog(okDialog,
+                        "El formato de correo no es correcto, o algún campo obligatorio está vacío",
+                        "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch(PasswordsDistintasException e) {
+                JOptionPane.showMessageDialog(okDialog,
+                        "Las contraseñas no coinciden.",
+                        "Error", JOptionPane.PLAIN_MESSAGE);
+            }
+            catch (Exception e) {
+                JOptionPane.showMessageDialog(okDialog,
+                    "Datos invalidos, revise",
+                    "Error",
+                    JOptionPane.PLAIN_MESSAGE);
             }
         }
-        else
-        {
-            try
-            {
-                Calendar fNac = Calendar.getInstance(); //TODO
+        else {
+            try {
+                Calendar fNac = Calendar.getInstance();
                 SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
                 fNac.setTime(sdf.parse(fechatxt.getText()));
                 String pwd = pwdtxt.getText();
@@ -349,24 +347,19 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
-            catch(NickRepetidoException e)
-            {
+            catch (NickRepetidoException e) {
                 JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese nick", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(CorreoRepetidoException e)
-            {
+            catch (CorreoRepetidoException e) {
                 JOptionPane.showMessageDialog(okDialog, "Ya existe un usuario con ese correo", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(FormatoIncorrectoException e)
-            {
+            catch (FormatoIncorrectoException e) {
                 JOptionPane.showMessageDialog(okDialog, "El formato de correo no es correcto, o algún campo obligatorio está vacío", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(PasswordsDistintasException e)
-            {
+            catch (PasswordsDistintasException e) {
                 JOptionPane.showMessageDialog(okDialog, "Las contraseñas no coinciden.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(Exception e)
-            {
+            catch (Exception e) {
                 JOptionPane.showMessageDialog(okDialog,
                 e.getMessage(),
                 "Error",

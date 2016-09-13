@@ -10,10 +10,17 @@ import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.NumeroTemaInvalidoException;
 import espotify.Excepciones.TemaRepetidoException;
 import espotify.Excepciones.TemaTipoInvalidoException;
+
 import java.util.ArrayList;
 
 public interface IAltaAlbum {
     public DataGenero ListarGeneros();
+
     public ArrayList<String> ListarArtistas();
-    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException, ArtistaInexistenteException ;
+
+    public void AltaAlbum(DataAlbumExt d)
+            throws AlbumRepetidoException, GeneroInexistenteException,
+            DuracionInvalidaException, NumeroTemaInvalidoException,
+            TemaRepetidoException, CampoVacioException,
+            TemaTipoInvalidoException, ArtistaInexistenteException ;
 }

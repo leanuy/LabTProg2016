@@ -1,31 +1,25 @@
 package espotify;
 
+import static org.junit.Assert.assertEquals;
+
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataParticular;
-import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Excepciones.CorreoRepetidoException;
-import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
-import espotify.Excepciones.NickRepetidoException;
-import espotify.Excepciones.SeguidoInexistenteException;
-import espotify.Excepciones.SeguidoRepetidoException;
-import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IAltaSeguir;
 import espotify.Interfaces.IPublicarLista;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PublicarListaTest {

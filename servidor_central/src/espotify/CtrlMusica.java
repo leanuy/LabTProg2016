@@ -51,6 +51,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
     public DataGenero ListarGeneros() {
         return GetGeneroBase().ListarseRecursivo("");
     }
+
     @Override
     public ArrayList<String[]> ListarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
         Genero genero = BuscarGenero(nomGenero);

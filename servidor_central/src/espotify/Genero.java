@@ -27,7 +27,7 @@ class Genero {
         this.albums=new HashMap<>();
     }
     
-     Genero(DataGenero d) {
+    Genero(DataGenero d) {
         this.nombre = d.getNombre();
         this.subgeneros = new HashMap<>();
         this.albums = new HashMap<>();
@@ -53,7 +53,7 @@ class Genero {
         subgeneros.put(g.getNombre(), g);
     }
     
-     void AddAlbum(Album album) {
+    void AddAlbum(Album album) {
         List<String> key = Arrays.asList(album.getNickArtista(), album.getNombre());
         this.albums.putIfAbsent(key, album);
     }

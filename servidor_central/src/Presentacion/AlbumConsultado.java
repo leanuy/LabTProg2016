@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataTemaArchivo;
 import espotify.Datatypes.DataTemaWeb;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -236,7 +232,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
 
     private void descargarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descargarTemaActionPerformed
         int indice = ListaTemas.getSelectedIndex();
-        if(indice == -1){
+        if (indice == -1) {
             JOptionPane.showMessageDialog(this, "Seleccione un tema", "Atencion!.", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -244,21 +240,21 @@ public class AlbumConsultado extends javax.swing.JDialog {
         int numeroTema = Integer.parseInt(obtenerNumerodeLista(seleccion));
         DataTema temaElegido = null;
         //buscar el tema con ese numero. si es tema web sugerir el link si es archivo ver como abrir el chooser y que seleccione destino,
-        for(DataTema da : temas){
+        for (DataTema da : temas) {
             if(da.getNum() == numeroTema){
                 temaElegido = da;
                 break;
             }
         }
-        if(temaElegido == null){
+        if (temaElegido == null) {
             JOptionPane.showMessageDialog(this,"Hicimos algo mal (hice je)");
             return;
         }
-        if(temaElegido instanceof DataTemaWeb){
+        if (temaElegido instanceof DataTemaWeb) {
             JTextArea a = new JTextArea();
             a.setText(((DataTemaWeb) temaElegido).getUrl());
             JOptionPane.showMessageDialog(this, a,"Link a > " +  temaElegido.getNombre(), JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        } else {
             JFileChooser fileChooser = new JFileChooser();  //en construccion
             fileChooser.setDialogTitle("Descargar Tema en...");   
             
@@ -271,14 +267,14 @@ public class AlbumConsultado extends javax.swing.JDialog {
                 fileToSave = fileChooser.getSelectedFile();
                 //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
                 
-            }else{
+            } else {
                 return;
             }
-            if(fileToSave == null){
+            if(fileToSave == null) {
                 JOptionPane.showMessageDialog(this,"Problemas al seleccionar destino","Atencion!.",JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            try{
+            try {
                 File fileElegido = ((DataTemaArchivo)temaElegido).getArchivo();
                 
                 FileInputStream fis = new FileInputStream(fileElegido);

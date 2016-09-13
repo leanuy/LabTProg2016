@@ -8,6 +8,7 @@ import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaLista;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -267,10 +268,8 @@ public class AltaLista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmbtnActionPerformed
-        if(particularRadio.isSelected())
-        {
-            try
-            {
+        if(particularRadio.isSelected()) {
+            try {
                 String nomCli = clientlist.getSelectedValue();
                 DataParticular d = new DataParticular(nomCli, nombretxt.getText(),img);
                 ctrl.AltaListaParticular(d);
@@ -279,20 +278,13 @@ public class AltaLista extends javax.swing.JInternalFrame {
                     "OK",
                     JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
-            }
-            catch(ListaRepetidaException e)
-            {
+            } catch (ListaRepetidaException e) {
                 JOptionPane.showMessageDialog(okDialog, "El cliente ya tiene una lista con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(ClienteInexistenteException e)
-            {
+            } catch (ClienteInexistenteException e) {
                 JOptionPane.showMessageDialog(okDialog, "No existe un cliente con ese nick.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
                 String nomGenero = "";
                 if (node != null)
@@ -302,28 +294,26 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
-            catch(ListaRepetidaException e)
-            {
+            catch(ListaRepetidaException e) {
                 JOptionPane.showMessageDialog(okDialog, "Ya existe una lista por defecto con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(GeneroInexistenteException e)
-            {
+            catch(GeneroInexistenteException e) {
                 JOptionPane.showMessageDialog(okDialog, "El género seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
             }
         }
     }//GEN-LAST:event_confirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
-                JFileChooser fc = new JFileChooser();
+        JFileChooser fc = new JFileChooser();
         this.getContentPane().add(fc);
         fc.setVisible(true);
         
         int selected = fc.showDialog(this, "Seleccionar");
-        if(selected == JFileChooser.APPROVE_OPTION){
+        if (selected == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
             try {
                 String ext = getExtension(file);
-                if(!"jpg".equals(ext) && !"png".equals(ext)){
+                if (!"jpg".equals(ext) && !"png".equals(ext)) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
                     fc.setVisible(false);
                     return;
@@ -332,20 +322,20 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 String pathAImagen = file.getCanonicalPath();
                 pathimgtxt.setText(pathAImagen);
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "La ruta al archivo no es correcta",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         fc.setVisible(false);   
     }//GEN-LAST:event_imgbtnActionPerformed
 
     private void particularRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_particularRadioItemStateChanged
-        if(particularRadio.isSelected())
-        {
+        if(particularRadio.isSelected()) {
             particularpanel.setVisible(true);
             defectopanel.setVisible(false);
         }
-        else
-        {
+        else {
             particularpanel.setVisible(false);
             defectopanel.setVisible(true);
         }

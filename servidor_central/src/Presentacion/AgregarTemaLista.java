@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataTema;
@@ -10,9 +5,8 @@ import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAgregarTemaLista;
+
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -572,16 +566,16 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SeleccionarClienteActionPerformed
 
     private void SeleccionarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArtistaActionPerformed
-        if(AlbumButton.isSelected()){
+        if (AlbumButton.isSelected()) {
             String art = String.valueOf(ArtistaBox.getSelectedItem());
-            try{
+            try {
                 ArrayList<String> a = interf.ListarAlbumesDeArtista(art);
                 AlbumBox.removeAllItems();
                 TemaBox.removeAll();
                 for (String s: a){
                     AlbumBox.addItem(s);
-            }
-            }catch(Exception e){
+                }
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -589,11 +583,11 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
 
     private void SeleccionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarListaActionPerformed
         String cl = null;
-        if (LPublicaButton.isSelected()){
+        if (LPublicaButton.isSelected()) {
             cl = String.valueOf(Cliente2Box.getSelectedItem());
         }
         String l = String.valueOf(Lista2Box.getSelectedItem());
-        try{
+        try {
             ArrayList<DataTema> lt = interf.ListarTemasLista2(cl, l);
             int size = lt.size();
             String[] algo = new String[size];
@@ -608,7 +602,7 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                 i++;
             }
             TemaBox.setListData(algo);
-        }catch(Exception e){
+        } catch(Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_SeleccionarListaActionPerformed

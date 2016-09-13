@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Excepciones.ClienteInexistenteException;
@@ -10,9 +5,9 @@ import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.YaPublicaException;
 import espotify.Fabrica;
 import espotify.Interfaces.IPublicarLista;
+
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -119,16 +114,16 @@ public class PublicarLista extends javax.swing.JInternalFrame {
         listascmb.removeAllItems();
 
         try {
-            ArrayList<String> a = interf.ListarListasPrivadasDeCliente(cli);
-            listascmb.setEnabled(a.size()>0);
-            for(String str : a) {
-              listascmb.addItem(str);
+            ArrayList<String> listas = interf.ListarListasPrivadasDeCliente(cli);
+            listascmb.setEnabled(listas.size() > 0);
+            for (String str : listas) {
+                listascmb.addItem(str);
             }
         } catch (ClienteInexistenteException e) {
             JOptionPane.showMessageDialog(new JDialog(),
-            "El cliente seleccionado no existe",
-            "Error",
-            JOptionPane.PLAIN_MESSAGE);
+                "El cliente seleccionado no existe",
+                "Error",
+                JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_clientescmbActionPerformed
 
@@ -137,19 +132,24 @@ public class PublicarLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listascmbActionPerformed
 
     private void publicarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicarbtnActionPerformed
-        try
-        {
-        interf.PublicarLista(String.valueOf(listascmb.getSelectedItem()),String.valueOf(clientescmb.getSelectedItem()));
-        JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
-        }
-        catch (ClienteInexistenteException e){
-            JOptionPane.showMessageDialog(this, "El cliente seleccionado no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }     
-        catch (ListaInexistenteException e){
-            JOptionPane.showMessageDialog(this, "El cliente seleccionado no tiene una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
+        try {
+            interf.PublicarLista(String.valueOf(listascmb.getSelectedItem()),String.valueOf(clientescmb.getSelectedItem()));
+            JOptionPane.showMessageDialog(this,
+                    "Operación completada con éxito.",
+                    "OK", JOptionPane.PLAIN_MESSAGE);
+        } catch (ClienteInexistenteException e) {
+            JOptionPane.showMessageDialog(this,
+                    "El cliente seleccionado no existe.",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (ListaInexistenteException e) {
+            JOptionPane.showMessageDialog(this,
+                    "El cliente seleccionado no tiene una lista con ese nombre",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         }   
-        catch (YaPublicaException e){
-            JOptionPane.showMessageDialog(this, "La lista seleccionada ya es pública.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        catch (YaPublicaException e) {
+            JOptionPane.showMessageDialog(this,
+                    "La lista seleccionada ya es pública.",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         }   
     }//GEN-LAST:event_publicarbtnActionPerformed
 

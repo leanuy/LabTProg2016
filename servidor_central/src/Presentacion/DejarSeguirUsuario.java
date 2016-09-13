@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Excepciones.ClienteInexistenteException;
@@ -10,6 +5,7 @@ import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IDejarDeSeguir;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -136,17 +132,25 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
 
     private void DejarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarButtonActionPerformed
         // TODO add your handling code here:
-        if (Seguidor.isEmpty() || Seguido.isEmpty()){
-            JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
-        }else{
-            try{
-            interf.DejarDeSeguir(Seguidor,Seguido);
-            JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
-            }catch (SeguidoInexistenteException e){
-                JOptionPane.showMessageDialog(this, "El usuario a dejar de seguir no existe o no era seguido por el seguidor.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        if (Seguidor.isEmpty() || Seguido.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "No se ingreso el nick de al menos un usuario",
+                    "ATENCION", JOptionPane.WARNING_MESSAGE);
+        } else {
+            try {
+                interf.DejarDeSeguir(Seguidor,Seguido);
+                JOptionPane.showMessageDialog(this,
+                        "Operación completada con éxito.",
+                        "OK", JOptionPane.PLAIN_MESSAGE);
+            } catch (SeguidoInexistenteException e) {
+                JOptionPane.showMessageDialog(this,
+                        "El usuario a dejar de seguir no existe o no era seguido por el seguidor.",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-            catch (SeguidorInexistenteException e){
-                JOptionPane.showMessageDialog(this, "El usuario seguidor no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            catch (SeguidorInexistenteException e) {
+                JOptionPane.showMessageDialog(this,
+                        "El usuario seguidor no existe", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());

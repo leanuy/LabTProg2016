@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataGenero;
@@ -10,9 +5,7 @@ import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaGenero;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultListModel;
+
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -151,11 +144,9 @@ public class AltaGenero extends javax.swing.JInternalFrame {
             ctrl.AltaGenero(new DataGenero(nom,nomPadre));
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             this.dispose();
-        }
-        catch (GeneroRepetidoException ex) {
+        } catch (GeneroRepetidoException ex) {
             JOptionPane.showMessageDialog(this, "Ya existe un género con ese nombre.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-        catch (GeneroInexistenteException ex) {
+        } catch (GeneroInexistenteException ex) {
             JOptionPane.showMessageDialog(this, "El género padre no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 

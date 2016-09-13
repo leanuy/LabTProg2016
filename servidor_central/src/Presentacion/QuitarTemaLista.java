@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataTema;
 import espotify.Fabrica;
 import espotify.Interfaces.IQuitarTemaLista;
+
 import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 /**

@@ -1,41 +1,32 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
+
+import static org.junit.Assert.assertEquals;
 
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
-import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataParticular;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.CorreoRepetidoException;
 import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.GeneroInexistenteException;
-import espotify.Excepciones.GeneroRepetidoException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Excepciones.NickRepetidoException;
-import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.junit.After;
-import org.junit.AfterClass;
-import static org.junit.Assert.assertEquals;
-import org.junit.Before;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AltaListaTest {
     static IAltaLista iAltaLista;
+    
     public AltaListaTest() {
     }
 

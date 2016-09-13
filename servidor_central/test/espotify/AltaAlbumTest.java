@@ -19,18 +19,17 @@ import espotify.Excepciones.TemaRepetidoException;
 import espotify.Excepciones.TemaTipoInvalidoException;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.junit.Ignore;
+
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class AltaAlbumTest {
 
     static IAltaAlbum iAltaAlbum;
+
     public AltaAlbumTest() {
         iAltaAlbum = Fabrica.getIAltaAlbum();
     }
@@ -50,7 +49,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album 1"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album 1"));
@@ -77,7 +76,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 2"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album 2"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album 2"));
@@ -104,7 +103,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album invalido"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album invalido"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album invalido"));
@@ -130,7 +129,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album valido"));
 
         String nombre = "Album valido";
@@ -152,7 +151,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", -20, 1, "ElGordoAxl", "Album invalido"));
 
         String nombre = "Album invalido";
@@ -173,7 +172,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 123, 0, "ElGordoAxl", "Album invalido"));
         temas.add(new DataTemaWeb("url1", "tema 1", 123, -3, "ElGordoAxl", "Album invalido"));
 
@@ -195,7 +194,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 123, 2, "ElGordoAxl", "Album invalido"));
         temas.add(new DataTemaWeb("url1", "tema 1", 123, 345, "ElGordoAxl", "Album invalido"));
 
@@ -217,7 +216,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 123, 1, "ElGordoAxl", "Album invalido"));
         temas.add(new DataTemaWeb("url1", "tema 2", 123, 1, "ElGordoAxl", "Album invalido"));
 
@@ -239,7 +238,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 123, 1, "ElGordoAxl", "Album invalido"));
         temas.add(new DataTemaWeb("url1", "tema 1", 123, 2, "ElGordoAxl", "Album invalido"));
 
@@ -261,7 +260,7 @@ public class AltaAlbumTest {
         //this.testExisteArtista();
 
         //Crear DataTemas
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTema("tema 1", 123, 1));
         temas.add(new DataTema("tema 1", 123, 2));
 

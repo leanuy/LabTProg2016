@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
+
 import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaSeguir;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +23,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     
     public SeguirUsuario() {
         initComponents();
-        ArrayList<String>cl = interf.ListarClientes();
+        ArrayList<String> cl = interf.ListarClientes();
         for(String str : cl) {
             NickSeguidor.addItem(str);
         }
@@ -135,21 +132,16 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
         if (Seguidor.isEmpty() || Seguido.isEmpty()){
             JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
         }else{
-            try
-            {
-            interf.AltaSeguir(Seguidor,Seguido);
-            JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch (SeguidorInexistenteException e){
+            try {
+                interf.AltaSeguir(Seguidor,Seguido);
+                JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
+            } catch (SeguidorInexistenteException e) {
                 JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            catch (SeguidoInexistenteException e){
+            } catch (SeguidoInexistenteException e) {
                 JOptionPane.showMessageDialog(this, "El usuario a seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            catch (SeguidoRepetidoException e){
+            } catch (SeguidoRepetidoException e) {
                 JOptionPane.showMessageDialog(this, "El seguidor ya sigue a este usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            catch (AutoSeguirseException e){
+            } catch (AutoSeguirseException e) {
                 JOptionPane.showMessageDialog(this, "Un usuario no puede seguirse a sí mismo.", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -163,8 +155,8 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
             for(String stri : ar) {
                 NickSeguido.addItem(stri);
             }
-        } catch (SeguidorInexistenteException e){
-                JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (SeguidorInexistenteException e) {
+            JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_NickSeguidorActionPerformed

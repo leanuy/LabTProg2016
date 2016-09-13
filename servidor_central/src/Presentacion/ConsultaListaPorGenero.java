@@ -7,6 +7,7 @@ import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IConsultaLista;
+
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -23,7 +24,7 @@ import javax.swing.tree.TreeSelectionModel;
 
 public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
 
-        private DefaultTreeModel modeloTree;
+    private DefaultTreeModel modeloTree;
 
     /**
      * Creates new form ConsultaListaPorGenero

@@ -1,5 +1,8 @@
 package espotify;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataTema;
@@ -11,21 +14,20 @@ import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IConsultaAlbum;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
 public class ConsultaAlbumTest {
     static IConsultaAlbum iConsultaAlbum;
+    
     public ConsultaAlbumTest() {
     }
 
@@ -88,7 +90,7 @@ public class ConsultaAlbumTest {
     public void testConsultaAlbum() throws Exception {
         System.out.println("Consulta Album: ok");
         
-        ArrayList< DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Alb"));

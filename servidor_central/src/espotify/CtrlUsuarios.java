@@ -83,15 +83,13 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             if(d instanceof DataParticular) {
                 DataParticular dp = (DataParticular) d;
                 return BuscarListaPublicaDeCliente(dp.getNomCliente(),dp.getNombre());
-            }
-            else if (d instanceof DataDefecto) {
+            } else if (d instanceof DataDefecto) {
                 return new CtrlListas().BuscarLista(((DataDefecto) d).getNombre());
             }
         } else if (d instanceof DataAlbum) {
             DataAlbum da = (DataAlbum) d;
             return BuscarAlbumDeArtista(da.getNickArtista(),da.getNombre());
-        }
-        else if (d instanceof DataTema) {
+        } else if (d instanceof DataTema) {
             return DevolverTema((DataTema)d);
         }
         return null;
@@ -106,6 +104,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             ArtistaInexistenteException, AlbumInexistenteException {
         return BuscarArtista(nickArtista).BuscarAlbum(nomAlbum);
     }
+
     Tema DevolverTema(DataTema dt) throws ArtistaInexistenteException {
         return BuscarArtista(dt.getNomArtista()).DevolverTema(dt);
     }
@@ -338,6 +337,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             AlbumInexistenteException {
         BuscarCliente(nick).Favoritear(BuscarFavoriteable(dataFav));
     }
+
     public void DesFavoritear(String nick, DataFavoriteable dataFav) throws ClienteInexistenteException,
             FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException,
             AlbumInexistenteException {

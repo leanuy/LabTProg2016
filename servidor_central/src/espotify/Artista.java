@@ -29,10 +29,10 @@ class Artista extends Usuario {
     
     //constructores
     Artista(DataArtista data) {
-      super(data);
-      albums = new HashMap<>();
-      bio=data.getBio();
-      url=data.getUrl();
+        super(data);
+        albums = new HashMap<>();
+        bio = data.getBio();
+        url = data.getUrl();
     }
     
     DataAlbumExt getDataAlbumExt(String nomAlbum) throws AlbumInexistenteException {

@@ -2,29 +2,22 @@ package espotify;
 
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataCliente;
-import espotify.Datatypes.DataDefecto;
-import espotify.Datatypes.DataParticular;
-import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.CorreoRepetidoException;
 import espotify.Excepciones.FormatoIncorrectoException;
-import espotify.Excepciones.GeneroInexistenteException;
-import espotify.Excepciones.ListaRepetidaException;
 import espotify.Excepciones.NickRepetidoException;
-import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.util.Calendar;
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AltaPerfilTest {
     static IAltaPerfil iAltaPerfil;
+    
     public AltaPerfilTest() {
     }
 

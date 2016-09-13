@@ -1,7 +1,6 @@
 package Presentacion;
 
 
-import espotify.Datatypes.DataAlbum;
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataTema;
@@ -17,20 +16,16 @@ import espotify.Excepciones.TemaRepetidoException;
 import espotify.Excepciones.TemaTipoInvalidoException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaAlbum;
-import espotify.Interfaces.IAltaGenero;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
