@@ -83,6 +83,6 @@ class Artista extends Usuario {
         String album = dt.getAlbum();
         String tema = dt.getNombre();
         Album alb = albums.get(album);
-        return alb.DevolverTema(tema);
+        return alb.devolverTema(tema);
     }
 }

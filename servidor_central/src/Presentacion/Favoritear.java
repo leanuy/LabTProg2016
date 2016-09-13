@@ -35,19 +35,16 @@ public class Favoritear extends javax.swing.JInternalFrame {
         initComponents();
         IFavoritear ifav = Fabrica.getIFavoritear();
         ArrayList<String> cli = ifav.ListarClientes();
-        for(String c : cli)
-        {
+        for (String c : cli) {
             clientescmb.addItem(c);
             lstpubclicmb.addItem(c);
         }
         cli = ifav.ListarListasDefecto();
-        for(String c : cli)
-        {
+        for (String c : cli) {
             lstdefcmb.addItem(c);
         }
         cli = ifav.ListarArtistas();
-        for(String c : cli)
-        {
+        for (String c : cli) {
             artcmb.addItem(c);
         }
     }

@@ -12,7 +12,7 @@ import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IAltaSeguir;
 import java.util.ArrayList;
 import java.util.Calendar;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

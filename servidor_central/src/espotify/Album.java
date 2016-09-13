@@ -8,6 +8,7 @@ import espotify.Excepciones.DuracionInvalidaException;
 import espotify.Excepciones.NumeroTemaInvalidoException;
 import espotify.Excepciones.TemaRepetidoException;
 import espotify.Excepciones.TemaTipoInvalidoException;
+
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -120,7 +121,7 @@ public class Album implements Favoriteable {
         this.temas = this.ValidarTemas(dt.getTemas());
     }
 
-    Tema DevolverTema(String nombretema) {
+    Tema devolverTema(String nombretema) {
         Tema salida = null;
         for (Tema t2 : temas) {
             if (t2.getNombre().equals(nombretema)) {
