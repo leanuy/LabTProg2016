@@ -43,10 +43,10 @@ public class AlbumConsultado extends javax.swing.JDialog {
         ListaTemas.setModel(modeloTemas);
         ListaGenders.setModel(modeloGenders);
         ListaTemas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        for(DataTema d : temas){
-            modeloTemas.addElement(d.getNum()+ " - " +d.getNombre() + " (" + d.getDuracion()/60+":"+d.getDuracion()%60 + ")");
+        for (DataTema d : temas) {
+            modeloTemas.addElement(d.getNum() + " - " + d.getNombre() + " (" + d.getDuracion() / 60 + ":" + d.getDuracion() % 60 + ")");
         }
-        for(String g: genders){
+        for (String g: genders){
             modeloGenders.addElement(g);
         }
     }
@@ -215,7 +215,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
     private void verFotoAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFotoAlbumActionPerformed
         // TODO 
         // 
-        if(album.getImg() == null){
+        if (album.getImg() == null) {
             JOptionPane.showMessageDialog(this, "El album no tiene imagen", "Atencion!.", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
@@ -240,7 +240,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
         DataTema temaElegido = null;
         //buscar el tema con ese numero. si es tema web sugerir el link si es archivo ver como abrir el chooser y que seleccione destino,
         for (DataTema da : temas) {
-            if(da.getNum() == numeroTema){
+            if (da.getNum() == numeroTema) {
                 temaElegido = da;
                 break;
             }
@@ -281,7 +281,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
                 FileOutputStream alRes = new FileOutputStream(fileToSave);
                 alRes.flush();
                 byte[] buf = new byte[8192];
-                while (fis.read(buf, 0, 8192) != -1){
+                while (fis.read(buf, 0, 8192) != -1) {
                     alRes.write(buf);
                 }
                 alRes.close();
@@ -295,7 +295,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_descargarTemaActionPerformed
     
-    private String obtenerNumerodeLista(String str){
+    private String obtenerNumerodeLista(String str) {
         int idx = str.indexOf(' ');
         String numero = str.substring(0, idx);
         return numero;

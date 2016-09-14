@@ -26,7 +26,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         initComponents();
         IConsultaArtista interf = Fabrica.getIConsultaArtista();
         List<String> artistas = interf.listarArtistas();
-        for(String str : artistas) {
+        for (String str : artistas) {
             Select.addItem(str);
         }
     }
@@ -256,8 +256,8 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         List<String> seguidores = dArt.getSeguidores();
         int cantSeguidores = seguidores.size();
         String[] array = new String[cantSeguidores];
-        int idx=0;
-        for(String seguidor : seguidores){
+        int idx = 0;
+        for (String seguidor : seguidores) {
             array[idx] = seguidor;
             idx++;
         }
@@ -275,25 +275,25 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         AlbumsList.setListData(albums);
         BufferedImage imagen = dArt.getImg();
         BufferedImage image;
-        if(imagen !=null){
+        if (imagen != null) {
             image = getScaledImage(imagen,200,200);
-        }else{
+        } else {
             image = imagen;
         }
         jLabel7.removeAll();
         jLabel7.repaint();
-        if (image != null){
+        if (image != null) {
             ImageIcon img = new ImageIcon(image);
             jLabel7.setIcon(img);
             jLabel7.setVisible(true);
-        }else{
+        } else {
             //jLabel7.setText("El usuario NO tiene imagen");
             jLabel7.setVisible(false);
         }   
     }//GEN-LAST:event_SelectActionPerformed
 
 
-    private BufferedImage getScaledImage(BufferedImage src, int width, int height){
+    private BufferedImage getScaledImage(BufferedImage src, int width, int height) {
         int finalw = width;
         int finalh = height;
         double factor = 1.0d;

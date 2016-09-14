@@ -85,7 +85,7 @@
                                   </Group>
                               </Group>
                               <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="Select" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
+                              <Component id="clientesCmb" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="303" max="32767" attributes="0"/>
                           <Component id="jLabel8" min="-2" pref="220" max="-2" attributes="0"/>
@@ -103,7 +103,7 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="Select" min="-2" max="-2" attributes="0"/>
+                          <Component id="clientesCmb" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -164,14 +164,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JComboBox" name="Select">
+        <Component class="javax.swing.JComboBox" name="clientesCmb">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SelectActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clientesCmbActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

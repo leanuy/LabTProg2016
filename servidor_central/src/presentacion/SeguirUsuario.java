@@ -24,7 +24,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     public SeguirUsuario() {
         initComponents();
         List<String> clientes = interf.listarClientes();
-        for(String str : clientes) {
+        for (String str : clientes) {
             NickSeguidor.addItem(str);
         }
     }
@@ -129,9 +129,9 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SeguirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirButtonActionPerformed
-        if (Seguidor.isEmpty() || Seguido.isEmpty()){
+        if (Seguidor.isEmpty() || Seguido.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
-        }else{
+        } else {
             try {
                 interf.altaSeguir(Seguidor,Seguido);
                 JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
@@ -152,7 +152,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
         NickSeguido.removeAllItems();
         try {
             List<String> seguibles = interf.listarSeguibles(Seguidor);
-            for(String stri : seguibles) {
+            for (String stri : seguibles) {
                 NickSeguido.addItem(stri);
             }
         } catch (SeguidorInexistenteException e) {

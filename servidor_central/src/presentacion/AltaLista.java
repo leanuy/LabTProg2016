@@ -48,9 +48,9 @@ public class AltaLista extends javax.swing.JInternalFrame {
         cargarArbol(generoBase,raiz);
     }
 
-    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre) {
         int idx = 0;
-        for(DataGenero d: dGenero.getHijos()){
+        for (DataGenero d: dGenero.getHijos()) {
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
             modeloTree.insertNodeInto(nodito,padre,idx);
             idx++;
@@ -268,7 +268,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmbtnActionPerformed
-        if(particularRadio.isSelected()) {
+        if (particularRadio.isSelected()) {
             try {
                 String nomCli = clientlist.getSelectedValue();
                 DataParticular dLista = new DataParticular(nomCli, nombretxt.getText(),img);
@@ -295,10 +295,10 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
-            catch(ListaRepetidaException e) {
+            catch (ListaRepetidaException e) {
                 JOptionPane.showMessageDialog(okDialog, "Ya existe una lista por defecto con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(GeneroInexistenteException e) {
+            catch (GeneroInexistenteException e) {
                 JOptionPane.showMessageDialog(okDialog, "El género seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
             }
         }
@@ -332,7 +332,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_imgbtnActionPerformed
 
     private void particularRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_particularRadioItemStateChanged
-        if(particularRadio.isSelected()) {
+        if (particularRadio.isSelected()) {
             particularpanel.setVisible(true);
             defectopanel.setVisible(false);
         }
@@ -370,7 +370,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
         String nomArchivo = file.getName();
         int idx = nomArchivo.lastIndexOf('.');
         if (idx > 0 &&  idx < nomArchivo.length() - 1) {
-            ext = nomArchivo.substring(idx+1).toLowerCase();
+            ext = nomArchivo.substring(idx + 1).toLowerCase();
         }
         return ext;
     }

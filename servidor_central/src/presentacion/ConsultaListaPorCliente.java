@@ -196,11 +196,11 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         int finalw = width;
         int finalh = height;
         double factor = 1.0d;
-        if(src.getWidth() > src.getHeight()){
-            factor = (double)src.getHeight()/(double)src.getWidth();
+        if (src.getWidth() > src.getHeight()) {
+            factor = (double)src.getHeight() / (double)src.getWidth();
             finalh = (int)(finalw * factor);                
-        }else{
-            factor = (double)src.getWidth()/(double)src.getHeight();
+        } else {
+            factor = (double)src.getWidth() / (double)src.getHeight();
             finalw = (int)(finalh * factor);
         }   
 

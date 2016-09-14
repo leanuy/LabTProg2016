@@ -42,7 +42,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
 
     private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
         int idx = 0;
-        for(DataGenero d: dGenero.getHijos()){
+        for (DataGenero d: dGenero.getHijos()) {
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
             modeloTree.insertNodeInto(nodito,padre,idx);
             idx++;
@@ -169,7 +169,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         }
         listascmb.removeAllItems();
         List<String> listas = interf.listarListasDeGenero(nomGenero);
-        for(String str : listas) {
+        for (String str : listas) {
             listascmb.addItem(str);
         }
     }//GEN-LAST:event_ArbolGenerosValueChanged
@@ -182,18 +182,18 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
             //mostrar la imagen
             BufferedImage imagen = dLista.getImg();
             BufferedImage image;
-            if(imagen == null){
+            if (imagen == null) {
                 image = null;
             }
-            else{
+            else {
                 image = getScaledImage(imagen,212,220);
             }
             ImgContainer.removeAll();
-            if (image != null){
+            if (image != null) {
                 ImageIcon img = new ImageIcon(image);
                 ImgContainer.setIcon(img);
                 ImgContainer.setVisible(true);
-            }else{
+            } else {
                 ImgContainer.setText("El usuario NO tiene imagen");
                 ImgContainer.setVisible(false);
             }
@@ -203,8 +203,8 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
             List<DataTema> temas = dLista.getTemas();
             DefaultListModel<String> model = new DefaultListModel<>();
             ListaTemas.setModel(model);
-            for(DataTema dt : temas) {
-                model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion()/60+":"+dt.getDuracion()%60 + ")");
+            for (DataTema dt : temas) {
+                model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion() / 60 + ":" + dt.getDuracion() % 60 + ")");
             }
 
         } catch (ListaInexistenteException ex) {
@@ -214,15 +214,15 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_consultarbtnActionPerformed
 
-    private BufferedImage getScaledImage(BufferedImage src, int width, int height){
+    private BufferedImage getScaledImage(BufferedImage src, int width, int height) {
         int finalw = width;
         int finalh = height;
         double factor = 1.0d;
-        if(src.getWidth() > src.getHeight()){
-            factor = ((double)src.getHeight()/(double)src.getWidth());
+        if (src.getWidth() > src.getHeight()) {
+            factor = ((double)src.getHeight() / (double)src.getWidth());
             finalh = (int)(finalw * factor);                
-        }else{
-            factor = ((double)src.getWidth()/(double)src.getHeight());
+        } else {
+            factor = ((double)src.getWidth() / (double)src.getHeight());
             finalw = (int)(finalh * factor);
         }   
 
