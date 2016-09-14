@@ -1,12 +1,12 @@
 package presentacion;
 
+import espotify.Fabrica;
 import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
-import espotify.Fabrica;
 import espotify.interfaces.IAltaLista;
 
 import java.awt.image.BufferedImage;
@@ -40,24 +40,24 @@ public class AltaLista extends javax.swing.JInternalFrame {
             model.addElement(str);
         }
         
-        ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+        arbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         DataGenero generoBase = ctrl.listarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
-        ArbolGeneros.setModel(modeloTree);
+        arbolGeneros.setModel(modeloTree);
         cargarArbol(generoBase,raiz);
     }
 
-    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre) {
+    private void cargarArbol(DataGenero dataGenero, DefaultMutableTreeNode padre) {
         int idx = 0;
-        for (DataGenero d: dGenero.getHijos()) {
+        for (DataGenero d: dataGenero.getHijos()) {
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
             modeloTree.insertNodeInto(nodito,padre,idx);
             idx++;
             cargarArbol(d,nodito);
         }
-        for (idx = 0; idx < ArbolGeneros.getRowCount(); idx++) {
-            ArbolGeneros.expandRow(idx);
+        for (idx = 0; idx < arbolGeneros.getRowCount(); idx++) {
+            arbolGeneros.expandRow(idx);
         }
     }
     
@@ -78,17 +78,17 @@ public class AltaLista extends javax.swing.JInternalFrame {
         nombretxt = new javax.swing.JTextField();
         pathimgtxt = new javax.swing.JTextField();
         imgbtn = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        imagenLabel = new javax.swing.JLabel();
+        nombreLabel = new javax.swing.JLabel();
         particularpanel = new javax.swing.JPanel();
         clientscrollpane = new javax.swing.JScrollPane();
         clientlist = new javax.swing.JList<>();
-        jLabel4 = new javax.swing.JLabel();
+        clienteLabel = new javax.swing.JLabel();
         confirmbtn = new javax.swing.JButton();
         defectopanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        generoLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        ArbolGeneros = new javax.swing.JTree();
+        arbolGeneros = new javax.swing.JTree();
 
         javax.swing.GroupLayout okDialogLayout = new javax.swing.GroupLayout(okDialog.getContentPane());
         okDialog.getContentPane().setLayout(okDialogLayout);
@@ -123,14 +123,14 @@ public class AltaLista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel3.setText("Imagen:");
+        imagenLabel.setText("Imagen:");
 
-        jLabel1.setText("Nombre*:");
+        nombreLabel.setText("Nombre*:");
 
         clientlist.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         clientscrollpane.setViewportView(clientlist);
 
-        jLabel4.setText("Cliente:");
+        clienteLabel.setText("Cliente:");
 
         javax.swing.GroupLayout particularpanelLayout = new javax.swing.GroupLayout(particularpanel);
         particularpanel.setLayout(particularpanelLayout);
@@ -138,7 +138,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
             particularpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(particularpanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel4)
+                .addComponent(clienteLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(clientscrollpane, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
         );
@@ -149,7 +149,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 .addGroup(particularpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(clientscrollpane)
                     .addGroup(particularpanelLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(clienteLabel)
                         .addGap(0, 185, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -161,10 +161,10 @@ public class AltaLista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Género:");
+        generoLabel.setText("Género:");
 
-        ArbolGeneros.setModel(null);
-        jScrollPane1.setViewportView(ArbolGeneros);
+        arbolGeneros.setModel(null);
+        jScrollPane1.setViewportView(arbolGeneros);
 
         javax.swing.GroupLayout defectopanelLayout = new javax.swing.GroupLayout(defectopanel);
         defectopanel.setLayout(defectopanelLayout);
@@ -172,7 +172,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
             defectopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(defectopanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
+                .addComponent(generoLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -184,7 +184,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 .addGroup(defectopanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(defectopanelLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addComponent(generoLabel)
                         .addGap(0, 186, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -205,8 +205,8 @@ public class AltaLista extends javax.swing.JInternalFrame {
                             .addGroup(mainpanelLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel1))
+                                    .addComponent(imagenLabel)
+                                    .addComponent(nombreLabel))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,11 +232,11 @@ public class AltaLista extends javax.swing.JInternalFrame {
                     .addComponent(particularRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(nombreLabel)
                     .addComponent(nombretxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(mainpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(imagenLabel)
                     .addComponent(pathimgtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(imgbtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -285,7 +285,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
             }
         } else {
             try {
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
+                DefaultMutableTreeNode node = (DefaultMutableTreeNode) arbolGeneros.getLastSelectedPathComponent();
                 String nomGenero = "";
                 if (node != null) {
                     nomGenero = (String)node.getUserObject();
@@ -294,11 +294,9 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 ctrl.altaListaDefecto(dLista);
                 JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
-            }
-            catch (ListaRepetidaException e) {
+            } catch (ListaRepetidaException e) {
                 JOptionPane.showMessageDialog(okDialog, "Ya existe una lista por defecto con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch (GeneroInexistenteException e) {
+            } catch (GeneroInexistenteException e) {
                 JOptionPane.showMessageDialog(okDialog, "El género seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
             }
         }
@@ -335,8 +333,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
         if (particularRadio.isSelected()) {
             particularpanel.setVisible(true);
             defectopanel.setVisible(false);
-        }
-        else {
+        } else {
             particularpanel.setVisible(false);
             defectopanel.setVisible(true);
         }
@@ -344,19 +341,19 @@ public class AltaLista extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTree ArbolGeneros;
+    private javax.swing.JTree arbolGeneros;
+    private javax.swing.JLabel clienteLabel;
     private javax.swing.JList<String> clientlist;
     private javax.swing.JScrollPane clientscrollpane;
     private javax.swing.JButton confirmbtn;
     private javax.swing.JRadioButton defectoRadio;
     private javax.swing.JPanel defectopanel;
+    private javax.swing.JLabel generoLabel;
+    private javax.swing.JLabel imagenLabel;
     private javax.swing.JButton imgbtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainpanel;
+    private javax.swing.JLabel nombreLabel;
     private javax.swing.JTextField nombretxt;
     private javax.swing.JDialog okDialog;
     private javax.swing.JRadioButton particularRadio;

@@ -20,8 +20,8 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     public DialogoIngresoTema(java.awt.Frame parent,String tittle,boolean modal) {
         super(parent, modal);
         initComponents();
-        URLdelTema.setEnabled(false);
-        UrlaTemaRadioButton.setSelected(false);
+        urlDelTema.setEnabled(false);
+        urlaTemaRadioButton.setSelected(false);
         this.setTitle(tittle);
     }
 
@@ -34,123 +34,123 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        PanelIngresoTemas = new javax.swing.JPanel();
-        UrlaTemaRadioButton = new javax.swing.JRadioButton();
-        URLdelTema = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        AceptarButton = new javax.swing.JButton();
-        CancelarButton = new javax.swing.JButton();
-        NombreTema = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        PathLocal = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        ExaminarButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        DuracionTextField = new javax.swing.JTextField();
+        panelIngresoTemas = new javax.swing.JPanel();
+        urlaTemaRadioButton = new javax.swing.JRadioButton();
+        urlDelTema = new javax.swing.JTextField();
+        urlLabel = new javax.swing.JLabel();
+        aceptarButton = new javax.swing.JButton();
+        cancelarButton = new javax.swing.JButton();
+        nombreTema = new javax.swing.JTextField();
+        nombreLabel = new javax.swing.JLabel();
+        pathLocal = new javax.swing.JTextField();
+        pathLabel = new javax.swing.JLabel();
+        examinarButton = new javax.swing.JButton();
+        duracionLabel = new javax.swing.JLabel();
+        duracionTextField = new javax.swing.JTextField();
 
-        UrlaTemaRadioButton.setText("Ingresar link al tema");
-        UrlaTemaRadioButton.addActionListener(new java.awt.event.ActionListener() {
+        urlaTemaRadioButton.setText("Ingresar link al tema");
+        urlaTemaRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UrlaTemaRadioButtonActionPerformed(evt);
+                urlaTemaRadioButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("URL:");
+        urlLabel.setText("URL:");
 
-        AceptarButton.setText("Aceptar");
-        AceptarButton.addActionListener(new java.awt.event.ActionListener() {
+        aceptarButton.setText("Aceptar");
+        aceptarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AceptarButtonActionPerformed(evt);
+                aceptarButtonActionPerformed(evt);
             }
         });
 
-        CancelarButton.setText("Cancelar");
-        CancelarButton.addActionListener(new java.awt.event.ActionListener() {
+        cancelarButton.setText("Cancelar");
+        cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarButtonActionPerformed(evt);
+                cancelarButtonActionPerformed(evt);
             }
         });
 
-        jLabel2.setText("Nombre del Tema");
+        nombreLabel.setText("Nombre del Tema");
 
-        jLabel3.setText("Path local");
+        pathLabel.setText("Path local");
 
-        ExaminarButton.setText("Examinar");
-        ExaminarButton.addActionListener(new java.awt.event.ActionListener() {
+        examinarButton.setText("Examinar");
+        examinarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExaminarButtonActionPerformed(evt);
+                examinarButtonActionPerformed(evt);
             }
         });
 
-        jLabel4.setText("Duracion");
+        duracionLabel.setText("Duracion");
 
-        javax.swing.GroupLayout PanelIngresoTemasLayout = new javax.swing.GroupLayout(PanelIngresoTemas);
-        PanelIngresoTemas.setLayout(PanelIngresoTemasLayout);
-        PanelIngresoTemasLayout.setHorizontalGroup(
-            PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelIngresoTemasLayout = new javax.swing.GroupLayout(panelIngresoTemas);
+        panelIngresoTemas.setLayout(panelIngresoTemasLayout);
+        panelIngresoTemasLayout.setHorizontalGroup(
+            panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelIngresoTemasLayout.createSequentialGroup()
                     .addGap(0, 23, Short.MAX_VALUE)
-                    .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
+                    .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panelIngresoTemasLayout.createSequentialGroup()
+                            .addComponent(nombreLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(NombreTema, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                            .addComponent(jLabel3)
+                            .addComponent(nombreTema, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelIngresoTemasLayout.createSequentialGroup()
+                            .addComponent(pathLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(PathLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pathLocal, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(ExaminarButton)
+                    .addComponent(examinarButton)
                     .addGap(50, 50, 50))
-                .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                .addGroup(panelIngresoTemasLayout.createSequentialGroup()
                     .addGap(77, 77, 77)
-                    .addComponent(jLabel4)
+                    .addComponent(duracionLabel)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(DuracionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(duracionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+                .addGroup(panelIngresoTemasLayout.createSequentialGroup()
                     .addGap(23, 23, 23)
-                    .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(UrlaTemaRadioButton)
-                        .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                    .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(urlaTemaRadioButton)
+                        .addGroup(panelIngresoTemasLayout.createSequentialGroup()
+                            .addComponent(urlLabel)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(URLdelTema)
+                            .addComponent(urlDelTema)
                             .addGap(141, 141, 141)))))
-            .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
+            .addGroup(panelIngresoTemasLayout.createSequentialGroup()
                 .addGap(240, 240, 240)
-                .addComponent(AceptarButton)
+                .addComponent(aceptarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CancelarButton)
+                .addComponent(cancelarButton)
                 .addGap(14, 14, 14))
         );
-        PanelIngresoTemasLayout.setVerticalGroup(
-            PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelIngresoTemasLayout.createSequentialGroup()
+        panelIngresoTemasLayout.setVerticalGroup(
+            panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIngresoTemasLayout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nombreTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(DuracionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(duracionLabel)
+                    .addComponent(duracionTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(4, 4, 4)
-                .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(PathLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(ExaminarButton))
+                .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pathLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pathLabel)
+                    .addComponent(examinarButton))
                 .addGap(12, 12, 12)
-                .addComponent(UrlaTemaRadioButton)
+                .addComponent(urlaTemaRadioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(URLdelTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(urlDelTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(urlLabel))
                 .addGap(18, 18, 18)
-                .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(AceptarButton)
-                    .addComponent(CancelarButton))
+                .addGroup(panelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aceptarButton)
+                    .addComponent(cancelarButton))
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
@@ -158,61 +158,61 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelIngresoTemas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelIngresoTemas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PanelIngresoTemas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelIngresoTemas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UrlaTemaRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UrlaTemaRadioButtonActionPerformed
-        if (UrlaTemaRadioButton.isSelected()) {
-            URLdelTema.setEnabled(true);
-            PathLocal.setEnabled(false);
+    private void urlaTemaRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_urlaTemaRadioButtonActionPerformed
+        if (urlaTemaRadioButton.isSelected()) {
+            urlDelTema.setEnabled(true);
+            pathLocal.setEnabled(false);
         } else {
-            URLdelTema.setEnabled(false);
-            PathLocal.setEnabled(true);
+            urlDelTema.setEnabled(false);
+            pathLocal.setEnabled(true);
         }
-    }//GEN-LAST:event_UrlaTemaRadioButtonActionPerformed
+    }//GEN-LAST:event_urlaTemaRadioButtonActionPerformed
 
-    private void CancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarButtonActionPerformed
+    private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
         AltaAlbum.cargarTema(false,null,null,null, 0,false);
         this.dispose();
-    }//GEN-LAST:event_CancelarButtonActionPerformed
+    }//GEN-LAST:event_cancelarButtonActionPerformed
 
-    private void AceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarButtonActionPerformed
+    private void aceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarButtonActionPerformed
         int duration = 0;
         try {
-            duration = Integer.parseInt(DuracionTextField.getText());
+            duration = Integer.parseInt(duracionTextField.getText());
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Duracion invalida", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if ("".equals(NombreTema.getText())) {
+        if ("".equals(nombreTema.getText())) {
             JOptionPane.showMessageDialog(this, "Nombre de tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (UrlaTemaRadioButton.isSelected()) {
-            if ("".equals(URLdelTema.getText())) {
+        if (urlaTemaRadioButton.isSelected()) {
+            if ("".equals(urlDelTema.getText())) {
                 JOptionPane.showMessageDialog(this, "Link al tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            AltaAlbum.cargarTema(true,URLdelTema.getText(),null,NombreTema.getText(), duration, true);
+            AltaAlbum.cargarTema(true,urlDelTema.getText(),null,nombreTema.getText(), duration, true);
             this.dispose();
         } else {
-            if ("".equals(PathLocal.getText())) {
+            if ("".equals(pathLocal.getText())) {
                 JOptionPane.showMessageDialog(this, "Cargue un tema", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            AltaAlbum.cargarTema(false,"",selectedFile,NombreTema.getText(), duration,true);
+            AltaAlbum.cargarTema(false,"",selectedFile,nombreTema.getText(), duration,true);
             this.dispose();
         }
-    }//GEN-LAST:event_AceptarButtonActionPerformed
+    }//GEN-LAST:event_aceptarButtonActionPerformed
 
-    private void ExaminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExaminarButtonActionPerformed
+    private void examinarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_examinarButtonActionPerformed
         JFileChooser fChooser = new JFileChooser();
         this.getContentPane().add(fChooser);
         fChooser.setVisible(true);
@@ -228,14 +228,14 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                     fChooser.setVisible(false);
                     return;
                 }
-                PathLocal.setText(pathATema);
+                pathLocal.setText(pathATema);
                 selectedFile = file;
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         fChooser.setVisible(false);
-    }//GEN-LAST:event_ExaminarButtonActionPerformed
+    }//GEN-LAST:event_examinarButtonActionPerformed
 
     private String getExtension(File file) {
         String ext = null;
@@ -249,18 +249,18 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AceptarButton;
-    private javax.swing.JButton CancelarButton;
-    private javax.swing.JTextField DuracionTextField;
-    private javax.swing.JButton ExaminarButton;
-    private javax.swing.JTextField NombreTema;
-    private javax.swing.JPanel PanelIngresoTemas;
-    private javax.swing.JTextField PathLocal;
-    private javax.swing.JTextField URLdelTema;
-    private javax.swing.JRadioButton UrlaTemaRadioButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JButton aceptarButton;
+    private javax.swing.JButton cancelarButton;
+    private javax.swing.JLabel duracionLabel;
+    private javax.swing.JTextField duracionTextField;
+    private javax.swing.JButton examinarButton;
+    private javax.swing.JLabel nombreLabel;
+    private javax.swing.JTextField nombreTema;
+    private javax.swing.JPanel panelIngresoTemas;
+    private javax.swing.JLabel pathLabel;
+    private javax.swing.JTextField pathLocal;
+    private javax.swing.JTextField urlDelTema;
+    private javax.swing.JLabel urlLabel;
+    private javax.swing.JRadioButton urlaTemaRadioButton;
     // End of variables declaration//GEN-END:variables
 }

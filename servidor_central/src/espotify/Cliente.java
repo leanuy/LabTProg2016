@@ -124,9 +124,9 @@ class Cliente extends Usuario {
         return buscarLista(nombre).listarTemas();
     }
     
-    void altaLista(DataParticular dLista) throws ListaRepetidaException {
-        if (validarNombreLista(dLista.getNombre())) {
-            listas.put(dLista.getNombre(), new Privada(dLista));
+    void altaLista(DataParticular dataLista) throws ListaRepetidaException {
+        if (validarNombreLista(dataLista.getNombre())) {
+            listas.put(dataLista.getNombre(), new Privada(dataLista));
         } else {
             throw new ListaRepetidaException();
         }

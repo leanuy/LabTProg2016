@@ -1,6 +1,6 @@
 package presentacion;
 
-
+import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataTema;
@@ -14,7 +14,6 @@ import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.NumeroTemaInvalidoException;
 import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TemaTipoInvalidoException;
-import espotify.Fabrica;
 import espotify.interfaces.IAltaAlbum;
 
 import java.awt.image.BufferedImage;
@@ -344,9 +343,9 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         buttonConfirmarALtaAlbum.setEnabled(true);
     }//GEN-LAST:event_buttonSeleccionarActionPerformed
 
-    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+    private void cargarArbol(DataGenero dataGenero, DefaultMutableTreeNode padre){
         int idx = 0;
-        for(DataGenero d: dGenero.getHijos()){
+        for(DataGenero d: dataGenero.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
             modeloTree.insertNodeInto(nodito,padre,idx);
             idx++;
@@ -470,18 +469,15 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Uno de los géneros ingresados no existe y por lo tanto no se puede agregar al album.", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return;
-        }
-        catch(DuracionInvalidaException e){
+        } catch(DuracionInvalidaException e){
             JOptionPane.showMessageDialog(this, "Uno de los temas ingresados no tiene una duración válida.", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return;
-        }
-        catch(NumeroTemaInvalidoException e){
+        } catch(NumeroTemaInvalidoException e){
             JOptionPane.showMessageDialog(this, "Uno de los temas ingresados no tiene un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return;
-        }
-        catch(TemaRepetidoException e){
+        } catch(TemaRepetidoException e){
             JOptionPane.showMessageDialog(this, "Se ingresaron dos temas con el mismo nombre. El nombre de tema debe ser único.", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return;

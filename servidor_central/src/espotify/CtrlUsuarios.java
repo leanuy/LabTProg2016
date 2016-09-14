@@ -283,14 +283,14 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public void altaCliente(DataCliente dCliente)
+    public void altaCliente(DataCliente dataCliente)
             throws NickRepetidoException, CorreoRepetidoException,
             FormatoIncorrectoException {
-        if (Usuario.validarDatosUsuario(dCliente)) {
-            if (!existeUsuarioCorreo(dCliente.getCorreo())) {
-                if (!existeUsuarioNick(dCliente.getNick())) {
-                    Cliente nuevoCli = new Cliente(dCliente);
-                    agregarCliente(dCliente.getNick(), nuevoCli);
+        if (Usuario.validarDatosUsuario(dataCliente)) {
+            if (!existeUsuarioCorreo(dataCliente.getCorreo())) {
+                if (!existeUsuarioNick(dataCliente.getNick())) {
+                    Cliente nuevoCli = new Cliente(dataCliente);
+                    agregarCliente(dataCliente.getNick(), nuevoCli);
                 } else {
                     throw new NickRepetidoException();
                 }

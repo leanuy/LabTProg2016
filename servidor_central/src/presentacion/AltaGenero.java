@@ -1,9 +1,9 @@
 package presentacion;
 
+import espotify.Fabrica;
 import espotify.datatypes.DataGenero;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.GeneroRepetidoException;
-import espotify.Fabrica;
 import espotify.interfaces.IAltaGenero;
 
 import javax.swing.JOptionPane;
@@ -34,9 +34,9 @@ public class AltaGenero extends javax.swing.JInternalFrame {
 
     }
     
-    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre) {
+    private void cargarArbol(DataGenero dataGenero, DefaultMutableTreeNode padre) {
         int idx = 0;
-        for (DataGenero d: dGenero.getHijos()) {
+        for (DataGenero d: dataGenero.getHijos()) {
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
             modeloTree.insertNodeInto(nodito,padre,idx);
             idx++;

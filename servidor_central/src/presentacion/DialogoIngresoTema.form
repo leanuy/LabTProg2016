@@ -20,17 +20,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PanelIngresoTemas" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelIngresoTemas" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="PanelIngresoTemas" alignment="0" max="32767" attributes="0"/>
+          <Component id="panelIngresoTemas" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="PanelIngresoTemas">
+    <Container class="javax.swing.JPanel" name="panelIngresoTemas">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -40,35 +40,35 @@
                       <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                              <Component id="nombreLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="NombreTema" min="-2" pref="341" max="-2" attributes="0"/>
+                              <Component id="nombreTema" min="-2" pref="341" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                              <Component id="pathLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="PathLocal" min="-2" pref="385" max="-2" attributes="0"/>
+                              <Component id="pathLocal" min="-2" pref="385" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ExaminarButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="examinarButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                      <Component id="duracionLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="DuracionTextField" min="-2" pref="66" max="-2" attributes="0"/>
+                      <Component id="duracionTextField" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="UrlaTemaRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="urlaTemaRadioButton" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="urlLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="URLdelTema" max="32767" attributes="0"/>
+                              <Component id="urlDelTema" max="32767" attributes="0"/>
                               <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -76,9 +76,9 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="240" max="-2" attributes="0"/>
-                  <Component id="AceptarButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="aceptarButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="CancelarButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelarButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -88,31 +88,31 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="NombreTema" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreTema" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nombreLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="DuracionTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="duracionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="duracionTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="PathLocal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ExaminarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pathLocal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="pathLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="examinarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                  <Component id="UrlaTemaRadioButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="urlaTemaRadioButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="URLdelTema" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="urlDelTema" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="urlLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="AceptarButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="CancelarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="aceptarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cancelarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="10" max="32767" attributes="0"/>
               </Group>
@@ -120,65 +120,65 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JRadioButton" name="UrlaTemaRadioButton">
+        <Component class="javax.swing.JRadioButton" name="urlaTemaRadioButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ingresar link al tema"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UrlaTemaRadioButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="urlaTemaRadioButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="URLdelTema">
+        <Component class="javax.swing.JTextField" name="urlDelTema">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="urlLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="URL:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="AceptarButton">
+        <Component class="javax.swing.JButton" name="aceptarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Aceptar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AceptarButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="aceptarButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="CancelarButton">
+        <Component class="javax.swing.JButton" name="cancelarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CancelarButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelarButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="NombreTema">
+        <Component class="javax.swing.JTextField" name="nombreTema">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="nombreLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre del Tema"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="PathLocal">
+        <Component class="javax.swing.JTextField" name="pathLocal">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="pathLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Path local"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ExaminarButton">
+        <Component class="javax.swing.JButton" name="examinarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Examinar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExaminarButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="examinarButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="duracionLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Duracion"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="DuracionTextField">
+        <Component class="javax.swing.JTextField" name="duracionTextField">
         </Component>
       </SubComponents>
     </Container>

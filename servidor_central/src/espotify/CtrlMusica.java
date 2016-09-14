@@ -16,8 +16,8 @@ import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IConsultaAlbum;
 
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
@@ -117,18 +117,19 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
         return lista;
     }
     
-    public void altaAlbum(DataAlbumExt dAlbum) throws AlbumRepetidoException, GeneroInexistenteException,
+    public void altaAlbum(DataAlbumExt dataAlbum)
+            throws AlbumRepetidoException, GeneroInexistenteException,
             DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException,
             CampoVacioException, TemaTipoInvalidoException,ArtistaInexistenteException {
         //Validar unicidad de nombre para el album
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(dAlbum.getNickArtista());
-        if (art.tieneAlbum(dAlbum.getNombre())) {
+        Artista art = ctrlUsuarios.buscarArtista(dataAlbum.getNickArtista());
+        if (art.tieneAlbum(dataAlbum.getNombre())) {
             throw new AlbumRepetidoException();
         }
         //Validar lista de nombres de generos y generar un hash de generos para el album
-        Map<String, Genero> lstGeneros = this.validarGeneros(dAlbum.getGeneros());
-        Album album = new Album(dAlbum, art, lstGeneros);
+        Map<String, Genero> lstGeneros = this.validarGeneros(dataAlbum.getGeneros());
+        Album album = new Album(dataAlbum, art, lstGeneros);
         lstGeneros.entrySet().stream().forEach((entry) -> {
             entry.getValue().addAlbum(album);
         });
