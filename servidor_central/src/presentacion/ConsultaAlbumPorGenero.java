@@ -192,17 +192,17 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         modelitoAlbums.clear();
         albumsIndex.clear();
         TreePath path = ArbolGeneros.getSelectionPath();
-        if(path == null){
+        if (path == null) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un genero", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String generoSeleccionado = path.getLastPathComponent().toString();
         
         int count = 1;
-        try{
+        try {
             Albums = inter.listarAlbumesDeGenero(generoSeleccionado);
             
-            for(String[] d : Albums){
+            for (String[] d : Albums) {
                 modelitoAlbums.addElement(count + " " + d[1] + " - " + d[0]);
                 String[] nodo = new String[3];
                 nodo[0] = d[0];
@@ -211,7 +211,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
                 count++;
                 albumsIndex.add(nodo);
             } 
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_obtenerAlbumsGeneroButtonActionPerformed
@@ -225,9 +225,9 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         String nomAlbum = null;
         int[] opcion;
         AlbumConsultado ventanaAlbum;
-        try{
+        try {
             opcion = ListaAlbumsGenero.getSelectedIndices();
-            if(opcion.length != 1){
+            if (opcion.length != 1) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un solo album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -239,17 +239,17 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
             dataAlbum = inter.consultaAlbum(res[0],res[1]);
             ventanaAlbum = new AlbumConsultado(dataAlbum);            
             ventanaAlbum.setVisible(true);
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_consultarAlbumButtonActionPerformed
 
-    private String[] obtenerNumerodeLista(String str){
+    private String[] obtenerNumerodeLista(String str) {
         int idx = str.indexOf(' ');
         String numero = str.substring(0, idx);
         String[] res = null;
-        for(String[] datosAlbum: albumsIndex){
-            if(datosAlbum[2].equals(numero)){
+        for (String[] datosAlbum: albumsIndex) {
+            if(datosAlbum[2].equals(numero)) {
                 res = new String[2];
                 res[0] = datosAlbum[0];
                 res[1] = datosAlbum[1];

@@ -32,8 +32,8 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         initComponents();
         IConsultaCliente interf = Fabrica.getIConsultaCliente();
         List<String> clientes = interf.listarClientes();
-        for(String str : clientes) {
-            Select.addItem(str);
+        for (String str : clientes) {
+            clientesCmb.addItem(str);
         }
     }
 
@@ -47,7 +47,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         Conteiner4 = new javax.swing.JPanel();
-        Select = new javax.swing.JComboBox<>();
+        clientesCmb = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -72,9 +72,9 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Consulta Perfil Cliente");
 
-        Select.addActionListener(new java.awt.event.ActionListener() {
+        clientesCmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SelectActionPerformed(evt);
+                clientesCmbActionPerformed(evt);
             }
         });
 
@@ -151,7 +151,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
                                     .addComponent(ApellidoText)
                                     .addComponent(CorreoText)))
                             .addComponent(jLabel1)
-                            .addComponent(Select, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(clientesCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49))))
@@ -164,7 +164,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
                         .addGap(20, 20, 20)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(Select, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(clientesCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(58, 58, 58)
                         .addGroup(Conteiner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -221,10 +221,10 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
+    private void clientesCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesCmbActionPerformed
         // TODO add your handling code here:
-        String usr = String.valueOf(Select.getSelectedItem());
-        DataClienteExt dCliente=null;
+        String usr = String.valueOf(clientesCmb.getSelectedItem());
+        DataClienteExt dCliente = null;
         try {
             dCliente = interf.consultaCliente(usr);
         } catch (ClienteInexistenteException ex) {
@@ -236,7 +236,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         Calendar fechaNacimiento = dCliente.getfNac();
         String fecha = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        if (fechaNacimiento != null){
+        if (fechaNacimiento != null) {
             fecha = sdf.format(fechaNacimiento.getTime());
         }
         FechaText.setText(fecha);
@@ -249,8 +249,8 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         List<String> seguidores = dCliente.getSeguidores();
         int cantSeguidores = seguidores.size();
         String[] array = new String[cantSeguidores];
-        int idx=0;
-        for(String seguidor : seguidores){
+        int idx = 0;
+        for (String seguidor : seguidores) {
             array[idx] = seguidor;
             idx++;
         }
@@ -258,32 +258,32 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         CantidadSeguidoresText.setText("Total: " + cantSeguidores);
         BufferedImage imagen = dCliente.getImg();
         BufferedImage image;
-        if(imagen == null){
+        if (imagen == null) {
             image = null;
-        }else{
+        } else {
             image = getScaledImage(imagen, 200,200);
         }
         jLabel8.removeAll();
-        if (image != null){
+        if (image != null) {
             ImageIcon img = new ImageIcon(image);
             jLabel8.setIcon(img);
             jLabel8.setVisible(true);
-        }else{
+        } else {
             //jLabel8.setText("El usuario NO tiene imagen");
             jLabel8.setVisible(false);
         }   
-    }//GEN-LAST:event_SelectActionPerformed
+    }//GEN-LAST:event_clientesCmbActionPerformed
 
     
-    private BufferedImage getScaledImage(BufferedImage src, int width, int height){
+    private BufferedImage getScaledImage(BufferedImage src, int width, int height) {
         int finalw = width;
         int finalh = height;
         double factor = 1.0d;
-        if(src.getWidth() > src.getHeight()){
-            factor = ((double)src.getHeight()/(double)src.getWidth());
+        if (src.getWidth() > src.getHeight()) {
+            factor = ((double)src.getHeight() / (double)src.getWidth());
             finalh = (int)(finalw * factor);                
-        }else{
-            factor = ((double)src.getWidth()/(double)src.getHeight());
+        } else {
+            factor = ((double)src.getWidth() / (double)src.getHeight());
             finalw = (int)(finalh * factor);
         }   
 
@@ -305,7 +305,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel NombreText;
     private javax.swing.JList<String> SeguidoresList;
     private javax.swing.JList<String> SeguidosList;
-    private javax.swing.JComboBox<String> Select;
+    private javax.swing.JComboBox<String> clientesCmb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

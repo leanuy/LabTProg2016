@@ -336,11 +336,11 @@ public class Favoritear extends javax.swing.JInternalFrame {
         try {
             lstpubcmb.setEnabled(false);
             List<String> listas = ifav.listarListasPublicasDeCliente(nomCliente);
-            for(String str : listas) {
+            for (String str : listas) {
                 lstpubcmb.addItem(str);
             }
-            lstpubcmb.setEnabled(listas.size()>0);
-        } catch(ClienteInexistenteException ex) {
+            lstpubcmb.setEnabled(listas.size() > 0);
+        } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(this, "El cliente elegido no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
         }   
     }//GEN-LAST:event_lstpubclicmbActionPerformed
@@ -352,11 +352,11 @@ public class Favoritear extends javax.swing.JInternalFrame {
         try {
             albcmb.setEnabled(false);
             List<String> albums = ifav.listarAlbumesDeArtista(nomArtista);
-            for(String str : albums) {
+            for (String str : albums) {
                 albcmb.addItem(str);
             }
-            albcmb.setEnabled(albums.size()>0);
-        } catch(ArtistaInexistenteException e){
+            albcmb.setEnabled(albums.size() > 0);
+        } catch (ArtistaInexistenteException e) {
             JOptionPane.showMessageDialog(this, "El artista elegido no existe.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }   
     }//GEN-LAST:event_artcmbActionPerformed

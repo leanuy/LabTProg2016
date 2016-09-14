@@ -169,10 +169,10 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void UrlaTemaRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UrlaTemaRadioButtonActionPerformed
-        if(UrlaTemaRadioButton.isSelected()){
+        if (UrlaTemaRadioButton.isSelected()) {
             URLdelTema.setEnabled(true);
             PathLocal.setEnabled(false);
-        }else{
+        } else {
             URLdelTema.setEnabled(false);
             PathLocal.setEnabled(true);
         }
@@ -185,25 +185,25 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
 
     private void AceptarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarButtonActionPerformed
         int duration = 0;
-        try{
+        try {
             duration = Integer.parseInt(DuracionTextField.getText());
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Duracion invalida", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if("".equals(NombreTema.getText())){
+        if ("".equals(NombreTema.getText())) {
             JOptionPane.showMessageDialog(this, "Nombre de tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(UrlaTemaRadioButton.isSelected()){
-            if("".equals(URLdelTema.getText())){
+        if (UrlaTemaRadioButton.isSelected()) {
+            if ("".equals(URLdelTema.getText())) {
                 JOptionPane.showMessageDialog(this, "Link al tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             AltaAlbum.cargarTema(true,URLdelTema.getText(),null,NombreTema.getText(), duration, true);
             this.dispose();
-        }else{
-            if("".equals(PathLocal.getText())){
+        } else {
+            if ("".equals(PathLocal.getText())) {
                 JOptionPane.showMessageDialog(this, "Cargue un tema", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -218,12 +218,12 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
         fChooser.setVisible(true);
         
         int selected = fChooser.showDialog(this, "Seleccionar");
-        if(selected == JFileChooser.APPROVE_OPTION){
+        if (selected == JFileChooser.APPROVE_OPTION) {
             File file = fChooser.getSelectedFile();
             try {
                 pathATema = file.getCanonicalPath();
                 String ext = getExtension(file);
-                if(!"mp3".equals(ext)){
+                if (!"mp3".equals(ext)) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar un archivo formato .mp3", "Error", JOptionPane.ERROR_MESSAGE);
                     fChooser.setVisible(false);
                     return;

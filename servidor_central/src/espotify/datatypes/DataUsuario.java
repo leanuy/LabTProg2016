@@ -43,8 +43,7 @@ public class DataUsuario {
         return this.seguidores;
     }
     
-    public String getImgUrl()
-    {
+    public String getImgUrl() {
         return "assets/img/profile.png";
     }
     
