@@ -9,7 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,7 +27,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
     public ConsultaArtista() {
         initComponents();
         IConsultaArtista interf = Fabrica.getIConsultaArtista();
-        ArrayList<String> a = interf.ListarArtistas();
+        List<String> a = interf.ListarArtistas();
         for(String str : a) {
             Select.addItem(str);
         }
@@ -255,7 +255,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         CorreoText.setText(da.getCorreo());
         jTextArea1.setText(da.getBio());
         URLText.setText(da.getUrl());
-        ArrayList<String> a = da.getSeguidores();
+        List<String> a = da.getSeguidores();
         int k = a.size();
         String[] array = new String[k];
         int i=0;

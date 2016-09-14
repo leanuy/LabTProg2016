@@ -22,6 +22,7 @@ import org.junit.runners.MethodSorters;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 
@@ -49,9 +50,9 @@ public class ConsultaAlbumTest {
         String[] valores = new String[2];
         valores[0] = "Album 1";
         valores[1] = "ElGordoAxl";
-        ArrayList<String[]> expResult = new ArrayList<>();
+        List<String[]> expResult = new ArrayList<>();
         expResult.add(valores);
-        ArrayList<String[]> result = iConsultaAlbum.ListarAlbumesDeGenero("Pop");
+        List<String[]> result = iConsultaAlbum.ListarAlbumesDeGenero("Pop");
         assertEquals(expResult.size(),result.size());
         assertArrayEquals(expResult.get(0),result.get(0));
     }
@@ -59,38 +60,38 @@ public class ConsultaAlbumTest {
     @Test (expected=GeneroInexistenteException.class)
     public void testListarAlbumesDeGenero2() throws Exception {
         System.out.println("Listar Albumes De Genero:género inexistente");
-        ArrayList<String[]> result = iConsultaAlbum.ListarAlbumesDeGenero("asf");
+        List<String[]> result = iConsultaAlbum.ListarAlbumesDeGenero("asf");
     }
     
     @Test
     public void testListarArtistas() throws Exception {
         System.out.println("Listar Artistas");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> expResult = new ArrayList<>();
         expResult.add("ElGordoAxl");
-        ArrayList<String> result = iConsultaAlbum.ListarArtistas();
+        List<String> result = iConsultaAlbum.ListarArtistas();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testListarAlbumesDeArtista() throws Exception {
         System.out.println("Listar Albumes De Artista");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> expResult = new ArrayList<>();
         expResult.add("Album 1");
-        ArrayList<String> result = iConsultaAlbum.ListarAlbumesDeArtista("ElGordoAxl");
+        List<String> result = iConsultaAlbum.ListarAlbumesDeArtista("ElGordoAxl");
         assertEquals(expResult,result);
     }
     
     @Test (expected=ArtistaInexistenteException.class)
     public void testListarAlbumesDeArtista2() throws Exception {
         System.out.println("Listar Albumes De Artista:Artista inexistente");
-        ArrayList<String> result = iConsultaAlbum.ListarAlbumesDeArtista("CHPP");
+        List<String> result = iConsultaAlbum.ListarAlbumesDeArtista("CHPP");
     }
     
     @Test
     public void testConsultaAlbum() throws Exception {
         System.out.println("Consulta Album: ok");
         
-        ArrayList<DataTema> temas = new ArrayList<>();
+        List<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Alb"));
@@ -98,7 +99,7 @@ public class ConsultaAlbumTest {
         temas.add(new DataTemaArchivo(null, "tema 5", 230, 5, "ElGordoAxl", "Alb"));
         String nombre = "Alb";
         int anio = 2013;
-        ArrayList<String> generos = new ArrayList<>();
+        List<String> generos = new ArrayList<>();
         generos.add("Pop");
         BufferedImage img = null;
         String nickArtista = "ElGordoAxl";

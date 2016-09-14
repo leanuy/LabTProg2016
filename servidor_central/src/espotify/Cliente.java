@@ -15,12 +15,13 @@ import espotify.Excepciones.YaPublicaException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Cliente extends Usuario {
-    private final HashMap<String,Usuario> seguidos;
-    private final HashMap<String,Particular> listas;
-    private final ArrayList<Favoriteable> favoritos;
+    private final Map<String,Usuario> seguidos;
+    private final Map<String,Particular> listas;
+    private final List<Favoriteable> favoritos;
     
     Cliente(DataUsuario data) {
         super(data);
@@ -47,7 +48,7 @@ class Cliente extends Usuario {
             lis[idx] = nomb;
             idx++;
         }
-        ArrayList<String> segdores = new ArrayList();
+        List<String> segdores = new ArrayList();
         String namef;
         Cliente cli;
         for (Map.Entry<String, Cliente> entry : this.seguidores.entrySet()) {
@@ -90,16 +91,16 @@ class Cliente extends Usuario {
         listas.put(nomLista, listaPublica);
     }
 
-    ArrayList<String> ListarListas() {
-        ArrayList salida = new ArrayList();
+    List<String> ListarListas() {
+        List salida = new ArrayList();
         listas.keySet().stream().forEach((key) -> {
             salida.add(key);
         });
         return salida;
     }
     
-    ArrayList<String> ListarListasPrivadas() {
-        ArrayList<String> salida = new ArrayList();
+    List<String> ListarListasPrivadas() {
+        List<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
             if (part instanceof Privada) {
@@ -109,8 +110,8 @@ class Cliente extends Usuario {
         return salida;
     }
     
-    ArrayList<String> ListarListasPublicas() {
-        ArrayList<String> salida = new ArrayList();
+    List<String> ListarListasPublicas() {
+        List<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
             if (!(part instanceof Privada)) {
@@ -120,7 +121,7 @@ class Cliente extends Usuario {
         return salida;
     }
 
-    ArrayList<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
+    List<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
         return BuscarLista(nombre).ListarTemas();
     }
     

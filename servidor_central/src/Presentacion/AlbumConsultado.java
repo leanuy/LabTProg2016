@@ -8,7 +8,7 @@ import espotify.Datatypes.DataTemaWeb;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -21,9 +21,8 @@ import javax.swing.ListSelectionModel;
  */
 public class AlbumConsultado extends javax.swing.JDialog {
     
-    
-    private ArrayList<DataTema> temas;
-    private ArrayList<String> genders;
+    private List<DataTema> temas;
+    private List<String> genders;
     private DefaultListModel modeloTemas; 
     private DefaultListModel modeloGenders; 
     private DataAlbumExt album;

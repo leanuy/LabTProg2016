@@ -16,7 +16,10 @@ import espotify.Interfaces.IFavoritear;
 import espotify.Interfaces.IPublicarLista;
 import espotify.Interfaces.IQuitarTemaLista;
 
-public abstract class Fabrica {
+public class Fabrica {
+    private Fabrica() {
+    }
+    
     public static IAltaGenero getIAltaGenero() {
         return new CtrlMusica();
     }

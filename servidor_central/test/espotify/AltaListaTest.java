@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 
 
@@ -47,10 +48,10 @@ public class AltaListaTest {
     @Test
     public void test2ListarClientes() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("ListarClientes");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> expResult = new ArrayList<>();
         expResult.add("TesterLista2");
         expResult.add("TesterLista");
-        ArrayList<String> result = iAltaLista.ListarClientes();
+        List<String> result = iAltaLista.ListarClientes();
         assertEquals(expResult, result);
     }    
     

@@ -22,6 +22,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -56,15 +57,15 @@ public class AgregarTemaListaTest {
     @Test
     public void ListarArtistasTest() {
         System.out.println("Listar Artistas, testeado en otro lado, testeando mensajes intercontroladores nomás acá");
-        ArrayList<String> result = iAdd.ListarArtistas();
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iAdd.ListarArtistas();
+        List<String> expResult = new ArrayList<>();
     }
     
     @Test
     public void ListarListasDefectoTest() {
         System.out.println("Listar Listas por Defecto");
-        ArrayList<String> result = iAdd.ListarListasDefecto();
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iAdd.ListarListasDefecto();
+        List<String> expResult = new ArrayList<>();
         expResult.add("Lista genérica");
         assertEquals(expResult, result);
     }
@@ -72,8 +73,8 @@ public class AgregarTemaListaTest {
     @Test
     public void ListarAlbumesArtista() throws ArtistaInexistenteException {
         System.out.println("Listar Albumes de Artista");
-        ArrayList<String> result = iAdd.ListarAlbumesDeArtista("ElGordoAxl");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iAdd.ListarAlbumesDeArtista("ElGordoAxl");
+        List<String> expResult = new ArrayList<>();
         expResult.add("Album 1");
         assertEquals(expResult, result);
     }
@@ -81,14 +82,14 @@ public class AgregarTemaListaTest {
     @Test (expected=ArtistaInexistenteException.class)
     public void ListarAlbumesArtista2() throws ArtistaInexistenteException {
         System.out.println("Listar Albumes de Artista 2: no existe");
-        ArrayList<String> result = iAdd.ListarAlbumesDeArtista("ElGordasdfoAxl");
+        List<String> result = iAdd.ListarAlbumesDeArtista("ElGordasdfoAxl");
     }
     
     @Test
     public void ListarListasPublicasDeCLienteTest() throws ArtistaInexistenteException, ClienteInexistenteException {
         System.out.println("Listar Listas Publicas de Cliente");
-        ArrayList<String> result = iAdd.ListarListasPublicasDeCliente("TesterLista");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iAdd.ListarListasPublicasDeCliente("TesterLista");
+        List<String> expResult = new ArrayList<>();
         expResult.add("Mi Lista Publica");
         assertEquals(expResult, result);
     }
@@ -96,22 +97,22 @@ public class AgregarTemaListaTest {
     @Test
     public void ListarTemasLista() throws Exception {
         System.out.println("Listar Temas de Lista");
-        ArrayList<DataTema> result = iAdd.ListarTemasLista("Lista genérica");
-        ArrayList<DataTema> expResult = new ArrayList<>();
+        List<DataTema> result = iAdd.ListarTemasLista("Lista genérica");
+        List<DataTema> expResult = new ArrayList<>();
         assertEquals(expResult, result);
     }
     
     @Test (expected=ListaInexistenteException.class)
     public void ListarTemasLista2() throws Exception {
         System.out.println("Listar Temas de Lista");
-        ArrayList<DataTema> result = iAdd.ListarTemasLista("Mi Lista Pasdfublica");
+        List<DataTema> result = iAdd.ListarTemasLista("Mi Lista Pasdfublica");
     }
     
     @Test
     public void ListarTemasLista2_1() throws Exception {
         System.out.println("Listar Temas de Lista_2");
-        ArrayList<DataTema> result = iAdd.ListarTemasLista2("TesterLista","Mi Lista Publica");
-        ArrayList<DataTema> expResult = new ArrayList<>();
+        List<DataTema> result = iAdd.ListarTemasLista2("TesterLista","Mi Lista Publica");
+        List<DataTema> expResult = new ArrayList<>();
         assertEquals(expResult, result);
     }
     

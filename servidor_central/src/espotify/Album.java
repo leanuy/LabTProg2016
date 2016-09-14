@@ -12,8 +12,8 @@ import espotify.Excepciones.TemaTipoInvalidoException;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class Album implements Favoriteable {
@@ -22,8 +22,8 @@ public class Album implements Favoriteable {
     private final int anio;
     private final BufferedImage img;
     private final Artista artista;
-    private HashMap<String, Genero> generos;
-    private final ArrayList<Tema> temas;
+    private final Map<String, Genero> generos;
+    private final List<Tema> temas;
     
     //getters
     String getNombre() {
@@ -34,7 +34,7 @@ public class Album implements Favoriteable {
         return this.artista.getNick();
     }
     
-    ArrayList<DataTema> getDataTemas() {
+    List<DataTema> getDataTemas() {
         ArrayList<DataTema> salida = new ArrayList<>();
         DataTema dt;
         for (Tema t : temas) {
@@ -45,7 +45,7 @@ public class Album implements Favoriteable {
     }
     
     DataAlbumExt getDataExt() {
-        ArrayList<DataTema> dataTemas = new ArrayList();
+        List<DataTema> dataTemas = new ArrayList();
         Iterator<Tema> it = temas.iterator();
         Tema temaActual;
         while (it.hasNext()) {
@@ -54,7 +54,7 @@ public class Album implements Favoriteable {
         }
         Iterator itg = generos.entrySet().iterator();
         Genero generoActual;
-        ArrayList<String> nombreGeneros = new ArrayList<String>();
+        List<String> nombreGeneros = new ArrayList<String>();
         while (itg.hasNext()) {
             Map.Entry pair = (Map.Entry)itg.next();
             generoActual = (Genero) pair.getValue();
@@ -64,15 +64,15 @@ public class Album implements Favoriteable {
                 nombreGeneros, this.img, artista.getNick());
     }
 
-    private ArrayList<Tema> ValidarTemas(ArrayList<DataTema> data_temas) throws
+    private List<Tema> ValidarTemas(List<DataTema> data_temas) throws
             DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, TemaTipoInvalidoException {
         int largo = data_temas.size();
         boolean[] orden = new boolean[largo];
         Arrays.fill(orden, false);
 
-        ArrayList<Tema> listaTemas = new ArrayList<>();
-        ArrayList<String> nombresTemas = new ArrayList<>();
+        List<Tema> listaTemas = new ArrayList<>();
+        List<String> nombresTemas = new ArrayList<>();
 
         for (int i = 0; i < largo; i++) {
             DataTema dt = data_temas.get(i);
@@ -110,7 +110,7 @@ public class Album implements Favoriteable {
         return listaTemas;
     }
     //constructores
-    Album(DataAlbumExt dt, Artista artista, HashMap<String, Genero> generos)
+    Album(DataAlbumExt dt, Artista artista, Map<String, Genero> generos)
             throws DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, TemaTipoInvalidoException {
         this.nombre = dt.getNombre();

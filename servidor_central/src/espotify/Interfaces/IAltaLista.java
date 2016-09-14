@@ -7,11 +7,11 @@ import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public interface IAltaLista {
-    public ArrayList<String> ListarClientes();
+    public List<String> ListarClientes();
 
     public DataGenero ListarGeneros();
 

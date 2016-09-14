@@ -85,8 +85,8 @@ public class MainFrame extends javax.swing.JFrame {
         AltaAlbum = new javax.swing.JMenuItem();
         AltaLista = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
-        ConsultaClienteMI = new javax.swing.JMenuItem();
-        ConsultaArtistaMI = new javax.swing.JMenuItem();
+        ConsultaClienteMitem = new javax.swing.JMenuItem();
+        ConsultaArtistaMItem = new javax.swing.JMenuItem();
         ConsultaAlbumMenuItem = new javax.swing.JMenuItem();
         ConsultaListaMenuItem = new javax.swing.JMenuItem();
         SocialMenu = new javax.swing.JMenu();
@@ -298,21 +298,21 @@ public class MainFrame extends javax.swing.JFrame {
 
         ConsultasDropDown.setText("Consultas");
 
-        ConsultaClienteMI.setText("Consulta perfil Cliente");
-        ConsultaClienteMI.addActionListener(new java.awt.event.ActionListener() {
+        ConsultaClienteMitem.setText("Consulta perfil Cliente");
+        ConsultaClienteMitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaClienteMIActionPerformed(evt);
+                ConsultaClienteMitemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaClienteMI);
+        ConsultasDropDown.add(ConsultaClienteMitem);
 
-        ConsultaArtistaMI.setText("Consulta perfil Artista");
-        ConsultaArtistaMI.addActionListener(new java.awt.event.ActionListener() {
+        ConsultaArtistaMItem.setText("Consulta perfil Artista");
+        ConsultaArtistaMItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaArtistaMIActionPerformed(evt);
+                ConsultaArtistaMItemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaArtistaMI);
+        ConsultasDropDown.add(ConsultaArtistaMItem);
 
         ConsultaAlbumMenuItem.setText("Consulta Album");
         ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -452,21 +452,21 @@ public class MainFrame extends javax.swing.JFrame {
         dejar.setVisible(true);
     }//GEN-LAST:event_DejarSeguirMItemActionPerformed
 
-    private void ConsultaClienteMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteMIActionPerformed
+    private void ConsultaClienteMitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteMitemActionPerformed
         MainPanel.removeAll();
         ConsultaCliente cons = new ConsultaCliente();
         MainPanel.add(cons);
         MainPanel.repaint();
         cons.setVisible(true);
-    }//GEN-LAST:event_ConsultaClienteMIActionPerformed
+    }//GEN-LAST:event_ConsultaClienteMitemActionPerformed
 
-    private void ConsultaArtistaMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaArtistaMIActionPerformed
+    private void ConsultaArtistaMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaArtistaMItemActionPerformed
         MainPanel.removeAll();
         ConsultaArtista art = new ConsultaArtista();
         MainPanel.add(art);
         MainPanel.repaint();
         art.setVisible(true);
-    }//GEN-LAST:event_ConsultaArtistaMIActionPerformed
+    }//GEN-LAST:event_ConsultaArtistaMItemActionPerformed
 
     private void AltaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaListaActionPerformed
         MainPanel.removeAll();
@@ -1134,8 +1134,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JMenu AltasDropDown;
     private javax.swing.JMenuItem ConsultaAlbumMenuItem;
-    private javax.swing.JMenuItem ConsultaArtistaMI;
-    private javax.swing.JMenuItem ConsultaClienteMI;
+    private javax.swing.JMenuItem ConsultaArtistaMItem;
+    private javax.swing.JMenuItem ConsultaClienteMitem;
     private javax.swing.JMenuItem ConsultaListaMenuItem;
     private javax.swing.JMenu ConsultasDropDown;
     private javax.swing.JMenuItem DejarSeguirMItem;

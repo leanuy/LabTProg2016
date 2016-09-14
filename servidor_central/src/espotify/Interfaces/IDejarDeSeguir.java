@@ -4,13 +4,13 @@ import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.SeguidoInexistenteException;
 import espotify.Excepciones.SeguidorInexistenteException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 
 public interface IDejarDeSeguir {
     
-    public ArrayList<String> ListarClientes();
+    public List<String> ListarClientes();
 
     public String[] getSeguidos(String usr)
             throws ClienteInexistenteException ;

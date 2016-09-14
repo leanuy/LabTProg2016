@@ -1,13 +1,14 @@
 package espotify;
 
 import java.util.HashMap;
+import java.util.Map;
 
 class ManejadorColecciones {
     private static ManejadorColecciones instancia;
-    private final HashMap<String,Cliente> clientes;
-    private final HashMap<String,Artista> artistas;
-    private final HashMap<String,Defecto> listas; //POR DEFECTO
-    private final HashMap<String,Genero> generos;
+    private final Map<String,Cliente> clientes;
+    private final Map<String,Artista> artistas;
+    private final Map<String,Defecto> listas; //POR DEFECTO
+    private final Map<String,Genero> generos;
     private final Genero generoBase;
 
 //SINGLETON
@@ -32,7 +33,7 @@ class ManejadorColecciones {
     }
     
 //Clientes
-    HashMap<String, Cliente> getClientes() {
+    Map<String, Cliente> getClientes() {
         return clientes;
     }
     
@@ -45,7 +46,7 @@ class ManejadorColecciones {
     }
 
 //Artistas
-    HashMap<String, Artista> getArtistas() {
+    Map<String, Artista> getArtistas() {
         return artistas;
     }
     
@@ -58,7 +59,7 @@ class ManejadorColecciones {
     }
     
 //ListasDefecto
-    HashMap<String, Defecto> getListas() {
+    Map<String, Defecto> getListas() {
         return listas;
     }
     
@@ -71,7 +72,7 @@ class ManejadorColecciones {
     }
 
 //Generos
-    HashMap<String, Genero> getGeneros() {
+    Map<String, Genero> getGeneros() {
         return generos;
     }
     

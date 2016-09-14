@@ -18,6 +18,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 
 
@@ -70,8 +71,8 @@ public class PublicarListaTest {
     @Test
     public void test1ListarListasPrivadasDeCliente() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
         System.out.println("ListarListasPrivadasDeCliente:");
-        ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
+        List<String> expResult = new ArrayList<>();
         expResult.add("Mi Lista Publica");
         assertEquals(expResult,result);
     }
@@ -79,15 +80,15 @@ public class PublicarListaTest {
     @Test
     public void test3ListarListasPrivadasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasPrivadasDeCliente:no hay");
-        ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
+        List<String> expResult = new ArrayList<>();
         assertEquals(expResult,result);
     }
     
     @Test (expected=ClienteInexistenteException.class)
     public void testListarListasPrivadasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasPrivadasDeCliente:cliente inexistente");
-        ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesasdfterLista");
+        List<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesasdfterLista");
     }
     
     @Test (expected=YaPublicaException.class)

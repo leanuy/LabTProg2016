@@ -6,17 +6,17 @@ import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.GeneroInexistenteException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IConsultaAlbum { 
     public DataGenero ListarGeneros();
 
-    public ArrayList<String[]> ListarAlbumesDeGenero(String nomGenero)
+    public List<String[]> ListarAlbumesDeGenero(String nomGenero)
             throws GeneroInexistenteException;
 
-    public ArrayList<String> ListarArtistas();
+    public List<String> ListarArtistas();
 
-    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista)
+    public List<String> ListarAlbumesDeArtista(String nomArtista)
             throws ArtistaInexistenteException;
 
     public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista)

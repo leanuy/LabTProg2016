@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -53,8 +54,8 @@ public class ConsultaListaTest {
     @Test
     public void testListarListasDeGenero() {
         System.out.println("Listar Listas de Genero");
-        ArrayList<String> result = iConsultaLista.ListarListasDeGenero("Genero");
-        ArrayList<String> expResult = new ArrayList<String>();
+        List<String> result = iConsultaLista.ListarListasDeGenero("Genero");
+        List<String> expResult = new ArrayList<String>();
         expResult.add("Lista genérica");
         assertEquals(expResult, result);
     }
@@ -77,8 +78,8 @@ public class ConsultaListaTest {
     @Test
     public void testListarListasDeCliente() throws Exception {
         System.out.println("Listar Listas de Cliente 1");
-        ArrayList<String> result = iConsultaLista.ListarListasDeCliente("TesterLista");
-        ArrayList<String> expResult = new ArrayList<String>();
+        List<String> result = iConsultaLista.ListarListasDeCliente("TesterLista");
+        List<String> expResult = new ArrayList<String>();
         expResult.add("Mi Lista");
         assertEquals(expResult, result);
     }
@@ -86,7 +87,7 @@ public class ConsultaListaTest {
     @Test (expected=ClienteInexistenteException.class)
     public void testListarListasDeCliente2() throws Exception {
         System.out.println("Listar Listas de Cliente 2");
-        ArrayList<String> result = iConsultaLista.ListarListasDeCliente("TestasdferLista");
+        List<String> result = iConsultaLista.ListarListasDeCliente("TestasdferLista");
     }
     
     @Test

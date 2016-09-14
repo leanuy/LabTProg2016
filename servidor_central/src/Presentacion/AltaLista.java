@@ -12,7 +12,7 @@ import espotify.Interfaces.IAltaLista;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -33,7 +33,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
         initComponents();
         
         particularRadio.setSelected(true);
-        ArrayList<String> a = ctrl.ListarClientes();
+        List<String> a = ctrl.ListarClientes();
         DefaultListModel<String> model = new DefaultListModel<>();
         clientlist.setModel(model);
         for(String str : a) {

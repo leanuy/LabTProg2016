@@ -16,8 +16,9 @@ import espotify.Interfaces.IAltaAlbum;
 import espotify.Interfaces.IAltaGenero;
 import espotify.Interfaces.IConsultaAlbum;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
+import java.util.Map;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
     private Artista artistaMem;
@@ -39,7 +40,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
         ManejadorColecciones.getInstancia().AgregarGenero(nom, g);
     }
     
-    private static HashMap<String, Genero> GetGeneros() {
+    private static Map<String, Genero> GetGeneros() {
         return ManejadorColecciones.getInstancia().getGeneros();
     }
     
@@ -53,19 +54,19 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
     }
 
     @Override
-    public ArrayList<String[]> ListarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
+    public List<String[]> ListarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
         Genero genero = BuscarGenero(nomGenero);
         return genero.ListarAlbumes();
     }
     
     @Override
-    public ArrayList<String> ListarArtistas() {
+    public List<String> ListarArtistas() {
         CtrlUsuarios ctrl_usuarios = new CtrlUsuarios();
         return ctrl_usuarios.ListarArtistas();
     }
     
     @Override
-    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException {
+    public List<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException {
         CtrlUsuarios ctrl_usuarios = new CtrlUsuarios();
         return ctrl_usuarios.ListarAlbumesDeArtista(nomArtista);
     }
@@ -102,7 +103,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
         }
     }
     
-    private HashMap<String, Genero> ValidarGeneros(ArrayList<String> listaGeneros)
+    private Map<String, Genero> ValidarGeneros(List<String> listaGeneros)
             throws GeneroInexistenteException, CampoVacioException {
         if (listaGeneros.isEmpty()) {
             throw new CampoVacioException("Un álbum debe tener al menos un género");
@@ -125,7 +126,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
             throw new AlbumRepetidoException();
         }
         //Validar lista de nombres de generos y generar un hash de generos para el album
-        HashMap<String, Genero> lstGeneros = this.ValidarGeneros(d.getGeneros());
+        Map<String, Genero> lstGeneros = this.ValidarGeneros(d.getGeneros());
         Album album = new Album(d, art, lstGeneros);
         lstGeneros.entrySet().stream().forEach((entry) -> {
             entry.getValue().AddAlbum(album);

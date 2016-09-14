@@ -11,12 +11,12 @@ import espotify.Excepciones.NumeroTemaInvalidoException;
 import espotify.Excepciones.TemaRepetidoException;
 import espotify.Excepciones.TemaTipoInvalidoException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface IAltaAlbum {
     public DataGenero ListarGeneros();
 
-    public ArrayList<String> ListarArtistas();
+    public List<String> ListarArtistas();
 
     public void AltaAlbum(DataAlbumExt d)
             throws AlbumRepetidoException, GeneroInexistenteException,

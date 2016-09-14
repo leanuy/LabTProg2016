@@ -290,20 +290,20 @@
             <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="ConsultaClienteMI">
+            <MenuItem class="javax.swing.JMenuItem" name="ConsultaClienteMitem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consulta perfil Cliente"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConsultaClienteMIActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConsultaClienteMitemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="ConsultaArtistaMI">
+            <MenuItem class="javax.swing.JMenuItem" name="ConsultaArtistaMItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Consulta perfil Artista"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConsultaArtistaMIActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConsultaArtistaMItemActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="ConsultaAlbumMenuItem">

@@ -6,6 +6,7 @@ import espotify.Excepciones.SeguidoRepetidoException;
 import java.awt.image.BufferedImage;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 class Usuario {
 
@@ -16,7 +17,7 @@ class Usuario {
     protected String correo;
     protected Calendar fechaNac;
     protected BufferedImage img;
-    protected HashMap<String,Cliente> seguidores;
+    protected Map<String,Cliente> seguidores;
     protected String password;
 
     String getNick() {
@@ -43,7 +44,7 @@ class Usuario {
         return img;
     }
     
-    HashMap<String,Cliente> getSeguidores() {
+    Map<String,Cliente> getSeguidores() {
         return this.seguidores;
     }
     

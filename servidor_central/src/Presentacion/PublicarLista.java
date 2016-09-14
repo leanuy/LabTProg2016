@@ -6,7 +6,7 @@ import espotify.Excepciones.YaPublicaException;
 import espotify.Fabrica;
 import espotify.Interfaces.IPublicarLista;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -23,7 +23,7 @@ public class PublicarLista extends javax.swing.JInternalFrame {
         initComponents();
         listascmb.setEnabled(false);
         publicarbtn.setEnabled(false);
-        ArrayList<String> a = interf.ListarClientes();
+        List<String> a = interf.ListarClientes();
         for(String str : a) {
             clientescmb.addItem(str);
         }
@@ -114,7 +114,7 @@ public class PublicarLista extends javax.swing.JInternalFrame {
         listascmb.removeAllItems();
 
         try {
-            ArrayList<String> listas = interf.ListarListasPrivadasDeCliente(cli);
+            List<String> listas = interf.ListarListasPrivadasDeCliente(cli);
             listascmb.setEnabled(listas.size() > 0);
             for (String str : listas) {
                 listascmb.addItem(str);

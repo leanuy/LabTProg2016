@@ -21,6 +21,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -40,7 +41,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private String pathAImagen;
     private boolean primeraVez;
     private static int numeroTema;
-    private static ArrayList<DataTema> listaTemas;
+    private static List<DataTema> listaTemas;
     
     private static boolean web;
     private static String url;
@@ -51,7 +52,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private String ArtistSelected;
     
     
-    private static ArrayList<String> temasYaIngresados;
+    private static List<String> temasYaIngresados;
     private static String nombreAnterior;
     private static boolean nombreRepetido;
     private static boolean entrar;
@@ -92,7 +93,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         expandAllNodes(ArbolGeneros, 0, ArbolGeneros.getRowCount());
         
         //cargar Artistas
-        ArrayList<String> artists = inter.ListarArtistas();
+        List<String> artists = inter.ListarArtistas();
         for(String s: artists){
             modeloArtistas.addElement(s);
         }

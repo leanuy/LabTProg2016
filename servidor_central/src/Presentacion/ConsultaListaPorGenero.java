@@ -11,7 +11,7 @@ import espotify.Interfaces.IConsultaLista;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
@@ -167,7 +167,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         if (node != null)
             nomGenero = (String)node.getUserObject();
         listascmb.removeAllItems();
-        ArrayList<String> listas = interf.ListarListasDeGenero(nomGenero);
+        List<String> listas = interf.ListarListasDeGenero(nomGenero);
         for(String str : listas) {
             listascmb.addItem(str);
         }
@@ -199,7 +199,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
             //fin mostrar la imagen
 
             //mostrar los temas:
-            ArrayList<DataTema> a = dl.getTemas();
+            List<DataTema> a = dl.getTemas();
             DefaultListModel<String> model = new DefaultListModel<>();
             ListaTemas.setModel(model);
             for(DataTema dt : a) {

@@ -19,6 +19,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 
 
@@ -41,33 +42,33 @@ public class AltaSeguirTest {
     @Test
     public void test1ListarClientes() {
         System.out.println("ListarClientes");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> expResult = new ArrayList<>();
         expResult.add("JavierM42");
-        ArrayList<String> result = iAltaSeguir.ListarClientes();
+        List<String> result = iAltaSeguir.ListarClientes();
         assertEquals(expResult, result);
     }
     
     @Test
     public void test2ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 1");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> expResult = new ArrayList<>();
         expResult.add("ElGordoAxl");
-        ArrayList<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
+        List<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
         assertEquals(expResult, result);
     }
     
     @Test
     public void test4ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 2");
-        ArrayList<String> expResult = new ArrayList<>();
-        ArrayList<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
+        List<String> expResult = new ArrayList<>();
+        List<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
         assertEquals(expResult, result);
     }
     
     @Test (expected=SeguidorInexistenteException.class)
     public void test5ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 3");
-        ArrayList<String> result = iAltaSeguir.ListarSeguibles("asdfasdf");
+        List<String> result = iAltaSeguir.ListarSeguibles("asdfasdf");
     }
     
     @Test

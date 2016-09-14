@@ -10,7 +10,7 @@ import espotify.Interfaces.IConsultaLista;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -23,7 +23,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
      */
     public ConsultaListaPorCliente() {
         initComponents();
-        ArrayList<String> cli = interf.ListarClientes();
+        List<String> cli = interf.ListarClientes();
         listascmb.setEnabled(false);
         for(String str : cli) {
             clientescmb.addItem(str);
@@ -132,7 +132,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         listascmb.removeAllItems();
         try {
             listascmb.setEnabled(false);
-            ArrayList<String> listas = interf.ListarListasDeCliente(nomCliente);
+            List<String> listas = interf.ListarListasDeCliente(nomCliente);
             for(String str : listas) {
                 listascmb.addItem(str);
             }
@@ -173,7 +173,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
             //fin mostrar la imagen
 
             //mostrar los temas:
-            ArrayList<DataTema> a = dl.getTemas();
+            List<DataTema> a = dl.getTemas();
             DefaultListModel<String> model = new DefaultListModel<>();
             ListaTemas.setModel(model);
             for(DataTema dt : a) {

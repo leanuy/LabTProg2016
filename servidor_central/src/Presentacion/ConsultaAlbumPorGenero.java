@@ -7,6 +7,7 @@ import espotify.Interfaces.IConsultaAlbum;
 
 import java.awt.FlowLayout;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
@@ -27,7 +28,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     
     private DefaultTreeModel modeloTree;
     private DefaultListModel modelitoAlbums;
-    private ArrayList<String[]> albumsIndex;
+    private List<String[]> albumsIndex;
     
     IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
     
@@ -187,7 +188,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ObtenerAlbumsGeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObtenerAlbumsGeneroButtonActionPerformed
-        ArrayList<String[]> Albums = null;
+        List<String[]> Albums = null;
         modelitoAlbums.clear();
         albumsIndex.clear();
         TreePath path = ArbolGeneros.getSelectionPath();

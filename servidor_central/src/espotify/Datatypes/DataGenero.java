@@ -1,12 +1,13 @@
 package espotify.Datatypes;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class DataGenero {
     private final String nombre;
     private final String padre;
-    private final ArrayList<DataGenero> hijos;
+    private final List<DataGenero> hijos;
 
     public String getNombre() {
         return nombre;
@@ -16,7 +17,7 @@ public class DataGenero {
         return padre;
     }
     
-    public ArrayList<DataGenero> getHijos() {
+    public List<DataGenero> getHijos() {
         return hijos;
     }
 
@@ -26,7 +27,7 @@ public class DataGenero {
         this.hijos = new ArrayList<>();
     }
     //para testing
-    public DataGenero(String nombre,String padre,ArrayList<DataGenero> hijos) {
+    public DataGenero(String nombre,String padre,List<DataGenero> hijos) {
         this.nombre = nombre;
         this.padre = padre;
         this.hijos = hijos;

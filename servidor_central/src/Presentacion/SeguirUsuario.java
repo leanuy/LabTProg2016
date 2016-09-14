@@ -7,7 +7,7 @@ import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaSeguir;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -23,7 +23,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     
     public SeguirUsuario() {
         initComponents();
-        ArrayList<String> cl = interf.ListarClientes();
+        List<String> cl = interf.ListarClientes();
         for(String str : cl) {
             NickSeguidor.addItem(str);
         }
@@ -151,7 +151,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
         NickSeguido.removeAllItems();
         try {
-            ArrayList<String> ar = interf.ListarSeguibles(Seguidor);
+            List<String> ar = interf.ListarSeguibles(Seguidor);
             for(String stri : ar) {
                 NickSeguido.addItem(stri);
             }

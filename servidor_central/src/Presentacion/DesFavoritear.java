@@ -12,7 +12,7 @@ import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IDesFavoritear;
 
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -28,7 +28,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
     public DesFavoritear() {
         initComponents();
         IDesFavoritear ifav = Fabrica.getIDesFavoritear();
-        ArrayList<String> cli = ifav.ListarClientes();
+        List<String> cli = ifav.ListarClientes();
         for(String c : cli) {
             clientescmb.addItem(c);
             lstpubclicmb.addItem(c);
@@ -330,7 +330,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
         lstpubcmb.removeAllItems();
         try {
             lstpubcmb.setEnabled(false);
-            ArrayList<String> listas = ifav.ListarListasPublicasDeCliente(nomCliente);
+            List<String> listas = ifav.ListarListasPublicasDeCliente(nomCliente);
             for(String str : listas) {
                 lstpubcmb.addItem(str);
             }
@@ -350,7 +350,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
         albcmb.removeAllItems();
         try {
             albcmb.setEnabled(false);
-            ArrayList<String> albums = ifav.ListarAlbumesDeArtista(nomArtista);
+            List<String> albums = ifav.ListarAlbumesDeArtista(nomArtista);
             for (String str : albums) {
                 albcmb.addItem(str);
             }
