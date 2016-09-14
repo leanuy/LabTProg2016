@@ -56,13 +56,13 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="Lista1Box" pref="146" max="32767" attributes="0"/>
-                                      <Component id="ClientesBox" max="32767" attributes="0"/>
+                                      <Component id="lista1Box" pref="146" max="32767" attributes="0"/>
+                                      <Component id="clientesBox" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="SeleccionarCliente1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="SeleccionarLista1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="seleccionarCliente1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="seleccionarLista1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -109,18 +109,18 @@
                               <Group type="102" attributes="0">
                                   <Component id="cliente2label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="Cliente2Box" min="-2" pref="156" max="-2" attributes="0"/>
+                                  <Component id="cliente2Box" min="-2" pref="156" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="lista2label" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="Lista2Box" min="-2" pref="156" max="-2" attributes="0"/>
+                                  <Component id="lista2Box" min="-2" pref="156" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="SeleccionarCliente" min="-2" max="-2" attributes="0"/>
-                              <Component id="SeleccionarLista" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="seleccionarCliente" min="-2" max="-2" attributes="0"/>
+                              <Component id="seleccionarLista" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
@@ -132,14 +132,14 @@
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="AlbumBox" min="-2" pref="156" max="-2" attributes="0"/>
+                                  <Component id="albumBox" min="-2" pref="156" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="SeleccionarAlbum" min="-2" max="-2" attributes="0"/>
+                                  <Component id="seleccionarAlbum" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
-                                  <Component id="ArtistaBox" min="-2" pref="158" max="-2" attributes="0"/>
+                                  <Component id="artistaBox" min="-2" pref="158" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="SeleccionarArtista" min="-2" max="-2" attributes="0"/>
+                                  <Component id="seleccionarArtista" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="51" max="32767" attributes="0"/>
@@ -153,7 +153,7 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
-                  <Component id="AgregarButton" min="-2" pref="149" max="-2" attributes="0"/>
+                  <Component id="agregarButton" min="-2" pref="149" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -170,14 +170,14 @@
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="clienteslabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ClientesBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="SeleccionarCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="clientesBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="seleccionarCliente1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lista1label" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="Lista1Box" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="SeleccionarLista1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lista1Box" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="seleccionarLista1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -193,32 +193,32 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="cliente2label" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Cliente2Box" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SeleccionarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cliente2Box" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="seleccionarCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="artistalabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="ArtistaBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SeleccionarArtista" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="artistaBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="seleccionarArtista" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lista2label" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="Lista2Box" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SeleccionarLista" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lista2Box" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="seleccionarLista" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="albumlabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="AlbumBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="SeleccionarAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="albumBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="seleccionarAlbum" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jScrollPane2" alignment="1" min="-2" pref="198" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                  <Component id="AgregarButton" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="agregarButton" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -235,14 +235,14 @@
             <Property name="text" type="java.lang.String" value="Seleccione una Lista:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="ClientesBox">
+        <Component class="javax.swing.JComboBox" name="clientesBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ClientesBoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clientesBoxActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -275,14 +275,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DefectoButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="Lista1Box">
+        <Component class="javax.swing.JComboBox" name="lista1Box">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Lista1BoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lista1BoxActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -341,27 +341,27 @@
             <Property name="text" type="java.lang.String" value="Seleccione el tema que desea agregar:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="Lista2Box">
+        <Component class="javax.swing.JComboBox" name="lista2Box">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Lista2BoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="lista2BoxActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="Cliente2Box">
+        <Component class="javax.swing.JComboBox" name="cliente2Box">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Cliente2BoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cliente2BoxActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -372,14 +372,14 @@
             <Property name="text" type="java.lang.String" value="Seleccione un Artista:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="ArtistaBox">
+        <Component class="javax.swing.JComboBox" name="artistaBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ArtistaBoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="artistaBoxActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -390,25 +390,25 @@
             <Property name="text" type="java.lang.String" value="Seleccione un Album:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="AlbumBox">
+        <Component class="javax.swing.JComboBox" name="albumBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AlbumBoxActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="albumBoxActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JButton" name="AgregarButton">
+        <Component class="javax.swing.JButton" name="agregarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Agregar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AgregarButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarButtonActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -430,52 +430,52 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="SeleccionarCliente">
+        <Component class="javax.swing.JButton" name="seleccionarCliente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeleccionarClienteActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionarClienteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="SeleccionarArtista">
+        <Component class="javax.swing.JButton" name="seleccionarArtista">
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeleccionarArtistaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionarArtistaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="SeleccionarLista">
+        <Component class="javax.swing.JButton" name="seleccionarLista">
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeleccionarListaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionarListaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="SeleccionarCliente1">
+        <Component class="javax.swing.JButton" name="seleccionarCliente1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeleccionarCliente1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionarCliente1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="SeleccionarLista1">
+        <Component class="javax.swing.JButton" name="seleccionarLista1">
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeleccionarLista1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionarLista1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="SeleccionarAlbum">
+        <Component class="javax.swing.JButton" name="seleccionarAlbum">
           <Properties>
             <Property name="text" type="java.lang.String" value="Seleccionar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SeleccionarAlbumActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="seleccionarAlbumActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

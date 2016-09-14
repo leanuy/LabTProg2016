@@ -56,14 +56,14 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="DejarButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="dejarButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="217" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="NickSeguido" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
-                              <Component id="NickSeguidor" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
+                              <Component id="nickSeguido" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
+                              <Component id="nickSeguidor" alignment="1" min="-2" pref="126" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                       </Group>
@@ -77,15 +77,15 @@
                   <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NickSeguidor" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nickSeguidor" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="NickSeguido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="nickSeguido" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                  <Component id="DejarButton" min="-2" max="-2" attributes="0"/>
+                  <Component id="dejarButton" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="89" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -102,35 +102,35 @@
             <Property name="text" type="java.lang.String" value="Nick del usuario a dejar de seguir:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="DejarButton">
+        <Component class="javax.swing.JButton" name="dejarButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dejar de Seguir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DejarButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="dejarButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JComboBox" name="NickSeguidor">
+        <Component class="javax.swing.JComboBox" name="nickSeguidor">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NickSeguidorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nickSeguidorActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="NickSeguido">
+        <Component class="javax.swing.JComboBox" name="nickSeguido">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="NickSeguidoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nickSeguidoActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>

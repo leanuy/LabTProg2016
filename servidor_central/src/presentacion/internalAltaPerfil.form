@@ -108,7 +108,7 @@
                                       <Component id="apetxt" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
+                              <Component id="confirmbtn" min="-2" max="-2" attributes="0"/>
                               <Component id="bioscroll" min="-2" max="-2" attributes="0"/>
                               <Component id="urltxt" min="-2" pref="146" max="-2" attributes="0"/>
                               <Component id="pwdcnonfirmtxt" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
@@ -179,7 +179,7 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="Confirmbtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="confirmbtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -287,12 +287,12 @@
         </Component>
         <Component class="javax.swing.JTextField" name="urltxt">
         </Component>
-        <Component class="javax.swing.JButton" name="Confirmbtn">
+        <Component class="javax.swing.JButton" name="confirmbtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConfirmbtnActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmbtnActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="pwdtxt">
