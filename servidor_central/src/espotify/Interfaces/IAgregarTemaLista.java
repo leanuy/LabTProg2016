@@ -11,27 +11,27 @@ import java.util.List;
 
 
 public interface IAgregarTemaLista {
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 
-    public List<String> ListarArtistas();
+    public List<String> listarArtistas();
 
-    public List<String> ListarListasDeCliente(String nick) throws Exception;
+    public List<String> listarListasDeCliente(String nick) throws Exception;
 
-    public List<String> ListarListasDefecto();
+    public List<String> listarListasDefecto();
 
-    public List<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException;
+    public List<String> listarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException;
 
-    public List<String> ListarListasDefecto2();
+    public List<String> listarListasDefecto2();
 
-    public List<String> ListarListasPrivadasDeCliente(String nick) throws Exception;
+    public List<String> listarListasPrivadasDeCliente(String nick) throws Exception;
 
-    public List<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException;
+    public List<String> listarListasPublicasDeCliente(String nick) throws ClienteInexistenteException;
 
-    public List<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException;//, Exception;
+    public List<DataTema> listarTemasAlbum(String art, String alb) throws ArtistaInexistenteException, AlbumInexistenteException;//, Exception;
 
-    public List<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException;
+    public List<DataTema> listarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException;
 
-    public List<DataTema> ListarTemasLista2(String nickCliente, String nomLista) throws Exception;
+    public List<DataTema> listarTemasLista2(String nickCliente, String nomLista) throws Exception;
 
-    public void AgregarTemaLista(DataTema tema, String lista)throws Exception;
+    public void agregarTemaLista(DataTema tema, String lista)throws Exception;
 }

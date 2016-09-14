@@ -38,8 +38,8 @@ public class AltaAlbumTest {
     public static void setUpClass() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, GeneroInexistenteException, GeneroRepetidoException {
         new AltaPerfilTest().testAltaArtista1();
         IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
-        iAltaGenero.AltaGenero(new DataGenero("Pop", ""));
-        iAltaGenero.AltaGenero(new DataGenero("Jazz", ""));
+        iAltaGenero.altaGenero(new DataGenero("Pop", ""));
+        iAltaGenero.altaGenero(new DataGenero("Jazz", ""));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     /**
@@ -91,7 +91,7 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     /**
@@ -120,7 +120,7 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = AlbumRepetidoException.class)
@@ -141,8 +141,8 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = DuracionInvalidaException.class)
@@ -163,7 +163,7 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = NumeroTemaInvalidoException.class)
@@ -185,7 +185,7 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = NumeroTemaInvalidoException.class)
@@ -207,7 +207,7 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = NumeroTemaInvalidoException.class)
@@ -229,7 +229,7 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = TemaRepetidoException.class)
@@ -251,7 +251,7 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = TemaTipoInvalidoException.class)
@@ -273,6 +273,6 @@ public class AltaAlbumTest {
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
-        iAltaAlbum.AltaAlbum(data);
+        iAltaAlbum.altaAlbum(data);
     }
 }

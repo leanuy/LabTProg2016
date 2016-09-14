@@ -200,7 +200,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         ClientesBox.removeAllItems();
         ListaTema.removeAll();
         ListaBox.removeAllItems();
-        List<String> clientes = interf.ListarClientes();
+        List<String> clientes = interf.listarClientes();
         ClientesBox.removeAllItems();
         for(String s : clientes){
             ClientesBox.addItem(s);
@@ -220,7 +220,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         ClientesBox.removeAllItems();
         ListaTema.removeAll();
         ListaBox.removeAllItems();
-        List<String> listas = interf.ListarListasDefecto();
+        List<String> listas = interf.listarListasDefecto();
         ListaBox.removeAllItems();
         for(String s : listas){
             ListaBox.addItem(s);
@@ -230,7 +230,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
     private void SeleccionarClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarClienteButtonActionPerformed
         String nick = String.valueOf(ClientesBox.getSelectedItem());
         try{
-            List<String> listas = interf.ListarListasDeCliente(nick);
+            List<String> listas = interf.listarListasDeCliente(nick);
             ListaBox.removeAllItems();
             ListaTema.removeAll();
             for(String s : listas){
@@ -245,7 +245,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         String lis = String.valueOf(ListaBox.getSelectedItem());
         String str;
         try{
-            List<DataTema> temas = interf.ListarTemasLista(lis);
+            List<DataTema> temas = interf.listarTemasLista(lis);
             ListaTema.removeAll();
             int size = temas.size();
             String[] algo = new String[size];
@@ -273,7 +273,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
             dTema = listatemas[index];
             String nombre = dTema.getNombre();
             String album = dTema.getAlbum();
-            interf.RemoverTemaLista(nombre, album); 
+            interf.removerTemaLista(nombre, album); 
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             this.dispose();
         }catch(Exception e){

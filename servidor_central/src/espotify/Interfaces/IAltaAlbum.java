@@ -14,11 +14,11 @@ import espotify.Excepciones.TemaTipoInvalidoException;
 import java.util.List;
 
 public interface IAltaAlbum {
-    public DataGenero ListarGeneros();
+    public DataGenero listarGeneros();
 
-    public List<String> ListarArtistas();
+    public List<String> listarArtistas();
 
-    public void AltaAlbum(DataAlbumExt dAlbum)
+    public void altaAlbum(DataAlbumExt dAlbum)
             throws AlbumRepetidoException, GeneroInexistenteException,
             DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, CampoVacioException,

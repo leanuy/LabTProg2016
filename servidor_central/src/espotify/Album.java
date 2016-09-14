@@ -64,7 +64,7 @@ public class Album implements Favoriteable {
                 nombreGeneros, this.img, artista.getNick());
     }
 
-    private List<Tema> ValidarTemas(List<DataTema> dataTemas) throws
+    private List<Tema> validarTemas(List<DataTema> dataTemas) throws
             DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, TemaTipoInvalidoException {
         int largo = dataTemas.size();
@@ -118,7 +118,7 @@ public class Album implements Favoriteable {
         this.img = dAlbum.getImg();
         this.artista = artista;
         this.generos = generos;
-        this.temas = this.ValidarTemas(dAlbum.getTemas());
+        this.temas = this.validarTemas(dAlbum.getTemas());
     }
 
     Tema devolverTema(String nombretema) {

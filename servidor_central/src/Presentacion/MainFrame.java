@@ -739,29 +739,29 @@ public class MainFrame extends javax.swing.JFrame {
         //ALTA DE GENEROS
         IAltaGenero ctrlAltaGenero = Fabrica.getIAltaGenero();
         DataGenero dataGenero = new DataGenero("Rock", "");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Rock Clásico", "Rock");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Rock Latino", "Rock");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Rock & Roll", "Rock");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Clásica", "");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Disco", "");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Pop", "");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Electropop", "Pop");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Dance-pop", "Pop");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Pop Clásico", "Pop");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Balada", "");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         dataGenero = new DataGenero("Cumbia", "");
-        ctrlAltaGenero.AltaGenero(dataGenero);
+        ctrlAltaGenero.altaGenero(dataGenero);
         
         String nickArtista;
         String nombreAlbum;
@@ -785,7 +785,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In the Navy", 193, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "dmode";
         nombreAlbum = "Enjoy The Silence";
@@ -798,7 +798,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, "Enjoy The Silence", 261, 2, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Violator", 1990, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "clauper";
         nombreAlbum = "She's So Unusual";
@@ -813,7 +813,7 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "She's So Unusual", 1983, generos, img, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "bruceTheBoss";
         nombreAlbum = "Born In The U.S.A.";
@@ -828,7 +828,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, "Dancing In The Park", 238, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "tigerOfWales";
         nombreAlbum = "It's Not Unusual";
@@ -842,7 +842,7 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "It's Not Unusual", 1965, generos, img, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "tripleNelson";
         nombreAlbum = "Agua Y Sal";
@@ -852,7 +852,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCtnadagiopais", "Adagio De Mi País", 290, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Agua Y Sal", 2012, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "la_ley";
         nombreAlbum = "MTV Unplugged";
@@ -868,7 +868,7 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "MTV Unplugged", 2001, generos, img, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "chaiko";
         nombreAlbum = "El Lago De Los Cisnes";
@@ -878,7 +878,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCptswanlake", "Acto 2, Número 10, Escena (Moderato)", 160, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "El Lago De Los Cisnes", 1875, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "chaiko";
         nombreAlbum = "Concierto Para Piano No. 1 En Si Menor, Opus 23";
@@ -888,7 +888,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCptpiano", "Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 1318, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Concierto Para Piano No. 1 En Si Menor, Opus 23", 1875, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "nicoleneu";
         nombreAlbum = "Primer Amor";
@@ -899,7 +899,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, "No Quiero Estudiar", 132, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "lospimpi";
         nombreAlbum = "Hay Amores Que Matan";
@@ -911,7 +911,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaArchivo(tema, "Por Ese Hombre", 285, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Hay Amores Que Matan", 1993, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "dyangounchained";
         nombreAlbum = "Un Loco Como Yo";
@@ -922,7 +922,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCdyporesehombre", "Por Ese Hombre", 313, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Un Loco Como Yo", 1993, generos, null, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "alcides";
         nombreAlbum = "20 Grandes Éxitos";
@@ -934,40 +934,40 @@ public class MainFrame extends javax.swing.JFrame {
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "20 Grandes Éxitos", 1989, generos, img, nickArtista);
-        iAltaAlbum.AltaAlbum(dataAlbumExt);
+        iAltaAlbum.altaAlbum(dataAlbumExt);
         
         //ALTA DE LISTAS
         //DEFECTO
         IAltaLista ctrlAltaListas = Fabrica.getIAltaLista();
 
         DataDefecto dataDefecto = new DataDefecto("Pop Clásico", "Noche De La Nostalgia", null);
-        ctrlAltaListas.AltaListaDefecto(dataDefecto);
+        ctrlAltaListas.altaListaDefecto(dataDefecto);
         dataDefecto = new DataDefecto("Rock Latino", "Rock En Español", null);
-        ctrlAltaListas.AltaListaDefecto(dataDefecto);
+        ctrlAltaListas.altaListaDefecto(dataDefecto);
         dataDefecto = new DataDefecto("Clásica", "Música Clásica", null);
-        ctrlAltaListas.AltaListaDefecto(dataDefecto);
+        ctrlAltaListas.altaListaDefecto(dataDefecto);
         
         //PARTICULARES
         
         DataParticular dataParticular = new DataParticular("el_padrino", "Música Inspiradora", null);
-        ctrlAltaListas.AltaListaParticular(dataParticular);
+        ctrlAltaListas.altaListaParticular(dataParticular);
         dataParticular = new DataParticular("scarlettO", "De Todo Un Poco", null);
-        ctrlAltaListas.AltaListaParticular(dataParticular);
+        ctrlAltaListas.altaListaParticular(dataParticular);
         dataParticular = new DataParticular("Heisenberg", "Para Cocinar", null);
-        ctrlAltaListas.AltaListaParticular(dataParticular);
+        ctrlAltaListas.altaListaParticular(dataParticular);
         dataParticular = new DataParticular("lachiqui", "Para Las Chicas", null);
-        ctrlAltaListas.AltaListaParticular(dataParticular);
+        ctrlAltaListas.altaListaParticular(dataParticular);
         dataParticular = new DataParticular("cbochinche", "Fiesteras", null);
-        ctrlAltaListas.AltaListaParticular(dataParticular);
+        ctrlAltaListas.altaListaParticular(dataParticular);
         dataParticular = new DataParticular("cbochinche", "Mis Favoritas", null);
-        ctrlAltaListas.AltaListaParticular(dataParticular);
+        ctrlAltaListas.altaListaParticular(dataParticular);
         
         //PUBLICAR LISTAS
         IPublicarLista ctrlPublicar = Fabrica.getIPublicarLista();
-        ctrlPublicar.PublicarLista("Música Inspiradora","el_padrino");
-        ctrlPublicar.PublicarLista("De Todo Un Poco", "scarlettO");
-        ctrlPublicar.PublicarLista("Para Las Chicas", "lachiqui");
-        ctrlPublicar.PublicarLista("Fiesteras", "cbochinche");
+        ctrlPublicar.publicarLista("Música Inspiradora","el_padrino");
+        ctrlPublicar.publicarLista("De Todo Un Poco", "scarlettO");
+        ctrlPublicar.publicarLista("Para Las Chicas", "lachiqui");
+        ctrlPublicar.publicarLista("Fiesteras", "cbochinche");
         
         IFavoritear ifav = Fabrica.getIFavoritear();
         ifav.favoritear("el_padrino", new DataDefecto("","Noche De La Nostalgia", null));
@@ -990,45 +990,45 @@ public class MainFrame extends javax.swing.JFrame {
         ifav.favoritear("Eleven11", new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"));
 
         IAgregarTemaLista iadd = Fabrica.getIAgregarTemaLista();
-        iadd.AgregarTemaLista(new DataTema("YMCA", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("Macho Man", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("In the Navy", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("Time After Time", 0, 0, "clauper","She\'s So Unusual"), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("Born In The U.S.A.", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("Dancing In The Park", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("Glory Days", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("It’s Not Unusual", 0, 0, "tigerOfWales","It's Not Unusual"), "Noche De La Nostalgia");
-        iadd.AgregarTemaLista(new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"), "Rock En Español");
-        iadd.AgregarTemaLista(new DataTema("El Duelo", 0, 0, "la_ley","MTV Unplugged"), "Rock En Español");
-        iadd.AgregarTemaLista(new DataTema("Mentira", 0, 0, "la_ley","MTV Unplugged"), "Rock En Español");
-        iadd.AgregarTemaLista(new DataTema("Acto 2, Número 10, Escena (Moderato)", 0, 0, "chaiko","El Lago De Los Cisnes"), "Música Clásica");
-        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Música Clásica");
-        iadd.ListarListasDeCliente("el_padrino");
-        iadd.AgregarTemaLista(new DataTema("Acto 2, Número 10, Escena (Moderato)", 0, 0, "chaiko","El Lago De Los Cisnes"), "Música Inspiradora");
-        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Música Inspiradora");
-        iadd.AgregarTemaLista(new DataTema("Personal Jesus", 0, 0, "dmode","Violator"), "Música Inspiradora");
-        iadd.ListarListasDeCliente("scarlettO");
-        iadd.AgregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "De Todo Un Poco");
-        iadd.AgregarTemaLista(new DataTema("Time After Time", 0, 0, "clauper","She\'s So Unusual"), "De Todo Un Poco");
-        iadd.ListarListasDeCliente("Heisenberg");
-        iadd.AgregarTemaLista(new DataTema("Personal Jesus", 0, 0, "dmode","Violator"), "Para Cocinar");
-        iadd.ListarListasDeCliente("lachiqui");
-        iadd.AgregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "Para Las Chicas");
-        iadd.AgregarTemaLista(new DataTema("It’s Not Unusual", 0, 0, "tigerOfWales","It's Not Unusual"), "Para Las Chicas");
-        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Para Las Chicas");
-        iadd.AgregarTemaLista(new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"), "Para Las Chicas");
-        iadd.AgregarTemaLista(new DataTema("Por Ese Hombre", 0, 0, "dyangounchained","Un Loco Como Yo"), "Para Las Chicas");
-        iadd.ListarListasDeCliente("cbochinche");
-        iadd.AgregarTemaLista(new DataTema("YMCA", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
-        iadd.AgregarTemaLista(new DataTema("Macho Man", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
-        iadd.AgregarTemaLista(new DataTema("In the Navy", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
-        iadd.AgregarTemaLista(new DataTema("Glory Days", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Fiesteras");
-        iadd.AgregarTemaLista(new DataTema("Violeta", 0, 0, "alcides","20 Grandes Éxitos"), "Fiesteras");
-        iadd.AgregarTemaLista(new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"), "Mis Favoritas");
-        iadd.AgregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Mis Favoritas");
-        iadd.AgregarTemaLista(new DataTema("Por Ese Hombre", 0, 0, "lospimpi","Hay Amores Que Matan"), "Mis Favoritas");
-        iadd.ListarListasDefecto();
+        iadd.agregarTemaLista(new DataTema("YMCA", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("Macho Man", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("In the Navy", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("Time After Time", 0, 0, "clauper","She\'s So Unusual"), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("Born In The U.S.A.", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("Dancing In The Park", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("Glory Days", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("It’s Not Unusual", 0, 0, "tigerOfWales","It's Not Unusual"), "Noche De La Nostalgia");
+        iadd.agregarTemaLista(new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"), "Rock En Español");
+        iadd.agregarTemaLista(new DataTema("El Duelo", 0, 0, "la_ley","MTV Unplugged"), "Rock En Español");
+        iadd.agregarTemaLista(new DataTema("Mentira", 0, 0, "la_ley","MTV Unplugged"), "Rock En Español");
+        iadd.agregarTemaLista(new DataTema("Acto 2, Número 10, Escena (Moderato)", 0, 0, "chaiko","El Lago De Los Cisnes"), "Música Clásica");
+        iadd.agregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Música Clásica");
+        iadd.listarListasDeCliente("el_padrino");
+        iadd.agregarTemaLista(new DataTema("Acto 2, Número 10, Escena (Moderato)", 0, 0, "chaiko","El Lago De Los Cisnes"), "Música Inspiradora");
+        iadd.agregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Música Inspiradora");
+        iadd.agregarTemaLista(new DataTema("Personal Jesus", 0, 0, "dmode","Violator"), "Música Inspiradora");
+        iadd.listarListasDeCliente("scarlettO");
+        iadd.agregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "De Todo Un Poco");
+        iadd.agregarTemaLista(new DataTema("Time After Time", 0, 0, "clauper","She\'s So Unusual"), "De Todo Un Poco");
+        iadd.listarListasDeCliente("Heisenberg");
+        iadd.agregarTemaLista(new DataTema("Personal Jesus", 0, 0, "dmode","Violator"), "Para Cocinar");
+        iadd.listarListasDeCliente("lachiqui");
+        iadd.agregarTemaLista(new DataTema("Girls Just Want To Have Fun", 0, 0, "clauper","She's So Unusual"), "Para Las Chicas");
+        iadd.agregarTemaLista(new DataTema("It’s Not Unusual", 0, 0, "tigerOfWales","It's Not Unusual"), "Para Las Chicas");
+        iadd.agregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Para Las Chicas");
+        iadd.agregarTemaLista(new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"), "Para Las Chicas");
+        iadd.agregarTemaLista(new DataTema("Por Ese Hombre", 0, 0, "dyangounchained","Un Loco Como Yo"), "Para Las Chicas");
+        iadd.listarListasDeCliente("cbochinche");
+        iadd.agregarTemaLista(new DataTema("YMCA", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
+        iadd.agregarTemaLista(new DataTema("Macho Man", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
+        iadd.agregarTemaLista(new DataTema("In the Navy", 0, 0, "vpeople","Village People Live and Sleazy"), "Fiesteras");
+        iadd.agregarTemaLista(new DataTema("Glory Days", 0, 0, "bruceTheBoss","Born In The U.S.A."), "Fiesteras");
+        iadd.agregarTemaLista(new DataTema("Violeta", 0, 0, "alcides","20 Grandes Éxitos"), "Fiesteras");
+        iadd.agregarTemaLista(new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"), "Mis Favoritas");
+        iadd.agregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Mis Favoritas");
+        iadd.agregarTemaLista(new DataTema("Por Ese Hombre", 0, 0, "lospimpi","Hay Amores Que Matan"), "Mis Favoritas");
+        iadd.listarListasDefecto();
 
     }
     

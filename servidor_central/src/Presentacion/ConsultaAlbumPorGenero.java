@@ -41,7 +41,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         ListaAlbumsGenero.setModel(modelitoAlbums);
         DataGenero genders = null;
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        genders = inter.ListarGeneros();
+        genders = inter.listarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(genders.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -200,7 +200,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         
         int count = 1;
         try{
-            Albums = inter.ListarAlbumesDeGenero(generoSeleccionado);
+            Albums = inter.listarAlbumesDeGenero(generoSeleccionado);
             
             for(String[] d : Albums){
                 modelitoAlbums.addElement(count + " " + d[1] + " - " + d[0]);
@@ -236,7 +236,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
             //obtener indice de album en la lista...
             res = obtenerNumerodeLista(nomAlbum);
             //ir a la estructura con el indice y traerse el nombreAlbum y artista
-            dataAlbum = inter.ConsultaAlbum(res[0],res[1]);
+            dataAlbum = inter.consultaAlbum(res[0],res[1]);
             ventanaAlbum = new AlbumConsultado(dataAlbum);            
             ventanaAlbum.setVisible(true);
         }catch(Exception e){

@@ -8,16 +8,16 @@ import java.util.List;
 
 public interface IQuitarTemaLista {
 
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 
-    public List<String> ListarListasDeCliente(String nick)
+    public List<String> listarListasDeCliente(String nick)
             throws ClienteInexistenteException;
 
-    public List<String> ListarListasDefecto();
+    public List<String> listarListasDefecto();
 
-    public List<DataTema> ListarTemasLista(String nombre)
+    public List<DataTema> listarTemasLista(String nombre)
             throws ClienteInexistenteException, ListaInexistenteException;
 
-    public void RemoverTemaLista(String nomTema, String nomAlbum)
+    public void removerTemaLista(String nomTema, String nomAlbum)
             throws ListaInexistenteException, ClienteInexistenteException;
 }

@@ -33,7 +33,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         initComponents();
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         IAltaGenero interfaz =  Fabrica.getIAltaGenero();                 
-        DataGenero generoBase = interfaz.ListarGeneros();
+        DataGenero generoBase = interfaz.listarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -167,7 +167,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         if (node != null)
             nomGenero = (String)node.getUserObject();
         listascmb.removeAllItems();
-        List<String> listas = interf.ListarListasDeGenero(nomGenero);
+        List<String> listas = interf.listarListasDeGenero(nomGenero);
         for(String str : listas) {
             listascmb.addItem(str);
         }
@@ -176,7 +176,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
     private void consultarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtnActionPerformed
         String nomLista = String.valueOf(listascmb.getSelectedItem());
         try {
-            DataLista dLista = interf.DarInfoDefecto(nomLista);
+            DataLista dLista = interf.darInfoDefecto(nomLista);
             
             //mostrar la imagen
             BufferedImage imagen = dLista.getImg();

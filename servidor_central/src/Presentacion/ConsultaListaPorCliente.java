@@ -23,7 +23,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
      */
     public ConsultaListaPorCliente() {
         initComponents();
-        List<String> cli = interf.ListarClientes();
+        List<String> cli = interf.listarClientes();
         listascmb.setEnabled(false);
         for(String str : cli) {
             clientescmb.addItem(str);
@@ -132,7 +132,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         listascmb.removeAllItems();
         try {
             listascmb.setEnabled(false);
-            List<String> listas = interf.ListarListasDeCliente(nomCliente);
+            List<String> listas = interf.listarListasDeCliente(nomCliente);
             for(String str : listas) {
                 listascmb.addItem(str);
             }
@@ -150,7 +150,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
     private void consultarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtnActionPerformed
         String nomLista = String.valueOf(listascmb.getSelectedItem());
         try {
-            DataLista dLista = interf.DarInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
+            DataLista dLista = interf.darInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
 
             //mostrar la imagen
             BufferedImage imagen = dLista.getImg();

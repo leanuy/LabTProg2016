@@ -39,41 +39,41 @@ public class FavoritearTest {
         }
         new AltaListaTest().testAltaListaDefecto1();
         new AltaListaTest().testAltaListaParticular1();
-        Fabrica.getIPublicarLista().PublicarLista("Mi Lista", "TesterLista");
+        Fabrica.getIPublicarLista().publicarLista("Mi Lista", "TesterLista");
     }
    
     @Test
-    public void FavoritearTest() throws Exception {
+    public void favoritearTest() throws Exception {
         System.out.println("Favoritear: lista defecto");
         ifav.favoritear("TesterLista",new DataDefecto("", "Lista genérica", null));
     }
     
     @Test (expected = ListaInexistenteException.class)
-    public void FavoritearTest2() throws Exception {
+    public void favoritearTest2() throws Exception {
         System.out.println("Favoritear: lista defecto no existe");
         ifav.favoritear("TesterLista",new DataDefecto("", "Lista asdfgenérica", null));
     }
 
     @Test (expected = FavoritoRepetidoException.class)
-    public void FavoritearTest3() throws Exception {
+    public void favoritearTest3() throws Exception {
         System.out.println("Favoritear: lista defecto repetida");
         ifav.favoritear("TesterLista",new DataDefecto("", "Lista genérica", null));
     }
     
     @Test
-    public void FavoritearTest4() throws Exception {
+    public void favoritearTest4() throws Exception {
         System.out.println("Favoritear: lista pública");
         ifav.favoritear("TesterLista",new DataParticular("TesterLista", "Mi Lista", null));
     }
     
     @Test (expected = ListaInexistenteException.class)
-    public void FavoritearTest5() throws Exception {
+    public void favoritearTest5() throws Exception {
         System.out.println("Favoritear: lista pública inexistente");
         ifav.favoritear("TesterLista",new DataParticular("TesterLista", "Mi Liasdsta", null));
     }
 
     @Test (expected = ClienteInexistenteException.class)
-    public void FavoritearTest6() throws Exception {
+    public void favoritearTest6() throws Exception {
         System.out.println("Favoritear: cliente inexistente");
         ifav.favoritear("TesterLista",new DataParticular("TesasdfterLista", "Mi Liasdsta", null));
     }

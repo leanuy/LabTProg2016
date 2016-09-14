@@ -23,7 +23,7 @@ public class PublicarLista extends javax.swing.JInternalFrame {
         initComponents();
         listascmb.setEnabled(false);
         publicarbtn.setEnabled(false);
-        List<String> clientes = interf.ListarClientes();
+        List<String> clientes = interf.listarClientes();
         for (String str : clientes) {
             clientescmb.addItem(str);
         }
@@ -114,7 +114,7 @@ public class PublicarLista extends javax.swing.JInternalFrame {
         listascmb.removeAllItems();
 
         try {
-            List<String> listas = interf.ListarListasPrivadasDeCliente(cli);
+            List<String> listas = interf.listarListasPrivadasDeCliente(cli);
             listascmb.setEnabled(listas.size() > 0);
             for (String str : listas) {
                 listascmb.addItem(str);
@@ -133,7 +133,7 @@ public class PublicarLista extends javax.swing.JInternalFrame {
 
     private void publicarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicarbtnActionPerformed
         try {
-            interf.PublicarLista(String.valueOf(listascmb.getSelectedItem()),String.valueOf(clientescmb.getSelectedItem()));
+            interf.publicarLista(String.valueOf(listascmb.getSelectedItem()),String.valueOf(clientescmb.getSelectedItem()));
             JOptionPane.showMessageDialog(this,
                     "Operación completada con éxito.",
                     "OK", JOptionPane.PLAIN_MESSAGE);

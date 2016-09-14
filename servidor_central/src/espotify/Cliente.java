@@ -83,14 +83,14 @@ class Cliente extends Usuario {
     }
 
 
-    void PublicarLista(String nomLista) throws YaPublicaException, ListaInexistenteException {
-        Particular lista = BuscarLista(nomLista);
+    void publicarLista(String nomLista) throws YaPublicaException, ListaInexistenteException {
+        Particular lista = buscarLista(nomLista);
         Publica listaPublica = lista.hacerPublica();
         listas.remove(nomLista);
         listas.put(nomLista, listaPublica);
     }
 
-    List<String> ListarListas() {
+    List<String> listarListas() {
         List salida = new ArrayList();
         listas.keySet().stream().forEach((key) -> {
             salida.add(key);
@@ -98,7 +98,7 @@ class Cliente extends Usuario {
         return salida;
     }
     
-    List<String> ListarListasPrivadas() {
+    List<String> listarListasPrivadas() {
         List<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
@@ -109,7 +109,7 @@ class Cliente extends Usuario {
         return salida;
     }
     
-    List<String> ListarListasPublicas() {
+    List<String> listarListasPublicas() {
         List<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
@@ -120,31 +120,31 @@ class Cliente extends Usuario {
         return salida;
     }
 
-    List<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
-        return BuscarLista(nombre).listarTemas();
+    List<DataTema> listarTemasDeLista(String nombre) throws ListaInexistenteException {
+        return buscarLista(nombre).listarTemas();
     }
     
-    void AltaLista(DataParticular dLista) throws ListaRepetidaException {
-        if (ValidarNombreLista(dLista.getNombre())) {
+    void altaLista(DataParticular dLista) throws ListaRepetidaException {
+        if (validarNombreLista(dLista.getNombre())) {
             listas.put(dLista.getNombre(), new Privada(dLista));
         } else {
             throw new ListaRepetidaException();
         }
     }
     
-    private boolean ValidarNombreLista(String nom) {
+    private boolean validarNombreLista(String nom) {
         return !listas.containsKey(nom) && !nom.equals("");
     }
 
-    void QuitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException {
-        BuscarLista(nomLista).quitarTema(nomTema,nomAlbum);
+    void quitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException {
+        buscarLista(nomLista).quitarTema(nomTema,nomAlbum);
     }
 
-    DataLista DarInfoLista(String nomLista) throws ListaInexistenteException {
-        return BuscarLista(nomLista).getData();
+    DataLista darInfoLista(String nomLista) throws ListaInexistenteException {
+        return buscarLista(nomLista).getData();
     }
     
-    Particular BuscarLista(String nomLista) throws ListaInexistenteException {
+    Particular buscarLista(String nomLista) throws ListaInexistenteException {
         Particular lista = listas.get(nomLista);
         if (lista != null) {
             return lista;
@@ -153,7 +153,7 @@ class Cliente extends Usuario {
         }
     }
 
-    void Favoritear(Favoriteable fav) throws FavoritoRepetidoException {
+    void favoritear(Favoriteable fav) throws FavoritoRepetidoException {
         if (!favoritos.contains(fav)) {
             favoritos.add(fav);
         } else {
@@ -161,8 +161,8 @@ class Cliente extends Usuario {
         }
     }
 
-    Publica BuscarListaPublica(String nomLista) throws ListaInexistenteException {
-        Particular lista = BuscarLista(nomLista);
+    Publica buscarListaPublica(String nomLista) throws ListaInexistenteException {
+        Particular lista = buscarLista(nomLista);
         if (lista instanceof Publica) {
             return (Publica) lista;
         } else {
@@ -170,7 +170,7 @@ class Cliente extends Usuario {
         }
     }
 
-    void DesFavoritear(Favoriteable fav) throws FavoritoRepetidoException {
+    void desFavoritear(Favoriteable fav) throws FavoritoRepetidoException {
         if (favoritos.contains(fav)) {
             favoritos.remove(fav);
         } else {
@@ -178,7 +178,7 @@ class Cliente extends Usuario {
         }
     }
     
-    void AgregarTemaLista(Tema tema, String lis) throws Exception {
+    void agregarTemaLista(Tema tema, String lis) throws Exception {
         Lista lista = listas.get(lis);
         if (lista == null) {
             throw new Exception("La lista que tiene que existir no se encontro");
@@ -186,7 +186,7 @@ class Cliente extends Usuario {
         lista.agregarTema(tema);
     }
 
-    boolean SigueA(String nomSeguido) {
+    boolean sigueA(String nomSeguido) {
         return seguidos.containsKey(nomSeguido);
     }
 

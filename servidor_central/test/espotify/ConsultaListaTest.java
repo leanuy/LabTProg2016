@@ -20,7 +20,6 @@ import java.util.Calendar;
 import java.util.List;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-
 public class ConsultaListaTest {
     static IConsultaLista iConsultaLista;
 
@@ -46,7 +45,7 @@ public class ConsultaListaTest {
     @Test
     public void testListarGeneros() {
         System.out.println("Listar Generos (llama al otro controlador, en donde ya está testeado)");
-        DataGenero result = iConsultaLista.ListarGeneros();
+        DataGenero result = iConsultaLista.listarGeneros();
         DataGenero expResult = new DataGenero("Genero","",new ArrayList<>());
         assertEquals(expResult, result);
     }
@@ -54,7 +53,7 @@ public class ConsultaListaTest {
     @Test
     public void testListarListasDeGenero() {
         System.out.println("Listar Listas de Genero");
-        List<String> result = iConsultaLista.ListarListasDeGenero("Genero");
+        List<String> result = iConsultaLista.listarListasDeGenero("Genero");
         List<String> expResult = new ArrayList<String>();
         expResult.add("Lista genérica");
         assertEquals(expResult, result);
@@ -63,7 +62,7 @@ public class ConsultaListaTest {
     @Test
     public void testDarInfoDefecto() throws Exception {
         System.out.println("Dar Info Defecto");
-        DataLista result = iConsultaLista.DarInfoDefecto("Lista genérica");
+        DataLista result = iConsultaLista.darInfoDefecto("Lista genérica");
         DataLista expResult = new DataLista("Lista genérica", null, new ArrayList<>());
         assertEquals(expResult, result);
     }
@@ -71,14 +70,14 @@ public class ConsultaListaTest {
     @Test (expected = ListaInexistenteException.class)
     public void testDarInfoDefecto2() throws Exception {
         System.out.println("Dar Info Defecto 2: lista inexistente");
-        DataLista result = iConsultaLista.DarInfoDefecto("Lista gadfenérica");
+        DataLista result = iConsultaLista.darInfoDefecto("Lista gadfenérica");
     }
     
     
     @Test
     public void testListarListasDeCliente() throws Exception {
         System.out.println("Listar Listas de Cliente 1");
-        List<String> result = iConsultaLista.ListarListasDeCliente("TesterLista");
+        List<String> result = iConsultaLista.listarListasDeCliente("TesterLista");
         List<String> expResult = new ArrayList<String>();
         expResult.add("Mi Lista");
         assertEquals(expResult, result);
@@ -87,13 +86,13 @@ public class ConsultaListaTest {
     @Test (expected = ClienteInexistenteException.class)
     public void testListarListasDeCliente2() throws Exception {
         System.out.println("Listar Listas de Cliente 2");
-        List<String> result = iConsultaLista.ListarListasDeCliente("TestasdferLista");
+        List<String> result = iConsultaLista.listarListasDeCliente("TestasdferLista");
     }
     
     @Test
     public void testDarInfoParticular() throws Exception {
         System.out.println("Dar Info Particular");
-        DataLista result = iConsultaLista.DarInfoParticular("Mi Lista", "TesterLista");
+        DataLista result = iConsultaLista.darInfoParticular("Mi Lista", "TesterLista");
         DataLista expResult = new DataLista("Mi Lista", null, new ArrayList<>());
         assertEquals(expResult, result);
     }
@@ -101,13 +100,13 @@ public class ConsultaListaTest {
     @Test (expected = ClienteInexistenteException.class)
     public void testDarInfoParticular2() throws Exception {
         System.out.println("Dar Info Particular 2: cliente inexistente");
-        DataLista result = iConsultaLista.DarInfoParticular("Mi Lista", "TestasdferLista");
+        DataLista result = iConsultaLista.darInfoParticular("Mi Lista", "TestasdferLista");
     }
     
     @Test (expected = ListaInexistenteException.class)
     public void testDarInfoParticular3() throws Exception {
         System.out.println("Dar Info Particular 3: lista inexistente");
-        DataLista result = iConsultaLista.DarInfoParticular("Mi Liasfsta", "TesterLista");
+        DataLista result = iConsultaLista.darInfoParticular("Mi Liasfsta", "TesterLista");
     }
     
 

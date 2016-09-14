@@ -34,7 +34,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         ListaAlbunesArtista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         List<String> artists = null;
-        artists = inter.ListarArtistas();
+        artists = inter.listarArtistas();
         for(String s : artists){
             modelito.addElement(s);
         }
@@ -170,7 +170,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         int opcion = ListaArtistas.getSelectedIndex();
         ArtistSelected = (String)modelito.getElementAt(opcion);
         try {
-            dataAlbums = inter.ListarAlbumesDeArtista(ArtistSelected);
+            dataAlbums = inter.listarAlbumesDeArtista(ArtistSelected);
             for (String d : dataAlbums) {
                 modelitoAlbums.addElement(d);
             }
@@ -195,7 +195,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
                 return;
             }
             nomAlbum = (String)modelitoAlbums.getElementAt(idxSeleccionado);
-            dataAlbum = inter.ConsultaAlbum(nomAlbum,ArtistSelected);
+            dataAlbum = inter.consultaAlbum(nomAlbum,ArtistSelected);
             ventanaAlbum = new AlbumConsultado(dataAlbum);
             
             ventanaAlbum.setVisible(true);

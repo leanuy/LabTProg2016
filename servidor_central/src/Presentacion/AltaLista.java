@@ -33,7 +33,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
         initComponents();
         
         particularRadio.setSelected(true);
-        List<String> clientes = ctrl.ListarClientes();
+        List<String> clientes = ctrl.listarClientes();
         DefaultListModel<String> model = new DefaultListModel<>();
         clientlist.setModel(model);
         for(String str : clientes) {
@@ -41,7 +41,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
         }
         
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-        DataGenero generoBase = ctrl.ListarGeneros();
+        DataGenero generoBase = ctrl.listarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -272,7 +272,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
             try {
                 String nomCli = clientlist.getSelectedValue();
                 DataParticular dLista = new DataParticular(nomCli, nombretxt.getText(),img);
-                ctrl.AltaListaParticular(dLista);
+                ctrl.altaListaParticular(dLista);
                 JOptionPane.showMessageDialog(okDialog,
                     "Operación completada con éxito",
                     "OK",
@@ -290,7 +290,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 if (node != null)
                     nomGenero = (String)node.getUserObject();
                 DataDefecto dLista = new DataDefecto(nomGenero, nombretxt.getText(),img);
-                ctrl.AltaListaDefecto(dLista);
+                ctrl.altaListaDefecto(dLista);
                 JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }

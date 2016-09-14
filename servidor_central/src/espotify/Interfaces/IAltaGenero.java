@@ -7,8 +7,8 @@ import espotify.Excepciones.GeneroRepetidoException;
 import java.util.ArrayList;
 
 public interface IAltaGenero {
-    public DataGenero ListarGeneros();
+    public DataGenero listarGeneros();
 
-    public void AltaGenero(DataGenero dGenero)
+    public void altaGenero(DataGenero dGenero)
             throws GeneroInexistenteException, GeneroRepetidoException;
 }

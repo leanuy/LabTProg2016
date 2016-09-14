@@ -11,13 +11,13 @@ import java.util.List;
 
 
 public interface IAltaLista {
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 
-    public DataGenero ListarGeneros();
+    public DataGenero listarGeneros();
 
-    public void AltaListaParticular(DataParticular dLista)
+    public void altaListaParticular(DataParticular dLista)
             throws ListaRepetidaException, ClienteInexistenteException;
 
-    public void AltaListaDefecto(DataDefecto dLista)
+    public void altaListaDefecto(DataDefecto dLista)
             throws ListaRepetidaException, GeneroInexistenteException;
 }

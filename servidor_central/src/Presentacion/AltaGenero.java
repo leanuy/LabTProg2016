@@ -26,7 +26,7 @@ public class AltaGenero extends javax.swing.JInternalFrame {
         initComponents();
         ArbolGeneros.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
         IAltaGenero inter =  Fabrica.getIAltaGenero();                 
-        DataGenero generoBase = inter.ListarGeneros();
+        DataGenero generoBase = inter.listarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -141,7 +141,7 @@ public class AltaGenero extends javax.swing.JInternalFrame {
                 nomPadre = (String)node.getUserObject();
             
             IAltaGenero ctrl = Fabrica.getIAltaGenero();
-            ctrl.AltaGenero(new DataGenero(nom,nomPadre));
+            ctrl.altaGenero(new DataGenero(nom,nomPadre));
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             this.dispose();
         } catch (GeneroRepetidoException ex) {

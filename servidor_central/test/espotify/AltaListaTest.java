@@ -1,5 +1,7 @@
 package espotify;
 
+import static org.junit.Assert.assertEquals;
+
 
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
@@ -21,8 +23,6 @@ import org.junit.runners.MethodSorters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import static org.junit.Assert.assertEquals;
-
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AltaListaTest {
@@ -51,7 +51,7 @@ public class AltaListaTest {
         List<String> expResult = new ArrayList<>();
         expResult.add("TesterLista2");
         expResult.add("TesterLista");
-        List<String> result = iAltaLista.ListarClientes();
+        List<String> result = iAltaLista.listarClientes();
         assertEquals(expResult, result);
     }    
     
@@ -61,7 +61,7 @@ public class AltaListaTest {
         System.out.println("AltaListaParticular: caso ok");
         DataParticular dLista = new DataParticular("TesterLista", "Mi Lista", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(dLista);
+        instance.altaListaParticular(dLista);
     }
     
     @Test (expected = ClienteInexistenteException.class)
@@ -69,7 +69,7 @@ public class AltaListaTest {
         System.out.println("AltaListaParticular:usuario inexistente");
         DataParticular dLista = new DataParticular("no existo yey", "Mi Lista", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(dLista);
+        instance.altaListaParticular(dLista);
     }
     
     @Test
@@ -77,9 +77,9 @@ public class AltaListaTest {
         System.out.println("AltaListaParticular:dos clientes con listas de igual nombre");
         DataParticular dLista = new DataParticular("TesterLista", "Lista que comparte nombre", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(dLista);
+        instance.altaListaParticular(dLista);
         dLista = new DataParticular("TesterLista2", "Lista que comparte nombre", null);
-        instance.AltaListaParticular(dLista);
+        instance.altaListaParticular(dLista);
     }
     
     @Test (expected = ListaRepetidaException.class)
@@ -87,9 +87,9 @@ public class AltaListaTest {
         System.out.println("AltaListaParticular:nombre de lista repetido");
         DataParticular dLista = new DataParticular("TesterLista", "Repetido", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(dLista);
+        instance.altaListaParticular(dLista);
         dLista = new DataParticular("TesterLista", "Repetido", null);
-        instance.AltaListaParticular(dLista);
+        instance.altaListaParticular(dLista);
     }
     
     @Test (expected = ListaRepetidaException.class)
@@ -97,7 +97,7 @@ public class AltaListaTest {
         System.out.println("AltaListaParticular:nombre de lista vacío");
         DataParticular dLista = new DataParticular("TesterLista", "", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(dLista);
+        instance.altaListaParticular(dLista);
     }
     
     @Test
@@ -105,7 +105,7 @@ public class AltaListaTest {
         System.out.println("AltaListaDefecto: género=Genero");
         DataDefecto dLista = new DataDefecto("Genero", "Lista genérica", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaDefecto(dLista);
+        instance.altaListaDefecto(dLista);
     }
     
     @Test (expected = GeneroInexistenteException.class)
@@ -113,7 +113,7 @@ public class AltaListaTest {
         System.out.println("AltaListaDefecto: género inexistente");
         DataDefecto dLista = new DataDefecto("aksdnlfaesufmx", "Lista que no va a andar", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaDefecto(dLista);
+        instance.altaListaDefecto(dLista);
     }
     
     @Test (expected = ListaRepetidaException.class)
@@ -121,8 +121,8 @@ public class AltaListaTest {
         System.out.println("AltaListaDefecto: nombre repetido");
         DataDefecto dLista = new DataDefecto("Genero", "Soy una lista con un nombre comun", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaDefecto(dLista);
-        instance.AltaListaDefecto(dLista);
+        instance.altaListaDefecto(dLista);
+        instance.altaListaDefecto(dLista);
     }
     
     @Test (expected = ListaRepetidaException.class)
@@ -130,6 +130,6 @@ public class AltaListaTest {
         System.out.println("AltaListaDefecto: nombre vacío");
         DataDefecto dLista = new DataDefecto("Genero", "", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaDefecto(dLista);
+        instance.altaListaDefecto(dLista);
     }
 }

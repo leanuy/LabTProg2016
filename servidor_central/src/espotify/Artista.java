@@ -24,7 +24,7 @@ class Artista extends Usuario {
         this.albums.put(album.getNombre(), album);
     }
 
-    boolean TieneAlbum(String album) {
+    boolean tieneAlbum(String album) {
         return this.albums.containsKey(album);
     }
     
@@ -37,12 +37,12 @@ class Artista extends Usuario {
     }
     
     DataAlbumExt getDataAlbumExt(String nomAlbum) throws AlbumInexistenteException {
-        Album album = BuscarAlbum(nomAlbum);
+        Album album = buscarAlbum(nomAlbum);
         return album.getDataExt();
     }
     
     //otros métodos
-    static boolean ValidarDatosArtista(DataArtista dArt) {
+    static boolean validarDatosArtista(DataArtista dArt) {
         return Usuario.validarDatosUsuario(dArt);
     }
 
@@ -59,7 +59,7 @@ class Artista extends Usuario {
                 getCorreo(), getFechaNac(), getImg(), bio, url, albums, segdores);
     }
     
-    Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
+    Album buscarAlbum(String nombre) throws AlbumInexistenteException {
         Album album = albums.get(nombre);
         if (album == null) {
             throw new AlbumInexistenteException();
@@ -67,7 +67,7 @@ class Artista extends Usuario {
         return album;
     }
     
-    List<String> ListarAlbumes() {
+    List<String> listarAlbumes() {
         List<String> listaAlbums = new ArrayList();
         Iterator iterador = albums.entrySet().iterator();
         Album albumActual;
@@ -79,7 +79,7 @@ class Artista extends Usuario {
         return listaAlbums;
     }
     
-    Tema DevolverTema(DataTema dTema) {
+    Tema devolverTema(DataTema dTema) {
         String album = dTema.getAlbum();
         String tema = dTema.getNombre();
         Album alb = albums.get(album);

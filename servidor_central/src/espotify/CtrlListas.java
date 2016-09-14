@@ -34,7 +34,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     public CtrlListas() {
     }
 //Acceso al Manejador
-    Defecto BuscarLista(String nomLista) throws ListaInexistenteException {
+    Defecto buscarLista(String nomLista) throws ListaInexistenteException {
         Defecto def = ManejadorColecciones.getInstancia().buscarLista(nomLista);
         if (def == null) {
             throw new ListaInexistenteException();
@@ -42,69 +42,66 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         return def;
     }
     
-    private static Map<String, Defecto> GetListas() {
+    private static Map<String, Defecto> getListas() {
         return ManejadorColecciones.getInstancia().getListas();
     }
 //Listas
     @Override
-    public List<String> ListarClientes() {
+    public List<String> listarClientes() {
         return new CtrlUsuarios().ListarClientes();
     }
     
     @Override
-    public List<String> ListarArtistas() {
+    public List<String> listarArtistas() {
         return new CtrlUsuarios().listarArtistas();
     }
     
     @Override
-    public List<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> listarListasDeCliente(String nick) throws ClienteInexistenteException {
         nickMem = nick;
         return new CtrlUsuarios().listarListasDeCliente(nick);
     }
     
     @Override
-    public List<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> listarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
         return new CtrlUsuarios().listarListasPrivadasDeCliente(nick);
     }
     
     @Override
-    public List<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> listarListasPublicasDeCliente(String nick) throws ClienteInexistenteException {
         return  new CtrlUsuarios().listarListasPublicasDeCliente(nick);
     }
     
     @Override
-    public List<String> ListarListasDefecto() {
+    public List<String> listarListasDefecto() {
         nickMem = "";
-        List salida = new ArrayList();
-        GetListas().keySet().stream().forEach((key) -> {
+        return listarListasDefecto2();
+    }
+    
+    @Override
+    public List<String> listarListasDefecto2() {
+        final List salida = new ArrayList();
+        getListas().keySet().stream().forEach((key) -> {
             salida.add(key);
         });
         return salida;
     }
     
     @Override
-    public List<String> ListarListasDefecto2() {
-        List salida = new ArrayList();
-        GetListas().keySet().stream().forEach((key) -> {
-            salida.add(key);
-        });
-        return salida;
-    }
-    
-    @Override
-    public List<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException {
+    public List<DataTema> listarTemasLista(String nombre)
+            throws ClienteInexistenteException, ListaInexistenteException {
         nomListaMem = nombre;
         if (nickMem.equals("")) /*listaron las por defecto*/ {
-            return BuscarLista(nombre).listarTemas();
+            return buscarLista(nombre).listarTemas();
         } else {
             return new CtrlUsuarios().listarTemasDeLista(nickMem,nombre);
         }
     }
     
     @Override
-    public List<DataTema> ListarTemasLista2(String cliente, String nomLista) throws Exception {
+    public List<DataTema> listarTemasLista2(String cliente, String nomLista) throws Exception {
         if (cliente == null) {
-            temasLista = BuscarLista(nomLista).listarTemas();
+            temasLista = buscarLista(nomLista).listarTemas();
         } else {
             temasLista = new CtrlUsuarios().listarTemasDeLista(cliente, nomLista);
         }
@@ -112,14 +109,14 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     }
     
     @Override
-    public DataGenero ListarGeneros() {
-        return new CtrlMusica().ListarGeneros();
+    public DataGenero listarGeneros() {
+        return new CtrlMusica().listarGeneros();
     }
     
     @Override
-    public List<String> ListarListasDeGenero(String nomGenero) {
+    public List<String> listarListasDeGenero(String nomGenero) {
         List<String> salida = new ArrayList();
-        for (Map.Entry<String, Defecto> entry : GetListas().entrySet()) {
+        for (Map.Entry<String, Defecto> entry : getListas().entrySet()) {
             Defecto def = entry.getValue();
             if (def.getNomGenero().equals(nomGenero)) {
                 salida.add(def.getNombre());
@@ -129,58 +126,58 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     }
     
     @Override
-    public List<String> ListarAlbumesDeArtista(String nick) throws ArtistaInexistenteException {
+    public List<String> listarAlbumesDeArtista(String nick) throws ArtistaInexistenteException {
         return new CtrlUsuarios().listarAlbumesDeArtista(nick);
     }
     
     @Override
-    public List<DataTema> ListarTemasAlbum(String art, String alb) throws
+    public List<DataTema> listarTemasAlbum(String art, String alb) throws
             ArtistaInexistenteException, AlbumInexistenteException {
         return new CtrlUsuarios().listarTemasAlbum(art, alb);
     }
     
 //Consultas
     @Override
-    public DataLista DarInfoDefecto(String nomLista) throws ListaInexistenteException {
-        return BuscarLista(nomLista).getData();
+    public DataLista darInfoDefecto(String nomLista) throws ListaInexistenteException {
+        return buscarLista(nomLista).getData();
     }
     
     @Override
-    public DataLista DarInfoParticular(String nomLista, String nick) throws
+    public DataLista darInfoParticular(String nomLista, String nick) throws
             ClienteInexistenteException, ListaInexistenteException {
         return new CtrlUsuarios().darInfoLista(nomLista, nick);
     }
     
-    private boolean ValidarNombreListaDefecto(String nomLista) {
-        return !nomLista.equals("") && !GetListas().containsKey(nomLista);
+    private boolean validarNombreListaDefecto(String nomLista) {
+        return !nomLista.equals("") && !getListas().containsKey(nomLista);
     }
     
 //Operaciones
     @Override
-    public void PublicarLista(String nomLista, String nick) throws ClienteInexistenteException,
+    public void publicarLista(String nomLista, String nick) throws ClienteInexistenteException,
             ListaInexistenteException, YaPublicaException {
         new CtrlUsuarios().publicarLista(nomLista,nick);
     }
     
     @Override
-    public void RemoverTemaLista(String nomTema, String nomAlbum) throws ListaInexistenteException,
+    public void removerTemaLista(String nomTema, String nomAlbum) throws ListaInexistenteException,
             ClienteInexistenteException {
         if (nickMem.equals("")) { //listaron las por defecto
-            BuscarLista(nomListaMem).quitarTema(nomTema,nomAlbum);
+            buscarLista(nomListaMem).quitarTema(nomTema,nomAlbum);
         } else {
             new CtrlUsuarios().quitarTemaDeLista(nickMem,nomListaMem,nomTema,nomAlbum);
         }
     }
     
     @Override
-    public void AltaListaParticular(DataParticular dParticular) throws ListaRepetidaException, ClienteInexistenteException {
+    public void altaListaParticular(DataParticular dParticular) throws ListaRepetidaException, ClienteInexistenteException {
         new CtrlUsuarios().altaLista(dParticular);
     }
     
     @Override
-    public void AltaListaDefecto(DataDefecto dLista) throws ListaRepetidaException, GeneroInexistenteException {
-        if (ValidarNombreListaDefecto(dLista.getNombre())) {
-            Genero genero = new CtrlMusica().BuscarGenero(dLista.getGenero());
+    public void altaListaDefecto(DataDefecto dLista) throws ListaRepetidaException, GeneroInexistenteException {
+        if (validarNombreListaDefecto(dLista.getNombre())) {
+            Genero genero = new CtrlMusica().buscarGenero(dLista.getGenero());
             ManejadorColecciones.getInstancia().agregarLista(dLista.getNombre(),
                     new Defecto(genero, dLista.getNombre(), dLista.getImg()));
         } else {
@@ -189,17 +186,14 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     }
     
     @Override
-    public void AgregarTemaLista(DataTema dtema, String lista)throws Exception {
+    public void agregarTemaLista(DataTema dtema, String lista)throws Exception {
         CtrlUsuarios ctrlU = new CtrlUsuarios();        
         if (dtema == null) {
             throw new Exception("No se selecciono un tema valido");
         }
         Tema tema = ctrlU.devolverTema(dtema);
         if (nickMem == null || nickMem.equals("")) {
-            /*if (lista == null) {
-                throw new ListaInexistenteException("No existe esa lista");
-            }*/
-            BuscarLista(lista).agregarTema(tema);
+            buscarLista(lista).agregarTema(tema);
         } else {
             ctrlU.agregarTemaLista(tema,nickMem, lista);
         }

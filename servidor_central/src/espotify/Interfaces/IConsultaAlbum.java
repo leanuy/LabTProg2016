@@ -9,16 +9,16 @@ import espotify.Excepciones.GeneroInexistenteException;
 import java.util.List;
 
 public interface IConsultaAlbum { 
-    public DataGenero ListarGeneros();
+    public DataGenero listarGeneros();
 
-    public List<String[]> ListarAlbumesDeGenero(String nomGenero)
+    public List<String[]> listarAlbumesDeGenero(String nomGenero)
             throws GeneroInexistenteException;
 
-    public List<String> ListarArtistas();
+    public List<String> listarArtistas();
 
-    public List<String> ListarAlbumesDeArtista(String nomArtista)
+    public List<String> listarAlbumesDeArtista(String nomArtista)
             throws ArtistaInexistenteException;
 
-    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista)
+    public DataAlbumExt consultaAlbum(String nomAlbum, String nomArtista)
             throws ArtistaInexistenteException, AlbumInexistenteException;
 }

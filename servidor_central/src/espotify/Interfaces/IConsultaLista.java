@@ -8,18 +8,18 @@ import espotify.Excepciones.ListaInexistenteException;
 import java.util.List;
 
 public interface IConsultaLista {
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 
-    public DataGenero ListarGeneros();
+    public DataGenero listarGeneros();
 
-    public List<String> ListarListasDeGenero(String nomGenero);
+    public List<String> listarListasDeGenero(String nomGenero);
 
-    public List<String> ListarListasDeCliente(String nick)
+    public List<String> listarListasDeCliente(String nick)
             throws ClienteInexistenteException;
 
-    public DataLista DarInfoParticular(String nomLista, String nick)
+    public DataLista darInfoParticular(String nomLista, String nick)
             throws ClienteInexistenteException, ListaInexistenteException;
 
-    public DataLista DarInfoDefecto(String nomLista)
+    public DataLista darInfoDefecto(String nomLista)
             throws ListaInexistenteException;
 }

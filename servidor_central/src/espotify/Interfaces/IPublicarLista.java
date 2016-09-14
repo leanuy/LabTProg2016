@@ -7,13 +7,13 @@ import espotify.Excepciones.YaPublicaException;
 import java.util.List;
 
 public interface IPublicarLista {
-    public void PublicarLista(String nomLista, String nick)
+    public void publicarLista(String nomLista, String nick)
             throws ClienteInexistenteException,
             ListaInexistenteException,
             YaPublicaException;
 
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 
-    public List<String> ListarListasPrivadasDeCliente(String nick)
+    public List<String> listarListasPrivadasDeCliente(String nick)
             throws ClienteInexistenteException;
 }

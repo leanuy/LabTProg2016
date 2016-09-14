@@ -85,7 +85,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         
         //cargar Generos
         DataGenero generoBase = null;
-        generoBase = inter.ListarGeneros();
+        generoBase = inter.listarGeneros();
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
@@ -93,7 +93,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         expandAllNodes(ArbolGeneros, 0, ArbolGeneros.getRowCount());
         
         //cargar Artistas
-        List<String> artists = inter.ListarArtistas();
+        List<String> artists = inter.listarArtistas();
         for (String s: artists) {
             modeloArtistas.addElement(s);
         }
@@ -461,7 +461,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 nombreAlbum.getText(),year,genders,img,ArtistSelected);
         
         try {
-            inter.AltaAlbum(nuevoAlbum);
+            inter.altaAlbum(nuevoAlbum);
         } catch(AlbumRepetidoException e){
             JOptionPane.showMessageDialog(this, "El artista que ha ingresado ya tiene un album con ese nombre. Por favor seleccione un nombre distinto.", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
