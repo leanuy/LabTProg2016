@@ -42,6 +42,12 @@ public class DataUsuario {
     public List<String> getSeguidores() {
         return this.seguidores;
     }
+    
+    public String getImgUrl()
+    {
+        return "assets/img/profile.png";
+    }
+    
 
     public DataUsuario(String nick, String nombre, String apellido, String correo,
             Calendar fechaNac, BufferedImage img, List<String> segdores) {

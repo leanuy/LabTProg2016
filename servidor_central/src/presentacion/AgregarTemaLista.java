@@ -24,12 +24,12 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
      */
     public AgregarTemaLista() {
         initComponents();
-        ClientesBox.setVisible(false);
-        Lista1Box.setVisible(false);
-        Cliente2Box.setVisible(false);
-        ArtistaBox.setVisible(false);
-        Lista2Box.setVisible(false);
-        AlbumBox.setVisible(false);
+        clientesBox.setVisible(false);
+        lista1Box.setVisible(false);
+        cliente2Box.setVisible(false);
+        artistaBox.setVisible(false);
+        lista2Box.setVisible(false);
+        albumBox.setVisible(false);
         TemaBox.setVisible(false);
         clienteslabel.setVisible(false);
         lista1label.setVisible(false);
@@ -38,12 +38,12 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         lista2label.setVisible(false);
         albumlabel.setVisible(false);
         temalabel.setVisible(false);
-        SeleccionarLista.setVisible(false);
-        SeleccionarCliente1.setVisible(false);
-        SeleccionarCliente.setVisible(false);
-        SeleccionarArtista.setVisible(false);
-        SeleccionarLista1.setVisible(false);
-        SeleccionarAlbum.setVisible(false);
+        seleccionarLista.setVisible(false);
+        seleccionarCliente1.setVisible(false);
+        seleccionarCliente.setVisible(false);
+        seleccionarArtista.setVisible(false);
+        seleccionarLista1.setVisible(false);
+        seleccionarAlbum.setVisible(false);
         
     }
     
@@ -59,11 +59,11 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         clienteslabel = new javax.swing.JLabel();
         lista1label = new javax.swing.JLabel();
-        ClientesBox = new javax.swing.JComboBox<>();
+        clientesBox = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         ParticularButton = new javax.swing.JRadioButton();
         DefectoButton = new javax.swing.JRadioButton();
-        Lista1Box = new javax.swing.JComboBox<>();
+        lista1Box = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         LPublicaButton = new javax.swing.JRadioButton();
         LDefectoButton = new javax.swing.JRadioButton();
@@ -71,21 +71,21 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         cliente2label = new javax.swing.JLabel();
         lista2label = new javax.swing.JLabel();
         temalabel = new javax.swing.JLabel();
-        Lista2Box = new javax.swing.JComboBox<>();
-        Cliente2Box = new javax.swing.JComboBox<>();
+        lista2Box = new javax.swing.JComboBox<>();
+        cliente2Box = new javax.swing.JComboBox<>();
         artistalabel = new javax.swing.JLabel();
-        ArtistaBox = new javax.swing.JComboBox<>();
+        artistaBox = new javax.swing.JComboBox<>();
         albumlabel = new javax.swing.JLabel();
-        AlbumBox = new javax.swing.JComboBox<>();
-        AgregarButton = new javax.swing.JButton();
+        albumBox = new javax.swing.JComboBox<>();
+        agregarButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         TemaBox = new javax.swing.JList<>();
-        SeleccionarCliente = new javax.swing.JButton();
-        SeleccionarArtista = new javax.swing.JButton();
-        SeleccionarLista = new javax.swing.JButton();
-        SeleccionarCliente1 = new javax.swing.JButton();
-        SeleccionarLista1 = new javax.swing.JButton();
-        SeleccionarAlbum = new javax.swing.JButton();
+        seleccionarCliente = new javax.swing.JButton();
+        seleccionarArtista = new javax.swing.JButton();
+        seleccionarLista = new javax.swing.JButton();
+        seleccionarCliente1 = new javax.swing.JButton();
+        seleccionarLista1 = new javax.swing.JButton();
+        seleccionarAlbum = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Agregar Tema a Lista");
@@ -94,9 +94,9 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
 
         lista1label.setText("Seleccione una Lista:");
 
-        ClientesBox.addActionListener(new java.awt.event.ActionListener() {
+        clientesBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ClientesBoxActionPerformed(evt);
+                clientesBoxActionPerformed(evt);
             }
         });
 
@@ -118,9 +118,9 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
             }
         });
 
-        Lista1Box.addActionListener(new java.awt.event.ActionListener() {
+        lista1Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Lista1BoxActionPerformed(evt);
+                lista1BoxActionPerformed(evt);
             }
         });
 
@@ -156,82 +156,82 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
 
         temalabel.setText("Seleccione el tema que desea agregar:");
 
-        Lista2Box.addActionListener(new java.awt.event.ActionListener() {
+        lista2Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Lista2BoxActionPerformed(evt);
+                lista2BoxActionPerformed(evt);
             }
         });
 
-        Cliente2Box.addActionListener(new java.awt.event.ActionListener() {
+        cliente2Box.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cliente2BoxActionPerformed(evt);
+                cliente2BoxActionPerformed(evt);
             }
         });
 
         artistalabel.setText("Seleccione un Artista:");
 
-        ArtistaBox.addActionListener(new java.awt.event.ActionListener() {
+        artistaBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ArtistaBoxActionPerformed(evt);
+                artistaBoxActionPerformed(evt);
             }
         });
 
         albumlabel.setText("Seleccione un Album:");
 
-        AlbumBox.addActionListener(new java.awt.event.ActionListener() {
+        albumBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlbumBoxActionPerformed(evt);
+                albumBoxActionPerformed(evt);
             }
         });
 
-        AgregarButton.setText("Agregar");
-        AgregarButton.addActionListener(new java.awt.event.ActionListener() {
+        agregarButton.setText("Agregar");
+        agregarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AgregarButtonActionPerformed(evt);
+                agregarButtonActionPerformed(evt);
             }
         });
 
         jScrollPane2.setViewportView(TemaBox);
 
-        SeleccionarCliente.setText("Seleccionar");
-        SeleccionarCliente.addActionListener(new java.awt.event.ActionListener() {
+        seleccionarCliente.setText("Seleccionar");
+        seleccionarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarClienteActionPerformed(evt);
+                seleccionarClienteActionPerformed(evt);
             }
         });
 
-        SeleccionarArtista.setText("Seleccionar");
-        SeleccionarArtista.addActionListener(new java.awt.event.ActionListener() {
+        seleccionarArtista.setText("Seleccionar");
+        seleccionarArtista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarArtistaActionPerformed(evt);
+                seleccionarArtistaActionPerformed(evt);
             }
         });
 
-        SeleccionarLista.setText("Seleccionar");
-        SeleccionarLista.addActionListener(new java.awt.event.ActionListener() {
+        seleccionarLista.setText("Seleccionar");
+        seleccionarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarListaActionPerformed(evt);
+                seleccionarListaActionPerformed(evt);
             }
         });
 
-        SeleccionarCliente1.setText("Seleccionar");
-        SeleccionarCliente1.addActionListener(new java.awt.event.ActionListener() {
+        seleccionarCliente1.setText("Seleccionar");
+        seleccionarCliente1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarCliente1ActionPerformed(evt);
+                seleccionarCliente1ActionPerformed(evt);
             }
         });
 
-        SeleccionarLista1.setText("Seleccionar");
-        SeleccionarLista1.addActionListener(new java.awt.event.ActionListener() {
+        seleccionarLista1.setText("Seleccionar");
+        seleccionarLista1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarLista1ActionPerformed(evt);
+                seleccionarLista1ActionPerformed(evt);
             }
         });
 
-        SeleccionarAlbum.setText("Seleccionar");
-        SeleccionarAlbum.addActionListener(new java.awt.event.ActionListener() {
+        seleccionarAlbum.setText("Seleccionar");
+        seleccionarAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionarAlbumActionPerformed(evt);
+                seleccionarAlbumActionPerformed(evt);
             }
         });
 
@@ -250,12 +250,12 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                                     .addComponent(lista1label))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Lista1Box, 0, 146, Short.MAX_VALUE)
-                                    .addComponent(ClientesBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(lista1Box, 0, 146, Short.MAX_VALUE)
+                                    .addComponent(clientesBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(SeleccionarCliente1)
-                                    .addComponent(SeleccionarLista1)))
+                                    .addComponent(seleccionarCliente1)
+                                    .addComponent(seleccionarLista1)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -288,15 +288,15 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cliente2label)
                                 .addGap(30, 30, 30)
-                                .addComponent(Cliente2Box, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cliente2Box, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lista2label)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Lista2Box, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lista2Box, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SeleccionarCliente)
-                            .addComponent(SeleccionarLista))
+                            .addComponent(seleccionarCliente)
+                            .addComponent(seleccionarLista))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,13 +305,13 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(AlbumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(albumBox, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(SeleccionarAlbum))
+                                .addComponent(seleccionarAlbum))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(ArtistaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(artistaBox, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(SeleccionarArtista)))
+                                .addComponent(seleccionarArtista)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(temalabel, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +319,7 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                         .addGap(37, 37, 37))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(304, 304, 304)
-                .addComponent(AgregarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(agregarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -333,13 +333,13 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clienteslabel)
-                    .addComponent(ClientesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SeleccionarCliente1))
+                    .addComponent(clientesBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(seleccionarCliente1))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lista1label)
-                    .addComponent(Lista1Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SeleccionarLista1))
+                    .addComponent(lista1Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(seleccionarLista1))
                 .addGap(57, 57, 57)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -353,26 +353,26 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cliente2label)
-                            .addComponent(Cliente2Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SeleccionarCliente))
+                            .addComponent(cliente2Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seleccionarCliente))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(artistalabel)
-                            .addComponent(ArtistaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SeleccionarArtista))
+                            .addComponent(artistaBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seleccionarArtista))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lista2label)
-                            .addComponent(Lista2Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SeleccionarLista))
+                            .addComponent(lista2Box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seleccionarLista))
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(albumlabel)
-                            .addComponent(AlbumBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(SeleccionarAlbum)))
+                            .addComponent(albumBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(seleccionarAlbum)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54)
-                .addComponent(AgregarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(agregarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
 
@@ -395,18 +395,18 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     private void ParticularButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParticularButtonActionPerformed
         // TODO add your handling code here:
         if(ParticularButton.isSelected()){
-            ClientesBox.setVisible(true);
-            Lista1Box.setVisible(true);
+            clientesBox.setVisible(true);
+            lista1Box.setVisible(true);
             clienteslabel.setVisible(true);
-            SeleccionarCliente1.setVisible(true);
-            SeleccionarLista1.setVisible(true);
+            seleccionarCliente1.setVisible(true);
+            seleccionarLista1.setVisible(true);
             lista1label.setVisible(true);
             ListaAGuardar = null;
             List<String> clientes = interf.listarClientes();
-            ClientesBox.removeAllItems();
-            Lista1Box.removeAllItems();
+            clientesBox.removeAllItems();
+            lista1Box.removeAllItems();
             clientes.stream().forEach((cli) -> {
-                ClientesBox.addItem(cli);
+                clientesBox.addItem(cli);
             });
         }
     }//GEN-LAST:event_ParticularButtonActionPerformed
@@ -414,70 +414,70 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     private void DefectoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DefectoButtonActionPerformed
         // TODO add your handling code here:
         if(DefectoButton.isSelected()){
-            ClientesBox.setVisible(false);
-            Lista1Box.setVisible(true);
-            SeleccionarCliente1.setVisible(false);
-            SeleccionarLista1.setVisible(true);
+            clientesBox.setVisible(false);
+            lista1Box.setVisible(true);
+            seleccionarCliente1.setVisible(false);
+            seleccionarLista1.setVisible(true);
             clienteslabel.setVisible(false);
             lista1label.setVisible(true);
             ListaAGuardar = null;
             List<String> listas = interf.listarListasDefecto();
-            Lista1Box.removeAllItems();
+            lista1Box.removeAllItems();
             for(String s: listas){
-                Lista1Box.addItem(s);
+                lista1Box.addItem(s);
             }
         }
     }//GEN-LAST:event_DefectoButtonActionPerformed
    
     private void LPublicaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LPublicaButtonActionPerformed
         // TODO add your handling code here:
-        Cliente2Box.setVisible(true);
-        ArtistaBox.setVisible(false);
-        Lista2Box.setVisible(true);
-        AlbumBox.setVisible(false);
+        cliente2Box.setVisible(true);
+        artistaBox.setVisible(false);
+        lista2Box.setVisible(true);
+        albumBox.setVisible(false);
         TemaBox.setVisible(true);
         cliente2label.setVisible(true);
         artistalabel.setVisible(false);
         lista2label.setVisible(true);
         albumlabel.setVisible(false);
         temalabel.setVisible(true);
-        SeleccionarCliente.setVisible(true);
-        SeleccionarArtista.setVisible(false);
-        SeleccionarLista.setVisible(true);
-        SeleccionarAlbum.setVisible(false);
-        Lista2Box.removeAllItems();
-        Cliente2Box.removeAllItems();
+        seleccionarCliente.setVisible(true);
+        seleccionarArtista.setVisible(false);
+        seleccionarLista.setVisible(true);
+        seleccionarAlbum.setVisible(false);
+        lista2Box.removeAllItems();
+        cliente2Box.removeAllItems();
         TemaBox.removeAll();
         TemaBox.setListData(vacio);
         List<String> clientes = interf.listarClientes();
         for(String s : clientes){
-            Cliente2Box.addItem(s);
+            cliente2Box.addItem(s);
         }
     }//GEN-LAST:event_LPublicaButtonActionPerformed
 
     private void LDefectoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LDefectoButtonActionPerformed
         // TODO add your handling code here:
-        Cliente2Box.setVisible(false);
-        ArtistaBox.setVisible(false);
-        Lista2Box.setVisible(true);
-        AlbumBox.setVisible(false);
+        cliente2Box.setVisible(false);
+        artistaBox.setVisible(false);
+        lista2Box.setVisible(true);
+        albumBox.setVisible(false);
         TemaBox.setVisible(true);
         cliente2label.setVisible(false);
         artistalabel.setVisible(false);
         lista2label.setVisible(true);
         albumlabel.setVisible(false);
         temalabel.setVisible(true);
-        SeleccionarCliente.setVisible(false);
-        SeleccionarArtista.setVisible(false);
-        SeleccionarLista.setVisible(true);
-        SeleccionarAlbum.setVisible(false);
-        Lista2Box.removeAllItems();
+        seleccionarCliente.setVisible(false);
+        seleccionarArtista.setVisible(false);
+        seleccionarLista.setVisible(true);
+        seleccionarAlbum.setVisible(false);
+        lista2Box.removeAllItems();
         TemaBox.removeAll();
         TemaBox.setListData(vacio);
         try{
             List<String> listas = interf.listarListasDefecto2();
             for (String s: listas){
-                Lista2Box.addItem(s);
+                lista2Box.addItem(s);
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -486,51 +486,51 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
 
     private void AlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlbumButtonActionPerformed
         // TODO add your handling code here:
-        Cliente2Box.setVisible(false);
-        ArtistaBox.setVisible(true);
-        Lista2Box.setVisible(false);
-        AlbumBox.setVisible(true);
+        cliente2Box.setVisible(false);
+        artistaBox.setVisible(true);
+        lista2Box.setVisible(false);
+        albumBox.setVisible(true);
         TemaBox.setVisible(true);
         cliente2label.setVisible(false);
         artistalabel.setVisible(true);
         lista2label.setVisible(false);
         albumlabel.setVisible(true);
         temalabel.setVisible(true);
-        SeleccionarCliente.setVisible(false);
-        SeleccionarArtista.setVisible(true);
-        SeleccionarLista.setVisible(false);
-        SeleccionarAlbum.setVisible(true);
+        seleccionarCliente.setVisible(false);
+        seleccionarArtista.setVisible(true);
+        seleccionarLista.setVisible(false);
+        seleccionarAlbum.setVisible(true);
         List<String> artistas = interf.listarArtistas();
-        ArtistaBox.removeAllItems();
-        AlbumBox.removeAllItems();
+        artistaBox.removeAllItems();
+        albumBox.removeAllItems();
         TemaBox.removeAll();
         TemaBox.setListData(vacio);
         for (String s: artistas){
-            ArtistaBox.addItem(s);
+            artistaBox.addItem(s);
         }
     }//GEN-LAST:event_AlbumButtonActionPerformed
 
-    private void ClientesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClientesBoxActionPerformed
+    private void clientesBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientesBoxActionPerformed
 
-    }//GEN-LAST:event_ClientesBoxActionPerformed
+    }//GEN-LAST:event_clientesBoxActionPerformed
 
-    private void Cliente2BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cliente2BoxActionPerformed
+    private void cliente2BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cliente2BoxActionPerformed
 
-    }//GEN-LAST:event_Cliente2BoxActionPerformed
+    }//GEN-LAST:event_cliente2BoxActionPerformed
 
-    private void ArtistaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArtistaBoxActionPerformed
+    private void artistaBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_artistaBoxActionPerformed
 
-    }//GEN-LAST:event_ArtistaBoxActionPerformed
+    }//GEN-LAST:event_artistaBoxActionPerformed
 
-    private void Lista2BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista2BoxActionPerformed
+    private void lista2BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista2BoxActionPerformed
 
-    }//GEN-LAST:event_Lista2BoxActionPerformed
+    }//GEN-LAST:event_lista2BoxActionPerformed
 
-    private void AlbumBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlbumBoxActionPerformed
+    private void albumBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_albumBoxActionPerformed
 
-    }//GEN-LAST:event_AlbumBoxActionPerformed
+    }//GEN-LAST:event_albumBoxActionPerformed
 //--------------------------------------------------------------------------------
-    private void AgregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarButtonActionPerformed
+    private void agregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarButtonActionPerformed
         int idx = TemaBox.getSelectedIndex();
         try{
             DataTema dTema = null;
@@ -544,48 +544,48 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
         
-    }//GEN-LAST:event_AgregarButtonActionPerformed
+    }//GEN-LAST:event_agregarButtonActionPerformed
 
-    private void Lista1BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Lista1BoxActionPerformed
-    }//GEN-LAST:event_Lista1BoxActionPerformed
+    private void lista1BoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lista1BoxActionPerformed
+    }//GEN-LAST:event_lista1BoxActionPerformed
 
-    private void SeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarClienteActionPerformed
+    private void seleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarClienteActionPerformed
         if (LPublicaButton.isSelected()){
-            String cli = String.valueOf(Cliente2Box.getSelectedItem());
+            String cli = String.valueOf(cliente2Box.getSelectedItem());
             try {
                 List<String> listas = interf.listarListasPublicasDeCliente(cli);
-                Lista2Box.removeAllItems();
+                lista2Box.removeAllItems();
                 listas.stream().forEach((lista) -> {
-                    Lista2Box.addItem(lista);
+                    lista2Box.addItem(lista);
                 });
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_SeleccionarClienteActionPerformed
+    }//GEN-LAST:event_seleccionarClienteActionPerformed
 
-    private void SeleccionarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarArtistaActionPerformed
+    private void seleccionarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarArtistaActionPerformed
         if (AlbumButton.isSelected()) {
-            String art = String.valueOf(ArtistaBox.getSelectedItem());
+            String art = String.valueOf(artistaBox.getSelectedItem());
             try {
                 List<String> albums = interf.listarAlbumesDeArtista(art);
-                AlbumBox.removeAllItems();
+                albumBox.removeAllItems();
                 TemaBox.removeAll();
                 for (String s: albums){
-                    AlbumBox.addItem(s);
+                    albumBox.addItem(s);
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_SeleccionarArtistaActionPerformed
+    }//GEN-LAST:event_seleccionarArtistaActionPerformed
 
-    private void SeleccionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarListaActionPerformed
+    private void seleccionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarListaActionPerformed
         String cliente = null;
         if (LPublicaButton.isSelected()) {
-            cliente = String.valueOf(Cliente2Box.getSelectedItem());
+            cliente = String.valueOf(cliente2Box.getSelectedItem());
         }
-        String nomLista = String.valueOf(Lista2Box.getSelectedItem());
+        String nomLista = String.valueOf(lista2Box.getSelectedItem());
         try {
             List<DataTema> listaTemas = interf.listarTemasLista2(cliente, nomLista);
             int size = listaTemas.size();
@@ -604,32 +604,32 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         } catch(Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_SeleccionarListaActionPerformed
+    }//GEN-LAST:event_seleccionarListaActionPerformed
 
-    private void SeleccionarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarCliente1ActionPerformed
+    private void seleccionarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarCliente1ActionPerformed
         if(ParticularButton.isSelected()){
-            String cliente = String.valueOf(ClientesBox.getSelectedItem());
+            String cliente = String.valueOf(clientesBox.getSelectedItem());
             try{
                 List<String> listas = interf.listarListasDeCliente(cliente);
-                Lista1Box.removeAllItems();
+                lista1Box.removeAllItems();
                 for(String s: listas){
-                    Lista1Box.addItem(s);
+                    lista1Box.addItem(s);
                 }
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_SeleccionarCliente1ActionPerformed
+    }//GEN-LAST:event_seleccionarCliente1ActionPerformed
 
-    private void SeleccionarLista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarLista1ActionPerformed
-        ListaAGuardar = String.valueOf(Lista1Box.getSelectedItem());
-    }//GEN-LAST:event_SeleccionarLista1ActionPerformed
+    private void seleccionarLista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarLista1ActionPerformed
+        ListaAGuardar = String.valueOf(lista1Box.getSelectedItem());
+    }//GEN-LAST:event_seleccionarLista1ActionPerformed
 
-    private void SeleccionarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarAlbumActionPerformed
+    private void seleccionarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarAlbumActionPerformed
         if(AlbumButton.isSelected()){        
             String artista;
-            artista = String.valueOf(ArtistaBox.getSelectedItem());
-            String album = String.valueOf(AlbumBox.getSelectedItem());
+            artista = String.valueOf(artistaBox.getSelectedItem());
+            String album = String.valueOf(albumBox.getSelectedItem());
             List<DataTema> listaTemas=null;
             try {
                 listaTemas = interf.listarTemasAlbum(artista, album);
@@ -654,41 +654,41 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
                 TemaBox.setListData(algo);
             }
         }
-    }//GEN-LAST:event_SeleccionarAlbumActionPerformed
+    }//GEN-LAST:event_seleccionarAlbumActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AgregarButton;
-    private javax.swing.JComboBox<String> AlbumBox;
     private javax.swing.JRadioButton AlbumButton;
-    private javax.swing.JComboBox<String> ArtistaBox;
-    private javax.swing.JComboBox<String> Cliente2Box;
-    private javax.swing.JComboBox<String> ClientesBox;
     private javax.swing.JRadioButton DefectoButton;
     private javax.swing.JRadioButton LDefectoButton;
     private javax.swing.JRadioButton LPublicaButton;
-    private javax.swing.JComboBox<String> Lista1Box;
-    private javax.swing.JComboBox<String> Lista2Box;
     private javax.swing.JRadioButton ParticularButton;
-    private javax.swing.JButton SeleccionarAlbum;
-    private javax.swing.JButton SeleccionarArtista;
-    private javax.swing.JButton SeleccionarCliente;
-    private javax.swing.JButton SeleccionarCliente1;
-    private javax.swing.JButton SeleccionarLista;
-    private javax.swing.JButton SeleccionarLista1;
     private javax.swing.JList<String> TemaBox;
+    private javax.swing.JButton agregarButton;
+    private javax.swing.JComboBox<String> albumBox;
     private javax.swing.JLabel albumlabel;
+    private javax.swing.JComboBox<String> artistaBox;
     private javax.swing.JLabel artistalabel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.JComboBox<String> cliente2Box;
     private javax.swing.JLabel cliente2label;
+    private javax.swing.JComboBox<String> clientesBox;
     private javax.swing.JLabel clienteslabel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JComboBox<String> lista1Box;
     private javax.swing.JLabel lista1label;
+    private javax.swing.JComboBox<String> lista2Box;
     private javax.swing.JLabel lista2label;
+    private javax.swing.JButton seleccionarAlbum;
+    private javax.swing.JButton seleccionarArtista;
+    private javax.swing.JButton seleccionarCliente;
+    private javax.swing.JButton seleccionarCliente1;
+    private javax.swing.JButton seleccionarLista;
+    private javax.swing.JButton seleccionarLista1;
     private javax.swing.JLabel temalabel;
     // End of variables declaration//GEN-END:variables
 }

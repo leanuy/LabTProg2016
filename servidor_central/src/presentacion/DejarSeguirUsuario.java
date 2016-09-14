@@ -25,8 +25,8 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         List<String> clientes = interf.listarClientes();
 
         for(String str : clientes) {
-            NickSeguidor.addItem(str);
-            NickSeguido.addItem(str);
+            nickSeguidor.addItem(str);
+            nickSeguido.addItem(str);
         }
     }
 
@@ -45,9 +45,9 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         Conteiner3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        DejarButton = new javax.swing.JButton();
-        NickSeguidor = new javax.swing.JComboBox<>();
-        NickSeguido = new javax.swing.JComboBox<>();
+        dejarButton = new javax.swing.JButton();
+        nickSeguidor = new javax.swing.JComboBox<>();
+        nickSeguido = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Dejar de seguir Usuario");
@@ -56,22 +56,22 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Nick del usuario a dejar de seguir:");
 
-        DejarButton.setText("Dejar de Seguir");
-        DejarButton.addActionListener(new java.awt.event.ActionListener() {
+        dejarButton.setText("Dejar de Seguir");
+        dejarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DejarButtonActionPerformed(evt);
+                dejarButtonActionPerformed(evt);
             }
         });
 
-        NickSeguidor.addActionListener(new java.awt.event.ActionListener() {
+        nickSeguidor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NickSeguidorActionPerformed(evt);
+                nickSeguidorActionPerformed(evt);
             }
         });
 
-        NickSeguido.addActionListener(new java.awt.event.ActionListener() {
+        nickSeguido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NickSeguidoActionPerformed(evt);
+                nickSeguidoActionPerformed(evt);
             }
         });
 
@@ -87,13 +87,13 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
                 .addGroup(Conteiner3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Conteiner3Layout.createSequentialGroup()
                         .addGap(26, 26, 26)
-                        .addComponent(DejarButton)
+                        .addComponent(dejarButton)
                         .addContainerGap(217, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Conteiner3Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(Conteiner3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(NickSeguido, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NickSeguidor, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(nickSeguido, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nickSeguidor, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(157, 157, 157))))
         );
         Conteiner3Layout.setVerticalGroup(
@@ -102,13 +102,13 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
                 .addGap(54, 54, 54)
                 .addGroup(Conteiner3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(NickSeguidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nickSeguidor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(46, 46, 46)
                 .addGroup(Conteiner3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(NickSeguido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nickSeguido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(70, 70, 70)
-                .addComponent(DejarButton)
+                .addComponent(dejarButton)
                 .addContainerGap(89, Short.MAX_VALUE))
         );
 
@@ -132,7 +132,7 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void DejarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarButtonActionPerformed
+    private void dejarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dejarButtonActionPerformed
         // TODO add your handling code here:
         if (Seguidor.isEmpty() || Seguido.isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -154,46 +154,46 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         }
-        Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
+        Seguidor = String.valueOf(nickSeguidor.getSelectedItem());
         String[] seguid=null;
         try {
             seguid = interf.getSeguidos(Seguidor);
         } catch (ClienteInexistenteException ex) {
             Logger.getLogger(DejarSeguirUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        NickSeguido.removeAllItems();
+        nickSeguido.removeAllItems();
         for(String stri : seguid) {
-            NickSeguido.addItem(stri);
+            nickSeguido.addItem(stri);
         }
-    }//GEN-LAST:event_DejarButtonActionPerformed
+    }//GEN-LAST:event_dejarButtonActionPerformed
 
-    private void NickSeguidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NickSeguidorActionPerformed
+    private void nickSeguidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickSeguidorActionPerformed
         // TODO add your handling code here:
-        Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
+        Seguidor = String.valueOf(nickSeguidor.getSelectedItem());
         String[] seguid=null;
         try {
             seguid = interf.getSeguidos(Seguidor);
         } catch (ClienteInexistenteException ex) {
             Logger.getLogger(DejarSeguirUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        NickSeguido.removeAllItems();
+        nickSeguido.removeAllItems();
         for(String stri : seguid) {
-            NickSeguido.addItem(stri);
+            nickSeguido.addItem(stri);
         }
-    }//GEN-LAST:event_NickSeguidorActionPerformed
+    }//GEN-LAST:event_nickSeguidorActionPerformed
 
-    private void NickSeguidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NickSeguidoActionPerformed
+    private void nickSeguidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickSeguidoActionPerformed
         // TODO add your handling code here:
-        Seguido = String.valueOf(NickSeguido.getSelectedItem());
-    }//GEN-LAST:event_NickSeguidoActionPerformed
+        Seguido = String.valueOf(nickSeguido.getSelectedItem());
+    }//GEN-LAST:event_nickSeguidoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Conteiner3;
-    private javax.swing.JButton DejarButton;
-    private javax.swing.JComboBox<String> NickSeguido;
-    private javax.swing.JComboBox<String> NickSeguidor;
+    private javax.swing.JButton dejarButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JComboBox<String> nickSeguido;
+    private javax.swing.JComboBox<String> nickSeguidor;
     // End of variables declaration//GEN-END:variables
 }

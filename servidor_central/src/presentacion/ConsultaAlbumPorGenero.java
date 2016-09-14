@@ -84,12 +84,12 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
 
         ConsultaAlbumXGenPanel = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ObtenerAlbumsGeneroButton = new javax.swing.JButton();
+        obtenerAlbumsGeneroButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaAlbumsGenero = new javax.swing.JList<>();
         jLabel2 = new javax.swing.JLabel();
-        ConsultarAlbumButton = new javax.swing.JButton();
-        SalirButton = new javax.swing.JButton();
+        consultarAlbumButton = new javax.swing.JButton();
+        salirButton = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         ArbolGeneros = new javax.swing.JTree();
 
@@ -100,10 +100,10 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Seleccionar Genero");
 
-        ObtenerAlbumsGeneroButton.setText("Obtener Albums del Genero");
-        ObtenerAlbumsGeneroButton.addActionListener(new java.awt.event.ActionListener() {
+        obtenerAlbumsGeneroButton.setText("Obtener Albums del Genero");
+        obtenerAlbumsGeneroButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ObtenerAlbumsGeneroButtonActionPerformed(evt);
+                obtenerAlbumsGeneroButtonActionPerformed(evt);
             }
         });
 
@@ -112,17 +112,17 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Albums");
 
-        ConsultarAlbumButton.setText("Consultar Album");
-        ConsultarAlbumButton.addActionListener(new java.awt.event.ActionListener() {
+        consultarAlbumButton.setText("Consultar Album");
+        consultarAlbumButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultarAlbumButtonActionPerformed(evt);
+                consultarAlbumButtonActionPerformed(evt);
             }
         });
 
-        SalirButton.setText("Salir");
-        SalirButton.addActionListener(new java.awt.event.ActionListener() {
+        salirButton.setText("Salir");
+        salirButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirButtonActionPerformed(evt);
+                salirButtonActionPerformed(evt);
             }
         });
 
@@ -140,7 +140,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27)
-                        .addComponent(ObtenerAlbumsGeneroButton))
+                        .addComponent(obtenerAlbumsGeneroButton))
                     .addGroup(ConsultaAlbumXGenPanelLayout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel2))
@@ -149,8 +149,8 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ConsultaAlbumXGenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SalirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ConsultarAlbumButton))))
+                            .addComponent(salirButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(consultarAlbumButton))))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         ConsultaAlbumXGenPanelLayout.setVerticalGroup(
@@ -160,15 +160,15 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
                 .addGroup(ConsultaAlbumXGenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ObtenerAlbumsGeneroButton))
+                    .addComponent(obtenerAlbumsGeneroButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ConsultaAlbumXGenPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ConsultaAlbumXGenPanelLayout.createSequentialGroup()
-                        .addComponent(ConsultarAlbumButton)
+                        .addComponent(consultarAlbumButton)
                         .addGap(226, 226, 226)
-                        .addComponent(SalirButton))
+                        .addComponent(salirButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(52, 52, 52))
         );
@@ -187,7 +187,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ObtenerAlbumsGeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObtenerAlbumsGeneroButtonActionPerformed
+    private void obtenerAlbumsGeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_obtenerAlbumsGeneroButtonActionPerformed
         List<String[]> Albums = null;
         modelitoAlbums.clear();
         albumsIndex.clear();
@@ -214,13 +214,13 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_ObtenerAlbumsGeneroButtonActionPerformed
+    }//GEN-LAST:event_obtenerAlbumsGeneroButtonActionPerformed
 
-    private void SalirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirButtonActionPerformed
+    private void salirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirButtonActionPerformed
         this.dispose();
-    }//GEN-LAST:event_SalirButtonActionPerformed
+    }//GEN-LAST:event_salirButtonActionPerformed
 
-    private void ConsultarAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarAlbumButtonActionPerformed
+    private void consultarAlbumButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAlbumButtonActionPerformed
         DataAlbumExt dataAlbum = null;
         String nomAlbum = null;
         int[] opcion;
@@ -242,7 +242,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_ConsultarAlbumButtonActionPerformed
+    }//GEN-LAST:event_consultarAlbumButtonActionPerformed
 
     private String[] obtenerNumerodeLista(String str){
         int idx = str.indexOf(' ');
@@ -262,13 +262,13 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree ArbolGeneros;
     private javax.swing.JPanel ConsultaAlbumXGenPanel;
-    private javax.swing.JButton ConsultarAlbumButton;
     private javax.swing.JList<String> ListaAlbumsGenero;
-    private javax.swing.JButton ObtenerAlbumsGeneroButton;
-    private javax.swing.JButton SalirButton;
+    private javax.swing.JButton consultarAlbumButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JButton obtenerAlbumsGeneroButton;
+    private javax.swing.JButton salirButton;
     // End of variables declaration//GEN-END:variables
 }

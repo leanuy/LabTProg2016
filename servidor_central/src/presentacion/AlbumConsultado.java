@@ -269,8 +269,9 @@ public class AlbumConsultado extends javax.swing.JDialog {
             } else {
                 return;
             }
-            if(fileToSave == null) {
-                JOptionPane.showMessageDialog(this,"Problemas al seleccionar destino","Atencion!.",JOptionPane.ERROR_MESSAGE);
+            if (fileToSave == null) {
+                JOptionPane.showMessageDialog(this,"Problemas al seleccionar destino",
+                        "Atencion!.",JOptionPane.ERROR_MESSAGE);
                 return;
             }
             try {
@@ -284,9 +285,12 @@ public class AlbumConsultado extends javax.swing.JDialog {
                     alRes.write(buf);
                 }
                 alRes.close();
-                JOptionPane.showMessageDialog(this,"Tema descargado con exito!","Well Done!.",JOptionPane.INFORMATION_MESSAGE);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this,"Problemas al descargar el archivo, llame a soporte","Atencion!.",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,"Tema descargado con exito!",
+                        "Well Done!.",JOptionPane.INFORMATION_MESSAGE);
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(this,
+                        "Problemas al descargar el archivo, llame a soporte",
+                        "Atencion!.",JOptionPane.ERROR_MESSAGE);
             }    
         }
     }//GEN-LAST:event_descargarTemaActionPerformed

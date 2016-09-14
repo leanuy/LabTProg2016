@@ -51,7 +51,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane3" min="-2" pref="158" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="ObtenerAlbumsGeneroButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="obtenerAlbumsGeneroButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
@@ -62,8 +62,8 @@
                           <Component id="jScrollPane1" min="-2" pref="431" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="SalirButton" min="-2" pref="130" max="-2" attributes="0"/>
-                              <Component id="ConsultarAlbumButton" min="-2" max="-2" attributes="0"/>
+                              <Component id="salirButton" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="consultarAlbumButton" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -78,16 +78,16 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="108" max="-2" attributes="0"/>
-                      <Component id="ObtenerAlbumsGeneroButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="obtenerAlbumsGeneroButton" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="ConsultarAlbumButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="consultarAlbumButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="226" max="-2" attributes="0"/>
-                          <Component id="SalirButton" min="-2" max="-2" attributes="0"/>
+                          <Component id="salirButton" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" min="-2" pref="280" max="-2" attributes="0"/>
                   </Group>
@@ -102,12 +102,12 @@
             <Property name="text" type="java.lang.String" value="Seleccionar Genero"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ObtenerAlbumsGeneroButton">
+        <Component class="javax.swing.JButton" name="obtenerAlbumsGeneroButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Obtener Albums del Genero"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ObtenerAlbumsGeneroButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="obtenerAlbumsGeneroButtonActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -135,20 +135,20 @@
             <Property name="text" type="java.lang.String" value="Albums"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ConsultarAlbumButton">
+        <Component class="javax.swing.JButton" name="consultarAlbumButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultar Album"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ConsultarAlbumButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarAlbumButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="SalirButton">
+        <Component class="javax.swing.JButton" name="salirButton">
           <Properties>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SalirButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="salirButtonActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane3">

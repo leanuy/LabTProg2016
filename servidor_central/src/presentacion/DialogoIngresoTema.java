@@ -21,7 +21,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         URLdelTema.setEnabled(false);
-        URLaTemaRadioButton.setSelected(false);
+        UrlaTemaRadioButton.setSelected(false);
         this.setTitle(tittle);
     }
 
@@ -35,7 +35,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     private void initComponents() {
 
         PanelIngresoTemas = new javax.swing.JPanel();
-        URLaTemaRadioButton = new javax.swing.JRadioButton();
+        UrlaTemaRadioButton = new javax.swing.JRadioButton();
         URLdelTema = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         AceptarButton = new javax.swing.JButton();
@@ -48,10 +48,10 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         DuracionTextField = new javax.swing.JTextField();
 
-        URLaTemaRadioButton.setText("Ingresar link al tema");
-        URLaTemaRadioButton.addActionListener(new java.awt.event.ActionListener() {
+        UrlaTemaRadioButton.setText("Ingresar link al tema");
+        UrlaTemaRadioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                URLaTemaRadioButtonActionPerformed(evt);
+                UrlaTemaRadioButtonActionPerformed(evt);
             }
         });
 
@@ -112,7 +112,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                 .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
                     .addGap(23, 23, 23)
                     .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(URLaTemaRadioButton)
+                        .addComponent(UrlaTemaRadioButton)
                         .addGroup(PanelIngresoTemasLayout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,7 +142,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(ExaminarButton))
                 .addGap(12, 12, 12)
-                .addComponent(URLaTemaRadioButton)
+                .addComponent(UrlaTemaRadioButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelIngresoTemasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(URLdelTema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,15 +168,15 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void URLaTemaRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_URLaTemaRadioButtonActionPerformed
-        if(URLaTemaRadioButton.isSelected()){
+    private void UrlaTemaRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UrlaTemaRadioButtonActionPerformed
+        if(UrlaTemaRadioButton.isSelected()){
             URLdelTema.setEnabled(true);
             PathLocal.setEnabled(false);
         }else{
             URLdelTema.setEnabled(false);
             PathLocal.setEnabled(true);
         }
-    }//GEN-LAST:event_URLaTemaRadioButtonActionPerformed
+    }//GEN-LAST:event_UrlaTemaRadioButtonActionPerformed
 
     private void CancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarButtonActionPerformed
         AltaAlbum.cargarTema(false,null,null,null, 0,false);
@@ -195,7 +195,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Nombre de tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(URLaTemaRadioButton.isSelected()){
+        if(UrlaTemaRadioButton.isSelected()){
             if("".equals(URLdelTema.getText())){
                 JOptionPane.showMessageDialog(this, "Link al tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
@@ -256,8 +256,8 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     private javax.swing.JTextField NombreTema;
     private javax.swing.JPanel PanelIngresoTemas;
     private javax.swing.JTextField PathLocal;
-    private javax.swing.JRadioButton URLaTemaRadioButton;
     private javax.swing.JTextField URLdelTema;
+    private javax.swing.JRadioButton UrlaTemaRadioButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

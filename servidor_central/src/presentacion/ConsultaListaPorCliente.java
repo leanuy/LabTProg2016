@@ -180,10 +180,13 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
                 model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion()/60+":"+dt.getDuracion()%60 + ")");
             }
         } catch (ClienteInexistenteException ex) {
-            JOptionPane.showMessageDialog(this, "El cliente seleccionado no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
-        }
-         catch (ListaInexistenteException ex) {
-            JOptionPane.showMessageDialog(this, "El cliente seleccionado no tiene una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "El cliente seleccionado no existe",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (ListaInexistenteException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "El cliente seleccionado no tiene una lista con ese nombre",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_consultarbtnActionPerformed
 

@@ -64,7 +64,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         biotxt = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         urltxt = new javax.swing.JTextField();
-        Confirmbtn = new javax.swing.JButton();
+        confirmbtn = new javax.swing.JButton();
         pwdtxt = new javax.swing.JTextField();
         pwdcnonfirmtxt = new javax.swing.JTextField();
         nickLabel1 = new javax.swing.JLabel();
@@ -127,10 +127,10 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
 
         jLabel1.setText("URL:");
 
-        Confirmbtn.setText("Confirmar");
-        Confirmbtn.addActionListener(new java.awt.event.ActionListener() {
+        confirmbtn.setText("Confirmar");
+        confirmbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConfirmbtnActionPerformed(evt);
+                confirmbtnActionPerformed(evt);
             }
         });
 
@@ -181,7 +181,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                     .addComponent(nomtxt, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(mailtxt, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(apetxt, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addComponent(Confirmbtn)
+                            .addComponent(confirmbtn)
                             .addComponent(bioscroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pwdcnonfirmtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -236,7 +236,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                     .addComponent(urltxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Confirmbtn)
+                .addComponent(confirmbtn)
                 .addGap(12, 12, 12))
         );
 
@@ -267,7 +267,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_artistaRadioItemStateChanged
 
-    private void ConfirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmbtnActionPerformed
+    private void confirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmbtnActionPerformed
         if(clienteRadio.isSelected()) {
             try {
                 Calendar fNac = Calendar.getInstance(); //TODO
@@ -363,14 +363,14 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
             }
             catch (Exception e) {
                 JOptionPane.showMessageDialog(okDialog,
-                e.getMessage(),
-                "Error",
-                JOptionPane.PLAIN_MESSAGE);
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.PLAIN_MESSAGE);
             }
         }    
         
             
-    }//GEN-LAST:event_ConfirmbtnActionPerformed
+    }//GEN-LAST:event_confirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
         JFileChooser fChooser = new JFileChooser();
@@ -399,7 +399,6 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Confirmbtn;
     private javax.swing.JLabel apelabel;
     private javax.swing.JTextField apetxt;
     private javax.swing.JRadioButton artistaRadio;
@@ -407,6 +406,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane bioscroll;
     private javax.swing.JTextArea biotxt;
     private javax.swing.JRadioButton clienteRadio;
+    private javax.swing.JButton confirmbtn;
     private javax.swing.JPanel contenedor;
     private javax.swing.JLabel fechalabel;
     private javax.swing.JFormattedTextField fechatxt;
