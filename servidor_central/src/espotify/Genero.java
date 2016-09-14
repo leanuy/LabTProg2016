@@ -1,6 +1,6 @@
 package espotify;
 
-import espotify.Datatypes.DataGenero;
+import espotify.datatypes.DataGenero;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,8 +22,8 @@ class Genero {
     
     Genero(final String nombre) {
         this.nombre = nombre;
-        this.subgeneros=new HashMap<>();
-        this.albums=new HashMap<>();
+        this.subgeneros = new HashMap<>();
+        this.albums = new HashMap<>();
     }
     
     Genero(DataGenero data) {
@@ -32,13 +32,13 @@ class Genero {
         this.albums = new HashMap<>();
     }
 
-    List<String[]> ListarAlbumes() {
+    List<String[]> listarAlbumes() {
         ArrayList<String[]> listaAlbums = new ArrayList();
-        Iterator it = albums.entrySet().iterator();
+        Iterator iterador = albums.entrySet().iterator();
         Album actual;
         String[] valores;
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+        while (iterador.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterador.next();
             actual = (Album) pair.getValue();
             valores = new String[2];
             valores[0] = actual.getNombre();
@@ -48,11 +48,11 @@ class Genero {
         return listaAlbums;
     }
 
-    void AddHijo(Genero g) {
-        subgeneros.put(g.getNombre(), g);
+    void addHijo(Genero genero) {
+        subgeneros.put(genero.getNombre(), genero);
     }
     
-    void AddAlbum(Album album) {
+    void addAlbum(Album album) {
         List<String> key = Arrays.asList(album.getNickArtista(), album.getNombre());
         this.albums.putIfAbsent(key, album);
     }
@@ -61,11 +61,11 @@ class Genero {
         return new DataGenero(nombre, padre);
     }
 
-    DataGenero ListarseRecursivo(String nomPadre) {
+    DataGenero listarseRecursivo(String nomPadre) {
         DataGenero salida = this.getData(nomPadre);
         for (Entry<String, Genero> entry : subgeneros.entrySet()) {
             Genero hijo = entry.getValue();
-            salida.getHijos().add(hijo.ListarseRecursivo(this.nombre));
+            salida.getHijos().add(hijo.listarseRecursivo(this.nombre));
         }
         return salida;
     }

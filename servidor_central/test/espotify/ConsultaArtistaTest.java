@@ -3,21 +3,19 @@ package espotify;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataArtista;
-import espotify.Datatypes.DataArtistaExt;
-import espotify.Excepciones.ArtistaInexistenteException;
-import espotify.Excepciones.CorreoRepetidoException;
-import espotify.Excepciones.FormatoIncorrectoException;
-import espotify.Excepciones.NickRepetidoException;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IConsultaArtista;
+import espotify.datatypes.DataArtista;
+import espotify.datatypes.DataArtistaExt;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CorreoRepetidoException;
+import espotify.excepciones.FormatoIncorrectoException;
+import espotify.excepciones.NickRepetidoException;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IConsultaArtista;
 
 import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.HashMap;
-
-
 
 public class ConsultaArtistaTest {
     static IConsultaArtista iConsultaArtista;    
@@ -32,23 +30,22 @@ public class ConsultaArtistaTest {
         ManejadorColecciones.clear();
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataArtista d = new DataArtista("Soy un artista y me consultan","", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null,"");
+        DataArtista artista = new DataArtista("Soy un artista y me consultan","", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null,"");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try {
-            ctrl.AltaArtista(d);
+            ctrl.altaArtista(artista);
         } catch (Exception ex) {
         }
         
         System.out.println("ConsultaArtista");
-        String s = "ArtistaConsultado";
         DataArtistaExt expResult = new DataArtistaExt("ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "Soy un artista y me consultan", "", new HashMap<String,Album>(),"");
-        DataArtistaExt result = iConsultaArtista.ConsultaArtista(s);
+        DataArtistaExt result = iConsultaArtista.consultaArtista("ArtistaConsultado");
         assertEquals(expResult, result);
     }
 
-    @Test (expected=ArtistaInexistenteException.class)
+    @Test (expected = ArtistaInexistenteException.class)
     public void tirameLaExcepcionPapa() throws ArtistaInexistenteException {
-        iConsultaArtista.ConsultaArtista("No existo loco");
+        iConsultaArtista.consultaArtista("No existo loco");
     }
     
     @Test
@@ -57,25 +54,28 @@ public class ConsultaArtistaTest {
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
         iConsultaArtista = Fabrica.getIConsultaArtista();
-        String bio = "Soy un artista y me consultan";
+        String biografia = "Soy un artista y me consultan";
         String url = "elarti.com";
-        DataArtista d = new DataArtista(bio, url, "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null,"");
+        DataArtista dArtista = new DataArtista(biografia, url, "ArtistaConsultado",
+                "Artista", "Consultado", "artista@consultado.com", cal, null,"");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        ctrl.AltaArtista(d);
-        DataArtistaExt dt = iConsultaArtista.ConsultaArtista("ArtistaConsultado");
-        assertEquals(bio, dt.getBio());
-        assertEquals(url, dt.getUrl());
-        assertArrayEquals(new String[0], dt.getAlbums());
-        assertEquals(dt, dt);
-        assertEquals(false, dt.equals(null));
-        assertEquals(false, dt.equals(d));
-        d = new DataArtista("otra bio", url, "OtroArtistaConsultado", "Artista", "Consultado", "otro_artista@consultado.com", cal, null,"");
-        ctrl.AltaArtista(d);
-        DataArtistaExt otro_dt = iConsultaArtista.ConsultaArtista("OtroArtistaConsultado");
-        assertEquals(false, dt.equals(otro_dt));
-        d = new DataArtista(bio, url, "AunOtroArtistaConsultado", "Artista", "Consultado", "otro_artista2@consultado.com", cal, null,"");
-        ctrl.AltaArtista(d);
-        otro_dt = iConsultaArtista.ConsultaArtista("AunOtroArtistaConsultado");
-        assertEquals(false, dt.equals(otro_dt));
+        ctrl.altaArtista(dArtista);
+        DataArtistaExt data = iConsultaArtista.consultaArtista("ArtistaConsultado");
+        assertEquals(biografia, data.getBio());
+        assertEquals(url, data.getUrl());
+        assertArrayEquals(new String[0], data.getAlbums());
+        assertEquals(data, data);
+        assertEquals(false, data.equals(null));
+        assertEquals(false, data.equals(data));
+        dArtista = new DataArtista("otra bio", url, "OtroArtistaConsultado",
+                "Artista", "Consultado", "otro_artista@consultado.com", cal, null,"");
+        ctrl.altaArtista(dArtista);
+        DataArtistaExt otroArtista = iConsultaArtista.consultaArtista("OtroArtistaConsultado");
+        assertEquals(false, data.equals(otroArtista));
+        dArtista = new DataArtista(biografia, url, "AunOtroArtistaConsultado",
+                "Artista", "Consultado", "otro_artista2@consultado.com", cal, null,"");
+        ctrl.altaArtista(dArtista);
+        otroArtista = iConsultaArtista.consultaArtista("AunOtroArtistaConsultado");
+        assertEquals(false, data.equals(otroArtista));
     }
 }

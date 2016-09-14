@@ -1,13 +1,13 @@
 package espotify;
 
-import espotify.Datatypes.DataAlbumExt;
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaArchivo;
-import espotify.Datatypes.DataTemaWeb;
-import espotify.Excepciones.DuracionInvalidaException;
-import espotify.Excepciones.NumeroTemaInvalidoException;
-import espotify.Excepciones.TemaRepetidoException;
-import espotify.Excepciones.TemaTipoInvalidoException;
+import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
+import espotify.datatypes.DataTemaWeb;
+import espotify.excepciones.DuracionInvalidaException;
+import espotify.excepciones.NumeroTemaInvalidoException;
+import espotify.excepciones.TemaRepetidoException;
+import espotify.excepciones.TemaTipoInvalidoException;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -64,10 +64,10 @@ public class Album implements Favoriteable {
                 nombreGeneros, this.img, artista.getNick());
     }
 
-    private List<Tema> ValidarTemas(List<DataTema> data_temas) throws
+    private List<Tema> validarTemas(List<DataTema> dataTemas) throws
             DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, TemaTipoInvalidoException {
-        int largo = data_temas.size();
+        int largo = dataTemas.size();
         boolean[] orden = new boolean[largo];
         Arrays.fill(orden, false);
 
@@ -75,7 +75,7 @@ public class Album implements Favoriteable {
         List<String> nombresTemas = new ArrayList<>();
 
         for (int i = 0; i < largo; i++) {
-            DataTema dTema = data_temas.get(i);
+            DataTema dTema = dataTemas.get(i);
 
             //Validar Duracion
             if (dTema.getDuracion() <= 0) {
@@ -84,7 +84,7 @@ public class Album implements Favoriteable {
             //Validar orden: validar que no haya otro tema con ese mismo numero de orden
             //Si el num es mayor a la cantidad de temas tambien tira una exepcion
             // ya que de seguro el orden no es correcto.
-            if ((dTema.getNum() <= 0) || (dTema.getNum() > largo)) {
+            if (dTema.getNum() <= 0 || dTema.getNum() > largo) {
                 throw new NumeroTemaInvalidoException("El tema " + dTema.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
             } else if (orden[dTema.getNum() - 1] == true) {
                 throw new NumeroTemaInvalidoException("El tema " + dTema.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");
@@ -118,7 +118,7 @@ public class Album implements Favoriteable {
         this.img = dAlbum.getImg();
         this.artista = artista;
         this.generos = generos;
-        this.temas = this.ValidarTemas(dAlbum.getTemas());
+        this.temas = this.validarTemas(dAlbum.getTemas());
     }
 
     Tema devolverTema(String nombretema) {

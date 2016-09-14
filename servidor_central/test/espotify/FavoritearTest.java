@@ -1,13 +1,13 @@
 package espotify;
 
-import espotify.Datatypes.DataCliente;
-import espotify.Datatypes.DataDefecto;
-import espotify.Datatypes.DataParticular;
-import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Excepciones.FavoritoRepetidoException;
-import espotify.Excepciones.ListaInexistenteException;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IFavoritear;
+import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataDefecto;
+import espotify.datatypes.DataParticular;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.FavoritoRepetidoException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IFavoritear;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -30,57 +30,51 @@ public class FavoritearTest {
         ManejadorColecciones.clear();
         ifav = Fabrica.getIFavoritear();
         try {
-            IAltaPerfil cu = Fabrica.getIAltaPerfil();
+            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
             Calendar cal = Calendar.getInstance();
             cal.set(2001, 1, 1);
-            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null,""));
-            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null,""));
+            iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null,""));
+            iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null,""));
         } catch (Exception ex) {
         }
         new AltaListaTest().testAltaListaDefecto1();
         new AltaListaTest().testAltaListaParticular1();
-        Fabrica.getIPublicarLista().PublicarLista("Mi Lista", "TesterLista");
+        Fabrica.getIPublicarLista().publicarLista("Mi Lista", "TesterLista");
     }
    
     @Test
-    public void FavoritearTest() throws Exception {
+    public void favoritearTest() throws Exception {
         System.out.println("Favoritear: lista defecto");
-        DataDefecto d = new DataDefecto("", "Lista genérica", null);
-        ifav.Favoritear("TesterLista",d);
+        ifav.favoritear("TesterLista",new DataDefecto("", "Lista genérica", null));
     }
     
-    @Test (expected=ListaInexistenteException.class)
-    public void FavoritearTest2() throws Exception {
+    @Test (expected = ListaInexistenteException.class)
+    public void favoritearTest2() throws Exception {
         System.out.println("Favoritear: lista defecto no existe");
-        DataDefecto d = new DataDefecto("", "Lista asdfgenérica", null);
-        ifav.Favoritear("TesterLista",d);
+        ifav.favoritear("TesterLista",new DataDefecto("", "Lista asdfgenérica", null));
     }
 
-    @Test (expected=FavoritoRepetidoException.class)
-    public void FavoritearTest3() throws Exception {
+    @Test (expected = FavoritoRepetidoException.class)
+    public void favoritearTest3() throws Exception {
         System.out.println("Favoritear: lista defecto repetida");
-        DataDefecto d = new DataDefecto("", "Lista genérica", null);
-        ifav.Favoritear("TesterLista",d);
+        ifav.favoritear("TesterLista",new DataDefecto("", "Lista genérica", null));
     }
     
     @Test
-    public void FavoritearTest4() throws Exception {
+    public void favoritearTest4() throws Exception {
         System.out.println("Favoritear: lista pública");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista", null);
-        ifav.Favoritear("TesterLista",d);
+        ifav.favoritear("TesterLista",new DataParticular("TesterLista", "Mi Lista", null));
     }
     
-    @Test (expected=ListaInexistenteException.class)
-    public void FavoritearTest5() throws Exception {
+    @Test (expected = ListaInexistenteException.class)
+    public void favoritearTest5() throws Exception {
         System.out.println("Favoritear: lista pública inexistente");
-        DataParticular d = new DataParticular("TesterLista", "Mi Liasdsta", null);
-        ifav.Favoritear("TesterLista",d);
+        ifav.favoritear("TesterLista",new DataParticular("TesterLista", "Mi Liasdsta", null));
     }
 
-    @Test (expected=ClienteInexistenteException.class)
-    public void FavoritearTest6() throws Exception {
+    @Test (expected = ClienteInexistenteException.class)
+    public void favoritearTest6() throws Exception {
         System.out.println("Favoritear: cliente inexistente");
-        DataParticular d = new DataParticular("TesasdfterLista", "Mi Liasdsta", null);
-        ifav.Favoritear("TesterLista",d);
+        ifav.favoritear("TesterLista",new DataParticular("TesasdfterLista", "Mi Liasdsta", null));
     }
 }

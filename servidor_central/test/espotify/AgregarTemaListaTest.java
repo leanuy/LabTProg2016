@@ -2,19 +2,19 @@ package espotify;
 
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataCliente;
-import espotify.Datatypes.DataGenero;
-import espotify.Datatypes.DataParticular;
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaWeb;
-import espotify.Excepciones.ArtistaInexistenteException;
-import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Excepciones.ListaInexistenteException;
-import espotify.Interfaces.IAgregarTemaLista;
-import espotify.Interfaces.IAltaGenero;
-import espotify.Interfaces.IAltaLista;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IPublicarLista;
+import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataGenero;
+import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaWeb;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.IAgregarTemaLista;
+import espotify.interfaces.IAltaGenero;
+import espotify.interfaces.IAltaLista;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IPublicarLista;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -22,8 +22,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AgregarTemaListaTest {
@@ -41,91 +41,91 @@ public class AgregarTemaListaTest {
         new AltaListaTest().testAltaListaDefecto1();
         new AltaPerfilTest().testAltaArtista1();
         IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
-        iAltaGenero.AltaGenero(new DataGenero("Pop", ""));
-        iAltaGenero.AltaGenero(new DataGenero("Jazz", ""));
+        iAltaGenero.altaGenero(new DataGenero("Pop", ""));
+        iAltaGenero.altaGenero(new DataGenero("Jazz", ""));
         new AltaAlbumTest().testAltaAlbum();
         IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
-        iPerfil.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
-        iPerfil.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
+        iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
+        iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
         DataParticular data = new DataParticular("TesterLista", "Mi Lista Publica", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(data);
+        instance.altaListaParticular(data);
         IPublicarLista iPublicar = Fabrica.getIPublicarLista();
-        iPublicar.PublicarLista("Mi Lista Publica", "TesterLista");
+        iPublicar.publicarLista("Mi Lista Publica", "TesterLista");
     }
     
     @Test
-    public void ListarArtistasTest() {
+    public void listarArtistasTest() {
         System.out.println("Listar Artistas, testeado en otro lado, testeando mensajes intercontroladores nomás acá");
-        List<String> result = iAdd.ListarArtistas();
+        List<String> result = iAdd.listarArtistas();
         List<String> expResult = new ArrayList<>();
     }
     
     @Test
-    public void ListarListasDefectoTest() {
+    public void listarListasDefectoTest() {
         System.out.println("Listar Listas por Defecto");
-        List<String> result = iAdd.ListarListasDefecto();
+        List<String> result = iAdd.listarListasDefecto();
         List<String> expResult = new ArrayList<>();
         expResult.add("Lista genérica");
         assertEquals(expResult, result);
     }
     
     @Test
-    public void ListarAlbumesArtista() throws ArtistaInexistenteException {
+    public void listarAlbumesArtista() throws ArtistaInexistenteException {
         System.out.println("Listar Albumes de Artista");
-        List<String> result = iAdd.ListarAlbumesDeArtista("ElGordoAxl");
+        List<String> result = iAdd.listarAlbumesDeArtista("ElGordoAxl");
         List<String> expResult = new ArrayList<>();
         expResult.add("Album 1");
         assertEquals(expResult, result);
     }
     
-    @Test (expected=ArtistaInexistenteException.class)
-    public void ListarAlbumesArtista2() throws ArtistaInexistenteException {
+    @Test (expected = ArtistaInexistenteException.class)
+    public void listarAlbumesArtista2() throws ArtistaInexistenteException {
         System.out.println("Listar Albumes de Artista 2: no existe");
-        List<String> result = iAdd.ListarAlbumesDeArtista("ElGordasdfoAxl");
+        List<String> result = iAdd.listarAlbumesDeArtista("ElGordasdfoAxl");
     }
     
     @Test
-    public void ListarListasPublicasDeCLienteTest() throws ArtistaInexistenteException, ClienteInexistenteException {
+    public void listarListasPublicasDeCLienteTest() throws ArtistaInexistenteException, ClienteInexistenteException {
         System.out.println("Listar Listas Publicas de Cliente");
-        List<String> result = iAdd.ListarListasPublicasDeCliente("TesterLista");
+        List<String> result = iAdd.listarListasPublicasDeCliente("TesterLista");
         List<String> expResult = new ArrayList<>();
         expResult.add("Mi Lista Publica");
         assertEquals(expResult, result);
     }
     
     @Test
-    public void ListarTemasLista() throws Exception {
+    public void listarTemasLista() throws Exception {
         System.out.println("Listar Temas de Lista");
-        List<DataTema> result = iAdd.ListarTemasLista("Lista genérica");
+        List<DataTema> result = iAdd.listarTemasLista("Lista genérica");
         List<DataTema> expResult = new ArrayList<>();
         assertEquals(expResult, result);
     }
     
-    @Test (expected=ListaInexistenteException.class)
-    public void ListarTemasLista2() throws Exception {
+    @Test (expected = ListaInexistenteException.class)
+    public void listarTemasLista2() throws Exception {
         System.out.println("Listar Temas de Lista");
-        List<DataTema> result = iAdd.ListarTemasLista("Mi Lista Pasdfublica");
+        List<DataTema> result = iAdd.listarTemasLista("Mi Lista Pasdfublica");
     }
     
     @Test
-    public void ListarTemasLista2_1() throws Exception {
+    public void listarTemasLista2_1() throws Exception {
         System.out.println("Listar Temas de Lista_2");
-        List<DataTema> result = iAdd.ListarTemasLista2("TesterLista","Mi Lista Publica");
+        List<DataTema> result = iAdd.listarTemasLista2("TesterLista","Mi Lista Publica");
         List<DataTema> expResult = new ArrayList<>();
         assertEquals(expResult, result);
     }
     
     @Test
-    public void TestAgregarTemaLista_1() throws Exception {
+    public void testAgregarTemaLista_1() throws Exception {
         System.out.println("Agregar Tema a Lista Generica");
         DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
-        iAdd.AgregarTemaLista(web, "Lista genérica");
+        iAdd.agregarTemaLista(web, "Lista genérica");
     }
     
-    @Test (expected=ListaInexistenteException.class)
+    @Test (expected = ListaInexistenteException.class)
     public void tirameExcepcion() throws Exception {
         DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
-        iAdd.AgregarTemaLista(web, null);
+        iAdd.agregarTemaLista(web, null);
     }
 }

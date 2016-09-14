@@ -1,7 +1,7 @@
 package espotify;
 
-import espotify.Datatypes.DataUsuario;
-import espotify.Excepciones.SeguidoRepetidoException;
+import espotify.datatypes.DataUsuario;
+import espotify.excepciones.SeguidoRepetidoException;
 
 import java.awt.image.BufferedImage;
 import java.util.Calendar;
@@ -48,42 +48,42 @@ class Usuario {
         return this.seguidores;
     }
     
-    static boolean ValidarDatosUsuario(DataUsuario d) {
-        return ValidarCorreo(d.getCorreo()) && !(d.getNick().equals("") ||
-                d.getNombre().equals("") || d.getApellido().equals(""));
+    static boolean validarDatosUsuario(DataUsuario data) {
+        return validarCorreo(data.getCorreo()) && !(data.getNick().equals("") ||
+                data.getNombre().equals("") || data.getApellido().equals(""));
     }
 
-    private static boolean ValidarCorreo(String correo) {
-        boolean ok = correo.contains("@");
-        if(ok) {
-            int arroba = correo.indexOf("@");
-            correo=correo.substring(arroba+1);
-            ok = !correo.contains("@") && correo.contains(".");
+    private static boolean validarCorreo(String correo) {
+        boolean salida = correo.contains("@");
+        if (salida) {
+            int arroba = correo.indexOf('@');
+            correo = correo.substring(arroba + 1);
+            salida = !correo.contains("@") && correo.contains(".");
         }
-        return ok;
+        return salida;
     }
     
-    public void AgregarSeguidor(Cliente cli) throws SeguidoRepetidoException {
-        String name2 = cli.nick;
-        Cliente c2 = seguidores.get(name2);
-        if (c2 != null) {
+    public void agregarSeguidor(Cliente cli) throws SeguidoRepetidoException {
+        String nombreSeguidor = cli.nick;
+        Cliente seguido = seguidores.get(nombreSeguidor);
+        if (seguido != null) {
             throw new SeguidoRepetidoException();
         }
-        seguidores.put(name2, cli);
+        seguidores.put(nombreSeguidor, cli);
     }
     
-    public void NoMeSiguenMas(Cliente c) {
-        seguidores.remove(c.nick, c);
+    public void noMeSiguenMas(Cliente cli) {
+        seguidores.remove(cli.nick, cli);
     }
     
-    Usuario(DataUsuario d) {
-        this.nick = d.getNick();
-        this.nombre = d.getNombre();
-        this.apellido = d.getApellido();
-        this.correo = d.getCorreo();
-        this.fechaNac = (Calendar) d.getfNac().clone();
-        this.img = d.getImg();
+    Usuario(DataUsuario dUsuario) {
+        this.nick = dUsuario.getNick();
+        this.nombre = dUsuario.getNombre();
+        this.apellido = dUsuario.getApellido();
+        this.correo = dUsuario.getCorreo();
+        this.fechaNac = (Calendar) dUsuario.getfNac().clone();
+        this.img = dUsuario.getImg();
         this.seguidores = new HashMap();
-        this.password = d.getPassword();
+        this.password = dUsuario.getPassword();
     }
 }

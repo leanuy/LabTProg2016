@@ -2,16 +2,16 @@ package espotify;
 
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataCliente;
-import espotify.Excepciones.AutoSeguirseException;
-import espotify.Excepciones.CorreoRepetidoException;
-import espotify.Excepciones.FormatoIncorrectoException;
-import espotify.Excepciones.NickRepetidoException;
-import espotify.Excepciones.SeguidoInexistenteException;
-import espotify.Excepciones.SeguidoRepetidoException;
-import espotify.Excepciones.SeguidorInexistenteException;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IAltaSeguir;
+import espotify.datatypes.DataCliente;
+import espotify.excepciones.AutoSeguirseException;
+import espotify.excepciones.CorreoRepetidoException;
+import espotify.excepciones.FormatoIncorrectoException;
+import espotify.excepciones.NickRepetidoException;
+import espotify.excepciones.SeguidoInexistenteException;
+import espotify.excepciones.SeguidoRepetidoException;
+import espotify.excepciones.SeguidorInexistenteException;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IAltaSeguir;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -19,8 +19,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -44,7 +44,7 @@ public class AltaSeguirTest {
         System.out.println("ListarClientes");
         List<String> expResult = new ArrayList<>();
         expResult.add("JavierM42");
-        List<String> result = iAltaSeguir.ListarClientes();
+        List<String> result = iAltaSeguir.listarClientes();
         assertEquals(expResult, result);
     }
     
@@ -53,7 +53,7 @@ public class AltaSeguirTest {
         System.out.println("ListarSeguibles 1");
         List<String> expResult = new ArrayList<>();
         expResult.add("ElGordoAxl");
-        List<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
+        List<String> result = iAltaSeguir.listarSeguibles("JavierM42");
         assertEquals(expResult, result);
     }
     
@@ -61,14 +61,14 @@ public class AltaSeguirTest {
     public void test4ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 2");
         List<String> expResult = new ArrayList<>();
-        List<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
+        List<String> result = iAltaSeguir.listarSeguibles("JavierM42");
         assertEquals(expResult, result);
     }
     
-    @Test (expected=SeguidorInexistenteException.class)
+    @Test (expected = SeguidorInexistenteException.class)
     public void test5ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 3");
-        List<String> result = iAltaSeguir.ListarSeguibles("asdfasdf");
+        List<String> result = iAltaSeguir.listarSeguibles("asdfasdf");
     }
     
     @Test
@@ -78,45 +78,44 @@ public class AltaSeguirTest {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
             DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            instance.AltaCliente(dCli);
+            instance.altaCliente(dCli);
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            instance.AltaCliente(dCli);
+            instance.altaCliente(dCli);
         }
-        catch (NickRepetidoException | CorreoRepetidoException e) {}
+        catch (NickRepetidoException | CorreoRepetidoException e) { }
         
         System.out.println("AltaSeguir: Normal a Cliente");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguido";
         IAltaSeguir ctrl = Fabrica.getIAltaSeguir();
-        ctrl.AltaSeguir(nomSeguidor, nomSeguido);
+        ctrl.altaSeguir(nomSeguidor, nomSeguido);
     }
     
-    @Test (expected=SeguidorInexistenteException.class)
-    public void testAltaSeguir2() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
+    @Test (expected = SeguidorInexistenteException.class)
+    public void testAltaSeguir2() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException {
         System.out.println("AltaSeguir: Seguidor inexistente");
         String nomSeguidor = "Seguidorasdfasfd";
         String nomSeguido = "Seguido";
-        iAltaSeguir.AltaSeguir(nomSeguidor, nomSeguido);
+        iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
     }
     
-    @Test (expected=SeguidoInexistenteException.class)
-    public void testAltaSeguir3() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
+    @Test (expected = SeguidoInexistenteException.class)
+    public void testAltaSeguir3() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
             DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(dCli);
+            ctrl.altaCliente(dCli);
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(dCli);
+            ctrl.altaCliente(dCli);
         }
-        catch (NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
-        {}
+        catch (NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e) { }
         
         System.out.println("AltaSeguir: Seguido inexistente");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguidoasdf";
-        iAltaSeguir.AltaSeguir(nomSeguidor, nomSeguido);
+        iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
     }
     
     @Test
@@ -124,48 +123,46 @@ public class AltaSeguirTest {
         System.out.println("AltaSeguir: Normal a Artista");
         String nomSeguidor = "JavierM42";
         String nomSeguido = "ElGordoAxl";
-        iAltaSeguir.AltaSeguir(nomSeguidor, nomSeguido);
+        iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
     }
     
-    @Test (expected=AutoSeguirseException.class)
+    @Test (expected = AutoSeguirseException.class)
     public void testAltaSeguir5() throws Exception {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(dCli);
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.set(1996, 5, 17);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.altaCliente(dCli);
         }
-        catch(NickRepetidoException | CorreoRepetidoException e)
-        {}
+        catch (NickRepetidoException | CorreoRepetidoException e) { }
         
         System.out.println("AltaSeguir: Seguirse A si Mismo");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguidor";
-        iAltaSeguir.AltaSeguir(nomSeguidor, nomSeguido);
+        iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
     }
     
-    @Test (expected=SeguidoRepetidoException.class)
+    @Test (expected = SeguidoRepetidoException.class)
     public void testAltaSeguir6() throws Exception {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(dCli);
-        dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(dCli);
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.set(1996, 5, 17);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.altaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            ctrl.altaCliente(dCli);
         }
-        catch(NickRepetidoException | CorreoRepetidoException e)
-        {}
+        catch (NickRepetidoException | CorreoRepetidoException e) { }
         
         System.out.println("AltaSeguir: Seguir dos veces");
         String nomSeguidor = "Seguidor";
         String nomSeguido = "Seguido";
-        try{
-        iAltaSeguir.AltaSeguir(nomSeguidor, nomSeguido);
-        } catch (Exception e){}
-        iAltaSeguir.AltaSeguir(nomSeguidor, nomSeguido);
+        try {
+            iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
+        } catch (Exception e) {}
+        iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
     }
 
     

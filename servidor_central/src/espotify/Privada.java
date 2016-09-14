@@ -1,14 +1,14 @@
 package espotify;
 
-import espotify.Datatypes.DataParticular;
+import espotify.datatypes.DataParticular;
 
 class Privada extends Particular {
 
-    Privada(DataParticular d) {
-        super(d);
+    Privada(DataParticular dParticular) {
+        super(dParticular);
     }
     
-    Publica HacerPublica() {
+    Publica hacerPublica() {
         return new Publica(this);
     }
     

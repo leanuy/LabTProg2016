@@ -1,14 +1,14 @@
 package espotify;
 
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaArchivo;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
 
 import java.io.File;
 
 class TemaArchivo extends Tema {
     private final File archivo;
     
-    TemaArchivo(DataTemaArchivo dta, Album album) {
+    TemaArchivo(DataTemaArchivo dta,final Album album) {
         super(dta, album);
         this.archivo = dta.getArchivo();
     }

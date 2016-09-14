@@ -1,6 +1,6 @@
 package espotify;
 
-import espotify.Datatypes.DataTema;
+import espotify.datatypes.DataTema;
 
 class Tema implements Favoriteable {
     private final String nombre;
@@ -24,10 +24,10 @@ class Tema implements Favoriteable {
         return new DataTema(nombre, duracion, num, getNomArtista(), getNombreAlbum());
     }
 
-    Tema(DataTema dt, Album album) {
-        this.nombre = dt.getNombre();
-        this.duracion = dt.getDuracion();
-        this.num = dt.getNum();
+    Tema(DataTema dTema, Album album) {
+        this.nombre = dTema.getNombre();
+        this.duracion = dTema.getDuracion();
+        this.num = dTema.getNum();
         this.album = album;
     }
 }

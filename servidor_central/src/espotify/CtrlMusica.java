@@ -1,20 +1,20 @@
 package espotify;
 
-import espotify.Datatypes.DataAlbumExt;
-import espotify.Datatypes.DataGenero;
-import espotify.Excepciones.AlbumInexistenteException;
-import espotify.Excepciones.AlbumRepetidoException;
-import espotify.Excepciones.ArtistaInexistenteException;
-import espotify.Excepciones.CampoVacioException;
-import espotify.Excepciones.DuracionInvalidaException;
-import espotify.Excepciones.GeneroInexistenteException;
-import espotify.Excepciones.GeneroRepetidoException;
-import espotify.Excepciones.NumeroTemaInvalidoException;
-import espotify.Excepciones.TemaRepetidoException;
-import espotify.Excepciones.TemaTipoInvalidoException;
-import espotify.Interfaces.IAltaAlbum;
-import espotify.Interfaces.IAltaGenero;
-import espotify.Interfaces.IConsultaAlbum;
+import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataGenero;
+import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.AlbumRepetidoException;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CampoVacioException;
+import espotify.excepciones.DuracionInvalidaException;
+import espotify.excepciones.GeneroInexistenteException;
+import espotify.excepciones.GeneroRepetidoException;
+import espotify.excepciones.NumeroTemaInvalidoException;
+import espotify.excepciones.TemaRepetidoException;
+import espotify.excepciones.TemaTipoInvalidoException;
+import espotify.interfaces.IAltaAlbum;
+import espotify.interfaces.IAltaGenero;
+import espotify.interfaces.IConsultaAlbum;
 
 import java.util.List;
 import java.util.HashMap;
@@ -28,73 +28,74 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
     }
     
 //Acceso al Manejador
-    Genero BuscarGenero(String nombre) throws GeneroInexistenteException {
-        Genero genero = ManejadorColecciones.getInstancia().BuscarGenero(nombre);
+    Genero buscarGenero(String nombre) throws GeneroInexistenteException {
+        Genero genero = ManejadorColecciones.getInstancia().buscarGenero(nombre);
         if (genero == null) {
             throw new GeneroInexistenteException("El género no existe!");
         }
         return genero;
     }
     
-    private void AgregarGenero(String nom,Genero g) {
-        ManejadorColecciones.getInstancia().AgregarGenero(nom, g);
+    private void agregarGenero(String nom,Genero genero) {
+        ManejadorColecciones.getInstancia().agregarGenero(nom, genero);
     }
     
-    private static Map<String, Genero> GetGeneros() {
+    private static Map<String, Genero> getGeneros() {
         return ManejadorColecciones.getInstancia().getGeneros();
     }
     
-    private static Genero GetGeneroBase() {
+    private static Genero getGeneroBase() {
         return ManejadorColecciones.getInstancia().getGeneroBase();
     }
 //Listas
     @Override
-    public DataGenero ListarGeneros() {
-        return GetGeneroBase().ListarseRecursivo("");
+    public DataGenero listarGeneros() {
+        return getGeneroBase().listarseRecursivo("");
     }
 
     @Override
-    public List<String[]> ListarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
-        Genero genero = BuscarGenero(nomGenero);
-        return genero.ListarAlbumes();
+    public List<String[]> listarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
+        Genero genero = buscarGenero(nomGenero);
+        return genero.listarAlbumes();
     }
     
     @Override
-    public List<String> ListarArtistas() {
-        CtrlUsuarios ctrl_usuarios = new CtrlUsuarios();
-        return ctrl_usuarios.ListarArtistas();
+    public List<String> listarArtistas() {
+        return new CtrlUsuarios().listarArtistas();
     }
     
     @Override
-    public List<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException {
-        CtrlUsuarios ctrl_usuarios = new CtrlUsuarios();
-        return ctrl_usuarios.ListarAlbumesDeArtista(nomArtista);
+    public List<String> listarAlbumesDeArtista(String nomArtista)
+            throws ArtistaInexistenteException {
+        return new CtrlUsuarios().listarAlbumesDeArtista(nomArtista);
     }
 
 //Consultas
     @Override
-    public DataAlbumExt ConsultaAlbum(String nomAlbum, String nomArtista) throws ArtistaInexistenteException, AlbumInexistenteException {
-        return new CtrlUsuarios().ConsultaAlbum(nomAlbum, nomArtista);
+    public DataAlbumExt consultaAlbum(String nomAlbum, String nomArtista)
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        return new CtrlUsuarios().consultaAlbum(nomAlbum, nomArtista);
     }
     
-    private boolean ExisteGenero(String nombre) {
-        return GetGeneros().containsKey(nombre);
+    private boolean existeGenero(String nombre) {
+        return getGeneros().containsKey(nombre);
     }
     
 //Operaciones    
     @Override
-    public void AltaGenero(DataGenero d) throws GeneroInexistenteException, GeneroRepetidoException {
-        if (!ExisteGenero(d.getNombre())) {
+    public void altaGenero(DataGenero data)
+            throws GeneroInexistenteException, GeneroRepetidoException {
+        if (!existeGenero(data.getNombre())) {
             String padre;
-            if (d.getPadre().equals("")) {
+            if (data.getPadre().equals("")) {
                 padre = "Genero";
             } else {
-                padre = d.getPadre();
+                padre = data.getPadre();
             }
-            if (ExisteGenero(padre)) {
-                Genero nuevoGenero = new Genero(d);
-                AgregarGenero(d.getNombre(), nuevoGenero);
-                BuscarGenero(padre).AddHijo(nuevoGenero);
+            if (existeGenero(padre)) {
+                Genero nuevoGenero = new Genero(data);
+                agregarGenero(data.getNombre(), nuevoGenero);
+                buscarGenero(padre).addHijo(nuevoGenero);
             } else {
                 throw new GeneroInexistenteException("No existe el género padre");
             }
@@ -103,33 +104,33 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
         }
     }
     
-    private Map<String, Genero> ValidarGeneros(List<String> listaGeneros)
+    private Map<String, Genero> validarGeneros(List<String> listaGeneros)
             throws GeneroInexistenteException, CampoVacioException {
         if (listaGeneros.isEmpty()) {
             throw new CampoVacioException("Un álbum debe tener al menos un género");
         }
         HashMap<String, Genero> lista = new HashMap<>();
         for (String nombreGenero : listaGeneros) {
-            Genero genero = BuscarGenero(nombreGenero);
+            Genero genero = buscarGenero(nombreGenero);
             lista.putIfAbsent(nombreGenero, genero);
         }
         return lista;
     }
     
-    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException,
+    public void altaAlbum(DataAlbumExt dAlbum) throws AlbumRepetidoException, GeneroInexistenteException,
             DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException,
             CampoVacioException, TemaTipoInvalidoException,ArtistaInexistenteException {
         //Validar unicidad de nombre para el album
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.BuscarArtista(d.getNickArtista());
-        if (art.TieneAlbum(d.getNombre())) {
+        Artista art = ctrlUsuarios.buscarArtista(dAlbum.getNickArtista());
+        if (art.tieneAlbum(dAlbum.getNombre())) {
             throw new AlbumRepetidoException();
         }
         //Validar lista de nombres de generos y generar un hash de generos para el album
-        Map<String, Genero> lstGeneros = this.ValidarGeneros(d.getGeneros());
-        Album album = new Album(d, art, lstGeneros);
+        Map<String, Genero> lstGeneros = this.validarGeneros(dAlbum.getGeneros());
+        Album album = new Album(dAlbum, art, lstGeneros);
         lstGeneros.entrySet().stream().forEach((entry) -> {
-            entry.getValue().AddAlbum(album);
+            entry.getValue().addAlbum(album);
         });
         art.addAlbum(album);
     }

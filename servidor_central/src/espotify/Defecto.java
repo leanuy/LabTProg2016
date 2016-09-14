@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 
 class Defecto extends Lista implements Favoriteable {
-    private Genero genero;
+    private final Genero genero;
 
     Defecto(Genero genero, String nombre, BufferedImage img) {
         super(nombre, img);
