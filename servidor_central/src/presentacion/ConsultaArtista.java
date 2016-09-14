@@ -266,7 +266,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         Calendar fechaNacimiento = dArt.getfNac();
         String fecha = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        if (fechaNacimiento != null){
+        if (fechaNacimiento != null) {
             fecha = sdf.format(fechaNacimiento.getTime());
         }
         FechaText.setText(fecha);

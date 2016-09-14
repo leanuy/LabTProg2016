@@ -25,7 +25,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         initComponents();
         List<String> cli = interf.listarClientes();
         listascmb.setEnabled(false);
-        for(String str : cli) {
+        for (String str : cli) {
             clientescmb.addItem(str);
         }
     }
@@ -133,7 +133,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         try {
             listascmb.setEnabled(false);
             List<String> listas = interf.listarListasDeCliente(nomCliente);
-            for(String str : listas) {
+            for (String str : listas) {
                 listascmb.addItem(str);
             }
             listascmb.setEnabled(listas.size() > 0);
@@ -155,18 +155,17 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
             //mostrar la imagen
             BufferedImage imagen = dLista.getImg();
             BufferedImage image;
-            if(imagen == null){
+            if (imagen == null) {
                 image = null;
-            }
-            else{
+            } else {
                 image = getScaledImage(imagen,212,220);
             }
             ImgContainer.removeAll();
-            if (image != null){
+            if (image != null) {
                 ImageIcon img = new ImageIcon(image);
                 ImgContainer.setIcon(img);
                 ImgContainer.setVisible(true);
-            }else{
+            } else {
                 ImgContainer.setText("El usuario NO tiene imagen");
                 ImgContainer.setVisible(false);
             }
@@ -176,8 +175,8 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
             List<DataTema> temas = dLista.getTemas();
             DefaultListModel<String> model = new DefaultListModel<>();
             ListaTemas.setModel(model);
-            for(DataTema dt : temas) {
-                model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion()/60+":"+dt.getDuracion()%60 + ")");
+            for (DataTema dt : temas) {
+                model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion() / 60 + ":" + dt.getDuracion() % 60 + ")");
             }
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(this,
@@ -192,7 +191,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
 
     
     
-    private BufferedImage getScaledImage(BufferedImage src, int width, int height){
+    private BufferedImage getScaledImage(BufferedImage src, int width, int height) {
         int finalw = width;
         int finalh = height;
         double factor = 1.0d;

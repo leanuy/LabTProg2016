@@ -40,7 +40,7 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         cargarArbol(generoBase,raiz);
     }
 
-    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre) {
         int idx = 0;
         for (DataGenero d: dGenero.getHijos()) {
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());

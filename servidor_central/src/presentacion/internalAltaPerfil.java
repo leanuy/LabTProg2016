@@ -255,7 +255,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void artistaRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_artistaRadioItemStateChanged
-        if(biotxt.isEnabled()) {
+        if (biotxt.isEnabled()) {
             biotxt.setEnabled(false);
             urltxt.setEnabled(false);
             urltxt.setText("");
@@ -268,14 +268,14 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_artistaRadioItemStateChanged
 
     private void confirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmbtnActionPerformed
-        if(clienteRadio.isSelected()) {
+        if (clienteRadio.isSelected()) {
             try {
                 Calendar fNac = Calendar.getInstance(); //TODO
                 SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
                 fNac.setTime(sdf.parse(fechatxt.getText()));
                 String pwd = pwdtxt.getText();
                 String verif = pwdcnonfirmtxt.getText();
-                if(!pwd.equals(verif)) {
+                if (!pwd.equals(verif)) {
                     throw new PasswordsDistintasException();
                 }
                 DataCliente dCliente = new DataCliente(
@@ -299,7 +299,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                         "Ya existe un usuario con ese nick",
                         "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(CorreoRepetidoException e) {
+            catch (CorreoRepetidoException e) {
                 JOptionPane.showMessageDialog(okDialog,
                         "Ya existe un usuario con ese correo",
                         "Error", JOptionPane.PLAIN_MESSAGE);
@@ -309,7 +309,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                         "El formato de correo no es correcto, o algún campo obligatorio está vacío",
                         "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(PasswordsDistintasException e) {
+            catch (PasswordsDistintasException e) {
                 JOptionPane.showMessageDialog(okDialog,
                         "Las contraseñas no coinciden.",
                         "Error", JOptionPane.PLAIN_MESSAGE);
@@ -328,7 +328,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 fNac.setTime(sdf.parse(fechatxt.getText()));
                 String pwd = pwdtxt.getText();
                 String verif = pwdcnonfirmtxt.getText();
-                if(!pwd.equals(verif)) {
+                if (!pwd.equals(verif)) {
                     throw new PasswordsDistintasException();
                 }
                 DataArtista dArt = new DataArtista(
@@ -378,11 +378,11 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         fChooser.setVisible(true);
         
         int selected = fChooser.showDialog(this, "Seleccionar");
-        if(selected == JFileChooser.APPROVE_OPTION){
+        if (selected == JFileChooser.APPROVE_OPTION) {
             File file = fChooser.getSelectedFile();
             try {
                 String ext = getExtension(file);
-                if(!"jpg".equals(ext) && !"png".equals(ext)){
+                if (!"jpg".equals(ext) && !"png".equals(ext)) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
                     fChooser.setVisible(false);
                     return;
@@ -445,7 +445,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         String nomArchivo = file.getName();
         int idx = nomArchivo.lastIndexOf('.');
         if (idx > 0 &&  idx < nomArchivo.length() - 1) {
-            ext = nomArchivo.substring(idx+1).toLowerCase();
+            ext = nomArchivo.substring(idx + 1).toLowerCase();
         }
         return ext;
     }

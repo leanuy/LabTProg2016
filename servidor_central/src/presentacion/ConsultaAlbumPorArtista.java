@@ -35,7 +35,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
         List<String> artists = null;
         artists = inter.listarArtistas();
-        for(String s : artists){
+        for (String s : artists) {
             modelito.addElement(s);
         }
         ConsultaAlbumButton.setEnabled(false);
@@ -163,7 +163,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
     private void TraerAlbumsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraerAlbumsButtonActionPerformed
         List<String> dataAlbums = null;
         modelitoAlbums.clear();
-        if(ListaArtistas.isSelectionEmpty()){
+        if (ListaArtistas.isSelectionEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar un artista", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -175,7 +175,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
                 modelitoAlbums.addElement(d);
             }
             ConsultaAlbumButton.setEnabled(true);
-        }catch(ArtistaInexistenteException e){
+        } catch (ArtistaInexistenteException e) {
             JOptionPane.showMessageDialog(this, "El artista elegido no existe.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_TraerAlbumsButtonActionPerformed
@@ -188,9 +188,9 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         DataAlbumExt dataAlbum = null;
         String nomAlbum = null;
         AlbumConsultado ventanaAlbum;
-        try{
+        try {
             int idxSeleccionado = ListaAlbunesArtista.getSelectedIndex();
-            if(idxSeleccionado == -1){
+            if(idxSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar un album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -199,11 +199,9 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
             ventanaAlbum = new AlbumConsultado(dataAlbum);
             
             ventanaAlbum.setVisible(true);
-        }
-        catch(ArtistaInexistenteException e){
+        } catch (ArtistaInexistenteException e) {
             JOptionPane.showMessageDialog(this, "No existe un artista con ese nick.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
-        }
-        catch(AlbumInexistenteException e){
+        } catch (AlbumInexistenteException e) {
             JOptionPane.showMessageDialog(this, "No existe un álbum con ese nombre para el artista seleccionado.", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_ConsultaAlbumButtonActionPerformed
