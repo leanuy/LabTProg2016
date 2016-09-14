@@ -7,7 +7,7 @@
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
-<%@attribute name="user" type="espotify.Datatypes.DataUsuario"%>
+<%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
 
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -37,7 +37,7 @@
                 <li><a href="#">Iniciar sesión</a></li>
                 <% } else { %>
                 <li class="dropdown menu-usuario">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px 20px"><img src="<%= user.getImgURL() %>" class="img-circle" style="width:30px;"> <%= user.getNick() %> <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px 20px"><img src="<%= user.getImgUrl()%>" class="img-circle" style="width:30px;"> <%= user.getNick() %> <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Favoritos</a></li>
                         <li role="separator" class="divider"></li>
