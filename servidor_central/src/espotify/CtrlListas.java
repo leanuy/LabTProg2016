@@ -59,7 +59,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     @Override
     public List<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException {
         nickMem = nick;
-        return new CtrlUsuarios().ListarListasDeCliente(nick);
+        return new CtrlUsuarios().listarListasDeCliente(nick);
     }
     
     @Override
