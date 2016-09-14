@@ -36,8 +36,8 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
         return genero;
     }
     
-    private void AgregarGenero(String nom,Genero g) {
-        ManejadorColecciones.getInstancia().AgregarGenero(nom, g);
+    private void AgregarGenero(String nom,Genero genero) {
+        ManejadorColecciones.getInstancia().AgregarGenero(nom, genero);
     }
     
     private static Map<String, Genero> GetGeneros() {
@@ -83,17 +83,17 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
     
 //Operaciones    
     @Override
-    public void AltaGenero(DataGenero d) throws GeneroInexistenteException, GeneroRepetidoException {
-        if (!ExisteGenero(d.getNombre())) {
+    public void AltaGenero(DataGenero dGenero) throws GeneroInexistenteException, GeneroRepetidoException {
+        if (!ExisteGenero(dGenero.getNombre())) {
             String padre;
-            if (d.getPadre().equals("")) {
+            if (dGenero.getPadre().equals("")) {
                 padre = "Genero";
             } else {
-                padre = d.getPadre();
+                padre = dGenero.getPadre();
             }
             if (ExisteGenero(padre)) {
-                Genero nuevoGenero = new Genero(d);
-                AgregarGenero(d.getNombre(), nuevoGenero);
+                Genero nuevoGenero = new Genero(dGenero);
+                AgregarGenero(dGenero.getNombre(), nuevoGenero);
                 BuscarGenero(padre).AddHijo(nuevoGenero);
             } else {
                 throw new GeneroInexistenteException("No existe el género padre");
@@ -116,18 +116,18 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
         return lista;
     }
     
-    public void AltaAlbum(DataAlbumExt d) throws AlbumRepetidoException, GeneroInexistenteException,
+    public void AltaAlbum(DataAlbumExt dAlbum) throws AlbumRepetidoException, GeneroInexistenteException,
             DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException,
             CampoVacioException, TemaTipoInvalidoException,ArtistaInexistenteException {
         //Validar unicidad de nombre para el album
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.BuscarArtista(d.getNickArtista());
-        if (art.TieneAlbum(d.getNombre())) {
+        Artista art = ctrlUsuarios.BuscarArtista(dAlbum.getNickArtista());
+        if (art.TieneAlbum(dAlbum.getNombre())) {
             throw new AlbumRepetidoException();
         }
         //Validar lista de nombres de generos y generar un hash de generos para el album
-        Map<String, Genero> lstGeneros = this.ValidarGeneros(d.getGeneros());
-        Album album = new Album(d, art, lstGeneros);
+        Map<String, Genero> lstGeneros = this.ValidarGeneros(dAlbum.getGeneros());
+        Album album = new Album(dAlbum, art, lstGeneros);
         lstGeneros.entrySet().stream().forEach((entry) -> {
             entry.getValue().AddAlbum(album);
         });

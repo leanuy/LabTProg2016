@@ -1,11 +1,11 @@
 package espotify.Excepciones;
 
 public class DuracionInvalidaException extends Exception {
-    public DuracionInvalidaException(){
+    public DuracionInvalidaException() {
         super();
     }
 
-    public DuracionInvalidaException(String message){
+    public DuracionInvalidaException(String message) {
         super(message);
     }
 }

@@ -277,7 +277,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 String verif = pwdcnonfirmtxt.getText();
                 if(!pwd.equals(verif))
                     throw new PasswordsDistintasException();
-                DataCliente d = new DataCliente(
+                DataCliente dCliente = new DataCliente(
                                 nicktxt.getText(),
                                 nomtxt.getText(),
                                 apetxt.getText(),
@@ -285,7 +285,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 fNac,
                                 img,
                                 pwd);
-                ctrl.AltaCliente(d);
+                ctrl.AltaCliente(dCliente);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
                     "Operación completada con éxito",
@@ -329,7 +329,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 String verif = pwdcnonfirmtxt.getText();
                 if(!pwd.equals(verif))
                     throw new PasswordsDistintasException();
-                DataArtista d = new DataArtista(
+                DataArtista dArt = new DataArtista(
                                 biotxt.getText(),
                                 urltxt.getText(),
                                 nicktxt.getText(),
@@ -339,7 +339,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 fNac,
                                 img,
                                 pwd);
-                ctrl.AltaArtista(d);
+                ctrl.AltaArtista(dArt);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
                 "Operación completada con éxito",
@@ -371,18 +371,18 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ConfirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
-        JFileChooser fc = new JFileChooser();
-        this.getContentPane().add(fc);
-        fc.setVisible(true);
+        JFileChooser fChooser = new JFileChooser();
+        this.getContentPane().add(fChooser);
+        fChooser.setVisible(true);
         
-        int selected = fc.showDialog(this, "Seleccionar");
+        int selected = fChooser.showDialog(this, "Seleccionar");
         if(selected == JFileChooser.APPROVE_OPTION){
-            File file = fc.getSelectedFile();
+            File file = fChooser.getSelectedFile();
             try {
                 String ext = getExtension(file);
                 if(!"jpg".equals(ext) && !"png".equals(ext)){
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
-                    fc.setVisible(false);
+                    fChooser.setVisible(false);
                     return;
                 }
                 img = ImageIO.read(file);
@@ -392,7 +392,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);    
+        fChooser.setVisible(false);    
     }//GEN-LAST:event_imgbtnActionPerformed
 
 
@@ -438,12 +438,12 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         urltxt.setText("");
     }
     
-        private String getExtension(File f) {
+        private String getExtension(File file) {
         String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
+        String nomArchivo = file.getName();
+        int idx = nomArchivo.lastIndexOf('.');
+        if (idx > 0 &&  idx < nomArchivo.length() - 1) {
+            ext = nomArchivo.substring(idx+1).toLowerCase();
         }
         return ext;
     }

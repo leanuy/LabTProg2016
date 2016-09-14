@@ -23,8 +23,8 @@ public class PublicarLista extends javax.swing.JInternalFrame {
         initComponents();
         listascmb.setEnabled(false);
         publicarbtn.setEnabled(false);
-        List<String> a = interf.ListarClientes();
-        for(String str : a) {
+        List<String> clientes = interf.ListarClientes();
+        for (String str : clientes) {
             clientescmb.addItem(str);
         }
     }

@@ -33,11 +33,11 @@ public class ConsultaListaTest {
         iConsultaLista = Fabrica.getIConsultaLista();
         new AltaListaTest().testAltaListaDefecto1();
         try {
-            IAltaPerfil cu = Fabrica.getIAltaPerfil();
+            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
             Calendar cal = Calendar.getInstance();
             cal.set(2001, 1, 1);
-            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null,""));
-            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null,""));
+            iPerfil.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null,""));
+            iPerfil.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null,""));
         } catch (Exception ex) {
         }
         new AltaListaTest().testAltaListaParticular1();
@@ -68,7 +68,7 @@ public class ConsultaListaTest {
         assertEquals(expResult, result);
     }
     
-    @Test (expected=ListaInexistenteException.class)
+    @Test (expected = ListaInexistenteException.class)
     public void testDarInfoDefecto2() throws Exception {
         System.out.println("Dar Info Defecto 2: lista inexistente");
         DataLista result = iConsultaLista.DarInfoDefecto("Lista gadfenérica");
@@ -84,7 +84,7 @@ public class ConsultaListaTest {
         assertEquals(expResult, result);
     }
     
-    @Test (expected=ClienteInexistenteException.class)
+    @Test (expected = ClienteInexistenteException.class)
     public void testListarListasDeCliente2() throws Exception {
         System.out.println("Listar Listas de Cliente 2");
         List<String> result = iConsultaLista.ListarListasDeCliente("TestasdferLista");
@@ -98,13 +98,13 @@ public class ConsultaListaTest {
         assertEquals(expResult, result);
     }
         
-    @Test (expected=ClienteInexistenteException.class)
+    @Test (expected = ClienteInexistenteException.class)
     public void testDarInfoParticular2() throws Exception {
         System.out.println("Dar Info Particular 2: cliente inexistente");
         DataLista result = iConsultaLista.DarInfoParticular("Mi Lista", "TestasdferLista");
     }
     
-    @Test (expected=ListaInexistenteException.class)
+    @Test (expected = ListaInexistenteException.class)
     public void testDarInfoParticular3() throws Exception {
         System.out.println("Dar Info Particular 3: lista inexistente");
         DataLista result = iConsultaLista.DarInfoParticular("Mi Liasfsta", "TesterLista");

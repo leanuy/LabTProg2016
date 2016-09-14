@@ -32,13 +32,13 @@ public class DejarDeSeguirTest {
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
-            DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
-            d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
             ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
-        catch (Exception e) {}
+        catch (Exception e) { }
         
         System.out.println("DejarDeSeguir: Normal");
         String nomSeguidor = "Seguidor";
@@ -47,21 +47,20 @@ public class DejarDeSeguirTest {
         instance.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
-    @Test (expected=SeguidorInexistenteException.class)
+    @Test (expected = SeguidorInexistenteException.class)
     public void testDejarDeSeguir2() throws Exception {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         IAltaSeguir ctrl2 = Fabrica.getIAltaSeguir();
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
-            DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
-            d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
             ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
-        catch(Exception e)
-        {}
+        catch (Exception e) { } 
         
         System.out.println("DejarDeSeguir: Seguidor Inexistente");
         String nomSeguidor = "Seguidorasdf";
@@ -69,20 +68,20 @@ public class DejarDeSeguirTest {
         iDejar.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
-    @Test (expected=SeguidoInexistenteException.class)
+    @Test (expected = SeguidoInexistenteException.class)
     public void testDejarDeSeguir3() throws Exception {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         IAltaSeguir ctrl2 = Fabrica.getIAltaSeguir();
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
-            DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
-            d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
             ctrl2.AltaSeguir("Seguidor", "Seguido");
         }
-        catch (Exception e) {}
+        catch (Exception e) { }
         
         System.out.println("DejarDeSeguir: Seguido Inexistente");
         String nomSeguidor = "Seguidor";
@@ -90,19 +89,19 @@ public class DejarDeSeguirTest {
         iDejar.DejarDeSeguir(nomSeguidor, nomSeguido);
     }
     
-    @Test (expected=SeguidoInexistenteException.class)
+    @Test (expected = SeguidoInexistenteException.class)
     public void testDejarDeSeguir4() throws Exception {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
-            DataCliente d = new DataCliente("Seguidor2", "Javier", "Morales", "seguidor2@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
-            d = new DataCliente("Seguido2", "Javier", "Morales", "seguido2@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
+            DataCliente dCli = new DataCliente("Seguidor2", "Javier", "Morales", "seguidor2@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido2", "Javier", "Morales", "seguido2@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
         }
-        catch(Exception e)
-        {}
+        catch (Exception e)
+        { }
         
         System.out.println("DejarDeSeguir: Seguido al que no seguían");
         String nomSeguidor = "Seguidor2";

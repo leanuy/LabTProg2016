@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public interface IConsultaCliente {
-    public DataClienteExt ConsultaCliente(String s) 
+    public DataClienteExt ConsultaCliente(String nick) 
             throws ClienteInexistenteException;
 
     public List<String> ListarClientes();

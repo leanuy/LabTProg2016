@@ -200,9 +200,9 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         ClientesBox.removeAllItems();
         ListaTema.removeAll();
         ListaBox.removeAllItems();
-        List<String> a = interf.ListarClientes();
+        List<String> clientes = interf.ListarClientes();
         ClientesBox.removeAllItems();
-        for(String s : a){
+        for(String s : clientes){
             ClientesBox.addItem(s);
         }
     }//GEN-LAST:event_ParticularButtonActionPerformed
@@ -220,9 +220,9 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         ClientesBox.removeAllItems();
         ListaTema.removeAll();
         ListaBox.removeAllItems();
-        List<String> a = interf.ListarListasDefecto();
+        List<String> listas = interf.ListarListasDefecto();
         ListaBox.removeAllItems();
-        for(String s : a){
+        for(String s : listas){
             ListaBox.addItem(s);
         }
     }//GEN-LAST:event_PorDefectoButtonActionPerformed
@@ -230,10 +230,10 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
     private void SeleccionarClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarClienteButtonActionPerformed
         String nick = String.valueOf(ClientesBox.getSelectedItem());
         try{
-            List<String> a = interf.ListarListasDeCliente(nick);
+            List<String> listas = interf.ListarListasDeCliente(nick);
             ListaBox.removeAllItems();
             ListaTema.removeAll();
-            for(String s : a){
+            for(String s : listas){
                 ListaBox.addItem(s);
             }
         }catch(Exception e){
@@ -243,19 +243,19 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
 
     private void SeleccionarListaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarListaButtonActionPerformed
         String lis = String.valueOf(ListaBox.getSelectedItem());
-        String s;
+        String str;
         try{
-            List<DataTema> a = interf.ListarTemasLista(lis);
+            List<DataTema> temas = interf.ListarTemasLista(lis);
             ListaTema.removeAll();
-            int size = a.size();
+            int size = temas.size();
             String[] algo = new String[size];
             listatemas = new DataTema[size];
-            int i = 0;
-            for(DataTema dt : a){
-                s = dt.getNombre() + ". Artista: " + dt.getNomArtista();
-                algo[i] = s;
-                listatemas[i] = dt;
-                i++;
+            int idx = 0;
+            for(DataTema dt : temas){
+                str = dt.getNombre() + ". Artista: " + dt.getNomArtista();
+                algo[idx] = str;
+                listatemas[idx] = dt;
+                idx++;
             }
             ListaTema.setListData(algo);
         }catch(Exception e){
@@ -266,13 +266,13 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
     private void QuitarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarButtonActionPerformed
         int index = ListaTema.getSelectedIndex();
         try{
-            DataTema dt = null;
+            DataTema dTema = null;
             if (index == -1){
                 JOptionPane.showMessageDialog(this, "Selecciona un tema wachin!", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-            dt = listatemas[index];
-            String nombre = dt.getNombre();
-            String album = dt.getAlbum();
+            dTema = listatemas[index];
+            String nombre = dTema.getNombre();
+            String album = dTema.getAlbum();
             interf.RemoverTemaLista(nombre, album); 
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             this.dispose();

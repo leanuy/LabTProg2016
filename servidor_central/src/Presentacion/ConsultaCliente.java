@@ -31,8 +31,8 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     public ConsultaCliente() {
         initComponents();
         IConsultaCliente interf = Fabrica.getIConsultaCliente();
-        List<String> a = interf.ListarClientes();
-        for(String str : a) {
+        List<String> clientes = interf.ListarClientes();
+        for(String str : clientes) {
             Select.addItem(str);
         }
     }
@@ -224,39 +224,39 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
         // TODO add your handling code here:
         String usr = String.valueOf(Select.getSelectedItem());
-        DataClienteExt dc=null;
+        DataClienteExt dCliente=null;
         try {
-            dc = interf.ConsultaCliente(usr);
+            dCliente = interf.ConsultaCliente(usr);
         } catch (ClienteInexistenteException ex) {
             Logger.getLogger(ConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        NombreText.setText(dc.getNombre());
-        ApellidoText.setText(dc.getApellido());
-        CorreoText.setText(dc.getCorreo());
-        Calendar fn = dc.getfNac();
+        NombreText.setText(dCliente.getNombre());
+        ApellidoText.setText(dCliente.getApellido());
+        CorreoText.setText(dCliente.getCorreo());
+        Calendar fechaNacimiento = dCliente.getfNac();
         String fecha = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        if (fn != null){
-            fecha = sdf.format(fn.getTime());
+        if (fechaNacimiento != null){
+            fecha = sdf.format(fechaNacimiento.getTime());
         }
         FechaText.setText(fecha);
-        String[] b = dc.getSeguidos();
+        String[] seguidos = dCliente.getSeguidos();
         SeguidosList.clearSelection();
-        SeguidosList.setListData(b);
-        String[] c = dc.getListas();
+        SeguidosList.setListData(seguidos);
+        String[] listas = dCliente.getListas();
         ListasList.clearSelection();
-        ListasList.setListData(c);
-        List<String> a = dc.getSeguidores();
-        int k = a.size();
-        String[] array = new String[k];
-        int i=0;
-        for(String seguidor : a){
-            array[i] = seguidor;
-            i++;
+        ListasList.setListData(listas);
+        List<String> seguidores = dCliente.getSeguidores();
+        int cantSeguidores = seguidores.size();
+        String[] array = new String[cantSeguidores];
+        int idx=0;
+        for(String seguidor : seguidores){
+            array[idx] = seguidor;
+            idx++;
         }
         SeguidoresList.setListData(array);
-        CantidadSeguidoresText.setText("Total: " + k);
-        BufferedImage imagen = dc.getImg();
+        CantidadSeguidoresText.setText("Total: " + cantSeguidores);
+        BufferedImage imagen = dCliente.getImg();
         BufferedImage image;
         if(imagen == null){
             image = null;
@@ -275,9 +275,9 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SelectActionPerformed
 
     
-    private BufferedImage getScaledImage(BufferedImage src, int w, int h){
-        int finalw = w;
-        int finalh = h;
+    private BufferedImage getScaledImage(BufferedImage src, int width, int height){
+        int finalw = width;
+        int finalh = height;
         double factor = 1.0d;
         if(src.getWidth() > src.getHeight()){
             factor = ((double)src.getHeight()/(double)src.getWidth());
@@ -288,10 +288,10 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         }   
 
         BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(src, 0, 0, finalw, finalh, null);
-        g2.dispose();
+        Graphics2D graficos2 = resizedImg.createGraphics();
+        graficos2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        graficos2.drawImage(src, 0, 0, finalw, finalh, null);
+        graficos2.dispose();
         return resizedImg;
     }
     

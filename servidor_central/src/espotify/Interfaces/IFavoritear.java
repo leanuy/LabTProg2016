@@ -10,7 +10,7 @@ import espotify.Excepciones.ListaInexistenteException;
 import java.util.List;
 
 public interface IFavoritear {
-    public void Favoritear(String nick, DataFavoriteable d)
+    public void Favoritear(String nick, DataFavoriteable dFav)
             throws ClienteInexistenteException, FavoritoRepetidoException,
             ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException;
 

@@ -13,12 +13,12 @@ abstract class Particular extends Lista {
         super(nombre, img);
     }
     
-    Particular(DataLista d ) {
-        super(d);
+    Particular(DataLista dLista ) {
+        super(dLista);
     }
     
-    Particular(Lista l) {
-        super(l);
+    Particular(Lista lst) {
+        super(lst);
     }
     
 }

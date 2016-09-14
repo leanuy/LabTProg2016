@@ -213,19 +213,19 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     }//GEN-LAST:event_AceptarButtonActionPerformed
 
     private void ExaminarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExaminarButtonActionPerformed
-        JFileChooser fc = new JFileChooser();
-        this.getContentPane().add(fc);
-        fc.setVisible(true);
+        JFileChooser fChooser = new JFileChooser();
+        this.getContentPane().add(fChooser);
+        fChooser.setVisible(true);
         
-        int selected = fc.showDialog(this, "Seleccionar");
+        int selected = fChooser.showDialog(this, "Seleccionar");
         if(selected == JFileChooser.APPROVE_OPTION){
-            File file = fc.getSelectedFile();
+            File file = fChooser.getSelectedFile();
             try {
                 pathATema = file.getCanonicalPath();
                 String ext = getExtension(file);
                 if(!"mp3".equals(ext)){
                     JOptionPane.showMessageDialog(this, "Debe seleccionar un archivo formato .mp3", "Error", JOptionPane.ERROR_MESSAGE);
-                    fc.setVisible(false);
+                    fChooser.setVisible(false);
                     return;
                 }
                 PathLocal.setText(pathATema);
@@ -234,15 +234,15 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);
+        fChooser.setVisible(false);
     }//GEN-LAST:event_ExaminarButtonActionPerformed
 
-    private String getExtension(File f) {
+    private String getExtension(File file) {
         String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
+        String nomArchivo = file.getName();
+        int idx = nomArchivo.lastIndexOf('.');
+        if (idx > 0 &&  idx < nomArchivo.length() - 1) {
+            ext = nomArchivo.substring(idx + 1).toLowerCase();
         }
         return ext;
     }

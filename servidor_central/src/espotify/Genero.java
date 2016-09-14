@@ -22,8 +22,8 @@ class Genero {
     
     Genero(final String nombre) {
         this.nombre = nombre;
-        this.subgeneros=new HashMap<>();
-        this.albums=new HashMap<>();
+        this.subgeneros = new HashMap<>();
+        this.albums = new HashMap<>();
     }
     
     Genero(DataGenero data) {
@@ -34,11 +34,11 @@ class Genero {
 
     List<String[]> ListarAlbumes() {
         ArrayList<String[]> listaAlbums = new ArrayList();
-        Iterator it = albums.entrySet().iterator();
+        Iterator iterador = albums.entrySet().iterator();
         Album actual;
         String[] valores;
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
+        while (iterador.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterador.next();
             actual = (Album) pair.getValue();
             valores = new String[2];
             valores[0] = actual.getNombre();
@@ -48,8 +48,8 @@ class Genero {
         return listaAlbums;
     }
 
-    void AddHijo(Genero g) {
-        subgeneros.put(g.getNombre(), g);
+    void AddHijo(Genero genero) {
+        subgeneros.put(genero.getNombre(), genero);
     }
     
     void AddAlbum(Album album) {

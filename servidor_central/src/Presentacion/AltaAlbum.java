@@ -94,17 +94,17 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         
         //cargar Artistas
         List<String> artists = inter.ListarArtistas();
-        for(String s: artists){
+        for (String s: artists) {
             modeloArtistas.addElement(s);
         }
     }
     
-    private void expandAllNodes(JTree tree, int startingIndex, int rowCount){
-        for(int i=startingIndex;i<rowCount;++i){
+    private void expandAllNodes(JTree tree, int startingIndex, int rowCount) {
+        for (int i = startingIndex; i < rowCount; ++i) {
             tree.expandRow(i);
         }
 
-        if(tree.getRowCount()!=rowCount){
+        if (tree.getRowCount() != rowCount) {
             expandAllNodes(tree, rowCount, tree.getRowCount());
         }
     }

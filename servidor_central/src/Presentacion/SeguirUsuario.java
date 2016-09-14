@@ -23,8 +23,8 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     
     public SeguirUsuario() {
         initComponents();
-        List<String> cl = interf.ListarClientes();
-        for(String str : cl) {
+        List<String> clientes = interf.ListarClientes();
+        for(String str : clientes) {
             NickSeguidor.addItem(str);
         }
     }
@@ -151,8 +151,8 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
         NickSeguido.removeAllItems();
         try {
-            List<String> ar = interf.ListarSeguibles(Seguidor);
-            for(String stri : ar) {
+            List<String> seguibles = interf.ListarSeguibles(Seguidor);
+            for(String stri : seguibles) {
                 NickSeguido.addItem(stri);
             }
         } catch (SeguidorInexistenteException e) {

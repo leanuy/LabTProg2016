@@ -1,7 +1,7 @@
 package espotify.Excepciones;
 
 public class SeguidorInexistenteException extends Exception {
-    public SeguidorInexistenteException(){
+    public SeguidorInexistenteException() {
         super();
     }
 }

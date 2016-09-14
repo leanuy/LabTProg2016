@@ -4,8 +4,8 @@ import espotify.Datatypes.DataParticular;
 
 class Privada extends Particular {
 
-    Privada(DataParticular d) {
-        super(d);
+    Privada(DataParticular dParticular) {
+        super(dParticular);
     }
     
     Publica HacerPublica() {

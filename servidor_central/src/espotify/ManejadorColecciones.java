@@ -14,7 +14,7 @@ class ManejadorColecciones {
 //SINGLETON
     static ManejadorColecciones getInstancia() {
         if (instancia == null) {
-            instancia=new ManejadorColecciones();
+            instancia = new ManejadorColecciones();
         }
         return instancia;
     }
@@ -41,8 +41,8 @@ class ManejadorColecciones {
         return clientes.get(nick);
     }
     
-    void AgregarCliente(String nick, Cliente c) {
-        clientes.put(nick, c);
+    void AgregarCliente(String nick, Cliente cli) {
+        clientes.put(nick, cli);
     }
 
 //Artistas

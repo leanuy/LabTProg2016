@@ -150,10 +150,10 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
     private void consultarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtnActionPerformed
         String nomLista = String.valueOf(listascmb.getSelectedItem());
         try {
-            DataLista dl = interf.DarInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
+            DataLista dLista = interf.DarInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
 
             //mostrar la imagen
-            BufferedImage imagen = dl.getImg();
+            BufferedImage imagen = dLista.getImg();
             BufferedImage image;
             if(imagen == null){
                 image = null;
@@ -173,10 +173,10 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
             //fin mostrar la imagen
 
             //mostrar los temas:
-            List<DataTema> a = dl.getTemas();
+            List<DataTema> temas = dLista.getTemas();
             DefaultListModel<String> model = new DefaultListModel<>();
             ListaTemas.setModel(model);
-            for(DataTema dt : a) {
+            for(DataTema dt : temas) {
                 model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion()/60+":"+dt.getDuracion()%60 + ")");
             }
         } catch (ClienteInexistenteException ex) {
@@ -189,9 +189,9 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
 
     
     
-    private BufferedImage getScaledImage(BufferedImage src, int w, int h){
-        int finalw = w;
-        int finalh = h;
+    private BufferedImage getScaledImage(BufferedImage src, int width, int height){
+        int finalw = width;
+        int finalh = height;
         double factor = 1.0d;
         if(src.getWidth() > src.getHeight()){
             factor = ((double)src.getHeight()/(double)src.getWidth());
@@ -202,10 +202,10 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         }   
 
         BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(src, 0, 0, finalw, finalh, null);
-        g2.dispose();
+        Graphics2D graficos2 = resizedImg.createGraphics();
+        graficos2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        graficos2.drawImage(src, 0, 0, finalw, finalh, null);
+        graficos2.dispose();
         return resizedImg;
     }
     

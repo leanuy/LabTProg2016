@@ -56,10 +56,9 @@ class Cliente extends Usuario {
             namef = cli.nick;
             segdores.add(namef);
         }
-        DataClienteExt dc = new DataClienteExt(getNick(),
+        return new DataClienteExt(getNick(),
                 getNombre(),getApellido(),getCorreo(),
                 getFechaNac(), getImg(), seg, lis, segdores);
-        return dc;
     }
     
     void Seguir(Usuario usuario) throws AutoSeguirseException, SeguidoRepetidoException {
@@ -141,7 +140,7 @@ class Cliente extends Usuario {
         BuscarLista(nomLista).QuitarTema(nomTema,nomAlbum);
     }
 
-    DataLista DarInfoLista(String nomLista) throws ListaInexistenteException{
+    DataLista DarInfoLista(String nomLista) throws ListaInexistenteException {
         return BuscarLista(nomLista).getData();
     }
     

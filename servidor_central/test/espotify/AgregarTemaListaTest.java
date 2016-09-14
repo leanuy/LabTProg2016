@@ -79,7 +79,7 @@ public class AgregarTemaListaTest {
         assertEquals(expResult, result);
     }
     
-    @Test (expected=ArtistaInexistenteException.class)
+    @Test (expected = ArtistaInexistenteException.class)
     public void ListarAlbumesArtista2() throws ArtistaInexistenteException {
         System.out.println("Listar Albumes de Artista 2: no existe");
         List<String> result = iAdd.ListarAlbumesDeArtista("ElGordasdfoAxl");
@@ -102,7 +102,7 @@ public class AgregarTemaListaTest {
         assertEquals(expResult, result);
     }
     
-    @Test (expected=ListaInexistenteException.class)
+    @Test (expected = ListaInexistenteException.class)
     public void ListarTemasLista2() throws Exception {
         System.out.println("Listar Temas de Lista");
         List<DataTema> result = iAdd.ListarTemasLista("Mi Lista Pasdfublica");
@@ -123,7 +123,7 @@ public class AgregarTemaListaTest {
         iAdd.AgregarTemaLista(web, "Lista genérica");
     }
     
-    @Test (expected=ListaInexistenteException.class)
+    @Test (expected = ListaInexistenteException.class)
     public void tirameExcepcion() throws Exception {
         DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
         iAdd.AgregarTemaLista(web, null);

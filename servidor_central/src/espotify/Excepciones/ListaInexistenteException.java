@@ -1,11 +1,11 @@
 package espotify.Excepciones;
 
 public class ListaInexistenteException extends Exception {
-    public ListaInexistenteException(){
+    public ListaInexistenteException() {
         super();
     }
 
-    public ListaInexistenteException(String message){
+    public ListaInexistenteException(String message) {
         super(message);
     }
 }

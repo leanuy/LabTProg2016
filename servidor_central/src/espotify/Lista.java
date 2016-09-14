@@ -51,17 +51,17 @@ abstract class Lista {
         return salida;
     }
     
-    void AgregarTema(Tema t) throws Exception {
-        String s = t.getNombre()+t.getNombreAlbum();
-        Tema tema2 = temas.get(s);
+    void AgregarTema(Tema tema) throws Exception {
+        String clave = tema.getNombre() + tema.getNombreAlbum();
+        Tema tema2 = temas.get(clave);
         if (tema2 != null) {
             throw new Exception("El tema ya existe en la lista");
         }
-        temas.put(s, t);
+        temas.put(clave, tema);
     }
 
     void QuitarTema(String nomTema,String nomAlbum) {
-        String clave = nomTema+nomAlbum;
+        String clave = nomTema + nomAlbum;
         temas.remove(clave);
     }
     

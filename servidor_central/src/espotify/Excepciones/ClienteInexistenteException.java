@@ -1,11 +1,11 @@
 package espotify.Excepciones;
 
 public class ClienteInexistenteException extends Exception {
-    public ClienteInexistenteException(){
+    public ClienteInexistenteException() {
         super();
     }
 
-    public ClienteInexistenteException(String message){
+    public ClienteInexistenteException(String message) {
         super(message);
     }
 }

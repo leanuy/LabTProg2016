@@ -254,10 +254,10 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListaDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaDefectoActionPerformed
-        DataDefecto d = new DataDefecto("", String.valueOf(lstdefcmb.getSelectedItem()), null);
+        DataDefecto dLista = new DataDefecto("", String.valueOf(lstdefcmb.getSelectedItem()), null);
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), dLista);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -273,10 +273,10 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListaDefectoActionPerformed
 
     private void btnListaPublicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaPublicaActionPerformed
-        DataParticular d = new DataParticular(String.valueOf(lstpubclicmb.getSelectedItem()),String.valueOf(lstpubcmb.getSelectedItem()),null);
+        DataParticular dLista = new DataParticular(String.valueOf(lstpubclicmb.getSelectedItem()),String.valueOf(lstpubcmb.getSelectedItem()),null);
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), dLista);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -292,10 +292,10 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnListaPublicaActionPerformed
 
     private void btnAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlbumActionPerformed
-        DataAlbum d = new DataAlbum(String.valueOf(albcmb.getSelectedItem()), 0, null, null, String.valueOf(artcmb.getSelectedItem()));
+        DataAlbum dAlbum = new DataAlbum(String.valueOf(albcmb.getSelectedItem()), 0, null, null, String.valueOf(artcmb.getSelectedItem()));
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), dAlbum);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -311,10 +311,10 @@ public class Favoritear extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnAlbumActionPerformed
 
     private void btnTemaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTemaAlbumActionPerformed
-        DataTema d = new DataTema(tematxt.getText(), 0, 0, String.valueOf(artcmb.getSelectedItem()), String.valueOf(albcmb.getSelectedItem()));
+        DataTema dTema = new DataTema(tematxt.getText(), 0, 0, String.valueOf(artcmb.getSelectedItem()), String.valueOf(albcmb.getSelectedItem()));
         IFavoritear ifav = Fabrica.getIFavoritear();
         try {
-            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), d);
+            ifav.Favoritear(String.valueOf(clientescmb.getSelectedItem()), dTema);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);

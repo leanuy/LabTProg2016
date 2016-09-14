@@ -39,7 +39,7 @@ public class AltaPerfilTest {
     }
     
     
-    @Test (expected=FormatoIncorrectoException.class)
+    @Test (expected = FormatoIncorrectoException.class)
     public void testAltaCliente2() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: campo vacío");
         Calendar cal = Calendar.getInstance();
@@ -49,7 +49,7 @@ public class AltaPerfilTest {
         instance.AltaCliente(dCli);
     }
     
-    @Test (expected=NickRepetidoException.class)
+    @Test (expected = NickRepetidoException.class)
     public void testAltaCliente3() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: nick repetido.");
         Calendar cal = Calendar.getInstance();
@@ -61,7 +61,7 @@ public class AltaPerfilTest {
         instance.AltaCliente(dCli);
     }
 
-    @Test (expected=CorreoRepetidoException.class)
+    @Test (expected = CorreoRepetidoException.class)
     public void testAltaCliente4() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: correo repetido.");
         Calendar cal = Calendar.getInstance();
@@ -73,7 +73,7 @@ public class AltaPerfilTest {
         instance.AltaCliente(dCli);
     }
     
-    @Test (expected=FormatoIncorrectoException.class)
+    @Test (expected = FormatoIncorrectoException.class)
     public void testAltaCliente5() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaCliente: correo sin formato de correo.");
         Calendar cal = Calendar.getInstance();
@@ -93,7 +93,7 @@ public class AltaPerfilTest {
         instance.AltaArtista(dArt);
     }
     
-    @Test (expected=FormatoIncorrectoException.class)
+    @Test (expected = FormatoIncorrectoException.class)
     public void testAltaArtista2() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException {
         System.out.println("AltaArtista: campo vacío");
         Calendar cal = Calendar.getInstance();
@@ -103,7 +103,7 @@ public class AltaPerfilTest {
         instance.AltaArtista(dArt);
     }
     
-    @Test (expected=NickRepetidoException.class)
+    @Test (expected = NickRepetidoException.class)
     public void testAltaArtista3()throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
         System.out.println("AltaArtista: nick repetido");
         Calendar cal = Calendar.getInstance();
@@ -115,7 +115,7 @@ public class AltaPerfilTest {
         instance.AltaArtista(dArt);
     }
     
-    @Test (expected=CorreoRepetidoException.class)
+    @Test (expected = CorreoRepetidoException.class)
     public void testAltaArtista4() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
         System.out.println("AltaArtista: correo repetido");
         Calendar cal = Calendar.getInstance();
@@ -127,7 +127,7 @@ public class AltaPerfilTest {
         instance.AltaArtista(dArt);
     }
     
-    @Test (expected=FormatoIncorrectoException.class)
+    @Test (expected = FormatoIncorrectoException.class)
     public void testAltaArtista5() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException  {
         System.out.println("AltaArtista: correo sin formato de correo");
         Calendar cal = Calendar.getInstance();

@@ -24,28 +24,26 @@ public class ConsultaClienteTest {
         //tests de santiago que hice yo -JM42
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null,"");
+        DataCliente dCliente = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null,"");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
 
         try {
-            ctrl.AltaCliente(d);
+            ctrl.AltaCliente(dCliente);
         } catch (Exception ex) {
         }
         
         System.out.println("ConsultaCliente");
-        String s = "clienteconsultado";
         DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new String[0], new String[0],"");
         IConsultaCliente instance = Fabrica.getIConsultaCliente();
 
-        DataClienteExt result = iConsultaCliente.ConsultaCliente(s);
+        DataClienteExt result = iConsultaCliente.ConsultaCliente("clienteconsultado");
         assertEquals(expResult, result);
     }
     
-    @Test (expected=ClienteInexistenteException.class)
+    @Test (expected = ClienteInexistenteException.class)
     public void testConsultaCliente2() throws ClienteInexistenteException {
         System.out.println("ConsultaCliente:no existe cliente");
-        String s = "clienteconsasdfultado";
-        DataClienteExt result = iConsultaCliente.ConsultaCliente(s);
+        DataClienteExt result = iConsultaCliente.ConsultaCliente("clienteconsasdfultado");
     }
 
 }

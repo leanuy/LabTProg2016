@@ -25,7 +25,7 @@ public class DataTema implements DataFavoriteable {
         return nomArtista;
     }
     
-    public String getAlbum(){
+    public String getAlbum() {
         return album;
     }
     

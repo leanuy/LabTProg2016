@@ -33,13 +33,13 @@ public class PublicarListaTest {
     public static void setUpClass() throws Exception {
         ManejadorColecciones.clear();
         iPublicarLista = Fabrica.getIPublicarLista();
-        IAltaPerfil cu = Fabrica.getIAltaPerfil();
+        IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
         try {
-            cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
-            cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
-            DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica", null);
+            iPerfil.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
+            iPerfil.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
+            DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica", null);
             IAltaLista instance = Fabrica.getIAltaLista();
-            instance.AltaListaParticular(d);
+            instance.AltaListaParticular(dLista);
         } catch (Exception ex) {
         }
     }
@@ -50,21 +50,21 @@ public class PublicarListaTest {
         iPublicarLista.PublicarLista("Mi Lista Publica", "TesterLista");
     }
     
-    @Test (expected=ClienteInexistenteException.class)
+    @Test (expected = ClienteInexistenteException.class)
     public void test8PublicarLista2() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
         System.out.println("PublicarLista: nombre de usuario incorrecto");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder", null);
+        DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(d);   
+        instance.AltaListaParticular(dLista);   
         iPublicarLista.PublicarLista("Mi Lista Publica", "TesterListakas.dbg");
     }
     
-    @Test (expected=ListaInexistenteException.class)
+    @Test (expected = ListaInexistenteException.class)
     public void test9PublicarLista3() throws ClienteInexistenteException, ListaInexistenteException, ListaRepetidaException, YaPublicaException {
         System.out.println("PublicarLista: nombre de lista incorrecto");
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder por el nombre", null);
+        DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder por el nombre", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(d); 
+        instance.AltaListaParticular(dLista); 
         iPublicarLista.PublicarLista("Mi Lista Publicanbasdf", "TesterLista");
     }
     
@@ -85,17 +85,17 @@ public class PublicarListaTest {
         assertEquals(expResult,result);
     }
     
-    @Test (expected=ClienteInexistenteException.class)
+    @Test (expected = ClienteInexistenteException.class)
     public void testListarListasPrivadasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasPrivadasDeCliente:cliente inexistente");
         List<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesasdfterLista");
     }
     
-    @Test (expected=YaPublicaException.class)
+    @Test (expected = YaPublicaException.class)
     public void tirameLaExcepcionPapa() throws YaPublicaException, ListaRepetidaException, ClienteInexistenteException, ListaInexistenteException {
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica D", null);
+        DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica D", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(d);
+        instance.AltaListaParticular(dLista);
         iPublicarLista.PublicarLista("Mi Lista Publica", "TesterLista");
         iPublicarLista.PublicarLista("Mi Lista Publica", "TesterLista");
     }

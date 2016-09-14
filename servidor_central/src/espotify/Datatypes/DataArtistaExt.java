@@ -27,7 +27,7 @@ public class DataArtistaExt extends DataUsuario {
         return url;
     }
     
-    public String[] getAlbums(){
+    public String[] getAlbums() {
         return alb;
     }
     
@@ -49,7 +49,7 @@ public class DataArtistaExt extends DataUsuario {
     }
     
     public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fechaNac,
-            BufferedImage img, String bio, String url, Map<String,Album> albums, String pwd){
+            BufferedImage img, String bio, String url, Map<String,Album> albums, String pwd) {
 
         super(nick, nombre, apellido, correo, fechaNac, img, pwd);
 

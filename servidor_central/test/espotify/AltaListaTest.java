@@ -20,8 +20,8 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -64,7 +64,7 @@ public class AltaListaTest {
         instance.AltaListaParticular(dLista);
     }
     
-    @Test (expected=ClienteInexistenteException.class)
+    @Test (expected = ClienteInexistenteException.class)
     public void testAltaListaParticular2() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:usuario inexistente");
         DataParticular dLista = new DataParticular("no existo yey", "Mi Lista", null);
@@ -82,7 +82,7 @@ public class AltaListaTest {
         instance.AltaListaParticular(dLista);
     }
     
-    @Test (expected=ListaRepetidaException.class)
+    @Test (expected = ListaRepetidaException.class)
     public void testAltaListaParticular4() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:nombre de lista repetido");
         DataParticular dLista = new DataParticular("TesterLista", "Repetido", null);
@@ -92,7 +92,7 @@ public class AltaListaTest {
         instance.AltaListaParticular(dLista);
     }
     
-    @Test (expected=ListaRepetidaException.class)
+    @Test (expected = ListaRepetidaException.class)
     public void testAltaListaParticular5() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:nombre de lista vacío");
         DataParticular dLista = new DataParticular("TesterLista", "", null);
@@ -108,7 +108,7 @@ public class AltaListaTest {
         instance.AltaListaDefecto(dLista);
     }
     
-    @Test (expected=GeneroInexistenteException.class)
+    @Test (expected = GeneroInexistenteException.class)
     public void testAltaListaDefecto2() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: género inexistente");
         DataDefecto dLista = new DataDefecto("aksdnlfaesufmx", "Lista que no va a andar", null);
@@ -116,7 +116,7 @@ public class AltaListaTest {
         instance.AltaListaDefecto(dLista);
     }
     
-    @Test (expected=ListaRepetidaException.class)
+    @Test (expected = ListaRepetidaException.class)
     public void testAltaListaDefecto3() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: nombre repetido");
         DataDefecto dLista = new DataDefecto("Genero", "Soy una lista con un nombre comun", null);
@@ -125,7 +125,7 @@ public class AltaListaTest {
         instance.AltaListaDefecto(dLista);
     }
     
-    @Test (expected=ListaRepetidaException.class)
+    @Test (expected = ListaRepetidaException.class)
     public void testAltaListaDefecto4() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: nombre vacío");
         DataDefecto dLista = new DataDefecto("Genero", "", null);

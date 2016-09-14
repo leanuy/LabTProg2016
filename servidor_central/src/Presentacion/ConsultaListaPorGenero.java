@@ -40,16 +40,16 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         cargarArbol(generoBase,raiz);
     }
 
-    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
-        int i = 0;
-        for(DataGenero d: g.getHijos()){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+        int idx = 0;
+        for(DataGenero d: dGenero.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
-            modeloTree.insertNodeInto(nodito,padre,i);
-            i++;
+            modeloTree.insertNodeInto(nodito,padre,idx);
+            idx++;
             cargarArbol(d,nodito);
         }
-        for (i = 0; i < ArbolGeneros.getRowCount(); i++) {
-            ArbolGeneros.expandRow(i);
+        for (idx = 0; idx < ArbolGeneros.getRowCount(); idx++) {
+            ArbolGeneros.expandRow(idx);
         }
     }
     /**
@@ -176,10 +176,10 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
     private void consultarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtnActionPerformed
         String nomLista = String.valueOf(listascmb.getSelectedItem());
         try {
-            DataLista dl = interf.DarInfoDefecto(nomLista);
+            DataLista dLista = interf.DarInfoDefecto(nomLista);
             
             //mostrar la imagen
-            BufferedImage imagen = dl.getImg();
+            BufferedImage imagen = dLista.getImg();
             BufferedImage image;
             if(imagen == null){
                 image = null;
@@ -199,10 +199,10 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
             //fin mostrar la imagen
 
             //mostrar los temas:
-            List<DataTema> a = dl.getTemas();
+            List<DataTema> temas = dLista.getTemas();
             DefaultListModel<String> model = new DefaultListModel<>();
             ListaTemas.setModel(model);
-            for(DataTema dt : a) {
+            for(DataTema dt : temas) {
                 model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion()/60+":"+dt.getDuracion()%60 + ")");
             }
 
@@ -213,9 +213,9 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_consultarbtnActionPerformed
 
-    private BufferedImage getScaledImage(BufferedImage src, int w, int h){
-        int finalw = w;
-        int finalh = h;
+    private BufferedImage getScaledImage(BufferedImage src, int width, int height){
+        int finalw = width;
+        int finalh = height;
         double factor = 1.0d;
         if(src.getWidth() > src.getHeight()){
             factor = ((double)src.getHeight()/(double)src.getWidth());
@@ -226,10 +226,10 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
         }   
 
         BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(src, 0, 0, finalw, finalh, null);
-        g2.dispose();
+        Graphics2D grafico2 = resizedImg.createGraphics();
+        grafico2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        grafico2.drawImage(src, 0, 0, finalw, finalh, null);
+        grafico2.dispose();
         return resizedImg;
     }
     

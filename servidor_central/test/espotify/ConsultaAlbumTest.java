@@ -57,7 +57,7 @@ public class ConsultaAlbumTest {
         assertArrayEquals(expResult.get(0),result.get(0));
     }
     
-    @Test (expected=GeneroInexistenteException.class)
+    @Test (expected = GeneroInexistenteException.class)
     public void testListarAlbumesDeGenero2() throws Exception {
         System.out.println("Listar Albumes De Genero:género inexistente");
         List<String[]> result = iConsultaAlbum.ListarAlbumesDeGenero("asf");
@@ -81,7 +81,7 @@ public class ConsultaAlbumTest {
         assertEquals(expResult,result);
     }
     
-    @Test (expected=ArtistaInexistenteException.class)
+    @Test (expected = ArtistaInexistenteException.class)
     public void testListarAlbumesDeArtista2() throws Exception {
         System.out.println("Listar Albumes De Artista:Artista inexistente");
         List<String> result = iConsultaAlbum.ListarAlbumesDeArtista("CHPP");
@@ -110,13 +110,13 @@ public class ConsultaAlbumTest {
         assertEquals(expResult,result);
     }
     
-    @Test (expected=ArtistaInexistenteException.class)
+    @Test (expected = ArtistaInexistenteException.class)
     public void testConsultaAlbum2() throws Exception {
         System.out.println("Consulta Album: Artista inexistente");
         DataAlbumExt result = iConsultaAlbum.ConsultaAlbum("Album 1", "ElGordoasdfasdfAxl");
     }
     
-    @Test (expected=AlbumInexistenteException.class)
+    @Test (expected = AlbumInexistenteException.class)
     public void testConsultaAlbum3() throws Exception {
         System.out.println("Consulta Album: Album inexistente");
         DataAlbumExt result = iConsultaAlbum.ConsultaAlbum("Album 2", "ElGordoAxl");

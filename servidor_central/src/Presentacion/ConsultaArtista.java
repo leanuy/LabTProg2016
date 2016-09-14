@@ -258,23 +258,23 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         List<String> seguidores = dArt.getSeguidores();
         int cantSeguidores = seguidores.size();
         String[] array = new String[cantSeguidores];
-        int i=0;
+        int idx=0;
         for(String seguidor : seguidores){
-            array[i] = seguidor;
-            i++;
+            array[idx] = seguidor;
+            idx++;
         }
         SeguidoresList.setListData(array);
         CantidadSeguidoresText.setText("Total: " + cantSeguidores);
-        Calendar fn = dArt.getfNac();
+        Calendar fechaNacimiento = dArt.getfNac();
         String fecha = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        if (fn != null){
-            fecha = sdf.format(fn.getTime());
+        if (fechaNacimiento != null){
+            fecha = sdf.format(fechaNacimiento.getTime());
         }
         FechaText.setText(fecha);
-        String[] b = dArt.getAlbums();
+        String[] albums = dArt.getAlbums();
         AlbumsList.clearSelection();
-        AlbumsList.setListData(b);
+        AlbumsList.setListData(albums);
         BufferedImage imagen = dArt.getImg();
         BufferedImage image;
         if(imagen !=null){
@@ -308,10 +308,10 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         }   
 
         BufferedImage resizedImg = new BufferedImage(finalw, finalh, BufferedImage.TRANSLUCENT);
-        Graphics2D g2 = resizedImg.createGraphics();
-        g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-        g2.drawImage(src, 0, 0, finalw, finalh, null);
-        g2.dispose();
+        Graphics2D grafico2 = resizedImg.createGraphics();
+        grafico2.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+        grafico2.drawImage(src, 0, 0, finalw, finalh, null);
+        grafico2.dispose();
         return resizedImg;
     }
     

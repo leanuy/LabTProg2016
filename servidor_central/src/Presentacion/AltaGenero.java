@@ -34,9 +34,9 @@ public class AltaGenero extends javax.swing.JInternalFrame {
 
     }
     
-    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre) {
         int idx = 0;
-        for(DataGenero d: dGenero.getHijos()){
+        for (DataGenero d: dGenero.getHijos()) {
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
             modeloTree.insertNodeInto(nodito,padre,idx);
             idx++;

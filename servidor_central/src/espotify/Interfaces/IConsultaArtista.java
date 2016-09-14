@@ -8,6 +8,6 @@ import java.util.List;
 public interface IConsultaArtista {
     public List<String> ListarArtistas();
 
-    public DataArtistaExt ConsultaArtista(String s) throws ArtistaInexistenteException;
+    public DataArtistaExt ConsultaArtista(String nick) throws ArtistaInexistenteException;
     
 }
