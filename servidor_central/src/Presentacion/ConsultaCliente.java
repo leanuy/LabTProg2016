@@ -1,20 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataClienteExt;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaCliente;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +31,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     public ConsultaCliente() {
         initComponents();
         IConsultaCliente interf = Fabrica.getIConsultaCliente();
-        ArrayList<String> a = interf.ListarClientes();
+        List<String> a = interf.ListarClientes();
         for(String str : a) {
             Select.addItem(str);
         }
@@ -250,7 +246,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         String[] c = dc.getListas();
         ListasList.clearSelection();
         ListasList.setListData(c);
-        ArrayList<String> a = dc.getSeguidores();
+        List<String> a = dc.getSeguidores();
         int k = a.size();
         String[] array = new String[k];
         int i=0;

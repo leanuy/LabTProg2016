@@ -1,16 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaAlbum;
+
 import java.awt.FlowLayout;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
@@ -31,7 +28,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     
     private DefaultTreeModel modeloTree;
     private DefaultListModel modelitoAlbums;
-    private ArrayList<String[]> albumsIndex;
+    private List<String[]> albumsIndex;
     
     IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
     
@@ -55,12 +52,12 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         expandAllNodes(ArbolGeneros, 0, ArbolGeneros.getRowCount());
     }
     
-    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
-        int i = 0;
-        for(DataGenero d: g.getHijos()){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+        int idx = 0;
+        for(DataGenero d: dGenero.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
-            modeloTree.insertNodeInto(nodito,padre,i);
-            i++;
+            modeloTree.insertNodeInto(nodito,padre,idx);
+            idx++;
             cargarArbol(d,nodito);
         }
     
@@ -191,7 +188,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ObtenerAlbumsGeneroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ObtenerAlbumsGeneroButtonActionPerformed
-        ArrayList<String[]> Albums = null;
+        List<String[]> Albums = null;
         modelitoAlbums.clear();
         albumsIndex.clear();
         TreePath path = ArbolGeneros.getSelectionPath();
@@ -247,15 +244,15 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ConsultarAlbumButtonActionPerformed
 
-    private String[] obtenerNumerodeLista(String s){
-        int i = s.indexOf(" ");
-        String numero = s.substring(0, i);
+    private String[] obtenerNumerodeLista(String str){
+        int idx = str.indexOf(" ");
+        String numero = str.substring(0, idx);
         String[] res = null;
-        for(String[] str: albumsIndex){
-            if(str[2].equals(numero)){
+        for(String[] datosAlbum: albumsIndex){
+            if(datosAlbum[2].equals(numero)){
                 res = new String[2];
-                res[0] = str[0];
-                res[1] = str[1];
+                res[0] = datosAlbum[0];
+                res[1] = datosAlbum[1];
                 break;
             }
         }

@@ -6,12 +6,18 @@ import espotify.Datatypes.DataParticular;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
-import java.util.ArrayList;
+
+import java.util.List;
 
 
 public interface IAltaLista {
-    public ArrayList<String> ListarClientes();
+    public List<String> ListarClientes();
+
     public DataGenero ListarGeneros();
-    public void AltaListaParticular(DataParticular d) throws ListaRepetidaException, ClienteInexistenteException;
-    public void AltaListaDefecto(DataDefecto d) throws ListaRepetidaException, GeneroInexistenteException;
+
+    public void AltaListaParticular(DataParticular dLista)
+            throws ListaRepetidaException, ClienteInexistenteException;
+
+    public void AltaListaDefecto(DataDefecto dLista)
+            throws ListaRepetidaException, GeneroInexistenteException;
 }

@@ -1,5 +1,8 @@
 package espotify;
 
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
+
 import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataArtistaExt;
 import espotify.Excepciones.ArtistaInexistenteException;
@@ -8,12 +11,12 @@ import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.NickRepetidoException;
 import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IConsultaArtista;
+
+import org.junit.Test;
+
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.*;
-import org.junit.Test;
+
 
 
 public class ConsultaArtistaTest {

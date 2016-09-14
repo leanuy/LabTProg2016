@@ -1,14 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataTema;
 import espotify.Fabrica;
 import espotify.Interfaces.IQuitarTemaLista;
-import java.util.ArrayList;
+
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -203,7 +200,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         ClientesBox.removeAllItems();
         ListaTema.removeAll();
         ListaBox.removeAllItems();
-        ArrayList<String> a = interf.ListarClientes();
+        List<String> a = interf.ListarClientes();
         ClientesBox.removeAllItems();
         for(String s : a){
             ClientesBox.addItem(s);
@@ -223,7 +220,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         ClientesBox.removeAllItems();
         ListaTema.removeAll();
         ListaBox.removeAllItems();
-        ArrayList<String> a = interf.ListarListasDefecto();
+        List<String> a = interf.ListarListasDefecto();
         ListaBox.removeAllItems();
         for(String s : a){
             ListaBox.addItem(s);
@@ -233,7 +230,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
     private void SeleccionarClienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarClienteButtonActionPerformed
         String nick = String.valueOf(ClientesBox.getSelectedItem());
         try{
-            ArrayList<String> a = interf.ListarListasDeCliente(nick);
+            List<String> a = interf.ListarListasDeCliente(nick);
             ListaBox.removeAllItems();
             ListaTema.removeAll();
             for(String s : a){
@@ -248,7 +245,7 @@ public class QuitarTemaLista extends javax.swing.JInternalFrame {
         String lis = String.valueOf(ListaBox.getSelectedItem());
         String s;
         try{
-            ArrayList<DataTema> a = interf.ListarTemasLista(lis);
+            List<DataTema> a = interf.ListarTemasLista(lis);
             ListaTema.removeAll();
             int size = a.size();
             String[] algo = new String[size];

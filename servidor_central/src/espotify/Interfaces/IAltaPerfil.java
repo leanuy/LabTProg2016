@@ -7,6 +7,11 @@ import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.NickRepetidoException;
 
 public interface IAltaPerfil {
-    public void AltaCliente(DataCliente d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException;
-    public void AltaArtista(DataArtista d) throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException;
+    public void AltaCliente(DataCliente dCli)
+            throws NickRepetidoException,
+            CorreoRepetidoException, FormatoIncorrectoException;
+
+    public void AltaArtista(DataArtista dArt)
+            throws NickRepetidoException, CorreoRepetidoException,
+            FormatoIncorrectoException;
 }

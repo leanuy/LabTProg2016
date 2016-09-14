@@ -36,6 +36,7 @@ import espotify.Interfaces.IFavoritear;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -69,11 +70,11 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return cliente;
     }
     
-    private static HashMap<String, Artista> GetArtistas() {
+    private static Map<String, Artista> GetArtistas() {
         return ManejadorColecciones.getInstancia().getArtistas();
     }
     
-    private static HashMap<String, Cliente> GetClientes() {
+    private static Map<String, Cliente> GetClientes() {
         return ManejadorColecciones.getInstancia().getClientes();
     }
 
@@ -83,15 +84,13 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             if(d instanceof DataParticular) {
                 DataParticular dp = (DataParticular) d;
                 return BuscarListaPublicaDeCliente(dp.getNomCliente(),dp.getNombre());
-            }
-            else if (d instanceof DataDefecto) {
+            } else if (d instanceof DataDefecto) {
                 return new CtrlListas().BuscarLista(((DataDefecto) d).getNombre());
             }
         } else if (d instanceof DataAlbum) {
             DataAlbum da = (DataAlbum) d;
             return BuscarAlbumDeArtista(da.getNickArtista(),da.getNombre());
-        }
-        else if (d instanceof DataTema) {
+        } else if (d instanceof DataTema) {
             return DevolverTema((DataTema)d);
         }
         return null;
@@ -106,6 +105,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             ArtistaInexistenteException, AlbumInexistenteException {
         return BuscarArtista(nickArtista).BuscarAlbum(nomAlbum);
     }
+
     Tema DevolverTema(DataTema dt) throws ArtistaInexistenteException {
         return BuscarArtista(dt.getNomArtista()).DevolverTema(dt);
     }
@@ -121,46 +121,46 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public ArrayList<String> ListarArtistas() {
-        ArrayList salida = new ArrayList();
+    public List<String> ListarArtistas() {
+        List salida = new ArrayList();
         GetArtistas().keySet().stream().forEach((key) -> {
             salida.add(key);
         });
         return salida;
     }
     
-    ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException {
+    List<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException {
         return BuscarCliente(nick).ListarListas();
     }
     
-    ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
+    List<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
         return BuscarCliente(nick).ListarListasPrivadas();
     }
     
     @Override
-    public ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException {
         return BuscarCliente(nick).ListarListasPublicas();
     }
     
     @Override
-    public ArrayList<String> ListarListasDefecto() {
+    public List<String> ListarListasDefecto() {
         return new CtrlListas().ListarListasDefecto();
     }
     
-    ArrayList<DataTema> ListarTemasDeLista(String nick, String nombre) throws ClienteInexistenteException,
+    List<DataTema> ListarTemasDeLista(String nick, String nombre) throws ClienteInexistenteException,
             ListaInexistenteException {
         return BuscarCliente(nick).ListarTemasDeLista(nombre);
     }
 
     @Override
-    public ArrayList<String> ListarSeguibles(String nomSeguidor) throws SeguidorInexistenteException {
+    public List<String> ListarSeguibles(String nomSeguidor) throws SeguidorInexistenteException {
         Cliente cli;
         try {
             cli = BuscarCliente(nomSeguidor);
         } catch (ClienteInexistenteException ex) {
             throw new SeguidorInexistenteException();
         }
-        ArrayList<String> salida = new ArrayList<>();
+        List<String> salida = new ArrayList<>();
         for (Entry<String, Cliente> entry :  GetClientes().entrySet()) {
             String key = entry.getKey();
             if (!cli.SigueA(key) && !key.equals(cli.getNick())) {
@@ -184,11 +184,11 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public ArrayList<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException {
+    public List<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException {
         return BuscarArtista(nomArtista).ListarAlbumes();
     }
     
-    ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException,
+    List<DataTema> ListarTemasAlbum(String art, String alb) throws ArtistaInexistenteException,
             AlbumInexistenteException {
         Album al = BuscarArtista(art).BuscarAlbum(alb);
         return al.getDataTemas();
@@ -338,6 +338,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             AlbumInexistenteException {
         BuscarCliente(nick).Favoritear(BuscarFavoriteable(dataFav));
     }
+
     public void DesFavoritear(String nick, DataFavoriteable dataFav) throws ClienteInexistenteException,
             FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException,
             AlbumInexistenteException {

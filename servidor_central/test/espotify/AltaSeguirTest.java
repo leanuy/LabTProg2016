@@ -1,5 +1,7 @@
 package espotify;
 
+import static org.junit.Assert.assertEquals;
+
 import espotify.Datatypes.DataCliente;
 import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.CorreoRepetidoException;
@@ -10,17 +12,21 @@ import espotify.Excepciones.SeguidoRepetidoException;
 import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IAltaSeguir;
-import java.util.ArrayList;
-import java.util.Calendar;
-import static org.junit.Assert.*;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Calendar;
+
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AltaSeguirTest {
     static IAltaSeguir iAltaSeguir;
+
     public AltaSeguirTest() {
     }
 
@@ -28,56 +34,55 @@ public class AltaSeguirTest {
     public static void setUpClass() throws Exception {
         ManejadorColecciones.clear();
         iAltaSeguir = Fabrica.getIAltaSeguir();
-        AltaPerfilTest a = new AltaPerfilTest();
-        a.testAltaArtista1();
-        a.testAltaCliente1();
+        AltaPerfilTest testPerfil = new AltaPerfilTest();
+        testPerfil.testAltaArtista1();
+        testPerfil.testAltaCliente1();
     }
 
     @Test
     public void test1ListarClientes() {
         System.out.println("ListarClientes");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> expResult = new ArrayList<>();
         expResult.add("JavierM42");
-        ArrayList<String> result = iAltaSeguir.ListarClientes();
+        List<String> result = iAltaSeguir.ListarClientes();
         assertEquals(expResult, result);
     }
     
     @Test
     public void test2ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 1");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> expResult = new ArrayList<>();
         expResult.add("ElGordoAxl");
-        ArrayList<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
+        List<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
         assertEquals(expResult, result);
     }
     
     @Test
     public void test4ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 2");
-        ArrayList<String> expResult = new ArrayList<>();
-        ArrayList<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
+        List<String> expResult = new ArrayList<>();
+        List<String> result = iAltaSeguir.ListarSeguibles("JavierM42");
         assertEquals(expResult, result);
     }
     
     @Test (expected=SeguidorInexistenteException.class)
     public void test5ListarSeguibles() throws SeguidorInexistenteException {
         System.out.println("ListarSeguibles 3");
-        ArrayList<String> result = iAltaSeguir.ListarSeguibles("asdfasdf");
+        List<String> result = iAltaSeguir.ListarSeguibles("asdfasdf");
     }
     
     @Test
     public void testAltaSeguir() throws Exception {
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        instance.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-        instance.AltaCliente(d);
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.set(1996, 5, 17);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            instance.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            instance.AltaCliente(dCli);
         }
-        catch(NickRepetidoException | CorreoRepetidoException e)
-        {}
+        catch (NickRepetidoException | CorreoRepetidoException e) {}
         
         System.out.println("AltaSeguir: Normal a Cliente");
         String nomSeguidor = "Seguidor";
@@ -97,15 +102,15 @@ public class AltaSeguirTest {
     @Test (expected=SeguidoInexistenteException.class)
     public void testAltaSeguir3() throws SeguidorInexistenteException,SeguidoInexistenteException, SeguidoRepetidoException, AutoSeguirseException{
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        try{
-        Calendar cal = Calendar.getInstance();
-        cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
+        try {
+            Calendar cal = Calendar.getInstance();
+            cal.set(1996, 5, 17);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
         }
-        catch(NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
+        catch (NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
         {}
         
         System.out.println("AltaSeguir: Seguido inexistente");
@@ -128,8 +133,8 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
+        DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+        ctrl.AltaCliente(dCli);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
         {}
@@ -146,10 +151,10 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
+        DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+        ctrl.AltaCliente(dCli);
+        dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+        ctrl.AltaCliente(dCli);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
         {}

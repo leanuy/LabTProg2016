@@ -2,8 +2,8 @@ package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
-import java.util.Objects;
 
 public class DataUsuario {
     protected String nick;
@@ -12,7 +12,7 @@ public class DataUsuario {
     protected String correo;
     protected Calendar fechaNac;
     protected BufferedImage img;
-    protected ArrayList<String> seguidores;
+    protected List<String> seguidores;
     protected String password;
 
     public String getNick() {
@@ -38,16 +38,13 @@ public class DataUsuario {
     public BufferedImage getImg() {
         return img;
     }
-    public String getImgURL() {
-        return "assets/img/profile.png"; //PROVISORIO;
-    }
     
-    public ArrayList<String> getSeguidores() {
+    public List<String> getSeguidores() {
         return this.seguidores;
     }
 
-    public DataUsuario(String nick, String nombre, String apellido, String correo, Calendar fechaNac,
-            BufferedImage img, ArrayList<String> segdores) {
+    public DataUsuario(String nick, String nombre, String apellido, String correo,
+            Calendar fechaNac, BufferedImage img, List<String> segdores) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -65,7 +62,7 @@ public class DataUsuario {
         this.correo = correo;
         this.fechaNac = fechaNac;
         this.img = img;
-        ArrayList<String> segdores = new ArrayList();
+        List<String> segdores = new ArrayList();
         this.seguidores = segdores;
         this.password = pwd;
     }

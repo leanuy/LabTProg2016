@@ -9,13 +9,14 @@ import espotify.Excepciones.AlbumInexistenteException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 class Artista extends Usuario {
     //attr
     private final String bio;
     private final String url;
-    private final HashMap<String,Album> albums;
+    private final Map<String,Album> albums;
     
     //getters
     
@@ -29,10 +30,10 @@ class Artista extends Usuario {
     
     //constructores
     Artista(DataArtista data) {
-      super(data);
-      albums = new HashMap<>();
-      bio=data.getBio();
-      url=data.getUrl();
+        super(data);
+        albums = new HashMap<>();
+        bio = data.getBio();
+        url = data.getUrl();
     }
     
     DataAlbumExt getDataAlbumExt(String nomAlbum) throws AlbumInexistenteException {
@@ -41,12 +42,12 @@ class Artista extends Usuario {
     }
     
     //otros métodos
-    static boolean ValidarDatosArtista(DataArtista d) {
-        return Usuario.ValidarDatosUsuario(d);
+    static boolean ValidarDatosArtista(DataArtista dArt) {
+        return Usuario.ValidarDatosUsuario(dArt);
     }
 
     DataArtistaExt getDataArtistaExt() {
-        ArrayList<String> segdores = new ArrayList();
+        List<String> segdores = new ArrayList();
         String namef;
         Cliente cli;
         for (Map.Entry<String, Cliente> entry : this.seguidores.entrySet()) {
@@ -54,9 +55,8 @@ class Artista extends Usuario {
             namef = cli.nick;
             segdores.add(namef);
         }
-        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(),
+        return new DataArtistaExt(getNick(), getNombre(), getApellido(),
                 getCorreo(), getFechaNac(), getImg(), bio, url, albums, segdores);
-        return da;
     }
     
     Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
@@ -67,22 +67,22 @@ class Artista extends Usuario {
         return album;
     }
     
-    ArrayList<String> ListarAlbumes() {
-        ArrayList<String> listaAlbums = new ArrayList();
-        Iterator it = albums.entrySet().iterator();
-        Album actual;
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            actual = (Album) pair.getValue();
-            listaAlbums.add(actual.getNombre());
+    List<String> ListarAlbumes() {
+        List<String> listaAlbums = new ArrayList();
+        Iterator iterador = albums.entrySet().iterator();
+        Album albumActual;
+        while (iterador.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterador.next();
+            albumActual = (Album) pair.getValue();
+            listaAlbums.add(albumActual.getNombre());
         }
         return listaAlbums;
     }
     
-    Tema DevolverTema(DataTema dt) {
-        String album = dt.getAlbum();
-        String tema = dt.getNombre();
+    Tema DevolverTema(DataTema dTema) {
+        String album = dTema.getAlbum();
+        String tema = dTema.getNombre();
         Album alb = albums.get(album);
-        return alb.DevolverTema(tema);
+        return alb.devolverTema(tema);
     }
 }

@@ -1,31 +1,26 @@
 package espotify;
 
+import static org.junit.Assert.assertEquals;
+
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataParticular;
-import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Excepciones.CorreoRepetidoException;
-import espotify.Excepciones.FormatoIncorrectoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
-import espotify.Excepciones.NickRepetidoException;
-import espotify.Excepciones.SeguidoInexistenteException;
-import espotify.Excepciones.SeguidoRepetidoException;
-import espotify.Excepciones.SeguidorInexistenteException;
 import espotify.Excepciones.YaPublicaException;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IAltaSeguir;
 import espotify.Interfaces.IPublicarLista;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Calendar;
+
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PublicarListaTest {
@@ -76,8 +71,8 @@ public class PublicarListaTest {
     @Test
     public void test1ListarListasPrivadasDeCliente() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
         System.out.println("ListarListasPrivadasDeCliente:");
-        ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
+        List<String> expResult = new ArrayList<>();
         expResult.add("Mi Lista Publica");
         assertEquals(expResult,result);
     }
@@ -85,15 +80,15 @@ public class PublicarListaTest {
     @Test
     public void test3ListarListasPrivadasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasPrivadasDeCliente:no hay");
-        ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
-        ArrayList<String> expResult = new ArrayList<>();
+        List<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesterLista");
+        List<String> expResult = new ArrayList<>();
         assertEquals(expResult,result);
     }
     
     @Test (expected=ClienteInexistenteException.class)
     public void testListarListasPrivadasDeCliente() throws ClienteInexistenteException {
         System.out.println("ListarListasPrivadasDeCliente:cliente inexistente");
-        ArrayList<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesasdfterLista");
+        List<String> result = iPublicarLista.ListarListasPrivadasDeCliente("TesasdfterLista");
     }
     
     @Test (expected=YaPublicaException.class)

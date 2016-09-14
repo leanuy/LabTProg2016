@@ -1,10 +1,10 @@
 package espotify;
 
-import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataParticular;
+import espotify.Datatypes.DataTema;
 import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.ClienteInexistenteException;
@@ -12,20 +12,23 @@ import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Excepciones.YaPublicaException;
+import espotify.Interfaces.IAgregarTemaLista;
 import espotify.Interfaces.IAltaLista;
 import espotify.Interfaces.IConsultaLista;
 import espotify.Interfaces.IPublicarLista;
-import espotify.Interfaces.IAgregarTemaLista;
 import espotify.Interfaces.IQuitarTemaLista;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, IAgregarTemaLista, IQuitarTemaLista {
+public class CtrlListas implements IAltaLista, IPublicarLista,
+        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista {
     private static CtrlListas instancia;
     private String nickMem;
     private String nomListaMem;
-    private ArrayList<DataTema> temasLista;
+    private List<DataTema> temasLista;
     
 //Constructor
     public CtrlListas() {
@@ -39,46 +42,45 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
         return def;
     }
     
-    private static HashMap<String, Defecto> GetListas() {
+    private static Map<String, Defecto> GetListas() {
         return ManejadorColecciones.getInstancia().getListas();
     }
 //Listas
     @Override
-    public ArrayList<String> ListarClientes() {
+    public List<String> ListarClientes() {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarClientes();
     }
     
     @Override
-    public ArrayList<String> ListarArtistas() {
+    public List<String> ListarArtistas() {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarArtistas();
     }
     
     @Override
-    public ArrayList<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException
-    {
+    public List<String> ListarListasDeCliente(String nick) throws ClienteInexistenteException {
         nickMem=nick;
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasDeCliente(nick);
     }
     
     @Override
-    public ArrayList<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> ListarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasPrivadasDeCliente(nick);
     }
     
     @Override
-    public ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException {
         CtrlUsuarios cu = new CtrlUsuarios();
         return cu.ListarListasPublicasDeCliente(nick);
     }
     
     @Override
-    public ArrayList<String> ListarListasDefecto() {
+    public List<String> ListarListasDefecto() {
         nickMem="";
-        ArrayList salida = new ArrayList();
+        List salida = new ArrayList();
         GetListas().keySet().stream().forEach((key) -> {
             salida.add(key);
         });
@@ -86,8 +88,8 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     }
     
     @Override
-    public ArrayList<String> ListarListasDefecto2() {
-        ArrayList salida = new ArrayList();
+    public List<String> ListarListasDefecto2() {
+        List salida = new ArrayList();
         GetListas().keySet().stream().forEach((key) -> {
             salida.add(key);
         });
@@ -95,7 +97,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     }
     
     @Override
-    public ArrayList<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException {
+    public List<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException {
         nomListaMem = nombre;
         if (nickMem.equals("")) /*listaron las por defecto*/ {
             return BuscarLista(nombre).ListarTemas();
@@ -105,7 +107,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     }
     
     @Override
-    public ArrayList<DataTema> ListarTemasLista2(String cliente, String nomLista) throws Exception {
+    public List<DataTema> ListarTemasLista2(String cliente, String nomLista) throws Exception {
         if (cliente == null) {
             temasLista = BuscarLista(nomLista).ListarTemas();
         } else {
@@ -121,8 +123,8 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     }
     
     @Override
-    public ArrayList<String> ListarListasDeGenero(String nomGenero) {
-        ArrayList<String> salida = new ArrayList();
+    public List<String> ListarListasDeGenero(String nomGenero) {
+        List<String> salida = new ArrayList();
         for (Map.Entry<String, Defecto> entry : GetListas().entrySet()) {
             Defecto def = entry.getValue();
             if (def.getNomGenero().equals(nomGenero)) {
@@ -133,12 +135,12 @@ public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, I
     }
     
     @Override
-    public ArrayList<String> ListarAlbumesDeArtista(String na) throws ArtistaInexistenteException {
+    public List<String> ListarAlbumesDeArtista(String na) throws ArtistaInexistenteException {
         return new CtrlUsuarios().ListarAlbumesDeArtista(na);
     }
     
     @Override
-    public ArrayList<DataTema> ListarTemasAlbum(String art, String alb) throws
+    public List<DataTema> ListarTemasAlbum(String art, String alb) throws
             ArtistaInexistenteException, AlbumInexistenteException {
         return new CtrlUsuarios().ListarTemasAlbum(art, alb);
     }

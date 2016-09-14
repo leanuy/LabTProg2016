@@ -1,7 +1,7 @@
 package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Calendar;
 
 
@@ -18,7 +18,7 @@ public class DataArtista extends DataUsuario {
     }
 
     public DataArtista(String bio, String url, String nick, String nombre, String apellido,
-            String correo, Calendar fechaNac, BufferedImage img, ArrayList<String> segdores) {
+            String correo, Calendar fechaNac, BufferedImage img, List<String> segdores) {
         super(nick, nombre, apellido, correo, fechaNac, img, segdores);
         this.bio = bio;
         this.url = url;

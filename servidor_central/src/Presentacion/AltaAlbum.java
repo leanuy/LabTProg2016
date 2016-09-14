@@ -1,7 +1,6 @@
 package Presentacion;
 
 
-import espotify.Datatypes.DataAlbum;
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataGenero;
 import espotify.Datatypes.DataTema;
@@ -17,20 +16,17 @@ import espotify.Excepciones.TemaRepetidoException;
 import espotify.Excepciones.TemaTipoInvalidoException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaAlbum;
-import espotify.Interfaces.IAltaGenero;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTree;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -45,7 +41,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private String pathAImagen;
     private boolean primeraVez;
     private static int numeroTema;
-    private static ArrayList<DataTema> listaTemas;
+    private static List<DataTema> listaTemas;
     
     private static boolean web;
     private static String url;
@@ -56,7 +52,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private String ArtistSelected;
     
     
-    private static ArrayList<String> temasYaIngresados;
+    private static List<String> temasYaIngresados;
     private static String nombreAnterior;
     private static boolean nombreRepetido;
     private static boolean entrar;
@@ -97,7 +93,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         expandAllNodes(ArbolGeneros, 0, ArbolGeneros.getRowCount());
         
         //cargar Artistas
-        ArrayList<String> artists = inter.ListarArtistas();
+        List<String> artists = inter.ListarArtistas();
         for(String s: artists){
             modeloArtistas.addElement(s);
         }
@@ -348,12 +344,12 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         buttonConfirmarALtaAlbum.setEnabled(true);
     }//GEN-LAST:event_buttonSeleccionarActionPerformed
 
-    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
-        int i = 0;
-        for(DataGenero d: g.getHijos()){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+        int idx = 0;
+        for(DataGenero d: dGenero.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
-            modeloTree.insertNodeInto(nodito,padre,i);
-            i++;
+            modeloTree.insertNodeInto(nodito,padre,idx);
+            idx++;
             cargarArbol(d,nodito);
         }
     
@@ -373,9 +369,9 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                     return;
                 }else{
                     if(web){
-                        DataTemaWeb dt = new DataTemaWeb(url,nombre,duracion,numeroTema,ArtistSelected, nombreAlbum.getText());
-                        listaTemas.add(dt);
-                        modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dt.getNombre());
+                        DataTemaWeb dTema = new DataTemaWeb(url,nombre,duracion,numeroTema,ArtistSelected, nombreAlbum.getText());
+                        listaTemas.add(dTema);
+                        modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dTema.getNombre());
                     }else{
                         DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema,ArtistSelected,nombreAlbum.getText());
                         listaTemas.add(dta);
@@ -394,19 +390,19 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private void buttonAgregarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarImagenActionPerformed
         // TODO abrir un file chooser y que file por tipo de archivo. solo jpg o png. mostrar path luego en textfield editable
         // avisar y no seleccionar si archivo no tiene la extension deseada.
-        JFileChooser fc = new JFileChooser();
-        this.getContentPane().add(fc);
-        fc.setVisible(true);
+        JFileChooser fChooser = new JFileChooser();
+        this.getContentPane().add(fChooser);
+        fChooser.setVisible(true);
         
-        int selected = fc.showDialog(this, "Seleccionar");
+        int selected = fChooser.showDialog(this, "Seleccionar");
         if(selected == JFileChooser.APPROVE_OPTION){
-            File file = fc.getSelectedFile();
+            File file = fChooser.getSelectedFile();
             try {
                 pathAImagen = file.getCanonicalPath();
                 String ext = getExtension(file);
                 if(!"jpg".equals(ext) && !"png".equals(ext) && !"jpeg".equals(ext)){
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
-                    fc.setVisible(false);
+                    fChooser.setVisible(false);
                     return;
                 }
                 img = ImageIO.read(file);
@@ -415,7 +411,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);    
+        fChooser.setVisible(false);    
     }//GEN-LAST:event_buttonAgregarImagenActionPerformed
 
     private void buttonConfirmarALtaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarALtaAlbumActionPerformed
@@ -523,21 +519,21 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         nombre = nombrex;
     }
 
-    private String getExtension(File f) {
+    private String getExtension(File file) {
         String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
+        String nomArchivo = file.getName();
+        int idx = nomArchivo.lastIndexOf('.');
+        if (idx > 0 &&  idx < nomArchivo.length() - 1) {
+            ext = nomArchivo.substring(idx+1).toLowerCase();
         }
         return ext;
     }
     
-    private boolean getExtensionDeString(String s) {
+    private boolean getExtensionDeString(String str) {
         boolean ext = false;
-        int i = s.lastIndexOf('.');
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = "jpg".equals(s.substring(i+1).toLowerCase()) || "png".equals(s.substring(i+1).toLowerCase()) || "jpeg".equals(s.substring(i+1).toLowerCase());
+        int idx = str.lastIndexOf('.');
+        if (idx > 0 &&  idx < str.length() - 1) {
+            ext = "jpg".equals(str.substring(idx+1).toLowerCase()) || "png".equals(str.substring(idx+1).toLowerCase()) || "jpeg".equals(str.substring(idx+1).toLowerCase());
         }
         return ext;
     }

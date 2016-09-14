@@ -6,14 +6,25 @@ import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.FavoritoRepetidoException;
 import espotify.Excepciones.ListaInexistenteException;
-import java.util.ArrayList;
+
+import java.util.List;
 
 public interface IDesFavoritear {
-    public void DesFavoritear(String nick, DataFavoriteable d) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException;
-    public ArrayList<String> ListarClientes();
-    public ArrayList<String> ListarListasPublicasDeCliente(String nick) throws ClienteInexistenteException;
-    public ArrayList<String> ListarListasDefecto();
-    public ArrayList<String> ListarArtistas();
-    public ArrayList<String> ListarAlbumesDeArtista(String nickArtista) throws ArtistaInexistenteException;
+    public void DesFavoritear(String nick, DataFavoriteable d)
+            throws ClienteInexistenteException, FavoritoRepetidoException,
+            ListaInexistenteException, ArtistaInexistenteException,
+            AlbumInexistenteException;
+
+    public List<String> ListarClientes();
+
+    public List<String> ListarListasPublicasDeCliente(String nick)
+            throws ClienteInexistenteException;
+
+    public List<String> ListarListasDefecto();
+
+    public List<String> ListarArtistas();
+
+    public List<String> ListarAlbumesDeArtista(String nickArtista)
+            throws ArtistaInexistenteException;
 
 }

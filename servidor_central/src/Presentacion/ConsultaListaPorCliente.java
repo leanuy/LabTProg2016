@@ -6,13 +6,11 @@ import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaLista;
+
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -25,7 +23,7 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
      */
     public ConsultaListaPorCliente() {
         initComponents();
-        ArrayList<String> cli = interf.ListarClientes();
+        List<String> cli = interf.ListarClientes();
         listascmb.setEnabled(false);
         for(String str : cli) {
             clientescmb.addItem(str);
@@ -132,17 +130,17 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String nomCliente = String.valueOf(clientescmb.getSelectedItem());
         listascmb.removeAllItems();
-        try
-        {
+        try {
             listascmb.setEnabled(false);
-            ArrayList<String> listas = interf.ListarListasDeCliente(nomCliente);
+            List<String> listas = interf.ListarListasDeCliente(nomCliente);
             for(String str : listas) {
                 listascmb.addItem(str);
             }
-            listascmb.setEnabled(listas.size()>0);
-        } catch(ClienteInexistenteException ex)
-        {
-            JOptionPane.showMessageDialog(this, "El cliente elegido no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            listascmb.setEnabled(listas.size() > 0);
+        } catch (ClienteInexistenteException ex) {
+            JOptionPane.showMessageDialog(this, 
+                    "El cliente elegido no existe",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         }        
     }//GEN-LAST:event_clientescmbActionPerformed
 
@@ -150,43 +148,43 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_listascmbActionPerformed
 
     private void consultarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarbtnActionPerformed
-     String nomLista = String.valueOf(listascmb.getSelectedItem());
-            try {
-                DataLista dl = interf.DarInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
+        String nomLista = String.valueOf(listascmb.getSelectedItem());
+        try {
+            DataLista dl = interf.DarInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
 
-                //mostrar la imagen
-                BufferedImage imagen = dl.getImg();
-                BufferedImage image;
-                if(imagen == null){
-                    image = null;
-                }
-                else{
-                    image = getScaledImage(imagen,212,220);
-                }
-                ImgContainer.removeAll();
-                if (image != null){
-                    ImageIcon img = new ImageIcon(image);
-                    ImgContainer.setIcon(img);
-                    ImgContainer.setVisible(true);
-                }else{
-                    ImgContainer.setText("El usuario NO tiene imagen");
-                    ImgContainer.setVisible(false);
-                }
-                //fin mostrar la imagen
+            //mostrar la imagen
+            BufferedImage imagen = dl.getImg();
+            BufferedImage image;
+            if(imagen == null){
+                image = null;
+            }
+            else{
+                image = getScaledImage(imagen,212,220);
+            }
+            ImgContainer.removeAll();
+            if (image != null){
+                ImageIcon img = new ImageIcon(image);
+                ImgContainer.setIcon(img);
+                ImgContainer.setVisible(true);
+            }else{
+                ImgContainer.setText("El usuario NO tiene imagen");
+                ImgContainer.setVisible(false);
+            }
+            //fin mostrar la imagen
 
-                //mostrar los temas:
-                ArrayList<DataTema> a = dl.getTemas();
-                DefaultListModel<String> model = new DefaultListModel<>();
-                ListaTemas.setModel(model);
-                for(DataTema dt : a) {
-                    model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion()/60+":"+dt.getDuracion()%60 + ")");
-                }
-            } catch (ClienteInexistenteException ex) {
-                JOptionPane.showMessageDialog(this, "El cliente seleccionado no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+            //mostrar los temas:
+            List<DataTema> a = dl.getTemas();
+            DefaultListModel<String> model = new DefaultListModel<>();
+            ListaTemas.setModel(model);
+            for(DataTema dt : a) {
+                model.addElement(dt.getNomArtista() + " - " + dt.getAlbum() + " - " + dt.getNombre() + " (" + dt.getDuracion()/60+":"+dt.getDuracion()%60 + ")");
             }
-             catch (ListaInexistenteException ex) {
-                JOptionPane.showMessageDialog(this, "El cliente seleccionado no tiene una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
+        } catch (ClienteInexistenteException ex) {
+            JOptionPane.showMessageDialog(this, "El cliente seleccionado no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+         catch (ListaInexistenteException ex) {
+            JOptionPane.showMessageDialog(this, "El cliente seleccionado no tiene una lista con ese nombre", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_consultarbtnActionPerformed
 
     

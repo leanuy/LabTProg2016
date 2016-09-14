@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataAlbumExt;
@@ -10,7 +5,8 @@ import espotify.Excepciones.AlbumInexistenteException;
 import espotify.Excepciones.ArtistaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IConsultaAlbum;
-import java.util.ArrayList;
+
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
@@ -37,7 +33,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         ListaAlbunesArtista.setModel(modelitoAlbums);
         ListaAlbunesArtista.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
-        ArrayList<String> artists = null;
+        List<String> artists = null;
         artists = inter.ListarArtistas();
         for(String s : artists){
             modelito.addElement(s);
@@ -165,7 +161,7 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
     IConsultaAlbum inter = Fabrica.getIConsultaAlbum();
 
     private void TraerAlbumsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TraerAlbumsButtonActionPerformed
-        ArrayList<String> dataAlbums = null;
+        List<String> dataAlbums = null;
         modelitoAlbums.clear();
         if(ListaArtistas.isSelectionEmpty()){
             JOptionPane.showMessageDialog(this, "Debe seleccionar un artista", "Atencion!!!", JOptionPane.WARNING_MESSAGE);
@@ -173,9 +169,9 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         }
         int opcion = ListaArtistas.getSelectedIndex();
         ArtistSelected = (String)modelito.getElementAt(opcion);
-        try{
+        try {
             dataAlbums = inter.ListarAlbumesDeArtista(ArtistSelected);
-            for(String d : dataAlbums){
+            for (String d : dataAlbums) {
                 modelitoAlbums.addElement(d);
             }
             ConsultaAlbumButton.setEnabled(true);

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 
@@ -12,12 +7,11 @@ import espotify.Datatypes.DataArtista;
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataDefecto;
 import espotify.Datatypes.DataGenero;
-import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaWeb;
 import espotify.Datatypes.DataTemaArchivo;
-import espotify.Excepciones.NickRepetidoException;
+import espotify.Datatypes.DataTemaWeb;
+
 import espotify.Fabrica;
 import espotify.Interfaces.IAgregarTemaLista;
 import espotify.Interfaces.IAltaAlbum;
@@ -27,24 +21,16 @@ import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IAltaSeguir;
 import espotify.Interfaces.IFavoritear;
 import espotify.Interfaces.IPublicarLista;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author leandro
- */
 public class MainFrame extends javax.swing.JFrame {
 
     /**
@@ -99,8 +85,8 @@ public class MainFrame extends javax.swing.JFrame {
         AltaAlbum = new javax.swing.JMenuItem();
         AltaLista = new javax.swing.JMenuItem();
         ConsultasDropDown = new javax.swing.JMenu();
-        ConsultaClienteMI = new javax.swing.JMenuItem();
-        ConsultaArtistaMI = new javax.swing.JMenuItem();
+        ConsultaClienteMitem = new javax.swing.JMenuItem();
+        ConsultaArtistaMItem = new javax.swing.JMenuItem();
         ConsultaAlbumMenuItem = new javax.swing.JMenuItem();
         ConsultaListaMenuItem = new javax.swing.JMenuItem();
         SocialMenu = new javax.swing.JMenu();
@@ -312,21 +298,21 @@ public class MainFrame extends javax.swing.JFrame {
 
         ConsultasDropDown.setText("Consultas");
 
-        ConsultaClienteMI.setText("Consulta perfil Cliente");
-        ConsultaClienteMI.addActionListener(new java.awt.event.ActionListener() {
+        ConsultaClienteMitem.setText("Consulta perfil Cliente");
+        ConsultaClienteMitem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaClienteMIActionPerformed(evt);
+                ConsultaClienteMitemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaClienteMI);
+        ConsultasDropDown.add(ConsultaClienteMitem);
 
-        ConsultaArtistaMI.setText("Consulta perfil Artista");
-        ConsultaArtistaMI.addActionListener(new java.awt.event.ActionListener() {
+        ConsultaArtistaMItem.setText("Consulta perfil Artista");
+        ConsultaArtistaMItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaArtistaMIActionPerformed(evt);
+                ConsultaArtistaMItemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaArtistaMI);
+        ConsultasDropDown.add(ConsultaArtistaMItem);
 
         ConsultaAlbumMenuItem.setText("Consulta Album");
         ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -466,21 +452,21 @@ public class MainFrame extends javax.swing.JFrame {
         dejar.setVisible(true);
     }//GEN-LAST:event_DejarSeguirMItemActionPerformed
 
-    private void ConsultaClienteMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteMIActionPerformed
-         MainPanel.removeAll();
-       ConsultaCliente cons = new ConsultaCliente();
+    private void ConsultaClienteMitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteMitemActionPerformed
+        MainPanel.removeAll();
+        ConsultaCliente cons = new ConsultaCliente();
         MainPanel.add(cons);
         MainPanel.repaint();
         cons.setVisible(true);
-    }//GEN-LAST:event_ConsultaClienteMIActionPerformed
+    }//GEN-LAST:event_ConsultaClienteMitemActionPerformed
 
-    private void ConsultaArtistaMIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaArtistaMIActionPerformed
-         MainPanel.removeAll();
-       ConsultaArtista art = new ConsultaArtista();
+    private void ConsultaArtistaMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaArtistaMItemActionPerformed
+        MainPanel.removeAll();
+        ConsultaArtista art = new ConsultaArtista();
         MainPanel.add(art);
         MainPanel.repaint();
         art.setVisible(true);
-    }//GEN-LAST:event_ConsultaArtistaMIActionPerformed
+    }//GEN-LAST:event_ConsultaArtistaMItemActionPerformed
 
     private void AltaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaListaActionPerformed
         MainPanel.removeAll();
@@ -499,21 +485,24 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void ConsultaAlbumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumMenuItemActionPerformed
         MainPanel.removeAll();
-            Object[] options = {"Artista","Genero"};
-            int opcion = JOptionPane.showOptionDialog(this, "Desea consultar album por Artista o por Genero?","Elija una opcion", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
-            if(opcion == JOptionPane.OK_OPTION ){
-               ConsultaAlbumPorArtista consAlbArt = new ConsultaAlbumPorArtista();
-               MainPanel.add(consAlbArt);
-               MainPanel.repaint();
-               consAlbArt.setVisible(true);
-            }else{
-                if(opcion == JOptionPane.NO_OPTION){
-                    ConsultaAlbumPorGenero consAlbGen = new ConsultaAlbumPorGenero();
-                    MainPanel.add(consAlbGen);
-                    MainPanel.repaint();
-                    consAlbGen.setVisible(true);
-                }
+        Object[] options = {"Artista","Genero"};
+        int opcion = JOptionPane.showOptionDialog(this,
+                "Desea consultar album por Artista o por Genero?",
+                "Elija una opcion", JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+        if (opcion == JOptionPane.OK_OPTION) {
+            ConsultaAlbumPorArtista consAlbArt = new ConsultaAlbumPorArtista();
+            MainPanel.add(consAlbArt);
+            MainPanel.repaint();
+            consAlbArt.setVisible(true);
+        } else {
+            if (opcion == JOptionPane.NO_OPTION) {
+                ConsultaAlbumPorGenero consAlbGen = new ConsultaAlbumPorGenero();
+                MainPanel.add(consAlbGen);
+                MainPanel.repaint();
+                consAlbGen.setVisible(true);
             }
+        }
     }//GEN-LAST:event_ConsultaAlbumMenuItemActionPerformed
 
     private void AltaGeneroMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroMItemActionPerformed
@@ -527,14 +516,17 @@ public class MainFrame extends javax.swing.JFrame {
     private void ConsultaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaListaMenuItemActionPerformed
         MainPanel.removeAll();
         Object[] options = {"Cliente","Genero"};
-        int opcion = JOptionPane.showOptionDialog(this, "Desea consultar lista por Cliente o por Género?","Elija una opción", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
-        if(opcion == JOptionPane.OK_OPTION ){
-           ConsultaListaPorCliente consListaCli = new ConsultaListaPorCliente();
-           MainPanel.add(consListaCli);
-           MainPanel.repaint();
-           consListaCli.setVisible(true);
-        }else{
-            if(opcion == JOptionPane.NO_OPTION){
+        int opcion = JOptionPane.showOptionDialog(this,
+                "Desea consultar lista por Cliente o por Género?",
+                "Elija una opción", JOptionPane.YES_NO_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,null,options,options[0]);
+        if (opcion == JOptionPane.OK_OPTION) {
+            ConsultaListaPorCliente consListaCli = new ConsultaListaPorCliente();
+            MainPanel.add(consListaCli);
+            MainPanel.repaint();
+            consListaCli.setVisible(true);
+        } else {
+            if (opcion == JOptionPane.NO_OPTION) {
                 ConsultaListaPorGenero consListaGen = new ConsultaListaPorGenero();
                 MainPanel.add(consListaGen);
                 MainPanel.repaint();
@@ -543,8 +535,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ConsultaListaMenuItemActionPerformed
 
-    private void DatosDePrueba() throws Exception
-    {
+    private void DatosDePrueba() throws Exception {
         //ALTA DE CLIENTES:
         IAltaPerfil ctrlAltaPerfil = Fabrica.getIAltaPerfil();
         File file;
@@ -1059,6 +1050,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.repaint();
         frameFavoritear.setVisible(true);
     }//GEN-LAST:event_favoritearMItemActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         MainPanel.removeAll();
         AgregarTemaLista frameAgregarTemaLista = new AgregarTemaLista();
@@ -1074,6 +1066,7 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.repaint();
         frameFavoritear.setVisible(true);
     }//GEN-LAST:event_desfavoritearMItemActionPerformed
+
     private void QuitarTemaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTemaListaActionPerformed
         MainPanel.removeAll();
         QuitarTemaLista frameQuitarTemaLista = new QuitarTemaLista();
@@ -1085,7 +1078,7 @@ public class MainFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1141,8 +1134,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JMenu AltasDropDown;
     private javax.swing.JMenuItem ConsultaAlbumMenuItem;
-    private javax.swing.JMenuItem ConsultaArtistaMI;
-    private javax.swing.JMenuItem ConsultaClienteMI;
+    private javax.swing.JMenuItem ConsultaArtistaMItem;
+    private javax.swing.JMenuItem ConsultaClienteMitem;
     private javax.swing.JMenuItem ConsultaListaMenuItem;
     private javax.swing.JMenu ConsultasDropDown;
     private javax.swing.JMenuItem DejarSeguirMItem;

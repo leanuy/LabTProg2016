@@ -2,9 +2,9 @@ package espotify;
 
 import espotify.Datatypes.DataClienteExt;
 import espotify.Datatypes.DataLista;
+import espotify.Datatypes.DataParticular;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataUsuario;
-import espotify.Datatypes.DataParticular;
 import espotify.Excepciones.AutoSeguirseException;
 import espotify.Excepciones.FavoritoRepetidoException;
 import espotify.Excepciones.ListaInexistenteException;
@@ -15,12 +15,13 @@ import espotify.Excepciones.YaPublicaException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Cliente extends Usuario {
-    private final HashMap<String,Usuario> seguidos;
-    private final HashMap<String,Particular> listas;
-    private final ArrayList<Favoriteable> favoritos;
+    private final Map<String,Usuario> seguidos;
+    private final Map<String,Particular> listas;
+    private final List<Favoriteable> favoritos;
     
     Cliente(DataUsuario data) {
         super(data);
@@ -47,7 +48,7 @@ class Cliente extends Usuario {
             lis[idx] = nomb;
             idx++;
         }
-        ArrayList<String> segdores = new ArrayList();
+        List<String> segdores = new ArrayList();
         String namef;
         Cliente cli;
         for (Map.Entry<String, Cliente> entry : this.seguidores.entrySet()) {
@@ -61,22 +62,22 @@ class Cliente extends Usuario {
         return dc;
     }
     
-    void Seguir(Usuario u) throws AutoSeguirseException, SeguidoRepetidoException {
-        if (this.equals(u)) {
+    void Seguir(Usuario usuario) throws AutoSeguirseException, SeguidoRepetidoException {
+        if (this.equals(usuario)) {
             throw new AutoSeguirseException();
         }
-        String clave = u.getNick();
-        Usuario u2 = this.seguidos.get(clave);
-        if (u2 != null) {
+        String clave = usuario.getNick();
+        Usuario seguido = this.seguidos.get(clave);
+        if (seguido != null) {
             throw new SeguidoRepetidoException();
         }
-        this.seguidos.put(clave, u);
+        this.seguidos.put(clave, usuario);
     }
     
-    void DejarDeSeguir(Usuario u) throws SeguidoInexistenteException {
-        String clave = u.getNick();
-        Usuario u2 = this.seguidos.get(clave);
-        if (u2 == null) {
+    void DejarDeSeguir(Usuario usuario) throws SeguidoInexistenteException {
+        String clave = usuario.getNick();
+        Usuario seguido = this.seguidos.get(clave);
+        if (seguido == null) {
             throw new SeguidoInexistenteException();
         }
         this.seguidos.remove(clave);
@@ -90,16 +91,16 @@ class Cliente extends Usuario {
         listas.put(nomLista, listaPublica);
     }
 
-    ArrayList<String> ListarListas() {
-        ArrayList salida = new ArrayList();
+    List<String> ListarListas() {
+        List salida = new ArrayList();
         listas.keySet().stream().forEach((key) -> {
             salida.add(key);
         });
         return salida;
     }
     
-    ArrayList<String> ListarListasPrivadas() {
-        ArrayList<String> salida = new ArrayList();
+    List<String> ListarListasPrivadas() {
+        List<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
             if (part instanceof Privada) {
@@ -109,8 +110,8 @@ class Cliente extends Usuario {
         return salida;
     }
     
-    ArrayList<String> ListarListasPublicas() {
-        ArrayList<String> salida = new ArrayList();
+    List<String> ListarListasPublicas() {
+        List<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
             if (!(part instanceof Privada)) {
@@ -120,13 +121,13 @@ class Cliente extends Usuario {
         return salida;
     }
 
-    ArrayList<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
+    List<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
         return BuscarLista(nombre).ListarTemas();
     }
     
-    void AltaLista(DataParticular d) throws ListaRepetidaException {
-        if (ValidarNombreLista(d.getNombre())) {
-            listas.put(d.getNombre(), new Privada(d));
+    void AltaLista(DataParticular dLista) throws ListaRepetidaException {
+        if (ValidarNombreLista(dLista.getNombre())) {
+            listas.put(dLista.getNombre(), new Privada(dLista));
         } else {
             throw new ListaRepetidaException();
         }
@@ -153,9 +154,9 @@ class Cliente extends Usuario {
         }
     }
 
-    void Favoritear(Favoriteable f) throws FavoritoRepetidoException {
-        if (!favoritos.contains(f)) {
-            favoritos.add(f);
+    void Favoritear(Favoriteable fav) throws FavoritoRepetidoException {
+        if (!favoritos.contains(fav)) {
+            favoritos.add(fav);
         } else {
             throw new FavoritoRepetidoException();
         }
@@ -170,20 +171,20 @@ class Cliente extends Usuario {
         }
     }
 
-    void DesFavoritear(Favoriteable f) throws FavoritoRepetidoException {
-        if (favoritos.contains(f)) {
-            favoritos.remove(f);
+    void DesFavoritear(Favoriteable fav) throws FavoritoRepetidoException {
+        if (favoritos.contains(fav)) {
+            favoritos.remove(fav);
         } else {
             throw new FavoritoRepetidoException();
         }
     }
     
-    void AgregarTemaLista(Tema t, String lis) throws Exception {
+    void AgregarTemaLista(Tema tema, String lis) throws Exception {
         Lista lista = listas.get(lis);
         if (lista == null) {
             throw new Exception("La lista que tiene que existir no se encontro");
         }
-        lista.AgregarTema(t);
+        lista.AgregarTema(tema);
     }
 
     boolean SigueA(String nomSeguido) {

@@ -8,10 +8,11 @@ import espotify.Excepciones.GeneroInexistenteException;
 import espotify.Excepciones.ListaRepetidaException;
 import espotify.Fabrica;
 import espotify.Interfaces.IAltaLista;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -32,10 +33,10 @@ public class AltaLista extends javax.swing.JInternalFrame {
         initComponents();
         
         particularRadio.setSelected(true);
-        ArrayList<String> a = ctrl.ListarClientes();
+        List<String> clientes = ctrl.ListarClientes();
         DefaultListModel<String> model = new DefaultListModel<>();
         clientlist.setModel(model);
-        for(String str : a) {
+        for(String str : clientes) {
             model.addElement(str);
         }
         
@@ -47,16 +48,16 @@ public class AltaLista extends javax.swing.JInternalFrame {
         cargarArbol(generoBase,raiz);
     }
 
-    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
-        int i = 0;
-        for(DataGenero d: g.getHijos()){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+        int idx = 0;
+        for(DataGenero d: dGenero.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
-            modeloTree.insertNodeInto(nodito,padre,i);
-            i++;
+            modeloTree.insertNodeInto(nodito,padre,idx);
+            idx++;
             cargarArbol(d,nodito);
         }
-        for (i = 0; i < ArbolGeneros.getRowCount(); i++) {
-            ArbolGeneros.expandRow(i);
+        for (idx = 0; idx < ArbolGeneros.getRowCount(); idx++) {
+            ArbolGeneros.expandRow(idx);
         }
     }
     
@@ -267,85 +268,74 @@ public class AltaLista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmbtnActionPerformed
-        if(particularRadio.isSelected())
-        {
-            try
-            {
+        if(particularRadio.isSelected()) {
+            try {
                 String nomCli = clientlist.getSelectedValue();
-                DataParticular d = new DataParticular(nomCli, nombretxt.getText(),img);
-                ctrl.AltaListaParticular(d);
+                DataParticular dLista = new DataParticular(nomCli, nombretxt.getText(),img);
+                ctrl.AltaListaParticular(dLista);
                 JOptionPane.showMessageDialog(okDialog,
                     "Operación completada con éxito",
                     "OK",
                     JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
-            }
-            catch(ListaRepetidaException e)
-            {
+            } catch (ListaRepetidaException e) {
                 JOptionPane.showMessageDialog(okDialog, "El cliente ya tiene una lista con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
-            }
-            catch(ClienteInexistenteException e)
-            {
+            } catch (ClienteInexistenteException e) {
                 JOptionPane.showMessageDialog(okDialog, "No existe un cliente con ese nick.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-        }
-        else
-        {
-            try
-            {
+        } else {
+            try {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
                 String nomGenero = "";
                 if (node != null)
                     nomGenero = (String)node.getUserObject();
-                DataDefecto d = new DataDefecto(nomGenero, nombretxt.getText(),img);
-                ctrl.AltaListaDefecto(d);
+                DataDefecto dLista = new DataDefecto(nomGenero, nombretxt.getText(),img);
+                ctrl.AltaListaDefecto(dLista);
                 JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
-            catch(ListaRepetidaException e)
-            {
+            catch(ListaRepetidaException e) {
                 JOptionPane.showMessageDialog(okDialog, "Ya existe una lista por defecto con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
             }
-            catch(GeneroInexistenteException e)
-            {
+            catch(GeneroInexistenteException e) {
                 JOptionPane.showMessageDialog(okDialog, "El género seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
             }
         }
     }//GEN-LAST:event_confirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
-                JFileChooser fc = new JFileChooser();
-        this.getContentPane().add(fc);
-        fc.setVisible(true);
+        JFileChooser fChooser = new JFileChooser();
+        this.getContentPane().add(fChooser);
+        fChooser.setVisible(true);
         
-        int selected = fc.showDialog(this, "Seleccionar");
-        if(selected == JFileChooser.APPROVE_OPTION){
-            File file = fc.getSelectedFile();
+        int selected = fChooser.showDialog(this, "Seleccionar");
+        if (selected == JFileChooser.APPROVE_OPTION) {
+            File file = fChooser.getSelectedFile();
             try {
                 String ext = getExtension(file);
-                if(!"jpg".equals(ext) && !"png".equals(ext)){
+                if (!"jpg".equals(ext) && !"png".equals(ext)) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
-                    fc.setVisible(false);
+                    fChooser.setVisible(false);
                     return;
                 }
                 img = ImageIO.read(file);
                 String pathAImagen = file.getCanonicalPath();
                 pathimgtxt.setText(pathAImagen);
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "La ruta al archivo no es correcta",
+                        "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);   
+        fChooser.setVisible(false);   
     }//GEN-LAST:event_imgbtnActionPerformed
 
     private void particularRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_particularRadioItemStateChanged
-        if(particularRadio.isSelected())
-        {
+        if(particularRadio.isSelected()) {
             particularpanel.setVisible(true);
             defectopanel.setVisible(false);
         }
-        else
-        {
+        else {
             particularpanel.setVisible(false);
             defectopanel.setVisible(true);
         }
@@ -374,12 +364,12 @@ public class AltaLista extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup tipoListagroup;
     // End of variables declaration//GEN-END:variables
 
-    private String getExtension(File f) {
+    private String getExtension(File file) {
         String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
+        String nomArchivo = file.getName();
+        int idx = nomArchivo.lastIndexOf('.');
+        if (idx > 0 &&  idx < nomArchivo.length() - 1) {
+            ext = nomArchivo.substring(idx+1).toLowerCase();
         }
         return ext;
     }

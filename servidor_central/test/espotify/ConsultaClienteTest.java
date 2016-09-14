@@ -1,16 +1,16 @@
 package espotify;
 
+import static org.junit.Assert.assertEquals;
+
 import espotify.Datatypes.DataCliente;
 import espotify.Datatypes.DataClienteExt;
 import espotify.Excepciones.ClienteInexistenteException;
 import espotify.Interfaces.IAltaPerfil;
 import espotify.Interfaces.IConsultaCliente;
-import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
 
+import java.util.Calendar;
 
 public class ConsultaClienteTest {
     static IConsultaCliente iConsultaCliente;    

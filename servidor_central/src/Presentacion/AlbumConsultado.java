@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataAlbumExt;
 import espotify.Datatypes.DataTema;
 import espotify.Datatypes.DataTemaArchivo;
 import espotify.Datatypes.DataTemaWeb;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -25,9 +21,8 @@ import javax.swing.ListSelectionModel;
  */
 public class AlbumConsultado extends javax.swing.JDialog {
     
-    
-    private ArrayList<DataTema> temas;
-    private ArrayList<String> genders;
+    private List<DataTema> temas;
+    private List<String> genders;
     private DefaultListModel modeloTemas; 
     private DefaultListModel modeloGenders; 
     private DataAlbumExt album;
@@ -236,7 +231,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
 
     private void descargarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descargarTemaActionPerformed
         int indice = ListaTemas.getSelectedIndex();
-        if(indice == -1){
+        if (indice == -1) {
             JOptionPane.showMessageDialog(this, "Seleccione un tema", "Atencion!.", JOptionPane.WARNING_MESSAGE);
             return;
         }
@@ -244,21 +239,21 @@ public class AlbumConsultado extends javax.swing.JDialog {
         int numeroTema = Integer.parseInt(obtenerNumerodeLista(seleccion));
         DataTema temaElegido = null;
         //buscar el tema con ese numero. si es tema web sugerir el link si es archivo ver como abrir el chooser y que seleccione destino,
-        for(DataTema da : temas){
+        for (DataTema da : temas) {
             if(da.getNum() == numeroTema){
                 temaElegido = da;
                 break;
             }
         }
-        if(temaElegido == null){
+        if (temaElegido == null) {
             JOptionPane.showMessageDialog(this,"Hicimos algo mal (hice je)");
             return;
         }
-        if(temaElegido instanceof DataTemaWeb){
-            JTextArea a = new JTextArea();
-            a.setText(((DataTemaWeb) temaElegido).getUrl());
-            JOptionPane.showMessageDialog(this, a,"Link a > " +  temaElegido.getNombre(), JOptionPane.INFORMATION_MESSAGE);
-        }else{
+        if (temaElegido instanceof DataTemaWeb) {
+            JTextArea area = new JTextArea();
+            area.setText(((DataTemaWeb) temaElegido).getUrl());
+            JOptionPane.showMessageDialog(this, area,"Link a > " +  temaElegido.getNombre(), JOptionPane.INFORMATION_MESSAGE);
+        } else {
             JFileChooser fileChooser = new JFileChooser();  //en construccion
             fileChooser.setDialogTitle("Descargar Tema en...");   
             
@@ -271,14 +266,14 @@ public class AlbumConsultado extends javax.swing.JDialog {
                 fileToSave = fileChooser.getSelectedFile();
                 //System.out.println("Save as file: " + fileToSave.getAbsolutePath());
                 
-            }else{
+            } else {
                 return;
             }
-            if(fileToSave == null){
+            if(fileToSave == null) {
                 JOptionPane.showMessageDialog(this,"Problemas al seleccionar destino","Atencion!.",JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            try{
+            try {
                 File fileElegido = ((DataTemaArchivo)temaElegido).getArchivo();
                 
                 FileInputStream fis = new FileInputStream(fileElegido);
@@ -296,9 +291,9 @@ public class AlbumConsultado extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_descargarTemaActionPerformed
     
-    private String obtenerNumerodeLista(String s){
-        int i = s.indexOf(" ");
-        String numero = s.substring(0, i);
+    private String obtenerNumerodeLista(String str){
+        int idx = str.indexOf(" ");
+        String numero = str.substring(0, idx);
         return numero;
     }
 

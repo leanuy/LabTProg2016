@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import espotify.Datatypes.DataAlbum;
@@ -16,7 +11,9 @@ import espotify.Excepciones.FavoritoRepetidoException;
 import espotify.Excepciones.ListaInexistenteException;
 import espotify.Fabrica;
 import espotify.Interfaces.IFavoritear;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -34,20 +31,17 @@ public class Favoritear extends javax.swing.JInternalFrame {
     public Favoritear() {
         initComponents();
         IFavoritear ifav = Fabrica.getIFavoritear();
-        ArrayList<String> cli = ifav.ListarClientes();
-        for(String c : cli)
-        {
+        List<String> cli = ifav.ListarClientes();
+        for (String c : cli) {
             clientescmb.addItem(c);
             lstpubclicmb.addItem(c);
         }
         cli = ifav.ListarListasDefecto();
-        for(String c : cli)
-        {
+        for (String c : cli) {
             lstdefcmb.addItem(c);
         }
         cli = ifav.ListarArtistas();
-        for(String c : cli)
-        {
+        for (String c : cli) {
             artcmb.addItem(c);
         }
     }
@@ -339,16 +333,14 @@ public class Favoritear extends javax.swing.JInternalFrame {
         String nomCliente = String.valueOf(lstpubclicmb.getSelectedItem());
         IFavoritear ifav = Fabrica.getIFavoritear();
         lstpubcmb.removeAllItems();
-        try
-        {
+        try {
             lstpubcmb.setEnabled(false);
-            ArrayList<String> listas = ifav.ListarListasPublicasDeCliente(nomCliente);
+            List<String> listas = ifav.ListarListasPublicasDeCliente(nomCliente);
             for(String str : listas) {
                 lstpubcmb.addItem(str);
             }
             lstpubcmb.setEnabled(listas.size()>0);
-        } catch(ClienteInexistenteException ex)
-        {
+        } catch(ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(this, "El cliente elegido no existe", "ERROR", JOptionPane.ERROR_MESSAGE);
         }   
     }//GEN-LAST:event_lstpubclicmbActionPerformed
@@ -357,10 +349,9 @@ public class Favoritear extends javax.swing.JInternalFrame {
         String nomArtista = String.valueOf(artcmb.getSelectedItem());
         IFavoritear ifav = Fabrica.getIFavoritear();
         albcmb.removeAllItems();
-        try
-        {
+        try {
             albcmb.setEnabled(false);
-            ArrayList<String> albums = ifav.ListarAlbumesDeArtista(nomArtista);
+            List<String> albums = ifav.ListarAlbumesDeArtista(nomArtista);
             for(String str : albums) {
                 albcmb.addItem(str);
             }

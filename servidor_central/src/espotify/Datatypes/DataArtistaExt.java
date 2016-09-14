@@ -3,7 +3,7 @@ package espotify.Datatypes;
 import espotify.Album;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -32,8 +32,8 @@ public class DataArtistaExt extends DataUsuario {
     }
     
     public DataArtistaExt(String nick, String nombre, String apellido, String correo,
-            Calendar fechaNac, BufferedImage img, String bio, String url, HashMap<String,Album> albums,
-            ArrayList<String> segdores) {
+            Calendar fechaNac, BufferedImage img, String bio, String url, Map<String,Album> albums,
+            List<String> segdores) {
 
         super(nick, nombre, apellido, correo, fechaNac, img, segdores);
         this.bio = bio;
@@ -49,7 +49,7 @@ public class DataArtistaExt extends DataUsuario {
     }
     
     public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fechaNac,
-            BufferedImage img, String bio, String url, HashMap<String,Album> albums, String pwd){
+            BufferedImage img, String bio, String url, Map<String,Album> albums, String pwd){
 
         super(nick, nombre, apellido, correo, fechaNac, img, pwd);
 
