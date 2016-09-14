@@ -1,9 +1,9 @@
 package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
-import java.util.List;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Objects;
 
 /**

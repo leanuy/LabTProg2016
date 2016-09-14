@@ -8,7 +8,7 @@ import java.io.File;
 class TemaArchivo extends Tema {
     private final File archivo;
     
-    TemaArchivo(DataTemaArchivo dta, Album album) {
+    TemaArchivo(DataTemaArchivo dta,final Album album) {
         super(dta, album);
         this.archivo = dta.getArchivo();
     }

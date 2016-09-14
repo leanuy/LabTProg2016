@@ -11,6 +11,13 @@ import espotify.Interfaces.IConsultaCliente;
 import org.junit.Test;
 
 import java.util.Calendar;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ConsultaClienteTest {
     static IConsultaCliente iConsultaCliente;    
@@ -28,7 +35,7 @@ public class ConsultaClienteTest {
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
 
         try {
-            ctrl.AltaCliente(dCliente);
+            ctrl.altaCliente(dCliente);
         } catch (Exception ex) {
         }
         
@@ -36,14 +43,14 @@ public class ConsultaClienteTest {
         DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new String[0], new String[0],"");
         IConsultaCliente instance = Fabrica.getIConsultaCliente();
 
-        DataClienteExt result = iConsultaCliente.ConsultaCliente("clienteconsultado");
+        DataClienteExt result = iConsultaCliente.consultaCliente("clienteconsultado");
         assertEquals(expResult, result);
     }
     
     @Test (expected = ClienteInexistenteException.class)
     public void testConsultaCliente2() throws ClienteInexistenteException {
         System.out.println("ConsultaCliente:no existe cliente");
-        DataClienteExt result = iConsultaCliente.ConsultaCliente("clienteconsasdfultado");
+        DataClienteExt result = iConsultaCliente.consultaCliente("clienteconsasdfultado");
     }
 
 }

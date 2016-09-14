@@ -10,21 +10,21 @@ import espotify.Excepciones.ListaInexistenteException;
 import java.util.List;
 
 public interface IDesFavoritear {
-    public void DesFavoritear(String nick, DataFavoriteable dFav)
+    public void desFavoritear(String nick, DataFavoriteable dFav)
             throws ClienteInexistenteException, FavoritoRepetidoException,
             ListaInexistenteException, ArtistaInexistenteException,
             AlbumInexistenteException;
 
     public List<String> ListarClientes();
 
-    public List<String> ListarListasPublicasDeCliente(String nick)
+    public List<String> listarListasPublicasDeCliente(String nick)
             throws ClienteInexistenteException;
 
-    public List<String> ListarListasDefecto();
+    public List<String> listarListasDefecto();
 
-    public List<String> ListarArtistas();
+    public List<String> listarArtistas();
 
-    public List<String> ListarAlbumesDeArtista(String nickArtista)
+    public List<String> listarAlbumesDeArtista(String nickArtista)
             throws ArtistaInexistenteException;
 
 }

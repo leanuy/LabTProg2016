@@ -188,14 +188,13 @@ public class ConsultaAlbumPorArtista extends javax.swing.JInternalFrame {
         DataAlbumExt dataAlbum = null;
         String nomAlbum = null;
         AlbumConsultado ventanaAlbum;
-        int[] opciones;
         try{
-            opciones = ListaAlbunesArtista.getSelectedIndices();
-            if(opciones.length != 1){
-                JOptionPane.showMessageDialog(this, "Debe seleccionar un solo album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
+            int idxSeleccionado = ListaAlbunesArtista.getSelectedIndex();
+            if(idxSeleccionado == -1){
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un album", "Atencion!!!", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            nomAlbum = (String)modelitoAlbums.getElementAt(ListaAlbunesArtista.getSelectedIndex());
+            nomAlbum = (String)modelitoAlbums.getElementAt(idxSeleccionado);
             dataAlbum = inter.ConsultaAlbum(nomAlbum,ArtistSelected);
             ventanaAlbum = new AlbumConsultado(dataAlbum);
             

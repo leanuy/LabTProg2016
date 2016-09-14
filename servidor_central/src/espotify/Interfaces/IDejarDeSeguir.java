@@ -15,6 +15,6 @@ public interface IDejarDeSeguir {
     public String[] getSeguidos(String usr)
             throws ClienteInexistenteException ;
 
-    public void DejarDeSeguir(String nomSeguidor, String nomSeguido)
+    public void dejarDeSeguir(String nomSeguidor, String nomSeguido)
             throws SeguidoInexistenteException,SeguidorInexistenteException;
 }

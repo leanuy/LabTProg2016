@@ -43,7 +43,7 @@ class Artista extends Usuario {
     
     //otros métodos
     static boolean ValidarDatosArtista(DataArtista dArt) {
-        return Usuario.ValidarDatosUsuario(dArt);
+        return Usuario.validarDatosUsuario(dArt);
     }
 
     DataArtistaExt getDataArtistaExt() {

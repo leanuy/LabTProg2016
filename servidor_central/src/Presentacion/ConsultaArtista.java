@@ -9,10 +9,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Calendar;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 /**
@@ -27,7 +25,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
     public ConsultaArtista() {
         initComponents();
         IConsultaArtista interf = Fabrica.getIConsultaArtista();
-        List<String> artistas = interf.ListarArtistas();
+        List<String> artistas = interf.listarArtistas();
         for(String str : artistas) {
             Select.addItem(str);
         }
@@ -46,13 +44,13 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
 
         Conteiner5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Select = new javax.swing.JComboBox<String>();
+        Select = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        AlbumsList = new javax.swing.JList<String>();
+        AlbumsList = new javax.swing.JList<>();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -60,7 +58,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         ApellidoText = new javax.swing.JLabel();
         CorreoText = new javax.swing.JLabel();
         FechaText = new javax.swing.JLabel();
-        URLText = new javax.swing.JLabel();
+        UrlText = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -104,7 +102,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
 
         FechaText.setText("    ");
 
-        URLText.setText("     ");
+        UrlText.setText("     ");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -156,7 +154,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
                                 .addGroup(Conteiner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(Conteiner5Layout.createSequentialGroup()
                                         .addGap(6, 6, 6)
-                                        .addComponent(URLText)
+                                        .addComponent(UrlText)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jScrollPane2)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Conteiner5Layout.createSequentialGroup()
@@ -210,7 +208,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
                 .addGap(12, 12, 12)
                 .addGroup(Conteiner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(URLText))
+                    .addComponent(UrlText))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(Conteiner5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1)
@@ -246,7 +244,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         String usr = String.valueOf(Select.getSelectedItem());
         DataArtistaExt dArt;
         try {
-            dArt = interf.ConsultaArtista(usr);
+            dArt = interf.consultaArtista(usr);
         } catch (ArtistaInexistenteException ex) {
             return;
         }
@@ -254,7 +252,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         ApellidoText.setText(dArt.getApellido());
         CorreoText.setText(dArt.getCorreo());
         jTextArea1.setText(dArt.getBio());
-        URLText.setText(dArt.getUrl());
+        UrlText.setText(dArt.getUrl());
         List<String> seguidores = dArt.getSeguidores();
         int cantSeguidores = seguidores.size();
         String[] array = new String[cantSeguidores];
@@ -300,10 +298,10 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         int finalh = height;
         double factor = 1.0d;
         if (src.getWidth() > src.getHeight()) {
-            factor = ((double)src.getHeight() / (double)src.getWidth());
+            factor = (double)src.getHeight() / (double)src.getWidth();
             finalh = (int)(finalw * factor);                
         } else {
-            factor = ((double)src.getWidth() / (double)src.getHeight());
+            factor = (double)src.getWidth() / (double)src.getHeight();
             finalw = (int)(finalh * factor);
         }   
 
@@ -326,7 +324,7 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel NombreText;
     private javax.swing.JList<String> SeguidoresList;
     private javax.swing.JComboBox<String> Select;
-    private javax.swing.JLabel URLText;
+    private javax.swing.JLabel UrlText;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;

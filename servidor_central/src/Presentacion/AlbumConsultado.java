@@ -44,7 +44,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
         ListaGenders.setModel(modeloGenders);
         ListaTemas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         for(DataTema d : temas){
-            modeloTemas.addElement(String.valueOf(d.getNum())+ " - " +d.getNombre() + " (" + d.getDuracion()/60+":"+d.getDuracion()%60 + ")");
+            modeloTemas.addElement(d.getNum()+ " - " +d.getNombre() + " (" + d.getDuracion()/60+":"+d.getDuracion()%60 + ")");
         }
         for(String g: genders){
             modeloGenders.addElement(g);
@@ -292,7 +292,7 @@ public class AlbumConsultado extends javax.swing.JDialog {
     }//GEN-LAST:event_descargarTemaActionPerformed
     
     private String obtenerNumerodeLista(String str){
-        int idx = str.indexOf(" ");
+        int idx = str.indexOf(' ');
         String numero = str.substring(0, idx);
         return numero;
     }

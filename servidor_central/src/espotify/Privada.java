@@ -8,7 +8,7 @@ class Privada extends Particular {
         super(dParticular);
     }
     
-    Publica HacerPublica() {
+    Publica hacerPublica() {
         return new Publica(this);
     }
     

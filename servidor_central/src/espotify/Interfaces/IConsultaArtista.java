@@ -6,8 +6,8 @@ import espotify.Excepciones.ArtistaInexistenteException;
 import java.util.List;
 
 public interface IConsultaArtista {
-    public List<String> ListarArtistas();
+    public List<String> listarArtistas();
 
-    public DataArtistaExt ConsultaArtista(String nick) throws ArtistaInexistenteException;
+    public DataArtistaExt consultaArtista(String nick) throws ArtistaInexistenteException;
     
 }

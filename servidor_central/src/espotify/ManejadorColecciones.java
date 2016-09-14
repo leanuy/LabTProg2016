@@ -37,11 +37,11 @@ class ManejadorColecciones {
         return clientes;
     }
     
-    Cliente BuscarCliente(String nick) {
+    Cliente buscarCliente(String nick) {
         return clientes.get(nick);
     }
     
-    void AgregarCliente(String nick, Cliente cli) {
+    void agregarCliente(String nick, Cliente cli) {
         clientes.put(nick, cli);
     }
 
@@ -50,11 +50,11 @@ class ManejadorColecciones {
         return artistas;
     }
     
-    Artista BuscarArtista(String nick) {
+    Artista buscarArtista(String nick) {
         return artistas.get(nick);
     }
     
-    void AgregarArtista(String nick, Artista art) {
+    void agregarArtista(String nick, Artista art) {
         artistas.put(nick, art);
     }
     
@@ -63,11 +63,11 @@ class ManejadorColecciones {
         return listas;
     }
     
-    Defecto BuscarLista(String nombre) {
+    Defecto buscarLista(String nombre) {
         return listas.get(nombre);
     }
     
-    void AgregarLista(String nombre, Defecto def) {
+    void agregarLista(String nombre, Defecto def) {
         listas.put(nombre, def);
     }
 
@@ -76,11 +76,11 @@ class ManejadorColecciones {
         return generos;
     }
     
-    Genero BuscarGenero(String nombre) {
+    Genero buscarGenero(String nombre) {
         return generos.get(nombre);
     }
     
-    void AgregarGenero(String nombre, Genero gen) {
+    void agregarGenero(String nombre, Genero gen) {
         generos.put(nombre, gen);
     }
     

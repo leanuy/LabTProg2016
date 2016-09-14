@@ -285,7 +285,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 fNac,
                                 img,
                                 pwd);
-                ctrl.AltaCliente(dCliente);
+                ctrl.altaCliente(dCliente);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
                     "Operación completada con éxito",
@@ -339,12 +339,12 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                                 fNac,
                                 img,
                                 pwd);
-                ctrl.AltaArtista(dArt);
+                ctrl.altaArtista(dArt);
                 ResetCampos();
                 JOptionPane.showMessageDialog(okDialog,
-                "Operación completada con éxito",
-                "OK",
-                JOptionPane.PLAIN_MESSAGE);
+                    "Operación completada con éxito",
+                    "OK",
+                    JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
             catch (NickRepetidoException e) {
@@ -438,7 +438,7 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
         urltxt.setText("");
     }
     
-        private String getExtension(File file) {
+    private String getExtension(File file) {
         String ext = null;
         String nomArchivo = file.getName();
         int idx = nomArchivo.lastIndexOf('.');

@@ -61,7 +61,7 @@ class Cliente extends Usuario {
                 getFechaNac(), getImg(), seg, lis, segdores);
     }
     
-    void Seguir(Usuario usuario) throws AutoSeguirseException, SeguidoRepetidoException {
+    void seguir(Usuario usuario) throws AutoSeguirseException, SeguidoRepetidoException {
         if (this.equals(usuario)) {
             throw new AutoSeguirseException();
         }
@@ -73,7 +73,7 @@ class Cliente extends Usuario {
         this.seguidos.put(clave, usuario);
     }
     
-    void DejarDeSeguir(Usuario usuario) throws SeguidoInexistenteException {
+    void dejarDeSeguir(Usuario usuario) throws SeguidoInexistenteException {
         String clave = usuario.getNick();
         Usuario seguido = this.seguidos.get(clave);
         if (seguido == null) {
@@ -85,7 +85,7 @@ class Cliente extends Usuario {
 
     void PublicarLista(String nomLista) throws YaPublicaException, ListaInexistenteException {
         Particular lista = BuscarLista(nomLista);
-        Publica listaPublica = lista.HacerPublica();
+        Publica listaPublica = lista.hacerPublica();
         listas.remove(nomLista);
         listas.put(nomLista, listaPublica);
     }
@@ -121,7 +121,7 @@ class Cliente extends Usuario {
     }
 
     List<DataTema> ListarTemasDeLista(String nombre) throws ListaInexistenteException {
-        return BuscarLista(nombre).ListarTemas();
+        return BuscarLista(nombre).listarTemas();
     }
     
     void AltaLista(DataParticular dLista) throws ListaRepetidaException {
@@ -133,11 +133,11 @@ class Cliente extends Usuario {
     }
     
     private boolean ValidarNombreLista(String nom) {
-        return !nom.equals("") && !listas.containsKey(nom);
+        return !listas.containsKey(nom) && !nom.equals("");
     }
 
     void QuitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException {
-        BuscarLista(nomLista).QuitarTema(nomTema,nomAlbum);
+        BuscarLista(nomLista).quitarTema(nomTema,nomAlbum);
     }
 
     DataLista DarInfoLista(String nomLista) throws ListaInexistenteException {
@@ -183,7 +183,7 @@ class Cliente extends Usuario {
         if (lista == null) {
             throw new Exception("La lista que tiene que existir no se encontro");
         }
-        lista.AgregarTema(tema);
+        lista.agregarTema(tema);
     }
 
     boolean SigueA(String nomSeguido) {

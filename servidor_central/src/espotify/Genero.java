@@ -32,7 +32,7 @@ class Genero {
         this.albums = new HashMap<>();
     }
 
-    List<String[]> ListarAlbumes() {
+    List<String[]> listarAlbumes() {
         ArrayList<String[]> listaAlbums = new ArrayList();
         Iterator iterador = albums.entrySet().iterator();
         Album actual;
@@ -48,11 +48,11 @@ class Genero {
         return listaAlbums;
     }
 
-    void AddHijo(Genero genero) {
+    void addHijo(Genero genero) {
         subgeneros.put(genero.getNombre(), genero);
     }
     
-    void AddAlbum(Album album) {
+    void addAlbum(Album album) {
         List<String> key = Arrays.asList(album.getNickArtista(), album.getNombre());
         this.albums.putIfAbsent(key, album);
     }
@@ -61,11 +61,11 @@ class Genero {
         return new DataGenero(nombre, padre);
     }
 
-    DataGenero ListarseRecursivo(String nomPadre) {
+    DataGenero listarseRecursivo(String nomPadre) {
         DataGenero salida = this.getData(nomPadre);
         for (Entry<String, Genero> entry : subgeneros.entrySet()) {
             Genero hijo = entry.getValue();
-            salida.getHijos().add(hijo.ListarseRecursivo(this.nombre));
+            salida.getHijos().add(hijo.listarseRecursivo(this.nombre));
         }
         return salida;
     }

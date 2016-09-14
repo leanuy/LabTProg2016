@@ -133,7 +133,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
         }else{
             try {
-                interf.AltaSeguir(Seguidor,Seguido);
+                interf.altaSeguir(Seguidor,Seguido);
                 JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             } catch (SeguidorInexistenteException e) {
                 JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -151,7 +151,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
         Seguidor = String.valueOf(NickSeguidor.getSelectedItem());
         NickSeguido.removeAllItems();
         try {
-            List<String> seguibles = interf.ListarSeguibles(Seguidor);
+            List<String> seguibles = interf.listarSeguibles(Seguidor);
             for(String stri : seguibles) {
                 NickSeguido.addItem(stri);
             }

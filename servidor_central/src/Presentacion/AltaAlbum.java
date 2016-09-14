@@ -356,33 +356,33 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     }
     
     private void buttonAgregarTemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAgregarTemaActionPerformed
-        if(!nombreAlbum.getText().isEmpty()){
+        if (!nombreAlbum.getText().isEmpty()) {
             nombreAlbum.setEnabled(false);
             DialogoIngresoTema ingTema = new DialogoIngresoTema(null,"Ingrese el Tema",true); 
             ingTema.setLocationRelativeTo(this);
 
             ingTema.setVisible(true);
 
-            if(entrar){
-                if(nombreRepetido){
+            if (entrar) {
+                if (nombreRepetido) {
                     JOptionPane.showMessageDialog(this, "Nombre de tema Repetido", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
-                }else{
-                    if(web){
+                } else {
+                    if (web) {
                         DataTemaWeb dTema = new DataTemaWeb(url,nombre,duracion,numeroTema,ArtistSelected, nombreAlbum.getText());
                         listaTemas.add(dTema);
-                        modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dTema.getNombre());
-                    }else{
+                        modeloTemas.addElement(numeroTema + " - " + dTema.getNombre());
+                    } else {
                         DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema,ArtistSelected,nombreAlbum.getText());
                         listaTemas.add(dta);
-                        modeloTemas.addElement(String.valueOf(numeroTema) + " - " + dta.getNombre());
+                        modeloTemas.addElement(numeroTema + " - " + dta.getNombre());
                     }
                     numeroTema++;
                     temasYaIngresados.add(nombre);
                     nombreAnterior = nombre;
                 }
             }
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Debe Ingresar el nombre del Album", "Atencion!", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_buttonAgregarTemaActionPerformed
@@ -395,7 +395,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         fChooser.setVisible(true);
         
         int selected = fChooser.showDialog(this, "Seleccionar");
-        if(selected == JFileChooser.APPROVE_OPTION){
+        if (selected == JFileChooser.APPROVE_OPTION) {
             File file = fChooser.getSelectedFile();
             try {
                 pathAImagen = file.getCanonicalPath();
@@ -416,33 +416,37 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
 
     private void buttonConfirmarALtaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarALtaAlbumActionPerformed
         String ext = pathALaImagen.getText();
-        if(!ext.equals("") && !getExtensionDeString(ext)){
+        if (!ext.equals("") && !getExtensionDeString(ext)) {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(!ext.equals("")){
-            if(!(img instanceof BufferedImage)){
-                JOptionPane.showMessageDialog(this, "Imagen invalida", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-        }
-        if("".equals(nombreAlbum.getText())){
-            JOptionPane.showMessageDialog(this, "Debe ingresar un nombre al album", "Error", JOptionPane.ERROR_MESSAGE);
+        if (!ext.equals("") && !(img instanceof BufferedImage)) {
+            JOptionPane.showMessageDialog(this,
+                    "Imagen invalida",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if(listaTemas.size() == 0){
-            JOptionPane.showMessageDialog(this, "Debe ingresar al menos un tema al album", "Error", JOptionPane.ERROR_MESSAGE);
+        if ("".equals(nombreAlbum.getText())) {
+            JOptionPane.showMessageDialog(this,
+                    "Debe ingresar un nombre al album",
+                    "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        int year = 0;
-        try{
+        if (listaTemas.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Debe ingresar al menos un tema al album",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int year;
+        try {
             year = Integer.parseInt(anioDeCreacion.getText());
-        }catch(NumberFormatException e){
+        } catch(NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Año de creacion invalido.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        ArrayList<String> genders = new ArrayList();
+        List<String> genders = new ArrayList();
         TreePath[] path = ArbolGeneros.getSelectionPaths();
         if(path == null){
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un genero", "Error", JOptionPane.ERROR_MESSAGE);
@@ -453,17 +457,16 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
         }
         
         
-        DataAlbumExt nuevoAlbum = new DataAlbumExt(listaTemas,nombreAlbum.getText(),year,genders,img,ArtistSelected);
+        DataAlbumExt nuevoAlbum = new DataAlbumExt(listaTemas,
+                nombreAlbum.getText(),year,genders,img,ArtistSelected);
         
-        try{
+        try {
             inter.AltaAlbum(nuevoAlbum);
-        }
-        catch(AlbumRepetidoException e){
+        } catch(AlbumRepetidoException e){
             JOptionPane.showMessageDialog(this, "El artista que ha ingresado ya tiene un album con ese nombre. Por favor seleccione un nombre distinto.", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return;
-        }
-        catch(GeneroInexistenteException e){
+        } catch(GeneroInexistenteException e){
             JOptionPane.showMessageDialog(this, "Uno de los géneros ingresados no existe y por lo tanto no se puede agregar al album.", "Error", JOptionPane.ERROR_MESSAGE);
             this.dispose();
             return;

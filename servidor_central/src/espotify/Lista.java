@@ -2,6 +2,7 @@ package espotify;
 
 import espotify.Datatypes.DataLista;
 import espotify.Datatypes.DataTema;
+import espotify.Excepciones.TemaRepetidoException;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -41,7 +42,7 @@ abstract class Lista {
         this.temas = lst.temas;
     }
 
-    List<DataTema> ListarTemas() {
+    List<DataTema> listarTemas() {
         List<DataTema> salida = new ArrayList();
         Tema tema;
         for (Map.Entry<String, Tema> entry : temas.entrySet()) {
@@ -51,21 +52,21 @@ abstract class Lista {
         return salida;
     }
     
-    void AgregarTema(Tema tema) throws Exception {
+    void agregarTema(Tema tema) throws Exception {
         String clave = tema.getNombre() + tema.getNombreAlbum();
         Tema tema2 = temas.get(clave);
         if (tema2 != null) {
-            throw new Exception("El tema ya existe en la lista");
+            throw new TemaRepetidoException("El tema ya existe en la lista");
         }
         temas.put(clave, tema);
     }
 
-    void QuitarTema(String nomTema,String nomAlbum) {
+    void quitarTema(String nomTema,String nomAlbum) {
         String clave = nomTema + nomAlbum;
         temas.remove(clave);
     }
     
     DataLista getData() {
-        return new DataLista(nombre, img, ListarTemas());
+        return new DataLista(nombre, img, listarTemas());
     }
 }

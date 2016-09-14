@@ -203,7 +203,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
             Albums = inter.ListarAlbumesDeGenero(generoSeleccionado);
             
             for(String[] d : Albums){
-                modelitoAlbums.addElement(String.valueOf(count) + " " + d[1] + " - " + d[0]);
+                modelitoAlbums.addElement(count + " " + d[1] + " - " + d[0]);
                 String[] nodo = new String[3];
                 nodo[0] = d[0];
                 nodo[1] = d[1];
@@ -245,7 +245,7 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_ConsultarAlbumButtonActionPerformed
 
     private String[] obtenerNumerodeLista(String str){
-        int idx = str.indexOf(" ");
+        int idx = str.indexOf(' ');
         String numero = str.substring(0, idx);
         String[] res = null;
         for(String[] datosAlbum: albumsIndex){

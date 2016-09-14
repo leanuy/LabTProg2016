@@ -547,47 +547,47 @@ public class MainFrame extends javax.swing.JFrame {
         Calendar cal = Calendar.getInstance();
         cal.set(1972, 3, 8);
         DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/ScarlettOHara.jpg");
         img = ImageIO.read(file);
         cal.set(1984, 11, 27);
         dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/PepeArgento.png");
         img = ImageIO.read(file);
         cal.set(1955, 2, 14);
         dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         cal.set(1056, 3, 7);
         dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/BenKenobi.png");
         img = ImageIO.read(file);
         cal.set(1914, 4, 2);
         dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/lachiqui.jpg");
         img = ImageIO.read(file);
         cal.set(1927, 2, 23);
         dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/CachoBochinche.jpg");
         img = ImageIO.read(file);
         cal.set(1937, 5, 8);
         dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/eleven.jpg");
         img = ImageIO.read(file);
         cal.set(1971, 12, 31);
         dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img,"");
-        ctrlAltaPerfil.AltaCliente(dataCliente);
+        ctrlAltaPerfil.altaCliente(dataCliente);
         
         DataArtista dataArtista;      
         String bio;
@@ -597,143 +597,143 @@ public class MainFrame extends javax.swing.JFrame {
         cal.set(1977, 1, 1);
         bio = "Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.";
         dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/DepecheMode.jpg");
         img = ImageIO.read(file);
         cal.set(1980, 6, 14);
         bio = "";
         dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/CyndiLauper.jpg");
         img = ImageIO.read(file);
         cal.set(1953, 6, 22);
         bio = "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.";
         dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/BruceTheBoss.jpg");
         img = ImageIO.read(file);
         cal.set(1949, 9, 23);
         bio = "";
         dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/LaTripleNelson.jpg");
         img = ImageIO.read(file);
         cal.set(1998, 1, 1);
         bio = "La Triple Nelson es un grupo de rock uruguayo formado en enero de 1998 e integrado inicialmente por Christian Cary (guitarra y voz), Fernando Paco"
-        +" Pintos (bajo y coros) y Rubén Otonello (actualmente su nuevo baterista es Rafael Ugo).";
+            +" Pintos (bajo y coros) y Rubén Otonello (actualmente su nuevo baterista es Rafael Ugo).";
         dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1987, 2, 14);
         bio = "";
         dataArtista = new DataArtista(bio, "", "la_ley", "La", "Ley", "la_ley@tuta.io", cal, null,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1940, 6, 7);
         bio = "Sir Thomas John, conocido por su nombre artístico de Tom Jones, es un cantante británico. Ha vendido más de 100 millones de discos en todo el mundo.";
         dataArtista = new DataArtista(bio, "", "tigerOfWales", "Tom", "Jones", "tigerOfWales@tuta.io", cal, null,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1840, 4, 25);
         bio = "Piotr Ilich Chaikovski fue un compositor ruso del período del Romanticismo";
         dataArtista = new DataArtista(bio, "", "chaiko", "Piotr", "Tchaikovsky", "chaiko@tuta.io", cal, null,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/NicoleNeumann.jpg");
         img = ImageIO.read(file);
         cal.set(1980, 10, 31);
         bio = "";
         dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/Pimpinela.jpg");
         img = ImageIO.read(file);
         cal.set(1981, 8, 13);
         bio = "";
         dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1940, 3, 5);
         bio = "José Gómez Romero, conocido artísticamente como Dyango es un cantante español de música romántica.";
         dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", "Unchained", "dyangounchained@gmail.com", cal, null,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1952, 7, 17);
         bio = "Su carrera comienza en 1976 cuando forma la banda Los Playeros junto a su hermano Víctor. Al poco tiempo se mudan a San Luis donde comienzan a hacerse conocidos en la escena musical. Su éxito a nivel nacional llega a comienzos de los años 1990 cuando desembarca en Buenos Aires y graba el éxito Violeta"
-        + ", originalmente compuesta e nterpretada en 1985 por el músico brasileño Luiz Caldas bajo el título «Fricote».";
+            + ", originalmente compuesta e nterpretada en 1985 por el músico brasileño Luiz Caldas bajo el título «Fricote».";
         dataArtista = new DataArtista(bio, "", "alcides", "Alcides", "Palacio", "alcides@tuta.io", cal, null,"");
-        ctrlAltaPerfil.AltaArtista(dataArtista);
+        ctrlAltaPerfil.altaArtista(dataArtista);
             
         
         
         //ALTA DE SEGUIDORES
         IAltaSeguir ctrlSeguir = Fabrica.getIAltaSeguir();
-        ctrlSeguir.AltaSeguir("el_padrino", "vpeople");
-        ctrlSeguir.AltaSeguir("el_padrino", "dmode");
-        ctrlSeguir.AltaSeguir("el_padrino", "clauper");
-        ctrlSeguir.AltaSeguir("el_padrino", "benKenobi");
-        ctrlSeguir.AltaSeguir("el_padrino", "lachiqui");
-        ctrlSeguir.AltaSeguir("el_padrino", "cbochinche");
-        ctrlSeguir.AltaSeguir("el_padrino", "Eleven11");
-        ctrlSeguir.AltaSeguir("scarlettO", "dmode");
-        ctrlSeguir.AltaSeguir("scarlettO", "bruceTheBoss");
-        ctrlSeguir.AltaSeguir("scarlettO", "tripleNelson");
-        ctrlSeguir.AltaSeguir("scarlettO", "tigerOfWales");
-        ctrlSeguir.AltaSeguir("scarlettO", "Heisenberg");
-        ctrlSeguir.AltaSeguir("scarlettO", "lachiqui");
-        ctrlSeguir.AltaSeguir("scarlettO", "benKenobi");
-        ctrlSeguir.AltaSeguir("ppArgento", "dmode");
-        ctrlSeguir.AltaSeguir("ppArgento", "bruceTheBoss");
-        ctrlSeguir.AltaSeguir("ppArgento", "tripleNelson");
-        ctrlSeguir.AltaSeguir("ppArgento", "benKenobi");
-        ctrlSeguir.AltaSeguir("ppArgento", "lachiqui");
-        ctrlSeguir.AltaSeguir("ppArgento", "cbochinche");
-        ctrlSeguir.AltaSeguir("ppArgento", "Eleven11");
-        ctrlSeguir.AltaSeguir("Heisenberg", "dmode");
-        ctrlSeguir.AltaSeguir("Heisenberg", "bruceTheBoss");
-        ctrlSeguir.AltaSeguir("Heisenberg", "tigerOfWales");
-        ctrlSeguir.AltaSeguir("Heisenberg", "tripleNelson");
-        ctrlSeguir.AltaSeguir("Heisenberg", "lospimpi");
-        ctrlSeguir.AltaSeguir("Heisenberg", "dyangounchained");
-        ctrlSeguir.AltaSeguir("Heisenberg", "alcides");
-        ctrlSeguir.AltaSeguir("Heisenberg", "el_padrino");
-        ctrlSeguir.AltaSeguir("Heisenberg", "scarlettO");
-        ctrlSeguir.AltaSeguir("Heisenberg", "ppArgento");
-        ctrlSeguir.AltaSeguir("Heisenberg", "benKenobi");
-        ctrlSeguir.AltaSeguir("Heisenberg", "lachiqui");
-        ctrlSeguir.AltaSeguir("Heisenberg", "Eleven11");
-        ctrlSeguir.AltaSeguir("benKenobi", "dmode");
-        ctrlSeguir.AltaSeguir("benKenobi", "bruceTheBoss");
-        ctrlSeguir.AltaSeguir("benKenobi", "la_ley");
-        ctrlSeguir.AltaSeguir("benKenobi", "chaiko");
-        ctrlSeguir.AltaSeguir("benKenobi", "nicoleneu");
-        ctrlSeguir.AltaSeguir("benKenobi", "lospimpi");
-        ctrlSeguir.AltaSeguir("benKenobi", "alcides");
-        ctrlSeguir.AltaSeguir("benKenobi", "el_padrino");
-        ctrlSeguir.AltaSeguir("benKenobi", "ppArgento");
-        ctrlSeguir.AltaSeguir("benKenobi", "lachiqui");
-        ctrlSeguir.AltaSeguir("benKenobi", "cbochinche");
-        ctrlSeguir.AltaSeguir("benKenobi", "Eleven11");
-        ctrlSeguir.AltaSeguir("lachiqui", "bruceTheBoss");
-        ctrlSeguir.AltaSeguir("lachiqui", "la_ley");
-        ctrlSeguir.AltaSeguir("lachiqui", "lospimpi");
-        ctrlSeguir.AltaSeguir("lachiqui", "alcides");
-        ctrlSeguir.AltaSeguir("lachiqui", "el_padrino");
-        ctrlSeguir.AltaSeguir("lachiqui", "scarlettO");
-        ctrlSeguir.AltaSeguir("lachiqui", "ppArgento");
-        ctrlSeguir.AltaSeguir("cbochinche", "la_ley");
-        ctrlSeguir.AltaSeguir("cbochinche", "lospimpi");
-        ctrlSeguir.AltaSeguir("cbochinche", "alcides");
-        ctrlSeguir.AltaSeguir("cbochinche", "dyangounchained");
-        ctrlSeguir.AltaSeguir("cbochinche", "ppArgento");
-        ctrlSeguir.AltaSeguir("Eleven11", "la_ley");
-        ctrlSeguir.AltaSeguir("Eleven11", "el_padrino");
-        ctrlSeguir.AltaSeguir("Eleven11", "scarlettO");
-        ctrlSeguir.AltaSeguir("Eleven11", "ppArgento");
+        ctrlSeguir.altaSeguir("el_padrino", "vpeople");
+        ctrlSeguir.altaSeguir("el_padrino", "dmode");
+        ctrlSeguir.altaSeguir("el_padrino", "clauper");
+        ctrlSeguir.altaSeguir("el_padrino", "benKenobi");
+        ctrlSeguir.altaSeguir("el_padrino", "lachiqui");
+        ctrlSeguir.altaSeguir("el_padrino", "cbochinche");
+        ctrlSeguir.altaSeguir("el_padrino", "Eleven11");
+        ctrlSeguir.altaSeguir("scarlettO", "dmode");
+        ctrlSeguir.altaSeguir("scarlettO", "bruceTheBoss");
+        ctrlSeguir.altaSeguir("scarlettO", "tripleNelson");
+        ctrlSeguir.altaSeguir("scarlettO", "tigerOfWales");
+        ctrlSeguir.altaSeguir("scarlettO", "Heisenberg");
+        ctrlSeguir.altaSeguir("scarlettO", "lachiqui");
+        ctrlSeguir.altaSeguir("scarlettO", "benKenobi");
+        ctrlSeguir.altaSeguir("ppArgento", "dmode");
+        ctrlSeguir.altaSeguir("ppArgento", "bruceTheBoss");
+        ctrlSeguir.altaSeguir("ppArgento", "tripleNelson");
+        ctrlSeguir.altaSeguir("ppArgento", "benKenobi");
+        ctrlSeguir.altaSeguir("ppArgento", "lachiqui");
+        ctrlSeguir.altaSeguir("ppArgento", "cbochinche");
+        ctrlSeguir.altaSeguir("ppArgento", "Eleven11");
+        ctrlSeguir.altaSeguir("Heisenberg", "dmode");
+        ctrlSeguir.altaSeguir("Heisenberg", "bruceTheBoss");
+        ctrlSeguir.altaSeguir("Heisenberg", "tigerOfWales");
+        ctrlSeguir.altaSeguir("Heisenberg", "tripleNelson");
+        ctrlSeguir.altaSeguir("Heisenberg", "lospimpi");
+        ctrlSeguir.altaSeguir("Heisenberg", "dyangounchained");
+        ctrlSeguir.altaSeguir("Heisenberg", "alcides");
+        ctrlSeguir.altaSeguir("Heisenberg", "el_padrino");
+        ctrlSeguir.altaSeguir("Heisenberg", "scarlettO");
+        ctrlSeguir.altaSeguir("Heisenberg", "ppArgento");
+        ctrlSeguir.altaSeguir("Heisenberg", "benKenobi");
+        ctrlSeguir.altaSeguir("Heisenberg", "lachiqui");
+        ctrlSeguir.altaSeguir("Heisenberg", "Eleven11");
+        ctrlSeguir.altaSeguir("benKenobi", "dmode");
+        ctrlSeguir.altaSeguir("benKenobi", "bruceTheBoss");
+        ctrlSeguir.altaSeguir("benKenobi", "la_ley");
+        ctrlSeguir.altaSeguir("benKenobi", "chaiko");
+        ctrlSeguir.altaSeguir("benKenobi", "nicoleneu");
+        ctrlSeguir.altaSeguir("benKenobi", "lospimpi");
+        ctrlSeguir.altaSeguir("benKenobi", "alcides");
+        ctrlSeguir.altaSeguir("benKenobi", "el_padrino");
+        ctrlSeguir.altaSeguir("benKenobi", "ppArgento");
+        ctrlSeguir.altaSeguir("benKenobi", "lachiqui");
+        ctrlSeguir.altaSeguir("benKenobi", "cbochinche");
+        ctrlSeguir.altaSeguir("benKenobi", "Eleven11");
+        ctrlSeguir.altaSeguir("lachiqui", "bruceTheBoss");
+        ctrlSeguir.altaSeguir("lachiqui", "la_ley");
+        ctrlSeguir.altaSeguir("lachiqui", "lospimpi");
+        ctrlSeguir.altaSeguir("lachiqui", "alcides");
+        ctrlSeguir.altaSeguir("lachiqui", "el_padrino");
+        ctrlSeguir.altaSeguir("lachiqui", "scarlettO");
+        ctrlSeguir.altaSeguir("lachiqui", "ppArgento");
+        ctrlSeguir.altaSeguir("cbochinche", "la_ley");
+        ctrlSeguir.altaSeguir("cbochinche", "lospimpi");
+        ctrlSeguir.altaSeguir("cbochinche", "alcides");
+        ctrlSeguir.altaSeguir("cbochinche", "dyangounchained");
+        ctrlSeguir.altaSeguir("cbochinche", "ppArgento");
+        ctrlSeguir.altaSeguir("Eleven11", "la_ley");
+        ctrlSeguir.altaSeguir("Eleven11", "el_padrino");
+        ctrlSeguir.altaSeguir("Eleven11", "scarlettO");
+        ctrlSeguir.altaSeguir("Eleven11", "ppArgento");
         
         
         //ALTA DE GENEROS
@@ -970,24 +970,24 @@ public class MainFrame extends javax.swing.JFrame {
         ctrlPublicar.PublicarLista("Fiesteras", "cbochinche");
         
         IFavoritear ifav = Fabrica.getIFavoritear();
-        ifav.Favoritear("el_padrino", new DataDefecto("","Noche De La Nostalgia", null));
-        ifav.Favoritear("el_padrino", new DataDefecto("","Música Clásica", null));
-        ifav.Favoritear("scarlettO", new DataDefecto("","Música Clásica", null));
-        ifav.Favoritear("ppArgento", new DataDefecto("","Noche De La Nostalgia", null));
-        ifav.Favoritear("ppArgento", new DataDefecto("","Rock En Español", null));
-        ifav.Favoritear("Heisenberg", new DataParticular("el_padrino","Música Inspiradora",null));
-        ifav.Favoritear("cbochinche", new DataDefecto("","Noche De La Nostalgia", null));
-        ifav.Favoritear("cbochinche", new DataDefecto("","Rock En Español", null));
-        ifav.Favoritear("el_padrino", new DataAlbum("Violator", 0, null, null, "dmode"));
-        ifav.Favoritear("el_padrino", new DataAlbum("El Lago De Los Cisnes", 0, null, null, "chaiko"));
-        ifav.Favoritear("el_padrino", new DataAlbum("Concierto Para Piano No. 1 En Si Menor, Opus 23", 0, null, null, "chaiko"));
-        ifav.Favoritear("benKenobi", new DataAlbum("El Lago De Los Cisnes", 0, null, null, "chaiko"));
-        ifav.Favoritear("benKenobi", new DataAlbum("Concierto Para Piano No. 1 En Si Menor, Opus 23", 0, null, null, "chaiko"));
-        ifav.Favoritear("cbochinche", new DataAlbum("Hay Amores Que Matan", 0, null, null, "lospimpi"));
-        ifav.Favoritear("el_padrino", new DataTema("El Duelo", 0, 0, "la_ley","MTV Unplugged"));
-        ifav.Favoritear("ppArgento", new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"));
-        ifav.Favoritear("cbochinche", new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"));
-        ifav.Favoritear("Eleven11", new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"));
+        ifav.favoritear("el_padrino", new DataDefecto("","Noche De La Nostalgia", null));
+        ifav.favoritear("el_padrino", new DataDefecto("","Música Clásica", null));
+        ifav.favoritear("scarlettO", new DataDefecto("","Música Clásica", null));
+        ifav.favoritear("ppArgento", new DataDefecto("","Noche De La Nostalgia", null));
+        ifav.favoritear("ppArgento", new DataDefecto("","Rock En Español", null));
+        ifav.favoritear("Heisenberg", new DataParticular("el_padrino","Música Inspiradora",null));
+        ifav.favoritear("cbochinche", new DataDefecto("","Noche De La Nostalgia", null));
+        ifav.favoritear("cbochinche", new DataDefecto("","Rock En Español", null));
+        ifav.favoritear("el_padrino", new DataAlbum("Violator", 0, null, null, "dmode"));
+        ifav.favoritear("el_padrino", new DataAlbum("El Lago De Los Cisnes", 0, null, null, "chaiko"));
+        ifav.favoritear("el_padrino", new DataAlbum("Concierto Para Piano No. 1 En Si Menor, Opus 23", 0, null, null, "chaiko"));
+        ifav.favoritear("benKenobi", new DataAlbum("El Lago De Los Cisnes", 0, null, null, "chaiko"));
+        ifav.favoritear("benKenobi", new DataAlbum("Concierto Para Piano No. 1 En Si Menor, Opus 23", 0, null, null, "chaiko"));
+        ifav.favoritear("cbochinche", new DataAlbum("Hay Amores Que Matan", 0, null, null, "lospimpi"));
+        ifav.favoritear("el_padrino", new DataTema("El Duelo", 0, 0, "la_ley","MTV Unplugged"));
+        ifav.favoritear("ppArgento", new DataTema("Adagio De Mi País", 0, 0, "tripleNelson","Agua Y Sal"));
+        ifav.favoritear("cbochinche", new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"));
+        ifav.favoritear("Eleven11", new DataTema("No Quiero Estudiar", 0, 0, "nicoleneu","Primer Amor"));
 
         IAgregarTemaLista iadd = Fabrica.getIAgregarTemaLista();
         iadd.AgregarTemaLista(new DataTema("YMCA", 0, 0, "vpeople","Village People Live and Sleazy"), "Noche De La Nostalgia");
@@ -1037,9 +1037,9 @@ public class MainFrame extends javax.swing.JFrame {
             DatosDePrueba();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(new JDialog(),
-            "No se pudieron cargar los datos",
-            "Error",
-            JOptionPane.PLAIN_MESSAGE);
+                "No se pudieron cargar los datos",
+                "Error",
+                JOptionPane.PLAIN_MESSAGE);
         }
     }//GEN-LAST:event_cargarDatosDePruebaActionPerformed
 

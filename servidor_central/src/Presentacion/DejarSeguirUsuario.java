@@ -25,7 +25,8 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
         List<String> clientes = interf.ListarClientes();
 
         for(String str : clientes) {
-            NickSeguidor.addItem(str);NickSeguido.addItem(str);
+            NickSeguidor.addItem(str);
+            NickSeguido.addItem(str);
         }
     }
 
@@ -139,7 +140,7 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
                     "ATENCION", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
-                interf.DejarDeSeguir(Seguidor,Seguido);
+                interf.dejarDeSeguir(Seguidor,Seguido);
                 JOptionPane.showMessageDialog(this,
                         "Operación completada con éxito.",
                         "OK", JOptionPane.PLAIN_MESSAGE);
@@ -147,8 +148,7 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this,
                         "El usuario a dejar de seguir no existe o no era seguido por el seguidor.",
                         "ERROR", JOptionPane.ERROR_MESSAGE);
-            }
-            catch (SeguidorInexistenteException e) {
+            } catch (SeguidorInexistenteException e) {
                 JOptionPane.showMessageDialog(this,
                         "El usuario seguidor no existe", "ERROR",
                         JOptionPane.ERROR_MESSAGE);

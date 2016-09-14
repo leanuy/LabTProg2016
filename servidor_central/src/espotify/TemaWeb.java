@@ -6,14 +6,14 @@ import espotify.Datatypes.DataTemaWeb;
 class TemaWeb extends Tema {
     private final String url;
     
-    TemaWeb(DataTemaWeb dtw, Album album) {
+    TemaWeb(DataTemaWeb dtw, final Album album) {
         super(dtw, album);
         this.url = dtw.getUrl();
     }
     
     @Override
     DataTema getData() {
-        DataTema root = super.getData();
+        final DataTema root = super.getData();
         return new DataTemaWeb(url,root.getNombre(),root.getDuracion(),root.getNum(),
                 root.getNomArtista(), root.getAlbum()); 
     } 

@@ -10,8 +10,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -226,7 +226,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         String usr = String.valueOf(Select.getSelectedItem());
         DataClienteExt dCliente=null;
         try {
-            dCliente = interf.ConsultaCliente(usr);
+            dCliente = interf.consultaCliente(usr);
         } catch (ClienteInexistenteException ex) {
             Logger.getLogger(ConsultaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }

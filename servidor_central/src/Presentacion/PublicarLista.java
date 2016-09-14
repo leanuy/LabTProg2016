@@ -145,8 +145,7 @@ public class PublicarLista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,
                     "El cliente seleccionado no tiene una lista con ese nombre",
                     "ERROR", JOptionPane.ERROR_MESSAGE);
-        }   
-        catch (YaPublicaException e) {
+        } catch (YaPublicaException e) {
             JOptionPane.showMessageDialog(this,
                     "La lista seleccionada ya es pública.",
                     "ERROR", JOptionPane.ERROR_MESSAGE);

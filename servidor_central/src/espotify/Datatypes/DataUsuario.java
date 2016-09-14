@@ -2,8 +2,8 @@ package espotify.Datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Calendar;
+import java.util.List;
 
 public class DataUsuario {
     protected String nick;

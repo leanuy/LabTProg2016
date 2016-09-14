@@ -33,11 +33,11 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
             clientescmb.addItem(c);
             lstpubclicmb.addItem(c);
         }
-        cli = ifav.ListarListasDefecto();
+        cli = ifav.listarListasDefecto();
         for (String c : cli) {
             lstdefcmb.addItem(c);
         }
-        cli = ifav.ListarArtistas();
+        cli = ifav.listarArtistas();
         for (String c : cli) {
             artcmb.addItem(c);
         }
@@ -249,10 +249,10 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListaDefectoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaDefectoActionPerformed
-        DataDefecto dLista = new DataDefecto("", String.valueOf(lstdefcmb.getSelectedItem()), null);
+        DataDefecto dataLista = new DataDefecto("", String.valueOf(lstdefcmb.getSelectedItem()), null);
         IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), dLista);
+            ifav.desFavoritear(String.valueOf(clientescmb.getSelectedItem()), dataLista);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -271,7 +271,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
         DataParticular dLista = new DataParticular(String.valueOf(lstpubclicmb.getSelectedItem()),String.valueOf(lstpubcmb.getSelectedItem()),null);
         IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), dLista);
+            ifav.desFavoritear(String.valueOf(clientescmb.getSelectedItem()), dLista);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -290,7 +290,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
         DataAlbum dAlbum = new DataAlbum(String.valueOf(albcmb.getSelectedItem()), 0, null, null, String.valueOf(artcmb.getSelectedItem()));
         IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), dAlbum);
+            ifav.desFavoritear(String.valueOf(clientescmb.getSelectedItem()), dAlbum);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -309,7 +309,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
         DataTema dTema = new DataTema(tematxt.getText(), 0, 0, String.valueOf(artcmb.getSelectedItem()), String.valueOf(albcmb.getSelectedItem()));
         IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         try {
-            ifav.DesFavoritear(String.valueOf(clientescmb.getSelectedItem()), dTema);
+            ifav.desFavoritear(String.valueOf(clientescmb.getSelectedItem()), dTema);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(new JDialog(), "El cliente seleccionado no existe", "Error", JOptionPane.PLAIN_MESSAGE);
@@ -330,7 +330,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
         lstpubcmb.removeAllItems();
         try {
             lstpubcmb.setEnabled(false);
-            List<String> listas = ifav.ListarListasPublicasDeCliente(nomCliente);
+            List<String> listas = ifav.listarListasPublicasDeCliente(nomCliente);
             for(String str : listas) {
                 lstpubcmb.addItem(str);
             }
@@ -350,7 +350,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
         albcmb.removeAllItems();
         try {
             albcmb.setEnabled(false);
-            List<String> albums = ifav.ListarAlbumesDeArtista(nomArtista);
+            List<String> albums = ifav.listarAlbumesDeArtista(nomArtista);
             for (String str : albums) {
                 albcmb.addItem(str);
             }

@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
  * @author Santiago
  */
 public class AgregarTemaLista extends javax.swing.JInternalFrame {
+   
+    private String ListaAGuardar = null;
+    private DataTema[] listatemas = null;
+    private String[] vacio = new String[0];
 
     /**
      * Creates new form AgregarTemaLista
@@ -42,11 +46,6 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         SeleccionarAlbum.setVisible(false);
         
     }
-    
-    String ListaAGuardar = null;
-    DataTema[] listatemas = null;
-    String[] vacio = new String[0];
-
     
     IAgregarTemaLista interf = Fabrica.getIAgregarTemaLista();
 

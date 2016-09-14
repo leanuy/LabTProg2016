@@ -48,31 +48,31 @@ class Usuario {
         return this.seguidores;
     }
     
-    static boolean ValidarDatosUsuario(DataUsuario dUsuario) {
-        return ValidarCorreo(dUsuario.getCorreo()) && !(dUsuario.getNick().equals("") ||
-                dUsuario.getNombre().equals("") || dUsuario.getApellido().equals(""));
+    static boolean validarDatosUsuario(DataUsuario data) {
+        return validarCorreo(data.getCorreo()) && !(data.getNick().equals("") ||
+                data.getNombre().equals("") || data.getApellido().equals(""));
     }
 
-    private static boolean ValidarCorreo(String correo) {
+    private static boolean validarCorreo(String correo) {
         boolean salida = correo.contains("@");
         if (salida) {
-            int arroba = correo.indexOf("@");
+            int arroba = correo.indexOf('@');
             correo = correo.substring(arroba + 1);
             salida = !correo.contains("@") && correo.contains(".");
         }
         return salida;
     }
     
-    public void AgregarSeguidor(Cliente cli) throws SeguidoRepetidoException {
-        String name2 = cli.nick;
-        Cliente seguido = seguidores.get(name2);
+    public void agregarSeguidor(Cliente cli) throws SeguidoRepetidoException {
+        String nombreSeguidor = cli.nick;
+        Cliente seguido = seguidores.get(nombreSeguidor);
         if (seguido != null) {
             throw new SeguidoRepetidoException();
         }
-        seguidores.put(name2, cli);
+        seguidores.put(nombreSeguidor, cli);
     }
     
-    public void NoMeSiguenMas(Cliente cli) {
+    public void noMeSiguenMas(Cliente cli) {
         seguidores.remove(cli.nick, cli);
     }
     

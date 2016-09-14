@@ -10,10 +10,10 @@ import java.util.List;
 
 
 public interface IAltaSeguir {
-    public List<String> ListarSeguibles(String nomSeguidor)
+    public List<String> listarSeguibles(String nomSeguidor)
             throws SeguidorInexistenteException;
     
-    public void AltaSeguir(String nomSeguidor, String nomSeguido)
+    public void altaSeguir(String nomSeguidor, String nomSeguido)
             throws SeguidorInexistenteException,SeguidoInexistenteException,
             SeguidoRepetidoException, AutoSeguirseException;
     

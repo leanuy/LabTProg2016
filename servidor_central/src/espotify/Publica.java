@@ -5,7 +5,7 @@ import espotify.Excepciones.YaPublicaException;
 
 public class Publica extends Particular implements Favoriteable {
 
-    public Publica(Privada priv) {
+    Publica(Privada priv) {
         super(priv);
     }    
 
@@ -14,7 +14,7 @@ public class Publica extends Particular implements Favoriteable {
     }
     
     @Override
-    public Publica HacerPublica() throws YaPublicaException {
+    public Publica hacerPublica() throws YaPublicaException {
         throw new YaPublicaException();
     }
 }
