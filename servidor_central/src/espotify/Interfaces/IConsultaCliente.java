@@ -10,5 +10,5 @@ public interface IConsultaCliente {
     public DataClienteExt consultaCliente(String nick) 
             throws ClienteInexistenteException;
 
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 }

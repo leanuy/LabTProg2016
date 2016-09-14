@@ -22,7 +22,7 @@ public class DejarSeguirUsuario extends javax.swing.JInternalFrame {
 
     public DejarSeguirUsuario() {
         initComponents();
-        List<String> clientes = interf.ListarClientes();
+        List<String> clientes = interf.listarClientes();
 
         for(String str : clientes) {
             NickSeguidor.addItem(str);

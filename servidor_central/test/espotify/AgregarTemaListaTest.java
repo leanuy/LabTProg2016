@@ -55,7 +55,7 @@ public class AgregarTemaListaTest {
     }
     
     @Test
-    public void ListarArtistasTest() {
+    public void listarArtistasTest() {
         System.out.println("Listar Artistas, testeado en otro lado, testeando mensajes intercontroladores nomás acá");
         List<String> result = iAdd.listarArtistas();
         List<String> expResult = new ArrayList<>();

@@ -31,7 +31,7 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
     public ConsultaCliente() {
         initComponents();
         IConsultaCliente interf = Fabrica.getIConsultaCliente();
-        List<String> clientes = interf.ListarClientes();
+        List<String> clientes = interf.listarClientes();
         for(String str : clientes) {
             Select.addItem(str);
         }

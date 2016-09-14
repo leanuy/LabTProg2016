@@ -31,10 +31,10 @@ public class Favoritear extends javax.swing.JInternalFrame {
     public Favoritear() {
         initComponents();
         IFavoritear ifav = Fabrica.getIFavoritear();
-        List<String> cli = ifav.ListarClientes();
-        for (String c : cli) {
-            clientescmb.addItem(c);
-            lstpubclicmb.addItem(c);
+        List<String> cli = ifav.listarClientes();
+        for (String nomCliente : cli) {
+            clientescmb.addItem(nomCliente);
+            lstpubclicmb.addItem(nomCliente);
         }
         cli = ifav.listarListasDefecto();
         for (String c : cli) {

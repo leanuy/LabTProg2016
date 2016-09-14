@@ -48,7 +48,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
 //Listas
     @Override
     public List<String> listarClientes() {
-        return new CtrlUsuarios().ListarClientes();
+        return new CtrlUsuarios().listarClientes();
     }
     
     @Override

@@ -28,7 +28,7 @@ public class DesFavoritear extends javax.swing.JInternalFrame {
     public DesFavoritear() {
         initComponents();
         IDesFavoritear ifav = Fabrica.getIDesFavoritear();
-        List<String> cli = ifav.ListarClientes();
+        List<String> cli = ifav.listarClientes();
         for(String c : cli) {
             clientescmb.addItem(c);
             lstpubclicmb.addItem(c);

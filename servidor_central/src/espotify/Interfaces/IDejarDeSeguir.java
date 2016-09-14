@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface IDejarDeSeguir {
     
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 
     public String[] getSeguidos(String usr)
             throws ClienteInexistenteException ;

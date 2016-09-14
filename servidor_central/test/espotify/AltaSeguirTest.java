@@ -1,5 +1,6 @@
 package espotify;
 
+import static org.junit.Assert.assertEquals;
 
 import espotify.Datatypes.DataCliente;
 import espotify.Excepciones.AutoSeguirseException;
@@ -20,7 +21,6 @@ import org.junit.runners.MethodSorters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import static org.junit.Assert.assertEquals;
 
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -44,7 +44,7 @@ public class AltaSeguirTest {
         System.out.println("ListarClientes");
         List<String> expResult = new ArrayList<>();
         expResult.add("JavierM42");
-        List<String> result = iAltaSeguir.ListarClientes();
+        List<String> result = iAltaSeguir.listarClientes();
         assertEquals(expResult, result);
     }
     

@@ -15,7 +15,7 @@ public interface IDesFavoritear {
             ListaInexistenteException, ArtistaInexistenteException,
             AlbumInexistenteException;
 
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 
     public List<String> listarListasPublicasDeCliente(String nick)
             throws ClienteInexistenteException;

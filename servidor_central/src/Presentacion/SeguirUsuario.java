@@ -23,7 +23,7 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
     
     public SeguirUsuario() {
         initComponents();
-        List<String> clientes = interf.ListarClientes();
+        List<String> clientes = interf.listarClientes();
         for(String str : clientes) {
             NickSeguidor.addItem(str);
         }

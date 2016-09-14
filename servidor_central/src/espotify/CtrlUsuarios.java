@@ -113,7 +113,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
 
 //Listas
     @Override
-    public ArrayList<String> ListarClientes() {
+    public ArrayList<String> listarClientes() {
         ArrayList salida = new ArrayList();
         getClientes().keySet().stream().forEach((key) -> {
             salida.add(key);

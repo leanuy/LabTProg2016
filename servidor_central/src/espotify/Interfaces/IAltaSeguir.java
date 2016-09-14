@@ -17,5 +17,5 @@ public interface IAltaSeguir {
             throws SeguidorInexistenteException,SeguidoInexistenteException,
             SeguidoRepetidoException, AutoSeguirseException;
     
-    public List<String> ListarClientes();
+    public List<String> listarClientes();
 }
