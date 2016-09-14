@@ -403,11 +403,11 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
             SeleccionarLista1.setVisible(true);
             lista1label.setVisible(true);
             ListaAGuardar = null;
-            List<String> a = interf.ListarClientes();
+            List<String> clientes = interf.ListarClientes();
             ClientesBox.removeAllItems();
             Lista1Box.removeAllItems();
-            a.stream().forEach((s) -> {
-                ClientesBox.addItem(s);
+            clientes.stream().forEach((cli) -> {
+                ClientesBox.addItem(cli);
             });
         }
     }//GEN-LAST:event_ParticularButtonActionPerformed
@@ -422,9 +422,9 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
             clienteslabel.setVisible(false);
             lista1label.setVisible(true);
             ListaAGuardar = null;
-            List<String> a = interf.ListarListasDefecto();
+            List<String> listas = interf.ListarListasDefecto();
             Lista1Box.removeAllItems();
-            for(String s: a){
+            for(String s: listas){
                 Lista1Box.addItem(s);
             }
         }
@@ -450,8 +450,8 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         Cliente2Box.removeAllItems();
         TemaBox.removeAll();
         TemaBox.setListData(vacio);
-        List<String> a = interf.ListarClientes();
-        for(String s : a){
+        List<String> clientes = interf.ListarClientes();
+        for(String s : clientes){
             Cliente2Box.addItem(s);
         }
     }//GEN-LAST:event_LPublicaButtonActionPerformed
@@ -476,8 +476,8 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         TemaBox.removeAll();
         TemaBox.setListData(vacio);
         try{
-            List<String> a = interf.ListarListasDefecto2();
-            for (String s: a){
+            List<String> listas = interf.ListarListasDefecto2();
+            for (String s: listas){
                 Lista2Box.addItem(s);
             }
         }catch(Exception e){
@@ -501,12 +501,12 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         SeleccionarArtista.setVisible(true);
         SeleccionarLista.setVisible(false);
         SeleccionarAlbum.setVisible(true);
-        List<String> a = interf.ListarArtistas();
+        List<String> artistas = interf.ListarArtistas();
         ArtistaBox.removeAllItems();
         AlbumBox.removeAllItems();
         TemaBox.removeAll();
         TemaBox.setListData(vacio);
-        for (String s: a){
+        for (String s: artistas){
             ArtistaBox.addItem(s);
         }
     }//GEN-LAST:event_AlbumButtonActionPerformed
@@ -532,14 +532,14 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_AlbumBoxActionPerformed
 //--------------------------------------------------------------------------------
     private void AgregarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarButtonActionPerformed
-        int i = TemaBox.getSelectedIndex();
+        int idx = TemaBox.getSelectedIndex();
         try{
-            DataTema dt = null;
-            if (i == -1){
+            DataTema dTema = null;
+            if (idx == -1){
                 JOptionPane.showMessageDialog(this, "Selecciona un tema wachin!", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-            dt = listatemas[i];
-            interf.AgregarTemaLista(dt, ListaAGuardar);
+            dTema = listatemas[idx];
+            interf.AgregarTemaLista(dTema, ListaAGuardar);
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
         }catch(Exception e){
             JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -552,12 +552,12 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
 
     private void SeleccionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarClienteActionPerformed
         if (LPublicaButton.isSelected()){
-            String cl = String.valueOf(Cliente2Box.getSelectedItem());
-            try{
-                List<String> a = interf.ListarListasPublicasDeCliente(cl);
+            String cli = String.valueOf(Cliente2Box.getSelectedItem());
+            try {
+                List<String> listas = interf.ListarListasPublicasDeCliente(cli);
                 Lista2Box.removeAllItems();
-                a.stream().forEach((s) -> {
-                    Lista2Box.addItem(s);
+                listas.stream().forEach((lista) -> {
+                    Lista2Box.addItem(lista);
                 });
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -569,10 +569,10 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
         if (AlbumButton.isSelected()) {
             String art = String.valueOf(ArtistaBox.getSelectedItem());
             try {
-                List<String> a = interf.ListarAlbumesDeArtista(art);
+                List<String> albums = interf.ListarAlbumesDeArtista(art);
                 AlbumBox.removeAllItems();
                 TemaBox.removeAll();
-                for (String s: a){
+                for (String s: albums){
                     AlbumBox.addItem(s);
                 }
             } catch (Exception e) {
@@ -582,24 +582,24 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_SeleccionarArtistaActionPerformed
 
     private void SeleccionarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarListaActionPerformed
-        String cl = null;
+        String cliente = null;
         if (LPublicaButton.isSelected()) {
-            cl = String.valueOf(Cliente2Box.getSelectedItem());
+            cliente = String.valueOf(Cliente2Box.getSelectedItem());
         }
-        String l = String.valueOf(Lista2Box.getSelectedItem());
+        String nomLista = String.valueOf(Lista2Box.getSelectedItem());
         try {
-            List<DataTema> lt = interf.ListarTemasLista2(cl, l);
-            int size = lt.size();
+            List<DataTema> listaTemas = interf.ListarTemasLista2(cliente, nomLista);
+            int size = listaTemas.size();
             String[] algo = new String[size];
             listatemas = new DataTema[size];
             TemaBox.removeAll();
-            int i = 0;
+            int idx = 0;
             String tema;
-            for (DataTema tem: lt){
+            for (DataTema tem: listaTemas){
                 tema = "Nombre: " + tem.getNombre() + ". Album: " + tem.getAlbum() + ". Artista: " + tem.getNomArtista();
-                algo[i] = tema;
-                listatemas[i] = tem;
-                i++;
+                algo[idx] = tema;
+                listatemas[idx] = tem;
+                idx++;
             }
             TemaBox.setListData(algo);
         } catch(Exception e) {
@@ -609,11 +609,11 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
 
     private void SeleccionarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarCliente1ActionPerformed
         if(ParticularButton.isSelected()){
-            String cl = String.valueOf(ClientesBox.getSelectedItem());
+            String cliente = String.valueOf(ClientesBox.getSelectedItem());
             try{
-                List<String> a = interf.ListarListasDeCliente(cl);
+                List<String> listas = interf.ListarListasDeCliente(cliente);
                 Lista1Box.removeAllItems();
-                for(String s: a){
+                for(String s: listas){
                     Lista1Box.addItem(s);
                 }
             }catch(Exception e){
@@ -628,29 +628,29 @@ public class AgregarTemaLista extends javax.swing.JInternalFrame {
 
     private void SeleccionarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionarAlbumActionPerformed
         if(AlbumButton.isSelected()){        
-            String ar;
-            ar = String.valueOf(ArtistaBox.getSelectedItem());
-            String al = String.valueOf(AlbumBox.getSelectedItem());
-            List<DataTema> lt=null;
+            String artista;
+            artista = String.valueOf(ArtistaBox.getSelectedItem());
+            String album = String.valueOf(AlbumBox.getSelectedItem());
+            List<DataTema> listaTemas=null;
             try {
-                lt = interf.ListarTemasAlbum(ar, al);
+                listaTemas = interf.ListarTemasAlbum(artista, album);
             } catch (ArtistaInexistenteException ex) {
                 JOptionPane.showMessageDialog(this, "No se selecciono ningun artista", "ERROR", JOptionPane.ERROR_MESSAGE);
             } catch (AlbumInexistenteException ex) {
                 JOptionPane.showMessageDialog(this, "No se selecciono ningun album", "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-            if(lt != null){
-                int size = lt.size();
+            if(listaTemas != null){
+                int size = listaTemas.size();
                 String[] algo = new String[size];
                 listatemas = new DataTema[size];
                 TemaBox.removeAll();
-                int i = 0;
+                int idx = 0;
                 String nombre;
-                for (DataTema tem: lt){
+                for (DataTema tem: listaTemas){
                     nombre = "Nombre: " + tem.getNombre() + ". Album: " + tem.getAlbum() + ". Artista: " + tem.getNomArtista();
-                    algo[i] = nombre;
-                    listatemas[i] = tem;
-                    i++;
+                    algo[idx] = nombre;
+                    listatemas[idx] = tem;
+                    idx++;
                 }
                 TemaBox.setListData(algo);
             }

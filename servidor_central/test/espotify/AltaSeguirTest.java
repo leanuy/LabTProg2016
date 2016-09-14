@@ -34,9 +34,9 @@ public class AltaSeguirTest {
     public static void setUpClass() throws Exception {
         ManejadorColecciones.clear();
         iAltaSeguir = Fabrica.getIAltaSeguir();
-        AltaPerfilTest a = new AltaPerfilTest();
-        a.testAltaArtista1();
-        a.testAltaCliente1();
+        AltaPerfilTest testPerfil = new AltaPerfilTest();
+        testPerfil.testAltaArtista1();
+        testPerfil.testAltaCliente1();
     }
 
     @Test
@@ -77,10 +77,10 @@ public class AltaSeguirTest {
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
-            DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            instance.AltaCliente(d);
-            d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            instance.AltaCliente(d);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            instance.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            instance.AltaCliente(dCli);
         }
         catch (NickRepetidoException | CorreoRepetidoException e) {}
         
@@ -105,10 +105,10 @@ public class AltaSeguirTest {
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
-            DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
-            d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            ctrl.AltaCliente(d);
+            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
+            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            ctrl.AltaCliente(dCli);
         }
         catch (NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e)
         {}
@@ -133,8 +133,8 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
+        DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+        ctrl.AltaCliente(dCli);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
         {}
@@ -151,10 +151,10 @@ public class AltaSeguirTest {
         try{
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente d = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
-        d = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-        ctrl.AltaCliente(d);
+        DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+        ctrl.AltaCliente(dCli);
+        dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+        ctrl.AltaCliente(dCli);
         }
         catch(NickRepetidoException | CorreoRepetidoException e)
         {}

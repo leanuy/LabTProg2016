@@ -33,10 +33,10 @@ public class AltaLista extends javax.swing.JInternalFrame {
         initComponents();
         
         particularRadio.setSelected(true);
-        List<String> a = ctrl.ListarClientes();
+        List<String> clientes = ctrl.ListarClientes();
         DefaultListModel<String> model = new DefaultListModel<>();
         clientlist.setModel(model);
-        for(String str : a) {
+        for(String str : clientes) {
             model.addElement(str);
         }
         
@@ -48,16 +48,16 @@ public class AltaLista extends javax.swing.JInternalFrame {
         cargarArbol(generoBase,raiz);
     }
 
-    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
-        int i = 0;
-        for(DataGenero d: g.getHijos()){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+        int idx = 0;
+        for(DataGenero d: dGenero.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
-            modeloTree.insertNodeInto(nodito,padre,i);
-            i++;
+            modeloTree.insertNodeInto(nodito,padre,idx);
+            idx++;
             cargarArbol(d,nodito);
         }
-        for (i = 0; i < ArbolGeneros.getRowCount(); i++) {
-            ArbolGeneros.expandRow(i);
+        for (idx = 0; idx < ArbolGeneros.getRowCount(); idx++) {
+            ArbolGeneros.expandRow(idx);
         }
     }
     
@@ -271,8 +271,8 @@ public class AltaLista extends javax.swing.JInternalFrame {
         if(particularRadio.isSelected()) {
             try {
                 String nomCli = clientlist.getSelectedValue();
-                DataParticular d = new DataParticular(nomCli, nombretxt.getText(),img);
-                ctrl.AltaListaParticular(d);
+                DataParticular dLista = new DataParticular(nomCli, nombretxt.getText(),img);
+                ctrl.AltaListaParticular(dLista);
                 JOptionPane.showMessageDialog(okDialog,
                     "Operación completada con éxito",
                     "OK",
@@ -289,8 +289,8 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 String nomGenero = "";
                 if (node != null)
                     nomGenero = (String)node.getUserObject();
-                DataDefecto d = new DataDefecto(nomGenero, nombretxt.getText(),img);
-                ctrl.AltaListaDefecto(d);
+                DataDefecto dLista = new DataDefecto(nomGenero, nombretxt.getText(),img);
+                ctrl.AltaListaDefecto(dLista);
                 JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);
                 this.dispose();
             }
@@ -304,18 +304,18 @@ public class AltaLista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_confirmbtnActionPerformed
 
     private void imgbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgbtnActionPerformed
-        JFileChooser fc = new JFileChooser();
-        this.getContentPane().add(fc);
-        fc.setVisible(true);
+        JFileChooser fChooser = new JFileChooser();
+        this.getContentPane().add(fChooser);
+        fChooser.setVisible(true);
         
-        int selected = fc.showDialog(this, "Seleccionar");
+        int selected = fChooser.showDialog(this, "Seleccionar");
         if (selected == JFileChooser.APPROVE_OPTION) {
-            File file = fc.getSelectedFile();
+            File file = fChooser.getSelectedFile();
             try {
                 String ext = getExtension(file);
                 if (!"jpg".equals(ext) && !"png".equals(ext)) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
-                    fc.setVisible(false);
+                    fChooser.setVisible(false);
                     return;
                 }
                 img = ImageIO.read(file);
@@ -327,7 +327,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
                         "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
-        fc.setVisible(false);   
+        fChooser.setVisible(false);   
     }//GEN-LAST:event_imgbtnActionPerformed
 
     private void particularRadioItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_particularRadioItemStateChanged
@@ -364,12 +364,12 @@ public class AltaLista extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup tipoListagroup;
     // End of variables declaration//GEN-END:variables
 
-    private String getExtension(File f) {
+    private String getExtension(File file) {
         String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
+        String nomArchivo = file.getName();
+        int idx = nomArchivo.lastIndexOf('.');
+        if (idx > 0 &&  idx < nomArchivo.length() - 1) {
+            ext = nomArchivo.substring(idx+1).toLowerCase();
         }
         return ext;
     }

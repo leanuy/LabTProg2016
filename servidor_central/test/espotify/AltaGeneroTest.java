@@ -37,12 +37,12 @@ public class AltaGeneroTest {
     public void test6ListarGeneros() {
         System.out.println("Listar Generos");
         DataGenero result = iAltaGenero.ListarGeneros();
-        ArrayList<DataGenero> a = new ArrayList<>();
-        a.add(new DataGenero("Hard Rock","Rock",new ArrayList<>()));
-        ArrayList<DataGenero> b = new ArrayList<>();
-        b.add(new DataGenero("Rock","Genero",a));
-        b.add(new DataGenero("Jazz","Genero",new ArrayList<>()));
-        DataGenero expResult = new DataGenero("Genero","",b);
+        ArrayList<DataGenero> generos1 = new ArrayList<>();
+        generos1.add(new DataGenero("Hard Rock","Rock",new ArrayList<>()));
+        ArrayList<DataGenero> generos2 = new ArrayList<>();
+        generos2.add(new DataGenero("Rock","Genero",generos1));
+        generos2.add(new DataGenero("Jazz","Genero",new ArrayList<>()));
+        DataGenero expResult = new DataGenero("Genero","",generos2);
         assertEquals(expResult, result);
     }
     
@@ -57,33 +57,33 @@ public class AltaGeneroTest {
     @Test
     public void test2AltaGenero() throws Exception {
         System.out.println("AltaGenero: Ingreso normal, padre nulo");
-        DataGenero d = new DataGenero("Rock", "");
+        DataGenero data = new DataGenero("Rock", "");
         IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
+        instance.AltaGenero(data);
     }
 
     @Test
     public void test3AltaGenero2() throws Exception {
         System.out.println("AltaGenero: Ingreso normal, padre existente");
-        DataGenero d = new DataGenero("Hard Rock", "Rock");
+        DataGenero data = new DataGenero("Hard Rock", "Rock");
         IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
+        instance.AltaGenero(data);
     }
 
     @Test (expected = GeneroInexistenteException.class)
     public void test4AltaGenero3() throws Exception {
         System.out.println("AltaGenero: Padre inexistente");
-        DataGenero d = new DataGenero("Cumbia Plancha", "Rombai");
+        DataGenero dGenero = new DataGenero("Cumbia Plancha", "Rombai");
         IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
+        instance.AltaGenero(dGenero);
     }
     
     @Test (expected = GeneroRepetidoException.class)
     public void test5AltaGenero4() throws Exception {
         System.out.println("AltaGenero: Género repetido");
-        DataGenero d = new DataGenero("Jazz", "");
+        DataGenero dGenero = new DataGenero("Jazz", "");
         IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.AltaGenero(d);
-        instance.AltaGenero(d);
+        instance.AltaGenero(dGenero);
+        instance.AltaGenero(dGenero);
     }
 }

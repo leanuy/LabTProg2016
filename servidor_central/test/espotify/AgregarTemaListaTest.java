@@ -44,14 +44,14 @@ public class AgregarTemaListaTest {
         iAltaGenero.AltaGenero(new DataGenero("Pop", ""));
         iAltaGenero.AltaGenero(new DataGenero("Jazz", ""));
         new AltaAlbumTest().testAltaAlbum();
-        IAltaPerfil cu = Fabrica.getIAltaPerfil();
-        cu.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
-        cu.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
-        DataParticular d = new DataParticular("TesterLista", "Mi Lista Publica", null);
+        IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
+        iPerfil.AltaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
+        iPerfil.AltaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
+        DataParticular data = new DataParticular("TesterLista", "Mi Lista Publica", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.AltaListaParticular(d);
-        IPublicarLista ip = Fabrica.getIPublicarLista();
-        ip.PublicarLista("Mi Lista Publica", "TesterLista");
+        instance.AltaListaParticular(data);
+        IPublicarLista iPublicar = Fabrica.getIPublicarLista();
+        iPublicar.PublicarLista("Mi Lista Publica", "TesterLista");
     }
     
     @Test

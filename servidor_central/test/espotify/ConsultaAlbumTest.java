@@ -40,8 +40,8 @@ public class ConsultaAlbumTest {
         IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
         iAltaGenero.AltaGenero(new DataGenero("Pop", ""));
         iAltaGenero.AltaGenero(new DataGenero("Jazz", ""));
-        AltaAlbumTest a = new AltaAlbumTest();
-        a.testAltaAlbum();
+        AltaAlbumTest albTest = new AltaAlbumTest();
+        albTest.testAltaAlbum();
     }
     
     @Test

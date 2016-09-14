@@ -27,8 +27,8 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
     public ConsultaArtista() {
         initComponents();
         IConsultaArtista interf = Fabrica.getIConsultaArtista();
-        List<String> a = interf.ListarArtistas();
-        for(String str : a) {
+        List<String> artistas = interf.ListarArtistas();
+        for(String str : artistas) {
             Select.addItem(str);
         }
     }
@@ -244,38 +244,38 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
     private void SelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectActionPerformed
         // TODO add your handling code here:
         String usr = String.valueOf(Select.getSelectedItem());
-        DataArtistaExt da;
+        DataArtistaExt dArt;
         try {
-            da = interf.ConsultaArtista(usr);
+            dArt = interf.ConsultaArtista(usr);
         } catch (ArtistaInexistenteException ex) {
             return;
         }
-        NombreText.setText(da.getNombre());
-        ApellidoText.setText(da.getApellido());
-        CorreoText.setText(da.getCorreo());
-        jTextArea1.setText(da.getBio());
-        URLText.setText(da.getUrl());
-        List<String> a = da.getSeguidores();
-        int k = a.size();
-        String[] array = new String[k];
+        NombreText.setText(dArt.getNombre());
+        ApellidoText.setText(dArt.getApellido());
+        CorreoText.setText(dArt.getCorreo());
+        jTextArea1.setText(dArt.getBio());
+        URLText.setText(dArt.getUrl());
+        List<String> seguidores = dArt.getSeguidores();
+        int cantSeguidores = seguidores.size();
+        String[] array = new String[cantSeguidores];
         int i=0;
-        for(String seguidor : a){
+        for(String seguidor : seguidores){
             array[i] = seguidor;
             i++;
         }
         SeguidoresList.setListData(array);
-        CantidadSeguidoresText.setText("Total: " + k);
-        Calendar fn = da.getfNac();
+        CantidadSeguidoresText.setText("Total: " + cantSeguidores);
+        Calendar fn = dArt.getfNac();
         String fecha = null;
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         if (fn != null){
             fecha = sdf.format(fn.getTime());
         }
         FechaText.setText(fecha);
-        String[] b = da.getAlbums();
+        String[] b = dArt.getAlbums();
         AlbumsList.clearSelection();
         AlbumsList.setListData(b);
-        BufferedImage imagen = da.getImg();
+        BufferedImage imagen = dArt.getImg();
         BufferedImage image;
         if(imagen !=null){
             image = getScaledImage(imagen,200,200);

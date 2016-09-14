@@ -18,7 +18,7 @@ public interface IAltaAlbum {
 
     public List<String> ListarArtistas();
 
-    public void AltaAlbum(DataAlbumExt d)
+    public void AltaAlbum(DataAlbumExt dAlbum)
             throws AlbumRepetidoException, GeneroInexistenteException,
             DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, CampoVacioException,

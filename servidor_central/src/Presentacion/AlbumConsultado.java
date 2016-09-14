@@ -250,9 +250,9 @@ public class AlbumConsultado extends javax.swing.JDialog {
             return;
         }
         if (temaElegido instanceof DataTemaWeb) {
-            JTextArea a = new JTextArea();
-            a.setText(((DataTemaWeb) temaElegido).getUrl());
-            JOptionPane.showMessageDialog(this, a,"Link a > " +  temaElegido.getNombre(), JOptionPane.INFORMATION_MESSAGE);
+            JTextArea area = new JTextArea();
+            area.setText(((DataTemaWeb) temaElegido).getUrl());
+            JOptionPane.showMessageDialog(this, area,"Link a > " +  temaElegido.getNombre(), JOptionPane.INFORMATION_MESSAGE);
         } else {
             JFileChooser fileChooser = new JFileChooser();  //en construccion
             fileChooser.setDialogTitle("Descargar Tema en...");   
@@ -291,9 +291,9 @@ public class AlbumConsultado extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_descargarTemaActionPerformed
     
-    private String obtenerNumerodeLista(String s){
-        int i = s.indexOf(" ");
-        String numero = s.substring(0, i);
+    private String obtenerNumerodeLista(String str){
+        int idx = str.indexOf(" ");
+        String numero = str.substring(0, idx);
         return numero;
     }
 

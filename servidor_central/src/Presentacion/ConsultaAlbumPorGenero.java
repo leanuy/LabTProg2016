@@ -52,12 +52,12 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         expandAllNodes(ArbolGeneros, 0, ArbolGeneros.getRowCount());
     }
     
-    private void cargarArbol(DataGenero g, DefaultMutableTreeNode padre){
-        int i = 0;
-        for(DataGenero d: g.getHijos()){
+    private void cargarArbol(DataGenero dGenero, DefaultMutableTreeNode padre){
+        int idx = 0;
+        for(DataGenero d: dGenero.getHijos()){
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
-            modeloTree.insertNodeInto(nodito,padre,i);
-            i++;
+            modeloTree.insertNodeInto(nodito,padre,idx);
+            idx++;
             cargarArbol(d,nodito);
         }
     
@@ -244,15 +244,15 @@ public class ConsultaAlbumPorGenero extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_ConsultarAlbumButtonActionPerformed
 
-    private String[] obtenerNumerodeLista(String s){
-        int i = s.indexOf(" ");
-        String numero = s.substring(0, i);
+    private String[] obtenerNumerodeLista(String str){
+        int idx = str.indexOf(" ");
+        String numero = str.substring(0, idx);
         String[] res = null;
-        for(String[] str: albumsIndex){
-            if(str[2].equals(numero)){
+        for(String[] datosAlbum: albumsIndex){
+            if(datosAlbum[2].equals(numero)){
                 res = new String[2];
-                res[0] = str[0];
-                res[1] = str[1];
+                res[0] = datosAlbum[0];
+                res[1] = datosAlbum[1];
                 break;
             }
         }

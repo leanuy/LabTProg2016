@@ -15,9 +15,9 @@ public interface IAltaLista {
 
     public DataGenero ListarGeneros();
 
-    public void AltaListaParticular(DataParticular d)
+    public void AltaListaParticular(DataParticular dLista)
             throws ListaRepetidaException, ClienteInexistenteException;
 
-    public void AltaListaDefecto(DataDefecto d)
+    public void AltaListaDefecto(DataDefecto dLista)
             throws ListaRepetidaException, GeneroInexistenteException;
 }

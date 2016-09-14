@@ -42,8 +42,8 @@ class Artista extends Usuario {
     }
     
     //otros métodos
-    static boolean ValidarDatosArtista(DataArtista d) {
-        return Usuario.ValidarDatosUsuario(d);
+    static boolean ValidarDatosArtista(DataArtista dArt) {
+        return Usuario.ValidarDatosUsuario(dArt);
     }
 
     DataArtistaExt getDataArtistaExt() {
@@ -55,9 +55,8 @@ class Artista extends Usuario {
             namef = cli.nick;
             segdores.add(namef);
         }
-        DataArtistaExt da = new DataArtistaExt(getNick(), getNombre(), getApellido(),
+        return new DataArtistaExt(getNick(), getNombre(), getApellido(),
                 getCorreo(), getFechaNac(), getImg(), bio, url, albums, segdores);
-        return da;
     }
     
     Album BuscarAlbum(String nombre) throws AlbumInexistenteException {
@@ -70,19 +69,19 @@ class Artista extends Usuario {
     
     List<String> ListarAlbumes() {
         List<String> listaAlbums = new ArrayList();
-        Iterator it = albums.entrySet().iterator();
-        Album actual;
-        while (it.hasNext()) {
-            Map.Entry pair = (Map.Entry)it.next();
-            actual = (Album) pair.getValue();
-            listaAlbums.add(actual.getNombre());
+        Iterator iterador = albums.entrySet().iterator();
+        Album albumActual;
+        while (iterador.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterador.next();
+            albumActual = (Album) pair.getValue();
+            listaAlbums.add(albumActual.getNombre());
         }
         return listaAlbums;
     }
     
-    Tema DevolverTema(DataTema dt) {
-        String album = dt.getAlbum();
-        String tema = dt.getNombre();
+    Tema DevolverTema(DataTema dTema) {
+        String album = dTema.getAlbum();
+        String tema = dTema.getNombre();
         Album alb = albums.get(album);
         return alb.devolverTema(tema);
     }

@@ -9,6 +9,6 @@ import java.util.ArrayList;
 public interface IAltaGenero {
     public DataGenero ListarGeneros();
 
-    public void AltaGenero(DataGenero d)
+    public void AltaGenero(DataGenero dGenero)
             throws GeneroInexistenteException, GeneroRepetidoException;
 }

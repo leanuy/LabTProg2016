@@ -19,7 +19,7 @@ public interface IAgregarTemaLista {
 
     public List<String> ListarListasDefecto();
 
-    public List<String> ListarAlbumesDeArtista(String na) throws ArtistaInexistenteException;
+    public List<String> ListarAlbumesDeArtista(String nomArtista) throws ArtistaInexistenteException;
 
     public List<String> ListarListasDefecto2();
 
@@ -31,7 +31,7 @@ public interface IAgregarTemaLista {
 
     public List<DataTema> ListarTemasLista(String nombre) throws ClienteInexistenteException, ListaInexistenteException;
 
-    public List<DataTema> ListarTemasLista2(String cl, String l) throws Exception;
+    public List<DataTema> ListarTemasLista2(String nickCliente, String nomLista) throws Exception;
 
     public void AgregarTemaLista(DataTema tema, String lista)throws Exception;
 }

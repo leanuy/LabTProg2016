@@ -36,20 +36,20 @@ public class Album implements Favoriteable {
     
     List<DataTema> getDataTemas() {
         ArrayList<DataTema> salida = new ArrayList<>();
-        DataTema dt;
+        DataTema dTema;
         for (Tema t : temas) {
-            dt = t.getData();
-            salida.add(dt);
+            dTema = t.getData();
+            salida.add(dTema);
         }
         return salida;
     }
     
     DataAlbumExt getDataExt() {
         List<DataTema> dataTemas = new ArrayList();
-        Iterator<Tema> it = temas.iterator();
+        Iterator<Tema> iterador = temas.iterator();
         Tema temaActual;
-        while (it.hasNext()) {
-            temaActual = it.next();
+        while (iterador.hasNext()) {
+            temaActual = iterador.next();
             dataTemas.add(temaActual.getData());
         }
         Iterator itg = generos.entrySet().iterator();
@@ -75,34 +75,34 @@ public class Album implements Favoriteable {
         List<String> nombresTemas = new ArrayList<>();
 
         for (int i = 0; i < largo; i++) {
-            DataTema dt = data_temas.get(i);
+            DataTema dTema = data_temas.get(i);
 
             //Validar Duracion
-            if (dt.getDuracion() <= 0) {
-                throw new DuracionInvalidaException("El tema " + dt.getNombre() + " tiene una duración no válida.");
+            if (dTema.getDuracion() <= 0) {
+                throw new DuracionInvalidaException("El tema " + dTema.getNombre() + " tiene una duración no válida.");
             }
             //Validar orden: validar que no haya otro tema con ese mismo numero de orden
             //Si el num es mayor a la cantidad de temas tambien tira una exepcion
             // ya que de seguro el orden no es correcto.
-            if ((dt.getNum() <= 0) || (dt.getNum() > largo)) {
-                throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
-            } else if (orden[dt.getNum() - 1] == true) {
-                throw new NumeroTemaInvalidoException("El tema " + dt.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");
+            if ((dTema.getNum() <= 0) || (dTema.getNum() > largo)) {
+                throw new NumeroTemaInvalidoException("El tema " + dTema.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
+            } else if (orden[dTema.getNum() - 1] == true) {
+                throw new NumeroTemaInvalidoException("El tema " + dTema.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");
             } else {
-                orden[dt.getNum() - 1] = true;
+                orden[dTema.getNum() - 1] = true;
                 //Si el numero de orden es correcto lo marco como en uso.
             }
             //Validar unicidad de nombres
-            if (nombresTemas.contains(dt.getNombre())) {
-                throw new TemaRepetidoException("Intenta ingresar mas de un tema con el nombre " + dt.getNombre() + ". Cada tema debe tener un nombre único en el álbum.");
+            if (nombresTemas.contains(dTema.getNombre())) {
+                throw new TemaRepetidoException("Intenta ingresar mas de un tema con el nombre " + dTema.getNombre() + ". Cada tema debe tener un nombre único en el álbum.");
             } else {
-                nombresTemas.add(dt.getNombre());
+                nombresTemas.add(dTema.getNombre());
             }
             //Si el tema paso todas las validaciones
-            if (dt instanceof DataTemaArchivo) {
-                listaTemas.add(new TemaArchivo((DataTemaArchivo) dt, this));
-            } else if (dt instanceof DataTemaWeb) {
-                listaTemas.add(new TemaWeb((DataTemaWeb) dt, this));
+            if (dTema instanceof DataTemaArchivo) {
+                listaTemas.add(new TemaArchivo((DataTemaArchivo) dTema, this));
+            } else if (dTema instanceof DataTemaWeb) {
+                listaTemas.add(new TemaWeb((DataTemaWeb) dTema, this));
             } else {
                 throw new TemaTipoInvalidoException();
             }
@@ -110,15 +110,15 @@ public class Album implements Favoriteable {
         return listaTemas;
     }
     //constructores
-    Album(DataAlbumExt dt, Artista artista, Map<String, Genero> generos)
+    Album(DataAlbumExt dAlbum, Artista artista, Map<String, Genero> generos)
             throws DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, TemaTipoInvalidoException {
-        this.nombre = dt.getNombre();
-        this.anio = dt.getAnio();
-        this.img = dt.getImg();
+        this.nombre = dAlbum.getNombre();
+        this.anio = dAlbum.getAnio();
+        this.img = dAlbum.getImg();
         this.artista = artista;
         this.generos = generos;
-        this.temas = this.ValidarTemas(dt.getTemas());
+        this.temas = this.ValidarTemas(dAlbum.getTemas());
     }
 
     Tema devolverTema(String nombretema) {

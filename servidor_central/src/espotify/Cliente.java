@@ -62,22 +62,22 @@ class Cliente extends Usuario {
         return dc;
     }
     
-    void Seguir(Usuario u) throws AutoSeguirseException, SeguidoRepetidoException {
-        if (this.equals(u)) {
+    void Seguir(Usuario usuario) throws AutoSeguirseException, SeguidoRepetidoException {
+        if (this.equals(usuario)) {
             throw new AutoSeguirseException();
         }
-        String clave = u.getNick();
-        Usuario u2 = this.seguidos.get(clave);
-        if (u2 != null) {
+        String clave = usuario.getNick();
+        Usuario seguido = this.seguidos.get(clave);
+        if (seguido != null) {
             throw new SeguidoRepetidoException();
         }
-        this.seguidos.put(clave, u);
+        this.seguidos.put(clave, usuario);
     }
     
-    void DejarDeSeguir(Usuario u) throws SeguidoInexistenteException {
-        String clave = u.getNick();
-        Usuario u2 = this.seguidos.get(clave);
-        if (u2 == null) {
+    void DejarDeSeguir(Usuario usuario) throws SeguidoInexistenteException {
+        String clave = usuario.getNick();
+        Usuario seguido = this.seguidos.get(clave);
+        if (seguido == null) {
             throw new SeguidoInexistenteException();
         }
         this.seguidos.remove(clave);
@@ -125,9 +125,9 @@ class Cliente extends Usuario {
         return BuscarLista(nombre).ListarTemas();
     }
     
-    void AltaLista(DataParticular d) throws ListaRepetidaException {
-        if (ValidarNombreLista(d.getNombre())) {
-            listas.put(d.getNombre(), new Privada(d));
+    void AltaLista(DataParticular dLista) throws ListaRepetidaException {
+        if (ValidarNombreLista(dLista.getNombre())) {
+            listas.put(dLista.getNombre(), new Privada(dLista));
         } else {
             throw new ListaRepetidaException();
         }
@@ -154,9 +154,9 @@ class Cliente extends Usuario {
         }
     }
 
-    void Favoritear(Favoriteable f) throws FavoritoRepetidoException {
-        if (!favoritos.contains(f)) {
-            favoritos.add(f);
+    void Favoritear(Favoriteable fav) throws FavoritoRepetidoException {
+        if (!favoritos.contains(fav)) {
+            favoritos.add(fav);
         } else {
             throw new FavoritoRepetidoException();
         }
@@ -171,20 +171,20 @@ class Cliente extends Usuario {
         }
     }
 
-    void DesFavoritear(Favoriteable f) throws FavoritoRepetidoException {
-        if (favoritos.contains(f)) {
-            favoritos.remove(f);
+    void DesFavoritear(Favoriteable fav) throws FavoritoRepetidoException {
+        if (favoritos.contains(fav)) {
+            favoritos.remove(fav);
         } else {
             throw new FavoritoRepetidoException();
         }
     }
     
-    void AgregarTemaLista(Tema t, String lis) throws Exception {
+    void AgregarTemaLista(Tema tema, String lis) throws Exception {
         Lista lista = listas.get(lis);
         if (lista == null) {
             throw new Exception("La lista que tiene que existir no se encontro");
         }
-        lista.AgregarTema(t);
+        lista.AgregarTema(tema);
     }
 
     boolean SigueA(String nomSeguido) {
