@@ -6,7 +6,7 @@
 
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
-<%@attribute name="user" type="espotify.Datatypes.DataUsuario"%>
+<%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
 
 <div class="menu-izquierda col-lg-2 col-md-2 hidden-sm hidden-xs">
     <div class="row">
