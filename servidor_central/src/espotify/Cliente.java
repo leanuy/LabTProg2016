@@ -3,17 +3,22 @@ package espotify;
 import espotify.datatypes.DataClienteExt;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
+import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.FavoritoRepetidoException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
+import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
+import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.YaPublicaException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,12 +27,16 @@ class Cliente extends Usuario {
     private final Map<String,Usuario> seguidos;
     private final Map<String,Particular> listas;
     private final List<Favoriteable> favoritos;
+    private final Map<Calendar,Suscripcion> suscripciones; //por fechaCreacion
+    private Suscripcion suscripcionActiva;
     
     Cliente(DataUsuario data) {
         super(data);
         this.seguidos = new HashMap<>();
         this.listas = new HashMap<>();
         this.favoritos = new ArrayList<>();
+        this.suscripciones = new HashMap<>();
+        this.suscripcionActiva = null;
     }
     
     DataClienteExt getDataClienteExt() {
@@ -188,6 +197,42 @@ class Cliente extends Usuario {
 
     boolean sigueA(String nomSeguido) {
         return seguidos.containsKey(nomSeguido);
+    }
+
+    DataSuscripcion getSuscripcionActiva() throws NoHaySuscripcionException {
+        if (suscripcionActiva == null) {
+            throw new NoHaySuscripcionException();
+        } else {
+            return suscripcionActiva.getData();
+        }
+    }
+
+    void aprobarSuscripcion() throws NoHaySuscripcionException,
+            TransicionSuscripcionInvalidaException {
+        if (suscripcionActiva == null) {
+            throw new NoHaySuscripcionException();
+        } else {
+            suscripcionActiva.aprobar();
+        }
+    }
+
+    void cancelarSuscripcion() throws NoHaySuscripcionException,
+            TransicionSuscripcionInvalidaException {
+        if (suscripcionActiva == null) {
+            throw new NoHaySuscripcionException();
+        } else {
+            suscripcionActiva.cancelar();
+        }
+    }
+    
+    //para servidor web, probablemente sea algo asi.
+    void contratar(TipoSuscripcion tipo) throws TransicionSuscripcionInvalidaException {
+        if (suscripcionActiva == null || !suscripcionActiva.estaVigente()) {
+            suscripcionActiva = new Suscripcion(tipo);
+            suscripciones.put(suscripcionActiva.getFechaCreacion(),suscripcionActiva);
+        } else {
+            throw new TransicionSuscripcionInvalidaException();
+        }
     }
 
 }
