@@ -1,6 +1,6 @@
 package espotify;
 
-import espotify.Datatypes.DataParticular;
+import espotify.datatypes.DataParticular;
 
 class Privada extends Particular {
 

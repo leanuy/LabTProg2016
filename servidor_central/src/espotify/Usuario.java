@@ -1,7 +1,7 @@
 package espotify;
 
-import espotify.Datatypes.DataUsuario;
-import espotify.Excepciones.SeguidoRepetidoException;
+import espotify.datatypes.DataUsuario;
+import espotify.excepciones.SeguidoRepetidoException;
 
 import java.awt.image.BufferedImage;
 import java.util.Calendar;

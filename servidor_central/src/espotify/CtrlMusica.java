@@ -1,20 +1,20 @@
 package espotify;
 
-import espotify.Datatypes.DataAlbumExt;
-import espotify.Datatypes.DataGenero;
-import espotify.Excepciones.AlbumInexistenteException;
-import espotify.Excepciones.AlbumRepetidoException;
-import espotify.Excepciones.ArtistaInexistenteException;
-import espotify.Excepciones.CampoVacioException;
-import espotify.Excepciones.DuracionInvalidaException;
-import espotify.Excepciones.GeneroInexistenteException;
-import espotify.Excepciones.GeneroRepetidoException;
-import espotify.Excepciones.NumeroTemaInvalidoException;
-import espotify.Excepciones.TemaRepetidoException;
-import espotify.Excepciones.TemaTipoInvalidoException;
-import espotify.Interfaces.IAltaAlbum;
-import espotify.Interfaces.IAltaGenero;
-import espotify.Interfaces.IConsultaAlbum;
+import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataGenero;
+import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.AlbumRepetidoException;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CampoVacioException;
+import espotify.excepciones.DuracionInvalidaException;
+import espotify.excepciones.GeneroInexistenteException;
+import espotify.excepciones.GeneroRepetidoException;
+import espotify.excepciones.NumeroTemaInvalidoException;
+import espotify.excepciones.TemaRepetidoException;
+import espotify.excepciones.TemaTipoInvalidoException;
+import espotify.interfaces.IAltaAlbum;
+import espotify.interfaces.IAltaGenero;
+import espotify.interfaces.IConsultaAlbum;
 
 import java.util.List;
 import java.util.HashMap;

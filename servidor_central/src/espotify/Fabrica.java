@@ -1,20 +1,20 @@
 package espotify;
 
-import espotify.Interfaces.IAgregarTemaLista;
-import espotify.Interfaces.IAltaAlbum;
-import espotify.Interfaces.IAltaGenero;
-import espotify.Interfaces.IAltaLista;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IAltaSeguir;
-import espotify.Interfaces.IConsultaAlbum;
-import espotify.Interfaces.IConsultaArtista;
-import espotify.Interfaces.IConsultaCliente;
-import espotify.Interfaces.IConsultaLista;
-import espotify.Interfaces.IDejarDeSeguir;
-import espotify.Interfaces.IDesFavoritear;
-import espotify.Interfaces.IFavoritear;
-import espotify.Interfaces.IPublicarLista;
-import espotify.Interfaces.IQuitarTemaLista;
+import espotify.interfaces.IAgregarTemaLista;
+import espotify.interfaces.IAltaAlbum;
+import espotify.interfaces.IAltaGenero;
+import espotify.interfaces.IAltaLista;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IAltaSeguir;
+import espotify.interfaces.IConsultaAlbum;
+import espotify.interfaces.IConsultaArtista;
+import espotify.interfaces.IConsultaCliente;
+import espotify.interfaces.IConsultaLista;
+import espotify.interfaces.IDejarDeSeguir;
+import espotify.interfaces.IDesFavoritear;
+import espotify.interfaces.IFavoritear;
+import espotify.interfaces.IPublicarLista;
+import espotify.interfaces.IQuitarTemaLista;
 
 public class Fabrica {
     private Fabrica() {

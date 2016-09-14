@@ -2,19 +2,19 @@ package espotify;
 
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataCliente;
-import espotify.Datatypes.DataGenero;
-import espotify.Datatypes.DataParticular;
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaWeb;
-import espotify.Excepciones.ArtistaInexistenteException;
-import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Excepciones.ListaInexistenteException;
-import espotify.Interfaces.IAgregarTemaLista;
-import espotify.Interfaces.IAltaGenero;
-import espotify.Interfaces.IAltaLista;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IPublicarLista;
+import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataGenero;
+import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaWeb;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.IAgregarTemaLista;
+import espotify.interfaces.IAltaGenero;
+import espotify.interfaces.IAltaLista;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IPublicarLista;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;

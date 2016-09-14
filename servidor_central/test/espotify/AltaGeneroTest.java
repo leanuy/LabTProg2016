@@ -2,13 +2,13 @@ package espotify;
 
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataGenero;
-import espotify.Excepciones.CorreoRepetidoException;
-import espotify.Excepciones.FormatoIncorrectoException;
-import espotify.Excepciones.GeneroInexistenteException;
-import espotify.Excepciones.GeneroRepetidoException;
-import espotify.Excepciones.NickRepetidoException;
-import espotify.Interfaces.IAltaGenero;
+import espotify.datatypes.DataGenero;
+import espotify.excepciones.CorreoRepetidoException;
+import espotify.excepciones.FormatoIncorrectoException;
+import espotify.excepciones.GeneroInexistenteException;
+import espotify.excepciones.GeneroRepetidoException;
+import espotify.excepciones.NickRepetidoException;
+import espotify.interfaces.IAltaGenero;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;

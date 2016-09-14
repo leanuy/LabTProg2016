@@ -1,13 +1,13 @@
 package espotify;
 
-import espotify.Datatypes.DataCliente;
-import espotify.Datatypes.DataDefecto;
-import espotify.Datatypes.DataParticular;
-import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Excepciones.FavoritoRepetidoException;
-import espotify.Excepciones.ListaInexistenteException;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IFavoritear;
+import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataDefecto;
+import espotify.datatypes.DataParticular;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.FavoritoRepetidoException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IFavoritear;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;

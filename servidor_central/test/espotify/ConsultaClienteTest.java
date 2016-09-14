@@ -2,11 +2,11 @@ package espotify;
 
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataCliente;
-import espotify.Datatypes.DataClienteExt;
-import espotify.Excepciones.ClienteInexistenteException;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IConsultaCliente;
+import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataClienteExt;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IConsultaCliente;
 
 import org.junit.Test;
 

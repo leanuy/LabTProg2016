@@ -1,7 +1,7 @@
 package espotify;
 
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaArchivo;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
 
 import java.io.File;
 

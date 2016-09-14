@@ -1,6 +1,6 @@
 package espotify;
 
-import espotify.Datatypes.DataTema;
+import espotify.datatypes.DataTema;
 
 class Tema implements Favoriteable {
     private final String nombre;

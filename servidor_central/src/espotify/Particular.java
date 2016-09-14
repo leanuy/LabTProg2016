@@ -1,7 +1,7 @@
 package espotify;
 
-import espotify.Datatypes.DataLista;
-import espotify.Excepciones.YaPublicaException;
+import espotify.datatypes.DataLista;
+import espotify.excepciones.YaPublicaException;
 
 import java.awt.image.BufferedImage;
 

@@ -1,11 +1,11 @@
 package espotify;
 
-import espotify.Datatypes.DataCliente;
-import espotify.Excepciones.SeguidoInexistenteException;
-import espotify.Excepciones.SeguidorInexistenteException;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IAltaSeguir;
-import espotify.Interfaces.IDejarDeSeguir;
+import espotify.datatypes.DataCliente;
+import espotify.excepciones.SeguidoInexistenteException;
+import espotify.excepciones.SeguidorInexistenteException;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IAltaSeguir;
+import espotify.interfaces.IDejarDeSeguir;
 
 import org.junit.BeforeClass;
 import org.junit.Test;

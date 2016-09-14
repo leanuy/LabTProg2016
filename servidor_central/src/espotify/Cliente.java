@@ -1,17 +1,17 @@
 package espotify;
 
-import espotify.Datatypes.DataClienteExt;
-import espotify.Datatypes.DataLista;
-import espotify.Datatypes.DataParticular;
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataUsuario;
-import espotify.Excepciones.AutoSeguirseException;
-import espotify.Excepciones.FavoritoRepetidoException;
-import espotify.Excepciones.ListaInexistenteException;
-import espotify.Excepciones.ListaRepetidaException;
-import espotify.Excepciones.SeguidoInexistenteException;
-import espotify.Excepciones.SeguidoRepetidoException;
-import espotify.Excepciones.YaPublicaException;
+import espotify.datatypes.DataClienteExt;
+import espotify.datatypes.DataLista;
+import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataUsuario;
+import espotify.excepciones.AutoSeguirseException;
+import espotify.excepciones.FavoritoRepetidoException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.excepciones.ListaRepetidaException;
+import espotify.excepciones.SeguidoInexistenteException;
+import espotify.excepciones.SeguidoRepetidoException;
+import espotify.excepciones.YaPublicaException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

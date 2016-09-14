@@ -1,8 +1,8 @@
 package espotify;
 
-import espotify.Datatypes.DataLista;
-import espotify.Datatypes.DataTema;
-import espotify.Excepciones.TemaRepetidoException;
+import espotify.datatypes.DataLista;
+import espotify.datatypes.DataTema;
+import espotify.excepciones.TemaRepetidoException;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;

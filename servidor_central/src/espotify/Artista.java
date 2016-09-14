@@ -1,10 +1,10 @@
 package espotify;
 
-import espotify.Datatypes.DataAlbumExt;
-import espotify.Datatypes.DataArtista;
-import espotify.Datatypes.DataArtistaExt;
-import espotify.Datatypes.DataTema;
-import espotify.Excepciones.AlbumInexistenteException;
+import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataArtista;
+import espotify.datatypes.DataArtistaExt;
+import espotify.datatypes.DataTema;
+import espotify.excepciones.AlbumInexistenteException;
 
 import java.util.ArrayList;
 import java.util.HashMap;

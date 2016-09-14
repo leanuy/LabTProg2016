@@ -3,17 +3,17 @@ package espotify;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataAlbumExt;
-import espotify.Datatypes.DataGenero;
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaArchivo;
-import espotify.Datatypes.DataTemaWeb;
-import espotify.Excepciones.AlbumInexistenteException;
-import espotify.Excepciones.ArtistaInexistenteException;
-import espotify.Excepciones.GeneroInexistenteException;
-import espotify.Interfaces.IAltaAlbum;
-import espotify.Interfaces.IAltaGenero;
-import espotify.Interfaces.IConsultaAlbum;
+import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataGenero;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
+import espotify.datatypes.DataTemaWeb;
+import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.GeneroInexistenteException;
+import espotify.interfaces.IAltaAlbum;
+import espotify.interfaces.IAltaGenero;
+import espotify.interfaces.IConsultaAlbum;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;

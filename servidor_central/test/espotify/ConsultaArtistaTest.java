@@ -3,14 +3,14 @@ package espotify;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
-import espotify.Datatypes.DataArtista;
-import espotify.Datatypes.DataArtistaExt;
-import espotify.Excepciones.ArtistaInexistenteException;
-import espotify.Excepciones.CorreoRepetidoException;
-import espotify.Excepciones.FormatoIncorrectoException;
-import espotify.Excepciones.NickRepetidoException;
-import espotify.Interfaces.IAltaPerfil;
-import espotify.Interfaces.IConsultaArtista;
+import espotify.datatypes.DataArtista;
+import espotify.datatypes.DataArtistaExt;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CorreoRepetidoException;
+import espotify.excepciones.FormatoIncorrectoException;
+import espotify.excepciones.NickRepetidoException;
+import espotify.interfaces.IAltaPerfil;
+import espotify.interfaces.IConsultaArtista;
 
 import org.junit.Test;
 

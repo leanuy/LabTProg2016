@@ -1,11 +1,11 @@
 package espotify;
 
-import espotify.Datatypes.DataArtista;
-import espotify.Datatypes.DataCliente;
-import espotify.Excepciones.CorreoRepetidoException;
-import espotify.Excepciones.FormatoIncorrectoException;
-import espotify.Excepciones.NickRepetidoException;
-import espotify.Interfaces.IAltaPerfil;
+import espotify.datatypes.DataArtista;
+import espotify.datatypes.DataCliente;
+import espotify.excepciones.CorreoRepetidoException;
+import espotify.excepciones.FormatoIncorrectoException;
+import espotify.excepciones.NickRepetidoException;
+import espotify.interfaces.IAltaPerfil;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;

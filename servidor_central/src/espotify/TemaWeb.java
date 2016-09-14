@@ -1,7 +1,7 @@
 package espotify;
 
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaWeb;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaWeb;
 
 class TemaWeb extends Tema {
     private final String url;

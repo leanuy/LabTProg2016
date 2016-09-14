@@ -1,6 +1,6 @@
 package espotify;
 
-import espotify.Datatypes.DataGenero;
+import espotify.datatypes.DataGenero;
 
 import java.util.ArrayList;
 import java.util.Arrays;

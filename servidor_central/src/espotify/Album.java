@@ -1,13 +1,13 @@
 package espotify;
 
-import espotify.Datatypes.DataAlbumExt;
-import espotify.Datatypes.DataTema;
-import espotify.Datatypes.DataTemaArchivo;
-import espotify.Datatypes.DataTemaWeb;
-import espotify.Excepciones.DuracionInvalidaException;
-import espotify.Excepciones.NumeroTemaInvalidoException;
-import espotify.Excepciones.TemaRepetidoException;
-import espotify.Excepciones.TemaTipoInvalidoException;
+import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
+import espotify.datatypes.DataTemaWeb;
+import espotify.excepciones.DuracionInvalidaException;
+import espotify.excepciones.NumeroTemaInvalidoException;
+import espotify.excepciones.TemaRepetidoException;
+import espotify.excepciones.TemaTipoInvalidoException;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
