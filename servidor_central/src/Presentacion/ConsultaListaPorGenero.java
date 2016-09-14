@@ -164,8 +164,9 @@ public class ConsultaListaPorGenero extends javax.swing.JInternalFrame {
     private void ArbolGenerosValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_ArbolGenerosValueChanged
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
         String nomGenero = "";
-        if (node != null)
+        if (node != null) {
             nomGenero = (String)node.getUserObject();
+        }
         listascmb.removeAllItems();
         List<String> listas = interf.listarListasDeGenero(nomGenero);
         for(String str : listas) {

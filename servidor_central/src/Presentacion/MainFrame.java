@@ -76,29 +76,29 @@ public class MainFrame extends javax.swing.JFrame {
         AltaPerfil_bio_container = new javax.swing.JScrollPane();
         AltaPerfil_bio_input = new javax.swing.JTextArea();
         MainPanel = new javax.swing.JPanel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        SesionDropDown = new javax.swing.JMenu();
+        menuPrincipal = new javax.swing.JMenuBar();
+        sesionDropDown = new javax.swing.JMenu();
         cerrarOption = new javax.swing.JMenuItem();
-        AltasDropDown = new javax.swing.JMenu();
-        AltaPerfil = new javax.swing.JMenuItem();
-        AltaGeneroMItem = new javax.swing.JMenuItem();
-        AltaAlbum = new javax.swing.JMenuItem();
-        AltaLista = new javax.swing.JMenuItem();
-        ConsultasDropDown = new javax.swing.JMenu();
-        ConsultaClienteMitem = new javax.swing.JMenuItem();
-        ConsultaArtistaMItem = new javax.swing.JMenuItem();
-        ConsultaAlbumMenuItem = new javax.swing.JMenuItem();
-        ConsultaListaMenuItem = new javax.swing.JMenuItem();
-        SocialMenu = new javax.swing.JMenu();
-        SeguirMItem = new javax.swing.JMenuItem();
-        DejarSeguirMItem = new javax.swing.JMenuItem();
+        altasDropDown = new javax.swing.JMenu();
+        altaPerfil = new javax.swing.JMenuItem();
+        altaGeneroMenuItem = new javax.swing.JMenuItem();
+        altaAlbum = new javax.swing.JMenuItem();
+        altaLista = new javax.swing.JMenuItem();
+        consultasDropDown = new javax.swing.JMenu();
+        consultaClienteMenuItem = new javax.swing.JMenuItem();
+        consultaArtistaMenuItem = new javax.swing.JMenuItem();
+        consultaAlbumMenuItem = new javax.swing.JMenuItem();
+        consultaListaMenuItem = new javax.swing.JMenuItem();
+        socialMenu = new javax.swing.JMenu();
+        seguirMenuItem = new javax.swing.JMenuItem();
+        dejarSeguirMenuItem = new javax.swing.JMenuItem();
         favoritearMItem = new javax.swing.JMenuItem();
         desfavoritearMItem = new javax.swing.JMenuItem();
-        ListasMenu = new javax.swing.JMenu();
-        PublicarListaMItem = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        QuitarTemaLista = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        listasMenu = new javax.swing.JMenu();
+        publicarListaMenuItem = new javax.swing.JMenuItem();
+        agregarTemaListaMenuItem = new javax.swing.JMenuItem();
+        quitarTemaLista = new javax.swing.JMenuItem();
+        menuDatos = new javax.swing.JMenu();
         cargarDatosDePrueba = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
@@ -244,7 +244,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         getContentPane().add(MainPanel);
 
-        SesionDropDown.setText("Sesion");
+        sesionDropDown.setText("Sesion");
 
         cerrarOption.setText("Cerrar");
         cerrarOption.addActionListener(new java.awt.event.ActionListener() {
@@ -252,103 +252,103 @@ public class MainFrame extends javax.swing.JFrame {
                 cerrarOptionActionPerformed(evt);
             }
         });
-        SesionDropDown.add(cerrarOption);
+        sesionDropDown.add(cerrarOption);
 
-        jMenuBar1.add(SesionDropDown);
+        menuPrincipal.add(sesionDropDown);
 
-        AltasDropDown.setText("Altas");
+        altasDropDown.setText("Altas");
 
-        AltaPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-        AltaPerfil.setText("Alta Perfil");
-        AltaPerfil.addActionListener(new java.awt.event.ActionListener() {
+        altaPerfil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        altaPerfil.setText("Alta Perfil");
+        altaPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AltaPerfilActionPerformed(evt);
+                altaPerfilActionPerformed(evt);
             }
         });
-        AltasDropDown.add(AltaPerfil);
+        altasDropDown.add(altaPerfil);
 
-        AltaGeneroMItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
-        AltaGeneroMItem.setText("Alta Género");
-        AltaGeneroMItem.addActionListener(new java.awt.event.ActionListener() {
+        altaGeneroMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_MASK));
+        altaGeneroMenuItem.setText("Alta Género");
+        altaGeneroMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AltaGeneroMItemActionPerformed(evt);
+                altaGeneroMenuItemActionPerformed(evt);
             }
         });
-        AltasDropDown.add(AltaGeneroMItem);
+        altasDropDown.add(altaGeneroMenuItem);
 
-        AltaAlbum.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        AltaAlbum.setText("Alta Album");
-        AltaAlbum.addActionListener(new java.awt.event.ActionListener() {
+        altaAlbum.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
+        altaAlbum.setText("Alta Album");
+        altaAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AltaAlbumActionPerformed(evt);
+                altaAlbumActionPerformed(evt);
             }
         });
-        AltasDropDown.add(AltaAlbum);
+        altasDropDown.add(altaAlbum);
 
-        AltaLista.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        AltaLista.setText("Alta Lista");
-        AltaLista.addActionListener(new java.awt.event.ActionListener() {
+        altaLista.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
+        altaLista.setText("Alta Lista");
+        altaLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AltaListaActionPerformed(evt);
+                altaListaActionPerformed(evt);
             }
         });
-        AltasDropDown.add(AltaLista);
+        altasDropDown.add(altaLista);
 
-        jMenuBar1.add(AltasDropDown);
+        menuPrincipal.add(altasDropDown);
 
-        ConsultasDropDown.setText("Consultas");
+        consultasDropDown.setText("Consultas");
 
-        ConsultaClienteMitem.setText("Consulta perfil Cliente");
-        ConsultaClienteMitem.addActionListener(new java.awt.event.ActionListener() {
+        consultaClienteMenuItem.setText("Consulta perfil Cliente");
+        consultaClienteMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaClienteMitemActionPerformed(evt);
+                consultaClienteMenuItemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaClienteMitem);
+        consultasDropDown.add(consultaClienteMenuItem);
 
-        ConsultaArtistaMItem.setText("Consulta perfil Artista");
-        ConsultaArtistaMItem.addActionListener(new java.awt.event.ActionListener() {
+        consultaArtistaMenuItem.setText("Consulta perfil Artista");
+        consultaArtistaMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaArtistaMItemActionPerformed(evt);
+                consultaArtistaMenuItemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaArtistaMItem);
+        consultasDropDown.add(consultaArtistaMenuItem);
 
-        ConsultaAlbumMenuItem.setText("Consulta Album");
-        ConsultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        consultaAlbumMenuItem.setText("Consulta Album");
+        consultaAlbumMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaAlbumMenuItemActionPerformed(evt);
+                consultaAlbumMenuItemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaAlbumMenuItem);
+        consultasDropDown.add(consultaAlbumMenuItem);
 
-        ConsultaListaMenuItem.setText("Consulta Lista");
-        ConsultaListaMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        consultaListaMenuItem.setText("Consulta Lista");
+        consultaListaMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ConsultaListaMenuItemActionPerformed(evt);
+                consultaListaMenuItemActionPerformed(evt);
             }
         });
-        ConsultasDropDown.add(ConsultaListaMenuItem);
+        consultasDropDown.add(consultaListaMenuItem);
 
-        jMenuBar1.add(ConsultasDropDown);
+        menuPrincipal.add(consultasDropDown);
 
-        SocialMenu.setText("Social");
+        socialMenu.setText("Social");
 
-        SeguirMItem.setText("Seguir Usuario");
-        SeguirMItem.addActionListener(new java.awt.event.ActionListener() {
+        seguirMenuItem.setText("Seguir Usuario");
+        seguirMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeguirMItemActionPerformed(evt);
+                seguirMenuItemActionPerformed(evt);
             }
         });
-        SocialMenu.add(SeguirMItem);
+        socialMenu.add(seguirMenuItem);
 
-        DejarSeguirMItem.setText("Dejar de Seguir Usuario");
-        DejarSeguirMItem.addActionListener(new java.awt.event.ActionListener() {
+        dejarSeguirMenuItem.setText("Dejar de Seguir Usuario");
+        dejarSeguirMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DejarSeguirMItemActionPerformed(evt);
+                dejarSeguirMenuItemActionPerformed(evt);
             }
         });
-        SocialMenu.add(DejarSeguirMItem);
+        socialMenu.add(dejarSeguirMenuItem);
 
         favoritearMItem.setText("Agregar a Favoritos");
         favoritearMItem.addActionListener(new java.awt.event.ActionListener() {
@@ -356,7 +356,7 @@ public class MainFrame extends javax.swing.JFrame {
                 favoritearMItemActionPerformed(evt);
             }
         });
-        SocialMenu.add(favoritearMItem);
+        socialMenu.add(favoritearMItem);
 
         desfavoritearMItem.setText("Quitar de Favoritos");
         desfavoritearMItem.addActionListener(new java.awt.event.ActionListener() {
@@ -364,39 +364,39 @@ public class MainFrame extends javax.swing.JFrame {
                 desfavoritearMItemActionPerformed(evt);
             }
         });
-        SocialMenu.add(desfavoritearMItem);
+        socialMenu.add(desfavoritearMItem);
 
-        jMenuBar1.add(SocialMenu);
+        menuPrincipal.add(socialMenu);
 
-        ListasMenu.setText("Listas");
+        listasMenu.setText("Listas");
 
-        PublicarListaMItem.setText("Publicar Lista");
-        PublicarListaMItem.addActionListener(new java.awt.event.ActionListener() {
+        publicarListaMenuItem.setText("Publicar Lista");
+        publicarListaMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PublicarListaMItemActionPerformed(evt);
+                publicarListaMenuItemActionPerformed(evt);
             }
         });
-        ListasMenu.add(PublicarListaMItem);
+        listasMenu.add(publicarListaMenuItem);
 
-        jMenuItem1.setText("Agregar Tema a Lista");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        agregarTemaListaMenuItem.setText("Agregar Tema a Lista");
+        agregarTemaListaMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                agregarTemaListaMenuItemActionPerformed(evt);
             }
         });
-        ListasMenu.add(jMenuItem1);
+        listasMenu.add(agregarTemaListaMenuItem);
 
-        QuitarTemaLista.setText("Quitar Tema Lista");
-        QuitarTemaLista.addActionListener(new java.awt.event.ActionListener() {
+        quitarTemaLista.setText("Quitar Tema Lista");
+        quitarTemaLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuitarTemaListaActionPerformed(evt);
+                quitarTemaListaActionPerformed(evt);
             }
         });
-        ListasMenu.add(QuitarTemaLista);
+        listasMenu.add(quitarTemaLista);
 
-        jMenuBar1.add(ListasMenu);
+        menuPrincipal.add(listasMenu);
 
-        jMenu1.setText("Datos de Prueba");
+        menuDatos.setText("Datos de Prueba");
 
         cargarDatosDePrueba.setText("Cargar");
         cargarDatosDePrueba.addActionListener(new java.awt.event.ActionListener() {
@@ -404,11 +404,11 @@ public class MainFrame extends javax.swing.JFrame {
                 cargarDatosDePruebaActionPerformed(evt);
             }
         });
-        jMenu1.add(cargarDatosDePrueba);
+        menuDatos.add(cargarDatosDePrueba);
 
-        jMenuBar1.add(jMenu1);
+        menuPrincipal.add(menuDatos);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuPrincipal);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -417,16 +417,16 @@ public class MainFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_cerrarOptionActionPerformed
 
-    private void AltaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaPerfilActionPerformed
+    private void altaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaPerfilActionPerformed
         MainPanel.removeAll();
         internalAltaPerfil frameAltaPerfil = new internalAltaPerfil();
         MainPanel.add(frameAltaPerfil);
         MainPanel.repaint();
         frameAltaPerfil.setVisible(true);
         
-    }//GEN-LAST:event_AltaPerfilActionPerformed
+    }//GEN-LAST:event_altaPerfilActionPerformed
 
-    private void AltaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaAlbumActionPerformed
+    private void altaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaAlbumActionPerformed
         MainPanel.removeAll();
         AltaAlbum album = new AltaAlbum();
         //album.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth())/2, (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight())/2);
@@ -434,56 +434,56 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.repaint();
         //ver que agregar y hacer visible
         album.setVisible(true);
-    }//GEN-LAST:event_AltaAlbumActionPerformed
+    }//GEN-LAST:event_altaAlbumActionPerformed
 
-    private void SeguirMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirMItemActionPerformed
+    private void seguirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirMenuItemActionPerformed
         MainPanel.removeAll();
         SeguirUsuario seguir = new SeguirUsuario();
         MainPanel.add(seguir);
         MainPanel.repaint();
         seguir.setVisible(true);
-    }//GEN-LAST:event_SeguirMItemActionPerformed
+    }//GEN-LAST:event_seguirMenuItemActionPerformed
 
-    private void DejarSeguirMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DejarSeguirMItemActionPerformed
+    private void dejarSeguirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dejarSeguirMenuItemActionPerformed
         MainPanel.removeAll();
         DejarSeguirUsuario dejar = new DejarSeguirUsuario();
         MainPanel.add(dejar);
         MainPanel.repaint();
         dejar.setVisible(true);
-    }//GEN-LAST:event_DejarSeguirMItemActionPerformed
+    }//GEN-LAST:event_dejarSeguirMenuItemActionPerformed
 
-    private void ConsultaClienteMitemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaClienteMitemActionPerformed
+    private void consultaClienteMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaClienteMenuItemActionPerformed
         MainPanel.removeAll();
         ConsultaCliente cons = new ConsultaCliente();
         MainPanel.add(cons);
         MainPanel.repaint();
         cons.setVisible(true);
-    }//GEN-LAST:event_ConsultaClienteMitemActionPerformed
+    }//GEN-LAST:event_consultaClienteMenuItemActionPerformed
 
-    private void ConsultaArtistaMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaArtistaMItemActionPerformed
+    private void consultaArtistaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaArtistaMenuItemActionPerformed
         MainPanel.removeAll();
         ConsultaArtista art = new ConsultaArtista();
         MainPanel.add(art);
         MainPanel.repaint();
         art.setVisible(true);
-    }//GEN-LAST:event_ConsultaArtistaMItemActionPerformed
+    }//GEN-LAST:event_consultaArtistaMenuItemActionPerformed
 
-    private void AltaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaListaActionPerformed
+    private void altaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaListaActionPerformed
         MainPanel.removeAll();
         AltaLista frameAltaLista = new AltaLista();
         MainPanel.add(frameAltaLista);
         MainPanel.repaint();
         frameAltaLista.setVisible(true);
-    }//GEN-LAST:event_AltaListaActionPerformed
+    }//GEN-LAST:event_altaListaActionPerformed
 
-    private void PublicarListaMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublicarListaMItemActionPerformed
+    private void publicarListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicarListaMenuItemActionPerformed
         MainPanel.removeAll();
         PublicarLista framePublicarLista = new PublicarLista();
         MainPanel.add(framePublicarLista);
         MainPanel.repaint();
-        framePublicarLista.setVisible(true);    }//GEN-LAST:event_PublicarListaMItemActionPerformed
+        framePublicarLista.setVisible(true);    }//GEN-LAST:event_publicarListaMenuItemActionPerformed
 
-    private void ConsultaAlbumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaAlbumMenuItemActionPerformed
+    private void consultaAlbumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaAlbumMenuItemActionPerformed
         MainPanel.removeAll();
         Object[] options = {"Artista","Genero"};
         int opcion = JOptionPane.showOptionDialog(this,
@@ -503,17 +503,17 @@ public class MainFrame extends javax.swing.JFrame {
                 consAlbGen.setVisible(true);
             }
         }
-    }//GEN-LAST:event_ConsultaAlbumMenuItemActionPerformed
+    }//GEN-LAST:event_consultaAlbumMenuItemActionPerformed
 
-    private void AltaGeneroMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaGeneroMItemActionPerformed
+    private void altaGeneroMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaGeneroMenuItemActionPerformed
         MainPanel.removeAll();
         AltaGenero frameAltaGenero = new AltaGenero();
         MainPanel.add(frameAltaGenero);
         MainPanel.repaint();
         frameAltaGenero.setVisible(true);
-    }//GEN-LAST:event_AltaGeneroMItemActionPerformed
+    }//GEN-LAST:event_altaGeneroMenuItemActionPerformed
 
-    private void ConsultaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultaListaMenuItemActionPerformed
+    private void consultaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultaListaMenuItemActionPerformed
         MainPanel.removeAll();
         Object[] options = {"Cliente","Genero"};
         int opcion = JOptionPane.showOptionDialog(this,
@@ -533,7 +533,7 @@ public class MainFrame extends javax.swing.JFrame {
                 consListaGen.setVisible(true);
             }
         }
-    }//GEN-LAST:event_ConsultaListaMenuItemActionPerformed
+    }//GEN-LAST:event_consultaListaMenuItemActionPerformed
 
     private void DatosDePrueba() throws Exception {
         //ALTA DE CLIENTES:
@@ -1051,13 +1051,13 @@ public class MainFrame extends javax.swing.JFrame {
         frameFavoritear.setVisible(true);
     }//GEN-LAST:event_favoritearMItemActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void agregarTemaListaMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarTemaListaMenuItemActionPerformed
         MainPanel.removeAll();
         AgregarTemaLista frameAgregarTemaLista = new AgregarTemaLista();
         MainPanel.add(frameAgregarTemaLista);
         MainPanel.repaint();
         frameAgregarTemaLista.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_agregarTemaListaMenuItemActionPerformed
 
     private void desfavoritearMItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desfavoritearMItemActionPerformed
         MainPanel.removeAll();
@@ -1067,13 +1067,13 @@ public class MainFrame extends javax.swing.JFrame {
         frameFavoritear.setVisible(true);
     }//GEN-LAST:event_desfavoritearMItemActionPerformed
 
-    private void QuitarTemaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitarTemaListaActionPerformed
+    private void quitarTemaListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_quitarTemaListaActionPerformed
         MainPanel.removeAll();
         QuitarTemaLista frameQuitarTemaLista = new QuitarTemaLista();
         MainPanel.add(frameQuitarTemaLista);
         MainPanel.repaint();
         frameQuitarTemaLista.setVisible(true);
-    }//GEN-LAST:event_QuitarTemaListaActionPerformed
+    }//GEN-LAST:event_quitarTemaListaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1111,10 +1111,6 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem AltaAlbum;
-    private javax.swing.JMenuItem AltaGeneroMItem;
-    private javax.swing.JMenuItem AltaLista;
-    private javax.swing.JMenuItem AltaPerfil;
     private javax.swing.JTextField AltaPerfil_apellido_input;
     private javax.swing.JLabel AltaPerfil_apellido_label;
     private javax.swing.JScrollPane AltaPerfil_bio_container;
@@ -1132,28 +1128,32 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel AltaPerfil_tipousuario_label;
     private javax.swing.JTextField AltaPerfil_url_input;
     private javax.swing.JLabel AltaPerfil_url_label;
-    private javax.swing.JMenu AltasDropDown;
-    private javax.swing.JMenuItem ConsultaAlbumMenuItem;
-    private javax.swing.JMenuItem ConsultaArtistaMItem;
-    private javax.swing.JMenuItem ConsultaClienteMitem;
-    private javax.swing.JMenuItem ConsultaListaMenuItem;
-    private javax.swing.JMenu ConsultasDropDown;
-    private javax.swing.JMenuItem DejarSeguirMItem;
-    private javax.swing.JMenu ListasMenu;
     private javax.swing.JPanel MainPanel;
-    private javax.swing.JMenuItem PublicarListaMItem;
-    private javax.swing.JMenuItem QuitarTemaLista;
-    private javax.swing.JMenuItem SeguirMItem;
-    private javax.swing.JMenu SesionDropDown;
-    private javax.swing.JMenu SocialMenu;
+    private javax.swing.JMenuItem agregarTemaListaMenuItem;
+    private javax.swing.JMenuItem altaAlbum;
+    private javax.swing.JMenuItem altaGeneroMenuItem;
+    private javax.swing.JMenuItem altaLista;
+    private javax.swing.JMenuItem altaPerfil;
+    private javax.swing.JMenu altasDropDown;
     private javax.swing.JMenuItem cargarDatosDePrueba;
     private javax.swing.JMenuItem cerrarOption;
+    private javax.swing.JMenuItem consultaAlbumMenuItem;
+    private javax.swing.JMenuItem consultaArtistaMenuItem;
+    private javax.swing.JMenuItem consultaClienteMenuItem;
+    private javax.swing.JMenuItem consultaListaMenuItem;
+    private javax.swing.JMenu consultasDropDown;
+    private javax.swing.JMenuItem dejarSeguirMenuItem;
     private javax.swing.JMenuItem desfavoritearMItem;
     private javax.swing.JMenuItem favoritearMItem;
     private javax.swing.JInternalFrame internalAltaAlbum;
     private javax.swing.JInternalFrame internalAltaPerfil;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenu listasMenu;
+    private javax.swing.JMenu menuDatos;
+    private javax.swing.JMenuBar menuPrincipal;
+    private javax.swing.JMenuItem publicarListaMenuItem;
+    private javax.swing.JMenuItem quitarTemaLista;
+    private javax.swing.JMenuItem seguirMenuItem;
+    private javax.swing.JMenu sesionDropDown;
+    private javax.swing.JMenu socialMenu;
     // End of variables declaration//GEN-END:variables
 }

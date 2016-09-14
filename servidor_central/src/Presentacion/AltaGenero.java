@@ -137,9 +137,9 @@ public class AltaGenero extends javax.swing.JInternalFrame {
             String nom = nomtxt.getText();
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
             String nomPadre = "";
-            if (node != null)
+            if (node != null) {
                 nomPadre = (String)node.getUserObject();
-            
+            }
             IAltaGenero ctrl = Fabrica.getIAltaGenero();
             ctrl.altaGenero(new DataGenero(nom,nomPadre));
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);

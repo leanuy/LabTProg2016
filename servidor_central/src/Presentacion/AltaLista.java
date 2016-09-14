@@ -287,8 +287,9 @@ public class AltaLista extends javax.swing.JInternalFrame {
             try {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
                 String nomGenero = "";
-                if (node != null)
+                if (node != null) {
                     nomGenero = (String)node.getUserObject();
+                }
                 DataDefecto dLista = new DataDefecto(nomGenero, nombretxt.getText(),img);
                 ctrl.altaListaDefecto(dLista);
                 JOptionPane.showMessageDialog(okDialog, "Operación completada con éxito","OK",JOptionPane.PLAIN_MESSAGE);

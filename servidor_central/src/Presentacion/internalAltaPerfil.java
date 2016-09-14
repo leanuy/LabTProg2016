@@ -275,8 +275,9 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 fNac.setTime(sdf.parse(fechatxt.getText()));
                 String pwd = pwdtxt.getText();
                 String verif = pwdcnonfirmtxt.getText();
-                if(!pwd.equals(verif))
+                if(!pwd.equals(verif)) {
                     throw new PasswordsDistintasException();
+                }
                 DataCliente dCliente = new DataCliente(
                                 nicktxt.getText(),
                                 nomtxt.getText(),
@@ -327,8 +328,9 @@ public class internalAltaPerfil extends javax.swing.JInternalFrame {
                 fNac.setTime(sdf.parse(fechatxt.getText()));
                 String pwd = pwdtxt.getText();
                 String verif = pwdcnonfirmtxt.getText();
-                if(!pwd.equals(verif))
+                if(!pwd.equals(verif)) {
                     throw new PasswordsDistintasException();
+                }
                 DataArtista dArt = new DataArtista(
                                 biotxt.getText(),
                                 urltxt.getText(),
