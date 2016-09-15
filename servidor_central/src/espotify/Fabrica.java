@@ -15,6 +15,7 @@ import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IVerPerfil;
 
 public class Fabrica {
     private Fabrica() {
@@ -78,5 +79,13 @@ public class Fabrica {
     
     public static IQuitarTemaLista getIQuitarTemaLista() {
         return new CtrlListas();
+    }
+    
+    public static void clear() { //cuando todo ande, esto tiene que morir. Fuerte.
+        ManejadorColecciones.clear();
+    }
+    
+    public static IVerPerfil getIVerPerfil() {
+        return new CtrlUsuarios();
     }
 }

@@ -36,15 +36,19 @@ import espotify.interfaces.IConsultaCliente;
 import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
+import espotify.interfaces.web.IVerPerfil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
-        IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion {
+        IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
+        IVerPerfil{
 //Constructor
     public CtrlUsuarios() {
     }
@@ -379,5 +383,20 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             throws ClienteInexistenteException, NoHaySuscripcionException,
             TransicionSuscripcionInvalidaException {
         buscarCliente(nick).cancelarSuscripcion();
+    }
+
+    @Override
+    public boolean esCliente(String nick) throws ClienteInexistenteException {
+        try {
+            buscarCliente(nick);
+            return true;
+        } catch (ClienteInexistenteException e) {
+            try {
+                buscarArtista(nick);
+            } catch (ArtistaInexistenteException ex) {
+                throw new ClienteInexistenteException();
+            }
+        }
+        return false;
     }
 }
