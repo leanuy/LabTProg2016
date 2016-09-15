@@ -1,3 +1,19 @@
+
+h1{
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+}
+input.form-control{
+    background-color: #393B39;
+    color:white;
+    border-color:black;
+}
+body{
+    background-color:black;
+    color:white;
+    font-family: 'Raleway', sans-serif;
+
+}
 .main{
     padding:0;
 }
@@ -123,7 +139,24 @@
     background-color:#393B39;
     color:white;
 }
+.btn.btn-custom{
+    background-color:#0198AD;
+    border-color:#0198AD;
+    color:white;
+}
 .main_row{
     background-color: black;
     margin: 0;
+}
+.default-color{
+    color:#0198AD!important;
+}
+.default-bg-color{
+    background-color:#0198AD;
+}
+.defaul-border-color{
+    border-color:#0198AD;
+}
+.progress-bar-custom{
+    border-color:#0198AD;
 }

@@ -20,7 +20,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" style=" padding:5px;">
-                <img src="assets/img/logo.png" width="40px">
+                <i class="fa fa-spotify default-color" style="font-size: 40px"></i>
             </a>
         </div>
 
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search">
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-custom">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <% if(user == null){ %>

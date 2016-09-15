@@ -12,6 +12,7 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
+import espotify.datatypes.DataUsuario;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
@@ -27,6 +28,7 @@ import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
+import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IActualizarSuscripcion;
 import espotify.interfaces.IAltaPerfil;
@@ -36,6 +38,7 @@ import espotify.interfaces.IConsultaCliente;
 import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
+import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IVerPerfil;
 
 import java.util.ArrayList;
@@ -48,7 +51,7 @@ import java.util.logging.Logger;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
-        IVerPerfil{
+        IVerPerfil, IIniciarSesion{
 //Constructor
     public CtrlUsuarios() {
     }
@@ -384,7 +387,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             TransicionSuscripcionInvalidaException {
         buscarCliente(nick).cancelarSuscripcion();
     }
-
+    
     @Override
     public boolean esCliente(String nick) throws ClienteInexistenteException {
         try {
@@ -399,4 +402,41 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         }
         return false;
     }
+
+    @Override
+    public DataUsuario BuscarUsuario(String nickUsuario) throws UsuarioInexistenteException {
+        if (!this.existeUsuarioNick(nickUsuario)) {
+            throw new UsuarioInexistenteException();
+        }
+        Usuario usuario;
+        DataUsuario dataUsuario;
+        try{
+            usuario = this.buscarArtista(nickUsuario);
+            dataUsuario = ((Artista)usuario).getDataArtistaExt();
+        }catch(ArtistaInexistenteException ex){
+        try {
+                usuario = this.buscarCliente(nickUsuario);
+                dataUsuario = ((Cliente)usuario).getDataClienteExt();
+                
+        } catch (ClienteInexistenteException e) {
+                throw new UsuarioInexistenteException();
+            }
+        }
+        return dataUsuario;
+    }
+
+    public boolean checkPassword(String nickUsuario, String password) throws UsuarioInexistenteException{
+        Usuario usuario;
+        try {
+            usuario = this.buscarArtista(nickUsuario);
+        } catch (ArtistaInexistenteException ex) {
+            try {
+                usuario = this.buscarCliente(nickUsuario);
+            } catch (ClienteInexistenteException e) {
+                throw new UsuarioInexistenteException();
+            }
+        }
+        return usuario.getPassword().equals(password);
+    }
+
 }

@@ -43,6 +43,13 @@ class Usuario {
     BufferedImage getImg() {
         return img;
     }
+
+    public Usuario() {
+    }
+    
+    String getPassword(){
+        return this.password;
+    }
     
     Map<String,Cliente> getSeguidores() {
         return this.seguidores;

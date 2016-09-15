@@ -13,6 +13,7 @@ import espotify.interfaces.IConsultaLista;
 import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
+import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IVerAlbum;
@@ -27,6 +28,10 @@ public class Fabrica {
     }
     
     public static IAltaPerfil getIAltaPerfil() {
+        return new CtrlUsuarios();
+    }
+    
+    public static IIniciarSesion getIIniciarSesion() {
         return new CtrlUsuarios();
     }
     
