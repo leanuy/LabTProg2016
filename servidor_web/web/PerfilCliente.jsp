@@ -18,14 +18,13 @@
                     <c:out value="${nick}"/>
                 </h1>
                 <div>
+                    <h2>
+                        Listas
+                    </h2>
                     <c:forEach items="${listas}" var="item">
                         ${item}<br/>
                     </c:forEach>
                 </div>
-                
-                
-                
-                
             </div>
         </div>
     </div>

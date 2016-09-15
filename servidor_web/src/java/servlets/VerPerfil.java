@@ -7,9 +7,11 @@ package servlets;
  */
 
 import espotify.Fabrica;
+import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataClienteExt;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
@@ -22,11 +24,10 @@ import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IConsultaCliente;
 import espotify.interfaces.IPublicarLista;
+import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -50,73 +51,65 @@ public class VerPerfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        
+        String inputNick = request.getParameter("nick");
 
-        //DOY DE ALTA UN CLIENTE PARA PROBAR.
-        IAltaPerfil ctrlAltaPerfil = Fabrica.getIAltaPerfil();
-        Calendar cal = Calendar.getInstance();
-        cal.set(1972, 3, 8);
-        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, null,"");
+        IVerPerfil iPerfil = Fabrica.getIVerPerfil();
         try {
-            ctrlAltaPerfil.altaCliente(dataCliente);
-        } catch (NickRepetidoException ex) {
-        } catch (CorreoRepetidoException ex) {
-        } catch (FormatoIncorrectoException ex) {
-        }
-        IAltaLista ctrlAltaListas = Fabrica.getIAltaLista();
-        DataParticular dataParticular = new DataParticular("el_padrino", "Música Inspiradora", null);
-        try {
-            ctrlAltaListas.altaListaParticular(dataParticular);
-        } catch (ListaRepetidaException ex) {
-        } catch (ClienteInexistenteException ex) {
-        }
-        dataParticular = new DataParticular("el_padrino", "Música Inspiradora vol. II", null);
-        try {
-            ctrlAltaListas.altaListaParticular(dataParticular);
-        } catch (ListaRepetidaException ex) {
-        } catch (ClienteInexistenteException ex) {
-        }
-        IPublicarLista ctrlPublicar = Fabrica.getIPublicarLista();
-        try {
-            ctrlPublicar.publicarLista("Música Inspiradora","el_padrino");
-            ctrlPublicar.publicarLista("Música Inspiradora vol. II","el_padrino");
-        } catch (ClienteInexistenteException ex) {
-        } catch (ListaInexistenteException ex) {
-        } catch (YaPublicaException ex) {
-        }
-        
-        
-        //FIN ALTA
-        
-        
-        
-        String inputNick = "el_padrino"; //esto lo obtendría de algun lado, se supone que por donde llegué a la página esta.
-        
-        try {
-            IConsultaCliente iConsulta = Fabrica.getIConsultaCliente();
-            DataClienteExt d = iConsulta.consultaCliente(inputNick);
-            request.setAttribute("nick", d.getNick());
-            if(d.getImg() == null) {
-                request.setAttribute("imagen", "./assets/img/profile.png");
-            } else {
-                request.setAttribute("imagen", d.getImg());
+            //obtener el tipo de usuario.
+            boolean esCli = iPerfil.esCliente(inputNick);
+            if (esCli) {
+                try {
+                    DataClienteExt d = iPerfil.consultaCliente(inputNick);
+                    request.setAttribute("nick", d.getNick());
+                    if(d.getImg() == null) {
+                        request.setAttribute("imagen", "./assets/img/profile.png");
+                    } else {
+                        request.setAttribute("imagen", d.getImg());
+                    }
+                    List<String> listas = iPerfil.listarListasPublicasDeCliente(inputNick);
+                    request.setAttribute("listas", listas);
+                    
+                    request.getRequestDispatcher("/PerfilCliente.jsp").forward(request,response);
+                    
+                } catch (ClienteInexistenteException e) {
+                    request.getRequestDispatcher("/Error.jsp").forward(request,response);
+                    //problemas consultando el cliente
+                }
+            } else { //es artista
+                try {
+                    DataArtistaExt d = iPerfil.consultaArtista(inputNick);
+                    request.setAttribute("nick",d.getNick());
+                    if(d.getImg() == null) {
+                        request.setAttribute("imagen", "./assets/img/profile.png");
+                    } else {
+                        request.setAttribute("imagen", d.getImg());
+                    }
+                    List<String> albums = iPerfil.listarAlbumesDeArtista(inputNick);
+                    request.setAttribute("albums", albums);
+                    
+                    request.getRequestDispatcher("/PerfilArtista.jsp").forward(request,response);
+                } catch (ArtistaInexistenteException e) {
+                    
+                }
             }
-            IAgregarTemaLista iListas = Fabrica.getIAgregarTemaLista();
-            List<String> listas = iListas.listarListasPublicasDeCliente(inputNick);
-            request.setAttribute("listas", listas);
             
             
-            request.getRequestDispatcher("/PerfilCliente.jsp").forward(request,response);
-        
-        
+            
+            
+            
+            
+            
+            
+            
+            
+            
         } catch (ClienteInexistenteException ex) {
             request.getRequestDispatcher("/Error.jsp").forward(request,response);
+            //el nick no existe en el sistema
         }
-
-
-
-
         
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

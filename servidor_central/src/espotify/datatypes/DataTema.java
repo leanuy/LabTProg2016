@@ -29,6 +29,10 @@ public class DataTema implements DataFavoriteable {
         return album;
     }
     
+    public String getDuracionStr() {
+        return duracion / 60 + ":" + duracion % 60;
+    }
+    
 
     public DataTema(String nombre, int duracion, int num) {
         this.nombre = nombre;

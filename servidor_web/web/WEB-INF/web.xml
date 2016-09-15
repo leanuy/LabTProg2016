@@ -8,6 +8,14 @@
         <servlet-name>Registrarme</servlet-name>
         <servlet-class>servlets.Registrarme</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CargarDatos</servlet-name>
+        <servlet-class>servlets.CargarDatos</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerAlbum</servlet-name>
+        <servlet-class>servlets.VerAlbum</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Registrarme</servlet-name>
         <url-pattern>/Registrarme</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>VerPerfil</servlet-name>
         <url-pattern>/VerPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargarDatos</servlet-name>
+        <url-pattern>/CargarDatos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerAlbum</servlet-name>
+        <url-pattern>/VerAlbum</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

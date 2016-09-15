@@ -15,12 +15,14 @@ import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IConsultaAlbum;
+import espotify.interfaces.web.IVerAlbum;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum {
+public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
+        IVerAlbum {
     private Artista artistaMem;
 
 //constructor
