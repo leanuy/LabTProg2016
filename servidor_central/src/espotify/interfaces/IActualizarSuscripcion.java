@@ -20,4 +20,6 @@ public interface IActualizarSuscripcion {
     public void cancelarSuscripcion(String nick)
             throws ClienteInexistenteException, NoHaySuscripcionException,
             TransicionSuscripcionInvalidaException;
+    
+    //si se desea ver el histórico habria que agregar otra operacion que las traiga.
 }
