@@ -57,18 +57,21 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     }
     
     @Override
-    public List<String> listarListasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> listarListasDeCliente(String nick)
+            throws ClienteInexistenteException {
         nickMem = nick;
         return new CtrlUsuarios().listarListasDeCliente(nick);
     }
     
     @Override
-    public List<String> listarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> listarListasPrivadasDeCliente(String nick)
+            throws ClienteInexistenteException {
         return new CtrlUsuarios().listarListasPrivadasDeCliente(nick);
     }
     
     @Override
-    public List<String> listarListasPublicasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> listarListasPublicasDeCliente(String nick)
+            throws ClienteInexistenteException {
         return  new CtrlUsuarios().listarListasPublicasDeCliente(nick);
     }
     
@@ -170,16 +173,18 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     }
     
     @Override
-    public void altaListaParticular(DataParticular dParticular) throws ListaRepetidaException, ClienteInexistenteException {
-        new CtrlUsuarios().altaLista(dParticular);
+    public void altaListaParticular(DataParticular dataParticular)
+            throws ListaRepetidaException, ClienteInexistenteException {
+        new CtrlUsuarios().altaLista(dataParticular);
     }
     
     @Override
-    public void altaListaDefecto(DataDefecto dLista) throws ListaRepetidaException, GeneroInexistenteException {
-        if (validarNombreListaDefecto(dLista.getNombre())) {
-            Genero genero = new CtrlMusica().buscarGenero(dLista.getGenero());
-            ManejadorColecciones.getInstancia().agregarLista(dLista.getNombre(),
-                    new Defecto(genero, dLista.getNombre(), dLista.getImg()));
+    public void altaListaDefecto(DataDefecto dataDef)
+            throws ListaRepetidaException, GeneroInexistenteException {
+        if (validarNombreListaDefecto(dataDef.getNombre())) {
+            Genero genero = new CtrlMusica().buscarGenero(dataDef.getGenero());
+            ManejadorColecciones.getInstancia().agregarLista(dataDef.getNombre(),
+                    new Defecto(genero, dataDef.getNombre(), dataDef.getImg()));
         } else {
             throw new ListaRepetidaException();
         }

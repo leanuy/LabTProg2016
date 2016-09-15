@@ -1,10 +1,10 @@
 package presentacion;
 
+import espotify.Fabrica;
 import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
-import espotify.Fabrica;
 import espotify.interfaces.IAltaSeguir;
 
 import java.util.List;

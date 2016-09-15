@@ -42,8 +42,8 @@ class Artista extends Usuario {
     }
     
     //otros métodos
-    static boolean validarDatosArtista(DataArtista dArt) {
-        return Usuario.validarDatosUsuario(dArt);
+    static boolean validarDatosArtista(DataArtista dataArtista) {
+        return Usuario.validarDatosUsuario(dataArtista);
     }
 
     DataArtistaExt getDataArtistaExt() {
@@ -79,9 +79,9 @@ class Artista extends Usuario {
         return listaAlbums;
     }
     
-    Tema devolverTema(DataTema dTema) {
-        String album = dTema.getAlbum();
-        String tema = dTema.getNombre();
+    Tema devolverTema(DataTema data) {
+        String album = data.getAlbum();
+        String tema = data.getNombre();
         Album alb = albums.get(album);
         return alb.devolverTema(tema);
     }

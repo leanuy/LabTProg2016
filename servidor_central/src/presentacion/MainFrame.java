@@ -1,6 +1,6 @@
 package presentacion;
 
-
+import espotify.Fabrica;
 import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
@@ -11,8 +11,6 @@ import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
-
-import espotify.Fabrica;
 import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
@@ -419,7 +417,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void altaPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaPerfilActionPerformed
         MainPanel.removeAll();
-        internalAltaPerfil frameAltaPerfil = new internalAltaPerfil();
+        InternalAltaPerfil frameAltaPerfil = new InternalAltaPerfil();
         MainPanel.add(frameAltaPerfil);
         MainPanel.repaint();
         frameAltaPerfil.setVisible(true);

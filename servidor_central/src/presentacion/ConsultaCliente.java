@@ -1,8 +1,8 @@
 package presentacion;
 
+import espotify.Fabrica;
 import espotify.datatypes.DataClienteExt;
 import espotify.excepciones.ClienteInexistenteException;
-import espotify.Fabrica;
 import espotify.interfaces.IConsultaCliente;
 
 import java.awt.Graphics;

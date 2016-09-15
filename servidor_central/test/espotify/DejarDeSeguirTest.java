@@ -37,8 +37,7 @@ public class DejarDeSeguirTest {
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
             ctrl.altaCliente(dCli);
             ctrl2.altaSeguir("Seguidor", "Seguido");
-        }
-        catch (Exception e) { }
+        } catch (Exception e) { }
         
         System.out.println("DejarDeSeguir: Normal");
         String nomSeguidor = "Seguidor";
@@ -59,8 +58,7 @@ public class DejarDeSeguirTest {
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
             ctrl.altaCliente(dCli);
             ctrl2.altaSeguir("Seguidor", "Seguido");
-        }
-        catch (Exception e) { } 
+        } catch (Exception e) { } 
         
         System.out.println("DejarDeSeguir: Seguidor Inexistente");
         String nomSeguidor = "Seguidorasdf";
@@ -80,8 +78,7 @@ public class DejarDeSeguirTest {
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
             ctrl.altaCliente(dCli);
             ctrl2.altaSeguir("Seguidor", "Seguido");
-        }
-        catch (Exception e) { }
+        } catch (Exception e) { }
         
         System.out.println("DejarDeSeguir: Seguido Inexistente");
         String nomSeguidor = "Seguidor";
@@ -99,8 +96,7 @@ public class DejarDeSeguirTest {
             ctrl.altaCliente(dCli);
             dCli = new DataCliente("Seguido2", "Javier", "Morales", "seguido2@hotmail.com", cal, null,"");
             ctrl.altaCliente(dCli);
-        }
-        catch (Exception e) { }
+        } catch (Exception e) { }
         
         System.out.println("DejarDeSeguir: Seguido al que no seguían");
         String nomSeguidor = "Seguidor2";

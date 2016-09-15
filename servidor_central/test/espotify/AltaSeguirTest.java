@@ -81,8 +81,7 @@ public class AltaSeguirTest {
             instance.altaCliente(dCli);
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
             instance.altaCliente(dCli);
-        }
-        catch (NickRepetidoException | CorreoRepetidoException e) { }
+        } catch (NickRepetidoException | CorreoRepetidoException e) { }
         
         System.out.println("AltaSeguir: Normal a Cliente");
         String nomSeguidor = "Seguidor";
@@ -109,8 +108,7 @@ public class AltaSeguirTest {
             ctrl.altaCliente(dCli);
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
             ctrl.altaCliente(dCli);
-        }
-        catch (NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e) { }
+        } catch (NickRepetidoException | CorreoRepetidoException | FormatoIncorrectoException e) { }
         
         System.out.println("AltaSeguir: Seguido inexistente");
         String nomSeguidor = "Seguidor";
@@ -134,8 +132,7 @@ public class AltaSeguirTest {
             cal.set(1996, 5, 17);
             DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
             ctrl.altaCliente(dCli);
-        }
-        catch (NickRepetidoException | CorreoRepetidoException e) { }
+        } catch (NickRepetidoException | CorreoRepetidoException e) { }
         
         System.out.println("AltaSeguir: Seguirse A si Mismo");
         String nomSeguidor = "Seguidor";
@@ -153,8 +150,7 @@ public class AltaSeguirTest {
             ctrl.altaCliente(dCli);
             dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
             ctrl.altaCliente(dCli);
-        }
-        catch (NickRepetidoException | CorreoRepetidoException e) { }
+        } catch (NickRepetidoException | CorreoRepetidoException e) { }
         
         System.out.println("AltaSeguir: Seguir dos veces");
         String nomSeguidor = "Seguidor";

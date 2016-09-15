@@ -1,8 +1,8 @@
 package presentacion;
 
+import espotify.Fabrica;
 import espotify.datatypes.DataArtistaExt;
 import espotify.excepciones.ArtistaInexistenteException;
-import espotify.Fabrica;
 import espotify.interfaces.IConsultaArtista;
 
 import java.awt.Graphics2D;

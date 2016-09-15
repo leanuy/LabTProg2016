@@ -79,22 +79,28 @@ public class Album implements Favoriteable {
 
             //Validar Duracion
             if (dTema.getDuracion() <= 0) {
-                throw new DuracionInvalidaException("El tema " + dTema.getNombre() + " tiene una duración no válida.");
+                throw new DuracionInvalidaException(
+                        "El tema " + dTema.getNombre() + " tiene una duración no válida.");
             }
             //Validar orden: validar que no haya otro tema con ese mismo numero de orden
             //Si el num es mayor a la cantidad de temas tambien tira una exepcion
             // ya que de seguro el orden no es correcto.
             if (dTema.getNum() <= 0 || dTema.getNum() > largo) {
-                throw new NumeroTemaInvalidoException("El tema " + dTema.getNombre() + " tiene un número de tema fuera de rango. Pruebe con un número entre 1 y " + largo + ".");
+                throw new NumeroTemaInvalidoException(
+                        "El tema " + dTema.getNombre() + " tiene un número de tema fuera de rango. "
+                        + "Pruebe con un número entre 1 y " + largo + ".");
             } else if (orden[dTema.getNum() - 1] == true) {
-                throw new NumeroTemaInvalidoException("El tema " + dTema.getNombre() + " tiene un número de tema que ya le corresponde a otro tema.");
+                throw new NumeroTemaInvalidoException(
+                        "El tema " + dTema.getNombre() +
+                        " tiene un número de tema que ya le corresponde a otro tema.");
             } else {
                 orden[dTema.getNum() - 1] = true;
                 //Si el numero de orden es correcto lo marco como en uso.
             }
             //Validar unicidad de nombres
             if (nombresTemas.contains(dTema.getNombre())) {
-                throw new TemaRepetidoException("Intenta ingresar mas de un tema con el nombre " + dTema.getNombre() + ". Cada tema debe tener un nombre único en el álbum.");
+                throw new TemaRepetidoException("Intenta ingresar mas de un tema con el nombre "
+                        + dTema.getNombre() + ". Cada tema debe tener un nombre único en el álbum.");
             } else {
                 nombresTemas.add(dTema.getNombre());
             }
@@ -110,15 +116,15 @@ public class Album implements Favoriteable {
         return listaTemas;
     }
     //constructores
-    Album(DataAlbumExt dAlbum, Artista artista, Map<String, Genero> generos)
+    Album(DataAlbumExt dataAlbum, Artista artista, Map<String, Genero> generos)
             throws DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, TemaTipoInvalidoException {
-        this.nombre = dAlbum.getNombre();
-        this.anio = dAlbum.getAnio();
-        this.img = dAlbum.getImg();
+        this.nombre = dataAlbum.getNombre();
+        this.anio = dataAlbum.getAnio();
+        this.img = dataAlbum.getImg();
         this.artista = artista;
         this.generos = generos;
-        this.temas = this.validarTemas(dAlbum.getTemas());
+        this.temas = this.validarTemas(dataAlbum.getTemas());
     }
 
     Tema devolverTema(String nombretema) {

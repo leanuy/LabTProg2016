@@ -76,14 +76,14 @@ class Usuario {
         seguidores.remove(cli.nick, cli);
     }
     
-    Usuario(DataUsuario dUsuario) {
-        this.nick = dUsuario.getNick();
-        this.nombre = dUsuario.getNombre();
-        this.apellido = dUsuario.getApellido();
-        this.correo = dUsuario.getCorreo();
-        this.fechaNac = (Calendar) dUsuario.getfNac().clone();
-        this.img = dUsuario.getImg();
+    Usuario(DataUsuario dataUsuario) {
+        this.nick = dataUsuario.getNick();
+        this.nombre = dataUsuario.getNombre();
+        this.apellido = dataUsuario.getApellido();
+        this.correo = dataUsuario.getCorreo();
+        this.fechaNac = (Calendar) dataUsuario.getfNac().clone();
+        this.img = dataUsuario.getImg();
         this.seguidores = new HashMap();
-        this.password = dUsuario.getPassword();
+        this.password = dataUsuario.getPassword();
     }
 }

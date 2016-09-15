@@ -1,12 +1,10 @@
 package presentacion;
 
+import espotify.Fabrica;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidorInexistenteException;
-import espotify.Fabrica;
 import espotify.interfaces.IDejarDeSeguir;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;

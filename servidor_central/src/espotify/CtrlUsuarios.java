@@ -10,6 +10,7 @@ import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
@@ -21,10 +22,13 @@ import espotify.excepciones.FormatoIncorrectoException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
 import espotify.excepciones.NickRepetidoException;
+import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
+import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.YaPublicaException;
+import espotify.interfaces.IActualizarSuscripcion;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IAltaSeguir;
 import espotify.interfaces.IConsultaArtista;
@@ -40,7 +44,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
-        IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear {
+        IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion {
 //Constructor
     public CtrlUsuarios() {
     }
@@ -283,14 +287,14 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public void altaCliente(DataCliente dCliente)
+    public void altaCliente(DataCliente dataCliente)
             throws NickRepetidoException, CorreoRepetidoException,
             FormatoIncorrectoException {
-        if (Usuario.validarDatosUsuario(dCliente)) {
-            if (!existeUsuarioCorreo(dCliente.getCorreo())) {
-                if (!existeUsuarioNick(dCliente.getNick())) {
-                    Cliente nuevoCli = new Cliente(dCliente);
-                    agregarCliente(dCliente.getNick(), nuevoCli);
+        if (Usuario.validarDatosUsuario(dataCliente)) {
+            if (!existeUsuarioCorreo(dataCliente.getCorreo())) {
+                if (!existeUsuarioNick(dataCliente.getNick())) {
+                    Cliente nuevoCli = new Cliente(dataCliente);
+                    agregarCliente(dataCliente.getNick(), nuevoCli);
                 } else {
                     throw new NickRepetidoException();
                 }
@@ -355,5 +359,25 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     
     void agregarTemaLista(Tema tema,String usr, String lista) throws Exception {
         buscarCliente(usr).agregarTemaLista(tema, lista);
+    }
+    
+    @Override
+    public DataSuscripcion getSuscripcionDeCliente(String nick)
+            throws ClienteInexistenteException, NoHaySuscripcionException {
+        return buscarCliente(nick).getSuscripcionActiva();
+    }
+    
+    @Override
+    public void aprobarSuscripcion(String nick)
+            throws ClienteInexistenteException, NoHaySuscripcionException,
+            TransicionSuscripcionInvalidaException {
+        buscarCliente(nick).aprobarSuscripcion();
+    }
+    
+    @Override
+    public void cancelarSuscripcion(String nick)
+            throws ClienteInexistenteException, NoHaySuscripcionException,
+            TransicionSuscripcionInvalidaException {
+        buscarCliente(nick).cancelarSuscripcion();
     }
 }
