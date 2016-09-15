@@ -1,6 +1,7 @@
 package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -47,6 +48,10 @@ public class DataUsuario {
         return "assets/img/profile.png";
     }
     
+    public String getfNacStr() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(fechaNac.getTime());
+    }
 
     public DataUsuario(String nick, String nombre, String apellido, String correo,
             Calendar fechaNac, BufferedImage img, List<String> segdores) {
