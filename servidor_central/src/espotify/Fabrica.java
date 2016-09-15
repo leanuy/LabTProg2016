@@ -15,6 +15,7 @@ import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerPerfil;
 
 public class Fabrica {
@@ -87,5 +88,9 @@ public class Fabrica {
     
     public static IVerPerfil getIVerPerfil() {
         return new CtrlUsuarios();
+    }
+    
+    public static IVerAlbum getIVerAlbum() {
+        return new CtrlMusica();
     }
 }
