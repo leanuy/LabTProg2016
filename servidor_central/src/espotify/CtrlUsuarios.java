@@ -145,7 +145,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarCliente(nick).listarListas();
     }
     
-    List<String> listarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
+    @Override
+    public List<String> listarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
         return buscarCliente(nick).listarListasPrivadas();
     }
     
