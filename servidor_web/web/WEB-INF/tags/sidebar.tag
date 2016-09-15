@@ -25,7 +25,7 @@
         <div class="col-lg-12">nombre artista</div>
         <div class="col-lg-12">
             <div class="progress" style=" height:7px">
-                <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                <div class="progress-bar progress-bar-custom progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
                 </div>
             </div>
         </div>
