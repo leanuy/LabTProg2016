@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class ConsultaArtistaTest {
-    static IConsultaArtista iConsultaArtista;    
+    private static IConsultaArtista iConsultaArtista;    
 
     public ConsultaArtistaTest() {
         iConsultaArtista = Fabrica.getIConsultaArtista();
@@ -30,15 +30,16 @@ public class ConsultaArtistaTest {
         ManejadorColecciones.clear();
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataArtista artista = new DataArtista("Soy un artista y me consultan","", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null,"");
+        DataArtista artista = new DataArtista("Soy un artista y me consultan", "", "ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         try {
             ctrl.altaArtista(artista);
         } catch (Exception ex) {
+            System.out.println("You are doomed to fail");
         }
         
         System.out.println("ConsultaArtista");
-        DataArtistaExt expResult = new DataArtistaExt("ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "Soy un artista y me consultan", "", new HashMap<String,Album>(),"");
+        DataArtistaExt expResult = new DataArtistaExt("ArtistaConsultado", "Artista", "Consultado", "artista@consultado.com", cal, null, "Soy un artista y me consultan", "", new HashMap<String, Album>(), "");
         DataArtistaExt result = iConsultaArtista.consultaArtista("ArtistaConsultado");
         assertEquals(expResult, result);
     }
@@ -57,7 +58,7 @@ public class ConsultaArtistaTest {
         String biografia = "Soy un artista y me consultan";
         String url = "elarti.com";
         DataArtista dArtista = new DataArtista(biografia, url, "ArtistaConsultado",
-                "Artista", "Consultado", "artista@consultado.com", cal, null,"");
+                "Artista", "Consultado", "artista@consultado.com", cal, null, "");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
         ctrl.altaArtista(dArtista);
         DataArtistaExt data = iConsultaArtista.consultaArtista("ArtistaConsultado");
@@ -66,14 +67,13 @@ public class ConsultaArtistaTest {
         assertArrayEquals(new String[0], data.getAlbums());
         assertEquals(data, data);
         assertEquals(false, data.equals(null));
-        assertEquals(false, data.equals(data));
         dArtista = new DataArtista("otra bio", url, "OtroArtistaConsultado",
-                "Artista", "Consultado", "otro_artista@consultado.com", cal, null,"");
+                "Artista", "Consultado", "otro_artista@consultado.com", cal, null, "");
         ctrl.altaArtista(dArtista);
         DataArtistaExt otroArtista = iConsultaArtista.consultaArtista("OtroArtistaConsultado");
         assertEquals(false, data.equals(otroArtista));
         dArtista = new DataArtista(biografia, url, "AunOtroArtistaConsultado",
-                "Artista", "Consultado", "otro_artista2@consultado.com", cal, null,"");
+                "Artista", "Consultado", "otro_artista2@consultado.com", cal, null, "");
         ctrl.altaArtista(dArtista);
         otroArtista = iConsultaArtista.consultaArtista("AunOtroArtistaConsultado");
         assertEquals(false, data.equals(otroArtista));

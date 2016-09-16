@@ -62,7 +62,7 @@ public class Suscripcion {
     Calendar getVencimiento() {
         Calendar cal = null;
         if (!estaPendiente() && !estaCancelada()) {
-            cal = (Calendar)fechaDesde.clone();
+            cal = (Calendar) fechaDesde.clone();
             cal.add(Calendar.DAY_OF_MONTH, getDuracion());
         }
         return cal;

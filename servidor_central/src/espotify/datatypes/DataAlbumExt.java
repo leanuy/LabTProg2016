@@ -1,7 +1,6 @@
 package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,19 +29,19 @@ public class DataAlbumExt extends DataAlbum {
             return false;
         }
         final DataAlbumExt other = (DataAlbumExt) obj;
-        if (this.anio != other.anio) {
+        if (this.getAnio() != other.getAnio()) {
             return false;
         }
-        if (!Objects.equals(this.nombre, other.nombre)) {
+        if (!Objects.equals(this.getNombre(), other.getNombre())) {
             return false;
         }
-        if (!Objects.equals(this.nickArtista, other.nickArtista)) {
+        if (!Objects.equals(this.getNickArtista(), other.getNickArtista())) {
             return false;
         }
-        if (!Objects.equals(this.generos, other.generos)) {
+        if (!Objects.equals(this.getGeneros(), other.getGeneros())) {
             return false;
         }
-        if (!Objects.equals(this.img, other.img)) {
+        if (!Objects.equals(this.getImg(), other.getImg())) {
             return false;
         }
         return Objects.equals(this.temas, other.temas);

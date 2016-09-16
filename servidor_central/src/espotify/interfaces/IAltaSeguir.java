@@ -14,7 +14,7 @@ public interface IAltaSeguir {
             throws SeguidorInexistenteException;
     
     public void altaSeguir(String nomSeguidor, String nomSeguido)
-            throws SeguidorInexistenteException,SeguidoInexistenteException,
+            throws SeguidorInexistenteException, SeguidoInexistenteException,
             SeguidoRepetidoException, AutoSeguirseException;
     
     public List<String> listarClientes();

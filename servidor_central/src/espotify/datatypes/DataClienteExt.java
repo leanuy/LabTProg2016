@@ -32,7 +32,7 @@ public class DataClienteExt extends DataUsuario {
     
     public DataClienteExt(String nick, String nombre, String apellido, String correo,
             Calendar fechaNac, BufferedImage img, String[]seg, String[]lis, String pwd) {
-        super(nick, nombre, apellido, correo, fechaNac, img,pwd);
+        super(nick, nombre, apellido, correo, fechaNac, img, pwd);
         this.seg = seg;
         this.lis = lis;
     }
@@ -42,36 +42,17 @@ public class DataClienteExt extends DataUsuario {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
+        else {
+            final DataClienteExt other = (DataClienteExt) obj;
+            return !(((other == null)) || 
+                   !(Arrays.deepEquals(this.seg, other.seg)) ||
+                   !(Arrays.deepEquals(this.lis, other.lis)) ||
+                   !(Objects.equals(this.getNick(), other.getNick())) ||
+                   !(Objects.equals(this.getNombre(), other.getNombre())) ||
+                   !(Objects.equals(this.getApellido(), other.getApellido())) ||
+                   !(Objects.equals(this.getCorreo(), other.getCorreo())) ||
+                   !(Objects.equals(this.getfNac(), other.getfNac())) ||
+                   !(Objects.equals(this.getImg(), other.getImg())));
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DataClienteExt other = (DataClienteExt) obj;
-        if (!Arrays.deepEquals(this.seg, other.seg)) {
-            return false;
-        }
-        if (!Arrays.deepEquals(this.lis, other.lis)) {
-            return false;
-        }
-        if (!Objects.equals(this.nick, other.nick)) {
-            return false;
-        }
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.apellido, other.apellido)) {
-            return false;
-        }
-        if (!Objects.equals(this.correo, other.correo)) {
-            return false;
-        }
-        if (!Objects.equals(this.fechaNac, other.fechaNac)) {
-            return false;
-        }
-        return Objects.equals(this.img, other.img);
-    }
-    
-    
+    }    
 }

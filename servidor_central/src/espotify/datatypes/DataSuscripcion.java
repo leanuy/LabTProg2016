@@ -13,4 +13,15 @@ public class DataSuscripcion {
         this.tipo = tipo;
     }
     
+    public Calendar getFechaCreacion() {
+        return fechaCreacion;
+    }
+    
+    public EstadoSuscripcion getEstado() {
+        return estado;
+    }
+    
+    public TipoSuscripcion getTipo() {
+        return tipo;
+    }
 }

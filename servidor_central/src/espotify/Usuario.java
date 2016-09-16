@@ -11,14 +11,14 @@ import java.util.Map;
 class Usuario {
 
 
-    protected String nick;
-    protected String nombre;
-    protected String apellido;
-    protected String correo;
-    protected Calendar fechaNac;
-    protected BufferedImage img;
-    protected Map<String,Cliente> seguidores;
-    protected String password;
+    private String nick;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private Calendar fechaNac;
+    private BufferedImage img;
+    private Map<String, Cliente> seguidores;
+    private String password;
 
     String getNick() {
         return nick;
@@ -51,7 +51,7 @@ class Usuario {
         return this.password;
     }
     
-    Map<String,Cliente> getSeguidores() {
+    Map<String, Cliente> getSeguidores() {
         return this.seguidores;
     }
     
@@ -71,7 +71,7 @@ class Usuario {
     }
     
     public void agregarSeguidor(Cliente cli) throws SeguidoRepetidoException {
-        String nombreSeguidor = cli.nick;
+        String nombreSeguidor = cli.getNick();
         Cliente seguido = seguidores.get(nombreSeguidor);
         if (seguido != null) {
             throw new SeguidoRepetidoException();
@@ -80,7 +80,7 @@ class Usuario {
     }
     
     public void noMeSiguenMas(Cliente cli) {
-        seguidores.remove(cli.nick, cli);
+        seguidores.remove(cli.getNick(), cli);
     }
     
     Usuario(DataUsuario dataUsuario) {

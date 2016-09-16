@@ -60,9 +60,9 @@ class Cliente extends Usuario {
         List<String> segdores = new ArrayList();
         String namef;
         Cliente cli;
-        for (Map.Entry<String, Cliente> entry : this.seguidores.entrySet()) {
+        for (Map.Entry<String, Cliente> entry : this.getSeguidores().entrySet()) {
             cli = entry.getValue();
-            namef = cli.nick;
+            namef = cli.getNick();
             segdores.add(namef);
         }
         return new DataClienteExt(getNick(),

@@ -16,7 +16,6 @@ import java.util.Calendar;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AltaPerfilTest {
-    static IAltaPerfil iAltaPerfil;
     
     public AltaPerfilTest() {
     }
@@ -24,7 +23,6 @@ public class AltaPerfilTest {
     @BeforeClass
     public static void setUpClass() {
         ManejadorColecciones.clear();
-        iAltaPerfil = Fabrica.getIAltaPerfil();
     }
 
     
@@ -33,7 +31,7 @@ public class AltaPerfilTest {
         System.out.println("AltaCliente: ingreso normal");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente dCli = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null,"");
+        DataCliente dCli = new DataCliente("JavierM42", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaCliente(dCli);
     }
@@ -44,7 +42,7 @@ public class AltaPerfilTest {
         System.out.println("AltaCliente: campo vacío");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente dCli = new DataCliente("", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null,"");
+        DataCliente dCli = new DataCliente("", "Javier", "Morales", "javiermorales42@hotmail.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaCliente(dCli);
     }
@@ -54,10 +52,10 @@ public class AltaPerfilTest {
         System.out.println("AltaCliente: nick repetido.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente dCli = new DataCliente("b", "Javier", "Morales", "javiermorales422@hotmail.com", cal, null,"");
+        DataCliente dCli = new DataCliente("b", "Javier", "Morales", "javiermorales422@hotmail.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaCliente(dCli);
-        dCli = new DataCliente("b", "Javier", "Morales", "javiermorales4222@hotmail.com", cal, null,"");
+        dCli = new DataCliente("b", "Javier", "Morales", "javiermorales4222@hotmail.com", cal, null, "");
         instance.altaCliente(dCli);
     }
 
@@ -66,10 +64,10 @@ public class AltaPerfilTest {
         System.out.println("AltaCliente: correo repetido.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente dCli = new DataCliente("d", "Javier", "Morales", "a@hotmail.com", cal, null,"");
+        DataCliente dCli = new DataCliente("d", "Javier", "Morales", "a@hotmail.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaCliente(dCli);
-        dCli = new DataCliente("e", "Javier", "Morales", "a@hotmail.com", cal, null,"");
+        dCli = new DataCliente("e", "Javier", "Morales", "a@hotmail.com", cal, null, "");
         instance.altaCliente(dCli);
     }
     
@@ -78,7 +76,7 @@ public class AltaPerfilTest {
         System.out.println("AltaCliente: correo sin formato de correo.");
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente dCli = new DataCliente("e", "Javier", "Morales", "hola", cal, null,"");
+        DataCliente dCli = new DataCliente("e", "Javier", "Morales", "hola", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaCliente(dCli);
     }
@@ -88,7 +86,7 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: ingreso normal");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null,"");
+        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "ElGordoAxl", "Axl", "Rose", "axl@rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaArtista(dArt);
     }
@@ -98,7 +96,7 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: campo vacío");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","", "Axl", "Rose", "axl2@rose.com", cal, null,"");
+        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "", "Axl", "Rose", "axl2@rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaArtista(dArt);
     }
@@ -108,10 +106,10 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: nick repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl3@rose.com", cal, null,"");
+        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl3", "Axl", "Rose", "axl3@rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaArtista(dArt);
-        dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl3", "Axl", "Rose", "axl33@rose.com", cal, null,"");
+        dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl3", "Axl", "Rose", "axl33@rose.com", cal, null, "");
         instance.altaArtista(dArt);
     }
     
@@ -120,10 +118,10 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: correo repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null,"");
+        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4@rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaArtista(dArt);
-        dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4@rose.com", cal, null,"");
+        dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4@rose.com", cal, null, "");
         instance.altaArtista(dArt);
     }
     
@@ -132,7 +130,7 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: correo sin formato de correo");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.","axlrose.com","Axl4", "Axl", "Rose", "axl4rose.com", cal, null,"");
+        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
         instance.altaArtista(dArt);
     }
