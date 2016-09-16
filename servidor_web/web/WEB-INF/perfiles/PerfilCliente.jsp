@@ -37,7 +37,7 @@
                             <ul>
                                 <c:forEach items="${listas}" var="item">
                                     <li>
-                                        <a href="#">${item}</a>
+                                        <a href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
                                     </li>
                                 </c:forEach>
                             </ul>

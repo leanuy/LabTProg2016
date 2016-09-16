@@ -39,7 +39,8 @@ public class VerPerfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String inputNick = request.getParameter("nick");
+        String inputNick = new String(request.getParameter("nick").getBytes(
+                "iso-8859-1"), "UTF-8");
         
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && 

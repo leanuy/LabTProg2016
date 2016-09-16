@@ -85,13 +85,13 @@
                             <ul>
                                 <c:forEach items="${listasPub}" var="item">
                                     <li>
-                                        <a class="" href="#">${item}</a>
+                                        <a class="" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
                                     </li>
                                 </c:forEach>
                                 <c:forEach items="${listasPriv}" var="item">
                                     <li>
                                         <i class="glyphicon glyphicon-lock"></i>
-                                        <a class="" href="#">${item}</a>
+                                        <a class="" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
