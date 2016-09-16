@@ -51,7 +51,14 @@ body{
     color:gray;
 }
 .btn-link:hover{
-    color:#5cb85c;
+    color:#0198AD;
+}
+.link-user{
+    color:gray;
+    font-weight:bold;
+}
+.link-user:hover{
+    color:#0198AD;
 }
 .menu-izquierda{
     height: 94vh;
@@ -160,3 +167,60 @@ body{
 .progress-bar-custom{
     border-color:#0198AD;
 }
+
+
+
+.tabs {
+    width:100%;
+    display:inline-block;
+}
+ 
+    /*----- Tab Links -----*/
+    /* Clearfix */
+    .tab-links:after {
+        display:block;
+        clear:both;
+        content:'';
+    }
+ 
+    .tab-links li {
+        margin:0px 5px;
+        float:left;
+        list-style:none;
+    }
+ 
+        .tab-links a {
+            padding:9px 15px;
+            display:inline-block;
+            border-radius:3px 3px 0px 0px;
+            font-weight:600;
+            color:#4c4c4c;
+            transition:all linear 0.15s;
+        }
+ 
+        .tab-links a:hover {
+            background:#0198AD;
+            color:white;
+            text-decoration:none;
+        }
+ 
+    li.active a, li.active a:hover {
+        background:#fff;
+        font-weight:600;
+        color:#0198AD;
+    }
+ 
+    /*----- Content of Tabs -----*/
+    .tab-content {
+        padding:15px;
+        border-radius:3px;
+        background:#393B39;
+    }
+ 
+    .tab {
+        display:none;
+    }
+
+    .tab.active {
+        display:block;
+    }

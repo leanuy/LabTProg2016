@@ -17,13 +17,31 @@
                 <h1>
                     <c:out value="${nick}"/>
                 </h1>
-                <div>
-                    <h2>
-                        Albums:
-                    </h2>
-                    <c:forEach items="${albums}" var="item">
-                        <a href="/VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
-                    </c:forEach>
+                <c:choose>
+                    <c:when test="${empty es_cliente or not es_cliente}">
+                    </c:when>
+                    <c:otherwise>
+                        <a href="#">Seguir</a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="row">
+                <div class="tabs">
+                    <ul class="tab-links">
+                        <li class="active"><a href="#tab1">Álbums</a></li>
+                    </ul>
+                
+                    <div class="tab-content">
+                        <div id="tab1" class="tab active">
+                            <ul>
+                                <c:forEach items="${albums}" var="item">
+                                    <li>
+                                        <a href="/VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

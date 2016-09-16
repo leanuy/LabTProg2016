@@ -17,13 +17,30 @@
                 <h1>
                     <c:out value="${nick}"/>
                 </h1>
-                <div>
-                    <h2>
-                        Listas
-                    </h2>
-                    <c:forEach items="${listas}" var="item">
-                        ${item}<br/>
-                    </c:forEach>
+                <c:choose>
+                    <c:when test="${empty es_cliente or not es_cliente}">
+                    </c:when>
+                    <c:otherwise>
+                        <a href="#">Seguir</a>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+            <div class="row">             
+                <div class="tabs">
+                    <ul class="tab-links">
+                        <li class="active"><a href="#tab1">Listas</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="tab1" class="tab active">
+                            <ul>
+                                <c:forEach items="${listas}" var="item">
+                                    <li>
+                                        <a href="#">${item}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
