@@ -13,6 +13,7 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.interfaces.IConsultaLista;
 import espotify.interfaces.web.IVerAlbum;
+import espotify.interfaces.web.IVerListaParticular;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -46,21 +47,27 @@ public class VerListaParticular extends HttpServlet {
         String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
 
-        IConsultaLista interf = Fabrica.getIConsultaLista();
+        IVerListaParticular interf = Fabrica.getIVerListaParticular();
         try {
             DataLista data = interf.darInfoParticular(inputNom, inputNick);
-            request.setAttribute("nomLista", data.getNombre());
-            if(data.getImg() == null) {
-                request.setAttribute("imagen", "./assets/img/default_cover.png");
+            boolean esPrivada = interf.listaEsPrivada(inputNom,inputNick);
+            if(esPrivada && !inputNick.equals(request.getSession().getAttribute("nick_sesion"))) {
+                response.sendError(500);
             } else {
-                request.setAttribute("imagen", data.getImg());
-            }
-            request.setAttribute("nomCliente", inputNick);
-            
-            request.setAttribute("temas", data.getTemas());
+                request.setAttribute("nomLista", data.getNombre());
+                if(data.getImg() == null) {
+                    request.setAttribute("imagen", "./assets/img/default_cover.png");
+                } else {
+                    request.setAttribute("imagen", data.getImg());
+                }
+                request.setAttribute("nomCliente", inputNick);
 
-            request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);
+                request.setAttribute("temas", data.getTemas());
+                request.setAttribute("esPrivada",esPrivada);
+                
+                request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);
             
+            }
             
             
             

@@ -34,7 +34,8 @@ public class Logout extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession objSesion = request.getSession();
         objSesion.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
-        objSesion.setAttribute("nick_sesion", "");
+        objSesion.setAttribute("nick_sesion", null);
+        objSesion.setAttribute("es_cliente",null);
         request.getRequestDispatcher("/inicio").forward(request,response);
         
     }

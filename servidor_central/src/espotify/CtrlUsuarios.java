@@ -441,4 +441,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return usuario.getPassword().equals(password);
     }
 
+    boolean listaEsPrivada(String nomLista, String nick) 
+            throws ClienteInexistenteException, ListaInexistenteException {
+        return buscarCliente(nick).listaEsPrivada(nomLista);
+    }
+
 }
