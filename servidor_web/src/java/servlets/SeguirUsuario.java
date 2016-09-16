@@ -58,7 +58,10 @@ public class SeguirUsuario extends HttpServlet {
                 response.sendError(500);
             }
         }
+<<<<<<< HEAD
         
+=======
+>>>>>>> 9dfec691079ac56f8c9847c7c2c3ca875b8b7617
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
