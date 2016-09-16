@@ -20,6 +20,7 @@
                         <c:out value="${nomLista}"/>
                     </h1>
                     <div><c:out value="${nomCliente}"/></div>
+                    <a href="#">Publicar</a> <%--take your link and be happy -->
                     <%--<c:when test="${esPrivada}">
                         <i class="glyphicon glyphicon-lock"></i>
                     </c:when>--%>
