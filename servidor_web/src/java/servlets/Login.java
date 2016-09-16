@@ -50,7 +50,6 @@ public class Login extends HttpServlet {
 		try {
                         IIniciarSesion iIniciarSesion = Fabrica.getIIniciarSesion();
                         DataUsuario dataUsr = iIniciarSesion.BuscarUsuario(login);
-                        String psw = dataUsr.getPassword();
 			if(iIniciarSesion.checkPassword(login, password)) {
                             nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
                             // setea el usuario logueado

@@ -425,7 +425,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         }
         return dataUsuario;
     }
-
+    
+    @Override
     public boolean checkPassword(String nickUsuario, String password) throws UsuarioInexistenteException{
         Usuario usuario;
         try {
