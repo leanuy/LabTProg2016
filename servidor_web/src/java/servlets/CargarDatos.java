@@ -56,7 +56,7 @@ public class CargarDatos extends HttpServlet {
             DatosDePrueba();
             request.getRequestDispatcher("/inicio").forward(request,response);
         } catch (Exception e) {
-            request.getRequestDispatcher("/Error.jsp").forward(request,response);
+            response.sendError(500);
         }
         
     }

@@ -39,7 +39,8 @@ public class VerPerfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String inputNick = request.getParameter("nick");
+        String inputNick = new String(request.getParameter("nick").getBytes(
+                "iso-8859-1"), "UTF-8");
         
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && 
@@ -65,7 +66,7 @@ public class VerPerfil extends HttpServlet {
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilCliente.jsp").forward(request,response);
 
                     } catch (ClienteInexistenteException e) {
-                        request.getRequestDispatcher("/Error.jsp").forward(request,response);
+                        response.sendError(404);
                         //problemas consultando el cliente
                     }
                 } else { //es artista
@@ -82,11 +83,11 @@ public class VerPerfil extends HttpServlet {
 
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilArtista.jsp").forward(request,response);
                     } catch (ArtistaInexistenteException e) {
-
+                        response.sendError(404);
                     }
                 }
             } catch (ClienteInexistenteException ex) {
-                request.getRequestDispatcher("/Error.jsp").forward(request,response);
+                response.sendError(404);
                 //el nick no existe en el sistema
             }
         }

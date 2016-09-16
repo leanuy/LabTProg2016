@@ -32,8 +32,10 @@
         <servlet-name>MiPerfil</servlet-name>
         <servlet-class>servlets.MiPerfil</servlet-class>
     </servlet>
-
-
+    <servlet>
+        <servlet-name>VerListaParticular</servlet-name>
+        <servlet-class>servlets.VerListaParticular</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -73,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>MiPerfil</servlet-name>
         <url-pattern>/MiPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerListaParticular</servlet-name>
+        <url-pattern>/VerListaParticular</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

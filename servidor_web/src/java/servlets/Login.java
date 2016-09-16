@@ -9,6 +9,7 @@ import exceptions.UsuarioNoEncontrado;
 import model.EstadoSesion;
 import espotify.Fabrica;
 import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataClienteExt;
 import espotify.interfaces.IIniciarSesion;
 import espotify.datatypes.DataUsuario;
 import espotify.excepciones.CorreoRepetidoException;
@@ -53,19 +54,20 @@ public class Login extends HttpServlet {
 			if(iIniciarSesion.checkPassword(login, password)) {
                             nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
                             // setea el usuario logueado
-                            request.getSession().setAttribute("usuario_logueado", dataUsr.getCorreo());
+                            objSesion.setAttribute("usuario_logueado", dataUsr.getCorreo());
+                            objSesion.setAttribute("nick_sesion", login);
+                            boolean esCliente = dataUsr instanceof DataClienteExt;
+                            objSesion.setAttribute("es_cliente",esCliente);
                         } else nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
 		} catch(UsuarioInexistenteException ex){
 			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
 		}
 		
         objSesion.setAttribute("estado_sesion", nuevoEstado);
-        objSesion.setAttribute("nick_sesion", login);
 		
-		// redirige a la página principal para que luego rediriga a la página
-		// que corresponde
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/inicio");
-        dispatcher.forward(request, response);
+        // redirige a la página principal para que luego rediriga a la página
+        // que corresponde
+        request.getRequestDispatcher("/inicio").forward(request, response);
     } 
 	
 	/**

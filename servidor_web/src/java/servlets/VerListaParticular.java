@@ -6,17 +6,15 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
-import espotify.datatypes.DataArtistaExt;
-import espotify.datatypes.DataClienteExt;
+import espotify.datatypes.DataLista;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.IConsultaLista;
 import espotify.interfaces.web.IVerAlbum;
-import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -28,7 +26,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JavierM42
  */
-public class VerAlbum extends HttpServlet {
+public class VerListaParticular extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,33 +43,33 @@ public class VerAlbum extends HttpServlet {
         
         String inputNick = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
-        String inputNom = new String(request.getParameter("album").getBytes(
+        String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
 
-        IVerAlbum interf = Fabrica.getIVerAlbum();
+        IConsultaLista interf = Fabrica.getIConsultaLista();
         try {
-            DataAlbumExt data = interf.consultaAlbum(inputNom,inputNick);
-            request.setAttribute("nomAlbum", data.getNombre());
+            DataLista data = interf.darInfoParticular(inputNom, inputNick);
+            request.setAttribute("nomLista", data.getNombre());
             if(data.getImg() == null) {
-            request.setAttribute("imagen", "./assets/img/default_cover.png");
+                request.setAttribute("imagen", "./assets/img/default_cover.png");
             } else {
-            request.setAttribute("imagen", data.getImg());
+                request.setAttribute("imagen", data.getImg());
             }
-            request.setAttribute("nomArtista", data.getNickArtista());
-            request.setAttribute("anio", data.getAnio());
-            request.setAttribute("generos", data.getGeneros());
+            request.setAttribute("nomCliente", inputNick);
+            
             request.setAttribute("temas", data.getTemas());
 
-            request.getRequestDispatcher("/WEB-INF/albums/Album.jsp").forward(request,response);
+            request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);
             
             
-        } catch (ArtistaInexistenteException ex) {
+            
+            
+        } catch (ClienteInexistenteException ex) {
             response.sendError(404);
-            //el nick no es un artista
-        } catch (AlbumInexistenteException ex) {
+        } catch (ListaInexistenteException ex) {
             response.sendError(404);
-            //el album no existe del artista
         }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
