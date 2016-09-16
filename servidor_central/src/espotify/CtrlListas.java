@@ -17,14 +17,14 @@ import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IConsultaLista;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IVerListaParticular;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CtrlListas implements IAltaLista, IPublicarLista,
-        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista {
+        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, IVerListaParticular {
     private static CtrlListas instancia;
     private String nickMem;
     private String nomListaMem;
@@ -202,6 +202,12 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         } else {
             ctrlU.agregarTemaLista(tema,nickMem, lista);
         }
+    }
+
+    @Override
+    public boolean listaEsPrivada(String nomLista, String nick)
+            throws ClienteInexistenteException, ListaInexistenteException {
+        return new CtrlUsuarios().listaEsPrivada(nomLista, nick);
     }
     
 }

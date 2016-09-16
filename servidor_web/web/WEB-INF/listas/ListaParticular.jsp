@@ -20,10 +20,12 @@
                         <c:out value="${nomLista}"/>
                     </h1>
                     <div><c:out value="${nomCliente}"/></div>
-                    <a href="#">Publicar</a> <%--take your link and be happy -->
-                    <%--<c:when test="${esPrivada}">
-                        <i class="glyphicon glyphicon-lock"></i>
-                    </c:when>--%>
+                    <c:choose>
+                        <c:when test="${esPrivada}">
+                            <i class="glyphicon glyphicon-lock"></i>
+                            <a href="#">Publicar</a>
+                        </c:when>
+                    </c:choose>
                 </div>
                 <%--temas--%>
                 <table class="table">

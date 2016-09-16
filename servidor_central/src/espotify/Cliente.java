@@ -235,4 +235,8 @@ class Cliente extends Usuario {
         }
     }
 
+    boolean listaEsPrivada(String nomLista) throws ListaInexistenteException {
+        return buscarLista(nomLista) instanceof Privada;
+    }
+
 }
