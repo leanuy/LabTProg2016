@@ -45,17 +45,6 @@ public class Login extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         EstadoSesion nuevoEstado;
-                
-                IAltaPerfil ctrlAltaPerfil = Fabrica.getIAltaPerfil();
-        Calendar cal = Calendar.getInstance();
-        cal.set(1972, 3, 8);
-        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, null, "");
-        try {
-            ctrlAltaPerfil.altaCliente(dataCliente);
-        } catch (NickRepetidoException ex) {
-        } catch (CorreoRepetidoException ex) {
-        } catch (FormatoIncorrectoException ex) {
-        }
 		// chequea contraseña
 		try {
                         IIniciarSesion iIniciarSesion = Fabrica.getIIniciarSesion();

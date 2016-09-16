@@ -1,11 +1,5 @@
 package servlets;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 import espotify.Fabrica;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataClienteExt;
@@ -21,11 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
 
-/**
- *
- * @author JavierM42
- */
-public class VerPerfil extends HttpServlet {
+public class MiPerfil extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,48 +29,70 @@ public class VerPerfil extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String inputNick = request.getParameter("nick");
-        
         HttpSession session = request.getSession();
-        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && 
-                inputNick.equals((String)session.getAttribute("nick_sesion"))){
-            request.getRequestDispatcher("/MiPerfil").forward(request,response);
-        } else {
+        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+            String nick = (String) session.getAttribute("nick_sesion");
+            
             IVerPerfil iPerfil = Fabrica.getIVerPerfil();
             try {
                 //obtener el tipo de usuario.
-                boolean esCli = iPerfil.esCliente(inputNick);
+                boolean esCli = iPerfil.esCliente(nick);
                 if (esCli) {
                     try {
-                        DataClienteExt d = iPerfil.consultaCliente(inputNick);
+                        DataClienteExt d = iPerfil.consultaCliente(nick);
                         request.setAttribute("nick", d.getNick());
+                        request.setAttribute("nombre", d.getNombre());
+                        request.setAttribute("apellido", d.getApellido());
+                        request.setAttribute("correo", d.getCorreo());
+                        request.setAttribute("fechaNac", d.getfNacStr());
                         if (d.getImg() == null) {
                             request.setAttribute("imagen", "./assets/img/profile.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
                         }
-                        List<String> listas = iPerfil.listarListasPublicasDeCliente(inputNick);
-                        request.setAttribute("listas", listas);
+                        request.setAttribute("seguidos", d.getSeguidos());
+                        request.setAttribute("seguidores", d.getSeguidores());
+                        
+                        List<String> listasPub = iPerfil.listarListasPublicasDeCliente(nick);
+                        request.setAttribute("listasPub", listasPub);
+                        List<String> listasPriv = iPerfil.listarListasPrivadasDeCliente(nick);
+                        request.setAttribute("listasPriv", listasPriv);
 
-                        request.getRequestDispatcher("/WEB-INF/perfiles/PerfilCliente.jsp").forward(request,response);
+                        request.getRequestDispatcher("/WEB-INF/perfiles/MiPerfilCliente.jsp").forward(request,response);
 
                     } catch (ClienteInexistenteException e) {
-                        request.getRequestDispatcher("/Error.jsp").forward(request,response);
+                        request.getRequestDispatcher("/Error").forward(request,response);
                         //problemas consultando el cliente
                     }
                 } else { //es artista
                     try {
-                        DataArtistaExt d = iPerfil.consultaArtista(inputNick);
-                        request.setAttribute("nick",d.getNick());
-                        if(d.getImg() == null) {
+                        DataArtistaExt d = iPerfil.consultaArtista(nick);
+                        request.setAttribute("nick", d.getNick());
+                        request.setAttribute("nombre", d.getNombre());
+                        request.setAttribute("apellido", d.getApellido());
+                        request.setAttribute("correo", d.getCorreo());
+                        request.setAttribute("fechaNac", d.getfNacStr());
+                        if(d.getUrl() == "") {
+                            request.setAttribute("url", "-");
+                        } else {
+                            request.setAttribute("url", d.getUrl());
+                        }
+                        if(d.getBio() == "") {
+                            request.setAttribute("bio", "-");
+                        } else {
+                            request.setAttribute("bio", d.getBio());
+                        }
+                        if (d.getImg() == null) {
                             request.setAttribute("imagen", "./assets/img/profile.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
                         }
-                        List<String> albums = iPerfil.listarAlbumesDeArtista(inputNick);
+                        request.setAttribute("seguidores", d.getSeguidores());
+                        
+                        List<String> albums = iPerfil.listarAlbumesDeArtista(nick);
                         request.setAttribute("albums", albums);
 
-                        request.getRequestDispatcher("/WEB-INF/perfiles/PerfilArtista.jsp").forward(request,response);
+                        request.getRequestDispatcher("/WEB-INF/perfiles/MiPerfilArtista.jsp").forward(request,response);
                     } catch (ArtistaInexistenteException e) {
 
                     }
@@ -89,7 +101,11 @@ public class VerPerfil extends HttpServlet {
                 request.getRequestDispatcher("/Error.jsp").forward(request,response);
                 //el nick no existe en el sistema
             }
+        } else {
+            request.getRequestDispatcher("/inicio").forward(request, response);
         }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

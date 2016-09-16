@@ -17,61 +17,62 @@ import javax.servlet.http.HttpSession;
  * @author Igui
  */
 public class Home extends HttpServlet {
-	/**
-	 * inicializa la sesión si no estaba creada 
-	 * @param request 
-	 */
-	public static void initSession(HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("paginas_navegadas") == null) {
-			session.setAttribute("paginas_navegadas", 0);
-		}
-		if (session.getAttribute("estado_sesion") == null) {
-			session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
-		}
-	}
-	
-	/**
-	 * Devuelve el estado de la sesión
-	 * @param request
-	 * @return 
-	 */
-	public static EstadoSesion getEstado(HttpServletRequest request)
-	{
-		return (EstadoSesion) request.getSession().getAttribute("estado_sesion");
-	}
+    /**
+     * inicializa la sesión si no estaba creada 
+     * @param request 
+     */
+    public static void initSession(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("paginas_navegadas") == null) {
+                session.setAttribute("paginas_navegadas", 0);
+        }
+        if (session.getAttribute("estado_sesion") == null) {
+                session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
+                session.setAttribute("nick_sesion", null);
+        }
+    }
 
-	private void processRequest(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		initSession(req);
-		
-		switch(getEstado(req)){
-			case NO_LOGIN:
-				// hace que se ejecute el jsp sin cambiar la url
-				req.getRequestDispatcher("/WEB-INF/auth/login.jsp").
-						forward(req, resp);
-				break;
-			case LOGIN_INCORRECTO:
-				// hace que se ejecute el jsp sin cambiar la url
-				req.getRequestDispatcher("/WEB-INF/home/inicioErroneo.jsp").
-						forward(req, resp);
-				break;
-			case LOGIN_CORRECTO:
-				// manda una redirección a otra URL (cambia la URL)
-				resp.sendRedirect("/VerPerfil?nick="+req.getSession().getAttribute("nick_sesion"));
-				break;
-		}
-	}
-	
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-				throws ServletException, IOException {
-		processRequest(req, resp);
-	}
+    /**
+     * Devuelve el estado de la sesión
+     * @param request
+     * @return 
+     */
+    public static EstadoSesion getEstado(HttpServletRequest request)
+    {
+            return (EstadoSesion) request.getSession().getAttribute("estado_sesion");
+    }
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
-			throws ServletException, IOException {
-		processRequest(req, resp);
-	}
+    private void processRequest(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+        initSession(req);
+
+        switch(getEstado(req)) {
+          case NO_LOGIN:
+                // hace que se ejecute el jsp sin cambiar la url
+              req.getRequestDispatcher("/WEB-INF/auth/login.jsp").
+                                forward(req, resp);
+                break;
+          case LOGIN_INCORRECTO:
+                // hace que se ejecute el jsp sin cambiar la url
+                req.getRequestDispatcher("/WEB-INF/home/inicioErroneo.jsp").
+                                forward(req, resp);
+                break;
+            case LOGIN_CORRECTO:
+                // manda una redirección a otra URL (cambia la URL)
+                resp.sendRedirect("/VerPerfil?nick="+req.getSession().getAttribute("nick_sesion"));
+                break;
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+                            throws ServletException, IOException {
+            processRequest(req, resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+                    throws ServletException, IOException {
+            processRequest(req, resp);
+    }
 }
