@@ -9,6 +9,10 @@
         <servlet-class>servlets.Login</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>servlets.Logout</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>VerPerfil</servlet-name>
         <servlet-class>servlets.VerPerfil</servlet-class>
     </servlet>
@@ -24,6 +28,12 @@
         <servlet-name>VerAlbum</servlet-name>
         <servlet-class>servlets.VerAlbum</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MiPerfil</servlet-name>
+        <servlet-class>servlets.MiPerfil</servlet-class>
+    </servlet>
+
+
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -33,12 +43,24 @@
         <url-pattern>/iniciar-sesion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/cerrar-sesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Registrarme</servlet-name>
         <url-pattern>/Registrarme</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>VerPerfil</servlet-name>
         <url-pattern>/VerPerfil</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CargarDatos</servlet-name>
+        <url-pattern>/CargarDatos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerAlbum</servlet-name>
+        <url-pattern>/VerAlbum</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>404</error-code>
@@ -48,6 +70,10 @@
         <error-code>500</error-code>
         <location>/WEB-INF/errors/500.jsp</location>
     </error-page>
+    <servlet-mapping>
+        <servlet-name>MiPerfil</servlet-name>
+        <url-pattern>/MiPerfil</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

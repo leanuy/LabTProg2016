@@ -22,7 +22,7 @@
                         Albums:
                     </h2>
                     <c:forEach items="${albums}" var="item">
-                        <a href="./VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
+                        <a href="/VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
                     </c:forEach>
                 </div>
             </div>

@@ -9,6 +9,8 @@
 <%-- The list of normal or fragment attributes can be specified here: --%>
 <%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -33,18 +35,21 @@
                 <button type="submit" class="btn btn-custom">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <% if(user == null){ %>
-                <li><a href="#">Iniciar sesión</a></li>
-                <% } else { %>
-                <li class="dropdown menu-usuario">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px 20px"><img src="<%= user.getImgUrl()%>" class="img-circle" style="width:30px;"> <%= user.getNick() %> <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Favoritos</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Cerrar sesión</a></li>
-                    </ul>
-                </li>
-                <% } %>
+                <c:choose>
+                    <c:when test="${empty nick_sesion}">
+                        <li><a href="/inicio">Iniciar sesión</a></li>
+                    </c:when>    
+                    <c:otherwise>
+                        <li class="dropdown menu-usuario">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px 20px"><img src="/assets/img/profile.png" class="img-circle" style="width:30px;"> <c:out value="${nick_sesion}"/> <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/MiPerfil">Mi Perfil</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/cerrar-sesion">Cerrar sesión</a></li>
+                            </ul>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
