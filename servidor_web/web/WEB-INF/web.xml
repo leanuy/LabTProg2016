@@ -36,6 +36,10 @@
         <servlet-name>VerListaParticular</servlet-name>
         <servlet-class>servlets.VerListaParticular</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeguirUsuario</servlet-name>
+        <servlet-class>servlets.SeguirUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>VerAlbum</servlet-name>
         <url-pattern>/VerAlbum</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeguirUsuario</servlet-name>
+        <url-pattern>/SeguirUsuario</url-pattern>
     </servlet-mapping>
     <error-page>
         <error-code>404</error-code>
