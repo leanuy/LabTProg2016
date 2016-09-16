@@ -6,12 +6,12 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.SeguidoInexistenteException;
-import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
 import espotify.interfaces.web.IWebSeguir;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +24,8 @@ import model.EstadoSesion;
  *
  * @author Santiago
  */
-@WebServlet(name = "SeguirUsuario", urlPatterns = {"/SeguirUsuario"})
-public class SeguirUsuario extends HttpServlet {
+@WebServlet(name = "DejarSeguirUsuario", urlPatterns = {"/DejarSeguirUsuario"})
+public class DejarSeguirUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,19 +46,15 @@ public class SeguirUsuario extends HttpServlet {
                 "iso-8859-1"), "UTF-8");
             IWebSeguir iws = Fabrica.getIWebSeguir();
             try {
-                iws.altaSeguir(Seguidor, aSeguir);
+                iws.dejarDeSeguir(Seguidor, aSeguir);
                 request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request,response);
-            } catch (SeguidorInexistenteException ex) {
-                response.sendError(404);
             } catch (SeguidoInexistenteException ex) {
                 response.sendError(404);
-            } catch (SeguidoRepetidoException ex) {
-                response.sendError(500);
-            } catch (AutoSeguirseException ex) {
-                response.sendError(500);
+            } catch (SeguidorInexistenteException ex) {
+                response.sendError(404);
             }
+            
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
