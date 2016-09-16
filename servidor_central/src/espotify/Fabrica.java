@@ -18,6 +18,7 @@ import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerPerfil;
+import espotify.interfaces.web.IWebSeguir;
 
 public class Fabrica {
     private Fabrica() {
@@ -97,5 +98,9 @@ public class Fabrica {
     
     public static IVerAlbum getIVerAlbum() {
         return new CtrlMusica();
+    }
+    
+    public static IWebSeguir getIWebSeguir(){
+        return new CtrlUsuarios();
     }
 }

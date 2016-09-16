@@ -63,6 +63,11 @@ public class VerPerfil extends HttpServlet {
                         List<String> listas = iPerfil.listarListasPublicasDeCliente(inputNick);
                         request.setAttribute("listas", listas);
 
+                        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+                            boolean siguiendo = iPerfil.Siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
+                            request.setAttribute("siguiendo", siguiendo);
+                        }
+                        
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilCliente.jsp").forward(request,response);
 
                     } catch (ClienteInexistenteException e) {

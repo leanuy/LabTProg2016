@@ -26,5 +26,7 @@ public interface IVerPerfil {
     
     public DataArtistaExt consultaArtista(String nick)
             throws ArtistaInexistenteException;
+    
+    public boolean Siguiendo(String seguidor, String seguido) throws ClienteInexistenteException;
 }
 

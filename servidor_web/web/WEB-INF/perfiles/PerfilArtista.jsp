@@ -21,9 +21,14 @@
                     <c:when test="${empty es_cliente or not es_cliente}">
                     </c:when>
                     <c:otherwise>
-                        <%--el boton de seguir deberia aparecer solo si no lo sigue, y si no, un "siguiendo"--%>
-                        <%--ademas el boton de seguir deberia aparecer solo si tiene suscripcion--%>
-                        <a href="#">Seguir</a>
+                        <c:choose>
+                            <c:when test="${siguiendo}">
+                                <a class="btn btn-custom" href="/DejarSeguirUsuario?nick=${nick}">Dejar de Seguir</a>
+                            </c:when>
+                            <c:otherwise>
+                                <a class="btn btn-custom" href="/SeguirUsuario?nick=${nick}">Seguir</a>
+                            </c:otherwise>
+                        </c:choose>
                     </c:otherwise>
                 </c:choose>
             </div>

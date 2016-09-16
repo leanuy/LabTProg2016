@@ -40,6 +40,7 @@ import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IVerPerfil;
+import espotify.interfaces.web.IWebSeguir;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,7 +52,7 @@ import java.util.logging.Logger;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
-        IVerPerfil, IIniciarSesion{
+        IVerPerfil, IIniciarSesion, IWebSeguir{
 //Constructor
     public CtrlUsuarios() {
     }
@@ -427,7 +428,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public boolean checkPassword(String nickUsuario, String password) throws UsuarioInexistenteException{
+    public boolean checkPassword(String nickUsuario, String password) throws UsuarioInexistenteException {
         Usuario usuario;
         try {
             usuario = this.buscarArtista(nickUsuario);
@@ -441,4 +442,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return usuario.getPassword().equals(password);
     }
 
+    @Override
+    public boolean Siguiendo(String seguidor, String seguido) throws ClienteInexistenteException {
+        Cliente cliente = buscarCliente(seguidor);
+        return cliente.Siguiendo(seguido);
+    }
 }

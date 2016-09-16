@@ -234,5 +234,15 @@ class Cliente extends Usuario {
             throw new TransicionSuscripcionInvalidaException();
         }
     }
+    
+    boolean Siguiendo(String seguido) {
+        Usuario usuario = seguidos.get(seguido);
+        if (usuario == null){
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 
 }
