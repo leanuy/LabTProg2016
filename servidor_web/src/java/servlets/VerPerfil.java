@@ -65,7 +65,7 @@ public class VerPerfil extends HttpServlet {
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilCliente.jsp").forward(request,response);
 
                     } catch (ClienteInexistenteException e) {
-                        request.getRequestDispatcher("/Error.jsp").forward(request,response);
+                        response.sendError(404);
                         //problemas consultando el cliente
                     }
                 } else { //es artista
@@ -82,11 +82,11 @@ public class VerPerfil extends HttpServlet {
 
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilArtista.jsp").forward(request,response);
                     } catch (ArtistaInexistenteException e) {
-
+                        response.sendError(404);
                     }
                 }
             } catch (ClienteInexistenteException ex) {
-                request.getRequestDispatcher("/Error.jsp").forward(request,response);
+                response.sendError(404);
                 //el nick no existe en el sistema
             }
         }

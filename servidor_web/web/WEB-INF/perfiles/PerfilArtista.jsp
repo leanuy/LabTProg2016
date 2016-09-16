@@ -21,6 +21,8 @@
                     <c:when test="${empty es_cliente or not es_cliente}">
                     </c:when>
                     <c:otherwise>
+                        <%--el boton de seguir deberia aparecer solo si no lo sigue, y si no, un "siguiendo"--%>
+                        <%--ademas el boton de seguir deberia aparecer solo si tiene suscripcion--%>
                         <a href="#">Seguir</a>
                     </c:otherwise>
                 </c:choose>
@@ -30,7 +32,6 @@
                     <ul class="tab-links">
                         <li class="active"><a href="#tab1">Álbums</a></li>
                     </ul>
-                
                     <div class="tab-content">
                         <div id="tab1" class="tab active">
                             <ul>

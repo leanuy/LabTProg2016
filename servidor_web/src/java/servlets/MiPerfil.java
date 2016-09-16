@@ -98,7 +98,7 @@ public class MiPerfil extends HttpServlet {
                     }
                 }
             } catch (ClienteInexistenteException ex) {
-                request.getRequestDispatcher("/Error.jsp").forward(request,response);
+                response.sendError(404);
                 //el nick no existe en el sistema
             }
         } else {

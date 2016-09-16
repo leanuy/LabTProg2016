@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:body>
     <script src="assets/js/jquery-3.1.0.min.js"></script>
@@ -39,8 +40,8 @@
                 <div class="tabs">
                     <ul class="tab-links">
                         <li class="active"><a href="#tab1">Datos Personales</a></li>
-                        <li><a href="#tab2">Seguidores</a></li>
-                        <li><a href="#tab3">Sigues a</a></li>
+                        <li><a href="#tab2">Seguidores (<c:out value="${fn:length(seguidores)}"/>)</a></li>
+                        <li><a href="#tab3">Siguiendo (<c:out value="${fn:length(seguidos)}"/>)</a></li>
                         <li><a href="#tab4">Listas</a></li>
                         <li><a href="#tab5">Favoritos</a></li>
                     </ul>

@@ -64,10 +64,10 @@ public class VerAlbum extends HttpServlet {
             
             
         } catch (ArtistaInexistenteException ex) {
-            request.getRequestDispatcher("/ErrorArt.jsp").forward(request,response);
+            response.sendError(404);
             //el nick no es un artista
         } catch (AlbumInexistenteException ex) {
-            request.getRequestDispatcher("/ErrorAlb.jsp").forward(request,response);
+            response.sendError(404);
             //el album no existe del artista
         }
     }
