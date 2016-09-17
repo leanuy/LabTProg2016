@@ -21,9 +21,8 @@
                     </h1>
                     <div><c:out value="${nomCliente}"/></div>
                     <c:choose>
-                        <c:when test="${esPrivada}">
-                            <i class="glyphicon glyphicon-lock"></i>
-                            <a href="#">Publicar</a>
+                        <c:when test="${esPrivada}">                            
+                            <a class="btn btn-custom btn-md round" href="/publicarlista?lista=<c:out value="${nomLista}"/>"><i class="glyphicon glyphicon-lock"></i> Publicar</a>
                         </c:when>
                     </c:choose>
                 </div>

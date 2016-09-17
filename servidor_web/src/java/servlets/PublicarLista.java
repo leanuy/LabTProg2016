@@ -6,26 +6,23 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.excepciones.AutoSeguirseException;
-import espotify.excepciones.SeguidoInexistenteException;
-import espotify.excepciones.SeguidoRepetidoException;
-import espotify.excepciones.SeguidorInexistenteException;
-import espotify.interfaces.web.IWebSeguir;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.excepciones.YaPublicaException;
+import espotify.interfaces.IPublicarLista;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.EstadoSesion;
 
 /**
  *
- * @author Santiago
+ * @author agus
  */
-@WebServlet(name = "SeguirUsuario", urlPatterns = {"/SeguirUsuario"})
-public class SeguirUsuario extends HttpServlet {
+public class PublicarLista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,25 +35,22 @@ public class SeguirUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String Seguidor = (String) session.getAttribute("nick_sesion");
-            String aSeguir = new String(request.getParameter("nick").getBytes(
+        String lista = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
-            IWebSeguir iws = Fabrica.getIWebSeguir();
-            try {
-                iws.altaSeguir(Seguidor, aSeguir);
-                request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request,response);
-            } catch (SeguidorInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidoInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidoRepetidoException ex) {
-                response.sendError(500);
-            } catch (AutoSeguirseException ex) {
-                response.sendError(500);
-            }
+        String nick = (String) session.getAttribute("nick_sesion");
+        try {
+            IPublicarLista ipl = Fabrica.getIPublicarLista();
+            ipl.publicarLista(lista, nick);
+            response.sendRedirect("/VerListaParticular?nick="+nick+"&lista=" + request.getParameter("lista"));
+        } catch (ClienteInexistenteException e) {
+            response.sendError(500, "cliente inexistente");
+        } catch (ListaInexistenteException e) {
+            response.sendError(500, "lista inexistente ");
+        } catch (YaPublicaException e) {
+            response.sendError(500, "lista ya publicada");
+        } catch (IOException e) {
+            response.sendError(500);
         }
     }
 
@@ -73,6 +67,7 @@ public class SeguirUsuario extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
     }
 
     /**
