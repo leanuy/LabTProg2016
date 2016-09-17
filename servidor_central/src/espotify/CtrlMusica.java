@@ -16,13 +16,14 @@ import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IConsultaAlbum;
 import espotify.interfaces.web.IVerAlbum;
+import espotify.interfaces.web.IVerGenero;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
-        IVerAlbum {
+        IVerAlbum, IVerGenero {
     private Artista artistaMem;
 
 //constructor
@@ -136,6 +137,16 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             entry.getValue().addAlbum(album);
         });
         art.addAlbum(album);
+    }
+    
+    @Override
+    public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException
+    {
+        return new CtrlListas().listarListasDeGenero(nomGenero);
+    }
+    
+    public DataGenero consultaGenero(String nomGenero) throws GeneroInexistenteException {
+        return buscarGenero(nomGenero).listarseRecursivo("");
     }
     
 }

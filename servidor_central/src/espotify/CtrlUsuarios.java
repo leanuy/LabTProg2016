@@ -10,6 +10,7 @@ import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
@@ -39,6 +40,7 @@ import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
+import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
@@ -47,12 +49,10 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
-        IVerPerfil, IIniciarSesion, IWebSeguir{
+        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas{
 //Constructor
     public CtrlUsuarios() {
     }
@@ -449,7 +449,16 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
 
     @Override
     public boolean Siguiendo(String seguidor, String seguido) throws ClienteInexistenteException {
-        Cliente cliente = buscarCliente(seguidor);
-        return cliente.Siguiendo(seguido);
+        return buscarCliente(seguidor).Siguiendo(seguido);
+    }
+
+    @Override
+    public List<DataPreview> previewArtistas() {
+        List salida = new ArrayList();
+        for (Entry<String, Artista> entry : getArtistas().entrySet()) {
+            Artista art = entry.getValue();
+            salida.add(art.getPreview());
+        }
+        return salida;
     }
 }

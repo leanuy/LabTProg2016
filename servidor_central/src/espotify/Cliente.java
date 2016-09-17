@@ -236,13 +236,7 @@ class Cliente extends Usuario {
     }
     
     boolean Siguiendo(String seguido) {
-        Usuario usuario = seguidos.get(seguido);
-        if (usuario == null){
-            return false;
-        }
-        else {
-            return true;
-        }
+        return seguidos.containsKey(seguido);
     }
 
     boolean listaEsPrivada(String nomLista) throws ListaInexistenteException {
