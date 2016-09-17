@@ -17,7 +17,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     /**
      * Creates new form DialogoIngresoTema
      */
-    public DialogoIngresoTema(java.awt.Frame parent,String tittle,boolean modal) {
+    public DialogoIngresoTema(java.awt.Frame parent, String tittle, boolean modal) {
         super(parent, modal);
         initComponents();
         urlDelTema.setEnabled(false);
@@ -179,7 +179,7 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
     }//GEN-LAST:event_urlaTemaRadioButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-        AltaAlbum.cargarTema(false,null,null,null, 0,false);
+        AltaAlbum.cargarTema(false, null, null, null, 0, false);
         this.dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
 
@@ -200,14 +200,14 @@ public class DialogoIngresoTema extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Link al tema vacio", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            AltaAlbum.cargarTema(true,urlDelTema.getText(),null,nombreTema.getText(), duration, true);
+            AltaAlbum.cargarTema(true, urlDelTema.getText(), null, nombreTema.getText(), duration, true);
             this.dispose();
         } else {
             if ("".equals(pathLocal.getText())) {
                 JOptionPane.showMessageDialog(this, "Cargue un tema", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            AltaAlbum.cargarTema(false,"",selectedFile,nombreTema.getText(), duration,true);
+            AltaAlbum.cargarTema(false, "", selectedFile, nombreTema.getText(), duration, true);
             this.dispose();
         }
     }//GEN-LAST:event_aceptarButtonActionPerformed

@@ -6,7 +6,6 @@
 package espotify.interfaces.web;
 
 import espotify.excepciones.AutoSeguirseException;
-import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
@@ -17,11 +16,11 @@ import espotify.excepciones.SeguidorInexistenteException;
  */
 public interface IWebSeguir {
     public void altaSeguir(String nomSeguidor, String nomSeguido)
-            throws SeguidorInexistenteException,SeguidoInexistenteException,
+            throws SeguidorInexistenteException, SeguidoInexistenteException,
             SeguidoRepetidoException, AutoSeguirseException;
     
     public void dejarDeSeguir(String nomSeguidor, String nomSeguido)
-            throws SeguidoInexistenteException,SeguidorInexistenteException;
+            throws SeguidoInexistenteException, SeguidorInexistenteException;
     
 
 }

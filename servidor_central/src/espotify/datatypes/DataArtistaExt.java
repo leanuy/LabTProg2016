@@ -31,7 +31,7 @@ public class DataArtistaExt extends DataUsuario {
     }
     
     public DataArtistaExt(String nick, String nombre, String apellido, String correo,
-            Calendar fechaNac, BufferedImage img, String bio, String url, Map<String,Album> albums,
+            Calendar fechaNac, BufferedImage img, String bio, String url, Map<String, Album> albums,
             List<String> segdores) {
 
         super(nick, nombre, apellido, correo, fechaNac, img, segdores);
@@ -48,7 +48,7 @@ public class DataArtistaExt extends DataUsuario {
     }
     
     public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fechaNac,
-            BufferedImage img, String bio, String url, Map<String,Album> albums, String pwd) {
+            BufferedImage img, String bio, String url, Map<String, Album> albums, String pwd) {
 
         super(nick, nombre, apellido, correo, fechaNac, img, pwd);
 
@@ -66,46 +66,21 @@ public class DataArtistaExt extends DataUsuario {
 
     @Override
     public boolean equals(Object obj) {
-        System.out.println("Borrame");
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
-            return false;
+        else {
+            final DataArtistaExt other = (DataArtistaExt) obj;
+            return !((other == null) || 
+                    !(Objects.equals(this.bio, other.bio)) || 
+                    !(Objects.equals(this.url, other.url)) || 
+                    !(Objects.equals(this.getNick(), other.getNick())) || 
+                    !(Objects.equals(this.getNombre(), other.getNombre())) ||
+                    !(Objects.equals(this.getApellido(), other.getApellido())) ||
+                    !(Objects.equals(this.getCorreo(), other.getCorreo())) ||
+                    !(Objects.equals(this.getfNac(), other.getfNac())) ||
+                    !(Objects.equals(this.getImg(), other.getImg())) ||
+                    !(Arrays.deepEquals(this.alb, other.alb)));
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final DataArtistaExt other = (DataArtistaExt) obj;
-        if (!Objects.equals(this.bio, other.bio)) {
-            return false;
-        }
-        if (!Objects.equals(this.url, other.url)) {
-            return false;
-        }
-        if (!Objects.equals(this.nick, other.nick)) {
-            return false;
-        }
-        if (!Objects.equals(this.nombre, other.nombre)) {
-            return false;
-        }
-        if (!Objects.equals(this.apellido, other.apellido)) {
-            return false;
-        }
-        if (!Objects.equals(this.correo, other.correo)) {
-            return false;
-        }
-        if (!Objects.equals(this.fechaNac, other.fechaNac)) {
-            return false;
-        }
-        if (!Objects.equals(this.img, other.img)) {
-            return false;
-        }
-        if (!Arrays.deepEquals(this.alb, other.alb)) {
-            return false;
-        }
-        return true;
     }
-    
-    
 }

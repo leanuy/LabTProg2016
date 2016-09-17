@@ -49,7 +49,7 @@ public class Login extends HttpServlet {
 		// chequea contraseña
 		try {
                         IIniciarSesion iIniciarSesion = Fabrica.getIIniciarSesion();
-                        DataUsuario dataUsr = iIniciarSesion.BuscarUsuario(login);
+                        DataUsuario dataUsr = iIniciarSesion.buscarUsuario(login);
 			if(iIniciarSesion.checkPassword(login, password)) {
                             nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
                             // setea el usuario logueado
@@ -79,7 +79,7 @@ public class Login extends HttpServlet {
 			throws UsuarioNoEncontrado, UsuarioInexistenteException
 	{
             IIniciarSesion iIniciarSesion = Fabrica.getIIniciarSesion();
-            DataUsuario dataUsr = iIniciarSesion.BuscarUsuario((String) request.getSession().getAttribute("usuario_logueado"));
+            DataUsuario dataUsr = iIniciarSesion.buscarUsuario((String) request.getSession().getAttribute("usuario_logueado"));
 		return dataUsr;
 	}
 

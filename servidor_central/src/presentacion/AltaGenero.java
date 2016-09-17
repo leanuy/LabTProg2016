@@ -30,7 +30,7 @@ public class AltaGenero extends javax.swing.JInternalFrame {
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode(generoBase.getNombre());
         modeloTree  = new DefaultTreeModel(raiz);
         ArbolGeneros.setModel(modeloTree);
-        cargarArbol(generoBase,raiz);
+        cargarArbol(generoBase, raiz);
 
     }
     
@@ -38,9 +38,9 @@ public class AltaGenero extends javax.swing.JInternalFrame {
         int idx = 0;
         for (DataGenero d: dataGenero.getHijos()) {
             DefaultMutableTreeNode nodito = new DefaultMutableTreeNode(d.getNombre());
-            modeloTree.insertNodeInto(nodito,padre,idx);
+            modeloTree.insertNodeInto(nodito, padre, idx);
             idx++;
-            cargarArbol(d,nodito);
+            cargarArbol(d, nodito);
         }
         for (idx = 0; idx < ArbolGeneros.getRowCount(); idx++) {
             ArbolGeneros.expandRow(idx);
@@ -138,10 +138,10 @@ public class AltaGenero extends javax.swing.JInternalFrame {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) ArbolGeneros.getLastSelectedPathComponent();
             String nomPadre = "";
             if (node != null) {
-                nomPadre = (String)node.getUserObject();
+                nomPadre = (String) node.getUserObject();
             }
             IAltaGenero ctrl = Fabrica.getIAltaGenero();
-            ctrl.altaGenero(new DataGenero(nom,nomPadre));
+            ctrl.altaGenero(new DataGenero(nom, nomPadre));
             JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
             this.dispose();
         } catch (GeneroRepetidoException ex) {

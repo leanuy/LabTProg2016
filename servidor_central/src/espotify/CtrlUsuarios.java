@@ -406,7 +406,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
 
     @Override
-    public DataUsuario BuscarUsuario(String nickUsuario) throws UsuarioInexistenteException {
+    public DataUsuario buscarUsuario(String nickUsuario) throws UsuarioInexistenteException {
         if (!this.existeUsuarioNick(nickUsuario)) {
             throw new UsuarioInexistenteException();
         }
@@ -448,7 +448,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
 
     @Override
-    public boolean Siguiendo(String seguidor, String seguido) throws ClienteInexistenteException {
+    public boolean siguiendo(String seguidor, String seguido) throws ClienteInexistenteException {
         return buscarCliente(seguidor).Siguiendo(seguido);
     }
 

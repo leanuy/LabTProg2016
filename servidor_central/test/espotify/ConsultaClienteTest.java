@@ -13,8 +13,8 @@ import org.junit.Test;
 import java.util.Calendar;
 
 public class ConsultaClienteTest {
-    static IConsultaCliente iConsultaCliente;    
-
+    private static IConsultaCliente iConsultaCliente;    
+ 
     public ConsultaClienteTest() {
         iConsultaCliente = Fabrica.getIConsultaCliente();
     }
@@ -24,16 +24,17 @@ public class ConsultaClienteTest {
         //tests de santiago que hice yo -JM42
         Calendar cal = Calendar.getInstance();
         cal.set(1996, 5, 17);
-        DataCliente dCliente = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null,"");
+        DataCliente dCliente = new DataCliente("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, "");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
 
         try {
             ctrl.altaCliente(dCliente);
         } catch (Exception ex) {
+            System.out.println("You are doomed to fail");
         }
         
         System.out.println("ConsultaCliente");
-        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new String[0], new String[0],"");
+        DataClienteExt expResult = new DataClienteExt("clienteconsultado", "cli", "consultado", "cliente@consultado.com", cal, null, new String[0], new String[0], "");
         IConsultaCliente instance = Fabrica.getIConsultaCliente();
 
         DataClienteExt result = iConsultaCliente.consultaCliente("clienteconsultado");

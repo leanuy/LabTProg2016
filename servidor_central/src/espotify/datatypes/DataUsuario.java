@@ -7,14 +7,14 @@ import java.util.Calendar;
 import java.util.List;
 
 public class DataUsuario {
-    protected String nick;
-    protected String nombre;
-    protected String apellido;
-    protected String correo;
-    protected Calendar fechaNac;
-    protected BufferedImage img;
-    protected List<String> seguidores;
-    protected String password;
+    private String nick;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private Calendar fechaNac;
+    private BufferedImage img;
+    private List<String> seguidores;
+    private String password;
 
     public String getNick() {
         return nick;

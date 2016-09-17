@@ -13,7 +13,7 @@ public class DataCliente extends DataUsuario {
     
     public DataCliente(String nick, String nombre, String apellido, String correo,
             Calendar fechaNac, BufferedImage img, String pwd) {
-        super(nick, nombre, apellido, correo, fechaNac, img,pwd);
+        super(nick, nombre, apellido, correo, fechaNac, img, pwd);
     }
     
 }

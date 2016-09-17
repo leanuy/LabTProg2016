@@ -14,7 +14,7 @@ class TemaWeb extends Tema {
     @Override
     DataTema getData() {
         final DataTema root = super.getData();
-        return new DataTemaWeb(url,root.getNombre(),root.getDuracion(),root.getNum(),
+        return new DataTemaWeb(url, root.getNombre(), root.getDuracion(), root.getNum(),
                 root.getNomArtista(), root.getAlbum()); 
     } 
 }
