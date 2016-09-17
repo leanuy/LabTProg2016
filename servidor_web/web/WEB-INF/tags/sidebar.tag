@@ -11,9 +11,8 @@
 <div class="menu-izquierda col-lg-2 col-md-2 hidden-sm hidden-xs">
     <div class="row">
         <ul class="list-group">
-            <li class="list-group-item"><i class="glyphicon glyphicon-cd"></i> Géneros</li>
-            <li class="list-group-item"><i class="glyphicon glyphicon-user"></i> Artistas</li>
-
+            <li class="list-group-item"><i class="glyphicon glyphicon-cd"></i> <a href="/VerGenero?genero=Genero">Géneros</a></li>
+            <li class="list-group-item"><i class="glyphicon glyphicon-user"></i> <a href="/Artistas">Artistas</a></li>
         </ul>
     </div>
 </div>

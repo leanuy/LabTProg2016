@@ -6,11 +6,10 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.interfaces.web.IVerAlbum;
+import espotify.datatypes.DataPreview;
+import espotify.interfaces.web.IListarArtistas;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JavierM42
  */
-public class VerAlbum extends HttpServlet {
+public class Artistas extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,35 +34,12 @@ public class VerAlbum extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String inputNick = new String(request.getParameter("nick").getBytes(
-                "iso-8859-1"), "UTF-8");
-        String inputNom = new String(request.getParameter("album").getBytes(
-                "iso-8859-1"), "UTF-8");
-
-        IVerAlbum interf = Fabrica.getIVerAlbum();
-        try {
-            DataAlbumExt data = interf.consultaAlbum(inputNom,inputNick);
-            request.setAttribute("nomAlbum", data.getNombre());
-            if(data.getImg() == null) {
-            request.setAttribute("imagen", "./assets/img/default_cover.png");
-            } else {
-            request.setAttribute("imagen", data.getImg());
-            }
-            request.setAttribute("nomArtista", data.getNickArtista());
-            request.setAttribute("anio", data.getAnio());
-            request.setAttribute("generos", data.getGeneros());
-            request.setAttribute("temas", data.getTemas());
-
-            request.getRequestDispatcher("/WEB-INF/albums/Album.jsp").forward(request,response);
-            
-            
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(404);
-            //el nick no es un artista
-        } catch (AlbumInexistenteException ex) {
-            response.sendError(404);
-            //el album no existe del artista
-        }
+        IListarArtistas interf = Fabrica.getIListarArtistas();
+        List<DataPreview> data = interf.previewArtistas();
+        
+        request.setAttribute("artistas", data);
+        
+        request.getRequestDispatcher("/WEB-INF/perfiles/Artistas.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

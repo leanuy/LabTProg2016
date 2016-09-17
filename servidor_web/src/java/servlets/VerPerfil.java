@@ -86,6 +86,11 @@ public class VerPerfil extends HttpServlet {
                         List<String> albums = iPerfil.listarAlbumesDeArtista(inputNick);
                         request.setAttribute("albums", albums);
 
+                        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+                            boolean siguiendo = iPerfil.Siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
+                            request.setAttribute("siguiendo", siguiendo);
+                        }
+                        
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilArtista.jsp").forward(request,response);
                     } catch (ArtistaInexistenteException e) {
                         response.sendError(404);
