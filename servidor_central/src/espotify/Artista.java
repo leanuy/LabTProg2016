@@ -3,6 +3,7 @@ package espotify;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
+import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 
@@ -84,5 +85,9 @@ class Artista extends Usuario {
         String tema = data.getNombre();
         Album alb = albums.get(album);
         return alb.devolverTema(tema);
+    }
+
+    Object getPreview() {
+        return new DataPreview(nick,img);
     }
 }

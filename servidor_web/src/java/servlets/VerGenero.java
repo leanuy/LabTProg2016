@@ -6,11 +6,12 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.interfaces.web.IVerAlbum;
+import espotify.datatypes.DataGenero;
+import espotify.excepciones.GeneroInexistenteException;
+import espotify.interfaces.web.IVerGenero;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JavierM42
  */
-public class VerAlbum extends HttpServlet {
+public class VerGenero extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,35 +35,32 @@ public class VerAlbum extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        String inputNick = new String(request.getParameter("nick").getBytes(
-                "iso-8859-1"), "UTF-8");
-        String inputNom = new String(request.getParameter("album").getBytes(
+        String inputNom = new String(request.getParameter("genero").getBytes(
                 "iso-8859-1"), "UTF-8");
 
-        IVerAlbum interf = Fabrica.getIVerAlbum();
+        IVerGenero interf = Fabrica.getIVerGenero();
         try {
-            DataAlbumExt data = interf.consultaAlbum(inputNom,inputNick);
-            request.setAttribute("nomAlbum", data.getNombre());
-            if(data.getImg() == null) {
-            request.setAttribute("imagen", "./assets/img/default_cover.png");
-            } else {
-            request.setAttribute("imagen", data.getImg());
-            }
-            request.setAttribute("nomArtista", data.getNickArtista());
-            request.setAttribute("anio", data.getAnio());
-            request.setAttribute("generos", data.getGeneros());
-            request.setAttribute("temas", data.getTemas());
+            DataGenero data = interf.consultaGenero(inputNom);
+            request.setAttribute("nombre", data.getNombre());
 
-            request.getRequestDispatcher("/WEB-INF/albums/Album.jsp").forward(request,response);
+            List<String> listas = interf.listarListasDeGenero(inputNom);
+            request.setAttribute("listas", listas);
+            
+            List<String[]> albums = interf.listarAlbumesDeGenero(inputNom);
+            request.setAttribute("albums", albums);
+            
+            List<String> subgeneros = new ArrayList<String>();
+            for(DataGenero dgen : data.getHijos()) {
+                subgeneros.add(dgen.getNombre());
+            }
+            request.setAttribute("subgeneros", subgeneros);
+            
+            request.getRequestDispatcher("/WEB-INF/generos/VerGenero.jsp").forward(request,response);
             
             
-        } catch (ArtistaInexistenteException ex) {
+        } catch (GeneroInexistenteException ex) {
             response.sendError(404);
             //el nick no es un artista
-        } catch (AlbumInexistenteException ex) {
-            response.sendError(404);
-            //el album no existe del artista
         }
     }
 

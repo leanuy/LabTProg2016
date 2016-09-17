@@ -16,12 +16,15 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IVerAlbum;
+import espotify.interfaces.web.IVerGenero;
 import espotify.interfaces.web.IVerListaParticular;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
 public class Fabrica {
+
     private Fabrica() {
     }
     
@@ -105,7 +108,15 @@ public class Fabrica {
         return new CtrlListas();
     }
     
-    public static IWebSeguir getIWebSeguir(){
+    public static IWebSeguir getIWebSeguir() {
         return new CtrlUsuarios();
+    }
+    
+    public static IListarArtistas getIListarArtistas() {
+        return new CtrlUsuarios();
+    }
+    
+    public static IVerGenero getIVerGenero() {
+        return new CtrlMusica();
     }
 }
