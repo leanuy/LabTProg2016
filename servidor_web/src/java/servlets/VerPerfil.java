@@ -87,7 +87,7 @@ public class VerPerfil extends HttpServlet {
                         request.setAttribute("albums", albums);
 
                         if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-                            boolean siguiendo = iPerfil.Siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
+                            boolean siguiendo = iPerfil.siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
                             request.setAttribute("siguiendo", siguiendo);
                         }
                         

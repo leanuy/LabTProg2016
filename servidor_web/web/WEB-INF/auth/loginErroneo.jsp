@@ -38,7 +38,7 @@
                             <div class="etc-login-form">
                                 <!--<p>forgot your password? <a href="#">click here</a></p>-->
                                 <br />
-                                <p>Nuevo usuario? <a href="/registrarme">crea tu cuenta</a></p>
+                                <p>Nuevo usuario? <a href="/Registrarme">crea tu cuenta</a></p>
                             </div>
                         </form>
                     </div>
