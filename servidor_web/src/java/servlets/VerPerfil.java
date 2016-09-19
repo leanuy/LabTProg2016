@@ -63,7 +63,8 @@ public class VerPerfil extends HttpServlet {
                         List<String> listas = iPerfil.listarListasPublicasDeCliente(inputNick);
                         request.setAttribute("listas", listas);
 
-                        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+                        boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+                        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli  ) {
                             boolean siguiendo = iPerfil.siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
                             request.setAttribute("siguiendo", siguiendo);
                         }
@@ -86,7 +87,8 @@ public class VerPerfil extends HttpServlet {
                         List<String> albums = iPerfil.listarAlbumesDeArtista(inputNick);
                         request.setAttribute("albums", albums);
 
-                        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+                        boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+                        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli  ) {
                             boolean siguiendo = iPerfil.siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
                             request.setAttribute("siguiendo", siguiendo);
                         }
