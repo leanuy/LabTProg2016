@@ -80,7 +80,7 @@ public class VerPerfil extends HttpServlet {
                         DataArtistaExt d = iPerfil.consultaArtista(inputNick);
                         request.setAttribute("nick",d.getNick());
                         if(d.getImg() == null) {
-                            request.setAttribute("imagen", "./assets/img/profile.png");
+                            request.setAttribute("imagen", "./assets/img/artista.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
                         }

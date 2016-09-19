@@ -16,6 +16,9 @@
             $("#elegir_cliente").hide();
             $("#elegir_artista").hide();
             $("#passnotmatch").hide();
+            $("#camposvacios").hide();
+            $("#nickocupado").hide();
+            $("#correoocupado").hide();
             
             $("#elegir_cliente").click(function(event){
                 $("#formulario").show();
@@ -35,17 +38,68 @@
                 }
               );
       
+              function ValidarCamposVacios() {
+                  salida=$("#lg_username").val()!=="";
+                  if(salida)
+                      salida = $("#lg_correo").val()!=="";
+                  if(salida)
+                      salida = $("#lg_password").val()!=="";
+                  if(salida)
+                      salida = $("#lg_nombre").val()!=="";
+                  if(salida)
+                      salida = $("#lg_apellido").val()!=="";
+                  var dateRegEx = /^(0[1-9]|[12][0-9]|3[01]|[1-9])\/(0[1-9]|1[012]|[1-9])\/\d\d\d\d$/;
+                  if(salida) {
+                      var fecha = $("#lg_fecha").val().toString();
+                      salida = fecha.match(dateRegEx);
+                  }
+                  return salida;
+              }
+      
             $("#submittear").click(function() {
                 pass = $("#lg_password").val();
                 confirm = $("#lg_passwordconfirm").val();
-                if(pass===confirm) {
-                    $("#passnotmatch").hide();
+                if(ValidarCamposVacios()) {
+                    $("#camposvacios").hide();
+                    if(pass===confirm) {
+                    $("#camposvacios").show();
                     $("#registro-form").submit();
+                    } else {
+                        $("#passnotmatch").show();
+                    }
                 } else {
-                    $("#passnotmatch").show();
+                    $("#camposvacios").show();
                 }
-                
             });
+            
+            $("#lg_username").on('input',function(e){
+                $.ajax({
+                    type: "GET",
+                    url: "/ValidarNick?nick="+$("#lg_username").val(),
+                    success: function(msg) {
+                        if(msg=="true") {
+                            $("#nickocupado").show();
+                        } else {
+                            $("#nickocupado").hide();
+                        }
+                    }
+                });
+            });
+      
+            $("#lg_correo").on('input',function(e){
+                $.ajax({
+                    type: "GET",
+                    url: "/ValidarCorreo?correo="+$("#lg_correo").val(),
+                    success: function(msg) {
+                        if(msg=="true") {
+                            $("#correoocupado").show();
+                        } else {
+                            $("#correoocupado").hide();
+                        }
+                    }
+                });
+            });
+      
       
         });
     </script>
@@ -78,9 +132,6 @@
                                         <h3>Artista</h3>
                                     </label>
                                 </li>
-                                
-                                
-                                
                             </ul>
                         </div>
                         <div id="formulario" class="registro-form-1">
@@ -91,9 +142,15 @@
                                             <label for="lg_username" class="sr-only">Username</label>
                                             <input type="text" class="form-control" id="lg_username" name="login" placeholder="nick">
                                         </div>
+                                        <div id="nickocupado" class="alert alert-danger" role="alert">
+                                            Este nick no está disponible.
+                                        </div>
                                         <div class="form-group">
                                             <label for="lg_correo" class="sr-only">Correo electrónico</label>
                                             <input type="text" class="form-control" id="lg_correo" name="correo" placeholder="correo electrónico">
+                                        </div>
+                                        <div id="correoocupado" class="alert alert-danger" role="alert">
+                                            Este correo ya se encuentra asociado a un usuario.
                                         </div>
                                         <div class="form-group">
                                             <label for="lg_password" class="sr-only">Password</label>
@@ -131,6 +188,9 @@
                                             <label for="lg_bio" class="sr-only">Biografía</label>
                                             <textarea class="form-control" style="height:200px" id="lg_bio" name="bio" placeholder="Biografía (opcional)"></textarea>
                                         </div>
+                                    </div>
+                                    <div id="camposvacios" class="alert alert-danger" role="alert">
+                                        Algún campo obligatorio está vacío o la fecha ingresada tiene un formato inválido.
                                     </div>
                                     <button id="submittear" class="btn btn-custom" type="button" value="Entrar" <%--onclick="submit()"--%>>Registrarme</button>
                                 </div>

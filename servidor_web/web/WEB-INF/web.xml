@@ -52,6 +52,14 @@
         <servlet-name>VerGenero</servlet-name>
         <servlet-class>servlets.VerGenero</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidarNick</servlet-name>
+        <servlet-class>servlets.ValidarNick</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ValidarCorreo</servlet-name>
+        <servlet-class>servlets.ValidarCorreo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>VerGenero</servlet-name>
         <url-pattern>/VerGenero</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarNick</servlet-name>
+        <url-pattern>/ValidarNick</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarCorreo</servlet-name>
+        <url-pattern>/ValidarCorreo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
