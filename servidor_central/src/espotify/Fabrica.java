@@ -17,6 +17,7 @@ import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IListarArtistas;
+import espotify.interfaces.web.IListarClientes;
 import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerGenero;
@@ -25,6 +26,8 @@ import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
 public class Fabrica {
+
+
 
     private Fabrica() {
     }
@@ -114,6 +117,10 @@ public class Fabrica {
     }
     
     public static IListarArtistas getIListarArtistas() {
+        return new CtrlUsuarios();
+    }
+    
+    public static IListarClientes getIListarClientes() {
         return new CtrlUsuarios();
     }
     
