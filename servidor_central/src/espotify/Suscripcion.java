@@ -35,7 +35,7 @@ public class Suscripcion {
     }
     
     void cancelar() throws TransicionSuscripcionInvalidaException {
-        if (!estaVigente() && !estaCancelada()) {
+        if (!estaCancelada() && (estaVigente() || estaPendiente())) {
             this.cancelada = true;
         } else {
             throw new TransicionSuscripcionInvalidaException();
