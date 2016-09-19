@@ -3,7 +3,7 @@ package espotify.datatypes;
 import java.util.Calendar;
 
 public class DataSuscripcionVigente extends DataSuscripcion {
-    private Calendar vencimiento;
+    private final Calendar vencimiento;
     
     public DataSuscripcionVigente(Calendar fechaCreacion, EstadoSuscripcion estado,
             TipoSuscripcion tipo, Calendar vencimiento) {
