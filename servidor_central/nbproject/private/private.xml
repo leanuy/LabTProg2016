@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< c4e32b7ea727efe65779e4eb3d90519f2a1e66ab
             <file>file:/Users/DJA/Documents/FIng/taller/tpgr16/servidor_central/test/espotify/ConsultaClienteTest.java</file>
             <file>file:/Users/DJA/Documents/FIng/taller/tpgr16/servidor_central/test/espotify/FavoritearTest.java</file>
             <file>file:/Users/DJA/Documents/FIng/taller/tpgr16/servidor_central/test/espotify/DejarDeSeguirTest.java</file>
@@ -11,6 +12,9 @@
             <file>file:/Users/DJA/Documents/FIng/taller/tpgr16/servidor_central/src/espotify/datatypes/DataAlbum.java</file>
             <file>file:/Users/DJA/Documents/FIng/taller/tpgr16/servidor_central/test/espotify/ConsultaArtistaTest.java</file>
             <file>file:/Users/DJA/Documents/FIng/taller/tpgr16/servidor_central/src/espotify/datatypes/DataAlbumExt.java</file>
+=======
+            <file>file:/Users/Santiago/tprog/Tarea1/tpgr16/servidor_central/src/espotify/Fabrica.java</file>
+>>>>>>> nada, la esta viajando
         </group>
     </open-files>
 </project-private>

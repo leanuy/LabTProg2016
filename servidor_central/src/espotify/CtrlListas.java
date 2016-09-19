@@ -17,18 +17,20 @@ import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IConsultaLista;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IAltaTemaListaWeb;
 import espotify.interfaces.web.IVerListaParticular;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class CtrlListas implements IAltaLista, IPublicarLista,
-        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, IVerListaParticular {
+public class CtrlListas implements IAltaLista, IPublicarLista, IConsultaLista, 
+        IAgregarTemaLista, IQuitarTemaLista, IVerListaParticular, IAltaTemaListaWeb {
     private static CtrlListas instancia;
     private String nickMem;
     private String nomListaMem;
-    private List<DataTema> temasLista;
     
 //Constructor
     public CtrlListas() {
@@ -103,6 +105,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     
     @Override
     public List<DataTema> listarTemasLista2(String cliente, String nomLista) throws Exception {
+        List<DataTema> temasLista;
         if (cliente == null) {
             temasLista = buscarLista(nomLista).listarTemas();
         } else {
@@ -201,6 +204,31 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
             buscarLista(lista).agregarTema(tema);
         } else {
             ctrlU.agregarTemaLista(tema,nickMem, lista);
+        }
+    }
+    
+    @Override
+    public void agregarTemaListaWeb(String nick, String listaPoner, String tema, 
+            String Album, String listaSacar, String usrSacar, String Artista) throws
+            ArtistaInexistenteException, AlbumInexistenteException, Exception {
+        List<DataTema> listatemas;
+        CtrlUsuarios ctrlU = new CtrlUsuarios(); 
+        if (Artista != null) {
+            listatemas = ctrlU.listarTemasAlbum(Artista, Album);
+        } else {
+            listatemas = listarTemasLista2(usrSacar, listaSacar);
+        }
+        DataTema dt2 = null;
+        for (DataTema dt1 : listatemas){
+            if (dt1.getNombre().equals(tema)){
+                dt2 = dt1;
+            }
+        }
+        Tema tema2 = ctrlU.devolverTema(dt2);
+        if (usrSacar == null) {
+            buscarLista(listaPoner).agregarTema(tema2);
+        } else {
+            ctrlU.agregarTemaLista(tema2,nick, listaPoner);
         }
     }
 

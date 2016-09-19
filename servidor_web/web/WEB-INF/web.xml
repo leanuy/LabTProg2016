@@ -52,6 +52,14 @@
         <servlet-name>VerGenero</servlet-name>
         <servlet-class>servlets.VerGenero</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SeleccionarTemaLista</servlet-name>
+        <servlet-class>servlets.SeleccionarTemaLista</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AgregarTemaListaWeb</servlet-name>
+        <servlet-class>servlets.AgregarTemaListaWeb</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -84,7 +92,16 @@
         <servlet-name>SeguirUsuario</servlet-name>
         <url-pattern>/SeguirUsuario</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SeleccionarTemaLista</servlet-name>
+        <url-pattern>/SeleccionarTemaLista</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AgregarTemaListaWeb</servlet-name>
+        <url-pattern>/AgregarTemaListaWeb</url-pattern>
+    </servlet-mapping>
     <!--    <error-page>
+    <error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/errors/404.jsp</location>
     </error-page>
