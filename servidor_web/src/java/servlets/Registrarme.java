@@ -6,22 +6,18 @@
 package servlets;
 
 import espotify.Fabrica;
+import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataCliente;
-import espotify.datatypes.DataClienteExt;
-import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
 import espotify.excepciones.NickRepetidoException;
 import espotify.interfaces.IAltaPerfil;
-import espotify.interfaces.IConsultaCliente;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -33,21 +29,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class Registrarme extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
 
-    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -61,7 +43,8 @@ public class Registrarme extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        request.getRequestDispatcher("/WEB-INF/perfiles/AltaPerfil.jsp").forward(request,response);
     }
 
     /**
@@ -75,7 +58,58 @@ public class Registrarme extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+        String login = request.getParameter("login");
+        String correo = request.getParameter("correo");
+        String password = request.getParameter("password");
+        String nombre = request.getParameter("nombre");
+        String apellido = request.getParameter("apellido");
+        Calendar fechaNac = Calendar.getInstance(); //TODO
+        SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
+        
+        String tipo = request.getParameter("tipo");
+        if(tipo.equals("cliente")) {
+            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
+            
+            try {
+                fechaNac.setTime(sdf.parse(request.getParameter("fechaNac")));
+                DataCliente dataCli = new DataCliente(login,nombre,apellido,correo,fechaNac,null,password);
+                iPerfil.altaCliente(dataCli);
+                request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
+            } catch (NickRepetidoException ex) {
+                response.sendError(500);
+            } catch (CorreoRepetidoException ex) {
+                response.sendError(500);
+            } catch (FormatoIncorrectoException ex) {
+                response.sendError(500);
+            } catch (ParseException ex) {
+                    response.sendError(500);
+            }
+        } else if (tipo.equals("artista")) {
+            String url = request.getParameter("url");
+            String bio = request.getParameter("bio");
+            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
+            
+            try {
+                fechaNac.setTime(sdf.parse(request.getParameter("fechaNac")));
+                DataArtista dataArt = new DataArtista(bio,url,login,nombre,apellido,correo,fechaNac,null,password);
+                iPerfil.altaArtista(dataArt);
+                request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
+            } catch (NickRepetidoException ex) {
+                response.sendError(500);
+            } catch (CorreoRepetidoException ex) {
+                response.sendError(500);
+            } catch (FormatoIncorrectoException ex) {
+                response.sendError(500);
+            } catch (ParseException ex) {
+                response.sendError(500);
+            }
+        } else {
+            response.sendError(500);
+        }
+        
+        
+
     }
 
     /**
