@@ -207,6 +207,7 @@ class Cliente extends Usuario {
             return suscripcionActiva.getData();
         }
     }
+    
 
     void aprobarSuscripcion() throws NoHaySuscripcionException,
             TransicionSuscripcionInvalidaException {
