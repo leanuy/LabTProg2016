@@ -6,26 +6,21 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.excepciones.AutoSeguirseException;
-import espotify.excepciones.SeguidoInexistenteException;
-import espotify.excepciones.SeguidoRepetidoException;
-import espotify.excepciones.SeguidorInexistenteException;
-import espotify.interfaces.web.IWebSeguir;
+import espotify.excepciones.AlbumInexistenteException;
+import espotify.interfaces.web.IAltaTemaListaWeb;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.EstadoSesion;
 
 /**
  *
  * @author Santiago
  */
-@WebServlet(name = "SeguirUsuario", urlPatterns = {"/SeguirUsuario"})
-public class SeguirUsuario extends HttpServlet {
+@WebServlet(name = "AgregarTemaListaWeb", urlPatterns = {"/AgregarTemaListaWeb"})
+public class AgregarTemaListaWeb extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,24 +34,20 @@ public class SeguirUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String Seguidor = (String) session.getAttribute("nick_sesion");
-            String aSeguir = new String(request.getParameter("nick").getBytes(
-                "iso-8859-1"), "UTF-8");
-            IWebSeguir iws = Fabrica.getIWebSeguir();
-            try {
-                iws.altaSeguir(Seguidor, aSeguir);
-                request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request,response);
-            } catch (SeguidorInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidoInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidoRepetidoException ex) {
-                response.sendError(500);
-            } catch (AutoSeguirseException ex) {
-                response.sendError(500);
-            }
+        String nick = (String) request.getAttribute("nickUsr");
+        String tema = (String) request.getAttribute("tema");
+        String artista = (String) request.getAttribute("artista");
+        String listaSacar = (String) request.getAttribute("listaSacar");
+        String usrSacar = (String) request.getAttribute("usrSacar");
+        String albumSacar = (String) request.getAttribute("album");
+        String listaAgregar = (String) request.getAttribute("listaAgregar");
+        IAltaTemaListaWeb ialtw = Fabrica.getIAltaTemaListaWeb();
+        try {
+            ialtw.agregarTemaListaWeb(nick, listaAgregar, tema, albumSacar, listaSacar, usrSacar, artista);
+        } catch (AlbumInexistenteException ex) {
+            response.sendError(404);
+        } catch (Exception ex) {
+            response.sendError(404);
         }
     }
 

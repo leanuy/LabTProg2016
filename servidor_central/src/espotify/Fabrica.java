@@ -16,6 +16,7 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IAltaTemaListaWeb;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerListaParticular;
 import espotify.interfaces.web.IVerPerfil;
@@ -105,7 +106,11 @@ public class Fabrica {
         return new CtrlListas();
     }
     
-    public static IWebSeguir getIWebSeguir(){
+    public static IWebSeguir getIWebSeguir() {
         return new CtrlUsuarios();
+    }
+    
+    public static IAltaTemaListaWeb getIAltaTemaListaWeb() {
+        return new CtrlListas();
     }
 }

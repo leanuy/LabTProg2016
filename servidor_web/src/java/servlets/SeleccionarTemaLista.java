@@ -6,12 +6,9 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.excepciones.AutoSeguirseException;
-import espotify.excepciones.SeguidoInexistenteException;
-import espotify.excepciones.SeguidoRepetidoException;
-import espotify.excepciones.SeguidorInexistenteException;
-import espotify.interfaces.web.IWebSeguir;
+import espotify.interfaces.IAgregarTemaLista;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +21,8 @@ import model.EstadoSesion;
  *
  * @author Santiago
  */
-@WebServlet(name = "SeguirUsuario", urlPatterns = {"/SeguirUsuario"})
-public class SeguirUsuario extends HttpServlet {
+@WebServlet(name = "SeleccionarTemaLista", urlPatterns = {"/SeleccionarTemaLista"})
+public class SeleccionarTemaLista extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,21 +38,14 @@ public class SeguirUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String Seguidor = (String) session.getAttribute("nick_sesion");
-            String aSeguir = new String(request.getParameter("nick").getBytes(
-                "iso-8859-1"), "UTF-8");
-            IWebSeguir iws = Fabrica.getIWebSeguir();
+            String nick = (String)session.getAttribute("nick_sesion");
+            IAgregarTemaLista intagregar = Fabrica.getIAgregarTemaLista();
             try {
-                iws.altaSeguir(Seguidor, aSeguir);
-                request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request,response);
-            } catch (SeguidorInexistenteException ex) {
+                List<String> lista = intagregar.listarListasDeCliente(nick);
+                request.setAttribute("listas", lista);
+                request.setAttribute("nickUsr", nick);
+            } catch (Exception ex) {
                 response.sendError(404);
-            } catch (SeguidoInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidoRepetidoException ex) {
-                response.sendError(500);
-            } catch (AutoSeguirseException ex) {
-                response.sendError(500);
             }
         }
     }
