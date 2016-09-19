@@ -36,6 +36,7 @@
                     <c:out value="${nick}"/>
                 </h1>
             </div>
+            <div class="horizontalgap" style="height:10px"></div>
             <div class="row">
                 <div class="tabs">
                     <ul class="tab-links">
