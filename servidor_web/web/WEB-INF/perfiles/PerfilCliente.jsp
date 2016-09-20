@@ -16,22 +16,23 @@
                 </div>
                 <h1>
                     <c:out value="${nick}"/>
+                    <c:choose>
+                        <c:when test="${empty es_cliente or not es_cliente}">
+                        </c:when>
+                        <c:otherwise>
+                            <c:choose>
+                                <c:when test="${siguiendo}">
+                                    <a class="btn btn-custom" href="/DejarSeguirUsuario?nick=${nick}">Dejar de Seguir</a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="btn btn-custom" href="/SeguirUsuario?nick=${nick}">Seguir</a>
+                                </c:otherwise>
+                            </c:choose>
+                        </c:otherwise>
+                    </c:choose>
                 </h1>
-                <c:choose>
-                    <c:when test="${empty es_cliente or not es_cliente}">
-                    </c:when>
-                    <c:otherwise>
-                        <c:choose>
-                            <c:when test="${siguiendo}">
-                                <a class="btn btn-custom" href="/DejarSeguirUsuario?nick=${nick}">Dejar de Seguir</a>
-                            </c:when>
-                            <c:otherwise>
-                                <a class="btn btn-custom" href="/SeguirUsuario?nick=${nick}">Seguir</a>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:otherwise>
-                </c:choose>
             </div>
+            <div class="horizontalgap" style="height:10px"></div>
             <div class="row">             
                 <div class="tabs">
                     <ul class="tab-links">

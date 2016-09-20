@@ -29,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -160,7 +161,7 @@ public class CargarDatos extends HttpServlet {
         DataArtista dataArtista;      
         String bio;
         
-        //file = new File("./src/Presentacion/img/artistas/VillagePeople.jpg");
+        //file = new File("/assets/img/profile.png");
         //img = ImageIO.read(file);
         cal.set(1977, 1, 1);
         bio = "Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.";

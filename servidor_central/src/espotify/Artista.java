@@ -86,8 +86,4 @@ class Artista extends Usuario {
         Album alb = albums.get(album);
         return alb.devolverTema(tema);
     }
-
-    Object getPreview() {
-        return new DataPreview(getNick(), getImg());
-    }
 }

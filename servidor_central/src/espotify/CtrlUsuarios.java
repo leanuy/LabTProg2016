@@ -41,6 +41,8 @@ import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IListarArtistas;
+import espotify.interfaces.web.IListarClientes;
+import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
@@ -52,7 +54,7 @@ import java.util.Map.Entry;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
-        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas{
+        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, IListarClientes, IValidar{
 //Constructor
     public CtrlUsuarios() {
     }
@@ -147,7 +149,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public List<String> listarListasPrivadasDeCliente(String nick) throws ClienteInexistenteException {
+    public List<String> listarListasPrivadasDeCliente(String nick)
+            throws ClienteInexistenteException {
         return buscarCliente(nick).listarListasPrivadas();
     }
     
@@ -218,7 +221,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarArtista(nick).getDataArtistaExt();
     }
     
-    private boolean existeUsuarioCorreo(String correo) {
+    @Override
+    public boolean existeUsuarioCorreo(String correo) {
         boolean salida = false;
         Iterator<Entry<String,Cliente>> iterator = getClientes().entrySet().iterator();
         while (iterator.hasNext() && !salida) {
@@ -233,7 +237,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return salida;       
     }
     
-    private boolean existeUsuarioNick(String nick) {
+    @Override
+    public boolean existeUsuarioNick(String nick) {
         return getClientes().containsKey(nick) || getArtistas().containsKey(nick);
     }
     
@@ -458,6 +463,16 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         for (Entry<String, Artista> entry : getArtistas().entrySet()) {
             Artista art = entry.getValue();
             salida.add(art.getPreview());
+        }
+        return salida;
+    }
+    
+    @Override
+    public List<DataPreview> previewClientes() {
+        List salida = new ArrayList();
+        for (Entry<String, Cliente> entry : getClientes().entrySet()) {
+            Cliente cli = entry.getValue();
+            salida.add(cli.getPreview());
         }
         return salida;
     }

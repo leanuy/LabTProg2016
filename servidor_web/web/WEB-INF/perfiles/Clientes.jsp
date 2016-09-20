@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Artistas
-    Created on : Sep 17, 2016, 12:11:00 PM
+    Document   : Clientes
+    Created on : Sep 19, 2016, 7:44:03 PM
     Author     : JavierM42
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,13 +13,13 @@
         <div class="panel-body">
             <div class="row">
                 <h1>
-                    Artistas
+                    Clientes
                 </h1>
                 <ul class="rig columns-4">
-                    <c:forEach items="${artistas}" var="item">
+                    <c:forEach items="${clientes}" var="item">
                         <li>
                             <a class="link-user" href="/VerPerfil?nick=${item.nombre}">
-                                <image src="/assets/img/artista.png"/>
+                                <image src="/assets/img/profile.png"/>
                                 <h3>${item.nombre}</h3>
                             </a>
                         </li>

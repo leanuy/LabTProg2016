@@ -83,7 +83,7 @@ public class MiPerfil extends HttpServlet {
                             request.setAttribute("bio", d.getBio());
                         }
                         if (d.getImg() == null) {
-                            request.setAttribute("imagen", "./assets/img/profile.png");
+                            request.setAttribute("imagen", "./assets/img/artista.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
                         }
