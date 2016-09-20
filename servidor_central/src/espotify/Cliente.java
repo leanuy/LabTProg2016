@@ -20,6 +20,7 @@ import espotify.excepciones.YaPublicaException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -207,6 +208,17 @@ class Cliente extends Usuario {
         }
     }
     
+    public List<DataSuscripcion> getSuscripciones() {
+        List<DataSuscripcion> listaSuscripciones = new ArrayList();
+        Iterator iterador = suscripciones.entrySet().iterator();
+        Suscripcion suscActual;
+        while (iterador.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterador.next();
+            suscActual = (Suscripcion) pair.getValue();
+            listaSuscripciones.add(suscActual.getData());
+        }
+        return listaSuscripciones;
+    }
 
     void aprobarSuscripcion() throws NoHaySuscripcionException,
             TransicionSuscripcionInvalidaException {
