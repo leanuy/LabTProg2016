@@ -8,6 +8,7 @@ package servlets;
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataFavoriteable;
+import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
@@ -63,12 +64,20 @@ public class VerAlbum extends HttpServlet {
             request.setAttribute("temas", data.getTemas());
             
             HttpSession session = request.getSession();
+            boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
             boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
             if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
                 IFavoritos ifav = Fabrica.getIFavoritos();
                 boolean es_favorito;
-                es_favorito = ifav.esFavorito(session.getAttribute("nick_sesion").toString(), data);
+                String nickSesion = session.getAttribute("nick_sesion").toString();
+                es_favorito = ifav.esFavorito(nickSesion, data);
                 request.setAttribute("es_favorito", es_favorito);
+                int idx = 0;
+                for (DataTema t : data.getTemas()) {
+                    es_favorito_temas[idx] = ifav.esFavorito(nickSesion, t);
+                    idx++;
+                }
+                request.setAttribute("es_favorito_temas",es_favorito_temas);
             }
 
             request.getRequestDispatcher("/WEB-INF/albums/Album.jsp").forward(request,response);

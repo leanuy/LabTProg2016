@@ -56,13 +56,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${temas}" var="tema">
+                        <c:forEach items="${temas}" var="tema" varStatus="temaStatus">
                             <tr>
                                 <td><button class="btn btn-link btn-lg "><i class="glyphicon glyphicon-play-circle"></i></button></td>
                                 <td><c:out value="${tema.num}"/></td>
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
-                                <td><button class="btn btn-link pull-left"><i class="glyphicon glyphicon-star"></i></button></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty es_favorito}">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:choose>
+                                                <c:when test="${es_favorito_temas[temaStatus.index]}">
+                                                    <a class="btn btn-link-inverse pull-left" href="#"><i class="glyphicon glyphicon-star"></i></a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a class="btn btn-link pull-left" href="/Favoritear?tipo=tema&artista=${nomArtista}&album=${nomAlbum}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td><button class="btn btn-link pull-right "><i class="glyphicon glyphicon-option-horizontal"></i></button></td>
                             </tr>
                         </c:forEach>

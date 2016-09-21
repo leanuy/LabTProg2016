@@ -6,6 +6,7 @@ import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataClienteExt;
 import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataTema;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.IVerPerfil;
@@ -65,15 +66,19 @@ public class MiPerfil extends HttpServlet {
                         List<DataFavoriteable> favoritos = Fabrica.getIFavoritos().listarFavoritos(d.getNick());
                         List<DataAlbum> albumsFavoritos = new ArrayList();
                         List<DataParticular> particularesFavoritas = new ArrayList();
+                        List<DataTema> temasFavoritos = new ArrayList();
                         for (DataFavoriteable fav : favoritos) {
                             if(fav instanceof DataAlbum) {
                                 albumsFavoritos.add((DataAlbum)fav);
                             } else if (fav instanceof DataParticular) {
                                 particularesFavoritas.add((DataParticular)fav);
+                            } else if (fav instanceof DataTema) {
+                                temasFavoritos.add((DataTema) fav);
                             }
                         }
                         request.setAttribute("albumsFavoritos", albumsFavoritos);
                         request.setAttribute("particularesFavoritas", particularesFavoritas);
+                        request.setAttribute("temasFavoritos", temasFavoritos);
                         
                         request.getRequestDispatcher("/WEB-INF/perfiles/MiPerfilCliente.jsp").forward(request,response);
 
