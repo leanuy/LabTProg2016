@@ -16,6 +16,8 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -73,7 +75,6 @@ public class Suscripcion extends HttpServlet {
         } else {
             request.getRequestDispatcher("/inicio").forward(request, response);
         }
-        
         request.getRequestDispatcher("/WEB-INF/suscripciones/Suscripciones.jsp").forward(request,response);
     }
 

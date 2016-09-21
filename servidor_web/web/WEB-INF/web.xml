@@ -76,6 +76,10 @@
         <servlet-name>DesFavoritear</servlet-name>
         <servlet-class>servlets.DesFavoritear</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Suscripcion</servlet-name>
+        <servlet-class>servlets.Suscripcion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>DesFavoritear</servlet-name>
         <url-pattern>/DesFavoritear</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Suscripcion</servlet-name>
+        <url-pattern>/Suscripcion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
