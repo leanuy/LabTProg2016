@@ -16,9 +16,14 @@
         <group/>
 =======
         <group>
-            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/web/IVerAlbum.java</file>
+            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Cliente.java</file>
+            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/CtrlUsuarios.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Suscripcion.java</file>
+<<<<<<< 02af6ebbd7a9c04d10a8ded1060e3eb3b2b51dab
 >>>>>>> otro conflict
+=======
+            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/web/ISuscripcionWeb.java</file>
+>>>>>>> conflict 3
         </group>
 >>>>>>> mas cositas
     </open-files>

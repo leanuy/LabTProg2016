@@ -8,7 +8,12 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<<<<<<< 02af6ebbd7a9c04d10a8ded1060e3eb3b2b51dab
 <t:body>    
+=======
+<t:body>
+    
+>>>>>>> conflict 3
     <script>
         var bot = document.getElementById("botones_suscripcion");
         bot.hide();
@@ -58,5 +63,9 @@
                 </c:otherwise>
             </c:choose>
         </ul>
+<<<<<<< 02af6ebbd7a9c04d10a8ded1060e3eb3b2b51dab
     </div>
+=======
+    </div>    
+>>>>>>> conflict 3
 </t:body>
