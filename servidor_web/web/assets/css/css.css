@@ -308,3 +308,8 @@ ul.rig.columns-4 li {
 		margin: 0 0 20px;
 	}
 }
+
+select {
+    background-color: #393B39;
+    width:300px;
+}

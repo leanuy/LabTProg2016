@@ -15,6 +15,7 @@ import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
+import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
@@ -491,29 +492,71 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarCliente(nick).listarFavoritos();
     }
     
-    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) {
+    @Override
+    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
         Cliente client;
         List<DataSuscripcion> suscripciones = null;
-        try{
-            client = buscarCliente(nickname);
-            suscripciones = client.getSuscripciones();
-        } catch (ClienteInexistenteException e) {
-            // que joraca hago aca??
-        }
+        client = buscarCliente(nickname);
+        suscripciones = client.getSuscripciones();
         return suscripciones;
     }
     @Override
-    public DataSuscripcionVigente obtenerSuscripcionVigente(String nickname) {
+    public DataSuscripcionVigente obtenerSuscripcionVigente(String nickname) throws ClienteInexistenteException {
         Cliente client;
         DataSuscripcionVigente suscripcion = null;
         try{
             client = buscarCliente(nickname);
-            suscripcion = (DataSuscripcionVigente)client.getSuscripcionActiva();
-        } catch (ClienteInexistenteException e) {
-            // que joraca hago aca??
+            suscripcion = (DataSuscripcionVigente)client.getSuscripcionActiva();          
         } catch (NoHaySuscripcionException e) {
-            // tmp se que carajo hagp aca.
+            return null;
         }
         return suscripcion;
+    }
+    @Override
+    public boolean contratarSuscripcion(TipoSuscripcion tipo, String nickname) throws ClienteInexistenteException {
+        Cliente client;
+        boolean result;
+        try{
+            client = buscarCliente(nickname);
+            client.contratar(tipo);
+            result = true;
+        } catch (TransicionSuscripcionInvalidaException e) {
+            result = false;
+        }
+        return result;
+    }
+    @Override
+    public boolean cancelarSuscripcionVencida(String nickname){
+        Cliente client;
+        boolean result;
+        try{
+            client = buscarCliente(nickname);
+            client.cancelarSuscripcion();
+            result = true;
+        } catch (NoHaySuscripcionException e) {
+            result = false;
+        } catch (TransicionSuscripcionInvalidaException e) {
+            result = false;
+        } catch (ClienteInexistenteException e) {
+            result = false;
+        }
+        return result;
+    }
+    @Override
+    public boolean aprobarSuscripcionPendiente(String nickname){
+        Cliente client;
+        boolean result;
+        try{
+            client = buscarCliente(nickname);
+            client.aprobarSuscripcion();
+            result = true;
+        } catch (NoHaySuscripcionException e) {
+            result = false;
+        } catch (TransicionSuscripcionInvalidaException e) {
+            result = false;
+        } catch (ClienteInexistenteException e) {
+            result = false;
+        }
+        return result;
     }
 }

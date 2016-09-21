@@ -8,10 +8,14 @@ package servlets;
 import espotify.Fabrica;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
+import espotify.datatypes.TipoSuscripcion;
+import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,7 +38,7 @@ public class Suscripcion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequestGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
@@ -44,13 +48,23 @@ public class Suscripcion extends HttpServlet {
             
             String nick = (String) session.getAttribute("nick_sesion");
             ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
-            List<DataSuscripcion> historial = inter.listarSuscripcionesCliente(nick);
+            List<DataSuscripcion> historial = null;
+            try {
+                historial = inter.listarSuscripcionesCliente(nick);
+            } catch (ClienteInexistenteException ex) {
+                response.sendError(500);
+            }
             if (historial == null) {
                 request.setAttribute("historial", null);
             } else {
                 request.setAttribute("historial", historial);
             }
-            DataSuscripcionVigente vigente = inter.obtenerSuscripcionVigente(nick);
+            DataSuscripcionVigente vigente = null;
+            try {
+                vigente = inter.obtenerSuscripcionVigente(nick);
+            } catch (ClienteInexistenteException ex) {
+                response.sendError(500);
+            }
             if (vigente == null) {
                 request.setAttribute("vigente", null);
             } else {
@@ -75,7 +89,7 @@ public class Suscripcion extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        processRequestGet(request, response);
     }
 
     /**
@@ -89,9 +103,35 @@ public class Suscripcion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
+        String nick = (String) session.getAttribute("nick_sesion");
+        String tipo = request.getParameter("tipo");
+        ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
+        boolean contratacionExitosa = false;
+        try {
+            contratacionExitosa = inter.contratarSuscripcion(devolverTipoSuscripcion(tipo), nick);
+        } catch (ClienteInexistenteException ex) {
+            response.sendError(500);
+        }        
     }
-
+    private TipoSuscripcion devolverTipoSuscripcion(String tip) {
+        TipoSuscripcion tipo;
+        if ( tip.equals("semanal") ){
+            tipo = TipoSuscripcion.SEMANAL;
+        } else {
+            if ( tip.equals("mensual") ){
+                tipo = TipoSuscripcion.MENSUAL;
+            } else {
+                if ( tip.equals("anual") ){
+                    tipo = TipoSuscripcion.ANUAL;
+                } else {
+                    tipo = null;
+                }
+            }
+        }
+        return tipo;
+    } 
     /**
      * Returns a short description of the servlet.
      *
