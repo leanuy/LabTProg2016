@@ -5,12 +5,19 @@
  */
 package servlets;
 
+import espotify.Fabrica;
+import espotify.datatypes.DataSuscripcion;
+import espotify.datatypes.DataSuscripcionVigente;
+import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.EstadoSesion;
 
 /**
  *
@@ -30,6 +37,29 @@ public class Suscripcion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
+        HttpSession session = request.getSession();
+        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+            
+            
+            String nick = (String) session.getAttribute("nick_sesion");
+            ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
+            List<DataSuscripcion> historial = inter.listarSuscripcionesCliente(nick);
+            if (historial == null) {
+                request.setAttribute("historial", null);
+            } else {
+                request.setAttribute("historial", historial);
+            }
+            DataSuscripcionVigente vigente = inter.obtenerSuscripcionVigente(nick);
+            if (vigente == null) {
+                request.setAttribute("vigente", null);
+            } else {
+                request.setAttribute("vigente", vigente);
+            }
+        } else {
+            request.getRequestDispatcher("/inicio").forward(request, response);
+        }
+        
         request.getRequestDispatcher("/WEB-INF/suscripciones/Suscripciones.jsp").forward(request,response);
     }
 

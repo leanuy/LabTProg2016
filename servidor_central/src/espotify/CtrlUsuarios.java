@@ -12,6 +12,7 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataSuscripcion;
+import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
 import espotify.excepciones.AlbumInexistenteException;
@@ -41,6 +42,7 @@ import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IListarArtistas;
+import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IListarClientes;
 import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerPerfil;
@@ -54,7 +56,8 @@ import java.util.Map.Entry;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
-        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, IListarClientes, IValidar{
+        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, ISuscripcionWeb,
+        IListarClientes, IValidar{
 //Constructor
     public CtrlUsuarios() {
     }
@@ -475,5 +478,31 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             salida.add(cli.getPreview());
         }
         return salida;
+    }
+    @Override
+    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) {
+        Cliente client;
+        List<DataSuscripcion> suscripciones = null;
+        try{
+            client = buscarCliente(nickname);
+            suscripciones = client.getSuscripciones();
+        } catch (ClienteInexistenteException e) {
+            // que joraca hago aca??
+        }
+        return suscripciones;
+    }
+    @Override
+    public DataSuscripcionVigente obtenerSuscripcionVigente(String nickname) {
+        Cliente client;
+        DataSuscripcionVigente suscripcion = null;
+        try{
+            client = buscarCliente(nickname);
+            suscripcion = (DataSuscripcionVigente)client.getSuscripcionActiva();
+        } catch (ClienteInexistenteException e) {
+            // que joraca hago aca??
+        } catch (NoHaySuscripcionException e) {
+            // tmp se que carajo hagp aca.
+        }
+        return suscripcion;
     }
 }
