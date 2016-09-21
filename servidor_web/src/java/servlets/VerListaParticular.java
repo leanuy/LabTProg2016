@@ -8,6 +8,7 @@ package servlets;
 import espotify.Fabrica;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
@@ -70,13 +71,22 @@ public class VerListaParticular extends HttpServlet {
                 request.setAttribute("temas", data.getTemas());
                 request.setAttribute("esPrivada",esPrivada);
 
+                boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
                 boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
                 if(!esPrivada && session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
                     IFavoritos ifav = Fabrica.getIFavoritos();
                     boolean es_favorito;
+                    String nickSesion = session.getAttribute("nick_sesion").toString();
                     DataParticular dataFav = new DataParticular(inputNick,data.getNombre(),null);
-                    es_favorito = ifav.esFavorito(session.getAttribute("nick_sesion").toString(), dataFav);
+                    es_favorito = ifav.esFavorito(nickSesion, dataFav);
                     request.setAttribute("es_favorito", es_favorito);
+                    
+                    int idx = 0;
+                    for (DataTema t : data.getTemas()) {
+                        es_favorito_temas[idx] = ifav.esFavorito(nickSesion, t);
+                        idx++;
+                    }
+                    request.setAttribute("es_favorito_temas",es_favorito_temas);
                 }
                 
                 request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);

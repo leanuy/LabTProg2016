@@ -28,9 +28,9 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <form class="navbar-form navbar-left buscador">
+            <form class="navbar-form navbar-left buscador" action="Buscar">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search">
+                    <input type="text" class="form-control" placeholder="Buscar" name="query">
                 </div>
                 <button type="submit" class="btn btn-custom">Buscar</button>
             </form>

@@ -112,6 +112,16 @@
                                             <td><a class="btn-link-inverse pull-left"><i class="glyphicon glyphicon-star"></i></a></td>
                                         </tr>
                                     </c:forEach>
+                                    <c:forEach items="${temasFavoritos}" var="item">
+                                        <tr>
+                                            <td>
+                                                <a class="btn-link" href="#">
+                                                    <i class="glyphicon glyphicon-music"></i> ${item.nomArtista} - ${item.album} - ${item.nombre}
+                                                </a>
+                                            </td>
+                                            <td><a class="btn-link-inverse pull-left"><i class="glyphicon glyphicon-star"></i></a></td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

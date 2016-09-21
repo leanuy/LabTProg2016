@@ -68,6 +68,10 @@
         <servlet-name>Favoritear</servlet-name>
         <servlet-class>servlets.Favoritear</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Buscar</servlet-name>
+        <servlet-class>servlets.Buscar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -143,6 +147,10 @@
     <servlet-mapping>
         <servlet-name>Favoritear</servlet-name>
         <url-pattern>/Favoritear</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Buscar</servlet-name>
+        <url-pattern>/Buscar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
