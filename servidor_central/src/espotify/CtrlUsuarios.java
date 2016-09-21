@@ -40,6 +40,7 @@ import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
+import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IListarClientes;
 import espotify.interfaces.web.IValidar;
@@ -54,7 +55,7 @@ import java.util.Map.Entry;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
-        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, IListarClientes, IValidar{
+        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, IListarClientes, IValidar, IFavoritos{
 //Constructor
     public CtrlUsuarios() {
     }
@@ -109,6 +110,11 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             return devolverTema((DataTema)dataFav);
         }
         return null;
+    }
+    
+    public boolean esFavorito(String nick, DataFavoriteable fav) 
+            throws ClienteInexistenteException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException{
+        return buscarCliente(nick).esFavorito(buscarFavoriteable(fav));
     }
     
     private Publica buscarListaPublicaDeCliente(String nickCliente, String nomLista) throws
@@ -475,5 +481,10 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             salida.add(cli.getPreview());
         }
         return salida;
+    }
+
+    @Override
+    public List<DataFavoriteable> listarFavoritos(String nick) throws ClienteInexistenteException {
+        return buscarCliente(nick).listarFavoritos();
     }
 }

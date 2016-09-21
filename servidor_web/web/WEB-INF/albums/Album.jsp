@@ -17,14 +17,30 @@
                 <%--datos basicos--%>
                 <div>
                     <h1><c:out value="${nomAlbum}"/></h1>
-                    <div><c:out value="${nomArtista}"/></div>
-                    <div><c:out value="${anio}"/></div>
+                    <div class="pull-right">
+                        <c:choose>
+                            <c:when test="${empty es_favorito}">
+                            </c:when>
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${es_favorito}">
+                                        <a class="btn-link-inverse" href="#"><i class="glyphicon glyphicon-star"></i></a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="btn-link" href="/Favoritear?tipo=album&artista=${nomArtista}&album=${nomAlbum}"><i class="glyphicon glyphicon-star"></i></a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <div><i class="glyphicon glyphicon-user"></i> <c:out value="${nomArtista}"/></div>
+                    <div><i class="glyphicon glyphicon-calendar"></i> <c:out value="${anio}"/></div>
                 </div>
                 <%--generos--%>
                 <div class="pull-right">
                     <h4>Géneros</h4>
                     <c:forEach items="${generos}" var="item">
-                        <a href="#" class="btn btn-inverse btn-sm round">${item}</a>
+                        <a href="/VerGenero?genero=${item}" class="btn btn-inverse btn-sm round">${item}</a>
                     </c:forEach>
                 </div>
                 <%--temas--%>

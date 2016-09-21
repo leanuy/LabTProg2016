@@ -1,12 +1,16 @@
 package servlets;
 
 import espotify.Fabrica;
+import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataClienteExt;
+import espotify.datatypes.DataFavoriteable;
+import espotify.datatypes.DataParticular;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -57,11 +61,24 @@ public class MiPerfil extends HttpServlet {
                         request.setAttribute("listasPub", listasPub);
                         List<String> listasPriv = iPerfil.listarListasPrivadasDeCliente(nick);
                         request.setAttribute("listasPriv", listasPriv);
-
+                        
+                        List<DataFavoriteable> favoritos = Fabrica.getIFavoritos().listarFavoritos(d.getNick());
+                        List<DataAlbum> albumsFavoritos = new ArrayList();
+                        List<DataParticular> particularesFavoritas = new ArrayList();
+                        for (DataFavoriteable fav : favoritos) {
+                            if(fav instanceof DataAlbum) {
+                                albumsFavoritos.add((DataAlbum)fav);
+                            } else if (fav instanceof DataParticular) {
+                                particularesFavoritas.add((DataParticular)fav);
+                            }
+                        }
+                        request.setAttribute("albumsFavoritos", albumsFavoritos);
+                        request.setAttribute("particularesFavoritas", particularesFavoritas);
+                        
                         request.getRequestDispatcher("/WEB-INF/perfiles/MiPerfilCliente.jsp").forward(request,response);
 
                     } catch (ClienteInexistenteException e) {
-                        request.getRequestDispatcher("/Error").forward(request,response);
+                        response.sendError(404);
                         //problemas consultando el cliente
                     }
                 } else { //es artista
@@ -72,12 +89,12 @@ public class MiPerfil extends HttpServlet {
                         request.setAttribute("apellido", d.getApellido());
                         request.setAttribute("correo", d.getCorreo());
                         request.setAttribute("fechaNac", d.getfNacStr());
-                        if(d.getUrl() == "") {
+                        if(d.getUrl().equals("")) {
                             request.setAttribute("url", "-");
                         } else {
                             request.setAttribute("url", d.getUrl());
                         }
-                        if(d.getBio() == "") {
+                        if(d.getBio().equals("")) {
                             request.setAttribute("bio", "-");
                         } else {
                             request.setAttribute("bio", d.getBio());

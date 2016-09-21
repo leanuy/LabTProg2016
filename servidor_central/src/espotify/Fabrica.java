@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.interfaces.IActualizarSuscripcion;
 import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
@@ -16,6 +17,7 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IListarClientes;
 import espotify.interfaces.web.IValidar;
@@ -26,8 +28,6 @@ import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
 public class Fabrica {
-
-
 
     private Fabrica() {
     }
@@ -129,6 +129,14 @@ public class Fabrica {
     }
     
     public static IValidar getIValidar() {
+        return new CtrlUsuarios();
+    }
+    
+    public static IActualizarSuscripcion getIActualizarSuscripcion() {
+        return new CtrlUsuarios();
+    }
+    
+    public static IFavoritos getIFavoritos() {
         return new CtrlUsuarios();
     }
 }

@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.datatypes.DataClienteExt;
+import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataSuscripcion;
@@ -135,7 +136,7 @@ class Cliente extends Usuario {
     
     void altaLista(DataParticular dataLista) throws ListaRepetidaException {
         if (validarNombreLista(dataLista.getNombre())) {
-            listas.put(dataLista.getNombre(), new Privada(dataLista));
+            listas.put(dataLista.getNombre(), new Privada(dataLista,this));
         } else {
             throw new ListaRepetidaException();
         }
@@ -150,7 +151,7 @@ class Cliente extends Usuario {
     }
 
     DataLista darInfoLista(String nomLista) throws ListaInexistenteException {
-        return buscarLista(nomLista).getData();
+        return buscarLista(nomLista).getDataExt();
     }
     
     Particular buscarLista(String nomLista) throws ListaInexistenteException {
@@ -241,6 +242,18 @@ class Cliente extends Usuario {
 
     boolean listaEsPrivada(String nomLista) throws ListaInexistenteException {
         return buscarLista(nomLista) instanceof Privada;
+    }
+
+    boolean esFavorito(Favoriteable fav) {
+        return favoritos.contains(fav);
+    }
+
+    List<DataFavoriteable> listarFavoritos() {
+        List<DataFavoriteable> salida = new ArrayList();
+        for (Favoriteable fav : favoritos) {
+            salida.add(fav.getData());
+        }
+        return salida;
     }
 
 }

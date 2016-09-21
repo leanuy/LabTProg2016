@@ -10,21 +10,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:body>
     <script src="assets/js/jquery-3.1.0.min.js"></script>
-    <script>
-        jQuery(document).ready(function() {
-            jQuery('.tabs .tab-links a').on('click', function(e)  {
-                var currentAttrValue = jQuery(this).attr('href');
-
-                // Show/Hide Tabs
-                jQuery('.tabs ' + currentAttrValue).show().siblings().hide();
-
-                // Change/remove current tab to active
-                jQuery(this).parent('li').addClass('active').siblings().removeClass('active');
-
-                e.preventDefault();
-            });
-        });
-    </script>
+    <script src="assets/js/script_tabs.js"></script>
     
     <div class="panel panel-default">
         <div class="panel-body">
@@ -40,15 +26,15 @@
             <div class="row">
                 <div class="tabs">
                     <ul class="tab-links">
-                        <li class="active"><a href="#tab1">Datos Personales</a></li>
-                        <li><a href="#tab2">Seguidores (<c:out value="${fn:length(seguidores)}"/>)</a></li>
-                        <li><a href="#tab3">Siguiendo (<c:out value="${fn:length(seguidos)}"/>)</a></li>
-                        <li><a href="#tab4">Listas</a></li>
-                        <li><a href="#tab5">Favoritos</a></li>
+                        <li class="active"><a href="#datosPersonales">Datos Personales</a></li>
+                        <li><a href="#seguidores">Seguidores (<c:out value="${fn:length(seguidores)}"/>)</a></li>
+                        <li><a href="#siguiendo">Siguiendo (<c:out value="${fn:length(seguidos)}"/>)</a></li>
+                        <li><a href="#listas">Listas (<c:out value="${fn:length(listasPub)+fn:length(listasPriv)}"/>)</a></li>
+                        <li><a href="#favoritos">Favoritos</a></li>
                     </ul>
                 
                     <div class="tab-content">
-                        <div id="tab1" class="tab active">
+                        <div id="datosPersonales" class="tab active">
                             <ul>
                                 <li>
                                     <i class="glyphicon glyphicon-user"></i>
@@ -64,44 +50,70 @@
                                 </li>
                             </ul>
                         </div>
-                        <div id="tab2" class="tab">
-                            <ul>
+                        <div id="seguidores" class="tab">
+                            <ul class="rig columns-4">
                             <c:forEach items="${seguidores}" var="item">
                                 <li>
-                                    <a class="link-user" href="/VerPerfil?nick=${item}">${item}</a>
+                                    <a class="btn-link" href="/VerPerfil?nick=${item}">
+                                        <image src="/assets/img/profile.png"/>
+                                        <h3>${item}</h3>
+                                    </a>
                                 </li>
                             </c:forEach>
                             </ul>
                         </div>
-                        <div id="tab3" class="tab">
-                            <ul>
+                        <div id="siguiendo" class="tab">
+                            <ul class="rig columns-4">
                                 <c:forEach items="${seguidos}" var="item">
                                     <li>
-                                        <a class="link-user" href="/VerPerfil?nick=${item}">${item}</a>
+                                        <a class="btn-link" href="/VerPerfil?nick=${item}">
+                                            <image src="/assets/img/profile.png"/>
+                                            <h3>${item}</h3>
+                                        </a>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </div>
-                        <div id="tab4" class="tab">
+                        <div id="listas" class="tab">
                             <ul>
                                 <c:forEach items="${listasPub}" var="item">
                                     <li>
-                                        <a class="" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
+                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
                                     </li>
                                 </c:forEach>
                                 <c:forEach items="${listasPriv}" var="item">
                                     <li>
-                                        <i class="glyphicon glyphicon-lock"></i>
-                                        <a class="" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
+                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">${item} 
+                                        <i class="glyphicon glyphicon-lock"></i></a>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </div>
-                        <div id="tab5" class="tab">
-                            No implementado D:
-                            <%--<c:forEach items="${listas}" var="item">
-                                ${item}<br/>
-                            </c:forEach>--%>
+                        <div id="favoritos" class="tab">
+                            <table class="table">
+                                <tbody>
+                                    <c:forEach items="${albumsFavoritos}" var="item">
+                                        <tr>
+                                            <td>
+                                                <a class="btn-link" href="/VerAlbum?nick=${item.nickArtista}&amp;album=${item.nombre}">
+                                                    <i class="glyphicon glyphicon-cd"></i> ${item.nickArtista} - ${item.nombre}
+                                                </a>
+                                            </td>
+                                            <td><a class="btn-link-inverse pull-left"><i class="glyphicon glyphicon-star"></i></a></td>
+                                        </tr>
+                                    </c:forEach>
+                                    <c:forEach items="${particularesFavoritas}" var="item">
+                                        <tr>
+                                            <td>
+                                                <a class="btn-link" href="/VerListaParticular?nick=${item.nomCliente}&amp;lista=${item.nombre}">
+                                                    <i class="glyphicon glyphicon-list-alt"></i> ${item.nomCliente} - ${item.nombre}
+                                                </a>
+                                            </td>
+                                            <td><a class="btn-link-inverse pull-left"><i class="glyphicon glyphicon-star"></i></a></td>
+                                        </tr>
+                                    </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

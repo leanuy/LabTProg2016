@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:body>
     <div class="panel panel-default">
@@ -36,14 +37,17 @@
             <div class="row">             
                 <div class="tabs">
                     <ul class="tab-links">
-                        <li class="active"><a href="#tab1">Listas</a></li>
+                        <li class="active"><a class="btn-link" href="#listas">Listas (<c:out value="${fn:length(listas)}"/>)</a></li>
                     </ul>
                     <div class="tab-content">
-                        <div id="tab1" class="tab active">
-                            <ul>
+                        <div id="listas" class="tab active">
+                            <ul class="rig columns-4">
                                 <c:forEach items="${listas}" var="item">
                                     <li>
-                                        <a href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
+                                        <a href="/VerListaParticular?nick=${nick}&lista=${item}">
+                                            <image src="/assets/img/default_cover.png"/>
+                                            <h3>${item}</h3>
+                                        </a>
                                     </li>
                                 </c:forEach>
                             </ul>

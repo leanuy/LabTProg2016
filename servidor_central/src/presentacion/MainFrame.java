@@ -98,6 +98,8 @@ public class MainFrame extends javax.swing.JFrame {
         quitarTemaLista = new javax.swing.JMenuItem();
         menuDatos = new javax.swing.JMenu();
         cargarDatosDePrueba = new javax.swing.JMenuItem();
+        suscripcionesMenu = new javax.swing.JMenu();
+        suscripcionesMenuItem = new javax.swing.JMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -405,6 +407,18 @@ public class MainFrame extends javax.swing.JFrame {
         menuDatos.add(cargarDatosDePrueba);
 
         menuPrincipal.add(menuDatos);
+
+        suscripcionesMenu.setText("Suscripciones");
+
+        suscripcionesMenuItem.setText("Actualizar Suscripción");
+        suscripcionesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suscripcionesMenuItemActionPerformed(evt);
+            }
+        });
+        suscripcionesMenu.add(suscripcionesMenuItem);
+
+        menuPrincipal.add(suscripcionesMenu);
 
         setJMenuBar(menuPrincipal);
 
@@ -1073,6 +1087,14 @@ public class MainFrame extends javax.swing.JFrame {
         frameQuitarTemaLista.setVisible(true);
     }//GEN-LAST:event_quitarTemaListaActionPerformed
 
+    private void suscripcionesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suscripcionesMenuItemActionPerformed
+        MainPanel.removeAll();
+        ActualizarSuscripcion frameSusc = new ActualizarSuscripcion();
+        MainPanel.add(frameSusc);
+        MainPanel.repaint();
+        frameSusc.setVisible(true);
+    }//GEN-LAST:event_suscripcionesMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1153,5 +1175,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem seguirMenuItem;
     private javax.swing.JMenu sesionDropDown;
     private javax.swing.JMenu socialMenu;
+    private javax.swing.JMenu suscripcionesMenu;
+    private javax.swing.JMenuItem suscripcionesMenuItem;
     // End of variables declaration//GEN-END:variables
 }

@@ -64,6 +64,10 @@
         <servlet-name>Clientes</servlet-name>
         <servlet-class>servlets.Clientes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Favoritear</servlet-name>
+        <servlet-class>servlets.Favoritear</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>Clientes</servlet-name>
         <url-pattern>/Clientes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Favoritear</servlet-name>
+        <url-pattern>/Favoritear</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -47,7 +47,7 @@ public class SeguirUsuario extends HttpServlet {
             IWebSeguir iws = Fabrica.getIWebSeguir();
             try {
                 iws.altaSeguir(Seguidor, aSeguir);
-                request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request,response);
+                request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request, response);
             } catch (SeguidorInexistenteException ex) {
                 response.sendError(404);
             } catch (SeguidoInexistenteException ex) {

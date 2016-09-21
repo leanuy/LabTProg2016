@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
@@ -42,6 +43,18 @@ public class Album implements Favoriteable {
             salida.add(dTema);
         }
         return salida;
+    }
+    
+    public DataAlbum getData() {
+        Iterator itg = generos.entrySet().iterator();
+        Genero generoActual;
+        List<String> nombreGeneros = new ArrayList<String>();
+        while (itg.hasNext()) {
+            Map.Entry pair = (Map.Entry)itg.next();
+            generoActual = (Genero) pair.getValue();
+            nombreGeneros.add(generoActual.getNombre());
+        }
+        return new DataAlbum(nombre,anio,nombreGeneros,img,getNickArtista());
     }
     
     DataAlbumExt getDataExt() {
