@@ -8,9 +8,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<t:body>
-<<<<<<< 3dec4ce7fe126bb1cc2e92dfe671fd0d7e221302
-    
+<t:body>    
     <script>
         var bot = document.getElementById("botones_suscripcion");
         bot.hide();
@@ -60,8 +58,5 @@
                 </c:otherwise>
             </c:choose>
         </ul>
-    </div>    
-=======
-    holis
->>>>>>> primer conflict
+    </div>
 </t:body>

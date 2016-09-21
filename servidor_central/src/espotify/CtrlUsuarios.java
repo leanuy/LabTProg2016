@@ -44,6 +44,7 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
+import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IListarClientes;
 import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.ISuscripcionWeb;
