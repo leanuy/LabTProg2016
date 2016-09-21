@@ -293,3 +293,7 @@ ul.rig.columns-4 li {
 }
 
 
+select {
+    background-color: #393B39;
+    width:300px;
+}
