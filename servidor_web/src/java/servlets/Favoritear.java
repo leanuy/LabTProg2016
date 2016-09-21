@@ -6,14 +6,24 @@
 package servlets;
 
 import espotify.Fabrica;
+import espotify.datatypes.DataAlbum;
+import espotify.datatypes.DataParticular;
+import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.AutoSeguirseException;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.FavoritoRepetidoException;
+import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.SeguidoInexistenteException;
+import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
+import espotify.interfaces.IFavoritear;
 import espotify.interfaces.web.IWebSeguir;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,10 +32,9 @@ import model.EstadoSesion;
 
 /**
  *
- * @author Santiago
+ * @author JavierM42
  */
-@WebServlet(name = "DejarSeguirUsuario", urlPatterns = {"/DejarSeguirUsuario"})
-public class DejarSeguirUsuario extends HttpServlet {
+public class Favoritear extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,19 +50,46 @@ public class DejarSeguirUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String Seguidor = (String) session.getAttribute("nick_sesion");
-            String aSeguir = new String(request.getParameter("nick").getBytes(
+            String nick = (String) session.getAttribute("nick_sesion");
+            String tipoFav = new String(request.getParameter("tipo").getBytes(
                 "iso-8859-1"), "UTF-8");
-            IWebSeguir iws = Fabrica.getIWebSeguir();
-            try {
-                iws.dejarDeSeguir(Seguidor, aSeguir);
-                request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request, response);
-            } catch (SeguidoInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidorInexistenteException ex) {
-                response.sendError(404);
+            IFavoritear ifav = Fabrica.getIFavoritear();
+
+            try{
+                if(tipoFav.equals("album")) {
+                    String nomAlbum = new String(request.getParameter("album").getBytes(
+                    "iso-8859-1"), "UTF-8");
+                    String nomArtista = new String(request.getParameter("artista").getBytes(
+                    "iso-8859-1"), "UTF-8");
+                    DataAlbum d = new DataAlbum(nomAlbum,0,null,null,nomArtista);
+                    ifav.favoritear(nick, d);
+
+                    response.sendRedirect("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum);
+                    //creo que no funciona por el tema de los tildes. ojo.
+
+                } else if(tipoFav.equals("particular")) {
+                    String nomLista = new String(request.getParameter("lista").getBytes(
+                    "iso-8859-1"), "UTF-8");
+                    String nomCliente = new String(request.getParameter("nick").getBytes(
+                    "iso-8859-1"), "UTF-8");
+                    DataParticular d = new DataParticular(nomCliente,nomLista,null);
+                    ifav.favoritear(nick, d);
+                  
+                    request.getRequestDispatcher("/VerListaParticular?nick="+nomCliente+"&lista="+nomLista).forward(request,response);
+                }
+            } catch (ClienteInexistenteException ex) {
+                response.sendError(500);
+            } catch (FavoritoRepetidoException ex) {
+                response.sendError(500);
+            } catch (ListaInexistenteException ex) {
+                response.sendError(500);
+            } catch (ArtistaInexistenteException ex) {
+                response.sendError(500);
+            } catch (AlbumInexistenteException ex) {
+                response.sendError(500);
             }
-            
+        } else {
+            response.sendError(500);
         }
     }
 

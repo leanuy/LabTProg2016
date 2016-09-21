@@ -142,7 +142,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
 //Consultas
     @Override
     public DataLista darInfoDefecto(String nomLista) throws ListaInexistenteException {
-        return buscarLista(nomLista).getData();
+        return buscarLista(nomLista).getDataExt();
     }
     
     @Override

@@ -18,13 +18,29 @@
                 <div>
                     <h1>
                         <c:out value="${nomLista}"/>
+                        <c:choose>
+                            <c:when test="${esPrivada}">                            
+                                <a class="btn btn-custom" href="/publicarlista?lista=<c:out value="${nomLista}"/>"><i class="glyphicon glyphicon-lock"></i> Publicar</a>
+                            </c:when>
+                        </c:choose>
                     </h1>
-                    <div><c:out value="${nomCliente}"/></div>
-                    <c:choose>
-                        <c:when test="${esPrivada}">                            
-                            <a class="btn btn-custom btn-md round" href="/publicarlista?lista=<c:out value="${nomLista}"/>"><i class="glyphicon glyphicon-lock"></i> Publicar</a>
-                        </c:when>
-                    </c:choose>
+                    <div class="pull-right">
+                        <c:choose>
+                            <c:when test="${empty es_favorito}">
+                            </c:when>
+                            <c:otherwise>
+                                <c:choose>
+                                    <c:when test="${es_favorito}">
+                                        <a class="btn-link-inverse" href="#"><i class="glyphicon glyphicon-star"></i></a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a class="btn-link" href="/Favoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                        <div><i class="glyphicon glyphicon-user"></i> <c:out value="${nomCliente}"/></div>
                 </div>
                 <%--temas--%>
                 <table class="table">

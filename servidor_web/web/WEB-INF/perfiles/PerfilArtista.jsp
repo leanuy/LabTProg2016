@@ -6,8 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:body>
+    <script src="assets/js/jquery-3.1.0.min.js"></script>
+    <script src="assets/js/script_tabs.js"></script>
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
@@ -36,10 +39,46 @@
             <div class="row">
                 <div class="tabs">
                     <ul class="tab-links">
-                        <li class="active"><a href="#tab1">Álbums</a></li>
+                        <li class="active"><a href="#datosPersonales">Datos Personales</a></li>
+                        <li><a href="#seguidores">Seguidores (<c:out value="${fn:length(seguidores)}"/>)</a></li>
+                        <li><a href="#albums">Álbums (<c:out value="${fn:length(albums)}"/>)</a></li>
                     </ul>
+                
                     <div class="tab-content">
-                        <div id="tab1" class="tab active">
+                        <div id="datosPersonales" class="tab active">
+                            <ul>
+                                <li>
+                                    <i class="glyphicon glyphicon-user"></i>
+                                    <c:out value="${nombre}"/> <c:out value="${apellido}"/>
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-envelope"></i>
+                                    <c:out value="${correo}"/>
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-calendar"></i>
+                                    <c:out value="${fechaNac}"/>
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-globe"></i>
+                                    <a class="btn-link" href="<c:out value="${url}"/>"><c:out value="${url}"/></a>
+                                </li>
+                                <li>
+                                    <i class="glyphicon glyphicon-list-alt"></i>
+                                    <c:out value="${bio}"/>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="seguidores" class="tab">
+                            <ul>
+                            <c:forEach items="${seguidores}" var="item">
+                                <li>
+                                    <a class="link-user" href="/VerPerfil?nick=${item}">${item}</a>
+                                </li>
+                            </c:forEach>
+                            </ul>
+                        </div>
+                        <div id="albums" class="tab">
                             <ul>
                                 <c:forEach items="${albums}" var="item">
                                     <li>
@@ -48,6 +87,7 @@
                                 </c:forEach>
                             </ul>
                         </div>
+                        
                     </div>
                 </div>
             </div>

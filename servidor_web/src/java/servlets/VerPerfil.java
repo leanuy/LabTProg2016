@@ -79,11 +79,27 @@ public class VerPerfil extends HttpServlet {
                     try {
                         DataArtistaExt d = iPerfil.consultaArtista(inputNick);
                         request.setAttribute("nick",d.getNick());
-                        if(d.getImg() == null) {
+                        request.setAttribute("nombre", d.getNombre());
+                        request.setAttribute("apellido", d.getApellido());
+                        request.setAttribute("correo", d.getCorreo());
+                        request.setAttribute("fechaNac", d.getfNacStr());
+                        if(d.getUrl().equals("")) {
+                            request.setAttribute("url", "-");
+                        } else {
+                            request.setAttribute("url", d.getUrl());
+                        }
+                        if(d.getBio().equals("")) {
+                            request.setAttribute("bio", "-");
+                        } else {
+                            request.setAttribute("bio", d.getBio());
+                        }
+                        if (d.getImg() == null) {
                             request.setAttribute("imagen", "./assets/img/artista.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
                         }
+                        request.setAttribute("seguidores", d.getSeguidores());
+                        
                         List<String> albums = iPerfil.listarAlbumesDeArtista(inputNick);
                         request.setAttribute("albums", albums);
 

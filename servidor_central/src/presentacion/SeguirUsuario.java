@@ -130,19 +130,25 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
 
     private void SeguirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeguirButtonActionPerformed
         if (Seguidor.isEmpty() || Seguido.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario", "ATENCION", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se ingreso el nick de al menos un usuario",
+                    "ATENCION", JOptionPane.WARNING_MESSAGE);
         } else {
             try {
                 interf.altaSeguir(Seguidor,Seguido);
-                JOptionPane.showMessageDialog(this, "Operación completada con éxito.", "OK", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Operación completada con éxito.",
+                        "OK", JOptionPane.PLAIN_MESSAGE);
             } catch (SeguidorInexistenteException e) {
-                JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             } catch (SeguidoInexistenteException e) {
-                JOptionPane.showMessageDialog(this, "El usuario a seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El usuario a seguir no existe.",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             } catch (SeguidoRepetidoException e) {
-                JOptionPane.showMessageDialog(this, "El seguidor ya sigue a este usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "El seguidor ya sigue a este usuario",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             } catch (AutoSeguirseException e) {
-                JOptionPane.showMessageDialog(this, "Un usuario no puede seguirse a sí mismo.", "ERROR", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Un usuario no puede seguirse a sí mismo.",
+                        "ERROR", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_SeguirButtonActionPerformed
@@ -156,13 +162,13 @@ public class SeguirUsuario extends javax.swing.JInternalFrame {
                 NickSeguido.addItem(stri);
             }
         } catch (SeguidorInexistenteException e) {
-            JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "El usuario que quiere seguir no existe.",
+                    "ERROR", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_NickSeguidorActionPerformed
 
     private void NickSeguidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NickSeguidoActionPerformed
-        // TODO add your handling code here:
         Seguido = String.valueOf(NickSeguido.getSelectedItem());
     }//GEN-LAST:event_NickSeguidoActionPerformed
 

@@ -1,13 +1,5 @@
+/*paneles*/
 
-h1{
-    font-size: 60px;
-    font-family: 'Montserrat', sans-serif;
-}
-.form-control{
-    background-color: #393B39;
-    color:white;
-    border-color:black;
-}
 body{
     background-color:black;
     color:white;
@@ -24,12 +16,10 @@ body{
     background-color: black;
     border: 0px;
 }
-
 .panel-default .panel-heading{
     background-color: #393B39;
     color: white;
 }
-
 .panel-default table{
     border-color: gray;
     color: white;
@@ -46,20 +36,12 @@ body{
 .panel-default table, .panel-default th {
     border-color:black!important;
 }
+.form-control{
+    background-color: #393B39;
+    color:white;
+    border-color:black;
+}
 
-.btn-link{
-    color:gray;
-}
-.btn-link:hover{
-    color:#0198AD;
-}
-.link-user{
-    color:gray;
-    font-weight:bold;
-}
-.link-user:hover{
-    color:#0198AD;
-}
 .menu-izquierda{
     height: 94vh;
 }
@@ -96,6 +78,41 @@ body{
     color:white;
     z-index: 1;
 }
+
+/**/
+
+h1{
+    font-size: 60px;
+    font-family: 'Montserrat', sans-serif;
+}
+.btn-link{
+    color:gray;
+    font-weight:bold;
+}
+.btn-link:hover{
+    color:#0198AD;
+}
+.link-user{
+    color:gray;
+    font-weight:bold;
+}
+.link-user:hover{
+    color:#0198AD;
+}
+.btn-link-inverse{
+    color:#0198AD;
+}
+.btn-link-inverse:hover{
+    color:gray;
+}
+.btn-link-sidebar{
+    color:white;
+    font-weight:bolder;
+}
+.btn-link-sidebar:hover{
+    color:#0198AD;
+}
+
 .btn-table{
     width:10px;
     padding-left: 0;
@@ -291,5 +308,3 @@ ul.rig.columns-4 li {
 		margin: 0 0 20px;
 	}
 }
-
-

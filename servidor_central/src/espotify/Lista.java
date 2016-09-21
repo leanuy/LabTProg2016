@@ -66,7 +66,7 @@ abstract class Lista {
         temas.remove(clave);
     }
     
-    DataLista getData() {
+    DataLista getDataExt() {
         return new DataLista(nombre, img, listarTemas());
     }
 }

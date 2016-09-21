@@ -7,14 +7,22 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataFavoriteable;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IVerAlbum;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.EstadoSesion;
 
 /**
  *
@@ -53,6 +61,15 @@ public class VerAlbum extends HttpServlet {
             request.setAttribute("anio", data.getAnio());
             request.setAttribute("generos", data.getGeneros());
             request.setAttribute("temas", data.getTemas());
+            
+            HttpSession session = request.getSession();
+            boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+            if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
+                IFavoritos ifav = Fabrica.getIFavoritos();
+                boolean es_favorito;
+                es_favorito = ifav.esFavorito(session.getAttribute("nick_sesion").toString(), data);
+                request.setAttribute("es_favorito", es_favorito);
+            }
 
             request.getRequestDispatcher("/WEB-INF/albums/Album.jsp").forward(request,response);
             
@@ -63,6 +80,10 @@ public class VerAlbum extends HttpServlet {
         } catch (AlbumInexistenteException ex) {
             response.sendError(404);
             //el album no existe del artista
+        } catch (ClienteInexistenteException ex) {
+            response.sendError(404);
+        } catch (ListaInexistenteException ex) {
+            response.sendError(404);
         }
     }
 
