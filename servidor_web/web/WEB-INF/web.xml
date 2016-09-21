@@ -64,6 +64,10 @@
         <servlet-name>Clientes</servlet-name>
         <servlet-class>servlets.Clientes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Suscripcion</servlet-name>
+        <servlet-class>servlets.Suscripcion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>Clientes</servlet-name>
         <url-pattern>/Clientes</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Suscripcion</servlet-name>
+        <url-pattern>/Suscripcion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
