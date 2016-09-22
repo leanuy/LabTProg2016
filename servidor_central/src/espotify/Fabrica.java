@@ -7,6 +7,7 @@ import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IAltaSeguir;
+import espotify.interfaces.IBuscar;
 import espotify.interfaces.IConsultaAlbum;
 import espotify.interfaces.IConsultaArtista;
 import espotify.interfaces.IConsultaCliente;
@@ -152,5 +153,8 @@ public final class Fabrica {
     
     public static IObtenerImagen getIImagen() {
         return new CtrlImagenes();
+    }
+    public static IBuscar getIBuscar() {
+        return new CtrlMusica();
     }
 }

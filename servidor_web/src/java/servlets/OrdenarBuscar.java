@@ -22,7 +22,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author JavierM42
  */
-public class Buscar extends HttpServlet {
+public class OrdenarBuscar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -78,7 +78,7 @@ public class Buscar extends HttpServlet {
             request.setAttribute("albums", albums);
             request.setAttribute("listas", listas);
         } 
-        request.getRequestDispatcher("/WEB-INF/generos/Buscar.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/generos/OrdenarBuscar.jsp").forward(request,response);
     }
     
     private Comparator alf_tema_comp() {
