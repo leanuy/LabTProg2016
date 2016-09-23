@@ -24,7 +24,7 @@
                             <c:otherwise>
                                 <c:choose>
                                     <c:when test="${es_favorito}">
-                                        <a class="btn-link-inverse" href="#"><i class="glyphicon glyphicon-star"></i></a>
+                                        <a class="btn-link-inverse" href="/DesFavoritear?tipo=album&artista=${nomArtista}&album=${nomAlbum}"><i class="glyphicon glyphicon-star"></i></a>
                                     </c:when>
                                     <c:otherwise>
                                         <a class="btn-link" href="/Favoritear?tipo=album&artista=${nomArtista}&album=${nomAlbum}"><i class="glyphicon glyphicon-star"></i></a>
