@@ -45,6 +45,7 @@
         <servlet-class>servlets.PublicarLista</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< 18faad3f514670c768d1ac7f52e4107178a58fc4
         <servlet-name>Artistas</servlet-name>
         <servlet-class>servlets.Artistas</servlet-class>
     </servlet>
@@ -71,6 +72,10 @@
     <servlet>
         <servlet-name>Buscar</servlet-name>
         <servlet-class>servlets.Buscar</servlet-class>
+=======
+        <servlet-name>CrearListaParticular</servlet-name>
+        <servlet-class>servlets.CrearListaParticular</servlet-class>
+>>>>>>> crear lista sin imagen y arreglos de excepciones
     </servlet>
     <servlet>
         <servlet-name>DesFavoritear</servlet-name>
@@ -153,6 +158,7 @@
         <url-pattern>/publicarlista</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< 18faad3f514670c768d1ac7f52e4107178a58fc4
         <servlet-name>Artistas</servlet-name>
         <url-pattern>/Artistas</url-pattern>
     </servlet-mapping>
@@ -179,6 +185,10 @@
     <servlet-mapping>
         <servlet-name>Buscar</servlet-name>
         <url-pattern>/Buscar</url-pattern>
+=======
+        <servlet-name>CrearListaParticular</servlet-name>
+        <url-pattern>/crearlistaparticular</url-pattern>
+>>>>>>> crear lista sin imagen y arreglos de excepciones
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DesFavoritear</servlet-name>
