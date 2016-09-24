@@ -12,6 +12,7 @@
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/CtrlUsuarios.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Suscripcion.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/web/ISuscripcionWeb.java</file>
+<<<<<<< 5966a07eed95543d19357173a5fd74afff440643
 =======
 <<<<<<< d3f74a1f6f1a5def4d284527cd5cb57a244bbd51
         <group/>
@@ -27,6 +28,9 @@
 =======
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/web/ISuscripcionWeb.java</file>
 >>>>>>> conflict 3
+=======
+            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Fabrica.java</file>
+>>>>>>> miniconflicto
         </group>
     </open-files>
 </project-private>
