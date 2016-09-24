@@ -68,6 +68,18 @@
         <servlet-name>Suscripcion</servlet-name>
         <servlet-class>servlets.Suscripcion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CancelarSuscripcion</servlet-name>
+        <servlet-class>servlets.CancelarSuscripcion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RenovarSuscripcion</servlet-name>
+        <servlet-class>servlets.RenovarSuscripcion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AprobarSuscripcion</servlet-name>
+        <servlet-class>servlets.AprobarSuscripcion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -143,6 +155,18 @@
     <servlet-mapping>
         <servlet-name>Suscripcion</servlet-name>
         <url-pattern>/Suscripcion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CancelarSuscripcion</servlet-name>
+        <url-pattern>/CancelarSuscripcion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RenovarSuscripcion</servlet-name>
+        <url-pattern>/RenovarSuscripcion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AprobarSuscripcion</servlet-name>
+        <url-pattern>/AprobarSuscripcion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -8,6 +8,7 @@ package servlets;
 import espotify.Fabrica;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
+import espotify.datatypes.EstadoSuscripcion;
 import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.ISuscripcionWeb;
@@ -44,9 +45,8 @@ public class Suscripcion extends HttpServlet {
         
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            
-            
             String nick = (String) session.getAttribute("nick_sesion");
+            request.setAttribute("nick_sesion", nick);
             ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
             List<DataSuscripcion> historial = null;
             try {
@@ -59,16 +59,43 @@ public class Suscripcion extends HttpServlet {
             } else {
                 request.setAttribute("historial", historial);
             }
-            DataSuscripcionVigente vigente = null;
+            DataSuscripcion actual = null;
             try {
-                vigente = inter.obtenerSuscripcionVigente(nick);
+                actual = inter.obtenerSuscripcionActual(nick);
             } catch (ClienteInexistenteException ex) {
                 response.sendError(500);
             }
-            if (vigente == null) {
+            if ( request.getAttribute("suscvigente") != null ) {
+                request.setAttribute("suscvigente", null);
+            }
+            if ( request.getAttribute("vencida") != null ) {
+                request.setAttribute("vencida", null);
+            }
+            if ( request.getAttribute("pendiente") != null ) {
+                request.setAttribute("pendiente", null);
+            }
+            if ( request.getAttribute("vigente") != null ) {
                 request.setAttribute("vigente", null);
+            }
+            if ( request.getAttribute("cancelada") != null ) {
+                request.setAttribute("cancelada", null);
+            }
+            if (actual == null) {
+                request.setAttribute("suscvigente", null);
             } else {
-                request.setAttribute("vigente", vigente);
+                if ( actual.getEstado() == EstadoSuscripcion.VENCIDA ) {
+                    request.setAttribute("vencida", true);
+                }
+                if ( actual.getEstado() == EstadoSuscripcion.PENDIENTE ) {
+                    request.setAttribute("pendiente", true);
+                }
+                if ( actual.getEstado() == EstadoSuscripcion.VIGENTE ) {
+                    request.setAttribute("vigente", true);
+                }
+                if ( actual.getEstado() == EstadoSuscripcion.CANCELADA ) {
+                    request.setAttribute("cancelada", true);
+                }
+                request.setAttribute("suscvigente", actual);
             }
         } else {
             request.getRequestDispatcher("/inicio").forward(request, response);
@@ -106,11 +133,12 @@ public class Suscripcion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
         String nick = (String) session.getAttribute("nick_sesion");
-        String tipo = request.getParameter("tipo");
+        String tipo = (String)request.getParameter("tipo");
         ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
         boolean contratacionExitosa = false;
         try {
             contratacionExitosa = inter.contratarSuscripcion(devolverTipoSuscripcion(tipo), nick);
+            response.sendRedirect("/Suscripcion");
         } catch (ClienteInexistenteException ex) {
             response.sendError(500);
         }        

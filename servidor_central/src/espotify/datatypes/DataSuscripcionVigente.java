@@ -1,5 +1,6 @@
 package espotify.datatypes;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class DataSuscripcionVigente extends DataSuscripcion {
@@ -15,4 +16,8 @@ public class DataSuscripcionVigente extends DataSuscripcion {
         return vencimiento;
     }
     
+    public String getfVenStr() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(vencimiento.getTime());
+    }
 }

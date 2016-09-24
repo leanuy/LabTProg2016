@@ -2,15 +2,11 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-<<<<<<< d3f74a1f6f1a5def4d284527cd5cb57a244bbd51
-        <group/>
-=======
         <group>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Cliente.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/CtrlUsuarios.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Suscripcion.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/web/ISuscripcionWeb.java</file>
         </group>
->>>>>>> mas cositas
     </open-files>
 </project-private>

@@ -235,6 +235,7 @@ class Cliente extends Usuario {
             throw new NoHaySuscripcionException();
         } else {
             suscripcionActiva.cancelar();
+            suscripcionActiva = null;
         }
     }
     
@@ -255,5 +256,19 @@ class Cliente extends Usuario {
     boolean listaEsPrivada(String nomLista) throws ListaInexistenteException {
         return buscarLista(nomLista) instanceof Privada;
     }
-
+    
+    public void renovarSuscripcion() throws TransicionSuscripcionInvalidaException, NoHaySuscripcionException{
+        if ( suscripcionActiva == null ) {
+            throw new NoHaySuscripcionException();
+        }
+        if (suscripcionActiva != null && !suscripcionActiva.estaVigente()) {
+            suscripcionActiva.renovar();
+        } else {
+            throw new TransicionSuscripcionInvalidaException();
+        }
+    }
+    public void vencerSuscripcion() {
+        suscripcionActiva.estaVigente();
+        suscripcionActiva.vencer();
+    }
 }
