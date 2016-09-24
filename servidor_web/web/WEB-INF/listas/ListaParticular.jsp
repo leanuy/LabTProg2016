@@ -31,7 +31,7 @@
                             <c:otherwise>
                                 <c:choose>
                                     <c:when test="${es_favorito}">
-                                        <a class="btn-link-inverse" href="#"><i class="glyphicon glyphicon-star"></i></a>
+                                        <a class="btn-link-inverse" href="/DesFavoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
                                     </c:when>
                                     <c:otherwise>
                                         <a class="btn-link" href="/Favoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
@@ -58,7 +58,7 @@
                         <c:forEach items="${temas}" var="tema" varStatus="temaStatus">
                             <tr>
                                 <td><button class="btn btn-link btn-lg "><i class="glyphicon glyphicon-play-circle"></i></button></td>
-                                <td><c:out value="${temaStatus.index}"/></td>
+                                <td><c:out value="${temaStatus.index+1}"/></td>
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
                                 <td>
@@ -68,7 +68,7 @@
                                         <c:otherwise>
                                             <c:choose>
                                                 <c:when test="${es_favorito_temas[temaStatus.index]}">
-                                                    <a class="btn btn-link-inverse pull-left" href="#"><i class="glyphicon glyphicon-star"></i></a>
+                                                    <a class="btn btn-link-inverse pull-left" href="/DesFavoritear?tipo=tema&artista=${tema.nomArtista}&album=${tema.album}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <a class="btn btn-link pull-left" href="/Favoritear?tipo=tema&artista=${tema.nomArtista}&album=${tema.album}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>

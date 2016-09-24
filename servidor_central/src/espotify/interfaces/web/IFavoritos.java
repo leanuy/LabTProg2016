@@ -12,4 +12,5 @@ public interface IFavoritos {
             ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException;
     
     public List<DataFavoriteable> listarFavoritos(String nick) throws ClienteInexistenteException;
+    
 }

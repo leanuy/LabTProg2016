@@ -15,8 +15,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-                    <img src="<c:out value="${imagen}"/>" style="width:100%"> <%--imagen del cliente--%>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
+                    <img src="<c:out value="${imagen}"/>" class="img-circle" style="width:100%"> <%--imagen del cliente--%>
                 </div>
                 <h1>
                     <c:out value="${nick}"/>
@@ -99,7 +99,7 @@
                                                     <i class="glyphicon glyphicon-cd"></i> ${item.nickArtista} - ${item.nombre}
                                                 </a>
                                             </td>
-                                            <td><a class="btn-link-inverse pull-left"><i class="glyphicon glyphicon-star"></i></a></td>
+                                            <td><a class="btn-link-inverse pull-left" href="/DesFavoritear?tipo=album&artista=${item.nickArtista}&album=${item.nombre}"><i class="glyphicon glyphicon-star"></i></a></td>
                                         </tr>
                                     </c:forEach>
                                     <c:forEach items="${particularesFavoritas}" var="item">
@@ -109,7 +109,7 @@
                                                     <i class="glyphicon glyphicon-list-alt"></i> ${item.nomCliente} - ${item.nombre}
                                                 </a>
                                             </td>
-                                            <td><a class="btn-link-inverse pull-left"><i class="glyphicon glyphicon-star"></i></a></td>
+                                            <td><a class="btn-link-inverse pull-left" href="/DesFavoritear?tipo=particular&lista=${item.nombre}&nick=${item.nomCliente}"><i class="glyphicon glyphicon-star"></i></a></td>
                                         </tr>
                                     </c:forEach>
                                     <c:forEach items="${temasFavoritos}" var="item">
@@ -119,7 +119,7 @@
                                                     <i class="glyphicon glyphicon-music"></i> ${item.nomArtista} - ${item.album} - ${item.nombre}
                                                 </a>
                                             </td>
-                                            <td><a class="btn-link-inverse pull-left"><i class="glyphicon glyphicon-star"></i></a></td>
+                                            <td><a class="btn-link-inverse pull-left" href="/DesFavoritear?tipo=tema&artista=${item.nomArtista}&album=${item.album}&tema=${item.nombre}"><i class="glyphicon glyphicon-star"></i></a></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -130,13 +130,4 @@
             </div>
         </div>
     </div>
-    
 </t:body>
-
-
-
-
-<%--
-nickname, correo electrónico, nombre, apellido, fecha de nacimiento e imagen (opcional)
-Se muestran los nickname de todos los seguidores que tiene, si es cliente con suscripción los usuarios a los que sigue (identificando si son clientes o artistas),
-las listas de reproducción que creó y las preferencias que tiene guardadas, brindando la opción de seleccionar uno para ver su detalle como en los casos de uso Consulta de Álbum, y Consulta de Lista de Reproducción.--%>
