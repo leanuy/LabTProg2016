@@ -147,7 +147,6 @@
         <url-pattern>/VerGenero</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>ValidarNick</servlet-name>
         <url-pattern>/ValidarNick</url-pattern>
     </servlet-mapping>
@@ -175,11 +174,6 @@
         <servlet-name>AprobarSuscripcion</servlet-name>
         <url-pattern>/AprobarSuscripcion</url-pattern>
     </servlet-mapping>
-=======
-        <servlet-name>Suscripcion</servlet-name>
-        <url-pattern>/Suscripcion</url-pattern>
-    </servlet-mapping>
->>>>>>> b9b112ca6a0c64543b8e2e972e301d112bd8c99a
     <session-config>
         <session-timeout>
             30
