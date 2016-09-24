@@ -132,6 +132,7 @@ public class Fabrica {
     public static ISuscripcionWeb getSuscripcionWeb() {
         return new CtrlUsuarios();
     }
+    
     public static IValidar getIValidar() {
         return new CtrlUsuarios();
     }

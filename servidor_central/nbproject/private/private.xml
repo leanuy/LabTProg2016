@@ -2,16 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
 <<<<<<< 33217ee95ff0ce875e419c41cc8a91f37a2096f8
 <<<<<<< 30c34f026571f3a4edf3bc78fef0ac2f7bd776c8
 <<<<<<< 370a676ce2d07c78481af88e04be20cb26d9bbf4
         <group/>
 =======
+=======
+>>>>>>> 40a024cf8d42be10f90eeb63404b1d376fdc1567
         <group>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Cliente.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/CtrlUsuarios.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Suscripcion.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/web/ISuscripcionWeb.java</file>
+<<<<<<< HEAD
 <<<<<<< 5966a07eed95543d19357173a5fd74afff440643
 =======
 <<<<<<< d3f74a1f6f1a5def4d284527cd5cb57a244bbd51
@@ -31,6 +35,9 @@
 =======
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Fabrica.java</file>
 >>>>>>> miniconflicto
+=======
+            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Fabrica.java</file>
+>>>>>>> 40a024cf8d42be10f90eeb63404b1d376fdc1567
         </group>
     </open-files>
 </project-private>
