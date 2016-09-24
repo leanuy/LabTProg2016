@@ -53,6 +53,7 @@
         <servlet-class>servlets.VerGenero</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>ValidarNick</servlet-name>
         <servlet-class>servlets.ValidarNick</servlet-class>
     </servlet>
@@ -80,6 +81,11 @@
         <servlet-name>AprobarSuscripcion</servlet-name>
         <servlet-class>servlets.AprobarSuscripcion</servlet-class>
     </servlet>
+=======
+        <servlet-name>Suscripcion</servlet-name>
+        <servlet-class>servlets.Suscripcion</servlet-class>
+    </servlet>
+>>>>>>> b9b112ca6a0c64543b8e2e972e301d112bd8c99a
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -141,6 +147,7 @@
         <url-pattern>/VerGenero</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
         <servlet-name>ValidarNick</servlet-name>
         <url-pattern>/ValidarNick</url-pattern>
     </servlet-mapping>
@@ -168,6 +175,11 @@
         <servlet-name>AprobarSuscripcion</servlet-name>
         <url-pattern>/AprobarSuscripcion</url-pattern>
     </servlet-mapping>
+=======
+        <servlet-name>Suscripcion</servlet-name>
+        <url-pattern>/Suscripcion</url-pattern>
+    </servlet-mapping>
+>>>>>>> b9b112ca6a0c64543b8e2e972e301d112bd8c99a
     <session-config>
         <session-timeout>
             30

@@ -546,3 +546,4 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         client.vencerSuscripcion();
     }
 }
+
