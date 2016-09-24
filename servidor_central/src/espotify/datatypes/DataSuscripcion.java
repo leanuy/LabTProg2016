@@ -1,5 +1,6 @@
 package espotify.datatypes;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class DataSuscripcion {
@@ -23,5 +24,10 @@ public class DataSuscripcion {
     
     public TipoSuscripcion getTipo() {
         return tipo;
+    }
+    
+    public String getfCreacionStr() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(fechaCreacion.getTime());
     }
 }

@@ -502,62 +502,60 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return suscripciones;
     }
     @Override
-    public DataSuscripcionVigente obtenerSuscripcionVigente(String nickname) throws ClienteInexistenteException {
+    public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException {
         Cliente client;
-        DataSuscripcionVigente suscripcion = null;
+        DataSuscripcion suscripcion = null;
         try{
             client = buscarCliente(nickname);
-            suscripcion = (DataSuscripcionVigente)client.getSuscripcionActiva();          
+            suscripcion = client.getSuscripcionActiva();                                 
         } catch (NoHaySuscripcionException e) {
             return null;
-        }
+        } 
         return suscripcion;
     }
     @Override
     public boolean contratarSuscripcion(TipoSuscripcion tipo, String nickname) throws ClienteInexistenteException {
         Cliente client;
-        boolean result;
+        boolean result =false;
         try{
             client = buscarCliente(nickname);
             client.contratar(tipo);
             result = true;
         } catch (TransicionSuscripcionInvalidaException e) {
             result = false;
-        }
+        } catch (Exception e){}
         return result;
     }
     @Override
-    public boolean cancelarSuscripcionVencida(String nickname){
+    public void cancelarSuscripcionVencida(String nickname) throws 
+            NoHaySuscripcionException, TransicionSuscripcionInvalidaException,
+            ClienteInexistenteException {
         Cliente client;
-        boolean result;
-        try{
-            client = buscarCliente(nickname);
-            client.cancelarSuscripcion();
-            result = true;
-        } catch (NoHaySuscripcionException e) {
-            result = false;
-        } catch (TransicionSuscripcionInvalidaException e) {
-            result = false;
-        } catch (ClienteInexistenteException e) {
-            result = false;
-        }
-        return result;
+        client = buscarCliente(nickname);
+        client.cancelarSuscripcion();
     }
     @Override
-    public boolean aprobarSuscripcionPendiente(String nickname){
+    public void aprobarSuscripcionPendiente(String nickname) throws NoHaySuscripcionException,
+            TransicionSuscripcionInvalidaException, ClienteInexistenteException {
         Cliente client;
-        boolean result;
-        try{
-            client = buscarCliente(nickname);
-            client.aprobarSuscripcion();
-            result = true;
-        } catch (NoHaySuscripcionException e) {
-            result = false;
-        } catch (TransicionSuscripcionInvalidaException e) {
-            result = false;
-        } catch (ClienteInexistenteException e) {
-            result = false;
-        }
-        return result;
+        client = buscarCliente(nickname);
+        client.aprobarSuscripcion();
+    }
+    @Override
+    public void actualizarEstadoSuscripcion(String nickname) {
+        
+    }
+    @Override
+    public void renovarSuscripcion(String nickname) throws ClienteInexistenteException,
+            TransicionSuscripcionInvalidaException, NoHaySuscripcionException {
+        Cliente client;
+        client = buscarCliente(nickname);
+        client.renovarSuscripcion();
+    }
+    @Override
+    public void vencerSuscripcionActual(String nickname) throws ClienteInexistenteException {
+        Cliente client;
+        client = buscarCliente(nickname);
+        client.vencerSuscripcion();
     }
 }
