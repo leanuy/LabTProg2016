@@ -15,6 +15,7 @@ import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
+import espotify.interfaces.IObtenerImagen;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IFavoritos;
@@ -138,5 +139,9 @@ public class Fabrica {
     
     public static IFavoritos getIFavoritos() {
         return new CtrlUsuarios();
+    }
+    
+    public static IObtenerImagen getIImagen() {
+        return new CtrlImagenes();
     }
 }
