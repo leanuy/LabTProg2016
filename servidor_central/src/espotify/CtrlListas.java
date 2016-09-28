@@ -28,7 +28,6 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     private static CtrlListas instancia;
     private String nickMem;
     private String nomListaMem;
-    private List<DataTema> temasLista;
     
 //Constructor
     public CtrlListas() {
@@ -103,6 +102,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     
     @Override
     public List<DataTema> listarTemasLista2(String cliente, String nomLista) throws Exception {
+        List<DataTema> temasLista;
         if (cliente == null) {
             temasLista = buscarLista(nomLista).listarTemas();
         } else {

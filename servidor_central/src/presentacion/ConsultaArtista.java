@@ -8,10 +8,14 @@ import espotify.interfaces.IConsultaArtista;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -273,12 +277,16 @@ public class ConsultaArtista extends javax.swing.JInternalFrame {
         String[] albums = dArt.getAlbums();
         AlbumsList.clearSelection();
         AlbumsList.setListData(albums);
-        BufferedImage imagen = dArt.getImg();
-        BufferedImage image;
-        if (imagen != null) {
-            image = getScaledImage(imagen,200,200);
-        } else {
-            image = imagen;
+        
+        File file = dArt.getImg();
+        BufferedImage image = null;
+        if (file != null) {
+            try {
+                BufferedImage imagen = ImageIO.read(file);
+                image = getScaledImage(imagen,200,200);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "El usuario no tiene imagen", "Atencion!.", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         jLabel7.removeAll();
         jLabel7.repaint();

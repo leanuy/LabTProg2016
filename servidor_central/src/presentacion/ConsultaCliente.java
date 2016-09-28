@@ -5,17 +5,19 @@ import espotify.datatypes.DataClienteExt;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.IConsultaCliente;
 
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -256,12 +258,15 @@ public class ConsultaCliente extends javax.swing.JInternalFrame {
         }
         SeguidoresList.setListData(array);
         CantidadSeguidoresText.setText("Total: " + cantSeguidores);
-        BufferedImage imagen = dCliente.getImg();
-        BufferedImage image;
-        if (imagen == null) {
-            image = null;
-        } else {
-            image = getScaledImage(imagen, 200,200);
+        File file = dCliente.getImg();
+        BufferedImage image = null;
+        if (file != null) {
+            try {
+                BufferedImage imagen = ImageIO.read(file);
+                image = getScaledImage(imagen,200,200);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "El usuario no tiene imagen", "Atencion!.", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         jLabel8.removeAll();
         if (image != null) {

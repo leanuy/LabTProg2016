@@ -21,11 +21,9 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IPublicarLista;
 
 import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -551,26 +549,22 @@ public class MainFrame extends javax.swing.JFrame {
         //ALTA DE CLIENTES:
         IAltaPerfil ctrlAltaPerfil = Fabrica.getIAltaPerfil();
         File file;
-        BufferedImage img;
         
         
         file = new File("./src/Presentacion/img/clientes/ElPadrino.png");
-        img = ImageIO.read(file);
         Calendar cal = Calendar.getInstance();
         cal.set(1972, 3, 8);
-        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img,"");
+        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, file,"");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/ScarlettOHara.jpg");
-        img = ImageIO.read(file);
         cal.set(1984, 11, 27);
-        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img,"");
+        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, file,"");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/PepeArgento.png");
-        img = ImageIO.read(file);
         cal.set(1955, 2, 14);
-        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img,"");
+        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, file,"");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         cal.set(1056, 3, 7);
@@ -578,66 +572,57 @@ public class MainFrame extends javax.swing.JFrame {
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/BenKenobi.png");
-        img = ImageIO.read(file);
         cal.set(1914, 4, 2);
-        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img,"");
+        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, file,"");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/lachiqui.jpg");
-        img = ImageIO.read(file);
         cal.set(1927, 2, 23);
-        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img,"");
+        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, file,"");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/CachoBochinche.jpg");
-        img = ImageIO.read(file);
         cal.set(1937, 5, 8);
-        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img,"");
+        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, file,"");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/Presentacion/img/clientes/eleven.jpg");
-        img = ImageIO.read(file);
         cal.set(1971, 12, 31);
-        dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img,"");
+        dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, file,"");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         DataArtista dataArtista;      
         String bio;
         
         file = new File("./src/Presentacion/img/artistas/VillagePeople.jpg");
-        img = ImageIO.read(file);
         cal.set(1977, 1, 1);
         bio = "Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.";
-        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img,"");
+        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, file,"");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/DepecheMode.jpg");
-        img = ImageIO.read(file);
         cal.set(1980, 6, 14);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img,"");
+        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, file,"");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/CyndiLauper.jpg");
-        img = ImageIO.read(file);
         cal.set(1953, 6, 22);
         bio = "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.";
-        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, file,"");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/BruceTheBoss.jpg");
-        img = ImageIO.read(file);
         cal.set(1949, 9, 23);
         bio = "";
-        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, file,"");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/LaTripleNelson.jpg");
-        img = ImageIO.read(file);
         cal.set(1998, 1, 1);
         bio = "La Triple Nelson es un grupo de rock uruguayo formado en enero de 1998 e integrado inicialmente por Christian Cary (guitarra y voz), Fernando Paco"
             +" Pintos (bajo y coros) y Rubén Otonello (actualmente su nuevo baterista es Rafael Ugo).";
-        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img,"");
+        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, file,"");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1987, 2, 14);
@@ -656,17 +641,15 @@ public class MainFrame extends javax.swing.JFrame {
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/NicoleNeumann.jpg");
-        img = ImageIO.read(file);
         cal.set(1980, 10, 31);
         bio = "";
-        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, file,"");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/Presentacion/img/artistas/Pimpinela.jpg");
-        img = ImageIO.read(file);
         cal.set(1981, 8, 13);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, file,"");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1940, 3, 5);
@@ -822,9 +805,8 @@ public class MainFrame extends javax.swing.JFrame {
         tema = new File("./src/Presentacion/mp3/TimeAfterTime.mp3");
         temas.add(new DataTemaArchivo(tema, "Time After Time", 312, 2, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/ShesSoUnusual.PNG");
-        img = ImageIO.read(file);
 
-        dataAlbumExt = new DataAlbumExt(temas, "She's So Unusual", 1983, generos, img, nickArtista);
+        dataAlbumExt = new DataAlbumExt(temas, "She's So Unusual", 1983, generos, file, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "bruceTheBoss";
@@ -851,9 +833,8 @@ public class MainFrame extends javax.swing.JFrame {
         tema = new File("./src/Presentacion/mp3/ItSNotUnusual.mp3");
         temas.add(new DataTemaArchivo(tema, "It’s Not Unusual", 120, 1, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/ItsNotUnusual.jpeg");
-        img = ImageIO.read(file);
 
-        dataAlbumExt = new DataAlbumExt(temas, "It's Not Unusual", 1965, generos, img, nickArtista);
+        dataAlbumExt = new DataAlbumExt(temas, "It's Not Unusual", 1965, generos, file, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "tripleNelson";
@@ -877,9 +858,8 @@ public class MainFrame extends javax.swing.JFrame {
         tema = new File("./src/Presentacion/mp3/Mentira.mp3");
         temas.add(new DataTemaArchivo(tema, "Mentira", 288, 2, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/mtvUnplugged.jpg");
-        img = ImageIO.read(file);
 
-        dataAlbumExt = new DataAlbumExt(temas, "MTV Unplugged", 2001, generos, img, nickArtista);
+        dataAlbumExt = new DataAlbumExt(temas, "MTV Unplugged", 2001, generos, file, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "chaiko";
@@ -943,9 +923,8 @@ public class MainFrame extends javax.swing.JFrame {
         temas = new ArrayList<>();
         temas.add(new DataTemaWeb("bit.ly/SCvioleta", "Violeta", 116, 1, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/alcides20.jpg");
-        img = ImageIO.read(file);
 
-        dataAlbumExt = new DataAlbumExt(temas, "20 Grandes Éxitos", 1989, generos, img, nickArtista);
+        dataAlbumExt = new DataAlbumExt(temas, "20 Grandes Éxitos", 1989, generos, file, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
         
         //ALTA DE LISTAS

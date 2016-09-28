@@ -1,12 +1,13 @@
 package espotify.datatypes;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
+
 
 public class DataPreview {
     private String nombre;
-    private BufferedImage img;
+    private File img;
 
-    public DataPreview(String nombre, BufferedImage img) {
+    public DataPreview(String nombre, File img) {
         this.nombre = nombre;
         this.img = img;
     }
@@ -15,11 +16,11 @@ public class DataPreview {
         return nombre;
     }
 
-    public BufferedImage getImg() {
+    public File getImg() {
         return img;
     }
 
-    public void setImg(BufferedImage img) {
+    public void setImg(File img) {
         this.img = img;
     }
     

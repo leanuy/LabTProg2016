@@ -4,7 +4,7 @@ import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataUsuario;
 import espotify.excepciones.SeguidoRepetidoException;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,7 +17,7 @@ class Usuario {
     private String apellido;
     private String correo;
     private Calendar fechaNac;
-    private BufferedImage img;
+    private File img;
     private Map<String, Cliente> seguidores;
     private String password;
 
@@ -41,7 +41,7 @@ class Usuario {
         return fechaNac;
     }
 
-    BufferedImage getImg() {
+    File getImg() {
         return img;
     }
 

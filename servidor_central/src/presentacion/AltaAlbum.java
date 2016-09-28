@@ -47,7 +47,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private static File file;
     private static String nombre;
     private static int duracion;
-    private BufferedImage img = null;
+    private BufferedImage bimg = null;
+    private File img = null;
     private String ArtistSelected;
     
     
@@ -404,7 +405,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                     fChooser.setVisible(false);
                     return;
                 }
-                img = ImageIO.read(file);
+                bimg = ImageIO.read(file);
                 pathALaImagen.setText(pathAImagen);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
@@ -419,7 +420,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una imagen formato .jpg o .png", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        if (!ext.equals("") && !(img instanceof BufferedImage)) {
+        if (!ext.equals("") && !(bimg instanceof BufferedImage)) {
             JOptionPane.showMessageDialog(this,
                     "Imagen invalida",
                     "Error", JOptionPane.ERROR_MESSAGE);

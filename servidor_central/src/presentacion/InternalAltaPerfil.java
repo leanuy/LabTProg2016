@@ -33,7 +33,7 @@ public class InternalAltaPerfil extends javax.swing.JInternalFrame {
         clienteRadio.setSelected(true);
     }
     
-    BufferedImage img = null;
+    File file = null;
 
     IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
 
@@ -283,7 +283,7 @@ public class InternalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                img,
+                                file,
                                 pwd);
                 ctrl.altaCliente(dCliente);
                 ResetCampos();
@@ -332,7 +332,7 @@ public class InternalAltaPerfil extends javax.swing.JInternalFrame {
                                 apetxt.getText(),
                                 mailtxt.getText(),
                                 fNac,
-                                img,
+                                file,
                                 pwd);
                 ctrl.altaArtista(dArt);
                 ResetCampos();
@@ -367,7 +367,7 @@ public class InternalAltaPerfil extends javax.swing.JInternalFrame {
         
         int selected = fChooser.showDialog(this, "Seleccionar");
         if (selected == JFileChooser.APPROVE_OPTION) {
-            File file = fChooser.getSelectedFile();
+            file = fChooser.getSelectedFile();
             try {
                 String ext = getExtension(file);
                 if (!"jpg".equals(ext) && !"png".equals(ext)) {
@@ -375,7 +375,6 @@ public class InternalAltaPerfil extends javax.swing.JInternalFrame {
                     fChooser.setVisible(false);
                     return;
                 }
-                img = ImageIO.read(file);
                 String pathAImagen = file.getCanonicalPath();
                 imagentxt.setText(pathAImagen);
             } catch (IOException ex) {

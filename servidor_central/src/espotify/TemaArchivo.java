@@ -2,7 +2,6 @@ package espotify;
 
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
-
 import java.io.File;
 
 class TemaArchivo extends Tema {

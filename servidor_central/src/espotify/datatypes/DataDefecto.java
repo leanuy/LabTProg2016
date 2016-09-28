@@ -1,6 +1,7 @@
 package espotify.datatypes;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
+
 
 public class DataDefecto extends DataLista {
     private final String genero;
@@ -9,7 +10,7 @@ public class DataDefecto extends DataLista {
         return genero;
     }
 
-    public DataDefecto(String genero, String nombre, BufferedImage img) {
+    public DataDefecto(String genero, String nombre, File img) {
         super(nombre, img);
         this.genero = genero;
     }

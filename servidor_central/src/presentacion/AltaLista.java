@@ -9,7 +9,6 @@ import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
 import espotify.interfaces.IAltaLista;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -25,7 +24,7 @@ public class AltaLista extends javax.swing.JInternalFrame {
 
     private DefaultTreeModel modeloTree;
 
-    BufferedImage img = null;
+    File img = null;
     
     IAltaLista ctrl = Fabrica.getIAltaLista();
     
@@ -317,7 +316,6 @@ public class AltaLista extends javax.swing.JInternalFrame {
                     fChooser.setVisible(false);
                     return;
                 }
-                img = ImageIO.read(file);
                 String pathAImagen = file.getCanonicalPath();
                 pathimgtxt.setText(pathAImagen);
             } catch (IOException ex) {

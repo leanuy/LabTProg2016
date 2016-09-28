@@ -24,6 +24,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 
 public class AltaAlbumTest {
@@ -60,9 +61,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         iAltaAlbum.altaAlbum(data);
     }
@@ -86,9 +87,9 @@ public class AltaAlbumTest {
         String nombre = "Album 2";
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -115,9 +116,9 @@ public class AltaAlbumTest {
         //Agrego a la lista un genero inexistente
         generos.add("No es un genero");
 
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -136,9 +137,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -158,9 +159,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -180,9 +181,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -202,9 +203,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -224,9 +225,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -246,9 +247,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
@@ -268,9 +269,9 @@ public class AltaAlbumTest {
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
 
         //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);

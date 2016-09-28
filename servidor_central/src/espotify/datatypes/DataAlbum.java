@@ -1,6 +1,6 @@
 package espotify.datatypes;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
 
 
@@ -8,7 +8,7 @@ public class DataAlbum implements DataFavoriteable {
     private final String nombre;
     private final int anio;
     private final List<String> generos;
-    private final BufferedImage img;
+    private final File img;
     private final String nickArtista; //nickname
 
     public String getNombre() {
@@ -23,7 +23,7 @@ public class DataAlbum implements DataFavoriteable {
         return generos;
     }
     
-    public BufferedImage getImg() {
+    public File getImg() {
         return img;
     }
     
@@ -31,7 +31,7 @@ public class DataAlbum implements DataFavoriteable {
         return nickArtista;
     }
 
-    public DataAlbum(String nombre, int anio, List<String> generos, BufferedImage img,
+    public DataAlbum(String nombre, int anio, List<String> generos, File img,
             String artista) {
         this.nombre = nombre;
         this.anio = anio;

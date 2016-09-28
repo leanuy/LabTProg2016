@@ -1,6 +1,6 @@
 package espotify.datatypes;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,7 +12,7 @@ public class DataUsuario {
     private String apellido;
     private String correo;
     private Calendar fechaNac;
-    private BufferedImage img;
+    private File img;
     private List<String> seguidores;
     private String password;
 
@@ -36,7 +36,7 @@ public class DataUsuario {
         return fechaNac;
     }
     
-    public BufferedImage getImg() {
+    public File getImg() {
         return img;
     }
     
@@ -54,7 +54,7 @@ public class DataUsuario {
     }
 
     public DataUsuario(String nick, String nombre, String apellido, String correo,
-            Calendar fechaNac, BufferedImage img, List<String> segdores) {
+            Calendar fechaNac, File img, List<String> segdores) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -65,7 +65,7 @@ public class DataUsuario {
     }
 
     public DataUsuario(String nick, String nombre, String apellido, String correo, Calendar fechaNac,
-            BufferedImage img, String pwd) {
+            File img, String pwd) {
         this.nick = nick;
         this.nombre = nombre;
         this.apellido = apellido;

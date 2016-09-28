@@ -1,19 +1,19 @@
 package espotify.datatypes;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.List;
 import java.util.Objects;
 
 public class DataLista implements DataFavoriteable {
     private final String nombre;
-    private BufferedImage img;
+    private File img;
     private final List<DataTema> temas;
 
     public String getNombre() {
         return nombre;
     }
     
-    public BufferedImage getImg() {
+    public File getImg() {
         return img;
     }
     
@@ -22,13 +22,13 @@ public class DataLista implements DataFavoriteable {
     }
     
 
-    public DataLista(String nombre, BufferedImage img) {
+    public DataLista(String nombre, File img) {
         this.nombre = nombre;
         this.img = img;
         this.temas = null;
     }
 
-    public DataLista(String nombre, BufferedImage img, List<DataTema> temas) {
+    public DataLista(String nombre, File img, List<DataTema> temas) {
         this.nombre = nombre;
         this.img = img;
         this.temas = temas;

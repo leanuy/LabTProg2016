@@ -10,7 +10,7 @@ import espotify.excepciones.NumeroTemaInvalidoException;
 import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TemaTipoInvalidoException;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -21,7 +21,7 @@ public class Album implements Favoriteable {
     //attrs
     private final String nombre;
     private final int anio;
-    private final BufferedImage img;
+    private final File img;
     private final Artista artista;
     private final Map<String, Genero> generos;
     private final List<Tema> temas;

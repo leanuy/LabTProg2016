@@ -4,7 +4,7 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.TemaRepetidoException;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -12,19 +12,19 @@ import java.util.Map;
 
 abstract class Lista {
     protected String nombre;
-    protected BufferedImage img;
+    protected File img;
     protected final Map<String, Tema> temas;
 
     String getNombre() {
         return nombre;
     }
     
-    BufferedImage getImg() {
+    File getImg() {
         return img;
     }
     
     
-    Lista(String nombre, BufferedImage img) {
+    Lista(String nombre, File img) {
         this.nombre = nombre;
         this.img = img;
         this.temas = new HashMap<>();

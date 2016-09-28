@@ -4,11 +4,16 @@ import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
+import java.awt.image.BufferedImage;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -213,15 +218,21 @@ public class AlbumConsultado extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void verFotoAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verFotoAlbumActionPerformed
-        // TODO 
-        // 
-        if (album.getImg() == null) {
+        try {
+            // TODO
+            //
+            if (album.getImg() == null) {
+                JOptionPane.showMessageDialog(this, "El album no tiene imagen", "Atencion!.", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+            //help please:un alma caritativa que sabe desplegar imagenes que abra un frame loco con la foto.
+            File file = album.getImg();
+            BufferedImage bimage = ImageIO.read(file);
+            ImagenAlbum frameImagen = new ImagenAlbum(bimage);
+            frameImagen.setVisible(true);
+        } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, "El album no tiene imagen", "Atencion!.", JOptionPane.INFORMATION_MESSAGE);
-            return;
         }
-        //help please:un alma caritativa que sabe desplegar imagenes que abra un frame loco con la foto.
-        ImagenAlbum frameImagen = new ImagenAlbum(album.getImg());
-        frameImagen.setVisible(true);
         
     }//GEN-LAST:event_verFotoAlbumActionPerformed
 

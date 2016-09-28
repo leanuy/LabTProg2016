@@ -20,7 +20,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,9 +101,9 @@ public class ConsultaAlbumTest {
         int anio = 2013;
         List<String> generos = new ArrayList<>();
         generos.add("Pop");
-        BufferedImage img = null;
+        File file = null;
         String nickArtista = "ElGordoAxl";
-        DataAlbumExt expResult = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
+        DataAlbumExt expResult = new DataAlbumExt(temas, nombre, anio, generos, file, nickArtista);
         IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(expResult);
         DataAlbumExt result = iConsultaAlbum.consultaAlbum("Alb", "ElGordoAxl");

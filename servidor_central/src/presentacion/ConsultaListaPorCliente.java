@@ -10,7 +10,10 @@ import espotify.interfaces.IConsultaLista;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -153,12 +156,15 @@ public class ConsultaListaPorCliente extends javax.swing.JInternalFrame {
             DataLista dLista = interf.darInfoParticular(nomLista, String.valueOf(clientescmb.getSelectedItem()));
 
             //mostrar la imagen
-            BufferedImage imagen = dLista.getImg();
-            BufferedImage image;
-            if (imagen == null) {
-                image = null;
-            } else {
-                image = getScaledImage(imagen,212,220);
+            File file = dLista.getImg();
+            BufferedImage image = null;
+            if (file != null) {
+                try {
+                    BufferedImage imagen = ImageIO.read(file);
+                    image = getScaledImage(imagen,212,220);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "La lista no tiene imagen", "Atencion!.", JOptionPane.INFORMATION_MESSAGE);
+                }
             }
             ImgContainer.removeAll();
             if (image != null) {
