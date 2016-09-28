@@ -12,8 +12,11 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.IObtenerImagen;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +43,7 @@ public class TraerImagenes extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("image/jpeg");
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
             String tipo = (String) session.getAttribute("tipo");
@@ -51,28 +54,48 @@ public class TraerImagenes extends HttpServlet {
             try {
                 if (tipo.equals("ImagenUsuario")) {
                     file = interfaz.getImageUsuario(nomUsuario);
+                    if (file == null) {
+                        file = new File("./assets/img/profile.png");
+                    }
                 }
                 if (tipo.equals("ImagenAlbum")) {
                     file = interfaz.getImageAlbum(nomUsuario, extra);
+                    if (file == null) {
+                        file = new File("./assets/img/default_cover.png");
+                    }
                 }
                 if (tipo.equals("ImagenListaDefecto")) {
                     file = interfaz.getImageListaDefecto(extra);
+                    if (file == null) {
+                        file = new File("./assets/img/default_cover.png");
+                    }
                 }
                 if (tipo.equals("ImagenListaParticular")) {
                     file = interfaz.getImageListaParticular(nomUsuario, extra);
+                    if (file == null) {
+                        file = new File("./assets/img/default_cover.png");
+                    }
                 }
-                
+                BufferedImage bi = ImageIO.read(file);
+                String ext = getExtension(file);
+		OutputStream out = response.getOutputStream();
+                if (ext.equals("jpg")) {
+                    ImageIO.write(bi, "jpg", out);
+                } else {
+                    ImageIO.write(bi, "png", out);
+                }
+		out.close();
                 
             } catch (UsuarioInexistenteException ex) {
-
+                response.sendError(404);
             } catch (ArtistaInexistenteException ex) {
-
+                response.sendError(404);
             } catch (AlbumInexistenteException ex) {
-
+                response.sendError(404);
             } catch (ListaInexistenteException ex) {
-
+                response.sendError(404);
             } catch (ClienteInexistenteException ex) {
-
+                response.sendError(404);
             }
         }
     }
@@ -116,4 +139,13 @@ public class TraerImagenes extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
+    private String getExtension(File file) {
+        String ext = null;
+        String nomArchivo = file.getName();
+        int idx = nomArchivo.lastIndexOf('.');
+        if (idx > 0 &&  idx < nomArchivo.length() - 1) {
+            ext = nomArchivo.substring(idx + 1).toLowerCase();
+        }
+        return ext;
+    }
 }

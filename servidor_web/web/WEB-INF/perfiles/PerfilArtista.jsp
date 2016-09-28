@@ -15,7 +15,7 @@
         <div class="panel-body">
             <div class="row">         
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-                    <img src="<c:out value="${imagen}"/>" style="width:100%"> <%--imagen del artista--%>
+                    <img src="/TraerImagenes?tipo=ImagenUsuario&nombreUsuario=${nick}" style="width:100%"> <%--imagen del artista--%>
                 </div>
                 <h1>
                     <c:out value="${nick}"/>
