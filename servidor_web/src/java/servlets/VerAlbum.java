@@ -53,11 +53,11 @@ public class VerAlbum extends HttpServlet {
         try {
             DataAlbumExt data = interf.consultaAlbum(inputNom,inputNick);
             request.setAttribute("nomAlbum", data.getNombre());
-            if(data.getImg() == null) {
-            request.setAttribute("imagen", "./assets/img/default_cover.png");
+/*            if(data.getImg() == null) {
+                request.setAttribute("imagen", "./assets/img/default_cover.png");
             } else {
-            request.setAttribute("imagen", data.getImg());
-            }
+                request.setAttribute("imagen", data.getImg());
+            }*/
             request.setAttribute("nomArtista", data.getNickArtista());
             request.setAttribute("anio", data.getAnio());
             request.setAttribute("generos", data.getGeneros());

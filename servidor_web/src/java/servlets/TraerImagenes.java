@@ -46,9 +46,9 @@ public class TraerImagenes extends HttpServlet {
         response.setContentType("image/jpeg");
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String tipo = (String) session.getAttribute("tipo");
-            String nomUsuario = (String) session.getAttribute("nombreUsuario");
-            String extra = (String) session.getAttribute("extra");
+            String tipo = request.getParameter("tipo");
+            String nomUsuario = request.getParameter("nombreUsuario");
+            String extra = request.getParameter("extra");
             IObtenerImagen interfaz = Fabrica.getIImagen();
             File file = null;
             try {
@@ -76,16 +76,16 @@ public class TraerImagenes extends HttpServlet {
                         file = new File("./assets/img/default_cover.png");
                     }
                 }
-                BufferedImage bi = ImageIO.read(file);
+                BufferedImage image = ImageIO.read(file);
                 String ext = getExtension(file);
 		OutputStream out = response.getOutputStream();
                 if (ext.equals("jpg")) {
-                    ImageIO.write(bi, "jpg", out);
+                    ImageIO.write(image, "jpg", out);
                 } else {
-                    ImageIO.write(bi, "png", out);
+                    ImageIO.write(image, "png", out);
                 }
 		out.close();
-                
+            
             } catch (UsuarioInexistenteException ex) {
                 response.sendError(404);
             } catch (ArtistaInexistenteException ex) {

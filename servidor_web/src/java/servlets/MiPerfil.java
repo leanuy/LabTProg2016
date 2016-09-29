@@ -50,11 +50,11 @@ public class MiPerfil extends HttpServlet {
                         request.setAttribute("apellido", d.getApellido());
                         request.setAttribute("correo", d.getCorreo());
                         request.setAttribute("fechaNac", d.getfNacStr());
-                        if (d.getImg() == null) {
+/*                        if (d.getImg() == null) {
                             request.setAttribute("imagen", "./assets/img/profile.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
-                        }
+                        }*/
                         request.setAttribute("seguidos", d.getSeguidos());
                         request.setAttribute("seguidores", d.getSeguidores());
                         

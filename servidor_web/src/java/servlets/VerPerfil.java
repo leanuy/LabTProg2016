@@ -55,11 +55,11 @@ public class VerPerfil extends HttpServlet {
                     try {
                         DataClienteExt d = iPerfil.consultaCliente(inputNick);
                         request.setAttribute("nick", d.getNick());
-                        if (d.getImg() == null) {
+/*                        if (d.getImg() == null) {
                             request.setAttribute("imagen", "./assets/img/profile.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
-                        }
+                        }*/
                         List<String> listas = iPerfil.listarListasPublicasDeCliente(inputNick);
                         request.setAttribute("listas", listas);
 
