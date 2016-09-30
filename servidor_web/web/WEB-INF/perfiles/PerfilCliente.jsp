@@ -18,18 +18,20 @@
                 <h1>
                     <c:out value="${nick}"/>
                     <c:choose>
-                        <c:when test="${empty es_cliente or not es_cliente}">
-                        </c:when>
-                        <c:otherwise>
+                        <c:when test="${not empty es_cliente and es_cliente}">
                             <c:choose>
                                 <c:when test="${siguiendo}">
                                     <a class="btn btn-custom" href="/DejarSeguirUsuario?nick=${nick}">Dejar de Seguir</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a class="btn btn-custom" href="/SeguirUsuario?nick=${nick}">Seguir</a>
+                                    <c:choose>
+                                        <c:when test="${tiene_suscripcion}">
+                                                <a class="btn btn-custom" href="/SeguirUsuario?nick=${nick}">Seguir</a>
+                                        </c:when>
+                                    </c:choose>
                                 </c:otherwise>
                             </c:choose>
-                        </c:otherwise>
+                        </c:when>
                     </c:choose>
                 </h1>
             </div>
