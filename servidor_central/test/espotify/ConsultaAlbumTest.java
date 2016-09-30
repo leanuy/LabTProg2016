@@ -23,6 +23,8 @@ import org.junit.runners.MethodSorters;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 

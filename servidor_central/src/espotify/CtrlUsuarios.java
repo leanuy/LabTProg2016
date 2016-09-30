@@ -562,4 +562,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     public boolean tieneSuscripcionVigente(String nick) throws ClienteInexistenteException {
         return buscarCliente(nick).tieneSuscripcionVigente();
     }
+    
+    DataTema consultaTema(String nick, String nomAlbum, String nomTema)
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        return buscarArtista(nick).consultaTema(nomAlbum,nomTema);
+    }
 }

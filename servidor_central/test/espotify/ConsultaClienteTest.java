@@ -11,6 +11,7 @@ import espotify.interfaces.IConsultaCliente;
 import org.junit.Test;
 
 import java.util.Calendar;
+import static org.junit.Assert.assertEquals;
 
 public class ConsultaClienteTest {
     private static IConsultaCliente iConsultaCliente;    

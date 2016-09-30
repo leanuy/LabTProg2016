@@ -129,7 +129,7 @@ public class Fabrica {
     public static IVerGenero getIVerGenero() {
         return new CtrlMusica();
     }
-    public static ISuscripcionWeb getSuscripcionWeb() {
+    public static ISuscripcionWeb getISuscripcionWeb() {
         return new CtrlUsuarios();
     }
     

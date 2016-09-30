@@ -2,6 +2,7 @@ package espotify;
 
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataGenero;
+import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.AlbumRepetidoException;
 import espotify.excepciones.ArtistaInexistenteException;
@@ -149,4 +150,8 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         return buscarGenero(nomGenero).listarseRecursivo("");
     }
     
+    public DataTema consultaTema(String nick, String nomAlbum, String nomTema)
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        return new CtrlUsuarios().consultaTema(nick,nomAlbum,nomTema);
+    }
 }

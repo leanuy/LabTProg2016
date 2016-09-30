@@ -16,6 +16,8 @@ import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class ConsultaArtistaTest {
     private static IConsultaArtista iConsultaArtista;    
