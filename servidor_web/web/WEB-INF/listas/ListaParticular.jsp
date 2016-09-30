@@ -20,7 +20,14 @@
                         <c:out value="${nomLista}"/>
                         <c:choose>
                             <c:when test="${esPrivada}">                            
-                                <a class="btn btn-custom" href="/publicarlista?lista=<c:out value="${nomLista}"/>"><i class="glyphicon glyphicon-lock"></i> Publicar</a>
+                                <c:choose>
+                                    <c:when test="${tiene_suscripcion}">
+                                        <a class="btn btn-custom" href="/publicarlista?lista=<c:out value="${nomLista}"/>"><i class="glyphicon glyphicon-lock"></i> Publicar</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <i class="glyphicon glyphicon-lock"></i>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
                         </c:choose>
                     </h1>

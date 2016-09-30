@@ -10,6 +10,7 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IPublicarLista;
+import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -40,9 +41,14 @@ public class PublicarLista extends HttpServlet {
                 "iso-8859-1"), "UTF-8");
         String nick = (String) session.getAttribute("nick_sesion");
         try {
-            IPublicarLista ipl = Fabrica.getIPublicarLista();
-            ipl.publicarLista(lista, nick);
-            response.sendRedirect("/VerListaParticular?nick="+nick+"&lista=" + request.getParameter("lista"));
+            ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
+            if (isusc.tieneSuscripcionVigente(nick)) {
+                IPublicarLista ipl = Fabrica.getIPublicarLista();
+                ipl.publicarLista(lista, nick);
+                response.sendRedirect("/VerListaParticular?nick="+nick+"&lista=" + request.getParameter("lista"));
+            } else {
+                response.sendError(500);
+            }
         } catch (ClienteInexistenteException e) {
             response.sendError(500, "cliente inexistente");
         } catch (ListaInexistenteException e) {
