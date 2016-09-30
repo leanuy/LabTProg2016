@@ -39,18 +39,20 @@
                     <h1><c:out value="${nomAlbum}"/></h1>
                     <div class="pull-right">
                         <c:choose>
-                            <c:when test="${empty es_favorito}">
-                            </c:when>
-                            <c:otherwise>
+                            <c:when test="${not empty es_favorito}">
                                 <c:choose>
                                     <c:when test="${es_favorito}">
                                         <a class="btn-link-inverse" href="/DesFavoritear?tipo=album&artista=${nomArtista}&album=${nomAlbum}"><i class="glyphicon glyphicon-star"></i></a>
                                     </c:when>
                                     <c:otherwise>
+                                        <c:choose>
+                                            <c:when test="${tiene_suscripcion}">
                                         <a class="btn-link" href="/Favoritear?tipo=album&artista=${nomArtista}&album=${nomAlbum}"><i class="glyphicon glyphicon-star"></i></a>
+                                            </c:when>
+                                        </c:choose>
                                     </c:otherwise>
                                 </c:choose>
-                            </c:otherwise>
+                            </c:when>
                         </c:choose>
                     </div>
                     <div><i class="glyphicon glyphicon-user"></i> <c:out value="${nomArtista}"/></div>

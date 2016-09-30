@@ -33,18 +33,20 @@
                     </h1>
                     <div class="pull-right">
                         <c:choose>
-                            <c:when test="${empty es_favorito}">
-                            </c:when>
-                            <c:otherwise>
+                            <c:when test="${not empty es_favorito}">
                                 <c:choose>
                                     <c:when test="${es_favorito}">
                                         <a class="btn-link-inverse" href="/DesFavoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
                                     </c:when>
                                     <c:otherwise>
-                                        <a class="btn-link" href="/Favoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
+                                        <c:choose>
+                                            <c:when test="${tiene_suscripcion}">
+                                                <a class="btn-link" href="/Favoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
+                                            </c:when>
+                                        </c:choose>
                                     </c:otherwise>
                                 </c:choose>
-                            </c:otherwise>
+                            </c:when>
                         </c:choose>
                     </div>
                         <div><i class="glyphicon glyphicon-user"></i> <c:out value="${nomCliente}"/></div>
@@ -70,18 +72,20 @@
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
                                 <td>
                                     <c:choose>
-                                        <c:when test="${empty es_favorito}">
-                                        </c:when>
-                                        <c:otherwise>
+                                        <c:when test="${not empty es_favorito}">
                                             <c:choose>
                                                 <c:when test="${es_favorito_temas[temaStatus.index]}">
                                                     <a class="btn btn-link-inverse pull-left" href="/DesFavoritear?tipo=tema&artista=${tema.nomArtista}&album=${tema.album}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <a class="btn btn-link pull-left" href="/Favoritear?tipo=tema&artista=${tema.nomArtista}&album=${tema.album}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
+                                                    <c:choose>
+                                                        <c:when test="${tiene_suscripcion}">
+                                                            <a class="btn btn-link pull-left" href="/Favoritear?tipo=tema&artista=${tema.nomArtista}&album=${tema.album}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
+                                                        </c:when>
+                                                    </c:choose>
                                                 </c:otherwise>
                                             </c:choose>
-                                        </c:otherwise>
+                                        </c:when>
                                     </c:choose>
                                 </td>
                                 <td><button class="btn btn-link pull-right "><i class="glyphicon glyphicon-option-horizontal"></i></button></td>
