@@ -1,9 +1,9 @@
-servidor_cental/nbproject/private/
-servidor_cental/build/
-servidor_cental/nbbuild/
-servidor_cental/dist/
-servidor_cental/nbdist/
-servidor_cental/.nb-gradle/
+servidor_central/nbproject/private/
+servidor_central/build/
+servidor_central/nbbuild/
+servidor_central/dist/
+servidor_central/nbdist/
+servidor_central/.nb-gradle/
 .jacocoverage
 servidor_web/nbproject/private/
 servidor_web/build/

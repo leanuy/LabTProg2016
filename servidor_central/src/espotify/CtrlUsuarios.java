@@ -12,8 +12,10 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataSuscripcion;
+import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
+import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
@@ -42,8 +44,10 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
+import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IListarClientes;
 import espotify.interfaces.web.IValidar;
+import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
@@ -55,7 +59,8 @@ import java.util.Map.Entry;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
-        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, IListarClientes, IValidar, IFavoritos{
+        IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, IListarClientes, IValidar, 
+        IFavoritos, ISuscripcionWeb {
 //Constructor
     public CtrlUsuarios() {
     }
@@ -486,5 +491,71 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     @Override
     public List<DataFavoriteable> listarFavoritos(String nick) throws ClienteInexistenteException {
         return buscarCliente(nick).listarFavoritos();
+    }
+    
+    @Override
+    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
+        Cliente client;
+        List<DataSuscripcion> suscripciones = null;
+        client = buscarCliente(nickname);
+        suscripciones = client.getSuscripciones();
+        return suscripciones;
+    }
+    @Override
+    public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException {
+        Cliente client;
+        DataSuscripcion suscripcion = null;
+        try{
+            client = buscarCliente(nickname);
+            suscripcion = client.getSuscripcionActiva();                                 
+        } catch (NoHaySuscripcionException e) {
+            return null;
+        } 
+        return suscripcion;
+    }
+    @Override
+    public boolean contratarSuscripcion(TipoSuscripcion tipo, String nickname) throws ClienteInexistenteException {
+        Cliente client;
+        boolean result =false;
+        try{
+            client = buscarCliente(nickname);
+            client.contratar(tipo);
+            result = true;
+        } catch (TransicionSuscripcionInvalidaException e) {
+            result = false;
+        } catch (Exception e){}
+        return result;
+    }
+    @Override
+    public void cancelarSuscripcionVencida(String nickname) throws 
+            NoHaySuscripcionException, TransicionSuscripcionInvalidaException,
+            ClienteInexistenteException {
+        Cliente client;
+        client = buscarCliente(nickname);
+        client.cancelarSuscripcion();
+    }
+    @Override
+    public void aprobarSuscripcionPendiente(String nickname) throws NoHaySuscripcionException,
+            TransicionSuscripcionInvalidaException, ClienteInexistenteException {
+        Cliente client;
+        client = buscarCliente(nickname);
+        client.aprobarSuscripcion();
+    }
+    @Override
+    public void actualizarEstadoSuscripcion(String nickname) {
+        
+    }
+    @Override
+    public void renovarSuscripcion(String nickname) throws ClienteInexistenteException,
+            TransicionSuscripcionInvalidaException, NoHaySuscripcionException {
+        Cliente client;
+        client = buscarCliente(nickname);
+        client.renovarSuscripcion();
+    }
+    @Override
+    public void vencerSuscripcionActual(String nickname) throws ClienteInexistenteException {
+        Cliente client;
+        client = buscarCliente(nickname);
+        client.vencerSuscripcion();
     }
 }

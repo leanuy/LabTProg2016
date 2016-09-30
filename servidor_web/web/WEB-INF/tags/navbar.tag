@@ -44,6 +44,11 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px 20px"><img src="/assets/img/profile.png" class="img-circle" style="width:30px;"> <c:out value="${nick_sesion}"/> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/MiPerfil">Mi Perfil</a></li>
+                                <c:choose>
+                                    <c:when test="${not empty es_cliente and es_cliente}">
+                                        <li><a href="/Suscripcion">Suscripción</a></li>
+                                    </c:when>
+                                </c:choose>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/cerrar-sesion">Cerrar sesión</a></li>
                             </ul>

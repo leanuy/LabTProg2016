@@ -21,6 +21,7 @@ import espotify.excepciones.YaPublicaException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -207,6 +208,18 @@ class Cliente extends Usuario {
             return suscripcionActiva.getData();
         }
     }
+    
+    public List<DataSuscripcion> getSuscripciones() {
+        List<DataSuscripcion> listaSuscripciones = new ArrayList();
+        Iterator iterador = suscripciones.entrySet().iterator();
+        Suscripcion suscActual;
+        while (iterador.hasNext()) {
+            Map.Entry pair = (Map.Entry)iterador.next();
+            suscActual = (Suscripcion) pair.getValue();
+            listaSuscripciones.add(suscActual.getData());
+        }
+        return listaSuscripciones;
+    }
 
     void aprobarSuscripcion() throws NoHaySuscripcionException,
             TransicionSuscripcionInvalidaException {
@@ -223,6 +236,7 @@ class Cliente extends Usuario {
             throw new NoHaySuscripcionException();
         } else {
             suscripcionActiva.cancelar();
+            suscripcionActiva = null;
         }
     }
     
@@ -255,5 +269,19 @@ class Cliente extends Usuario {
         }
         return salida;
     }
-
+    
+    public void renovarSuscripcion() throws TransicionSuscripcionInvalidaException, NoHaySuscripcionException{
+        if ( suscripcionActiva == null ) {
+            throw new NoHaySuscripcionException();
+        }
+        if (suscripcionActiva != null && !suscripcionActiva.estaVigente()) {
+            suscripcionActiva.renovar();
+        } else {
+            throw new TransicionSuscripcionInvalidaException();
+        }
+    }
+    public void vencerSuscripcion() {
+        suscripcionActiva.estaVigente();
+        suscripcionActiva.vencer();
+    }
 }
