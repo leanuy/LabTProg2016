@@ -558,4 +558,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         client = buscarCliente(nickname);
         client.vencerSuscripcion();
     }
+    
+    public boolean tieneSuscripcionVigente(String nick) throws ClienteInexistenteException {
+        return buscarCliente(nick).tieneSuscripcionVigente();
+    }
 }

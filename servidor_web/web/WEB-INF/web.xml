@@ -92,6 +92,10 @@
         <servlet-name>AprobarSuscripcion</servlet-name>
         <servlet-class>servlets.AprobarSuscripcion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OpcionesTema</servlet-name>
+        <servlet-class>servlets.OpcionesTema</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>AprobarSuscripcion</servlet-name>
         <url-pattern>/AprobarSuscripcion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpcionesTema</servlet-name>
+        <url-pattern>/OpcionesTema</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

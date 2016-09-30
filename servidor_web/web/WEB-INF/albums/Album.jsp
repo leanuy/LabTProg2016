@@ -8,6 +8,26 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:body>
+    <script src="assets/js/jquery-3.1.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".btn-mas-opciones-tema").click(function() {
+                $(".btn-mas-opciones-tema").show(); //muestra los botones de ... ocultos
+                $(".contenedor-agregar-lista").hide(); //oculta los paneles iguales al que quiere desplegar
+                var nomTema = $(this).attr("data-nomTema");
+               $(this).parent().parent().after('<div class="contenedor-agregar-lista"></div>');  //crea panel
+               $.ajax({
+                    type: "GET",
+                    url: "/OpcionesTema?artista=${nomArtista}&album=${nomAlbum}&tema="+nomTema,
+                    success: function(msg) {
+                        $(".contenedor-agregar-lista").html(msg);
+                    }
+                }); //busca datos del servlet y muestra panel
+                $(this).hide(); //oculta botón de ...
+            });
+        });
+    </script>
+    
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
@@ -63,6 +83,7 @@
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
                                 <td>
+                                    <!--favoritos-->
                                     <c:choose>
                                         <c:when test="${empty es_favorito}">
                                         </c:when>
@@ -78,7 +99,9 @@
                                         </c:otherwise>
                                     </c:choose>
                                 </td>
-                                <td><button class="btn btn-link pull-right "><i class="glyphicon glyphicon-option-horizontal"></i></button></td>
+                                <td>
+                                    <button class="btn btn-link pull-right btn-mas-opciones-tema" data-nomTema="${tema.nombre}"><i class="glyphicon glyphicon-option-horizontal"></i></button>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

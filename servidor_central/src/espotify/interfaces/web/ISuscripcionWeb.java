@@ -30,4 +30,5 @@ public interface ISuscripcionWeb {
             TransicionSuscripcionInvalidaException, ClienteInexistenteException;
     public void actualizarEstadoSuscripcion(String nickname);
     public void vencerSuscripcionActual(String nickname) throws ClienteInexistenteException;
+    public boolean tieneSuscripcionVigente(String nick) throws ClienteInexistenteException;
 }

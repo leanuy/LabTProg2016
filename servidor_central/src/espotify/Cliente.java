@@ -284,4 +284,11 @@ class Cliente extends Usuario {
         suscripcionActiva.estaVigente();
         suscripcionActiva.vencer();
     }
+    
+    boolean tieneSuscripcionVigente() {
+        if (suscripcionActiva == null) {
+            return false;
+        }
+        return suscripcionActiva.estaVigente();
+    }
 }
