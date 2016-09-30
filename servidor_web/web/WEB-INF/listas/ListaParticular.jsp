@@ -28,7 +28,7 @@
                                         <i class="glyphicon glyphicon-lock"></i>
                                     </c:otherwise>
                                 </c:choose>
-                            </c:when>
+                            </c:when> 
                         </c:choose>
                     </h1>
                     <div class="pull-right">
