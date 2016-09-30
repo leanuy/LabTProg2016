@@ -7,11 +7,15 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.excepciones.AutoSeguirseException;
+import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
+import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IWebSeguir;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -44,10 +48,15 @@ public class SeguirUsuario extends HttpServlet {
             String Seguidor = (String) session.getAttribute("nick_sesion");
             String aSeguir = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
-            IWebSeguir iws = Fabrica.getIWebSeguir();
+            ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
             try {
-                iws.altaSeguir(Seguidor, aSeguir);
-                request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request, response);
+                if (isusc.tieneSuscripcionVigente(Seguidor)) {
+                    IWebSeguir iws = Fabrica.getIWebSeguir();
+                    iws.altaSeguir(Seguidor, aSeguir);
+                    request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request, response);
+                } else {
+                    response.sendError(500);
+                }
             } catch (SeguidorInexistenteException ex) {
                 response.sendError(404);
             } catch (SeguidoInexistenteException ex) {
@@ -55,6 +64,8 @@ public class SeguirUsuario extends HttpServlet {
             } catch (SeguidoRepetidoException ex) {
                 response.sendError(500);
             } catch (AutoSeguirseException ex) {
+                response.sendError(500);
+            } catch (ClienteInexistenteException ex) {
                 response.sendError(500);
             }
         }
