@@ -64,11 +64,11 @@ public class OpcionesTema extends HttpServlet {
         try {
             DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
             if (data instanceof DataTemaWeb) {
-                out.write("<a href=\""+((DataTemaWeb) data).getUrl()+"\">Link al tema</a>\n");
+                out.write("<a href=\"http://"+((DataTemaWeb) data).getUrl()+"\">Link al tema</a>\n");
             } else if (tieneVigente) {
-                out.write("<a href=\"#\">Descargar</a>\n");
+                out.write("<a href=\"#\">Descargar (no implementado)</a>\n");
             } else {
-                out.write("<a href=\"#\">Suscríbete</a> para poder descargar este y muchos temas más.\n");
+                out.write("<a href=\"/Suscripcion\">Suscríbete</a> para poder descargar este y muchos temas más.\n");
             }
 
             if(tieneVigente) {

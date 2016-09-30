@@ -38,7 +38,7 @@ public class AprobarSuscripcion extends HttpServlet {
         String inputNick = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
         int codigoVencer = Integer.valueOf(request.getParameter("codigo"));
-        ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
+        ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
         try {
             if ( codigoVencer == 1 ) {
                inter.vencerSuscripcionActual(inputNick);

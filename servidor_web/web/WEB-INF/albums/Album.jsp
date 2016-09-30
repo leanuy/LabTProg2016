@@ -13,14 +13,14 @@
         $(document).ready(function() {
             $(".btn-mas-opciones-tema").click(function() {
                 $(".btn-mas-opciones-tema").show(); //muestra los botones de ... ocultos
-                $(".contenedor-agregar-lista").hide(); //oculta los paneles iguales al que quiere desplegar
+                $(".contenedor-opciones-tema").hide(); //oculta los paneles iguales al que quiere desplegar
                 var nomTema = $(this).attr("data-nomTema");
-               $(this).parent().parent().after('<div class="contenedor-agregar-lista"></div>');  //crea panel
+               $(this).parent().parent().after('<div class="contenedor-opciones-tema"></div>');  //crea panel
                $.ajax({
                     type: "GET",
                     url: "/OpcionesTema?artista=${nomArtista}&album=${nomAlbum}&tema="+nomTema,
                     success: function(msg) {
-                        $(".contenedor-agregar-lista").html(msg);
+                        $(".contenedor-opciones-tema").html(msg);
                     }
                 }); //busca datos del servlet y muestra panel
                 $(this).hide(); //oculta botón de ...

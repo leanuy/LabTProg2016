@@ -37,7 +37,7 @@ public class CancelarSuscripcion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String inputNick = new String(request.getParameter("cancelar").getBytes(
                 "iso-8859-1"), "UTF-8");
-        ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
+        ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
         try {
            inter.cancelarSuscripcionVencida(inputNick);
         } catch ( NoHaySuscripcionException e) {
