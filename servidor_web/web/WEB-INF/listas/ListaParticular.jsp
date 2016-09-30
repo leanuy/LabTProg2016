@@ -19,7 +19,7 @@
                     <h1>
                         <c:out value="${nomLista}"/>
                         <c:choose>
-                            <c:when test="${esPrivada}">                            
+                            <c:when test="${esPrivada and tiene_suscripcion}">                            
                                 <a class="btn btn-custom" href="/publicarlista?lista=<c:out value="${nomLista}"/>"><i class="glyphicon glyphicon-lock"></i> Publicar</a>
                             </c:when>
                         </c:choose>
