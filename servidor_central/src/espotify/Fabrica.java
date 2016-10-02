@@ -25,6 +25,7 @@ import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerGenero;
+import espotify.interfaces.web.IVerListaDefecto;
 import espotify.interfaces.web.IVerListaParticular;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
@@ -111,6 +112,10 @@ public class Fabrica {
     }
     
     public static IVerListaParticular getIVerListaParticular() {
+        return new CtrlListas();
+    }
+    
+    public static IVerListaDefecto getIVerListaDefecto() {
         return new CtrlListas();
     }
     

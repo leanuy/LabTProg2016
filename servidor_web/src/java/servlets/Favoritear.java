@@ -7,6 +7,7 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbum;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
@@ -81,6 +82,13 @@ public class Favoritear extends HttpServlet {
                         ifav.favoritear(nick, d);
                         //esto no funciona exactamente como querríamos, si favoriteás desde una lista va al álbum.
                         request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
+                    } else if(tipoFav.equals("defecto")) {
+                        String nomLista = new String(request.getParameter("lista").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        DataDefecto d = new DataDefecto("",nomLista,null);
+                        ifav.favoritear(nick, d);
+
+                        request.getRequestDispatcher("/VerListaDefecto?lista="+nomLista).forward(request,response);
                     }
                 } else {
                     response.sendError(500);

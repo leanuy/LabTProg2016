@@ -17,6 +17,7 @@ import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IConsultaLista;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IVerListaDefecto;
 import espotify.interfaces.web.IVerListaParticular;
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CtrlListas implements IAltaLista, IPublicarLista,
-        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, IVerListaParticular {
+        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, IVerListaParticular, IVerListaDefecto {
     private static CtrlListas instancia;
     private String nickMem;
     private String nomListaMem;

@@ -6,6 +6,7 @@
 package servlets;
 
 import espotify.Fabrica;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
@@ -14,8 +15,10 @@ import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.interfaces.web.IFavoritos;
+import espotify.interfaces.web.IVerListaDefecto;
 import espotify.interfaces.web.IVerListaParticular;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +30,7 @@ import model.EstadoSesion;
  *
  * @author JavierM42
  */
-public class VerListaParticular extends HttpServlet {
+public class VerListaDefecto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,63 +46,50 @@ public class VerListaParticular extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         HttpSession session = request.getSession();
-        String inputNick = new String(request.getParameter("nick").getBytes(
-                "iso-8859-1"), "UTF-8");
         String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
 
-        IVerListaParticular interf = Fabrica.getIVerListaParticular();
+        IVerListaDefecto interf = Fabrica.getIVerListaDefecto();
         try {
-            DataLista data = interf.darInfoParticular(inputNom, inputNick);
-            boolean esPrivada = interf.listaEsPrivada(inputNom,inputNick);
-            if(esPrivada && !inputNick.equals(session.getAttribute("nick_sesion"))) {
-                response.sendError(500);
+            DataLista data = interf.darInfoDefecto(inputNom);
+            request.setAttribute("nomLista", data.getNombre());
+            if(data.getImg() == null) {
+                request.setAttribute("imagen", "./assets/img/default_cover.png");
             } else {
-                request.setAttribute("nomLista", data.getNombre());
-                if(data.getImg() == null) {
-                    request.setAttribute("imagen", "./assets/img/default_cover.png");
-                } else {
-                    request.setAttribute("imagen", data.getImg());
-                }
-                request.setAttribute("nomCliente", inputNick);
-
-                request.setAttribute("temas", data.getTemas());
-                request.setAttribute("esPrivada",esPrivada);
-
-                boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
-                boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
-                if(!esPrivada && session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
-                    IFavoritos ifav = Fabrica.getIFavoritos();
-                    boolean es_favorito;
-                    String nickSesion = session.getAttribute("nick_sesion").toString();
-                    DataParticular dataFav = new DataParticular(inputNick,data.getNombre(),null);
-                    es_favorito = ifav.esFavorito(nickSesion, dataFav);
-                    request.setAttribute("es_favorito", es_favorito);
-                    
-                    int idx = 0;
-                    for (DataTema t : data.getTemas()) {
-                        es_favorito_temas[idx] = ifav.esFavorito(nickSesion, t);
-                        idx++;
-                    }
-                    request.setAttribute("es_favorito_temas",es_favorito_temas);
-                }
-                
-                request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);
-            
+                request.setAttribute("imagen", data.getImg());
             }
-            
-            
+
+            request.setAttribute("temas", data.getTemas());
+
+            boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
+            boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+            if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
+                IFavoritos ifav = Fabrica.getIFavoritos();
+                boolean es_favorito;
+                String nickSesion = session.getAttribute("nick_sesion").toString();
+                DataDefecto dataFav = new DataDefecto("",data.getNombre(),null);
+                es_favorito = ifav.esFavorito(nickSesion, dataFav);
+                request.setAttribute("es_favorito", es_favorito);
+
+                int idx = 0;
+                for (DataTema t : data.getTemas()) {
+                    es_favorito_temas[idx] = ifav.esFavorito(nickSesion, t);
+                    idx++;
+                }
+                request.setAttribute("es_favorito_temas",es_favorito_temas);
+            }
+
+            request.getRequestDispatcher("/WEB-INF/listas/ListaDefecto.jsp").forward(request,response);
             
         } catch (ClienteInexistenteException ex) {
-            response.sendError(404);
+            response.sendError(500);
         } catch (ListaInexistenteException ex) {
             response.sendError(404);
         } catch (ArtistaInexistenteException ex) {
-            response.sendError(404);
+            response.sendError(500);
         } catch (AlbumInexistenteException ex) {
-            response.sendError(404);
+            response.sendError(500);
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

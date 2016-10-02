@@ -47,7 +47,7 @@
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${tiene_suscripcion}">
-                                        <a class="btn-link" href="/Favoritear?tipo=album&artista=${nomArtista}&album=${nomAlbum}"><i class="glyphicon glyphicon-star"></i></a>
+                                                <a class="btn-link" href="/Favoritear?tipo=album&artista=${nomArtista}&album=${nomAlbum}"><i class="glyphicon glyphicon-star"></i></a>
                                             </c:when>
                                         </c:choose>
                                     </c:otherwise>
