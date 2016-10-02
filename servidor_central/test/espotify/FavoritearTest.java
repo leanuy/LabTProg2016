@@ -30,11 +30,11 @@ public class FavoritearTest {
         ManejadorColecciones.clear();
         ifav = Fabrica.getIFavoritear();
         try {
-            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
+            IAltaPerfil interf = Fabrica.getIAltaPerfil();
             Calendar cal = Calendar.getInstance();
             cal.set(2001, 1, 1);
-            iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null, ""));
-            iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null, ""));
+            interf.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null, ""));
+            interf.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null, ""));
         } catch (Exception ex) {
             System.out.println("You are doomed to fail");
         }

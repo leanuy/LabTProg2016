@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class DataLista implements DataFavoriteable {
     private final String nombre;
-    private BufferedImage img;
+    private final BufferedImage img;
     private final List<DataTema> temas;
 
     public String getNombre() {

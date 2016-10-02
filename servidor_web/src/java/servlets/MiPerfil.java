@@ -10,10 +10,13 @@ import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -123,7 +126,7 @@ public class MiPerfil extends HttpServlet {
 
                     }
                 }
-            } catch (ClienteInexistenteException ex) {
+            } catch (UsuarioInexistenteException ex) {
                 response.sendError(404);
                 //el nick no existe en el sistema
             }

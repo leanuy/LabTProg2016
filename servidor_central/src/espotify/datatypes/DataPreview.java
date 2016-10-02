@@ -3,7 +3,7 @@ package espotify.datatypes;
 import java.awt.image.BufferedImage;
 
 public class DataPreview {
-    private String nombre;
+    private final String nombre;
     private BufferedImage img;
 
     public DataPreview(String nombre, BufferedImage img) {

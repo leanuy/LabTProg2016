@@ -16,8 +16,6 @@ import org.junit.Test;
 
 import java.util.Calendar;
 import java.util.HashMap;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
 public class ConsultaArtistaTest {
     private static IConsultaArtista iConsultaArtista;    
@@ -59,24 +57,24 @@ public class ConsultaArtistaTest {
         iConsultaArtista = Fabrica.getIConsultaArtista();
         String biografia = "Soy un artista y me consultan";
         String url = "elarti.com";
-        DataArtista dArtista = new DataArtista(biografia, url, "ArtistaConsultado",
+        DataArtista dataArt = new DataArtista(biografia, url, "ArtistaConsultado",
                 "Artista", "Consultado", "artista@consultado.com", cal, null, "");
         IAltaPerfil ctrl = Fabrica.getIAltaPerfil();
-        ctrl.altaArtista(dArtista);
+        ctrl.altaArtista(dataArt);
         DataArtistaExt data = iConsultaArtista.consultaArtista("ArtistaConsultado");
         assertEquals(biografia, data.getBio());
         assertEquals(url, data.getUrl());
         assertArrayEquals(new String[0], data.getAlbums());
         assertEquals(data, data);
-        assertEquals(false, data.equals(null));
-        dArtista = new DataArtista("otra bio", url, "OtroArtistaConsultado",
+        assertEquals(false, (data == null));
+        dataArt = new DataArtista("otra bio", url, "OtroArtistaConsultado",
                 "Artista", "Consultado", "otro_artista@consultado.com", cal, null, "");
-        ctrl.altaArtista(dArtista);
+        ctrl.altaArtista(dataArt);
         DataArtistaExt otroArtista = iConsultaArtista.consultaArtista("OtroArtistaConsultado");
         assertEquals(false, data.equals(otroArtista));
-        dArtista = new DataArtista(biografia, url, "AunOtroArtistaConsultado",
+        dataArt = new DataArtista(biografia, url, "AunOtroArtistaConsultado",
                 "Artista", "Consultado", "otro_artista2@consultado.com", cal, null, "");
-        ctrl.altaArtista(dArtista);
+        ctrl.altaArtista(dataArt);
         otroArtista = iConsultaArtista.consultaArtista("AunOtroArtistaConsultado");
         assertEquals(false, data.equals(otroArtista));
     }

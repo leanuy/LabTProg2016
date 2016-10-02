@@ -23,7 +23,6 @@ import org.junit.runners.MethodSorters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AltaListaTest {
@@ -37,11 +36,11 @@ public class AltaListaTest {
         ManejadorColecciones.clear();
         iAltaLista = Fabrica.getIAltaLista();
         try {
-            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
+            IAltaPerfil interf = Fabrica.getIAltaPerfil();
             Calendar cal = Calendar.getInstance();
             cal.set(2001, 1, 1);
-            iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null,""));
-            iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null,""));
+            interf.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", cal, null,""));
+            interf.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", cal, null,""));
         } catch (Exception ex) {
         }
     }
@@ -60,27 +59,27 @@ public class AltaListaTest {
     @Test
     public void testAltaListaParticular1() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular: caso ok");
-        DataParticular dLista = new DataParticular("TesterLista", "Mi Lista", null);
+        DataParticular dataLista = new DataParticular("TesterLista", "Mi Lista", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.altaListaParticular(dLista);
+        instance.altaListaParticular(dataLista);
     }
     
     @Test (expected = ClienteInexistenteException.class)
     public void testAltaListaParticular2() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:usuario inexistente");
-        DataParticular dLista = new DataParticular("no existo yey", "Mi Lista", null);
+        DataParticular data = new DataParticular("no existo yey", "Mi Lista", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.altaListaParticular(dLista);
+        instance.altaListaParticular(data);
     }
     
     @Test
     public void testAltaListaParticular3() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:dos clientes con listas de igual nombre");
-        DataParticular dLista = new DataParticular("TesterLista", "Lista que comparte nombre", null);
+        DataParticular dataLista = new DataParticular("TesterLista", "Lista que comparte nombre", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.altaListaParticular(dLista);
-        dLista = new DataParticular("TesterLista2", "Lista que comparte nombre", null);
-        instance.altaListaParticular(dLista);
+        instance.altaListaParticular(dataLista);
+        dataLista = new DataParticular("TesterLista2", "Lista que comparte nombre", null);
+        instance.altaListaParticular(dataLista);
     }
     
     @Test (expected = ListaRepetidaException.class)
@@ -96,17 +95,17 @@ public class AltaListaTest {
     @Test (expected = ListaRepetidaException.class)
     public void testAltaListaParticular5() throws ListaRepetidaException, ClienteInexistenteException {
         System.out.println("AltaListaParticular:nombre de lista vacío");
-        DataParticular dLista = new DataParticular("TesterLista", "", null);
+        DataParticular dataLista = new DataParticular("TesterLista", "", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.altaListaParticular(dLista);
+        instance.altaListaParticular(dataLista);
     }
     
     @Test
     public void testAltaListaDefecto1() throws ListaRepetidaException, GeneroInexistenteException {
         System.out.println("AltaListaDefecto: género=Genero");
-        DataDefecto dLista = new DataDefecto("Genero", "Lista genérica", null);
+        DataDefecto dataLista = new DataDefecto("Genero", "Lista genérica", null);
         IAltaLista instance = Fabrica.getIAltaLista();
-        instance.altaListaDefecto(dLista);
+        instance.altaListaDefecto(dataLista);
     }
     
     @Test (expected = GeneroInexistenteException.class)

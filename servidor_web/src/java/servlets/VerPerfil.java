@@ -11,6 +11,7 @@ import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataClienteExt;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
 import java.util.List;
@@ -114,7 +115,10 @@ public class VerPerfil extends HttpServlet {
                         response.sendError(404);
                     }
                 }
-            } catch (ClienteInexistenteException ex) {
+            } catch (UsuarioInexistenteException ex) {
+                response.sendError(404);
+                //el nick no existe en el sistema
+            } catch (ClienteInexistenteException ex ) {
                 response.sendError(404);
                 //el nick no existe en el sistema
             }

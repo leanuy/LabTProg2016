@@ -16,12 +16,12 @@ abstract class Particular extends Lista {
     
     Particular(DataLista data,Cliente cli ) {
         super(data);
-        this.cli=cli;
+        this.cli = cli;
     }
     
     Particular(Particular lst) {
         super(lst);
-        this.cli=lst.cli;
+        this.cli = lst.cli;
     }
     
 }

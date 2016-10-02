@@ -37,9 +37,9 @@ public class AltaAlbumTest {
     @BeforeClass
     public static void setUpClass() throws NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, GeneroInexistenteException, GeneroRepetidoException {
         new AltaPerfilTest().testAltaArtista1();
-        IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
-        iAltaGenero.altaGenero(new DataGenero("Pop", ""));
-        iAltaGenero.altaGenero(new DataGenero("Jazz", ""));
+        IAltaGenero interf = Fabrica.getIAltaGenero();
+        interf.altaGenero(new DataGenero("Pop", ""));
+        interf.altaGenero(new DataGenero("Jazz", ""));
     }
 
     @Test

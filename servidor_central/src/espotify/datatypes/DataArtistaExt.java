@@ -68,19 +68,18 @@ public class DataArtistaExt extends DataUsuario {
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        }
-        else {
+        } else {
             final DataArtistaExt other = (DataArtistaExt) obj;
-            return !((other == null) || 
-                    !(Objects.equals(this.bio, other.bio)) || 
-                    !(Objects.equals(this.url, other.url)) || 
-                    !(Objects.equals(this.getNick(), other.getNick())) || 
-                    !(Objects.equals(this.getNombre(), other.getNombre())) ||
-                    !(Objects.equals(this.getApellido(), other.getApellido())) ||
-                    !(Objects.equals(this.getCorreo(), other.getCorreo())) ||
-                    !(Objects.equals(this.getfNac(), other.getfNac())) ||
-                    !(Objects.equals(this.getImg(), other.getImg())) ||
-                    !(Arrays.deepEquals(this.alb, other.alb)));
+            return !(other == null 
+                    || !(Objects.equals(this.getfNac(), other.getfNac())) 
+                    || !(Objects.equals(this.bio, other.bio))
+                    || !(Objects.equals(this.url, other.url))
+                    || !(Objects.equals(this.getNick(), other.getNick())) 
+                    || !(Objects.equals(this.getNombre(), other.getNombre()))
+                    || !(Objects.equals(this.getApellido(), other.getApellido()))
+                    || !(Objects.equals(this.getCorreo(), other.getCorreo()))
+                    || !(Objects.equals(this.getImg(), other.getImg()))
+                    || !(Arrays.deepEquals(this.alb, other.alb)));
         }
     }
 }

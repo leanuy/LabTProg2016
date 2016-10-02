@@ -106,11 +106,11 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: nick repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl3", "Axl", "Rose", "axl3@rose.com", cal, null, "");
+        DataArtista dataArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl3", "Axl", "Rose", "axl3@rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.altaArtista(dArt);
-        dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl3", "Axl", "Rose", "axl33@rose.com", cal, null, "");
-        instance.altaArtista(dArt);
+        instance.altaArtista(dataArt);
+        dataArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl3", "Axl", "Rose", "axl33@rose.com", cal, null, "");
+        instance.altaArtista(dataArt);
     }
     
     @Test (expected = CorreoRepetidoException.class)
@@ -118,11 +118,11 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: correo repetido");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4@rose.com", cal, null, "");
+        DataArtista dataArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4@rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.altaArtista(dArt);
-        dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4@rose.com", cal, null, "");
-        instance.altaArtista(dArt);
+        instance.altaArtista(dataArt);
+        dataArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4@rose.com", cal, null, "");
+        instance.altaArtista(dataArt);
     }
     
     @Test (expected = FormatoIncorrectoException.class)
@@ -130,8 +130,8 @@ public class AltaPerfilTest {
         System.out.println("AltaArtista: correo sin formato de correo");
         Calendar cal = Calendar.getInstance();
         cal.set(1970, 5, 17);
-        DataArtista dArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4rose.com", cal, null, "");
+        DataArtista dataArt = new DataArtista("El gordo Axl es gordo y usa bandanas.", "axlrose.com", "Axl4", "Axl", "Rose", "axl4rose.com", cal, null, "");
         IAltaPerfil instance = Fabrica.getIAltaPerfil();
-        instance.altaArtista(dArt);
+        instance.altaArtista(dataArt);
     }
 }

@@ -19,10 +19,9 @@ import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
-import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IListarClientes;
-import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.ISuscripcionWeb;
+import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerGenero;
 import espotify.interfaces.web.IVerListaDefecto;
@@ -30,7 +29,7 @@ import espotify.interfaces.web.IVerListaParticular;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
-public class Fabrica {
+public final class Fabrica {
 
     private Fabrica() {
     }

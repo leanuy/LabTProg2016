@@ -89,7 +89,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     @Override
     public void altaGenero(DataGenero data)
             throws GeneroInexistenteException, GeneroRepetidoException {
-        if (!existeGenero(data.getNombre())) {
+        if (existeGenero(data.getNombre())) {
+            throw new GeneroRepetidoException();
+        } else {
             String padre;
             if (data.getPadre().equals("")) {
                 padre = "Genero";
@@ -103,8 +105,6 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             } else {
                 throw new GeneroInexistenteException("No existe el género padre");
             }
-        } else {
-            throw new GeneroRepetidoException();
         }
     }
     
@@ -141,8 +141,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     }
     
     @Override
-    public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException
-    {
+    public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException {
         return new CtrlListas().listarListasDeGenero(nomGenero);
     }
     

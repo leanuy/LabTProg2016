@@ -5,4 +5,4 @@ import espotify.excepciones.ListaInexistenteException;
 
 public interface IVerListaDefecto {
     public DataLista darInfoDefecto(String nomLista) throws ListaInexistenteException;
-    }
+}
