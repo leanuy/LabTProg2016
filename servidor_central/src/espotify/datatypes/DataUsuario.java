@@ -7,13 +7,13 @@ import java.util.Calendar;
 import java.util.List;
 
 public class DataUsuario {
-    private String nick;
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private Calendar fechaNac;
-    private BufferedImage img;
-    private List<String> seguidores;
+    private final String nick;
+    private final String nombre;
+    private final String apellido;
+    private final String correo;
+    private final Calendar fechaNac;
+    private final BufferedImage img;
+    private final List<String> seguidores;
     private String password;
 
     public String getNick() {
@@ -72,8 +72,7 @@ public class DataUsuario {
         this.correo = correo;
         this.fechaNac = fechaNac;
         this.img = img;
-        List<String> segdores = new ArrayList();
-        this.seguidores = segdores;
+        this.seguidores = new ArrayList();
         this.password = pwd;
     }
 

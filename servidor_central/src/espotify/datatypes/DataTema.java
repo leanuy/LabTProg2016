@@ -51,8 +51,14 @@ public class DataTema implements DataFavoriteable {
 
     @Override
     public String toString() {
-        return "DataTema{" + "nombre=" + nombre + ", nomArtista=" +
-                nomArtista + ", album=" + album + '}';
+        return "DataTema{" 
+                + "nombre=" 
+                + nombre 
+                + ", nomArtista=" 
+                + nomArtista +
+                ", album=" +
+                album +
+                '}';
     }
 
     @Override

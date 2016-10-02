@@ -24,7 +24,6 @@ import org.junit.runners.MethodSorters;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import static org.junit.Assert.assertEquals;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class AgregarTemaListaTest {

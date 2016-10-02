@@ -48,7 +48,7 @@ class Usuario {
     public Usuario() {
     }
     
-    String getPassword(){
+    String getPassword() {
         return this.password;
     }
     
@@ -57,16 +57,16 @@ class Usuario {
     }
     
     static boolean validarDatosUsuario(DataUsuario data) {
-        return validarCorreo(data.getCorreo()) && !(data.getNick().equals("") ||
-                data.getNombre().equals("") || data.getApellido().equals(""));
+        return validarCorreo(data.getCorreo()) && !(data.getNick().equals("")
+                || data.getNombre().equals("") || data.getApellido().equals(""));
     }
 
     private static boolean validarCorreo(String correo) {
         boolean salida = correo.contains("@");
         if (salida) {
             int arroba = correo.indexOf('@');
-            correo = correo.substring(arroba + 1);
-            salida = !correo.contains("@") && correo.contains(".");
+            String aux = correo.substring(arroba + 1);
+            salida = !aux.contains("@") && aux.contains(".");
         }
         return salida;
     }
