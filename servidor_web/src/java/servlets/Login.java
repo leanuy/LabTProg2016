@@ -65,7 +65,7 @@ public class Login extends HttpServlet {
 		
         objSesion.setAttribute("estado_sesion", nuevoEstado);
 		
-        // redirige a la página principal para que luego rediriga a la página
+        // redirige a la página principal para que luego redirija a la página
         // que corresponde
         request.getRequestDispatcher("/inicio").forward(request, response);
     } 

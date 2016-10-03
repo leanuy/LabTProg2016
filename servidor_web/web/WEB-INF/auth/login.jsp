@@ -32,7 +32,6 @@
                                 <button class="btn btn-custom" type="button" value="Entrar" onclick="submit()">Iniciar sesión</button>
                             </div>
                             <div class="etc-login-form">
-                                <!--<p>forgot your password? <a href="#">click here</a></p>-->
                                 <br />
                                 <p>Nuevo usuario? <a href="/Registrarme">crea tu cuenta</a></p>
                             </div>
