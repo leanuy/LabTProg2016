@@ -337,7 +337,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             if (existeUsuarioCorreo(dataArt.getCorreo())) {
                 throw new CorreoRepetidoException();
             } else {
-                if (!existeUsuarioNick(dataArt.getNick())) {
+                if (existeUsuarioNick(dataArt.getNick())) {
                     throw new NickRepetidoException();
                 } else {
                     Artista nuevoArtista = new Artista(dataArt);
