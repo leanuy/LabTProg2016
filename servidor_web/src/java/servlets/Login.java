@@ -11,6 +11,7 @@ import espotify.Fabrica;
 import espotify.datatypes.DataClienteExt;
 import espotify.interfaces.IIniciarSesion;
 import espotify.datatypes.DataUsuario;
+import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -50,6 +51,13 @@ public class Login extends HttpServlet {
                             objSesion.setAttribute("nick_sesion", login);
                             boolean esCliente = dataUsr instanceof DataClienteExt;
                             objSesion.setAttribute("es_cliente",esCliente);
+                            if (esCliente) {
+                                try {
+                                    objSesion.setAttribute("tiene_suscripcion",Fabrica.getISuscripcionWeb().tieneSuscripcionVigente(login));
+                                } catch (ClienteInexistenteException ex) {
+                                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                            }
                         } else nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
 		} catch(UsuarioInexistenteException ex){
 			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
@@ -57,7 +65,7 @@ public class Login extends HttpServlet {
 		
         objSesion.setAttribute("estado_sesion", nuevoEstado);
 		
-        // redirige a la página principal para que luego rediriga a la página
+        // redirige a la página principal para que luego redirija a la página
         // que corresponde
         request.getRequestDispatcher("/inicio").forward(request, response);
     } 

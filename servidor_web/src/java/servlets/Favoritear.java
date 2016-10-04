@@ -7,6 +7,7 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbum;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
@@ -15,6 +16,7 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.FavoritoRepetidoException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.interfaces.IFavoritear;
+import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -49,41 +51,48 @@ public class Favoritear extends HttpServlet {
             IFavoritear ifav = Fabrica.getIFavoritear();
 
             try{
-                if(tipoFav.equals("album")) {
-                    String nomAlbum = new String(request.getParameter("album").getBytes(
-                    "iso-8859-1"), "UTF-8");
-                    String nomArtista = new String(request.getParameter("artista").getBytes(
-                    "iso-8859-1"), "UTF-8");
-                    DataAlbum d = new DataAlbum(nomAlbum,0,null,null,nomArtista);
-                    ifav.favoritear(nick, d);
+                ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
+                if (isusc.tieneSuscripcionVigente(nick)) {
+                    if(tipoFav.equals("album")) {
+                        String nomAlbum = new String(request.getParameter("album").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        String nomArtista = new String(request.getParameter("artista").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        DataAlbum d = new DataAlbum(nomAlbum,0,null,null,nomArtista);
+                        ifav.favoritear(nick, d);
 
-                    request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
-                } else if(tipoFav.equals("particular")) {
-                    String nomLista = new String(request.getParameter("lista").getBytes(
-                    "iso-8859-1"), "UTF-8");
-                    String nomCliente = new String(request.getParameter("nick").getBytes(
-                    "iso-8859-1"), "UTF-8");
-                    DataParticular d = new DataParticular(nomCliente,nomLista,null);
-                    ifav.favoritear(nick, d);
-                  
-                    request.getRequestDispatcher("/VerListaParticular?nick="+nomCliente+"&lista="+nomLista).forward(request,response);
-                } else if(tipoFav.equals("tema")) {
-                    String nomTema = new String(request.getParameter("tema").getBytes(
-                    "iso-8859-1"), "UTF-8");
-                    String nomAlbum = new String(request.getParameter("album").getBytes(
-                    "iso-8859-1"), "UTF-8");
-                    String nomArtista = new String(request.getParameter("artista").getBytes(
-                    "iso-8859-1"), "UTF-8");
-                    DataTema d = new DataTema(nomTema,0,0,nomArtista,nomAlbum);
-                    ifav.favoritear(nick, d);
-                    //esto no funciona exactamente como querríamos, si favoriteás desde una lista va al álbum.
-                    request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
+                        request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
+                    } else if(tipoFav.equals("particular")) {
+                        String nomLista = new String(request.getParameter("lista").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        String nomCliente = new String(request.getParameter("nick").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        DataParticular d = new DataParticular(nomCliente,nomLista,null);
+                        ifav.favoritear(nick, d);
+
+                        request.getRequestDispatcher("/VerListaParticular?nick="+nomCliente+"&lista="+nomLista).forward(request,response);
+                    } else if(tipoFav.equals("tema")) {
+                        String nomTema = new String(request.getParameter("tema").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        String nomAlbum = new String(request.getParameter("album").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        String nomArtista = new String(request.getParameter("artista").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        DataTema d = new DataTema(nomTema,0,0,nomArtista,nomAlbum);
+                        ifav.favoritear(nick, d);
+                        //esto no funciona exactamente como querríamos, si favoriteás desde una lista va al álbum.
+                        request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
+                    } else if(tipoFav.equals("defecto")) {
+                        String nomLista = new String(request.getParameter("lista").getBytes(
+                        "iso-8859-1"), "UTF-8");
+                        DataDefecto d = new DataDefecto("",nomLista,null);
+                        ifav.favoritear(nick, d);
+
+                        request.getRequestDispatcher("/VerListaDefecto?lista="+nomLista).forward(request,response);
+                    }
+                } else {
+                    response.sendError(500);
                 }
-                
-                
-                
-                
-                
             } catch (ClienteInexistenteException ex) {
                 response.sendError(500);
             } catch (FavoritoRepetidoException ex) {

@@ -4,15 +4,19 @@ import espotify.Fabrica;
 import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataClienteExt;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -67,6 +71,7 @@ public class MiPerfil extends HttpServlet {
                         List<DataAlbum> albumsFavoritos = new ArrayList();
                         List<DataParticular> particularesFavoritas = new ArrayList();
                         List<DataTema> temasFavoritos = new ArrayList();
+                        List<DataDefecto> defectoFavoritas = new ArrayList();
                         for (DataFavoriteable fav : favoritos) {
                             if(fav instanceof DataAlbum) {
                                 albumsFavoritos.add((DataAlbum)fav);
@@ -74,14 +79,16 @@ public class MiPerfil extends HttpServlet {
                                 particularesFavoritas.add((DataParticular)fav);
                             } else if (fav instanceof DataTema) {
                                 temasFavoritos.add((DataTema) fav);
+                            } else if (fav instanceof DataDefecto) {
+                                defectoFavoritas.add((DataDefecto)fav);
                             }
                         }
                         request.setAttribute("albumsFavoritos", albumsFavoritos);
                         request.setAttribute("particularesFavoritas", particularesFavoritas);
                         request.setAttribute("temasFavoritos", temasFavoritos);
+                        request.setAttribute("defectoFavoritas", defectoFavoritas);
                         
                         request.getRequestDispatcher("/WEB-INF/perfiles/MiPerfilCliente.jsp").forward(request,response);
-
                     } catch (ClienteInexistenteException e) {
                         response.sendError(404);
                         //problemas consultando el cliente
@@ -119,7 +126,7 @@ public class MiPerfil extends HttpServlet {
 
                     }
                 }
-            } catch (ClienteInexistenteException ex) {
+            } catch (UsuarioInexistenteException ex) {
                 response.sendError(404);
                 //el nick no existe en el sistema
             }

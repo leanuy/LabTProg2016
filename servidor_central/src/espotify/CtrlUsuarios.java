@@ -12,7 +12,6 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataSuscripcion;
-import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
 import espotify.datatypes.TipoSuscripcion;
@@ -44,10 +43,9 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
-import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IListarClientes;
-import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.ISuscripcionWeb;
+import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 
@@ -118,7 +116,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     public boolean esFavorito(String nick, DataFavoriteable fav) 
-            throws ClienteInexistenteException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException{
+            throws ClienteInexistenteException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
         return buscarCliente(nick).esFavorito(buscarFavoriteable(fav));
     }
     
@@ -316,15 +314,15 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             throws NickRepetidoException, CorreoRepetidoException,
             FormatoIncorrectoException {
         if (Usuario.validarDatosUsuario(dataCliente)) {
-            if (!existeUsuarioCorreo(dataCliente.getCorreo())) {
-                if (!existeUsuarioNick(dataCliente.getNick())) {
+            if (existeUsuarioCorreo(dataCliente.getCorreo())) {
+                throw new CorreoRepetidoException();
+            } else {
+                if (existeUsuarioNick(dataCliente.getNick())) {
+                    throw new NickRepetidoException();
+                } else {
                     Cliente nuevoCli = new Cliente(dataCliente);
                     agregarCliente(dataCliente.getNick(), nuevoCli);
-                } else {
-                    throw new NickRepetidoException();
                 }
-            } else {
-                throw new CorreoRepetidoException();
             }
         } else {
             throw new FormatoIncorrectoException();
@@ -336,15 +334,15 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             throws NickRepetidoException, CorreoRepetidoException,
             FormatoIncorrectoException {
         if (Artista.validarDatosArtista(dataArt)) {
-            if (!existeUsuarioCorreo(dataArt.getCorreo())) {
-                if (!existeUsuarioNick(dataArt.getNick())) {
+            if (existeUsuarioCorreo(dataArt.getCorreo())) {
+                throw new CorreoRepetidoException();
+            } else {
+                if (existeUsuarioNick(dataArt.getNick())) {
+                    throw new NickRepetidoException();
+                } else {
                     Artista nuevoArtista = new Artista(dataArt);
                     agregarArtista(dataArt.getNick(), nuevoArtista);
-                } else {
-                    throw new NickRepetidoException();
                 }
-            } else {
-                throw new CorreoRepetidoException();
             }
         } else {
             throw new FormatoIncorrectoException();
@@ -407,18 +405,23 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public boolean esCliente(String nick) throws ClienteInexistenteException {
+    public boolean esCliente(String nick) throws UsuarioInexistenteException {
+        boolean esCliente = true;
         try {
             buscarCliente(nick);
             return true;
         } catch (ClienteInexistenteException e) {
+            esCliente = false;
+        }
+        if (esCliente) {
+        } else {
             try {
                 buscarArtista(nick);
             } catch (ArtistaInexistenteException ex) {
-                throw new ClienteInexistenteException();
+                throw new UsuarioInexistenteException();
             }
         }
-        return false;
+        return esCliente;
     }
 
     @Override
@@ -428,15 +431,14 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         }
         Usuario usuario;
         DataUsuario dataUsuario;
-        try{
+        try {
             usuario = this.buscarArtista(nickUsuario);
             dataUsuario = ((Artista)usuario).getDataArtistaExt();
-        }catch(ArtistaInexistenteException ex){
-        try {
+        } catch (ArtistaInexistenteException ex) {
+            try {
                 usuario = this.buscarCliente(nickUsuario);
                 dataUsuario = ((Cliente)usuario).getDataClienteExt();
-                
-        } catch (ClienteInexistenteException e) {
+            } catch (ClienteInexistenteException e) {
                 throw new UsuarioInexistenteException();
             }
         }
@@ -465,7 +467,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
 
     @Override
     public boolean siguiendo(String seguidor, String seguido) throws ClienteInexistenteException {
-        return buscarCliente(seguidor).Siguiendo(seguido);
+        return buscarCliente(seguidor).siguiendo(seguido);
     }
 
     @Override
@@ -504,8 +506,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     @Override
     public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException {
         Cliente client;
-        DataSuscripcion suscripcion = null;
-        try{
+        DataSuscripcion suscripcion;
+        try { 
             client = buscarCliente(nickname);
             suscripcion = client.getSuscripcionActiva();                                 
         } catch (NoHaySuscripcionException e) {
@@ -513,19 +515,20 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         } 
         return suscripcion;
     }
+    
     @Override
     public boolean contratarSuscripcion(TipoSuscripcion tipo, String nickname) throws ClienteInexistenteException {
         Cliente client;
-        boolean result =false;
-        try{
-            client = buscarCliente(nickname);
-            client.contratar(tipo);
+        boolean result = false;
+        try {
+            buscarCliente(nickname).contratar(tipo);
             result = true;
-        } catch (TransicionSuscripcionInvalidaException e) {
+        } catch (TransicionSuscripcionInvalidaException | ClienteInexistenteException e) {
             result = false;
-        } catch (Exception e){}
+        }
         return result;
     }
+    
     @Override
     public void cancelarSuscripcionVencida(String nickname) throws 
             NoHaySuscripcionException, TransicionSuscripcionInvalidaException,
@@ -557,5 +560,14 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         Cliente client;
         client = buscarCliente(nickname);
         client.vencerSuscripcion();
+    }
+    
+    public boolean tieneSuscripcionVigente(String nick) throws ClienteInexistenteException {
+        return buscarCliente(nick).tieneSuscripcionVigente();
+    }
+    
+    DataTema consultaTema(String nick, String nomAlbum, String nomTema)
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        return buscarArtista(nick).consultaTema(nomAlbum,nomTema);
     }
 }

@@ -11,7 +11,6 @@ import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,13 +37,14 @@ public class AprobarSuscripcion extends HttpServlet {
         String inputNick = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
         int codigoVencer = Integer.valueOf(request.getParameter("codigo"));
-        ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
+        ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
         try {
             if ( codigoVencer == 1 ) {
                inter.vencerSuscripcionActual(inputNick);
             } else {
                inter.aprobarSuscripcionPendiente(inputNick);
             }
+            response.sendRedirect("/inicio");
         } catch ( NoHaySuscripcionException e) {
             response.sendError(500);
         } catch ( TransicionSuscripcionInvalidaException e) {
@@ -52,7 +52,6 @@ public class AprobarSuscripcion extends HttpServlet {
         } catch ( ClienteInexistenteException e) {
             response.sendError(500);
         }  
-        response.sendRedirect("/inicio");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

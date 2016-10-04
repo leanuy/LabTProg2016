@@ -38,10 +38,5 @@ public class DataAlbum implements DataFavoriteable {
         this.generos = generos;
         this.img = img;
         this.nickArtista = artista;
-    }
-
-
-
-    
-    
+    }    
 }

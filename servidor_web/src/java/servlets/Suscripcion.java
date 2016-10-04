@@ -53,7 +53,7 @@ public class Suscripcion extends HttpServlet {
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
             String nick = (String) session.getAttribute("nick_sesion");
             request.setAttribute("nick_sesion", nick);
-            ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
+            ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
             List<DataSuscripcion> historial = null;
             try {
                 historial = inter.listarSuscripcionesCliente(nick);
@@ -139,7 +139,7 @@ public class Suscripcion extends HttpServlet {
         HttpSession session = request.getSession();
         String nick = (String) session.getAttribute("nick_sesion");
         String tipo = (String)request.getParameter("tipo");
-        ISuscripcionWeb inter = Fabrica.getSuscripcionWeb();
+        ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
         boolean contratacionExitosa = false;
         try {
             contratacionExitosa = inter.contratarSuscripcion(devolverTipoSuscripcion(tipo), nick);

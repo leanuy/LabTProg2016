@@ -41,18 +41,17 @@ public class DataClienteExt extends DataUsuario {
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
-        }
-        else {
+        } else {
             final DataClienteExt other = (DataClienteExt) obj;
-            return !(((other == null)) || 
-                   !(Arrays.deepEquals(this.seg, other.seg)) ||
-                   !(Arrays.deepEquals(this.lis, other.lis)) ||
-                   !(Objects.equals(this.getNick(), other.getNick())) ||
-                   !(Objects.equals(this.getNombre(), other.getNombre())) ||
-                   !(Objects.equals(this.getApellido(), other.getApellido())) ||
-                   !(Objects.equals(this.getCorreo(), other.getCorreo())) ||
-                   !(Objects.equals(this.getfNac(), other.getfNac())) ||
-                   !(Objects.equals(this.getImg(), other.getImg())));
+            return !(other == null
+                   || !(Arrays.deepEquals(this.seg, other.seg))
+                   || !(Arrays.deepEquals(this.lis, other.lis))
+                   || !(Objects.equals(this.getNick(), other.getNick()))
+                   || !(Objects.equals(this.getNombre(), other.getNombre()))
+                   || !(Objects.equals(this.getApellido(), other.getApellido()))
+                   || !(Objects.equals(this.getCorreo(), other.getCorreo()))
+                   || !(Objects.equals(this.getfNac(), other.getfNac()))
+                   || !(Objects.equals(this.getImg(), other.getImg())));
         }
     }    
 }

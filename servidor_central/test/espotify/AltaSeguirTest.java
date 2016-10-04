@@ -146,10 +146,10 @@ public class AltaSeguirTest {
         try {
             Calendar cal = Calendar.getInstance();
             cal.set(1996, 5, 17);
-            DataCliente dCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
-            ctrl.altaCliente(dCli);
-            dCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
-            ctrl.altaCliente(dCli);
+            DataCliente dataCli = new DataCliente("Seguidor", "Javier", "Morales", "seguidor@hotmail.com", cal, null,"");
+            ctrl.altaCliente(dataCli);
+            dataCli = new DataCliente("Seguido", "Javier", "Morales", "seguido@hotmail.com", cal, null,"");
+            ctrl.altaCliente(dataCli);
         } catch (NickRepetidoException | CorreoRepetidoException e) { }
         
         System.out.println("AltaSeguir: Seguir dos veces");
@@ -157,7 +157,7 @@ public class AltaSeguirTest {
         String nomSeguido = "Seguido";
         try {
             iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
-        } catch (Exception e) {}
+        } catch (Exception e) { }
         iAltaSeguir.altaSeguir(nomSeguidor, nomSeguido);
     }
 

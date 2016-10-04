@@ -36,21 +36,21 @@ public class Album implements Favoriteable {
     }
     
     List<DataTema> getDataTemas() {
-        ArrayList<DataTema> salida = new ArrayList<>();
-        DataTema dTema;
-        for (Tema t : temas) {
-            dTema = t.getData();
-            salida.add(dTema);
+        final ArrayList<DataTema> salida = new ArrayList<>();
+        DataTema data;
+        for (final Tema tema : temas) {
+            data = tema.getData();
+            salida.add(data);
         }
         return salida;
     }
     
     public DataAlbum getData() {
-        Iterator itg = generos.entrySet().iterator();
+        final Iterator itg = generos.entrySet().iterator();
         Genero generoActual;
-        List<String> nombreGeneros = new ArrayList<String>();
+        final List<String> nombreGeneros = new ArrayList<String>();
         while (itg.hasNext()) {
-            Map.Entry pair = (Map.Entry)itg.next();
+            final Map.Entry pair = (Map.Entry)itg.next();
             generoActual = (Genero) pair.getValue();
             nombreGeneros.add(generoActual.getNombre());
         }
@@ -58,18 +58,18 @@ public class Album implements Favoriteable {
     }
     
     DataAlbumExt getDataExt() {
-        List<DataTema> dataTemas = new ArrayList();
-        Iterator<Tema> iterador = temas.iterator();
+        final List<DataTema> dataTemas = new ArrayList();
+        final Iterator<Tema> iterador = temas.iterator();
         Tema temaActual;
         while (iterador.hasNext()) {
             temaActual = iterador.next();
             dataTemas.add(temaActual.getData());
         }
-        Iterator itg = generos.entrySet().iterator();
+        final Iterator itg = generos.entrySet().iterator();
         Genero generoActual;
-        List<String> nombreGeneros = new ArrayList<String>();
+        final List<String> nombreGeneros = new ArrayList<String>();
         while (itg.hasNext()) {
-            Map.Entry pair = (Map.Entry)itg.next();
+            final Map.Entry pair = (Map.Entry)itg.next();
             generoActual = (Genero) pair.getValue();
             nombreGeneros.add(generoActual.getNombre());
         }
@@ -77,18 +77,18 @@ public class Album implements Favoriteable {
                 nombreGeneros, this.img, artista.getNick());
     }
 
-    private List<Tema> validarTemas(List<DataTema> dataTemas) throws
+    private List<Tema> validarTemas(final List<DataTema> dataTemas) throws
             DuracionInvalidaException, NumeroTemaInvalidoException,
             TemaRepetidoException, TemaTipoInvalidoException {
-        int largo = dataTemas.size();
+        final int largo = dataTemas.size();
         boolean[] orden = new boolean[largo];
         Arrays.fill(orden, false);
 
-        List<Tema> listaTemas = new ArrayList<>();
-        List<String> nombresTemas = new ArrayList<>();
+        final List<Tema> listaTemas = new ArrayList<>();
+        final List<String> nombresTemas = new ArrayList<>();
 
         for (int i = 0; i < largo; i++) {
-            DataTema dTema = dataTemas.get(i);
+            final DataTema dTema = dataTemas.get(i);
 
             //Validar Duracion
             if (dTema.getDuracion() <= 0) {
@@ -104,8 +104,8 @@ public class Album implements Favoriteable {
                         + "Pruebe con un número entre 1 y " + largo + ".");
             } else if (orden[dTema.getNum() - 1] == true) {
                 throw new NumeroTemaInvalidoException(
-                        "El tema " + dTema.getNombre() +
-                        " tiene un número de tema que ya le corresponde a otro tema.");
+                        "El tema " + dTema.getNombre() 
+                        + " tiene un número de tema que ya le corresponde a otro tema.");
             } else {
                 orden[dTema.getNum() - 1] = true;
                 //Si el numero de orden es correcto lo marco como en uso.
@@ -142,7 +142,7 @@ public class Album implements Favoriteable {
 
     Tema devolverTema(String nombretema) {
         Tema salida = null;
-        for (Tema t2 : temas) {
+        for (final Tema t2 : temas) {
             if (t2.getNombre().equals(nombretema)) {
                 salida = t2;
             }

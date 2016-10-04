@@ -86,4 +86,9 @@ class Artista extends Usuario {
         Album alb = albums.get(album);
         return alb.devolverTema(tema);
     }
+    
+    DataTema consultaTema(String nomAlbum, String nomTema)
+            throws AlbumInexistenteException {
+        return buscarAlbum(nomAlbum).devolverTema(nomTema).getData();
+    }
 }

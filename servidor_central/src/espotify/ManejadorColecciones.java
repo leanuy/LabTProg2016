@@ -3,7 +3,7 @@ package espotify;
 import java.util.HashMap;
 import java.util.Map;
 
-class ManejadorColecciones {
+final class ManejadorColecciones {
     private static ManejadorColecciones instancia;
     private final Map<String,Cliente> clientes;
     private final Map<String,Artista> artistas;

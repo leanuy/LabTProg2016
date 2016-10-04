@@ -6,18 +6,17 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.excepciones.AutoSeguirseException;
+import espotify.datatypes.DataDefecto;
+import espotify.datatypes.DataLista;
+import espotify.datatypes.DataTema;
+import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.SeguidoInexistenteException;
-import espotify.excepciones.SeguidoRepetidoException;
-import espotify.excepciones.SeguidorInexistenteException;
-import espotify.interfaces.web.ISuscripcionWeb;
-import espotify.interfaces.web.IWebSeguir;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.web.IFavoritos;
+import espotify.interfaces.web.IVerListaDefecto;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,10 +25,9 @@ import model.EstadoSesion;
 
 /**
  *
- * @author Santiago
+ * @author JavierM42
  */
-@WebServlet(name = "SeguirUsuario", urlPatterns = {"/SeguirUsuario"})
-public class SeguirUsuario extends HttpServlet {
+public class VerListaDefecto extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,31 +41,51 @@ public class SeguirUsuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         HttpSession session = request.getSession();
-        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String Seguidor = (String) session.getAttribute("nick_sesion");
-            String aSeguir = new String(request.getParameter("nick").getBytes(
+        String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
-            ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
-            try {
-                if (isusc.tieneSuscripcionVigente(Seguidor)) {
-                    IWebSeguir iws = Fabrica.getIWebSeguir();
-                    iws.altaSeguir(Seguidor, aSeguir);
-                    request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request, response);
-                } else {
-                    response.sendError(500);
-                }
-            } catch (SeguidorInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidoInexistenteException ex) {
-                response.sendError(404);
-            } catch (SeguidoRepetidoException ex) {
-                response.sendError(500);
-            } catch (AutoSeguirseException ex) {
-                response.sendError(500);
-            } catch (ClienteInexistenteException ex) {
-                response.sendError(500);
+
+        IVerListaDefecto interf = Fabrica.getIVerListaDefecto();
+        try {
+            DataLista data = interf.darInfoDefecto(inputNom);
+            request.setAttribute("nomLista", data.getNombre());
+            if(data.getImg() == null) {
+                request.setAttribute("imagen", "./assets/img/default_cover.png");
+            } else {
+                request.setAttribute("imagen", data.getImg());
             }
+
+            request.setAttribute("temas", data.getTemas());
+
+            boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
+            boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+            if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
+                IFavoritos ifav = Fabrica.getIFavoritos();
+                boolean es_favorito;
+                String nickSesion = session.getAttribute("nick_sesion").toString();
+                DataDefecto dataFav = new DataDefecto("",data.getNombre(),null);
+                es_favorito = ifav.esFavorito(nickSesion, dataFav);
+                request.setAttribute("es_favorito", es_favorito);
+
+                int idx = 0;
+                for (DataTema t : data.getTemas()) {
+                    es_favorito_temas[idx] = ifav.esFavorito(nickSesion, t);
+                    idx++;
+                }
+                request.setAttribute("es_favorito_temas",es_favorito_temas);
+            }
+
+            request.getRequestDispatcher("/WEB-INF/listas/ListaDefecto.jsp").forward(request,response);
+            
+        } catch (ClienteInexistenteException ex) {
+            response.sendError(500);
+        } catch (ListaInexistenteException ex) {
+            response.sendError(404);
+        } catch (ArtistaInexistenteException ex) {
+            response.sendError(500);
+        } catch (AlbumInexistenteException ex) {
+            response.sendError(500);
         }
     }
 

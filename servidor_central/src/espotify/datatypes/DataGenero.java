@@ -46,13 +46,13 @@ public class DataGenero {
         }
         
         // igualdades propias de la clase
-        DataGenero dGenero = (DataGenero) obj;
-        if (!dGenero.getNombre().equals(nombre)) {
+        DataGenero data = (DataGenero) obj;
+        if (!data.getNombre().equals(nombre)) {
             return false;
         }
-        if (!dGenero.getPadre().equals(padre)) {
+        if (!data.getPadre().equals(padre)) {
             return false;
         }
-        return this.hijos.equals(dGenero.hijos);
+        return this.hijos.equals(data.hijos);
     }
 }

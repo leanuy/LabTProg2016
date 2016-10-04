@@ -2,6 +2,7 @@ package espotify;
 
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataGenero;
+import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.AlbumRepetidoException;
 import espotify.excepciones.ArtistaInexistenteException;
@@ -88,7 +89,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     @Override
     public void altaGenero(DataGenero data)
             throws GeneroInexistenteException, GeneroRepetidoException {
-        if (!existeGenero(data.getNombre())) {
+        if (existeGenero(data.getNombre())) {
+            throw new GeneroRepetidoException();
+        } else {
             String padre;
             if (data.getPadre().equals("")) {
                 padre = "Genero";
@@ -102,8 +105,6 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             } else {
                 throw new GeneroInexistenteException("No existe el género padre");
             }
-        } else {
-            throw new GeneroRepetidoException();
         }
     }
     
@@ -140,8 +141,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     }
     
     @Override
-    public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException
-    {
+    public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException {
         return new CtrlListas().listarListasDeGenero(nomGenero);
     }
     
@@ -149,4 +149,8 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         return buscarGenero(nomGenero).listarseRecursivo("");
     }
     
+    public DataTema consultaTema(String nick, String nomAlbum, String nomTema)
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        return new CtrlUsuarios().consultaTema(nick,nomAlbum,nomTema);
+    }
 }

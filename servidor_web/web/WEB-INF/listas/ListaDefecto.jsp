@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ListaParticular
-    Created on : Sep 16, 2016, 11:26:41 AM
+    Document   : ListaDefecto
+    Created on : Oct 2, 2016, 5:15:27 PM
     Author     : JavierM42
 --%>
 
@@ -18,30 +18,18 @@
                 <div>
                     <h1>
                         <c:out value="${nomLista}"/>
-                        <c:choose>
-                            <c:when test="${esPrivada}">                            
-                                <c:choose>
-                                    <c:when test="${tiene_suscripcion}">
-                                        <a class="btn btn-custom" href="/publicarlista?lista=<c:out value="${nomLista}"/>"><i class="glyphicon glyphicon-lock"></i> Publicar</a>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <i class="glyphicon glyphicon-lock"></i>
-                                    </c:otherwise>
-                                </c:choose>
-                            </c:when>
-                        </c:choose>
                     </h1>
                     <div class="pull-right">
                         <c:choose>
                             <c:when test="${not empty es_favorito}">
                                 <c:choose>
                                     <c:when test="${es_favorito}">
-                                        <a class="btn-link-inverse" href="/DesFavoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
+                                        <a class="btn-link-inverse" href="/DesFavoritear?tipo=defecto&lista=${nomLista}"><i class="glyphicon glyphicon-star"></i></a>
                                     </c:when>
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${tiene_suscripcion}">
-                                                <a class="btn-link" href="/Favoritear?tipo=particular&lista=${nomLista}&nick=${nomCliente}"><i class="glyphicon glyphicon-star"></i></a>
+                                                <a class="btn-link" href="/Favoritear?tipo=defecto&lista=${nomLista}"><i class="glyphicon glyphicon-star"></i></a>
                                             </c:when>
                                         </c:choose>
                                     </c:otherwise>
@@ -98,15 +86,3 @@
     </div>
     
 </t:body>
-
-
-<%--Luego, el sistema muestra el nombre de la lista de reproducción,
-el género al que aplica o cliente que la definió, su imagen (opcional)
-y la información detallada de cada una de los temas que componen la lista de reproducción,
-mostrando la URL o el link al archivo de descarga. Si el Cliente tiene una suscripción
-en estado “vigente” el Sistema permite descargar
-el archivo de música para ser escuchado off line, si existe.
-
-
---%>
-

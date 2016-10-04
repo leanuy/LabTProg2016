@@ -36,13 +36,13 @@ public class AltaGeneroTest {
     @Test
     public void test6ListarGeneros() {
         System.out.println("Listar Generos");
-        DataGenero result = iAltaGenero.listarGeneros();
         ArrayList<DataGenero> generos1 = new ArrayList<>();
         generos1.add(new DataGenero("Hard Rock","Rock",new ArrayList<>()));
         ArrayList<DataGenero> generos2 = new ArrayList<>();
         generos2.add(new DataGenero("Rock","Genero",generos1));
         generos2.add(new DataGenero("Jazz","Genero",new ArrayList<>()));
         DataGenero expResult = new DataGenero("Genero","",generos2);
+        DataGenero result = iAltaGenero.listarGeneros();
         assertEquals(expResult, result);
     }
     
@@ -73,17 +73,17 @@ public class AltaGeneroTest {
     @Test (expected = GeneroInexistenteException.class)
     public void test4AltaGenero3() throws Exception {
         System.out.println("AltaGenero: Padre inexistente");
-        DataGenero dGenero = new DataGenero("Cumbia Plancha", "Rombai");
+        DataGenero data = new DataGenero("Cumbia Plancha", "Rombai");
         IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.altaGenero(dGenero);
+        instance.altaGenero(data);
     }
     
     @Test (expected = GeneroRepetidoException.class)
     public void test5AltaGenero4() throws Exception {
         System.out.println("AltaGenero: Género repetido");
-        DataGenero dGenero = new DataGenero("Jazz", "");
+        DataGenero data = new DataGenero("Jazz", "");
         IAltaGenero instance = Fabrica.getIAltaGenero();
-        instance.altaGenero(dGenero);
-        instance.altaGenero(dGenero);
+        instance.altaGenero(data);
+        instance.altaGenero(data);
     }
 }

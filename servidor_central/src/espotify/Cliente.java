@@ -157,18 +157,18 @@ class Cliente extends Usuario {
     
     Particular buscarLista(String nomLista) throws ListaInexistenteException {
         Particular lista = listas.get(nomLista);
-        if (lista != null) {
-            return lista;
-        } else {
+        if (lista == null) {
             throw new ListaInexistenteException();
+        } else {
+            return lista;
         }
     }
 
     void favoritear(Favoriteable fav) throws FavoritoRepetidoException {
-        if (!favoritos.contains(fav)) {
-            favoritos.add(fav);
-        } else {
+        if (favoritos.contains(fav)) {
             throw new FavoritoRepetidoException();
+        } else {
+            favoritos.add(fav);
         }
     }
 
@@ -210,15 +210,15 @@ class Cliente extends Usuario {
     }
     
     public List<DataSuscripcion> getSuscripciones() {
-        List<DataSuscripcion> listaSuscripciones = new ArrayList();
+        List<DataSuscripcion> lstSusc = new ArrayList();
         Iterator iterador = suscripciones.entrySet().iterator();
         Suscripcion suscActual;
         while (iterador.hasNext()) {
             Map.Entry pair = (Map.Entry)iterador.next();
             suscActual = (Suscripcion) pair.getValue();
-            listaSuscripciones.add(suscActual.getData());
+            lstSusc.add(suscActual.getData());
         }
-        return listaSuscripciones;
+        return lstSusc;
     }
 
     void aprobarSuscripcion() throws NoHaySuscripcionException,
@@ -250,7 +250,7 @@ class Cliente extends Usuario {
         }
     }
     
-    boolean Siguiendo(String seguido) {
+    boolean siguiendo(String seguido) {
         return seguidos.containsKey(seguido);
     }
 
@@ -270,18 +270,25 @@ class Cliente extends Usuario {
         return salida;
     }
     
-    public void renovarSuscripcion() throws TransicionSuscripcionInvalidaException, NoHaySuscripcionException{
+    public void renovarSuscripcion() throws TransicionSuscripcionInvalidaException, NoHaySuscripcionException {
         if ( suscripcionActiva == null ) {
             throw new NoHaySuscripcionException();
         }
-        if (suscripcionActiva != null && !suscripcionActiva.estaVigente()) {
-            suscripcionActiva.renovar();
-        } else {
+        if (suscripcionActiva == null || suscripcionActiva.estaVigente()) {
             throw new TransicionSuscripcionInvalidaException();
+        } else {
+            suscripcionActiva.renovar();
         }
     }
     public void vencerSuscripcion() {
         suscripcionActiva.estaVigente();
         suscripcionActiva.vencer();
+    }
+    
+    boolean tieneSuscripcionVigente() {
+        if (suscripcionActiva == null) {
+            return false;
+        }
+        return suscripcionActiva.estaVigente();
     }
 }
