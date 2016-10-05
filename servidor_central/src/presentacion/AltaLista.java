@@ -4,6 +4,7 @@ import espotify.Fabrica;
 import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
@@ -13,6 +14,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -282,6 +285,8 @@ public class AltaLista extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(okDialog, "El cliente ya tiene una lista con ese nombre.", "Error", JOptionPane.PLAIN_MESSAGE);
             } catch (ClienteInexistenteException e) {
                 JOptionPane.showMessageDialog(okDialog, "No existe un cliente con ese nick.", "Error", JOptionPane.PLAIN_MESSAGE);
+            } catch (CampoVacioException ex) {
+                JOptionPane.showMessageDialog(okDialog, "El nombre no puede ser vacío", "Error", JOptionPane.PLAIN_MESSAGE);
             }
         } else {
             try {

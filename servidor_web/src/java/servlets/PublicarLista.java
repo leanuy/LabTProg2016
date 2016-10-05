@@ -7,6 +7,7 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
@@ -17,6 +18,8 @@ import espotify.interfaces.web.ISuscripcionWeb;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -129,6 +132,8 @@ public class PublicarLista extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
         } catch (ClienteInexistenteException e) {
             response.sendError(404);
+        } catch (CampoVacioException ex) {
+            Logger.getLogger(PublicarLista.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
