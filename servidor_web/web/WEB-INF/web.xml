@@ -73,6 +73,10 @@
         <servlet-class>servlets.Buscar</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CrearListaParticular</servlet-name>
+        <servlet-class>servlets.CrearListaParticular</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DesFavoritear</servlet-name>
         <servlet-class>servlets.DesFavoritear</servlet-class>
     </servlet>
@@ -187,6 +191,13 @@
     <servlet-mapping>
         <servlet-name>Buscar</servlet-name>
         <url-pattern>/Buscar</url-pattern>
+<<<<<<< d4d5f02e766821c9e41083790192f3a4698f204e
+=======
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CrearListaParticular</servlet-name>
+        <url-pattern>/crearlistaparticular</url-pattern>
+>>>>>>> webxml
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DesFavoritear</servlet-name>
