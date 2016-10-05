@@ -104,6 +104,10 @@
         <servlet-name>VerImagen</servlet-name>
         <servlet-class>servlets.VerImagen</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Bienvenida</servlet-name>
+        <servlet-class>servlets.Bienvenida</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -215,6 +219,10 @@
     <servlet-mapping>
         <servlet-name>VerImagen</servlet-name>
         <url-pattern>/VerImagen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Bienvenida</servlet-name>
+        <url-pattern>/Bienvenida</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
