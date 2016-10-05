@@ -100,6 +100,10 @@
         <servlet-name>VerListaDefecto</servlet-name>
         <servlet-class>servlets.VerListaDefecto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Bienvenida</servlet-name>
+        <servlet-class>servlets.Bienvenida</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -207,6 +211,10 @@
     <servlet-mapping>
         <servlet-name>VerListaDefecto</servlet-name>
         <url-pattern>/VerListaDefecto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Bienvenida</servlet-name>
+        <url-pattern>/Bienvenida</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

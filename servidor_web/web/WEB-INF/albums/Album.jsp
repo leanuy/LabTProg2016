@@ -15,7 +15,7 @@
                 $(".btn-mas-opciones-tema").show(); //muestra los botones de ... ocultos
                 $(".contenedor-opciones-tema").hide(); //oculta los paneles iguales al que quiere desplegar
                 var nomTema = $(this).attr("data-nomTema");
-               $(this).parent().parent().after('<div class="contenedor-opciones-tema"></div>');  //crea panel
+               $(this).parent().parent().after('<tr class="contenedor-opciones-tema" col-span="6"></tr>');  //crea panel
                $.ajax({
                     type: "GET",
                     url: "/OpcionesTema?artista=${nomArtista}&album=${nomAlbum}&tema="+nomTema,
