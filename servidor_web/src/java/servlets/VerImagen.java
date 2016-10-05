@@ -63,25 +63,28 @@ public class VerImagen extends HttpServlet {
                 if (tipo.equals("ImagenUsuario")) {
                     img = interfaz.getImageUsuario(nomUsuario);
                     if (img == null) {
+                        //si el usuario es un cliente:
                         url = sc.getResource("/assets/img/profile.png");
+                        //si no
+                        //url = sc.getResource("/assets/img/artista.png");
                     }
                 }
                 if (tipo.equals("ImagenAlbum")) {
                     img = interfaz.getImageAlbum(nomUsuario, extra);
                     if (img == null) {
-                        url = new URL("./assets/img/default_cover.png");
+                        url = new URL("/assets/img/default_cover.png");
                     }
                 }
                 if (tipo.equals("ImagenListaDefecto")) {
                     img = interfaz.getImageListaDefecto(extra);
                     if (img == null) {
-                        url = new URL("./assets/img/default_cover.png");
+                        url = sc.getResource("/assets/img/default_cover.png");
                     }
                 }
                 if (tipo.equals("ImagenListaParticular")) {
                     img = interfaz.getImageListaParticular(nomUsuario, extra);
                     if (img == null) {
-                        url = new URL("./assets/img/default_cover.png");
+                        url = sc.getResource("/assets/img/default_cover.png");
                     }
                 }
                 if (img == null) {

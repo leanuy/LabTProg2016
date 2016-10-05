@@ -73,7 +73,10 @@
                             <ul>
                             <c:forEach items="${seguidores}" var="item">
                                 <li>
-                                    <a class="link-user" href="/VerPerfil?nick=${item}">${item}</a>
+                                    <a class="btn-link" href="/VerPerfil?nick=${item}">
+                                        <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null"/>
+                                        <h3>${item}</h3>
+                                    </a>
                                 </li>
                             </c:forEach>
                             </ul>
@@ -82,7 +85,10 @@
                             <ul>
                                 <c:forEach items="${albums}" var="item">
                                     <li>
-                                        <a href="/VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
+                                        <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">
+                                            <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${$nick}&extra=${item}"/>
+                                            <h3>${item}</h3>
+                                        </a>
                                     </li>
                                 </c:forEach>
                             </ul>
