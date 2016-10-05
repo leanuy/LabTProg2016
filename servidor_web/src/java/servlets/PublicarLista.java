@@ -6,18 +6,25 @@
 package servlets;
 
 import espotify.Fabrica;
+import espotify.datatypes.DataParticular;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
+import espotify.excepciones.ListaRepetidaException;
 import espotify.excepciones.YaPublicaException;
+import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.web.ISuscripcionWeb;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -87,7 +94,41 @@ public class PublicarLista extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        HttpSession session = request.getSession();
+
+
+        String nombre = new String(request.getParameter("nombre").getBytes(
+                "iso-8859-1"), "UTF-8");
+
+        try {
+            if (!nombre.equals("")) {
+                IAltaLista ial = Fabrica.getIAltaLista();
+                DataParticular dataParticular;
+                
+                boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+                if (isMultipart){
+                    Part part = request.getPart("imagen");
+                    InputStream is = part.getInputStream();
+                    BufferedImage img = ImageIO.read(is);
+                    dataParticular = new DataParticular((String) session.getAttribute("nick_sesion"), nombre, img);
+                }else{
+                    dataParticular = new DataParticular((String) session.getAttribute("nick_sesion"), nombre, null);
+                }
+                
+                ial.altaListaParticular(dataParticular);
+                request.getRequestDispatcher("/VerListaParticular?nick="+session.getAttribute("nick_sesion")+"&lista="+nombre).forward(request, response);
+            } else {
+                request.setAttribute("has_errors", true);
+                request.setAttribute("error_nombre", "El nombre de la lista es requerido");
+                request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
+            }
+        } catch (ListaRepetidaException e) {
+            request.setAttribute("has_errors", true);
+            request.setAttribute("error_nombre", "Usted ya tiene una lista con ese nombre");
+            request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
+        } catch (ClienteInexistenteException e) {
+            response.sendError(404);
+        }
     }
 
     /**
