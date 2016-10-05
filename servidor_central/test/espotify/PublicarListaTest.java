@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
@@ -51,7 +52,7 @@ public class PublicarListaTest {
     }
     
     @Test (expected = ClienteInexistenteException.class)
-    public void test8PublicarLista2() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException {
+    public void test8PublicarLista2() throws ClienteInexistenteException, ListaInexistenteException, YaPublicaException, ListaRepetidaException, CampoVacioException {
         System.out.println("PublicarLista: nombre de usuario incorrecto");
         DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder", null);
         IAltaLista instance = Fabrica.getIAltaLista();
@@ -60,7 +61,7 @@ public class PublicarListaTest {
     }
     
     @Test (expected = ListaInexistenteException.class)
-    public void test9PublicarLista3() throws ClienteInexistenteException, ListaInexistenteException, ListaRepetidaException, YaPublicaException {
+    public void test9PublicarLista3() throws ClienteInexistenteException, ListaInexistenteException, ListaRepetidaException, YaPublicaException, CampoVacioException {
         System.out.println("PublicarLista: nombre de lista incorrecto");
         DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica que no va a poder por el nombre", null);
         IAltaLista instance = Fabrica.getIAltaLista();
@@ -92,7 +93,7 @@ public class PublicarListaTest {
     }
     
     @Test (expected = YaPublicaException.class)
-    public void tirameLaExcepcionPapa() throws YaPublicaException, ListaRepetidaException, ClienteInexistenteException, ListaInexistenteException {
+    public void tirameLaExcepcionPapa() throws YaPublicaException, ListaRepetidaException, ClienteInexistenteException, ListaInexistenteException, CampoVacioException {
         DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica D", null);
         IAltaLista instance = Fabrica.getIAltaLista();
         instance.altaListaParticular(dLista);
