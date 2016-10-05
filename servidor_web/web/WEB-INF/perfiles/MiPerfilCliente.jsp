@@ -55,7 +55,7 @@
                             <c:forEach items="${seguidores}" var="item">
                                 <li>
                                     <a class="btn-link" href="/VerPerfil?nick=${item}">
-                                        <image src="/assets/img/profile.png"/>
+                                        <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null"/>
                                         <h3>${item}</h3>
                                     </a>
                                 </li>
@@ -67,7 +67,7 @@
                                 <c:forEach items="${seguidos}" var="item">
                                     <li>
                                         <a class="btn-link" href="/VerPerfil?nick=${item}">
-                                            <image src="/assets/img/profile.png"/>
+                                            <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null"/>
                                             <h3>${item}</h3>
                                         </a>
                                     </li>

@@ -82,15 +82,13 @@ public class DesFavoritear extends HttpServlet {
                     //esto no funciona exactamente como querríamos, si favoriteás desde una lista va al álbum.
                     request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
                 } else if(tipoFav.equals("defecto")) {
-                        String nomLista = new String(request.getParameter("lista").getBytes(
-                        "iso-8859-1"), "UTF-8");
-                        DataDefecto d = new DataDefecto("",nomLista,null);
-                        ifav.desFavoritear(nick, d);
+                    String nomLista = new String(request.getParameter("lista").getBytes(
+                    "iso-8859-1"), "UTF-8");
+                    DataDefecto d = new DataDefecto("",nomLista,null);
+                    ifav.desFavoritear(nick, d);
 
-                        request.getRequestDispatcher("/VerListaDefecto?lista="+nomLista).forward(request,response);
+                    response.sendRedirect("/VerListaDefecto?lista="+nomLista);
                 }
-                
-                
             } catch (ClienteInexistenteException ex) {
                 response.sendError(500);
             } catch (FavoritoRepetidoException ex) {
