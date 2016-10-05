@@ -11,37 +11,76 @@
 <t:body>
     <div class="panel panel-default">
         <div class="panel-body">
-            <div class="row">         
-                <!--<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
-                    <img src="<c:out value="${imagen}"/>" class="img-circle" style="width:100%"> <%--imagen del cliente--%>
-                </div>
+            <div class="row">
                 <h1>
-                </h1>-->
+                    Espotify
+                </h1>
             </div>
             <div class="horizontalgap" style="height:10px"></div>
-            <div class="row">             
-                <!--<div class="tabs">
-                    <ul class="tab-links">
-                        <li class="active"><a class="btn-link" href="#listas">Listas (<c:out value="${fn:length(listas)}"/>)</a></li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="listas" class="tab active">
-                            <ul class="rig columns-4">
-                                
-                            </ul>
-                        </div>
-                    </div>
-                </div>-->
+            <div class="row">       
+                <table class="features-table">
+                    <thead>
+                      <tr>
+                        <td></td>
+                        <td>Visitante</td>
+                        <td>Registrado</td>
+                        <td>Suscriptor</td>
+                      </tr>
+                    </thead>       
+                    <tbody>
+                      <tr>
+                        <td>Ver Perfiles</td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Reproduce música</td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Mira tus favoritos en un solo lugar</td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Agrega nuevos ítems a tus favoritos</td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Listas de reproducción personalizadas</td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Comparte tus listas</td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Sigue a los artistas y usuarios que más te importan</td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                      <tr>
+                        <td>Descarga temas y escúchalos en cualquier parte*</td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-remove"></i></td>
+                        <td><i class="glyphicon glyphicon-ok"></i></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                (*) solo disponible para algunos temas del sitio.
             </div>
+            <div class="horizontalgap" style="height:10px"></div>
         </div>
     </div>
-    
 </t:body>
-
-
-
-
-<%--El usuario visitante solo puede ver el perfil de los Artistas,
-si selecciona un Cliente el sistema mostrará su nickname e imagen,
-y sus listas de reproducción particulares públicas que son
-accesibles a sus seguidores.--%>
