@@ -20,6 +20,7 @@ import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IListarClientes;
+import espotify.interfaces.web.IObtenerImagen;
 import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerAlbum;
@@ -147,5 +148,9 @@ public final class Fabrica {
     
     public static IFavoritos getIFavoritos() {
         return new CtrlUsuarios();
+    }
+    
+    public static IObtenerImagen getIImagen() {
+        return new CtrlImagenes();
     }
 }

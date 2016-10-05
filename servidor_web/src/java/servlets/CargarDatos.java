@@ -182,7 +182,7 @@ public class CargarDatos extends HttpServlet {
         String bio;
         
         
-        url = sc.getResource("/assets/img/artistas/profile.png");
+        url = sc.getResource("/assets/img/artistas/VillagePeople.jpg");
         imag = ImageIO.read(url);
         img = (BufferedImage) imag;
         cal.set(1977, 1, 1);
