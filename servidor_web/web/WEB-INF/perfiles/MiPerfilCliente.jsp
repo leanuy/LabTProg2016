@@ -75,6 +75,7 @@
                             </ul>
                         </div>
                         <div id="listas" class="tab">
+                            <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/crearlistaparticular">Crear lista</a>
                             <ul>
                                 <c:forEach items="${listasPub}" var="item">
                                     <li>
