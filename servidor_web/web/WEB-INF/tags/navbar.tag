@@ -43,7 +43,9 @@
                     </c:when>    
                     <c:otherwise>
                         <li class="dropdown menu-usuario">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px 20px"><img src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${nick_sesion}&extra=null" class="img-circle" style="width:30px;"> <c:out value="${nick_sesion}"/> <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="padding:10px 20px">
+                                <img src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${nick_sesion}&extra=null" class="image-circle" style="width:30px; height:30px;">
+                                <c:out value="${nick_sesion}"/> <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/MiPerfil">Mi Perfil</a></li>
                                 <c:choose>
