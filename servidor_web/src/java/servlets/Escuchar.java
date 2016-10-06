@@ -13,13 +13,17 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -48,31 +52,37 @@ public class Escuchar extends HttpServlet {
         ServletOutputStream stream = null;
         BufferedInputStream buf = null;
         try {
-          stream = response.getOutputStream();
-          File mp3 = Fabrica.getIObtenerAudio().getAudio(artista,album,tema);
+            stream = response.getOutputStream();
+            HttpSession session = request.getSession();
+            ServletContext sc = session.getServletContext();
 
-          //set response headers
-          response.setContentType("audio/mpeg");
+            URL mp3 = sc.getResource("/assets/audio/RoundtableRival.mp3");
+            Fabrica.getIObtenerAudio().getAudio(artista,album,tema);
 
-          response.addHeader("Content-Disposition", "attachment; filename=" + mp3.getName());
+            //set response headers
+            response.setContentType("audio/mpeg");
 
-          response.setContentLength((int) mp3.length());
+            response.addHeader("Content-Disposition", "attachment; filename=" + artista+" - "+album+" - "+tema);
 
-          FileInputStream input = new FileInputStream(mp3);
-          buf = new BufferedInputStream(input);
-          int readBytes = 0;
-          //read from the file; write to the ServletOutputStream
-          while ((readBytes = buf.read()) != -1)
-            stream.write(readBytes);
-        } catch (IOException ioe) {
-          throw new ServletException(ioe.getMessage());
-        } catch (ArtistaInexistenteException ex) {
-            Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (AlbumInexistenteException ex) {
-            Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (TemaTipoInvalidoException ex) {
-            Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
+            InputStream input = mp3.openStream();
+            buf = new BufferedInputStream(input);
+            int readBytes;
+            int length = 0;
+            //read from the file; write to the ServletOutputStream
+            while ((readBytes = buf.read()) != -1) {
+                length++;
+                stream.write(readBytes);
+            }
+            response.setContentLength(length);
+          } catch (IOException ioe) {
+            throw new ServletException(ioe.getMessage());
+          } catch (ArtistaInexistenteException ex) {
+              Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (AlbumInexistenteException ex) {
+              Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+          } catch (TemaTipoInvalidoException ex) {
+              Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+          } finally {
           if (stream != null)
             stream.close();
           if (buf != null)
