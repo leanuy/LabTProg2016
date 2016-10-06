@@ -65,7 +65,6 @@ public class OpcionesTema extends HttpServlet {
         try {
             DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
                 out.write("<a href=\"/Escuchar?artista="+nickArtista+"&album="+nombreAlbum+"&tema="+nombreTema+"\">Escuchar(Experimental)</a>");
-                out.write("<br><a href=\""+ ((DataTemaArchivo) data).getArchivo().getCanonicalPath() +"\">Path archivo)</a>");
 
             if (data instanceof DataTemaWeb) {
                 out.write("<a href=\""+((DataTemaWeb) data).getUrl()+"\">Link al tema</a>\n");

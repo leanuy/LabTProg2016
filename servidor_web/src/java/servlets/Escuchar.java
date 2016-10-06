@@ -53,19 +53,20 @@ public class Escuchar extends HttpServlet {
         BufferedInputStream buf = null;
         try {
             stream = response.getOutputStream();
-            HttpSession session = request.getSession();
+            /*HttpSession session = request.getSession();
             ServletContext sc = session.getServletContext();
 
             URL mp3 = sc.getResource("/assets/audio/RoundtableRival.mp3");
-            Fabrica.getIObtenerAudio().getAudio(artista,album,tema);
-
+            
             //set response headers
             response.setContentType("audio/mpeg");
 
             response.addHeader("Content-Disposition", "attachment; filename=" + artista+" - "+album+" - "+tema);
 
             InputStream input = mp3.openStream();
-            buf = new BufferedInputStream(input);
+            buf = new BufferedInputStream(input);*/
+            buf = Fabrica.getIObtenerAudio().getAudio(artista,album,tema);
+
             int readBytes;
             int length = 0;
             //read from the file; write to the ServletOutputStream
