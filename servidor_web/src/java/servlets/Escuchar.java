@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -7,28 +6,26 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataTema;
-import espotify.datatypes.DataTemaArchivo;
-import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.interfaces.web.ISuscripcionWeb;
-import espotify.interfaces.web.IVerAlbum;
+import espotify.excepciones.TemaTipoInvalidoException;
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.EstadoSesion;
 
 /**
  *
  * @author JavierM42
  */
-public class OpcionesTema extends HttpServlet {
+public class Escuchar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,48 +38,45 @@ public class OpcionesTema extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String nickArtista = new String(request.getParameter("artista").getBytes(
-                "iso-8859-1"), "UTF-8");
-        String nombreAlbum = new String(request.getParameter("album").getBytes(
-                "iso-8859-1"), "UTF-8");
-        String nombreTema = new String(request.getParameter("tema").getBytes(
-                "iso-8859-1"), "UTF-8");
-        PrintWriter out = response.getWriter();
+        String tema = new String(request.getParameter("tema").getBytes(
+            "iso-8859-1"), "UTF-8");
+        String album = new String(request.getParameter("album").getBytes(
+            "iso-8859-1"), "UTF-8");
+        String artista = new String(request.getParameter("artista").getBytes(
+            "iso-8859-1"), "UTF-8");
         
-        HttpSession session = request.getSession();
-        boolean tieneVigente=false;
-        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String nick = (String) session.getAttribute("nick_sesion");
-                ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
-                try {
-                    tieneVigente = isusc.tieneSuscripcionVigente(nick);
-                } catch (ClienteInexistenteException e) {
-                    tieneVigente = false;
-                }
-        }
-        IVerAlbum interf = Fabrica.getIVerAlbum();
+        ServletOutputStream stream = null;
+        BufferedInputStream buf = null;
         try {
-            DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
-                out.write("<a href=\"/Escuchar?artista="+nickArtista+"&album="+nombreAlbum+"&tema="+nombreTema+"\">Escuchar(Experimental)</a>");
-                out.write("<br><a href=\""+ ((DataTemaArchivo) data).getArchivo().getCanonicalPath() +"\">Escuchar(Experimental)</a>");
+          stream = response.getOutputStream();
+          File mp3 = Fabrica.getIObtenerAudio().getAudio(artista,album,tema);
 
-            if (data instanceof DataTemaWeb) {
-                out.write("<a href=\""+((DataTemaWeb) data).getUrl()+"\">Link al tema</a>\n");
-            } else if (tieneVigente) {
-                out.write("<a href=\"#\">Descargar (no implementado)</a>\n");
-            } else {
-                out.write("<a href=\"/Suscripcion\">Suscríbete</a> para poder descargar este y muchos temas más.\n");
-            }
+          //set response headers
+          response.setContentType("audio/mpeg");
 
-            if(tieneVigente) {
-                out.write("Agregar a lista: ");
-                out.write("\nNo implementado aún!");
-            }
+          response.addHeader("Content-Disposition", "attachment; filename=" + mp3.getName());
+
+          response.setContentLength((int) mp3.length());
+
+          FileInputStream input = new FileInputStream(mp3);
+          buf = new BufferedInputStream(input);
+          int readBytes = 0;
+          //read from the file; write to the ServletOutputStream
+          while ((readBytes = buf.read()) != -1)
+            stream.write(readBytes);
+        } catch (IOException ioe) {
+          throw new ServletException(ioe.getMessage());
         } catch (ArtistaInexistenteException ex) {
-            out.write("Error");
+            Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
         } catch (AlbumInexistenteException ex) {
-            out.write("Error");
+            Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (TemaTipoInvalidoException ex) {
+            Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+          if (stream != null)
+            stream.close();
+          if (buf != null)
+            buf.close();
         }
     }
 
