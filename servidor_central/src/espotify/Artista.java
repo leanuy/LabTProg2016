@@ -6,6 +6,8 @@ import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.TemaTipoInvalidoException;
+import java.io.File;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,5 +96,9 @@ class Artista extends Usuario {
     DataTema consultaTema(String nomAlbum, String nomTema)
             throws AlbumInexistenteException {
         return buscarAlbum(nomAlbum).devolverTema(nomTema).getData();
+    }
+
+    File getAudio(String album, String tema) throws AlbumInexistenteException, TemaTipoInvalidoException {
+        return buscarAlbum(album).getAudio(tema);
     }
 }

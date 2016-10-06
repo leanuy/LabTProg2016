@@ -30,6 +30,7 @@ import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
+import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
@@ -45,10 +46,12 @@ import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IListarClientes;
+import espotify.interfaces.web.IObtenerAudio;
 import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
+import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -59,7 +62,7 @@ import java.util.Map.Entry;
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
         IVerPerfil, IIniciarSesion, IWebSeguir, IListarArtistas, IListarClientes, IValidar, 
-        IFavoritos, ISuscripcionWeb {
+        IFavoritos, ISuscripcionWeb, IObtenerAudio {
 //Constructor
     public CtrlUsuarios() {
     }
@@ -571,4 +574,10 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             throws ArtistaInexistenteException, AlbumInexistenteException {
         return buscarArtista(nick).consultaTema(nomAlbum,nomTema);
     }
+    
+    public File getAudio(String nick, String album, String tema)
+            throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
+        return buscarArtista(nick).getAudio(album,tema);
+    }
+
 }

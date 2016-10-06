@@ -5,12 +5,15 @@ import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
+import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.DuracionInvalidaException;
 import espotify.excepciones.NumeroTemaInvalidoException;
 import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TemaTipoInvalidoException;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -148,5 +151,14 @@ public class Album implements Favoriteable {
             }
         }
         return salida;
+    }
+
+    File getAudio(String tema) throws AlbumInexistenteException, TemaTipoInvalidoException  {
+        Tema tem = devolverTema(tema);
+        if(tem==null) {
+            throw new AlbumInexistenteException();
+        } else {
+            return tem.getAudio();
+        }
     }
 }

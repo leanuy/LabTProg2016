@@ -18,6 +18,9 @@ class TemaArchivo extends Tema {
         DataTema root = super.getData();
         return new DataTemaArchivo(archivo, root.getNombre(), root.getDuracion(), root.getNum(),
                 root.getNomArtista(), root.getAlbum()); 
+    }  
+        
+    File getAudio() {
+        return this.archivo;
     }
-    
 }

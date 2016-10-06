@@ -2,13 +2,19 @@ package espotify;
 
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaWeb;
+import espotify.excepciones.TemaTipoInvalidoException;
+import java.io.File;
 
 class TemaWeb extends Tema {
     private final String url;
     
     TemaWeb(DataTemaWeb dtw, final Album album) {
         super(dtw, album);
-        this.url = dtw.getUrl();
+        String str = dtw.getUrl();
+        if(!str.startsWith("http")) {
+            str = "http://" + str;
+        }
+        this.url = str;
     }
     
     @Override
@@ -16,5 +22,10 @@ class TemaWeb extends Tema {
         final DataTema root = super.getData();
         return new DataTemaWeb(url, root.getNombre(), root.getDuracion(), root.getNum(),
                 root.getNomArtista(), root.getAlbum()); 
-    } 
+    }
+    
+    File getAudio() throws TemaTipoInvalidoException {
+        throw new TemaTipoInvalidoException();
+    }
+    
 }
