@@ -12,6 +12,7 @@ import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TemaTipoInvalidoException;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -153,12 +154,17 @@ public class Album implements Favoriteable {
         return salida;
     }
 
-    File getAudio(String tema) throws AlbumInexistenteException, TemaTipoInvalidoException  {
+    BufferedInputStream getAudio(String tema) throws AlbumInexistenteException, TemaTipoInvalidoException  {
         Tema tem = devolverTema(tema);
         if(tem==null) {
             throw new AlbumInexistenteException();
         } else {
-            return tem.getAudio();
+            if(tem instanceof TemaArchivo) {
+                return ((TemaArchivo) tem).getAudio();
+            }
+            else {
+                throw new TemaTipoInvalidoException();
+            }
         }
     }
 }

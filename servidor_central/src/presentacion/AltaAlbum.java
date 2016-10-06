@@ -17,8 +17,11 @@ import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaAlbum;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
@@ -45,6 +48,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private static boolean web;
     private static String url;
     private static File file;
+    private static BufferedInputStream buf;
     private static String nombre;
     private static int duracion;
     private BufferedImage img = null;
@@ -372,7 +376,8 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                         listaTemas.add(dTema);
                         modeloTemas.addElement(numeroTema + " - " + dTema.getNombre());
                     } else {
-                        DataTemaArchivo dta = new DataTemaArchivo(file,nombre,duracion,numeroTema,ArtistSelected,nombreAlbum.getText());
+                        
+                        DataTemaArchivo dta = new DataTemaArchivo(buf,nombre,duracion,numeroTema,ArtistSelected,nombreAlbum.getText());
                         listaTemas.add(dta);
                         modeloTemas.addElement(numeroTema + " - " + dta.getNombre());
                     }
@@ -406,6 +411,9 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
                 }
                 img = ImageIO.read(file);
                 pathALaImagen.setText(pathAImagen);
+                URL url = new URL(pathAImagen);
+                InputStream input = url.openStream();
+                buf = new BufferedInputStream(input);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "La ruta al archivo no es correcta", "Error", JOptionPane.ERROR_MESSAGE);
             }

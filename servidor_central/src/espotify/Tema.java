@@ -1,10 +1,8 @@
 package espotify;
 
 import espotify.datatypes.DataTema;
-import espotify.excepciones.TemaTipoInvalidoException;
-import java.io.File;
 
-abstract class Tema implements Favoriteable {
+class Tema implements Favoriteable {
     private final String nombre;
     private final int duracion;
     private final int num;
@@ -36,6 +34,4 @@ abstract class Tema implements Favoriteable {
         this.num = dataTema.getNum();
         this.album = album;
     }
-
-    abstract File getAudio() throws TemaTipoInvalidoException;
 }

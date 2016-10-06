@@ -22,7 +22,11 @@ import espotify.interfaces.IPublicarLista;
 
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import javax.imageio.ImageIO;
@@ -782,7 +786,9 @@ public class MainFrame extends javax.swing.JFrame {
         DataAlbumExt dataAlbumExt;
         IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         File tema;
-
+        InputStream input;
+        BufferedInputStream buf;
+        
         nickArtista = "vpeople";
         nombreAlbum = "Village People Live and Sleazy";
         generos = new ArrayList<>();
@@ -793,7 +799,8 @@ public class MainFrame extends javax.swing.JFrame {
         temas = new ArrayList<>();
         temas.add(new DataTemaWeb("bit.ly/SCvpymca", "YMCA", 268, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/MachoMan.mp3");
-        temas.add(new DataTemaArchivo(tema, "Macho Man", 208, 2, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "Macho Man", 208, 2, nickArtista, nombreAlbum));
         temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In the Navy", 193, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
@@ -805,9 +812,11 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Electropop");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/PersonalJesus.mp3");
-        temas.add(new DataTemaArchivo(tema, "Personal Jesus", 296, 1, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "Personal Jesus", 296, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/EnjoyTheSilence.mp3");
-        temas.add(new DataTemaArchivo(tema, "Enjoy The Silence", 261, 2, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "Enjoy The Silence", 261, 2, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Violator", 1990, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
@@ -820,7 +829,8 @@ public class MainFrame extends javax.swing.JFrame {
         temas = new ArrayList<>();
         temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", "Girls Just Want To Have Fun", 195, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/TimeAfterTime.mp3");
-        temas.add(new DataTemaArchivo(tema, "Time After Time", 312, 2, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "Time After Time", 312, 2, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/ShesSoUnusual.PNG");
         img = ImageIO.read(file);
 
@@ -837,7 +847,8 @@ public class MainFrame extends javax.swing.JFrame {
         temas.add(new DataTemaWeb("bit.ly/SCbsborninusa", "Born In The U.S.A.", 298, 1, nickArtista, nombreAlbum));
         temas.add(new DataTemaWeb("bit.ly/SCbsglorydays", "Glory Days", 323, 2, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/DancingInTheDark.mp3");
-        temas.add(new DataTemaArchivo(tema, "Dancing In The Park", 238, 3, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "Dancing In The Park", 238, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
@@ -849,7 +860,8 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/ItSNotUnusual.mp3");
-        temas.add(new DataTemaArchivo(tema, "It’s Not Unusual", 120, 1, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "It’s Not Unusual", 120, 1, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/ItsNotUnusual.jpeg");
         img = ImageIO.read(file);
 
@@ -873,9 +885,11 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/ElDuelo.mp3");
-        temas.add(new DataTemaArchivo(tema, "El Duelo", 323, 1, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "El Duelo", 323, 1, nickArtista, nombreAlbum));
         tema = new File("./src/Presentacion/mp3/Mentira.mp3");
-        temas.add(new DataTemaArchivo(tema, "Mentira", 288, 2, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "Mentira", 288, 2, nickArtista, nombreAlbum));
         file = new File("./src/Presentacion/img/albums/mtvUnplugged.jpg");
         img = ImageIO.read(file);
 
@@ -908,7 +922,8 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Electropop");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/NoQuieroEstudiar.mp3");
-        temas.add(new DataTemaArchivo(tema, "No Quiero Estudiar", 132, 1, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "No Quiero Estudiar", 132, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
@@ -920,7 +935,8 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Balada");
         temas = new ArrayList<>();
         tema = new File("./src/Presentacion/mp3/PorEseHombre.mp3");
-        temas.add(new DataTemaArchivo(tema, "Por Ese Hombre", 285, 1, nickArtista, nombreAlbum));
+        buf = new BufferedInputStream(new FileInputStream(tema));
+        temas.add(new DataTemaArchivo(buf, "Por Ese Hombre", 285, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Hay Amores Que Matan", 1993, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);

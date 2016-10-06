@@ -51,6 +51,7 @@ import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
+import java.io.BufferedInputStream;
 import java.io.File;
 
 import java.util.ArrayList;
@@ -575,7 +576,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarArtista(nick).consultaTema(nomAlbum,nomTema);
     }
     
-    public File getAudio(String nick, String album, String tema)
+    public BufferedInputStream getAudio(String nick, String album, String tema)
             throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
         return buscarArtista(nick).getAudio(album,tema);
     }

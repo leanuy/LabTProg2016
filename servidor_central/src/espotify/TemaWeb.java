@@ -24,8 +24,4 @@ class TemaWeb extends Tema {
                 root.getNomArtista(), root.getAlbum()); 
     }
     
-    File getAudio() throws TemaTipoInvalidoException {
-        throw new TemaTipoInvalidoException();
-    }
-    
 }

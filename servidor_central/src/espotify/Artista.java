@@ -7,6 +7,7 @@ import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
+import java.io.BufferedInputStream;
 import java.io.File;
 
 import java.util.ArrayList;
@@ -98,7 +99,7 @@ class Artista extends Usuario {
         return buscarAlbum(nomAlbum).devolverTema(nomTema).getData();
     }
 
-    File getAudio(String album, String tema) throws AlbumInexistenteException, TemaTipoInvalidoException {
+    BufferedInputStream getAudio(String album, String tema) throws AlbumInexistenteException, TemaTipoInvalidoException {
         return buscarAlbum(album).getAudio(tema);
     }
 }

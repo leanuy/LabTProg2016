@@ -8,6 +8,7 @@ package espotify.interfaces.web;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
+import java.io.BufferedInputStream;
 import java.io.File;
 
 /**
@@ -15,6 +16,6 @@ import java.io.File;
  * @author JavierM42
  */
 public interface IObtenerAudio {
-    public File getAudio(String nick, String album, String tema)
+    public BufferedInputStream getAudio(String nick, String album, String tema)
         throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException;
 }
