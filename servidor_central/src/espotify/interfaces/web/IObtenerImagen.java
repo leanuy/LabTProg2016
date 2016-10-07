@@ -22,9 +22,11 @@ public interface IObtenerImagen {
     
     public boolean esArtista(String nickUsr);
     
-    public BufferedImage getImageAlbum(String nickUsr, String album) throws ArtistaInexistenteException, AlbumInexistenteException;
+    public BufferedImage getImageAlbum(String nickUsr, String album);
     
     public BufferedImage getImageListaDefecto(String nomLista) throws ListaInexistenteException;
     
     public BufferedImage getImageListaParticular(String nickUsr, String lista) throws ClienteInexistenteException, ListaInexistenteException;
+    
+    public BufferedImage getImageLista(String nickUsr, String lista);
 }

@@ -44,10 +44,15 @@ public class CtrlImagenes implements IObtenerImagen {
     }
     
     @Override
-    public BufferedImage getImageAlbum(String nickUsr, String album) throws ArtistaInexistenteException, AlbumInexistenteException {
-        DataAlbumExt alb = new CtrlUsuarios().consultaAlbum(album, nickUsr);
-        BufferedImage img = alb.getImg();
-        return img;
+    public BufferedImage getImageAlbum(String nickUsr, String album){
+        try {
+            DataAlbumExt alb = new CtrlUsuarios().consultaAlbum(album, nickUsr);
+            BufferedImage img = null;
+            img = alb.getImg();
+            return img;
+        } catch (ArtistaInexistenteException | AlbumInexistenteException ex) {
+            return null;
+        }
     }
     
     @Override
@@ -64,4 +69,18 @@ public class CtrlImagenes implements IObtenerImagen {
         return img;
     }
     
+    @Override
+    public BufferedImage getImageLista(String nickUsr, String lista) {
+        try {
+            DataLista list = new CtrlListas().darInfoParticular(lista, nickUsr);
+            BufferedImage img = list.getImg();
+            if (img == null) {
+                list = new CtrlListas().darInfoDefecto(lista);
+                img = list.getImg();
+            }
+            return img;
+        } catch (ClienteInexistenteException | ListaInexistenteException ex) {
+            return null;
+        }        
+    }
 }

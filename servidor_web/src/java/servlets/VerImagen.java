@@ -73,7 +73,7 @@ public class VerImagen extends HttpServlet {
             if (tipo.equals("ImagenAlbum")) {
                 img = interfaz.getImageAlbum(nomUsuario, extra);
                 if (img == null) {
-                    url = new URL("/assets/img/default_cover.png");
+                    url = sc.getResource("/assets/img/default_cover.png");
                 }
             }
             if (tipo.equals("ImagenListaDefecto")) {
@@ -88,6 +88,12 @@ public class VerImagen extends HttpServlet {
                     url = sc.getResource("/assets/img/default_cover.png");
                 }
             }
+            if (tipo.equals("ImagenLista")) {
+                img = interfaz.getImageLista(nomUsuario, extra);
+                if (img == null) {
+                    url = sc.getResource("/assets/img/default_cover.png");
+                }
+            }
             if (img == null) {
                 Image imag;
                 imag = ImageIO.read(url);
@@ -98,10 +104,6 @@ public class VerImagen extends HttpServlet {
             out.close();
 
         } catch (UsuarioInexistenteException ex) {
-            response.sendError(404);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(404);
-        } catch (AlbumInexistenteException ex) {
             response.sendError(404);
         } catch (ListaInexistenteException ex) {
             response.sendError(404);
