@@ -3,6 +3,7 @@ package espotify.interfaces;
 import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
