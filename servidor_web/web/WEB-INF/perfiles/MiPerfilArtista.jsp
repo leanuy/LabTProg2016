@@ -59,6 +59,9 @@
                             <ul>
                                 <c:forEach items="${seguidores}" var="item">
                                     <li>
+            <%--dejarlo lindo--%>                            <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
+                                            <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null"/>
+                                        </div>
                                         <a class="btn-link" href="/VerPerfil?nick=${item}">${item}</a>
                                     </li>
                                 </c:forEach>
@@ -68,6 +71,9 @@
                             <ul>
                                 <c:forEach items="${albums}" var="item">
                                     <li>
+                <%--dejarlo lindo--%>                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
+                                            <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${nick}&extra=${item}" class="img-circle" style="width:100%"/>
+                                        </div>
                                         <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
                                     </li>
                                 </c:forEach>

@@ -20,6 +20,8 @@ public interface IObtenerImagen {
     
     public BufferedImage getImageUsuario(String nickUsr) throws UsuarioInexistenteException;
     
+    public boolean esArtista(String nickUsr);
+    
     public BufferedImage getImageAlbum(String nickUsr, String album) throws ArtistaInexistenteException, AlbumInexistenteException;
     
     public BufferedImage getImageListaDefecto(String nomLista) throws ListaInexistenteException;
