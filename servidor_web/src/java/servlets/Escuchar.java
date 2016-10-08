@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletContext;
@@ -52,24 +53,13 @@ public class Escuchar extends HttpServlet {
         ServletOutputStream stream = null;
         BufferedInputStream buf = null;
         try {
+            int length = 0;
+            //response.setBufferSize(archivo.size()+200);
             stream = response.getOutputStream();
-            /*HttpSession session = request.getSession();
-            ServletContext sc = session.getServletContext();
-
-            URL mp3 = sc.getResource("/assets/audio/RoundtableRival.mp3");
             
-            //set response headers
-            response.setContentType("audio/mpeg");
-
-            response.addHeader("Content-Disposition", "attachment; filename=" + artista+" - "+album+" - "+tema);
-
-            InputStream input = mp3.openStream();
-            buf = new BufferedInputStream(input);*/
             buf = Fabrica.getIObtenerAudio().getAudio(artista,album,tema);
 
             int readBytes;
-            int length = 0;
-            //read from the file; write to the ServletOutputStream
             while ((readBytes = buf.read()) != -1) {
                 length++;
                 stream.write(readBytes);
@@ -78,11 +68,11 @@ public class Escuchar extends HttpServlet {
           } catch (IOException ioe) {
             throw new ServletException(ioe.getMessage());
           } catch (ArtistaInexistenteException ex) {
-              Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+              response.sendError(500);
           } catch (AlbumInexistenteException ex) {
-              Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+              response.sendError(500);
           } catch (TemaTipoInvalidoException ex) {
-              Logger.getLogger(Escuchar.class.getName()).log(Level.SEVERE, null, ex);
+              response.sendError(500);
           } finally {
           if (stream != null)
             stream.close();
