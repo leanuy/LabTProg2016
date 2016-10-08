@@ -64,7 +64,7 @@ public class OpcionesTema extends HttpServlet {
         IVerAlbum interf = Fabrica.getIVerAlbum();
         try {
             DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
-                out.write("<a href=\"/Escuchar?artista="+nickArtista+"&album="+nombreAlbum+"&tema="+nombreTema+"\">Escuchar(Experimental)</a>");
+                out.write("<button class='btnTema' data-artista='"+nickArtista+"' data-album='"+nombreAlbum+"' data-tema='"+nombreTema+"' >Escuchar(Experimental)</button>");
 
             if (data instanceof DataTemaWeb) {
                 out.write("<a href=\""+((DataTemaWeb) data).getUrl()+"\">Link al tema</a>\n");

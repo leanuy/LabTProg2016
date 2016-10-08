@@ -8,6 +8,106 @@
 
 <%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
 
+<script src="assets/js/jquery-3.1.0.min.js"></script>
+<script>
+    var idxTrack=0;
+    var tracks = [];
+    
+    function ActualizarLista() {
+        var content = "";
+        for (i=idxTrack; i<tracks.length;i++) {
+            if(i===idxTrack) {
+                content+="<li><i class='glyphicon glyphicon-play'></i> "+tracks[i][0]+" - "+tracks[i][2]+"</li>";
+            } else {
+                content+="<li>"+tracks[i][0]+" - "+tracks[i][2]+"</li>";
+            }
+        }
+        $("#listatemas").html(content);
+    }
+    
+    function ReproducirTema(){
+        MostrarInfoTema(idxTrack);
+        ActualizarLista();
+        var art = tracks[idxTrack][0];
+        var alb = tracks[idxTrack][1];
+        var tem = tracks[idxTrack][2];
+        var repr = document.getElementById("aurepr");
+        repr.pause();
+        repr.currentTime=0;
+        $("#aurepr").attr("src", "/Escuchar?artista="+art+"&album="+alb+"&tema="+tem);
+        repr.load();
+        repr.play();
+    };
+    
+    function reproducirSiguiente() {
+        if(idxTrack+1===tracks.length) {
+            tracks=[];
+            idxTrack=0;
+            document.getElementById("aurepr").pause();
+            $(".reproductor").hide();
+        } else {
+            idxTrack++;
+            ReproducirTema();
+        }
+    }
+    
+    function MostrarInfoTema() {
+        var art = tracks[idxTrack][0];
+        var alb = tracks[idxTrack][1];
+        var tem = tracks[idxTrack][2];
+        $("#ArtistaReproduccion").html(art);
+        $("#AlbumReproduccion").html(alb);
+        $("#TemaReproduccion").html(tem);
+        $("#trackImage").attr("src","/VerImagen?tipo=ImagenAlbum&nombreUsuario="+art+"&extra="+alb);
+    }
+    
+    function agregarTema(art,alb,tem) {
+        $(".reproductor").show();
+        tracks[tracks.length]=[art,alb,tem];
+        if(tracks.length===1) {
+            ReproducirTema();
+        } else {
+            ActualizarLista();
+        }
+    }
+    
+    $(document).ready( function(){
+        $(".reproductor").hide();
+        //$("#aurepr").hide();
+        $("#playbtn").hide();
+        $("#playbtn").click(function() {
+            if(idxTrack<=tracks.length) {
+                $("#playbtn").hide();
+                $("#pausebtn").show();
+                repr = document.getElementById("aurepr");
+                if(repr.paused) {
+                    repr.play();
+                }
+            }
+        });
+        $("#pausebtn").click(function() {
+            if(idxTrack<=tracks.length) {
+                $("#pausebtn").hide();
+                $("#playbtn").show();
+                repr = document.getElementById("aurepr");
+                if(! repr.paused) {
+                    repr.pause();
+                }
+            }
+        });
+        $("#skipbtn").click( function() {reproducirSiguiente();});
+                
+        $(".btnTema").click(function() {
+            var art = $(this).attr("data-artista");
+            var alb = $(this).attr("data-album");
+            var tem = $(this).attr("data-tema");
+            agregarTema(art,alb,tem);
+        });
+        
+    });    
+</script>
+
+
 <div class="menu-izquierda col-lg-2 col-md-2 hidden-sm hidden-xs">
     <div class="row">
         <ul class="list-group">
@@ -20,18 +120,11 @@
 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
     <div class="row reproductor">
 
-        <div id="nowPlay" style="margin:10px 0px">
-            <div id="auTitle">---</div>
-        </div>
-        <audio id="aurepr" preload="auto" controls onended="get_next(1)"></audio>
-        <div id="auExtraControls">
-            <button id="btnPrev" class="ctrlbtn" onclick="get_next(-1);">
-                <i class="fa fa-step-backward fa-2x" aria-hidden="true"></i>
-            </button>
-            <button id="btnNext" class="ctrlbtn" onclick="get_next(1);">
-                <i class="fa fa-step-forward fa-2x" aria-hidden="true"></i>
-            </button>
-        </div>
+        <audio id="aurepr" preload="auto" controls onended="reproducirSiguiente()"></audio>
+        
+        <ul id="listatemas">
+            
+        </ul>
         
         
         <div class="col-lg-12 hidden-sm hidden-xs"><img id="trackImage" src="assets/img/cover.jpg" style="width:100%"></div>
@@ -51,12 +144,15 @@
                     </button>
                 </div>
                 <div class="col-xs-4">
-                    <button class="btn btn-link  btn-md">
+                    <button id="playbtn" class="btn btn-link  btn-md">
                         <i class="glyphicon glyphicon-play"></i>
+                    </button>
+                    <button id="pausebtn" class="btn btn-link  btn-md">
+                        <i class="glyphicon glyphicon-pause"></i>
                     </button>
                 </div>
                 <div class="col-xs-4">
-                    <button class="btn btn-link  btn-md" onclick="get_next(1);">
+                    <button id="skipbtn" class="btn btn-link  btn-md">
                         <i class="glyphicon glyphicon-step-forward"></i>
                     </button>
                 </div>

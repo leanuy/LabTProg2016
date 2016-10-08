@@ -80,7 +80,8 @@
                     <tbody>
                         <c:forEach items="${temas}" var="tema" varStatus="temaStatus">
                             <tr>
-                                <td><button class="btn btn-link btn-lg "><i class="glyphicon glyphicon-play-circle"></i></button></td>
+                                <td><button class="btn btn-link btn-lg btnTema" data-artista="${nomArtista}" data-album="${nomAlbum}" data-tema="${tema.nombre}">
+                                        <i class="glyphicon glyphicon-play-circle"></i></button></td>
                                 <td><c:out value="${tema.num}"/></td>
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
