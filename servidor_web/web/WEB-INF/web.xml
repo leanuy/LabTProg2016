@@ -73,6 +73,10 @@
         <servlet-class>servlets.Buscar</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>OrdenarBuscar</servlet-name>
+        <servlet-class>servlets.OrdenarBuscar</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>DesFavoritear</servlet-name>
         <servlet-class>servlets.DesFavoritear</servlet-class>
     </servlet>
@@ -223,6 +227,10 @@
     <servlet-mapping>
         <servlet-name>Bienvenida</servlet-name>
         <url-pattern>/Bienvenida</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrdenarBuscar</servlet-name>
+        <url-pattern>/ordenar_busqueda</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

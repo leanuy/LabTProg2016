@@ -59,7 +59,13 @@ public class VerListaDefecto extends HttpServlet {
             request.setAttribute("temas", data.getTemas());
 
             boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
-            boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+            boolean soyCli;
+            try {
+                soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+            }
+            catch (NullPointerException e) {
+                soyCli = false;
+            }
             if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
                 IFavoritos ifav = Fabrica.getIFavoritos();
                 boolean es_favorito;

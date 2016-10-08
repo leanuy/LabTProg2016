@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Map;
 
 class Cliente extends Usuario {
-    private final Map<String,Usuario> seguidos;
-    private final Map<String,Particular> listas;
+    private final Map<String, Usuario> seguidos;
+    private final Map<String, Particular> listas;
     private final List<Favoriteable> favoritos;
-    private final Map<Calendar,Suscripcion> suscripciones; //por fechaCreacion
+    private final Map<Calendar, Suscripcion> suscripciones; //por fechaCreacion
     private Suscripcion suscripcionActiva;
     
     Cliente(DataUsuario data) {
@@ -39,6 +39,26 @@ class Cliente extends Usuario {
         this.favoritos = new ArrayList<>();
         this.suscripciones = new HashMap<>();
         this.suscripcionActiva = null;
+    }
+    
+    Map<String, Particular> getListas() {
+        return this.listas;
+    }
+    
+    List<Publica> getListasPublicas() {
+        List<Publica> result = new ArrayList<Publica>();
+        List<Lista> listaListas = new ArrayList<Lista>(listas.values());
+        Iterator itListas = listaListas.iterator();
+        Lista listaActual;
+        Publica publicaActual;
+        while (itListas.hasNext()) {
+            listaActual = (Lista) itListas.next();
+            if (listaActual instanceof Publica) {
+                publicaActual = (Publica) listaActual;
+                result.add(publicaActual);
+            }
+        }
+        return result;
     }
     
     DataClienteExt getDataClienteExt() {

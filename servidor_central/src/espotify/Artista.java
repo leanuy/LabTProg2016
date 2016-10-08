@@ -29,6 +29,10 @@ class Artista extends Usuario {
         return this.albums.containsKey(album);
     }
     
+    Map<String, Album> getAlbums() {
+        return this.albums;
+    }
+    
     //constructores
     Artista(DataArtista data) {
         super(data);
