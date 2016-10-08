@@ -78,12 +78,15 @@
                             <ul>
                                 <c:forEach items="${listasPub}" var="item">
                                     <li>
+                                        <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${item}"/>
                                         <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
                                     </li>
                                 </c:forEach>
                                 <c:forEach items="${listasPriv}" var="item">
                                     <li>
-                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">${item} 
+                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}
+                                            <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${item}"/>
+                                            <h3>${item.nombre}</h3>
                                         <i class="glyphicon glyphicon-lock"></i></a>
                                     </li>
                                 </c:forEach>

@@ -48,67 +48,69 @@ public class VerImagen extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("image/jpeg");
         HttpSession session = request.getSession();
-        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String tipo = new String(request.getParameter("tipo").getBytes(
-                "iso-8859-1"), "UTF-8");
-            String nomUsuario = new String(request.getParameter("nombreUsuario").getBytes(
-                "iso-8859-1"), "UTF-8");
-            String extra = new String(request.getParameter("extra").getBytes(
-                "iso-8859-1"), "UTF-8");
-            IObtenerImagen interfaz = Fabrica.getIImagen();
-            BufferedImage img = null;
-            URL url = null;
-            ServletContext sc = session.getServletContext();
-            try {
-                if (tipo.equals("ImagenUsuario")) {
-                    img = interfaz.getImageUsuario(nomUsuario);
-                    if (img == null) {
-                        //si el usuario es un cliente:
-                        url = sc.getResource("/assets/img/profile.png");
-                        //si no
-                        //url = sc.getResource("/assets/img/artista.png");
-                    }
-                }
-                if (tipo.equals("ImagenAlbum")) {
-                    img = interfaz.getImageAlbum(nomUsuario, extra);
-                    if (img == null) {
-                        url = new URL("/assets/img/default_cover.png");
-                    }
-                }
-                if (tipo.equals("ImagenListaDefecto")) {
-                    img = interfaz.getImageListaDefecto(extra);
-                    if (img == null) {
-                        url = sc.getResource("/assets/img/default_cover.png");
-                    }
-                }
-                if (tipo.equals("ImagenListaParticular")) {
-                    img = interfaz.getImageListaParticular(nomUsuario, extra);
-                    if (img == null) {
-                        url = sc.getResource("/assets/img/default_cover.png");
-                    }
-                }
+        String tipo = new String(request.getParameter("tipo").getBytes(
+            "iso-8859-1"), "UTF-8");
+        String nomUsuario = new String(request.getParameter("nombreUsuario").getBytes(
+            "iso-8859-1"), "UTF-8");
+        String extra = new String(request.getParameter("extra").getBytes(
+            "iso-8859-1"), "UTF-8");
+        IObtenerImagen interfaz = Fabrica.getIImagen();
+        BufferedImage img = null;
+        URL url = null;
+        ServletContext sc = session.getServletContext();
+        try {
+            if (tipo.equals("ImagenUsuario")) {
+                img = interfaz.getImageUsuario(nomUsuario);
                 if (img == null) {
-                    Image imag;
-                    imag = ImageIO.read(url);
-                    img = (BufferedImage) imag;
+                    boolean artista = interfaz.esArtista(nomUsuario);
+                    if (artista){
+                        url = sc.getResource("/assets/img/artista.png");
+                    } else {
+                        url = sc.getResource("/assets/img/profile.png");
+                    }
                 }
-		OutputStream out = response.getOutputStream();
-                //String s = request.getContextPath();
-                ImageIO.write(img, "png", out);
-		out.close();
-            
-            } catch (UsuarioInexistenteException ex) {
-                response.sendError(404);
-            } catch (ArtistaInexistenteException ex) {
-                response.sendError(404);
-            } catch (AlbumInexistenteException ex) {
-                response.sendError(404);
-            } catch (ListaInexistenteException ex) {
-                response.sendError(404);
-            } catch (ClienteInexistenteException ex) {
-                response.sendError(404);
             }
+            if (tipo.equals("ImagenAlbum")) {
+                img = interfaz.getImageAlbum(nomUsuario, extra);
+                if (img == null) {
+                    url = sc.getResource("/assets/img/default_cover.png");
+                }
+            }
+            if (tipo.equals("ImagenListaDefecto")) {
+                img = interfaz.getImageListaDefecto(extra);
+                if (img == null) {
+                    url = sc.getResource("/assets/img/default_cover.png");
+                }
+            }
+            if (tipo.equals("ImagenListaParticular")) {
+                img = interfaz.getImageListaParticular(nomUsuario, extra);
+                if (img == null) {
+                    url = sc.getResource("/assets/img/default_cover.png");
+                }
+            }
+            if (tipo.equals("ImagenLista")) {
+                img = interfaz.getImageLista(nomUsuario, extra);
+                if (img == null) {
+                    url = sc.getResource("/assets/img/default_cover.png");
+                }
+            }
+            if (img == null) {
+                Image imag;
+                imag = ImageIO.read(url);
+                img = (BufferedImage) imag;
+            }
+            OutputStream out = response.getOutputStream();
+            ImageIO.write(img, "png", out);
+            out.close();
+
+        } catch (UsuarioInexistenteException ex) {
+            response.sendError(404);
+        } catch (ListaInexistenteException ex) {
+            response.sendError(404);
+        } catch (ClienteInexistenteException ex) {
+            response.sendError(404);
         }
+        
     }
             
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

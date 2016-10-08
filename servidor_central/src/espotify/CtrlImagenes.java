@@ -6,6 +6,7 @@
 package espotify;
 
 import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataUsuario;
 import espotify.excepciones.AlbumInexistenteException;
@@ -15,11 +16,8 @@ import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IObtenerImagen;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
 /**
  *
@@ -31,44 +29,36 @@ public class CtrlImagenes implements IObtenerImagen {
     public BufferedImage getImageUsuario(String nickUsr) throws UsuarioInexistenteException {
         DataUsuario usr = new CtrlUsuarios().buscarUsuario(nickUsr);
         BufferedImage img = usr.getImg();
-        if (img == null) {
-            File file = new File("./src/Presentacion/img/clientes/ElPadrino.png");
-            try {
-                img = ImageIO.read(file);
-            } catch (IOException ex) {
-                Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
         return img;
     }
     
     @Override
-    public BufferedImage getImageAlbum(String nickUsr, String album) throws ArtistaInexistenteException, AlbumInexistenteException {
-        DataAlbumExt alb = new CtrlUsuarios().consultaAlbum(album, nickUsr);
-        BufferedImage img = alb.getImg();
-        if (img == null) {
-            File file = new File("./src/Presentacion/img/clientes/ElPadrino.png");
-            try {
-                img = ImageIO.read(file);
-            } catch (IOException ex) {
-                Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    public boolean esArtista(String nickUsr) {
+        try {
+            Artista da = new CtrlUsuarios().buscarArtista(nickUsr);
+            return da != null;
+        } catch (ArtistaInexistenteException ex) {
+            Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return img;
+        return false;
+    }
+    
+    @Override
+    public BufferedImage getImageAlbum(String nickUsr, String album){
+        try {
+            DataAlbumExt alb = new CtrlUsuarios().consultaAlbum(album, nickUsr);
+            BufferedImage img = null;
+            img = alb.getImg();
+            return img;
+        } catch (ArtistaInexistenteException | AlbumInexistenteException ex) {
+            return null;
+        }
     }
     
     @Override
     public BufferedImage getImageListaDefecto(String nomLista) throws ListaInexistenteException {
         DataLista list = new CtrlListas().darInfoDefecto(nomLista);
         BufferedImage img = list.getImg();
-        if (img == null) {
-            File file = new File("./src/Presentacion/img/clientes/ElPadrino.png");
-            try {
-                img = ImageIO.read(file);
-            } catch (IOException ex) {
-                Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
         return img;
     }
     
@@ -76,14 +66,21 @@ public class CtrlImagenes implements IObtenerImagen {
     public BufferedImage getImageListaParticular(String nickUsr, String lista) throws ClienteInexistenteException, ListaInexistenteException {
         DataLista list = new CtrlListas().darInfoParticular(lista, nickUsr);
         BufferedImage img = list.getImg();
-        if (img == null) {
-            File file = new File("./src/Presentacion/img/clientes/ElPadrino.png");
-            try {
-                img = ImageIO.read(file);
-            } catch (IOException ex) {
-                Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
         return img;
+    }
+    
+    @Override
+    public BufferedImage getImageLista(String nickUsr, String lista) {
+        try {
+            DataLista list = new CtrlListas().darInfoParticular(lista, nickUsr);
+            BufferedImage img = list.getImg();
+            if (img == null) {
+                list = new CtrlListas().darInfoDefecto(lista);
+                img = list.getImg();
+            }
+            return img;
+        } catch (ClienteInexistenteException | ListaInexistenteException ex) {
+            return null;
+        }        
     }
 }

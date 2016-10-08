@@ -47,7 +47,7 @@
                                 <c:forEach items="${listas}" var="item">
                                     <li>
                                         <a href="/VerListaParticular?nick=${nick}&lista=${item}">
-                                            <image src="/assets/img/default_cover.png"/>
+                                            <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${item}"/>
                                             <h3>${item}</h3>
                                         </a>
                                     </li>
