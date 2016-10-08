@@ -580,5 +580,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
         return buscarArtista(nick).getAudio(album,tema);
     }
+    
+
 
 }

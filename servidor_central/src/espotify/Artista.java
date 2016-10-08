@@ -102,4 +102,6 @@ class Artista extends Usuario {
     BufferedInputStream getAudio(String album, String tema) throws AlbumInexistenteException, TemaTipoInvalidoException {
         return buscarAlbum(album).getAudio(tema);
     }
+    
+
 }

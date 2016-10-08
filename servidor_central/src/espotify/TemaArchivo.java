@@ -3,11 +3,18 @@ package espotify;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
 import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 class TemaArchivo extends Tema {
-    private final BufferedInputStream archivo;
+    private BufferedInputStream archivo;
+    private ArrayList<Integer> fil;
     
     TemaArchivo(DataTemaArchivo dta, final Album album) {
         super(dta, album);
@@ -22,6 +29,6 @@ class TemaArchivo extends Tema {
     }  
         
     BufferedInputStream getAudio() {
-        return this.archivo;
+        return archivo;
     }
 }
