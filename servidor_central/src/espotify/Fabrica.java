@@ -18,6 +18,7 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IAgregarTemaListaWeb;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.IObtenerAudio;
@@ -164,4 +165,8 @@ public final class Fabrica {
         return new CtrlUsuarios();
     }
     
+    
+    public static IAgregarTemaListaWeb getIAgregarTemaListaWeb() {
+        return new CtrlListas();
+    }
 }

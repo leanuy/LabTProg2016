@@ -3,7 +3,6 @@ package espotify;
 import espotify.datatypes.DataLista;
 import espotify.excepciones.YaPublicaException;
 
-import java.awt.image.BufferedImage;
 
 abstract class Particular extends Lista {
     private final Cliente cli;
