@@ -9,6 +9,7 @@ import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
 import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.AutoSeguirseException;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.FavoritoRepetidoException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
@@ -155,16 +156,15 @@ class Cliente extends Usuario {
         return buscarLista(nombre).listarTemas();
     }
     
-    void altaLista(DataParticular dataLista) throws ListaRepetidaException {
-        if (validarNombreLista(dataLista.getNombre())) {
-            listas.put(dataLista.getNombre(), new Privada(dataLista,this));
-        } else {
+    void altaLista(DataParticular dataLista) throws ListaRepetidaException, CampoVacioException {
+        
+        if (dataLista.getNombre().equals("")) {
+            throw new CampoVacioException();
+        } else if (listas.containsKey(dataLista.getNombre())) {
             throw new ListaRepetidaException();
+        } else {
+            listas.put(dataLista.getNombre(), new Privada(dataLista, this));
         }
-    }
-    
-    private boolean validarNombreLista(String nom) {
-        return !listas.containsKey(nom) && !nom.equals("");
     }
 
     void quitarTemaDeLista(String nomLista, String nomTema,String nomAlbum) throws ListaInexistenteException {

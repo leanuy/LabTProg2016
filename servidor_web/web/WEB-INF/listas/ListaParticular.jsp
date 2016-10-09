@@ -11,8 +11,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
-                    <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${nomLista}" class="img-circle" style="width:100%"/> <%--imagen del album--%>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                    <img src="/VerImagen?tipo=ImagenListaParticular&nombreUsuario=${nick_sesion}&extra=${nomLista}" style="width:100%"/> <%--imagen del album--%>
                 </div>
                 <%--datos basicos--%>
                 <div>
