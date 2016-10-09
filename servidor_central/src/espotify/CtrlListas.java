@@ -12,7 +12,6 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
-import espotify.excepciones.TemaInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaLista;
@@ -26,8 +25,6 @@ import espotify.interfaces.web.IVerListaParticular;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CtrlListas implements IAltaLista, IPublicarLista,
         IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, 
@@ -224,7 +221,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         clie.agregarTemaLista(tem, lista_poner);
     }
     
-/*    @Override
+/*  @Override
     public void agregarTemaWebxListaPub(String nick_sesion, String lista_poner, 
             String nom_tema, String lista_sacar, String usuario) throws ClienteInexistenteException, 
             ListaInexistenteException, TemaInexistenteException, Exception {
@@ -247,7 +244,6 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         Tema tem = def.buscarTema(nom_tema);
         Cliente clie = ctrlU.buscarCliente(nick_sesion);
         clie.agregarTemaLista(tem, lista_poner);
-<<<<<<< 8388f3ebdfc36309562d3ff7425b8e28bcde5119
     }*/
     
     
