@@ -35,8 +35,8 @@ public class CtrlImagenes implements IObtenerImagen {
     @Override
     public boolean esArtista(String nickUsr) {
         try {
-            Artista da = new CtrlUsuarios().buscarArtista(nickUsr);
-            return da != null;
+            Artista dataArt = new CtrlUsuarios().buscarArtista(nickUsr);
+            return dataArt != null;
         } catch (ArtistaInexistenteException ex) {
             Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
         }

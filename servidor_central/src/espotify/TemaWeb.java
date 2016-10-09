@@ -11,7 +11,7 @@ class TemaWeb extends Tema {
     TemaWeb(DataTemaWeb dtw, final Album album) {
         super(dtw, album);
         String str = dtw.getUrl();
-        if(!str.startsWith("http")) {
+        if (!str.startsWith("http")) {
             str = "http://" + str;
         }
         this.url = str;

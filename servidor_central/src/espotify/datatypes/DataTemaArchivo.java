@@ -12,8 +12,8 @@ public class DataTemaArchivo extends DataTema {
 
     public DataTemaArchivo(BufferedInputStream buf, String nombre, int duracion,
             int num, String artista, String album) {
-        super(nombre, duracion, num, artista, album);
+        super(nombre, duracion, num, artista, album, false);
         this.archivo = buf;
     }
-    
+        
 }

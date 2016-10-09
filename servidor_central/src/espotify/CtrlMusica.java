@@ -193,14 +193,14 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         Iterator itArtistas = listaArtistas.iterator();
         Artista artistaActual;
         String[] toAdd;
-        while(itArtistas.hasNext()) {
+        while (itArtistas.hasNext()) {
             artistaActual = (Artista) itArtistas.next();
             Map<String, Album> albums = artistaActual.getAlbums();
             List<Album> listaAlbums = new ArrayList<Album>(albums.values());
             Iterator itAlbums = listaAlbums.iterator();
             Album albumActual;
             Integer anoAlbum;
-            while(itAlbums.hasNext()) {
+            while (itAlbums.hasNext()) {
                 albumActual = (Album) itAlbums.next();
                 DataAlbumExt dataAlbumExt = albumActual.getDataExt();
                 anoAlbum = dataAlbumExt.getAnio();
@@ -213,7 +213,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
                 List<DataTema> listaTemas = dataAlbumExt.getTemas();
                 Iterator itTemas = listaTemas.iterator();
                 DataTema dataTemaActual;
-                while(itTemas.hasNext()) {
+                while (itTemas.hasNext()) {
                     dataTemaActual = (DataTema) itTemas.next();
                     if (generoMatchea || dataTemaActual.getNombre().toLowerCase().contains(busqueda)) {
                         toAdd = new String[4];
@@ -237,13 +237,13 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         List<Artista> listaArtistas = new ArrayList<Artista>(artistas.values());
         Iterator itArtistas = listaArtistas.iterator();
         Artista artistaActual;
-        while(itArtistas.hasNext()) {
+        while (itArtistas.hasNext()) {
             artistaActual = (Artista) itArtistas.next();
             Map<String, Album> albums = artistaActual.getAlbums();
             List<Album> listaAlbums = new ArrayList<Album>(albums.values());
             Iterator itAlbums = listaAlbums.iterator();
             Album albumActual;
-            while(itAlbums.hasNext()) {
+            while (itAlbums.hasNext()) {
                 albumActual = (Album) itAlbums.next();
                 boolean matchea = false;
                 DataAlbum dataAlbum = albumActual.getData();
@@ -251,7 +251,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
                 if (!matchea) {
                     List<String> generos = dataAlbum.getGeneros();
                     Iterator itGeneros = generos.iterator();
-                    while(itGeneros.hasNext() && !matchea) {
+                    while (itGeneros.hasNext() && !matchea) {
                         matchea = ((String) itGeneros.next()).toLowerCase().contains(busqueda);
                     }
                 }
@@ -280,7 +280,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             List<? extends Lista> listasPublicas = clienteActual.getListasPublicas();
             Iterator itPublicas = listasPublicas.iterator();
             Publica publicaActual;
-            while(itPublicas.hasNext()) {
+            while (itPublicas.hasNext()) {
                 publicaActual = (Publica) itPublicas.next();
                 if (hayQueAgregarPublica(busqueda, publicaActual)) {
                     agregar = new String[4];
@@ -295,11 +295,11 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         return result;
     }
     
-    private void agregarListasDefectoPorBusqueda(String busqueda, List< ? extends Lista> listasPorDefecto,List<String[]> result){
+    private void agregarListasDefectoPorBusqueda(String busqueda, List<? extends Lista> listasPorDefecto,List<String[]> result) {
         Iterator itDefecto = listasPorDefecto.iterator();
         Defecto defectoActual;
         String[] agregar;
-        while(itDefecto.hasNext()) {
+        while (itDefecto.hasNext()) {
             defectoActual = (Defecto) itDefecto.next();
             if (defectoActual.getNombre().toLowerCase().contains(busqueda) || defectoActual.getNomGenero().toLowerCase().contains(busqueda)) {
                 agregar = new String[3];
@@ -320,13 +320,13 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             Album albumActual;
             List<String> generos;
             Iterator itGeneros;
-            while(!result && itTemas.hasNext()) {
+            while (!result && itTemas.hasNext()) {
                 albumActual = ((Tema) itTemas.next()).getAlbum();
                 result = albumActual.getNombre().toLowerCase().contains(busqueda);
                 if (!result) {
                     generos = albumActual.getData().getGeneros();
                     itGeneros = generos.iterator();
-                    while(!result && itGeneros.hasNext()) {
+                    while (!result && itGeneros.hasNext()) {
                         result = ((String) itGeneros.next()).toLowerCase().contains(busqueda);
                     }
                 }

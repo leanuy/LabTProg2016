@@ -1,10 +1,12 @@
 package espotify;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 final class ManejadorColecciones {
     private static ManejadorColecciones instancia;
+
     private final Map<String,Cliente> clientes;
     private final Map<String,Artista> artistas;
     private final Map<String,Defecto> listas; //POR DEFECTO
@@ -30,6 +32,10 @@ final class ManejadorColecciones {
     
     static void clear() {
         instancia = null;
+        File files = new File(getAudioFolder());
+        for (File f : files.listFiles()) {
+            f.delete();
+        }
     }
     
 //Clientes
@@ -88,4 +94,7 @@ final class ManejadorColecciones {
         return generoBase;
     }
     
+    static String getAudioFolder() {
+        return "/Users/JavierM42/Downloads/archivostaller/";
+    }
 }

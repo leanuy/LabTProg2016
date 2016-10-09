@@ -418,8 +418,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         } catch (ClienteInexistenteException e) {
             esCliente = false;
         }
-        if (esCliente) {
-        } else {
+        if (!esCliente) {
             try {
                 buscarArtista(nick);
             } catch (ArtistaInexistenteException ex) {
