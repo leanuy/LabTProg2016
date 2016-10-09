@@ -88,7 +88,6 @@
                                             </button>
                                         </c:when>
                                     </c:choose>
-                                            
                                 </td>
                                 <td><c:out value="${tema.num}"/></td>
                                 <td><c:out value="${tema.nombre}"/></td>

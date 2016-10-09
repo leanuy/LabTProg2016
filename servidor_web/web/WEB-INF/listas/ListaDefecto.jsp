@@ -54,8 +54,15 @@
                     <tbody>
                         <c:forEach items="${temas}" var="tema" varStatus="temaStatus">
                             <tr>
-                                <td><button class="btn btn-link btn-lg btnTema" data-artista="${tema.nomArtista}" data-album="${tema.album}" data-tema="${tema.nombre}">
-                                        <i class="glyphicon glyphicon-play-circle"></i></button></td>                                <td><c:out value="${temaStatus.index+1}"/></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${not tema.esWeb}">
+                                            <button class="btn btn-link btn-lg btnTema" data-artista="${tema.nomArtista}" data-album="${tema.album}" data-tema="${tema.nombre}">
+                                                <i class="glyphicon glyphicon-play-circle"></i>
+                                            </button>
+                                        </c:when>
+                                    </c:choose>
+                                </td>                            <td><c:out value="${temaStatus.index+1}"/></td>
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
                                 <td>
