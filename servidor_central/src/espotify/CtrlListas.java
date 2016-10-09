@@ -247,6 +247,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         Tema tem = def.buscarTema(nom_tema);
         Cliente clie = ctrlU.buscarCliente(nick_sesion);
         clie.agregarTemaLista(tem, lista_poner);
+<<<<<<< 8388f3ebdfc36309562d3ff7425b8e28bcde5119
     }*/
     
     

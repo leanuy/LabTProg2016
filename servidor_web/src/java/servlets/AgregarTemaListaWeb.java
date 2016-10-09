@@ -41,37 +41,19 @@ public class AgregarTemaListaWeb extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String tipo = new String(request.getParameter("tipo").getBytes(
-                "iso-8859-1"), "UTF-8");
         String nick_sesion = new String(request.getParameter("nick_sesion").getBytes(
                 "iso-8859-1"), "UTF-8");
         String lista_poner = new String(request.getParameter("lista_poner").getBytes(
                 "iso-8859-1"), "UTF-8");
         String nom_tema = new String(request.getParameter("nom_tema").getBytes(
                 "iso-8859-1"), "UTF-8");
+        String album = new String(request.getParameter("album").getBytes(
+            "iso-8859-1"), "UTF-8");
+        String artista = new String(request.getParameter("artista").getBytes(
+            "iso-8859-1"), "UTF-8");
         IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
         try {
-            if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-                if (tipo.equals("Album")) {
-                    String album = new String(request.getParameter("album").getBytes(
-                        "iso-8859-1"), "UTF-8");
-                    String artista = new String(request.getParameter("artista").getBytes(
-                        "iso-8859-1"), "UTF-8");
-                    inter.agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
-                }
-                if (tipo.equals("ListaPub")) {
-                    String lista_sacar = new String(request.getParameter("lista_sacar").getBytes(
-                        "iso-8859-1"), "UTF-8");
-                    String usr_sacar = new String(request.getParameter("nick_sacar").getBytes(
-                        "iso-8859-1"), "UTF-8");
-                    inter.agregarTemaWebxListaPub(nick_sesion, lista_poner, nom_tema, lista_sacar, usr_sacar);
-                }
-                if (tipo.equals("ListaDef")) {
-                    String lista_sacar = new String(request.getParameter("lista_sacar").getBytes(
-                        "iso-8859-1"), "UTF-8");
-                    inter.agregarTemaWebxListaDefecto(nick_sesion, lista_poner, nom_tema, lista_sacar);
-                }
-            }
+            inter.agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
         } catch (AlbumInexistenteException ex) {
             response.sendError(404);
         } catch (ClienteInexistenteException ex) {
