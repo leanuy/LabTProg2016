@@ -388,3 +388,9 @@ select {
     border-radius:50%;
     object-fit: cover;
 }
+
+.image-square {
+    width:150px;
+    height:150px;
+    object-fit: cover;
+}

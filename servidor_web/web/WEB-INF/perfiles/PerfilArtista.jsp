@@ -70,7 +70,7 @@
                             </ul>
                         </div>
                         <div id="seguidores" class="tab">
-                            <ul>
+                            <ul class="rig-columns-4">
                             <c:forEach items="${seguidores}" var="item">
                                 <li>
                                     <a class="btn-link" href="/VerPerfil?nick=${item}">
@@ -78,15 +78,16 @@
                                         <h3>${item}</h3>
                                     </a>
                                 </li>
+                                
                             </c:forEach>
                             </ul>
                         </div>
                         <div id="albums" class="tab">
-                            <ul>
+                            <ul class="rig-columns-4">
                                 <c:forEach items="${albums}" var="item">
                                     <li>
                                         <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">
-                                            <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${$nick}&extra=${item}" class="image-circle"/>
+                                            <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${$nick}&extra=${item}" class="image-square"/>
                                             <h3>${item}</h3>
                                         </a>
                                     </li>
