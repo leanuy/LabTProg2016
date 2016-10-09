@@ -8,6 +8,7 @@ public class DataTema implements DataFavoriteable {
     private final int num;
     private final String nomArtista;
     private String album;
+    private boolean esWeb;
     
     public String getNombre() {
         return nombre;
@@ -49,6 +50,15 @@ public class DataTema implements DataFavoriteable {
         this.album = album;
     }
 
+    public DataTema(String nombre, int duracion, int num, String nomArtista, String album, boolean esWeb) {
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.num = num;
+        this.nomArtista = nomArtista;
+        this.album = album;
+        this.esWeb = esWeb;
+    }
+    
     @Override
     public String toString() {
         return "DataTema{" 
@@ -84,7 +94,12 @@ public class DataTema implements DataFavoriteable {
         }
         return Objects.equals(this.album, other.album);
     }
-    
-    
+
+    public boolean getEsWeb() {
+        return esWeb;
+    }
+
+
+
     
 }

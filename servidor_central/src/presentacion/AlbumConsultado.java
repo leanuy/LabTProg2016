@@ -4,6 +4,7 @@ import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
+import java.io.BufferedInputStream;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -275,13 +276,13 @@ public class AlbumConsultado extends javax.swing.JDialog {
                 return;
             }
             try {
-                File fileElegido = ((DataTemaArchivo)temaElegido).getArchivo();
+                BufferedInputStream fileElegido = ((DataTemaArchivo)temaElegido).getArchivo();
                 
-                FileInputStream fis = new FileInputStream(fileElegido);
+                //FileInputStream fis = new FileInputStream(fileElegido);
                 FileOutputStream alRes = new FileOutputStream(fileToSave);
                 alRes.flush();
                 byte[] buf = new byte[8192];
-                while (fis.read(buf, 0, 8192) != -1) {
+                while (fileElegido.read(buf, 0, 8192) != -1) {
                     alRes.write(buf);
                 }
                 alRes.close();

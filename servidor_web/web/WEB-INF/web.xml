@@ -120,6 +120,10 @@
         <servlet-name>AltaAlbum</servlet-name>
         <servlet-class>servlets.AltaAlbum</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Escuchar</servlet-name>
+        <servlet-class>servlets.Escuchar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -152,14 +156,6 @@
         <servlet-name>SeguirUsuario</servlet-name>
         <url-pattern>/SeguirUsuario</url-pattern>
     </servlet-mapping>
-    <!--    <error-page>
-        <error-code>404</error-code>
-        <location>/WEB-INF/errors/404.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>500</error-code>
-        <location>/WEB-INF/errors/500.jsp</location>
-    </error-page>-->
     <servlet-mapping>
         <servlet-name>MiPerfil</servlet-name>
         <url-pattern>/MiPerfil</url-pattern>
@@ -248,9 +244,11 @@
         <servlet-name>AltaAlbum</servlet-name>
         <url-pattern>/AltaAlbum</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Escuchar</servlet-name>
+        <url-pattern>/Escuchar</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
 </web-app>

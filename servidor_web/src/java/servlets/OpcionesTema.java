@@ -8,6 +8,7 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
@@ -63,10 +64,11 @@ public class OpcionesTema extends HttpServlet {
         IVerAlbum interf = Fabrica.getIVerAlbum();
         try {
             DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
+
             if (data instanceof DataTemaWeb) {
-                out.write("<a href=\"http://"+((DataTemaWeb) data).getUrl()+"\">Link al tema</a>\n");
+                out.write("<a href=\""+((DataTemaWeb) data).getUrl()+"\">Escuchar(vínculo externo)</a>\n");
             } else if (tieneVigente) {
-                out.write("<a href=\"#\">Descargar (no implementado)</a>\n");
+                out.write("<a class=\"link-user\" href=\"/Escuchar?artista="+nickArtista+"&album="+nombreAlbum+"&tema="+nombreTema+"\">Descargar</a>\n");
             } else {
                 out.write("<a href=\"/Suscripcion\">Suscríbete</a> para poder descargar este y muchos temas más.\n");
             }

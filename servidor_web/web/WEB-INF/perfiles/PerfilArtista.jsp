@@ -14,8 +14,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
-                    <img src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${nick}&extra=null" class="img-circle" style="width:100%"/> <%--imagen del cliente--%>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                    <img src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${nick}&extra=null" class="image-circle"/> <%--imagen del cliente--%>
                 </div>
                 <h1>
                     <c:out value="${nick}"/>
@@ -70,27 +70,24 @@
                             </ul>
                         </div>
                         <div id="seguidores" class="tab">
-                            <ul>
+                            <ul class="rig columns-4">
                             <c:forEach items="${seguidores}" var="item">
                                 <li>
                                     <a class="btn-link" href="/VerPerfil?nick=${item}">
-                    <%--dejarlo lindo--%>                    <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
-                                            <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null"/>
-                                        </div>
+                                        <img src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null" class="image-circle"/>
                                         <h3>${item}</h3>
                                     </a>
                                 </li>
+                                
                             </c:forEach>
                             </ul>
                         </div>
                         <div id="albums" class="tab">
-                            <ul>
+                            <ul class="rig columns-4">
                                 <c:forEach items="${albums}" var="item">
                                     <li>
                                         <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">
-                    <%--dejarlo lindo--%>                        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
-                                                <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${nick}&extra=${item}" class="img-circle" style="width:100%"/>
-                                            </div>
+                                            <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${$nick}&extra=${item}" class="image-square"/>
                                             <h3>${item}</h3>
                                         </a>
                                     </li>
@@ -105,14 +102,3 @@
     </div>
     
 </t:body>
-
-
-<%--Este caso de uso permite al Cliente/Artista consultar los siguientes datos de su perfil:
-nickname, correo electrónico, nombre, apellido, fecha de nacimiento e imagen (opcional).
-Luego, el sistema muestra todos los datos del usuario, incluyendo, sí tiene, su imagen asociada.
-Se muestran los nickname de todos los seguidores que tiene.
-Si es artista se listan los nombres de cada álbum
-que tenga registrado y, para cualquier álbum que el usuario quiera, se visualizan
-los datos de éste de la misma forma que se hace en Consulta de Álbum. El usuario
-visitante solo puede ver el perfil de los Artistas.--%>
-

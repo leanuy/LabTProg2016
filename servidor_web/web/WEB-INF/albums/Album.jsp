@@ -31,8 +31,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
-                    <img src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${nomArtista}&extra=${nomAlbum}" class="img-circle" style="width:100%"/>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                    <img src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${nomArtista}&extra=${nomAlbum}" class="image-square" style="width:100%"/>
                 </div>
                 <%--datos basicos--%>
                 <div>
@@ -80,7 +80,15 @@
                     <tbody>
                         <c:forEach items="${temas}" var="tema" varStatus="temaStatus">
                             <tr>
-                                <td><button class="btn btn-link btn-lg "><i class="glyphicon glyphicon-play-circle"></i></button></td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${not tema.esWeb}">
+                                            <button class="btn btn-link btn-lg btnTema" data-artista="${nomArtista}" data-album="${nomAlbum}" data-tema="${tema.nombre}">
+                                                <i class="glyphicon glyphicon-play-circle"></i>
+                                            </button>
+                                        </c:when>
+                                    </c:choose>
+                                </td>
                                 <td><c:out value="${tema.num}"/></td>
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
@@ -111,19 +119,4 @@
             </div>
         </div>
     </div>
-    
 </t:body>
-
-
-<%-- Luego, el sistema muestra el nombre del álbum, año de creación, 
-los géneros a los que aplica, su imagen (opcional)
-y la información detallada de cada una de los temas que componen el álbum,
-mostrando la URL o el link al archivo de descarga.
-
-Si el Cliente tiene una suscripción en estado “vigente”
-el Sistema permite descargar el archivo de música para ser escuchado off line, si existe.
-
-
-
---%>
-

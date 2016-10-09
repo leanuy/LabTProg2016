@@ -26,8 +26,10 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IPublicarLista;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -373,7 +375,8 @@ public class CargarDatos extends HttpServlet {
         DataAlbumExt dataAlbumExt;
         IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         File tema = null;
-
+        BufferedInputStream buf = null;
+        
         nickArtista = "vpeople";
         nombreAlbum = "Village People Live and Sleazy";
         generos = new ArrayList<String>();
@@ -384,7 +387,12 @@ public class CargarDatos extends HttpServlet {
         temas = new ArrayList<DataTema>();
         temas.add(new DataTemaWeb("bit.ly/SCvpymca", "YMCA", 268, 1, nickArtista, nombreAlbum));
         //tema = new File("./src/Presentacion/mp3/MachoMan.mp3");
-        temas.add(new DataTemaArchivo(tema, "Macho Man", 208, 2, nickArtista, nombreAlbum));
+        
+        
+        URL mp3 = sc.getResource("/assets/audio/MachoMan.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "Macho Man", 208, 2, nickArtista, nombreAlbum));
+        
         temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In the Navy", 193, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
@@ -395,10 +403,12 @@ public class CargarDatos extends HttpServlet {
         generos = new ArrayList<String>();
         generos.add("Electropop");
         temas = new ArrayList<DataTema>();
-        //tema = new File("./src/Presentacion/mp3/PersonalJesus.mp3");
-        temas.add(new DataTemaArchivo(tema, "Personal Jesus", 296, 1, nickArtista, nombreAlbum));
-        tema = new File("./src/Presentacion/mp3/EnjoyTheSilence.mp3");
-        temas.add(new DataTemaArchivo(tema, "Enjoy The Silence", 261, 2, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/PersonalJesus.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "Personal Jesus", 296, 1, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/EnjoyTheSilence.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "Enjoy The Silence", 261, 2, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Violator", 1990, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
@@ -410,8 +420,9 @@ public class CargarDatos extends HttpServlet {
         generos.add("Dance-pop");
         temas = new ArrayList<DataTema>();
         temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", "Girls Just Want To Have Fun", 195, 1, nickArtista, nombreAlbum));
-        //tema = new File("./src/Presentacion/mp3/TimeAfterTime.mp3");
-        temas.add(new DataTemaArchivo(tema, "Time After Time", 312, 2, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/TimeAfterTime.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "Time After Time", 312, 2, nickArtista, nombreAlbum));
         url = sc.getResource("/assets/img/albums/ShesSoUnusual.PNG");
         imag = ImageIO.read(url);
         img = (BufferedImage) imag;
@@ -428,8 +439,9 @@ public class CargarDatos extends HttpServlet {
         temas = new ArrayList<DataTema>();
         temas.add(new DataTemaWeb("bit.ly/SCbsborninusa", "Born In The U.S.A.", 298, 1, nickArtista, nombreAlbum));
         temas.add(new DataTemaWeb("bit.ly/SCbsglorydays", "Glory Days", 323, 2, nickArtista, nombreAlbum));
-        //tema = new File("./src/Presentacion/mp3/DancingInTheDark.mp3");
-        temas.add(new DataTemaArchivo(tema, "Dancing In The Park", 238, 3, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/DancingInTheDark.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "Dancing In The Park", 238, 3, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
@@ -440,8 +452,9 @@ public class CargarDatos extends HttpServlet {
         generos.add("Rock Clásico");
         generos.add("Pop Clásico");
         temas = new ArrayList<DataTema>();
-        tema = new File("./src/Presentacion/mp3/ItSNotUnusual.mp3");
-        temas.add(new DataTemaArchivo(tema, "It’s Not Unusual", 120, 1, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/ItSNotUnusual.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "It’s Not Unusual", 120, 1, nickArtista, nombreAlbum));
         url = sc.getResource("/assets/img/albums/ItsNotUnusual.jpeg");
         imag = ImageIO.read(url);
         img = (BufferedImage) imag;
@@ -465,10 +478,12 @@ public class CargarDatos extends HttpServlet {
         generos.add("Rock Latino");
         generos.add("Pop Clásico");
         temas = new ArrayList<DataTema>();
-        //tema = new File("./src/Presentacion/mp3/ElDuelo.mp3");
-        temas.add(new DataTemaArchivo(tema, "El Duelo", 323, 1, nickArtista, nombreAlbum));
-        tema = new File("./src/Presentacion/mp3/Mentira.mp3");
-        temas.add(new DataTemaArchivo(tema, "Mentira", 288, 2, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/ElDuelo.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "El Duelo", 323, 1, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/Mentira.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "Mentira", 288, 2, nickArtista, nombreAlbum));
         url = sc.getResource("/assets/img/albums/mtvUnplugged.jpg");
         imag = ImageIO.read(url);
         img = (BufferedImage) imag;
@@ -501,8 +516,9 @@ public class CargarDatos extends HttpServlet {
         generos = new ArrayList<String>();
         generos.add("Electropop");
         temas = new ArrayList<DataTema>();
-        //tema = new File("./src/Presentacion/mp3/NoQuieroEstudiar.mp3");
-        temas.add(new DataTemaArchivo(tema, "No Quiero Estudiar", 132, 1, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/NoQuieroEstudiar.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "No Quiero Estudiar", 132, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
@@ -513,8 +529,9 @@ public class CargarDatos extends HttpServlet {
         generos.add("Pop Clásico");
         generos.add("Balada");
         temas = new ArrayList<DataTema>();
-        //tema = new File("./src/Presentacion/mp3/PorEseHombre.mp3");
-        temas.add(new DataTemaArchivo(tema, "Por Ese Hombre", 285, 1, nickArtista, nombreAlbum));
+        mp3 = sc.getResource("/assets/audio/PorEseHombre.mp3");
+        buf = new BufferedInputStream(mp3.openStream());
+        temas.add(new DataTemaArchivo(buf, "Por Ese Hombre", 285, 1, nickArtista, nombreAlbum));
 
         dataAlbumExt = new DataAlbumExt(temas, "Hay Amores Que Matan", 1993, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
@@ -636,7 +653,6 @@ public class CargarDatos extends HttpServlet {
         iadd.agregarTemaLista(new DataTema("Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)", 0, 0, "chaiko","Concierto Para Piano No. 1 En Si Menor, Opus 23"), "Mis Favoritas");
         iadd.agregarTemaLista(new DataTema("Por Ese Hombre", 0, 0, "lospimpi","Hay Amores Que Matan"), "Mis Favoritas");
         iadd.listarListasDefecto();
-
     }
 
 }

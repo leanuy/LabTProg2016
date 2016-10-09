@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-abstract class Lista {
+class Lista {
     protected String nombre;
     protected BufferedImage img;
     protected final Map<String, Tema> temas;

@@ -19,7 +19,7 @@
                     <c:forEach items="${clientes}" var="item">
                         <li>
                             <a class="link-user" href="/VerPerfil?nick=${item.nombre}"/>
-                                <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item.nombre}&extra=null"/>
+                                <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item.nombre}&extra=null" class="image-circle"/>
                                 <h3>${item.nombre}</h3>
                             </a>
                         </li>

@@ -272,8 +272,6 @@ ul.rig li {
 	-webkit-box-sizing: border-box;
 }
 ul.rig li img {
-	max-width: 100%;
-	height: auto;
 	margin: 0 0 10px;
 }
 ul.rig li h3 {
@@ -382,4 +380,17 @@ select {
 
 .features-table tfoot td:first-child {
   border-bottom: none;
+}
+
+.image-circle {
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    object-fit: cover;
+}
+
+.image-square {
+    width:150px;
+    height:150px;
+    object-fit: cover;
 }

@@ -1,10 +1,12 @@
 package espotify;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
 final class ManejadorColecciones {
     private static ManejadorColecciones instancia;
+
     private final Map<String,Cliente> clientes;
     private final Map<String,Artista> artistas;
     private final Map<String,Defecto> listas; //POR DEFECTO
@@ -30,6 +32,10 @@ final class ManejadorColecciones {
     
     static void clear() {
         instancia = null;
+        File files = new File(getAudioFolder());
+        for (File f : files.listFiles()) {
+            f.delete();
+        }
     }
     
 //Clientes
@@ -88,4 +94,12 @@ final class ManejadorColecciones {
         return generoBase;
     }
     
+    /*
+    Tienen que cambiar el retorno cada uno en su máquina por una carpeta de su sistema,
+    que exista y ESTÉ VACÍA. 100% VACÍA. EN SERIO GURISES, VACÍA.
+    Que lo que tenga vuela al carajo cada vez que ejecutan la cuestión.
+    */
+    static String getAudioFolder() {
+        return "/Users/JavierM42/Downloads/archivostaller/";
+    }
 }
