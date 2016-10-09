@@ -21,6 +21,7 @@ import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IListarClientes;
+import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.IObtenerImagen;
 import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IValidar;
@@ -133,6 +134,10 @@ public final class Fabrica {
     }
     
     public static IVerGenero getIVerGenero() {
+        return new CtrlMusica();
+    }
+    
+    public static IListarGeneros getIListarGeneros() {
         return new CtrlMusica();
     }
     public static ISuscripcionWeb getISuscripcionWeb() {

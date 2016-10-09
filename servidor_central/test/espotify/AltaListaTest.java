@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
@@ -57,7 +58,7 @@ public class AltaListaTest {
     
     
     @Test
-    public void testAltaListaParticular1() throws ListaRepetidaException, ClienteInexistenteException {
+    public void testAltaListaParticular1() throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
         System.out.println("AltaListaParticular: caso ok");
         DataParticular dataLista = new DataParticular("TesterLista", "Mi Lista", null);
         IAltaLista instance = Fabrica.getIAltaLista();
@@ -65,7 +66,7 @@ public class AltaListaTest {
     }
     
     @Test (expected = ClienteInexistenteException.class)
-    public void testAltaListaParticular2() throws ListaRepetidaException, ClienteInexistenteException {
+    public void testAltaListaParticular2() throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
         System.out.println("AltaListaParticular:usuario inexistente");
         DataParticular data = new DataParticular("no existo yey", "Mi Lista", null);
         IAltaLista instance = Fabrica.getIAltaLista();
@@ -73,7 +74,7 @@ public class AltaListaTest {
     }
     
     @Test
-    public void testAltaListaParticular3() throws ListaRepetidaException, ClienteInexistenteException {
+    public void testAltaListaParticular3() throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
         System.out.println("AltaListaParticular:dos clientes con listas de igual nombre");
         DataParticular dataLista = new DataParticular("TesterLista", "Lista que comparte nombre", null);
         IAltaLista instance = Fabrica.getIAltaLista();
@@ -83,7 +84,7 @@ public class AltaListaTest {
     }
     
     @Test (expected = ListaRepetidaException.class)
-    public void testAltaListaParticular4() throws ListaRepetidaException, ClienteInexistenteException {
+    public void testAltaListaParticular4() throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
         System.out.println("AltaListaParticular:nombre de lista repetido");
         DataParticular dLista = new DataParticular("TesterLista", "Repetido", null);
         IAltaLista instance = Fabrica.getIAltaLista();
@@ -93,7 +94,7 @@ public class AltaListaTest {
     }
     
     @Test (expected = ListaRepetidaException.class)
-    public void testAltaListaParticular5() throws ListaRepetidaException, ClienteInexistenteException {
+    public void testAltaListaParticular5() throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
         System.out.println("AltaListaParticular:nombre de lista vacío");
         DataParticular dataLista = new DataParticular("TesterLista", "", null);
         IAltaLista instance = Fabrica.getIAltaLista();

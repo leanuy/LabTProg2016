@@ -116,6 +116,10 @@
         <servlet-name>Bienvenida</servlet-name>
         <servlet-class>servlets.Bienvenida</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AltaAlbum</servlet-name>
+        <servlet-class>servlets.AltaAlbum</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -239,6 +243,10 @@
     <servlet-mapping>
         <servlet-name>OrdenarBuscar</servlet-name>
         <url-pattern>/ordenar_busqueda</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaAlbum</servlet-name>
+        <url-pattern>/AltaAlbum</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
