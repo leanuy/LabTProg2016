@@ -11,12 +11,14 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
+import espotify.excepciones.TemaInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IConsultaLista;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IAgregarTemaListaWeb;
 import espotify.interfaces.web.IVerListaDefecto;
 import espotify.interfaces.web.IVerListaParticular;
 
@@ -25,7 +27,8 @@ import java.util.List;
 import java.util.Map;
 
 public class CtrlListas implements IAltaLista, IPublicarLista,
-        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, IVerListaParticular, IVerListaDefecto {
+        IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, 
+        IVerListaParticular, IVerListaDefecto, IAgregarTemaListaWeb {
     private static CtrlListas instancia;
     private String nickMem;
     private String nomListaMem;
@@ -193,7 +196,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     
     @Override
     public void agregarTemaLista(DataTema dtema, String lista)throws Exception {
-        CtrlUsuarios ctrlU = new CtrlUsuarios();        
+        CtrlUsuarios ctrlU = new CtrlUsuarios();
         if (dtema == null) {
             throw new Exception("No se selecciono un tema valido");
         }
@@ -205,6 +208,45 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         }
     }
 
+    @Override
+    public void agregarTemaWebxAlbum(String nick_sesion, String lista_poner, 
+            String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
+            AlbumInexistenteException, ClienteInexistenteException, Exception {
+        
+        CtrlUsuarios ctrlU = new CtrlUsuarios();
+        Artista art = ctrlU.buscarArtista(artista);
+        DataTema dt = art.consultaTema(album, nom_tema);
+        Tema tem = art.devolverTema(dt);
+        Cliente clie = ctrlU.buscarCliente(nick_sesion);
+        clie.agregarTemaLista(tem, lista_poner);
+    }
+    
+    @Override
+    public void agregarTemaWebxListaPub(String nick_sesion, String lista_poner, 
+            String nom_tema, String lista_sacar, String usuario) throws ClienteInexistenteException, 
+            ListaInexistenteException, TemaInexistenteException, Exception {
+        
+        CtrlUsuarios ctrlU = new CtrlUsuarios();
+        Cliente usuar = ctrlU.buscarCliente(usuario);
+        Particular part = usuar.buscarListaPublica(lista_sacar);
+        Tema tem = part.buscarTema(nom_tema);
+        Cliente clie = ctrlU.buscarCliente(nick_sesion);
+        clie.agregarTemaLista(tem, lista_poner);
+    }
+    
+    @Override
+    public void agregarTemaWebxListaDefecto(String nick_sesion, String lista_poner, 
+            String nom_tema, String lista_sacar) throws ListaInexistenteException, 
+            TemaInexistenteException, ClienteInexistenteException, Exception {
+        
+        CtrlUsuarios ctrlU = new CtrlUsuarios();
+        Defecto def = buscarLista(lista_sacar);
+        Tema tem = def.buscarTema(nom_tema);
+        Cliente clie = ctrlU.buscarCliente(nick_sesion);
+        clie.agregarTemaLista(tem, lista_poner);
+    }
+    
+    
     @Override
     public boolean listaEsPrivada(String nomLista, String nick)
             throws ClienteInexistenteException, ListaInexistenteException {

@@ -2,6 +2,7 @@ package espotify;
 
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataTema;
+import espotify.excepciones.TemaInexistenteException;
 import espotify.excepciones.TemaRepetidoException;
 
 import java.awt.image.BufferedImage;
@@ -68,5 +69,16 @@ abstract class Lista {
     
     DataLista getDataExt() {
         return new DataLista(nombre, img, listarTemas());
+    }
+    
+    Tema buscarTema(String nom_tema) throws TemaInexistenteException {
+        Tema tema;
+        for (Map.Entry<String, Tema> entry : temas.entrySet()) {
+            tema = entry.getValue();
+            if (nom_tema.equals(tema.getNombre())) {
+                return tema;
+            }
+        }
+        throw new TemaInexistenteException("No existe el tema en la lista");
     }
 }
