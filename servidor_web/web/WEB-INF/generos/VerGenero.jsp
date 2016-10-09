@@ -42,30 +42,33 @@
                     </ul>
                     <div class="tab-content">
                         <div id="tab1" class="tab active">
-                            <ul>
+                            <ul class="rig columns-4">
                                 <c:forEach items="${albums}" var="item">
                                     <li>
-                                        <a class="link-user" href="/VerPerfil?nick=${item[1]}">${item[1]}</a>
+                                        <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${item[1]}&extra=${item[0]}" class="image-square"/>
+                                        <h3><a class="link-user" href="/VerPerfil?nick=${item[1]}">${item[1]}</a>
                                          - 
-                                        <a href="/VerAlbum?nick=${item[1]}&amp;album=${item[0]}">${item[0]}</a>
+                                        <a class="btn-link" href="/VerAlbum?nick=${item[1]}&amp;album=${item[0]}">${item[0]}</a></h3>
                                     </li>
                                 </c:forEach>
-                            </ul>
+                            </ul>    
                         </div>
                         <div id="tab2" class="tab">
-                            <ul>
+                            <ul class="rig columns-4">
                                 <c:forEach items="${listas}" var="item">
                                     <li>
-                                        <a href="/VerListaDefecto?lista=${item}">${item}</a>
+                                        <a class="btn-link" href="/VerListaDefecto?lista=${item}">
+                                        <image src="/VerImagen?tipo=ImagenListaDefecto&nombreUsuario=null&extra=${item}" class="image-square"/>
+                                        <h3>${item}</h3></a>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </div>
                         <div id="tab3" class="tab">
-                            <ul>
+                            <ul class="rig columns-4">
                                 <c:forEach items="${subgeneros}" var="item">
                                     <li>
-                                        <a href="/VerGenero?genero=${item}">${item}</a>
+                                        <a href="/VerGenero?genero=${item}"><h3>${item}</h3></a>
                                     </li>
                                 </c:forEach>
                             </ul>

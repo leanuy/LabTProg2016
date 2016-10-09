@@ -11,8 +11,8 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12" style="width:150px;height:150px;overflow:hidden">
-                    <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${nomLista}" class="img-circle" style="width:100%"/> <%--imagen del album--%>
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+                    <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${nomLista}" class="image-square" style="width:100%"/> <%--imagen del album--%>
                 </div>
                 <%--datos basicos--%>
                 <div>
@@ -54,8 +54,8 @@
                     <tbody>
                         <c:forEach items="${temas}" var="tema" varStatus="temaStatus">
                             <tr>
-                                <td><button class="btn btn-link btn-lg "><i class="glyphicon glyphicon-play-circle"></i></button></td>
-                                <td><c:out value="${temaStatus.index+1}"/></td>
+                                <td><button class="btn btn-link btn-lg btnTema" data-artista="${tema.nomArtista}" data-album="${tema.album}" data-tema="${tema.nombre}">
+                                        <i class="glyphicon glyphicon-play-circle"></i></button></td>                                <td><c:out value="${temaStatus.index+1}"/></td>
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
                                 <td>

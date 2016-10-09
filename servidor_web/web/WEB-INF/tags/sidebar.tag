@@ -25,6 +25,17 @@
         $("#listatemas").html(content);
     }
     
+    //muestra la info del tema actual.
+    function MostrarInfoTema() {
+        var art = tracks[idxTrack][0];
+        var alb = tracks[idxTrack][1];
+        var tem = tracks[idxTrack][2];
+        $("#ArtistaReproduccion").html(art);
+        $("#AlbumReproduccion").html(alb);
+        $("#TemaReproduccion").html(tem);
+        $("#trackImage").attr("src","/VerImagen?tipo=ImagenAlbum&nombreUsuario="+art+"&extra="+alb);
+    }
+    
     function ReproducirTema(){
         MostrarInfoTema(idxTrack);
         ActualizarLista();
@@ -37,6 +48,8 @@
         $("#aurepr").attr("src", "/Escuchar?artista="+art+"&album="+alb+"&tema="+tem);
         repr.load();
         repr.play();
+        $("#playbtn").hide();
+        $("#pausebtn").show();
     };
     
     function reproducirSiguiente() {
@@ -51,16 +64,7 @@
         }
     }
     
-    function MostrarInfoTema() {
-        var art = tracks[idxTrack][0];
-        var alb = tracks[idxTrack][1];
-        var tem = tracks[idxTrack][2];
-        $("#ArtistaReproduccion").html(art);
-        $("#AlbumReproduccion").html(alb);
-        $("#TemaReproduccion").html(tem);
-        $("#trackImage").attr("src","/VerImagen?tipo=ImagenAlbum&nombreUsuario="+art+"&extra="+alb);
-    }
-    
+    //agrega el tema a tracks, si hay una sola, le da play.
     function agregarTema(art,alb,tem) {
         $(".reproductor").show();
         tracks[tracks.length]=[art,alb,tem];
@@ -72,9 +76,11 @@
     }
     
     $(document).ready( function(){
-        $(".reproductor").hide();
-        //$("#aurepr").hide();
-        $("#playbtn").hide();
+        $(".reproductor").hide(); //no hay musica cuando se carga la pág
+        $("#aurepr").hide(); // el reproductor original es feo
+        $("#playbtn").hide(); //originalmente está "en play"
+        
+        //los botones de play y pausa se desaparecen y conmutan estado.
         $("#playbtn").click(function() {
             if(idxTrack<=tracks.length) {
                 $("#playbtn").hide();
@@ -95,14 +101,22 @@
                 }
             }
         });
+        
+        //el skip saltea.
         $("#skipbtn").click( function() {reproducirSiguiente();});
-                
+        
+        //los botones de los temas que haya en la página principal tienen el comportamiento de agregar un tema.
         $(".btnTema").click(function() {
             var art = $(this).attr("data-artista");
             var alb = $(this).attr("data-album");
             var tem = $(this).attr("data-tema");
             agregarTema(art,alb,tem);
         });
+        
+        var repr = document.getElementById("aurepr");
+        repr.onended = function() {
+            reproducirSiguiente();
+        };
         
     });    
 </script>
@@ -119,30 +133,22 @@
 </div>
 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
     <div class="row reproductor">
-
         <audio id="aurepr" preload="auto" controls onended="reproducirSiguiente()"></audio>
         
-        <ul id="listatemas">
-            
-        </ul>
-        
-        
+        <ul id="listatemas" style="list-style:none">
+           <%--se carga dinamicamente--%>
+        </ul>        
         <div class="col-lg-12 hidden-sm hidden-xs"><img id="trackImage" src="assets/img/cover.jpg" style="width:100%"></div>
         <div id="TemaReproduccion" class="col-lg-12">---</div>
         <div  class="col-lg-12"><span id="ArtistaReproduccion"></span> - <span id="AlbumReproduccion"></span></div>
-        <!--<div class="col-lg-12">
-            <div class="progress" style=" height:7px">
-                <div class="progress-bar progress-bar-custom progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+        <%--<div class="col-lg-12">
+            <div class="progress" style=" height:4px">
+                <div id="progress" class="progress-bar progress-bar-custom progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
                 </div>
             </div>
-        </div>-->
+        </div>--%>
         <div class="col-lg-12">
             <div class="row">
-                <div class="col-xs-4">
-                    <button class="btn btn-link btn-md" onclick="get_next(-1);">
-                        <i class="glyphicon glyphicon-step-backward"></i>
-                    </button>
-                </div>
                 <div class="col-xs-4">
                     <button id="playbtn" class="btn btn-link  btn-md">
                         <i class="glyphicon glyphicon-play"></i>

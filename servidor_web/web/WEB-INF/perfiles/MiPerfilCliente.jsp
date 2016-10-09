@@ -32,7 +32,6 @@
                         <li><a href="#listas">Listas (<c:out value="${fn:length(listasPub)+fn:length(listasPriv)}"/>)</a></li>
                         <li><a href="#favoritos">Favoritos</a></li>
                     </ul>
-                
                     <div class="tab-content">
                         <div id="datosPersonales" class="tab active">
                             <ul>
@@ -76,19 +75,20 @@
                         </div>
                         <div id="listas" class="tab">
                             <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/crearlistaparticular">Crear lista</a>
-                            <ul>
+                            <ul class="rig columns-4">
                                 <c:forEach items="${listasPub}" var="item">
                                     <li>
-                                        <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${item}"/>
-                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}</a>
+                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">
+                                        <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${item}" class="image-square"/>
+                                        <h3>${item}</h3></a>
                                     </li>
                                 </c:forEach>
                                 <c:forEach items="${listasPriv}" var="item">
                                     <li>
-                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">${item}
-                                            <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${item}"/>
-                                            <h3>${item.nombre}</h3>
-                                        <i class="glyphicon glyphicon-lock"></i></a>
+                                        <a class="btn-link" href="/VerListaParticular?nick=${nick}&lista=${item}">
+                                            <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${item}" class="image-square"/>
+                                            <h3>${item} <i class="glyphicon glyphicon-lock"></i></h3>
+                                        </a>
                                     </li>
                                 </c:forEach>
                             </ul>

@@ -10,21 +10,12 @@ import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
 import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -54,17 +45,15 @@ public class Escuchar extends HttpServlet {
         BufferedInputStream buf = null;
         try {
             int length = 0;
-            //response.setBufferSize(archivo.size()+200);
             stream = response.getOutputStream();
-            
             buf = Fabrica.getIObtenerAudio().getAudio(artista,album,tema);
-
             int readBytes;
             while ((readBytes = buf.read()) != -1) {
                 length++;
                 stream.write(readBytes);
             }
             response.setContentLength(length);
+            
           } catch (IOException ioe) {
             throw new ServletException(ioe.getMessage());
           } catch (ArtistaInexistenteException ex) {

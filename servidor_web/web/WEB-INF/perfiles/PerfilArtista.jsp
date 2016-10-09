@@ -70,7 +70,7 @@
                             </ul>
                         </div>
                         <div id="seguidores" class="tab">
-                            <ul class="rig-columns-4">
+                            <ul class="rig columns-4">
                             <c:forEach items="${seguidores}" var="item">
                                 <li>
                                     <a class="btn-link" href="/VerPerfil?nick=${item}">
@@ -83,7 +83,7 @@
                             </ul>
                         </div>
                         <div id="albums" class="tab">
-                            <ul class="rig-columns-4">
+                            <ul class="rig columns-4">
                                 <c:forEach items="${albums}" var="item">
                                     <li>
                                         <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">
@@ -102,14 +102,3 @@
     </div>
     
 </t:body>
-
-
-<%--Este caso de uso permite al Cliente/Artista consultar los siguientes datos de su perfil:
-nickname, correo electrónico, nombre, apellido, fecha de nacimiento e imagen (opcional).
-Luego, el sistema muestra todos los datos del usuario, incluyendo, sí tiene, su imagen asociada.
-Se muestran los nickname de todos los seguidores que tiene.
-Si es artista se listan los nombres de cada álbum
-que tenga registrado y, para cualquier álbum que el usuario quiera, se visualizan
-los datos de éste de la misma forma que se hace en Consulta de Álbum. El usuario
-visitante solo puede ver el perfil de los Artistas.--%>
-
