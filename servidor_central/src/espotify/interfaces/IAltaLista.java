@@ -3,6 +3,7 @@ package espotify.interfaces;
 import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
@@ -16,7 +17,7 @@ public interface IAltaLista {
     public DataGenero listarGeneros();
 
     public void altaListaParticular(DataParticular dataParticular)
-            throws ListaRepetidaException, ClienteInexistenteException;
+            throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException;
 
     public void altaListaDefecto(DataDefecto dataLista)
             throws ListaRepetidaException, GeneroInexistenteException;

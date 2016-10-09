@@ -18,6 +18,7 @@ import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
 import espotify.excepciones.FavoritoRepetidoException;
@@ -355,7 +356,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     void altaLista(DataParticular dataLista)
-            throws ClienteInexistenteException, ListaRepetidaException {
+            throws ClienteInexistenteException, ListaRepetidaException, CampoVacioException {
         buscarCliente(dataLista.getNomCliente()).altaLista(dataLista);
     }
     

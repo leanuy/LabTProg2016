@@ -73,10 +73,13 @@
         <servlet-class>servlets.Buscar</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
         <servlet-name>OrdenarBuscar</servlet-name>
         <servlet-class>servlets.OrdenarBuscar</servlet-class>
     </servlet>
     <servlet>
+=======
+>>>>>>> 02f5b93b5c578fd03bb50098c4e7fe9d634815ee
         <servlet-name>CrearListaParticular</servlet-name>
         <servlet-class>servlets.CrearListaParticular</servlet-class>
     </servlet>

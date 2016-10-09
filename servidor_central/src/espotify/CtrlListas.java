@@ -7,6 +7,7 @@ import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
@@ -23,6 +24,8 @@ import espotify.interfaces.web.IVerListaParticular;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CtrlListas implements IAltaLista, IPublicarLista,
         IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, IVerListaParticular, IVerListaDefecto {
@@ -175,8 +178,8 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     
     @Override
     public void altaListaParticular(DataParticular dataParticular)
-            throws ListaRepetidaException, ClienteInexistenteException {
-        new CtrlUsuarios().altaLista(dataParticular);
+            throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
+            new CtrlUsuarios().altaLista(dataParticular);
     }
     
     @Override
