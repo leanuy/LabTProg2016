@@ -16,15 +16,18 @@ import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IConsultaAlbum;
+import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerGenero;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
-        IVerAlbum, IVerGenero {
+        IVerAlbum, IVerGenero, IListarGeneros {
     private Artista artistaMem;
 
 //constructor
@@ -56,6 +59,28 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     public DataGenero listarGeneros() {
         return getGeneroBase().listarseRecursivo("");
     }
+    
+    private TreeMap<String, String> stringifyGenerosRecursivo(DataGenero root, String path) {
+        TreeMap<String, String> mapa = new TreeMap<>();
+        mapa.put(path+root.getNombre(), root.getNombre());
+        List<DataGenero> hijos = root.getHijos();
+        for (DataGenero next : hijos) {
+            mapa.putAll(stringifyGenerosRecursivo(next, path + root.getNombre() + " / "));
+        }
+        return mapa;
+    }
+    
+    @Override
+    public TreeMap<String, String> stringifyDataGeneros(){
+        TreeMap<String, String> mapa = new TreeMap<>();
+        DataGenero root = listarGeneros();
+        List<DataGenero> hijos = root.getHijos();
+        for (DataGenero next : hijos) {
+            mapa.putAll(stringifyGenerosRecursivo(next, ""));
+        }
+        return mapa;
+    }
+    
 
     @Override
     public List<String[]> listarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {

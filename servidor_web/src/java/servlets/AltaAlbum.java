@@ -5,8 +5,16 @@
  */
 package servlets;
 
+import espotify.Fabrica;
+import espotify.datatypes.DataGenero;
+import espotify.interfaces.IAltaAlbum;
+import espotify.interfaces.web.IListarGeneros;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +25,6 @@ import javax.servlet.http.HttpServletResponse;
  * @author agus
  */
 public class AltaAlbum extends HttpServlet {
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -29,6 +36,12 @@ public class AltaAlbum extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        IListarGeneros interf = Fabrica.getIListarGeneros();
+        Map<String, String> data = interf.stringifyDataGeneros();
+        
+        
+        request.setAttribute("generos", data);
         request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum.jsp").forward(request, response);
     }
 

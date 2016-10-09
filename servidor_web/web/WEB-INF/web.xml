@@ -230,7 +230,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AltaAlbum</servlet-name>
-        <url-pattern>/AltaAlbum</url-pattern>
+        <url-pattern>/CrearAlbum</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

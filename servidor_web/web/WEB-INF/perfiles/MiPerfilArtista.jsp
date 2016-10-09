@@ -65,15 +65,21 @@
                             </ul>
                         </div>
                         <div id="albums" class="tab">
-                            <ul>
-                                <c:forEach items="${albums}" var="item">
-                                    <li>
-                                        <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
-                                    </li>
-                                </c:forEach>
-                            </ul>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/CrearAlbum">Crear Álbum</a>
+                                </div>
+                                <div class="col-lg-12">
+                                    <ul>
+                                        <c:forEach items="${albums}" var="item">
+                                            <li>
+                                                <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">${item}</a>
+                                            </li>
+                                        </c:forEach>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
