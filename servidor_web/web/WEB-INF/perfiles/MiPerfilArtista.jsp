@@ -70,7 +70,7 @@
                         <div id="albums" class="tab">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/CrearAlbum">Crear Álbum</a>
+                                    <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/AltaAlbum/paso1">Crear Álbum</a>
                                 </div>
                                 <div class="col-lg-12">
                                     <ul class="rig columns-4">
