@@ -16,6 +16,7 @@ import espotify.excepciones.NumeroTemaInvalidoException;
 import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaAlbum;
+import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.IConsultaAlbum;
@@ -32,7 +33,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
-        IVerAlbum, IVerGenero, IListarGeneros, IBuscar {
+        IVerAlbum, IVerGenero, IListarGeneros, IBuscar, IAltaAlbumWeb{
     private Artista artistaMem;
 
 //constructor
@@ -168,6 +169,28 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             entry.getValue().addAlbum(album);
         });
         art.addAlbum(album);
+    }
+    
+    public void addAlbumTemp(DataAlbumExt album) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(album.getNickArtista());
+        art.addAlbumTemp(album);
+    }
+    public DataAlbumExt getAlbumTemp(String nick_artista, String album) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        return art.getAlbumTemp(album);
+    }
+    public void cancelarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        art.deleteAlbumTemp(album);
+    }
+    public void AceptarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        DataAlbumExt data = art.getAlbumTemp(album);
+        altaAlbum(data);
     }
     
     @Override
