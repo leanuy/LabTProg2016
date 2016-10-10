@@ -50,6 +50,7 @@
         repr.play();
         $("#playbtn").hide();
         $("#pausebtn").show();
+        $('#progress').attr('aria-valuenow', 0).css('width',0);
     };
     
     function reproducirSiguiente() {
@@ -63,6 +64,7 @@
             ReproducirTema();
         }
     }
+    
     
     //agrega el tema a tracks, si hay una sola, le da play.
     function agregarTema(art,alb,tem) {
@@ -118,6 +120,12 @@
             reproducirSiguiente();
         };
         
+        repr.addEventListener("timeupdate", function () {
+        var audio = $(this);
+        var progreso = (audio[0].currentTime.toFixed(2)*100)/audio[0].duration.toFixed(2);
+        $('#progress').attr('aria-valuenow', progreso).css('width', progreso);
+                });
+        
     });    
 </script>
 
@@ -133,7 +141,7 @@
 </div>
 <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
     <div class="row reproductor">
-        <audio id="aurepr" preload="auto" controls onended="reproducirSiguiente()"></audio>
+        <audio id="aurepr" preload="auto" controls onended="reproducirSiguiente()" hidden></audio>
         
         <ul id="listatemas" style="list-style:none">
            <%--se carga dinamicamente--%>
@@ -141,15 +149,15 @@
         <div class="col-lg-12 hidden-sm hidden-xs"><img id="trackImage" src="assets/img/cover.jpg" style="width:100%"></div>
         <div id="TemaReproduccion" class="col-lg-12">---</div>
         <div  class="col-lg-12"><span id="ArtistaReproduccion"></span> - <span id="AlbumReproduccion"></span></div>
-        <%--<div class="col-lg-12">
+        <div class="col-lg-12">
             <div class="progress" style=" height:4px">
-                <div id="progress" class="progress-bar progress-bar-custom progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                <div id="progress" class="progress-bar progress-bar-custom progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;">
                 </div>
             </div>
-        </div>--%>
+        </div>
         <div class="col-lg-12">
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-offset-2 col-xs-4">
                     <button id="playbtn" class="btn btn-link  btn-md">
                         <i class="glyphicon glyphicon-play"></i>
                     </button>
