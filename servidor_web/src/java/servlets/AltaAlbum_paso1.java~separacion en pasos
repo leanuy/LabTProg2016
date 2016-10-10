@@ -34,7 +34,7 @@ public class AltaAlbum_paso1 extends HttpServlet {
         Map<String, String> data = interf.stringifyDataGeneros();
                 
         request.setAttribute("generos", data);
-        request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso1.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/albums/paso1.jsp").forward(request, response);
     }
 
     /**

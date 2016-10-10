@@ -8,19 +8,26 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:body>
-    <script src="assets/js/jquery-3.1.0.min.js"></script>
+    
 
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/CrearAlbum" method="POST" class="form-horizontal">
+                    <form action="/AltaAlbum/paso1" method="POST" class="form-horizontal">
                         <fieldset>
-                            <div class="form-group <c:if test="${not empty error_nombre}==true">has-error</c:if>">
+                            <div class="form-group <c:if test="${not empty error_nombre}">has-error</c:if>">
                                     <label class="col-md-4 control-label" for="textinput">Nombre*:</label>  
                                     <div class="col-md-4">
-                                        <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
-                                        <!--<span class="help-block">help</span>-->  
+                                        <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md" value="<c:if test="${not empty nombre}">${nombre}</c:if>">
+                                        <span class="help-block"><c:if test="${not empty error_nombre}">${error_nombre}</c:if></span>
+                                    </div>
+                                </div>
+                                            <div class="form-group <c:if test="${not empty error_anio}">has-error</c:if>"  value="<c:if test="${not empty anio}">${anio}</c:if>">
+                                    <label class="col-md-4 control-label" for="textinput">Año*:</label>  
+                                    <div class="col-md-4">
+                                        <input id="anio" name="anio" type="number" min="0" placeholder="" class="form-control input-md">
+                                        <span class="help-block"><c:if test="${not empty error_anio}">${error_anio}</c:if></span>
                                     </div>
                                 </div>
 
@@ -30,14 +37,15 @@
                                         <input id="imagen" name="imagen" class="input-file" type="file">
                                     </div>
                                 </div>
-                                <div class="form-group">
+                            <div class="form-group <c:if test="${not empty error_generos}">has-error</c:if>">
                                     <label class="col-md-4 control-label" for="filebutton">Géneros</label>
                                     <div class="col-md-4">
-                                        <select name="generos[]" multiple="">
+                                        <select name="generos" multiple="">
                                         <c:forEach items="${generos}" var="genero">
                                             <option value="${genero.value}">${genero.key}</option>
                                         </c:forEach>
                                         </select>
+                                        <span class="help-block"><c:if test="${not empty error_generos}">${error_generos}</c:if></span>
                                     </div>
                                 </div>
                             <div class="form-group">
