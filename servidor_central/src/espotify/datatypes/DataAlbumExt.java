@@ -18,6 +18,10 @@ public class DataAlbumExt extends DataAlbum {
         this.temas.add(tema);
     }
     
+    public void addTema(DataTema tema){
+        this.temas.add(tema);
+    }
+    
     public DataAlbumExt(List<DataTema> temas, String nombre, int anio, List<String> generos,
             BufferedImage img, String nickArtista) {
         super(nombre, anio, generos, img, nickArtista);
