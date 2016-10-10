@@ -162,17 +162,15 @@ public final class Fabrica {
         return new CtrlMusica();
     }
     
-<<<<<<< 8383eff3a2e48fc01b956df11f3bc7ded87018d7
     public static IObtenerAudio getIObtenerAudio() {
         return new CtrlUsuarios();
     }
     
     public static IAgregarTemaListaWeb getIAgregarTemaListaWeb() {
         return new CtrlListas();
-=======
+    }
     public static IAltaAlbumWeb getIAltaAlbumWeb() {
         return new CtrlMusica();
->>>>>>> separacion en pasos
     }
 
     public static IAltaAlbumWeb getIAltaAlbumWeb() {
