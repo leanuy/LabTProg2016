@@ -81,7 +81,7 @@
         $(".reproductor").hide(); //no hay musica cuando se carga la pág
         $("#aurepr").hide(); // el reproductor original es feo
         $("#playbtn").hide(); //originalmente está "en play"
-        
+    
         //los botones de play y pausa se desaparecen y conmutan estado.
         $("#playbtn").click(function() {
             if(idxTrack<=tracks.length) {
