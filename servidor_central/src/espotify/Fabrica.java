@@ -19,6 +19,7 @@ import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IAgregarTemaListaWeb;
+import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.IObtenerAudio;
@@ -161,6 +162,7 @@ public final class Fabrica {
         return new CtrlMusica();
     }
     
+<<<<<<< 8383eff3a2e48fc01b956df11f3bc7ded87018d7
     public static IObtenerAudio getIObtenerAudio() {
         return new CtrlUsuarios();
     }
@@ -168,5 +170,9 @@ public final class Fabrica {
     
     public static IAgregarTemaListaWeb getIAgregarTemaListaWeb() {
         return new CtrlListas();
+=======
+    public static IAltaAlbumWeb getIAltaAlbumWeb() {
+        return new CtrlMusica();
+>>>>>>> separacion en pasos
     }
 }

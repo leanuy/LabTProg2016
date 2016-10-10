@@ -21,25 +21,43 @@ class Artista extends Usuario {
     private final String bio;
     private final String url;
     private final Map<String,Album> albums;
+    private final Map<String,DataAlbumExt> albumsTemp;
     
     //getters
     
     void addAlbum(Album album) {
         this.albums.put(album.getNombre(), album);
     }
+    void addAlbumTemp(DataAlbumExt album) {
+        deleteAlbumTemp(album.getNombre());
+        this.albumsTemp.put(album.getNombre(), album);
+    }
+    void deleteAlbumTemp(String album) {
+        this.albumsTemp.remove(album);
+    }
 
     boolean tieneAlbum(String album) {
         return this.albums.containsKey(album);
     }
+    boolean tieneAlbumTemp(String album) {
+        return this.albumsTemp.containsKey(album);
+    }
     
     Map<String, Album> getAlbums() {
         return this.albums;
+    }
+    Map<String, DataAlbumExt> getAlbumsTemp() {
+        return this.albumsTemp;
+    }
+    DataAlbumExt getAlbumTemp(String album) {
+        return this.albumsTemp.get(album);
     }
     
     //constructores
     Artista(DataArtista data) {
         super(data);
         albums = new HashMap<>();
+        albumsTemp = new HashMap<>();
         bio = data.getBio();
         url = data.getUrl();
     }
