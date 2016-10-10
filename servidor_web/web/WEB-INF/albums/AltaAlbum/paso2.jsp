@@ -89,6 +89,4 @@
                 $(".caja").html(data);
             });
         </script>
-
-
 </t:body>

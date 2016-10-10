@@ -8,7 +8,6 @@ package servlets;
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
 import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.CampoVacioException;
 import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IListarGeneros;
 import java.awt.image.BufferedImage;
@@ -62,8 +61,6 @@ public class AltaAlbum_paso1 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        boolean has_errors = false;
-        
         HttpSession session = request.getSession();
         String nombre = new String(request.getParameter("nombre").getBytes("iso-8859-1"), "UTF-8");
         int anio = Integer.parseInt(request.getParameter("anio"));
@@ -77,20 +74,11 @@ public class AltaAlbum_paso1 extends HttpServlet {
         if(nombre.equals("")){
             request.setAttribute("has_errors", true);
             request.setAttribute("error_nombre", "El nombre del álbum es requerido");
-            has_errors = true;
-        }
-        
-        if(generos.isEmpty()){
-            request.setAttribute("has_errors", true);
-            request.setAttribute("error_generos", "Debes elegir al menos un género para el album");
-            has_errors = true;
-        }
-        if(has_errors){
             request.getRequestDispatcher("/AltaAlbum/paso1").forward(request, response);
 //            request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso1.jsp").forward(request, response);
         }
         
-        
+        if (!nombre.equals("")) {
             IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
             DataAlbumExt data;
             
@@ -110,7 +98,12 @@ public class AltaAlbum_paso1 extends HttpServlet {
                 Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
             }
             request.getRequestDispatcher("/VerListaParticular?nick=" + session.getAttribute("nick_sesion") + "&lista=" + nombre).forward(request, response);
-       
+        } else {
+            request.setAttribute("has_errors", true);
+            request.setAttribute("error_nombre", "El nombre de la lista es requerido");
+            request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
+        }
+        
         response.sendRedirect("/CrearAlbum/paso2?album="+nombre);
     }
 
