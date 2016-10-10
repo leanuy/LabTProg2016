@@ -13,6 +13,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
+<<<<<<< 4b6c26577f29e98407f747bdb2cd0dfae66aa1fa
                 <div class="col-lg-12">
                     <form action="/CrearAlbum" method="POST" class="form-horizontal" enctype="multipart/form-data">
                         <fieldset>

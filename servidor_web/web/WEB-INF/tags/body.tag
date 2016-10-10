@@ -9,7 +9,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
 <t:wrapper>
-    <t:navbar user="${user}"/> //????
+    <t:navbar user="${user}"/>
     <div class="container-fluid main" style="padding:0">
         <div class="row main_row">
             <t:sidebar user="${user}" />
