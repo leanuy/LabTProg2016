@@ -18,6 +18,7 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarArtistas;
 import espotify.interfaces.web.IListarClientes;
@@ -160,6 +161,10 @@ public final class Fabrica {
         return new CtrlImagenes();
     }
     public static IBuscar getIBuscar() {
+        return new CtrlMusica();
+    }
+    
+    public static IAltaAlbumWeb getIAltaAlbumWeb() {
         return new CtrlMusica();
     }
 }

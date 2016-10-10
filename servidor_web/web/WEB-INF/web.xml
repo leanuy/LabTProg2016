@@ -117,8 +117,12 @@
         <servlet-class>servlets.Bienvenida</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AltaAlbum</servlet-name>
-        <servlet-class>servlets.AltaAlbum</servlet-class>
+        <servlet-name>AltaAlbumPaso1</servlet-name>
+        <servlet-class>servlets.AltaAlbum_paso1</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AltaAlbumPaso2</servlet-name>
+        <servlet-class>servlets.AltaAlbum_paso2</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
@@ -245,8 +249,12 @@
         <url-pattern>/ordenar_busqueda</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AltaAlbum</servlet-name>
-        <url-pattern>/AltaAlbum</url-pattern>
+        <servlet-name>AltaAlbumPaso1</servlet-name>
+        <url-pattern>/AltaAlbum/paso1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AltaAlbumPaso2</servlet-name>
+        <url-pattern>/AltaAlbum/paso2</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

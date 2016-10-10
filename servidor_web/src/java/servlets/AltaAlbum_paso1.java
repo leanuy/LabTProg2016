@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author agus
  */
-public class AltaAlbum extends HttpServlet {
+public class AltaAlbum_paso1 extends HttpServlet {
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -34,7 +34,7 @@ public class AltaAlbum extends HttpServlet {
         Map<String, String> data = interf.stringifyDataGeneros();
                 
         request.setAttribute("generos", data);
-        request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso1.jsp").forward(request, response);
     }
 
     /**
@@ -48,6 +48,13 @@ public class AltaAlbum extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String nombre = new String(request.getParameter("nombre").getBytes(
+                "iso-8859-1"), "UTF-8");
+        
+        //Aca va lo tuyo
+        
+        //Si pasa las validaciones, que se redireccione a esa url
+        response.sendRedirect("/CrearAlbum/paso2?album="+nombre);
     }
 
     /**
