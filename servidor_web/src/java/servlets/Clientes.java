@@ -7,8 +7,6 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataPreview;
-import espotify.interfaces.web.IListarArtistas;
-import espotify.interfaces.web.IListarClientes;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -16,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import espotify.interfaces.web.IListarUsuarios;
 
 /**
  *
@@ -36,8 +35,8 @@ public class Clientes extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        IListarClientes interf = Fabrica.getIListarClientes();
-        List<DataPreview> data = interf.previewClientes();
+        IListarUsuarios interf = Fabrica.getIListarUsuarios();
+        List<String> data = interf.listarClientes();
         
         request.setAttribute("clientes", data);
         
