@@ -7,8 +7,6 @@ import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 
 import java.util.Calendar;
-import java.util.Date;
-
 
 public class Suscripcion {
     private Calendar fechaCreacion;
