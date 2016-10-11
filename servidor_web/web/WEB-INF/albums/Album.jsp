@@ -15,10 +15,13 @@
                 $(".btn-mas-opciones-tema").show(); //muestra los botones de ... ocultos
                 $(".contenedor-opciones-tema").hide(); //oculta los paneles iguales al que quiere desplegar
                 var nomTema = $(this).attr("data-nomTema");
+                var nomArtista = $(this).attr("data-nomArtista");
+                var nomAlbum = $(this).attr("data-nomAlbum");
+
                $(this).parent().parent().after('<tr class="contenedor-opciones-tema" col-span="6"></tr>');  //crea panel
                $.ajax({
                     type: "GET",
-                    url: "/OpcionesTema?artista=${nomArtista}&album=${nomAlbum}&tema="+nomTema,
+                    url: "/OpcionesTema?artista="+nomArtista+"&album="+nomAlbum+"&tema="+nomTema,
                     success: function(msg) {
                         $(".contenedor-opciones-tema").html(msg);
                     }
@@ -110,7 +113,7 @@
                                     </c:choose>
                                 </td>
                                 <td>
-                                    <button class="btn btn-link pull-right btn-mas-opciones-tema" data-nomTema="${tema.nombre}"><i class="glyphicon glyphicon-option-horizontal"></i></button>
+                                    <button class="btn btn-link pull-right btn-mas-opciones-tema" data-nomArtista="${nomArtista}" data-nomAlbum="${nomAlbum}" data-nomTema="${tema.nombre}"><i class="glyphicon glyphicon-option-horizontal"></i></button>
                                 </td>
                             </tr>
                         </c:forEach>
