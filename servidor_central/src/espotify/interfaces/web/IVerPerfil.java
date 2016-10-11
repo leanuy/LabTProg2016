@@ -18,7 +18,6 @@ public interface IVerPerfil {
     public List<String> listarListasPrivadasDeCliente(String nick)
             throws ClienteInexistenteException;
 
-    //true si es cliente, false si es artista, exception si no existe.
     public boolean esCliente(String nick)
             throws UsuarioInexistenteException;
     
