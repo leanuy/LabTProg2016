@@ -29,6 +29,20 @@
                 $(this).hide(); //oculta botón de ...
             });
         });
+        /*function() ConfirmarAgregarLista() {
+            lista = $("#combolistas :selected").text();
+            nick = $("#boton_confirmar").attr("data-nick");
+            tema = $("#boton_confirmar").attr("data-tema");
+            album = $("#boton_confirmar").attr("data-album");
+            artista = $("#boton_confirmar").attr("data-artista");
+            $.ajax({
+                type: "GET",
+                url: "AgregarTemaListaWeb?nick="+nick+"&lista="+lista+"&nom_tema="+tema+"&album="+album+"&artista="+artista,
+                success: function(msg) {
+                    $("#mensaje").html("Tema agregado con éxito.");
+                }
+            });
+        }*/
     </script>
     
     <div class="panel panel-default">

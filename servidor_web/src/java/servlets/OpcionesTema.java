@@ -1,35 +1,28 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
-
 import espotify.Fabrica;
 import espotify.datatypes.DataTema;
-import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.interfaces.web.IAgregarTemaListaWeb;
 import espotify.interfaces.web.ISuscripcionWeb;
 import espotify.interfaces.web.IVerAlbum;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
-
 /**
  *
  * @author JavierM42
  */
 public class OpcionesTema extends HttpServlet {
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -52,8 +45,8 @@ public class OpcionesTema extends HttpServlet {
         
         HttpSession session = request.getSession();
         boolean tieneVigente=false;
+        String nick = (String) session.getAttribute("nick_sesion");
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            String nick = (String) session.getAttribute("nick_sesion");
                 ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
                 try {
                     tieneVigente = isusc.tieneSuscripcionVigente(nick);
@@ -64,26 +57,26 @@ public class OpcionesTema extends HttpServlet {
         IVerAlbum interf = Fabrica.getIVerAlbum();
         try {
             DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
-
-            if (data instanceof DataTemaWeb) {
-                out.write("<a href=\""+((DataTemaWeb) data).getUrl()+"\">Escuchar(vínculo externo)</a>\n");
-            } else if (tieneVigente) {
-                out.write("<a class=\"link-user\" href=\"/Escuchar?artista="+nickArtista+"&album="+nombreAlbum+"&tema="+nombreTema+"\">Descargar</a>\n");
-            } else {
-                out.write("<a href=\"/Suscripcion\">Suscríbete</a> para poder descargar este y muchos temas más.\n");
-            }
-
+            request.setAttribute("esWeb",data instanceof DataTemaWeb);
+            request.setAttribute("tieneVigente",tieneVigente);
+            request.setAttribute("nickArtista",nickArtista);
+            request.setAttribute("nombreAlbum",nombreAlbum);
+            request.setAttribute("nombreTema",nombreTema);
+            List<String> list = new ArrayList();
             if(tieneVigente) {
-                out.write("Agregar a lista: ");
-                out.write("\nNo implementado aún!");
+                IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
+                list = inter.listarListasDeCliente(nick);
             }
+            request.setAttribute("listas",list);
+            request.getRequestDispatcher("/WEB-INF/listas/OpcionesTema.jsp").forward(request,response);
         } catch (ArtistaInexistenteException ex) {
             out.write("Error");
         } catch (AlbumInexistenteException ex) {
             out.write("Error");
+        } catch (ClienteInexistenteException ex) {
+            out.write("Error");
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -98,7 +91,6 @@ public class OpcionesTema extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -112,7 +104,6 @@ public class OpcionesTema extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
     /**
      * Returns a short description of the servlet.
      *
@@ -122,5 +113,4 @@ public class OpcionesTema extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

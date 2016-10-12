@@ -38,9 +38,9 @@ public class AgregarTemaListaWeb extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String nick_sesion = new String(request.getParameter("nick_sesion").getBytes(
+        String nick_sesion = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
-        String lista_poner = new String(request.getParameter("lista_poner").getBytes(
+        String lista_poner = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
         String nom_tema = new String(request.getParameter("nom_tema").getBytes(
                 "iso-8859-1"), "UTF-8");
