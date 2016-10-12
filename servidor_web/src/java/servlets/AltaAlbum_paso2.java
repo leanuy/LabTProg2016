@@ -48,7 +48,7 @@ public class AltaAlbum_paso2 extends HttpServlet {
         DataAlbumExt data = interf.getAlbumTemp((String) session.getAttribute("nick_sesion"), album);
         if (data != null) {
             request.setAttribute("album", data);
-        request.getRequestDispatcher("/WEB-INF/perfiles/Artistas.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/albums/paso2.jsp").forward(request, response);
             
         }
 

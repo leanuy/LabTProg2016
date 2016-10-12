@@ -69,7 +69,7 @@ public class AltaAlbum_paso1 extends HttpServlet {
         List<String> generos = new ArrayList<String>();
         
         for (String genero : generos_arr) {
-            generos.add(genero);
+            generos.add(new String(genero.getBytes("iso-8859-1"), "UTF-8"));
         }
         if(nombre.equals("")){
             request.setAttribute("has_errors", true);
@@ -78,7 +78,6 @@ public class AltaAlbum_paso1 extends HttpServlet {
 //            request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso1.jsp").forward(request, response);
         }
         
-        if (!nombre.equals("")) {
             IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
             DataAlbumExt data;
             
@@ -97,14 +96,7 @@ public class AltaAlbum_paso1 extends HttpServlet {
             } catch (ArtistaInexistenteException ex) {
                 Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.getRequestDispatcher("/VerListaParticular?nick=" + session.getAttribute("nick_sesion") + "&lista=" + nombre).forward(request, response);
-        } else {
-            request.setAttribute("has_errors", true);
-            request.setAttribute("error_nombre", "El nombre de la lista es requerido");
-            request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
-        }
-        
-        response.sendRedirect("/CrearAlbum/paso2?album="+nombre);
+        response.sendRedirect("/AltaAlbum/paso2?album="+nombre);
     }
 
     /**

@@ -14,40 +14,46 @@
         <div class="panel-body">
             <div class="row">
                 <div id="caja" class="col-lg-12">
-                    <form action="/CrearAlbum" method="POST" class="form-horizontal" enctype="multipart/form-data">
+                    <form action="/CrearAlbum" method="POST" enctype="multipart/form-data">
                         <fieldset>
-                            <div class="form-group <c:if test="${not empty error_nombre}">has-error</c:if>">
-                                    <label class="col-md-4 control-label" for="textinput">Nombre*:</label>
-                                    <div class="col-md-4">
-                                        <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
-                                    </div>
-                                </div>
+                            <div class="col-md-1">
                                 <div class="form-group <c:if test="${not empty error_orden}">has-error</c:if>">
-                                    <label class="col-md-4 control-label" for="textinput">Orden*:</label>
-                                    <div class="col-md-4">
-                                        <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
-                                    </div>
+                                    <label class="control-label" for="textinput">#*:</label>
+                                    <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
                                 </div>
-                                <div class="form-group <c:if test="${not empty error_duracion}">has-error</c:if>">
-                                    <label class="col-md-4 control-label" for="textinput">Duración*:</label>
-                                    <div class="col-md-4">
-                                        <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
-                                    </div>
-                                </div>
+                            </div>
+                            <div class="col-md-5">
                                 <div class="form-group <c:if test="${not empty error_nombre}">has-error</c:if>">
-                                    <label class="col-md-4 control-label" for="textinput">Url:</label>
-                                    <div class="col-md-4">
-                                        <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
-                                    </div>
+                                    <label class="control-label" for="textinput">Nombre*:</label>
+                                    <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
                                 </div>
-
+                            </div>
+                            <div class="col-md-2">
+                                <div class="form-group <c:if test="${not empty error_duracion}">has-error</c:if>">
+                                    <label class="control-label" for="textinput">Duración*:</label>
+                                    <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
+                                </div>
+                            </div>
+                                    <div class="col-md-2">
+                                        <button type="button" name="submit" class="btn btn-custom" onclick="formTemaArchivo()"><i class="fa fa-globe"></i></button>
+                                        <button type="button" name="submit" class="btn btn-custom" onclick="formTemaWeb()"><i class="fa fa-file"></i></button>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="submit" name="submit" class="btn btn-custom">Aceptar</button>
+                                    </div>
+                            <div class="col-md-4 form-web" hidden>
+                                <div class="form-group <c:if test="${not empty error_nombre}">has-error</c:if>">
+                                    <label class="control-label" for="textinput">Url:</label>
+                                    <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
+                                </div>
+                            </div>
+                            <div class="col-md-4 form-archivo" hidden>
                                 <div class="form-group">
-                                    <label class="col-md-4 control-label" for="filebutton">Archivo</label>
-                                    <div class="col-md-4">
-                                        <input id="archivo" name="archivo" class="input-file" type="file">
-                                    </div>
+                                    <label class="control-label" for="filebutton">Archivo</label>
+                                    <input id="archivo" name="archivo" class="input-file" type="file">
                                 </div>
-                                <table width>
+                            </div>
+<!--                                <table width>
                                     <thead>
                                     <th style="width:30px">Núm</th>
                                     <th>Nombre</th>
@@ -71,10 +77,9 @@
                                             <td colspan="5"><input id="tema_archivo" class="form-control input-md" type="text"></td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                </table>-->
                                 <div class="form-group">
                                     <div class="col-md-4 col-md-offset-4">
-                                        <button type="submit" name="submit" class="btn btn-custom">Aceptar</button>
                                     </div>
                                 </div>
 
