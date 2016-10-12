@@ -43,9 +43,9 @@ final class ManejadorColecciones {
         return clientes;
     }
     
-    Cliente buscarCliente(String nick) {
+/*    Cliente buscarCliente(String nick) {
         return clientes.get(nick);
-    }
+    }*/
     
     void agregarCliente(String nick, Cliente cli) {
         clientes.put(nick, cli);

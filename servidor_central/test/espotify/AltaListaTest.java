@@ -93,7 +93,7 @@ public class AltaListaTest {
         instance.altaListaParticular(dLista);
     }
     
-    @Test (expected = ListaRepetidaException.class)
+    @Test (expected = CampoVacioException.class)
     public void testAltaListaParticular5() throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
         System.out.println("AltaListaParticular:nombre de lista vacío");
         DataParticular dataLista = new DataParticular("TesterLista", "", null);

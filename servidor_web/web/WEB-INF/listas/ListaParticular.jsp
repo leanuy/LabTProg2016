@@ -8,6 +8,28 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <t:body>
+    <script src="assets/js/jquery-3.1.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(".btn-mas-opciones-tema").click(function() {
+                $(".btn-mas-opciones-tema").show(); //muestra los botones de ... ocultos
+                $(".contenedor-opciones-tema").hide(); //oculta los paneles iguales al que quiere desplegar
+                var nomTema = $(this).attr("data-nomTema");
+                var nomArtista = $(this).attr("data-nomArtista");
+                var nomAlbum = $(this).attr("data-nomAlbum");
+
+               $(this).parent().parent().after('<tr class="contenedor-opciones-tema" col-span="6"></tr>');  //crea panel
+               $.ajax({
+                    type: "GET",
+                    url: "/OpcionesTema?artista="+nomArtista+"&album="+nomAlbum+"&tema="+nomTema,
+                    success: function(msg) {
+                        $(".contenedor-opciones-tema").html(msg);
+                    }
+                }); //busca datos del servlet y muestra panel
+                $(this).hide(); //oculta botón de ...
+            });
+        });
+    </script>
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">         
@@ -96,7 +118,9 @@
                                         </c:when>
                                     </c:choose>
                                 </td>
-                                <td><button class="btn btn-link pull-right "><i class="glyphicon glyphicon-option-horizontal"></i></button></td>
+                                <td>
+                                    <button class="btn btn-link pull-right btn-mas-opciones-tema" data-nomArtista="${tema.nomArtista}" data-nomAlbum="${tema.album}" data-nomTema="${tema.nombre}"><i class="glyphicon glyphicon-option-horizontal"></i></button>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>
@@ -107,14 +131,4 @@
     
 </t:body>
 
-
-<%--Luego, el sistema muestra el nombre de la lista de reproducción,
-el género al que aplica o cliente que la definió, su imagen (opcional)
-y la información detallada de cada una de los temas que componen la lista de reproducción,
-mostrando la URL o el link al archivo de descarga. Si el Cliente tiene una suscripción
-en estado “vigente” el Sistema permite descargar
-el archivo de música para ser escuchado off line, si existe.
-
-
---%>
 

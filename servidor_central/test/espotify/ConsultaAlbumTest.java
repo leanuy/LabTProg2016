@@ -21,6 +21,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +38,9 @@ public class ConsultaAlbumTest {
         ManejadorColecciones.clear();
         iConsultaAlbum = Fabrica.getIConsultaAlbum();
         new AltaPerfilTest().testAltaArtista1();
-        IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
-        iAltaGenero.altaGenero(new DataGenero("Pop", ""));
-        iAltaGenero.altaGenero(new DataGenero("Jazz", ""));
+        IAltaGenero interf = Fabrica.getIAltaGenero();
+        interf.altaGenero(new DataGenero("Pop", ""));
+        interf.altaGenero(new DataGenero("Jazz", ""));
         AltaAlbumTest albTest = new AltaAlbumTest();
         albTest.testAltaAlbum();
     }
@@ -95,8 +96,8 @@ public class ConsultaAlbumTest {
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Alb"));
-        temas.add(new DataTemaArchivo(null, "tema 4", 70, 4, "ElGordoAxl", "Alb"));
-        temas.add(new DataTemaArchivo(null, "tema 5", 230, 5, "ElGordoAxl", "Alb"));
+        temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 4", 70, 4, "ElGordoAxl", "Alb"));
+        temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 5", 230, 5, "ElGordoAxl", "Alb"));
         String nombre = "Alb";
         int anio = 2013;
         List<String> generos = new ArrayList<>();

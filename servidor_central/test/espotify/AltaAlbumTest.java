@@ -24,6 +24,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class AltaAlbumTest {
@@ -53,8 +55,8 @@ public class AltaAlbumTest {
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album 1"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album 1"));
-        temas.add(new DataTemaArchivo(null, "tema 4", 70, 4, "ElGordoAxl", "Album 1"));
-        temas.add(new DataTemaArchivo(null, "tema 5", 230, 5, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 4", 70, 4, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 5", 230, 5, "ElGordoAxl", "Album 1"));
 
         String nombre = "Album 1";
         int anio = 2013;
@@ -63,7 +65,6 @@ public class AltaAlbumTest {
         BufferedImage img = null;
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
-
         iAltaAlbum.altaAlbum(data);
     }
 

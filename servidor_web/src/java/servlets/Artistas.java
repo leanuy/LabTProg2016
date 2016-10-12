@@ -7,13 +7,13 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataPreview;
-import espotify.interfaces.web.IListarArtistas;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import espotify.interfaces.web.IListarUsuarios;
 
 /**
  *
@@ -34,8 +34,8 @@ public class Artistas extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        IListarArtistas interf = Fabrica.getIListarArtistas();
-        List<DataPreview> data = interf.previewArtistas();
+        IListarUsuarios interf = Fabrica.getIListarUsuarios();
+        List<String> data = interf.listarArtistas();
         
         request.setAttribute("artistas", data);
         

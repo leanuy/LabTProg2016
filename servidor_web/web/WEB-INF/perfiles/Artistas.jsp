@@ -18,8 +18,8 @@
                 <ul class="rig columns-4">
                     <c:forEach items="${artistas}" var="item">
                         <li>
-                            <a class="link-user" href="/VerPerfil?nick=${item.nombre}"/>
-                                <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item.nombre}&extra=null" class="image-circle"/>
+                            <a class="link-user" href="/VerPerfil?nick=${item}"/>
+                                <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null" class="image-circle"/>
                                 <h3>${item.nombre}</h3>
                             </a>
                         </li>

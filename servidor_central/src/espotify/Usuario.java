@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Usuario {
-
-
     private String nick;
     private String nombre;
     private String apellido;
@@ -43,9 +41,6 @@ class Usuario {
 
     BufferedImage getImg() {
         return img;
-    }
-
-    public Usuario() {
     }
     
     String getPassword() {
