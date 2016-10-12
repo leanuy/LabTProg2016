@@ -173,7 +173,4 @@ public final class Fabrica {
         return new CtrlMusica();
     }
 
-    public static IAltaAlbumWeb getIAltaAlbumWeb() {
-        return new CtrlMusica();
-    }
 }

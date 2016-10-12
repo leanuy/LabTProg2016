@@ -83,5 +83,3 @@ $("#aceptar").click(function(){
     }, "json");
     }
 }
-
-
