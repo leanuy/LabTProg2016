@@ -20,7 +20,7 @@
                         <li>
                             <a class="link-user" href="/VerPerfil?nick=${item}"/>
                                 <image src="/VerImagen?tipo=ImagenUsuario&nombreUsuario=${item}&extra=null" class="image-circle"/>
-                                <h3>${item.nombre}</h3>
+                                <h3>${item}</h3>
                             </a>
                         </li>
                     </c:forEach>
