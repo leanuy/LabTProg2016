@@ -8,7 +8,6 @@
 
 <%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
 
-<script src="assets/js/jquery-3.1.0.min.js"></script>
 <script>
     var idxTrack=0;
     var tracks = [];

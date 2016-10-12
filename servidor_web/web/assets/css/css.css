@@ -171,6 +171,7 @@ h1{
 .main_row{
     background-color: black;
     margin: 0;
+    margin-top:20px;
 }
 .default-color{
     color:#0198AD!important;
