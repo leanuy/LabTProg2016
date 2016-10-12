@@ -67,8 +67,7 @@ public class VerListaParticular extends HttpServlet {
                 request.setAttribute("esPrivada",esPrivada);
 
                 boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
-                boolean soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
-                if(!esPrivada && session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
+                if(!esPrivada && session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && Boolean.valueOf(session.getAttribute("es_cliente").toString())) {
                     IFavoritos ifav = Fabrica.getIFavoritos();
                     boolean es_favorito;
                     String nickSesion = session.getAttribute("nick_sesion").toString();
