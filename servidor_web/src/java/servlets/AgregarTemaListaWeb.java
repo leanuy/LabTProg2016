@@ -1,28 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package servlets;
+
 import espotify.Fabrica;
-import espotify.datatypes.DataTema;
-import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.IAgregarTemaListaWeb;
-import espotify.interfaces.web.ISuscripcionWeb;
-import espotify.interfaces.web.IVerAlbum;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+
 /**
  *
- * @author JavierM42
+ * @author santiagoserantes
  */
-public class OpcionesTema extends HttpServlet {
+@WebServlet(name = "AgregarTemaListaWeb", urlPatterns = {"/AgregarTemaListaWeb"})
+public class AgregarTemaListaWeb extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,48 +37,31 @@ public class OpcionesTema extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String nickArtista = new String(request.getParameter("artista").getBytes(
-                "iso-8859-1"), "UTF-8");
-        String nombreAlbum = new String(request.getParameter("album").getBytes(
-                "iso-8859-1"), "UTF-8");
-        String nombreTema = new String(request.getParameter("tema").getBytes(
-                "iso-8859-1"), "UTF-8");
-        PrintWriter out = response.getWriter();
-        
         HttpSession session = request.getSession();
-        boolean tieneVigente=false;
-        String nick = (String) session.getAttribute("nick_sesion");
-        if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-                ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
-                try {
-                    tieneVigente = isusc.tieneSuscripcionVigente(nick);
-                } catch (ClienteInexistenteException e) {
-                    tieneVigente = false;
-                }
-        }
-        IVerAlbum interf = Fabrica.getIVerAlbum();
+        String nick_sesion = new String(request.getParameter("nick").getBytes(
+                "iso-8859-1"), "UTF-8");
+        String lista_poner = new String(request.getParameter("lista").getBytes(
+                "iso-8859-1"), "UTF-8");
+        String nom_tema = new String(request.getParameter("nom_tema").getBytes(
+                "iso-8859-1"), "UTF-8");
+        String album = new String(request.getParameter("album").getBytes(
+            "iso-8859-1"), "UTF-8");
+        String artista = new String(request.getParameter("artista").getBytes(
+            "iso-8859-1"), "UTF-8");
+        IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
         try {
-            DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
-            request.setAttribute("esWeb",data instanceof DataTemaWeb);
-            request.setAttribute("tieneVigente",tieneVigente);
-            request.setAttribute("nickArtista",nickArtista);
-            request.setAttribute("nombreAlbum",nombreAlbum);
-            request.setAttribute("nombreTema",nombreTema);
-            List<String> list = new ArrayList();
-            if(tieneVigente) {
-                IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
-                list = inter.listarListasDeCliente(nick);
-            }
-            request.setAttribute("listas",list);
-            request.getRequestDispatcher("/WEB-INF/listas/OpcionesTema.jsp").forward(request,response);
-        } catch (ArtistaInexistenteException ex) {
-            out.write("Error");
+            if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+                    inter.agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
+                }
         } catch (AlbumInexistenteException ex) {
-            out.write("Error");
+            response.sendError(404);
         } catch (ClienteInexistenteException ex) {
-            out.write("Error");
+            response.sendError(404);
+        } catch (Exception ex) {
+            response.sendError(404);
         }
     }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -91,6 +76,7 @@ public class OpcionesTema extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -104,6 +90,7 @@ public class OpcionesTema extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
+
     /**
      * Returns a short description of the servlet.
      *
@@ -113,4 +100,5 @@ public class OpcionesTema extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
 }
