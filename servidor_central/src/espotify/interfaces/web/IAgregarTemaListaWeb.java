@@ -22,7 +22,7 @@ public interface IAgregarTemaListaWeb {
             String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
             AlbumInexistenteException, ClienteInexistenteException, Exception;
     
-/*    public void agregarTemaWebxListaPub(String nick_sesion, String lista_poner, 
+    /*public void agregarTemaWebxListaPub(String nick_sesion, String lista_poner, 
             String nom_tema, String lista_sacar, String usuario) throws ClienteInexistenteException, 
             ListaInexistenteException, TemaInexistenteException, Exception;
     
@@ -30,7 +30,6 @@ public interface IAgregarTemaListaWeb {
             String nom_tema, String lista_sacar) throws ListaInexistenteException, 
             TemaInexistenteException, ClienteInexistenteException, Exception;
 */    
-    
     public List<String> listarListasDeCliente(String nick)
             throws ClienteInexistenteException;
     

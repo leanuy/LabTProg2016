@@ -10,9 +10,6 @@ import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.IAgregarTemaListaWeb;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +50,9 @@ public class AgregarTemaListaWeb extends HttpServlet {
             "iso-8859-1"), "UTF-8");
         IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
         try {
-            inter.agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
+            if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
+                    inter.agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
+                }
         } catch (AlbumInexistenteException ex) {
             response.sendError(404);
         } catch (ClienteInexistenteException ex) {
