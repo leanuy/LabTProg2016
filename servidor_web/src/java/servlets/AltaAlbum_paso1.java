@@ -7,7 +7,14 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
+import espotify.excepciones.AlbumRepetidoException;
 import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CampoVacioException;
+import espotify.excepciones.DuracionInvalidaException;
+import espotify.excepciones.GeneroInexistenteException;
+import espotify.excepciones.NumeroTemaInvalidoException;
+import espotify.excepciones.TemaRepetidoException;
+import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IListarGeneros;
 import java.awt.image.BufferedImage;
@@ -61,24 +68,78 @@ public class AltaAlbum_paso1 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        boolean has_errors = false;
+        int anio = 0;
         HttpSession session = request.getSession();
         String nombre = new String(request.getParameter("nombre").getBytes("iso-8859-1"), "UTF-8");
-        int anio = Integer.parseInt(request.getParameter("anio"));
+        String anio_str = request.getParameter("anio");
         String[] generos_arr = request.getParameterValues("generos");
         
         List<String> generos = new ArrayList<String>();
         
-        for (String genero : generos_arr) {
-            generos.add(new String(genero.getBytes("iso-8859-1"), "UTF-8"));
-        }
+        
         if(nombre.equals("")){
             request.setAttribute("has_errors", true);
             request.setAttribute("error_nombre", "El nombre del álbum es requerido");
-            request.getRequestDispatcher("/AltaAlbum/paso1").forward(request, response);
-//            request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso1.jsp").forward(request, response);
+            has_errors = true;
+        }else{
+            boolean ya_existe = false;
+            try {
+                ya_existe = inter.esAlbumDeArtista((String) session.getAttribute("nick_sesion"), nombre);
+            } catch (ArtistaInexistenteException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (AlbumRepetidoException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (GeneroInexistenteException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DuracionInvalidaException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (NumeroTemaInvalidoException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (TemaRepetidoException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (CampoVacioException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (TemaTipoInvalidoException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            if(ya_existe){
+                request.setAttribute("has_errors", true);
+                request.setAttribute("error_nombre", "Ya tienes un álbum con este nombre");
+                has_errors = true;
+            }
         }
         
-            IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        if(anio_str.equals("")){
+            request.setAttribute("has_errors", true);
+            request.setAttribute("error_anio", "El año del álbum es requerido");
+            has_errors = true;
+        }else{
+            anio = Integer.parseInt(anio_str);
+        }
+        if(generos_arr == null || generos_arr.length == 0){
+            request.setAttribute("has_errors", true);
+            request.setAttribute("error_generos", "Debes elegir al menos un año para el álbum");
+            has_errors = true;
+        }else{
+            for (String genero : generos_arr) {
+                generos.add(new String(genero.getBytes("iso-8859-1"), "UTF-8"));
+            }
+        }
+        
+        if(has_errors){
+            IListarGeneros interf = Fabrica.getIListarGeneros();
+            Map<String, String> data = interf.stringifyDataGeneros();
+
+            request.setAttribute("generos", data);
+            
+            request.setAttribute("nombre", nombre);
+            request.setAttribute("anio", anio_str);
+            request.setAttribute("generos_arr", generos_arr);
+            request.getRequestDispatcher("/WEB-INF/albums/paso1.jsp").forward(request, response);
+        }else{
+            
             DataAlbumExt data;
             
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -97,6 +158,7 @@ public class AltaAlbum_paso1 extends HttpServlet {
                 Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
             }
         response.sendRedirect("/AltaAlbum/paso2?album="+nombre);
+        }
     }
 
     /**

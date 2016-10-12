@@ -100,6 +100,6 @@ final class ManejadorColecciones {
     Que lo que tenga vuela al carajo cada vez que ejecutan la cuestión.
     */
     static String getAudioFolder() {
-        return "/home/agustina/tprog_audio/";
+        return "/home/agus/tprog_audio/";
     }
 }
