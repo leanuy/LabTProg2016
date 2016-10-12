@@ -18,8 +18,11 @@
         <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/bootstrap.css">
         <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/font_awesome/css/font-awesome.css" type='text/css'>
         <link rel="stylesheet" href="<%= request.getContextPath()%>/assets/css/css.css">
+        <script src="<%= request.getContextPath()%>/assets/js/jquery-3.1.0.min.js"></script>
     </head>
     <body>
         <jsp:doBody/>
+        <script src="<%= request.getContextPath()%>/assets/js/bootstrap.js"></script>
+        <script src="<%= request.getContextPath()%>/assets/js/script.js"></script>
     </body>
 </html>

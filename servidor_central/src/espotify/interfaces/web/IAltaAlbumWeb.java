@@ -24,4 +24,5 @@ public interface IAltaAlbumWeb {
     public DataAlbumExt getAlbumTemp(String nick_artista, String album) throws ArtistaInexistenteException;
     public void cancelarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException;
     public void AceptarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException;
+    public boolean esAlbumDeArtista(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException;
 }
