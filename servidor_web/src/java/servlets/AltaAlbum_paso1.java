@@ -51,10 +51,37 @@ public class AltaAlbum_paso1 extends HttpServlet {
         String nombre = new String(request.getParameter("nombre").getBytes(
                 "iso-8859-1"), "UTF-8");
         
-        //Aca va lo tuyo
+        List<String> generos = new ArrayList<String>();
         
-        //Si pasa las validaciones, que se redireccione a esa url
-        response.sendRedirect("/CrearAlbum/paso2?album="+nombre);
+        for (String genero : generos_arr) {
+            generos.add(new String(genero.getBytes("iso-8859-1"), "UTF-8"));
+        }
+        if(nombre.equals("")){
+            request.setAttribute("has_errors", true);
+            request.setAttribute("error_nombre", "El nombre del álbum es requerido");
+            request.getRequestDispatcher("/AltaAlbum/paso1").forward(request, response);
+//            request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso1.jsp").forward(request, response);
+        }
+        
+            IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+            DataAlbumExt data;
+            
+            boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            if (isMultipart) {
+                Part part = request.getPart("imagen");
+                InputStream is = part.getInputStream();
+                BufferedImage img = ImageIO.read(is);
+                data = new DataAlbumExt(nombre, anio, generos, img, (String) session.getAttribute("nick_sesion"));
+            } else {
+                data = new DataAlbumExt(nombre, anio, generos, null, (String) session.getAttribute("nick_sesion"));
+            }
+            
+            try {
+                inter.addAlbumTemp(data);
+            } catch (ArtistaInexistenteException ex) {
+                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        response.sendRedirect("/AltaAlbum/paso2?album="+nombre);
     }
 
     /**
