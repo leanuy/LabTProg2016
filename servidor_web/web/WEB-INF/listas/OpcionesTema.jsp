@@ -19,12 +19,12 @@
     <c:when test="${tieneVigente}">
         <br>
         Agregar a lista:
-        <select id="combolistas">
+        <select class="combolistas">
             <c:forEach items="${listas}" var="item">
                 <option>${item}</option>
             </c:forEach>
         </select>
-        <button id="boton_confirmar" class="btn btn-custom" onclick="ConfirmarAgregarLista()" data-nick="${nick_sesion}" data-tema="${nombreTema}" data-album="${nombreAlbum}" data-artista="${nickArtista}">Agregar a lista</button>
-        <div id="mensaje"></div>
+        <button class="boton_confirmar btn btn-custom" onclick="ConfirmarAgregarLista()" data-nick="${nick_sesion}" data-tema="${nombreTema}" data-album="${nombreAlbum}" data-artista="${nickArtista}">Agregar a lista</button>
+        <div class="mensaje"></div>
     </c:when>
 </c:choose>

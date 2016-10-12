@@ -44,15 +44,15 @@ public class OpcionesTema extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         HttpSession session = request.getSession();
-        boolean tieneVigente=false;
+        boolean tieneVigente = false;
         String nick = (String) session.getAttribute("nick_sesion");
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-                ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
-                try {
-                    tieneVigente = isusc.tieneSuscripcionVigente(nick);
-                } catch (ClienteInexistenteException e) {
-                    tieneVigente = false;
-                }
+            ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
+            try {
+                tieneVigente = isusc.tieneSuscripcionVigente(nick);
+            } catch (ClienteInexistenteException e) {
+                tieneVigente = false;
+            }
         }
         IVerAlbum interf = Fabrica.getIVerAlbum();
         try {
@@ -63,7 +63,7 @@ public class OpcionesTema extends HttpServlet {
             request.setAttribute("nombreAlbum",nombreAlbum);
             request.setAttribute("nombreTema",nombreTema);
             List<String> list = new ArrayList();
-            if(tieneVigente) {
+            if (tieneVigente) {
                 IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
                 list = inter.listarListasDeCliente(nick);
             }
