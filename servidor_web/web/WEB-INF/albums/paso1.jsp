@@ -14,12 +14,19 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-12">
-                    <form action="/CrearAlbum" method="POST" class="form-horizontal">
+                    <form action="/AltaAlbum/paso1" method="POST" class="form-horizontal">
                         <fieldset>
                             <div class="form-group <c:if test="${not empty error_nombre}==true">has-error</c:if>">
                                     <label class="col-md-4 control-label" for="textinput">Nombre*:</label>  
                                     <div class="col-md-4">
                                         <input id="nombre" name="nombre" type="text" placeholder="" class="form-control input-md">
+                                        <!--<span class="help-block">help</span>-->  
+                                    </div>
+                                </div>
+                            <div class="form-group <c:if test="${not empty error_anio}==true">has-error</c:if>">
+                                    <label class="col-md-4 control-label" for="textinput">Año*:</label>  
+                                    <div class="col-md-4">
+                                        <input id="anio" name="anio" type="number" min="0" placeholder="" class="form-control input-md">
                                         <!--<span class="help-block">help</span>-->  
                                     </div>
                                 </div>
@@ -33,7 +40,7 @@
                                 <div class="form-group">
                                     <label class="col-md-4 control-label" for="filebutton">Géneros</label>
                                     <div class="col-md-4">
-                                        <select name="generos[]" multiple="">
+                                        <select name="generos" multiple="">
                                         <c:forEach items="${generos}" var="genero">
                                             <option value="${genero.value}">${genero.key}</option>
                                         </c:forEach>
