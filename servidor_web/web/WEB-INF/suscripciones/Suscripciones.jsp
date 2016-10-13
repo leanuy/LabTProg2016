@@ -49,10 +49,10 @@
                     <p>Suscribase!</p>
                     <div>
                         <form action="/Suscripcion" method="POST">
-                            <select name="tipo">
-                                <option value="semanal">Semanal USD 3</option>
-                                <option value="mensual">Mensual USD 10</option>
-                                <option value="anual">Anual USD 100</option>
+                            <select class="form-control" name="tipo">
+                                <option value="semanal">Semanal USD 2</option>
+                                <option value="mensual">Mensual USD 7</option>
+                                <option value="anual">Anual USD 65</option>
                             </select>
                             <button class="btn btn-custom" type="submit">Suscribirse!</button> 
                         </form>
