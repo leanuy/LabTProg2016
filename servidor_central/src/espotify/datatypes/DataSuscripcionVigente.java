@@ -5,11 +5,13 @@ import java.util.Calendar;
 
 public class DataSuscripcionVigente extends DataSuscripcion {
     private final Calendar vencimiento;
+    private final Calendar desde;
     
     public DataSuscripcionVigente(Calendar fechaCreacion, EstadoSuscripcion estado,
-            TipoSuscripcion tipo, Calendar vencimiento) {
+            TipoSuscripcion tipo, Calendar vencimiento, Calendar fDesde) {
         super(fechaCreacion, estado, tipo);
         this.vencimiento = vencimiento;
+        this.desde = fDesde;
     }
     
     public Calendar getVencimiento() {
@@ -19,5 +21,9 @@ public class DataSuscripcionVigente extends DataSuscripcion {
     public String getfVenStr() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(vencimiento.getTime());
+    }
+    public String getfDesdeStr() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(desde.getTime());
     }
 }

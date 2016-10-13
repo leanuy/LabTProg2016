@@ -5,6 +5,7 @@ import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.EstadoSuscripcion;
 import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
+import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 
@@ -14,13 +15,20 @@ public class Suscripcion {
     private final TipoSuscripcion tipo;
     private boolean cancelada;
     
-    Suscripcion(TipoSuscripcion tipo) {
+    public Suscripcion(TipoSuscripcion tipo) {
         this.fechaCreacion = Calendar.getInstance();
         this.tipo = tipo;
         this.fechaDesde = null;
         this.cancelada = false;
     }
-
+    
+    public Suscripcion(Calendar creacion, Calendar desde, TipoSuscripcion type, boolean cancel){
+        this.fechaCreacion = creacion;
+        this.fechaDesde = desde;
+        this.tipo = type;
+        this.cancelada = cancel;
+    }
+    
     public Calendar getFechaCreacion() {
         return fechaCreacion;
     }
@@ -90,7 +98,7 @@ public class Suscripcion {
     DataSuscripcion getData() {
         if (estaVigente()) {
             return new DataSuscripcionVigente(fechaCreacion, EstadoSuscripcion.VIGENTE,
-                    tipo, getVencimiento());
+                    tipo, getVencimiento(), fechaDesde);
         } else {
             return new DataSuscripcion(fechaCreacion, getEstado(), tipo);
         }
@@ -106,4 +114,9 @@ public class Suscripcion {
     public void vencer() {
         fechaDesde.clear();
     }
+    
+    Calendar getFechaDesde() {
+        return this.fechaDesde;
+    }
+    
 }
