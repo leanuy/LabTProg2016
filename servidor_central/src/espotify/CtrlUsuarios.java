@@ -559,6 +559,11 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarArtista(nick).getAudio(album,tema);
     }
     
-
+    @Override
+    public void encajarSuscripcion(String nick, Suscripcion s) throws ClienteInexistenteException{
+        Cliente client;
+        client = buscarCliente(nick);
+        client.encajarSuscripcion(s);
+    }
 
 }
