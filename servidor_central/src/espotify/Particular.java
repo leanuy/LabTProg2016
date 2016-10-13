@@ -13,7 +13,7 @@ abstract class Particular extends Lista {
         return cli.getNick();
     }
     
-    Particular(DataLista data,Cliente cli ) {
+    Particular(DataLista data, Cliente cli ) {
         super(data);
         this.cli = cli;
     }

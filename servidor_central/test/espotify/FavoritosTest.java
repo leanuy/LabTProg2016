@@ -15,6 +15,8 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.web.IFavoritos;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -27,8 +29,8 @@ import org.junit.runners.MethodSorters;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FavoritosTest {
     
-    static IFavoritos interf;
-    static IFavoritear ifav;
+    private static IFavoritos interf;
+    private static IFavoritear ifav;
    
     public FavoritosTest() {
     }
@@ -39,25 +41,26 @@ public class FavoritosTest {
         interf = Fabrica.getIFavoritos();
         IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
         try {
-            iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
-            iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
+            iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null, ""));
+            iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null, ""));
             DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica", null);
             IAltaLista instance = Fabrica.getIAltaLista();
             instance.altaListaParticular(dLista);
         } catch (Exception ex) {
+             Logger.getLogger("Algo salió mal").log(Level.SEVERE, null, ex);
         }
     }
     
     @Test
     public void testListarFavoritos() throws ClienteInexistenteException {
         System.out.println("Lista de favoritos: vacía");
-        List<DataFavoriteable> l = interf.listarFavoritos("TesterLista");
-        assert(l.isEmpty());
+        List<DataFavoriteable> lista = interf.listarFavoritos("TesterLista");
+        assert(lista.isEmpty());
     }
     
     @Test (expected=ClienteInexistenteException.class)
     public void test2ListarFavoritos() throws ClienteInexistenteException {
         System.out.println("Lista de favoritos: cliente inexistente");
-        List<DataFavoriteable> l = interf.listarFavoritos("asdf");
+        List<DataFavoriteable> lista = interf.listarFavoritos("asdf");
     }
 }

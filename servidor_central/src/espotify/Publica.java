@@ -17,6 +17,6 @@ public class Publica extends Particular implements Favoriteable {
     
     @Override
     public DataParticular getData() {
-        return new DataParticular(getNickCliente(),nombre,img);
+        return new DataParticular(getNickCliente(), nombre, img);
     }
 }

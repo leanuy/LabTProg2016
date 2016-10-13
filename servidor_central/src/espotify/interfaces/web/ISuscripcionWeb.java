@@ -16,7 +16,7 @@ public interface ISuscripcionWeb {
     
     public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException;
     
-    public boolean contratarSuscripcion(TipoSuscripcion tipo,String nickname) throws ClienteInexistenteException;
+    public boolean contratarSuscripcion(TipoSuscripcion tipo, String nickname) throws ClienteInexistenteException;
     
     public void cancelarSuscripcionVencida(String nickname) throws 
             NoHaySuscripcionException, TransicionSuscripcionInvalidaException,

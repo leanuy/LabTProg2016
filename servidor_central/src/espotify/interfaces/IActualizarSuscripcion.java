@@ -23,5 +23,5 @@ public interface IActualizarSuscripcion {
             TransicionSuscripcionInvalidaException;
     public void vencerSuscripcionActual(String nickname) throws ClienteInexistenteException;
     //si se desea ver el histórico habria que agregar otra operacion que las traiga.
-    public void encajarSuscripcion(String nick, Suscripcion s) throws ClienteInexistenteException;
+    public void encajarSuscripcion(String nick, Suscripcion suscripcion) throws ClienteInexistenteException;
 }
