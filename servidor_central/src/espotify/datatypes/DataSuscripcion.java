@@ -30,4 +30,10 @@ public class DataSuscripcion {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(fechaCreacion.getTime());
     }
+    
+    
+    public String info() {
+        return "Estado: " + estado + "tipo: " + tipo + "creada: " + getfCreacionStr();
+    }
+    
 }

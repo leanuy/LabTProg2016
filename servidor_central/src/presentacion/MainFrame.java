@@ -1,6 +1,7 @@
 package presentacion;
 
 import espotify.Fabrica;
+import espotify.Suscripcion;
 import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
@@ -11,6 +12,8 @@ import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
+import espotify.datatypes.TipoSuscripcion;
+import espotify.interfaces.IActualizarSuscripcion;
 import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
@@ -19,6 +22,7 @@ import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IAltaSeguir;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IPublicarLista;
+import java.awt.Image;
 
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -84,7 +88,6 @@ public class MainFrame extends javax.swing.JFrame {
         altasDropDown = new javax.swing.JMenu();
         altaPerfil = new javax.swing.JMenuItem();
         altaGeneroMenuItem = new javax.swing.JMenuItem();
-        altaAlbum = new javax.swing.JMenuItem();
         altaLista = new javax.swing.JMenuItem();
         consultasDropDown = new javax.swing.JMenu();
         consultaClienteMenuItem = new javax.swing.JMenuItem();
@@ -104,6 +107,7 @@ public class MainFrame extends javax.swing.JFrame {
         cargarDatosDePrueba = new javax.swing.JMenuItem();
         suscripcionesMenu = new javax.swing.JMenu();
         suscripcionesMenuItem = new javax.swing.JMenuItem();
+        vencerSuscripcion = new javax.swing.JCheckBoxMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -280,15 +284,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
         altasDropDown.add(altaGeneroMenuItem);
 
-        altaAlbum.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
-        altaAlbum.setText("Alta Album");
-        altaAlbum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                altaAlbumActionPerformed(evt);
-            }
-        });
-        altasDropDown.add(altaAlbum);
-
         altaLista.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         altaLista.setText("Alta Lista");
         altaLista.addActionListener(new java.awt.event.ActionListener() {
@@ -422,6 +417,14 @@ public class MainFrame extends javax.swing.JFrame {
         });
         suscripcionesMenu.add(suscripcionesMenuItem);
 
+        vencerSuscripcion.setText("Vencer Suscripcion");
+        vencerSuscripcion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vencerSuscripcionActionPerformed(evt);
+            }
+        });
+        suscripcionesMenu.add(vencerSuscripcion);
+
         menuPrincipal.add(suscripcionesMenu);
 
         setJMenuBar(menuPrincipal);
@@ -441,16 +444,6 @@ public class MainFrame extends javax.swing.JFrame {
         frameAltaPerfil.setVisible(true);
         
     }//GEN-LAST:event_altaPerfilActionPerformed
-
-    private void altaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaAlbumActionPerformed
-        MainPanel.removeAll();
-        AltaAlbum album = new AltaAlbum();
-        //album.setLocation((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth())/2, (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight())/2);
-        MainPanel.add(album);
-        MainPanel.repaint();
-        //ver que agregar y hacer visible
-        album.setVisible(true);
-    }//GEN-LAST:event_altaAlbumActionPerformed
 
     private void seguirMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seguirMenuItemActionPerformed
         MainPanel.removeAll();
@@ -555,136 +548,204 @@ public class MainFrame extends javax.swing.JFrame {
         //ALTA DE CLIENTES:
         IAltaPerfil ctrlAltaPerfil = Fabrica.getIAltaPerfil();
         File file;
-        BufferedImage img;
+        Image imag;
+        BufferedImage img = null;
+        URL url;
         
         
-        file = new File("./src/Presentacion/img/clientes/ElPadrino.png");
+        file = new File("./src/presentacion/img/clientes/ElPadrino.png");
         img = ImageIO.read(file);
         Calendar cal = Calendar.getInstance();
         cal.set(1972, 3, 8);
-        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img,"");
+        DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img,"elpadrino");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
-        file = new File("./src/Presentacion/img/clientes/ScarlettOHara.jpg");
+        file = new File("./src/presentacion/img/clientes/ScarlettOHara.jpg");
         img = ImageIO.read(file);
         cal.set(1984, 11, 27);
-        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img,"");
+        dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img,"scarletto");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
-        file = new File("./src/Presentacion/img/clientes/PepeArgento.png");
+        file = new File("./src/presentacion/img/clientes/PepeArgento.png");
         img = ImageIO.read(file);
         cal.set(1955, 2, 14);
-        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img,"");
+        dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img,"ppargento");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         cal.set(1056, 3, 7);
-        dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null,"");
+        dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null,"heisenberg");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
-        file = new File("./src/Presentacion/img/clientes/BenKenobi.png");
+        file = new File("./src/presentacion/img/clientes/BenKenobi.png");
         img = ImageIO.read(file);
         cal.set(1914, 4, 2);
-        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img,"");
+        dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img,"benkenobi");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
-        file = new File("./src/Presentacion/img/clientes/lachiqui.jpg");
+        file = new File("./src/presentacion/img/clientes/lachiqui.jpg");
         img = ImageIO.read(file);
         cal.set(1927, 2, 23);
-        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img,"");
+        dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img,"lachiqui");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
-        file = new File("./src/Presentacion/img/clientes/CachoBochinche.jpg");
+        file = new File("./src/presentacion/img/clientes/CachoBochinche.jpg");
         img = ImageIO.read(file);
         cal.set(1937, 5, 8);
-        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img,"");
+        dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img,"cbochinche");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
-        file = new File("./src/Presentacion/img/clientes/eleven.jpg");
+        file = new File("./src/presentacion/img/clientes/eleven.jpg");
         img = ImageIO.read(file);
         cal.set(1971, 12, 31);
-        dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img,"");
+        dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img,"eleven11");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         DataArtista dataArtista;      
         String bio;
         
-        file = new File("./src/Presentacion/img/artistas/VillagePeople.jpg");
+        file = new File("./src/presentacion/img/artistas/VillagePeople.jpg");
         img = ImageIO.read(file);
         cal.set(1977, 1, 1);
         bio = "Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.";
-        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img,"");
+        dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img,"vpeople");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        file = new File("./src/Presentacion/img/artistas/DepecheMode.jpg");
+        file = new File("./src/presentacion/img/artistas/DepecheMode.jpg");
         img = ImageIO.read(file);
         cal.set(1980, 6, 14);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img,"");
+        dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img,"dmode");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        file = new File("./src/Presentacion/img/artistas/CyndiLauper.jpg");
+        file = new File("./src/presentacion/img/artistas/CyndiLauper.jpg");
         img = ImageIO.read(file);
         cal.set(1953, 6, 22);
         bio = "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.";
-        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img,"clauper");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        file = new File("./src/Presentacion/img/artistas/BruceTheBoss.jpg");
+        file = new File("./src/presentacion/img/artistas/BruceTheBoss.jpg");
         img = ImageIO.read(file);
         cal.set(1949, 9, 23);
         bio = "";
-        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img,"bruceTheBoss");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        file = new File("./src/Presentacion/img/artistas/LaTripleNelson.jpg");
+        file = new File("./src/presentacion/img/artistas/LaTripleNelson.jpg");
         img = ImageIO.read(file);
         cal.set(1998, 1, 1);
         bio = "La Triple Nelson es un grupo de rock uruguayo formado en enero de 1998 e integrado inicialmente por Christian Cary (guitarra y voz), Fernando Paco"
             +" Pintos (bajo y coros) y Rubén Otonello (actualmente su nuevo baterista es Rafael Ugo).";
-        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img,"");
+        dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img,"tripleNelson");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1987, 2, 14);
         bio = "";
-        dataArtista = new DataArtista(bio, "", "la_ley", "La", "Ley", "la_ley@tuta.io", cal, null,"");
+        dataArtista = new DataArtista(bio, "", "la_ley", "La", "Ley", "la_ley@tuta.io", cal, null,"la_ley");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1940, 6, 7);
         bio = "Sir Thomas John, conocido por su nombre artístico de Tom Jones, es un cantante británico. Ha vendido más de 100 millones de discos en todo el mundo.";
-        dataArtista = new DataArtista(bio, "", "tigerOfWales", "Tom", "Jones", "tigerOfWales@tuta.io", cal, null,"");
+        dataArtista = new DataArtista(bio, "", "tigerOfWales", "Tom", "Jones", "tigerOfWales@tuta.io", cal, null,"tiger");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1840, 4, 25);
         bio = "Piotr Ilich Chaikovski fue un compositor ruso del período del Romanticismo";
-        dataArtista = new DataArtista(bio, "", "chaiko", "Piotr", "Tchaikovsky", "chaiko@tuta.io", cal, null,"");
+        dataArtista = new DataArtista(bio, "", "chaiko", "Piotr", "Tchaikovsky", "chaiko@tuta.io", cal, null,"chaiko");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        file = new File("./src/Presentacion/img/artistas/NicoleNeumann.jpg");
+        file = new File("./src/presentacion/img/artistas/NicoleNeumann.jpg");
         img = ImageIO.read(file);
         cal.set(1980, 10, 31);
         bio = "";
-        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img,"nicoleneu");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        file = new File("./src/Presentacion/img/artistas/Pimpinela.jpg");
+        file = new File("./src/presentacion/img/artistas/Pimpinela.jpg");
         img = ImageIO.read(file);
         cal.set(1981, 8, 13);
         bio = "";
-        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img,"");
+        dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img,"lospimpi");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1940, 3, 5);
         bio = "José Gómez Romero, conocido artísticamente como Dyango es un cantante español de música romántica.";
-        dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", "Unchained", "dyangounchained@gmail.com", cal, null,"");
+        dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", "Unchained", "dyangounchained@gmail.com", cal, null,"dyango");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         cal.set(1952, 7, 17);
         bio = "Su carrera comienza en 1976 cuando forma la banda Los Playeros junto a su hermano Víctor. Al poco tiempo se mudan a San Luis donde comienzan a hacerse conocidos en la escena musical. Su éxito a nivel nacional llega a comienzos de los años 1990 cuando desembarca en Buenos Aires y graba el éxito Violeta"
             + ", originalmente compuesta e nterpretada en 1985 por el músico brasileño Luiz Caldas bajo el título «Fricote».";
-        dataArtista = new DataArtista(bio, "", "alcides", "Alcides", "Palacio", "alcides@tuta.io", cal, null,"");
+        dataArtista = new DataArtista(bio, "", "alcides", "Alcides", "Palacio", "alcides@tuta.io", cal, null,"alcides");
         ctrlAltaPerfil.altaArtista(dataArtista);
             
+        //SUSCRIPCIONES
         
+        Calendar cal2 = Calendar.getInstance();
+        cal.set(2010,10,10);
+        cal2.set(2016,9,2);
+        Suscripcion s1 = new Suscripcion(cal,cal2,TipoSuscripcion.SEMANAL,false);
+        
+        cal.set(2016,9,3);
+        Suscripcion s2 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        
+        cal.set(2016,10,1);
+        Suscripcion s3 = new Suscripcion(cal,null ,TipoSuscripcion.MENSUAL,false);
+        
+        cal.set(2016,3,1);
+        cal2.set(2015,2,28);
+        Suscripcion s4 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        
+        cal.set(2016,5,3);
+        cal2.set(2016,5,2);
+        Suscripcion s5 = new Suscripcion(cal2,cal,TipoSuscripcion.MENSUAL,true);
+        
+        cal.set(2016,10,16);
+        cal2.set(2016,10,15);
+        Suscripcion s6 = new Suscripcion(cal2,cal,TipoSuscripcion.SEMANAL,false);
+        
+        cal.set(2015,6,10);
+        cal2.set(2014,3,3);
+        Suscripcion s7 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        
+        cal.set(2016,10,15);
+        Suscripcion s8 = new Suscripcion(cal,null,TipoSuscripcion.MENSUAL,false);
+        
+        cal.set(2016,9,2);
+        cal2.set(2016,8,25);
+        Suscripcion s9 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,true);
+        
+        cal.set(2016,9,24);
+        cal2.set(2016,9,25);
+        Suscripcion s10 = new Suscripcion(cal,cal2,TipoSuscripcion.MENSUAL,false);
+        
+        cal.set(2016,5,1);
+        cal2.set(2016,1,1);
+        Suscripcion s11 = new Suscripcion(cal2,cal,TipoSuscripcion.SEMANAL,false);
+        
+        cal.set(2016,10,2);
+        cal2.set(2016,10,1);
+        Suscripcion s12 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,true);
+        
+        cal.set(2016,10,15);
+        cal2.set(2016,10,14);
+        Suscripcion s13 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        
+        IActualizarSuscripcion isuscripcion = Fabrica.getIActualizarSuscripcion();
+        
+        isuscripcion.encajarSuscripcion("el_padrino", s1);
+        isuscripcion.encajarSuscripcion("el_padrino", s2);
+        isuscripcion.encajarSuscripcion("scarlettO", s3);
+        isuscripcion.encajarSuscripcion("ppArgento", s4);
+        isuscripcion.encajarSuscripcion("ppArgento", s5);
+        isuscripcion.encajarSuscripcion("ppArgento", s6);
+        isuscripcion.encajarSuscripcion("Heisenberg", s7);
+        isuscripcion.encajarSuscripcion("benKenobi", s8);
+        isuscripcion.encajarSuscripcion("lachiqui", s9);
+        isuscripcion.encajarSuscripcion("lachiqui", s10);
+        isuscripcion.encajarSuscripcion("cbochinche", s11);
+        isuscripcion.encajarSuscripcion("cbochinche", s12);
+        isuscripcion.encajarSuscripcion("Eleven11", s13);
         
         //ALTA DE SEGUIDORES
         IAltaSeguir ctrlSeguir = Fabrica.getIAltaSeguir();
@@ -798,7 +859,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         temas = new ArrayList<>();
         temas.add(new DataTemaWeb("bit.ly/SCvpymca", "YMCA", 268, 1, nickArtista, nombreAlbum));
-        tema = new File("./src/Presentacion/mp3/MachoMan.mp3");
+        tema = new File("./src/presentacion/mp3/MachoMan.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Macho Man", 208, 2, nickArtista, nombreAlbum));
         temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In the Navy", 193, 3, nickArtista, nombreAlbum));
@@ -807,14 +868,14 @@ public class MainFrame extends javax.swing.JFrame {
         iAltaAlbum.altaAlbum(dataAlbumExt);
 
         nickArtista = "dmode";
-        nombreAlbum = "Enjoy The Silence";
+        nombreAlbum = "Violator";
         generos = new ArrayList<>();
         generos.add("Electropop");
         temas = new ArrayList<>();
-        tema = new File("./src/Presentacion/mp3/PersonalJesus.mp3");
+        tema = new File("./src/presentacion/mp3/PersonalJesus.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Personal Jesus", 296, 1, nickArtista, nombreAlbum));
-        tema = new File("./src/Presentacion/mp3/EnjoyTheSilence.mp3");
+        tema = new File("./src/presentacion/mp3/Enjoy The Silence.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Enjoy The Silence", 261, 2, nickArtista, nombreAlbum));
 
@@ -828,10 +889,10 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Dance-pop");
         temas = new ArrayList<>();
         temas.add(new DataTemaWeb("bit.ly/SCclgirlsjustwant", "Girls Just Want To Have Fun", 195, 1, nickArtista, nombreAlbum));
-        tema = new File("./src/Presentacion/mp3/TimeAfterTime.mp3");
+        tema = new File("./src/presentacion/mp3/TimeAfterTime.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Time After Time", 312, 2, nickArtista, nombreAlbum));
-        file = new File("./src/Presentacion/img/albums/ShesSoUnusual.PNG");
+        file = new File("./src/presentacion/img/albums/ShesSoUnusual.PNG");
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "She's So Unusual", 1983, generos, img, nickArtista);
@@ -846,7 +907,7 @@ public class MainFrame extends javax.swing.JFrame {
         temas = new ArrayList<>();
         temas.add(new DataTemaWeb("bit.ly/SCbsborninusa", "Born In The U.S.A.", 298, 1, nickArtista, nombreAlbum));
         temas.add(new DataTemaWeb("bit.ly/SCbsglorydays", "Glory Days", 323, 2, nickArtista, nombreAlbum));
-        tema = new File("./src/Presentacion/mp3/DancingInTheDark.mp3");
+        tema = new File("./src/presentacion/mp3/DancingInTheDark.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Dancing In The Park", 238, 3, nickArtista, nombreAlbum));
 
@@ -859,10 +920,10 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Rock Clásico");
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
-        tema = new File("./src/Presentacion/mp3/ItSNotUnusual.mp3");
+        tema = new File("./src/presentacion/mp3/ItSNotUnusual.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "It’s Not Unusual", 120, 1, nickArtista, nombreAlbum));
-        file = new File("./src/Presentacion/img/albums/ItsNotUnusual.jpeg");
+        file = new File("./src/presentacion/img/albums/ItsNotUnusual.jpeg");
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "It's Not Unusual", 1965, generos, img, nickArtista);
@@ -884,13 +945,13 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Rock Latino");
         generos.add("Pop Clásico");
         temas = new ArrayList<>();
-        tema = new File("./src/Presentacion/mp3/ElDuelo.mp3");
+        tema = new File("./src/presentacion/mp3/ElDuelo.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "El Duelo", 323, 1, nickArtista, nombreAlbum));
-        tema = new File("./src/Presentacion/mp3/Mentira.mp3");
+        tema = new File("./src/presentacion/mp3/Mentira.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Mentira", 288, 2, nickArtista, nombreAlbum));
-        file = new File("./src/Presentacion/img/albums/mtvUnplugged.jpg");
+        file = new File("./src/presentacion/img/albums/mtvUnplugged.jpg");
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "MTV Unplugged", 2001, generos, img, nickArtista);
@@ -921,7 +982,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos = new ArrayList<>();
         generos.add("Electropop");
         temas = new ArrayList<>();
-        tema = new File("./src/Presentacion/mp3/NoQuieroEstudiar.mp3");
+        tema = new File("./src/presentacion/mp3/NoQuieroEstudiar.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "No Quiero Estudiar", 132, 1, nickArtista, nombreAlbum));
 
@@ -934,7 +995,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Pop Clásico");
         generos.add("Balada");
         temas = new ArrayList<>();
-        tema = new File("./src/Presentacion/mp3/PorEseHombre.mp3");
+        tema = new File("./src/presentacion/mp3/PorEseHombre.mp3");
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Por Ese Hombre", 285, 1, nickArtista, nombreAlbum));
 
@@ -958,7 +1019,7 @@ public class MainFrame extends javax.swing.JFrame {
         generos.add("Cumbia");
         temas = new ArrayList<>();
         temas.add(new DataTemaWeb("bit.ly/SCvioleta", "Violeta", 116, 1, nickArtista, nombreAlbum));
-        file = new File("./src/Presentacion/img/albums/alcides20.jpg");
+        file = new File("./src/presentacion/img/albums/alcides20.jpg");
         img = ImageIO.read(file);
 
         dataAlbumExt = new DataAlbumExt(temas, "20 Grandes Éxitos", 1989, generos, img, nickArtista);
@@ -1068,6 +1129,7 @@ public class MainFrame extends javax.swing.JFrame {
                 "No se pudieron cargar los datos",
                 "Error",
                 JOptionPane.PLAIN_MESSAGE);
+            System.out.println(ex.getMessage());
         }
     }//GEN-LAST:event_cargarDatosDePruebaActionPerformed
 
@@ -1110,6 +1172,14 @@ public class MainFrame extends javax.swing.JFrame {
         MainPanel.repaint();
         frameSusc.setVisible(true);
     }//GEN-LAST:event_suscripcionesMenuItemActionPerformed
+
+    private void vencerSuscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vencerSuscripcionActionPerformed
+        MainPanel.removeAll();
+        VencerSuscripcion frameVencSusc = new VencerSuscripcion();
+        MainPanel.add(frameVencSusc);
+        MainPanel.repaint();
+        frameVencSusc.setVisible(true);
+    }//GEN-LAST:event_vencerSuscripcionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1166,7 +1236,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel AltaPerfil_url_label;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JMenuItem agregarTemaListaMenuItem;
-    private javax.swing.JMenuItem altaAlbum;
     private javax.swing.JMenuItem altaGeneroMenuItem;
     private javax.swing.JMenuItem altaLista;
     private javax.swing.JMenuItem altaPerfil;
@@ -1193,5 +1262,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu socialMenu;
     private javax.swing.JMenu suscripcionesMenu;
     private javax.swing.JMenuItem suscripcionesMenuItem;
+    private javax.swing.JCheckBoxMenuItem vencerSuscripcion;
     // End of variables declaration//GEN-END:variables
 }
