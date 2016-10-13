@@ -98,13 +98,13 @@ public class OrdenarBuscar extends HttpServlet {
                 int o1Int = Integer.parseInt(o1[3]);
                 int o2Int = Integer.parseInt(o2[3]);
                 if (o1Int > o2Int) {
-                    result = 1;
+                    result = -1;
                 }
                 else if (o1Int == o2Int) {
                     result = 0;
                 }
                 else {
-                    result = -1;
+                    result = 1;
                 }
                 return result;
             }
@@ -128,13 +128,13 @@ public class OrdenarBuscar extends HttpServlet {
                 int o1Int = o1.getAnio();
                 int o2Int = o2.getAnio();
                 if (o1Int > o2Int) {
-                    result = 1;
+                    result = -1;
                 }
                 else if (o1Int == o2Int) {
                     result = 0;
                 }
                 else {
-                    result = -1;
+                    result = 1;
                 }
                 return result;
             }
@@ -158,13 +158,13 @@ public class OrdenarBuscar extends HttpServlet {
                 int o1Int = Integer.parseInt(o1[2]);
                 int o2Int = Integer.parseInt(o2[2]);
                 if (o1Int > o2Int) {
-                    result = 1;
+                    result = -1;
                 }
                 else if (o1Int == o2Int) {
                     result = 0;
                 }
                 else {
-                    result = -1;
+                    result = 1;
                 }
                 return result;
             }
