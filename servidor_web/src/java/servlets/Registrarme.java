@@ -8,25 +8,33 @@ package servlets;
 import espotify.Fabrica;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataParticular;
 import espotify.excepciones.CorreoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
 import espotify.excepciones.NickRepetidoException;
 import espotify.interfaces.IAltaPerfil;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  *
  * @author JavierM42
  */
+@MultipartConfig
 public class Registrarme extends HttpServlet {
 
 
@@ -67,13 +75,21 @@ public class Registrarme extends HttpServlet {
         Calendar fechaNac = Calendar.getInstance(); //TODO
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
         
+        BufferedImage img = null;
+        boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+        if (isMultipart) {
+            Part part = request.getPart("imagen");
+            InputStream is = part.getInputStream();
+            img = ImageIO.read(is);
+        }
+        
         String tipo = request.getParameter("tipo");
         if(tipo.equals("cliente")) {
             IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
             
             try {
                 fechaNac.setTime(sdf.parse(request.getParameter("fechaNac")));
-                DataCliente dataCli = new DataCliente(login,nombre,apellido,correo,fechaNac,null,password);
+                DataCliente dataCli = new DataCliente(login,nombre,apellido,correo,fechaNac,img,password);
                 iPerfil.altaCliente(dataCli);
                 request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
             } catch (NickRepetidoException ex) {
@@ -92,7 +108,7 @@ public class Registrarme extends HttpServlet {
             
             try {
                 fechaNac.setTime(sdf.parse(request.getParameter("fechaNac")));
-                DataArtista dataArt = new DataArtista(bio,url,login,nombre,apellido,correo,fechaNac,null,password);
+                DataArtista dataArt = new DataArtista(bio,url,login,nombre,apellido,correo,fechaNac,img,password);
                 iPerfil.altaArtista(dataArt);
                 request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
             } catch (NickRepetidoException ex) {

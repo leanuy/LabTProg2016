@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="filebutton">Imágen</label>
+                        <label class="col-md-4 control-label" for="filebutton">Imagen</label>
                         <div class="col-md-4">
                             <input id="imagen" name="imagen" class="input-file" type="file">
                         </div>

@@ -94,12 +94,9 @@ final class ManejadorColecciones {
         return generoBase;
     }
     
-    /*
-    Tienen que cambiar el retorno cada uno en su máquina por una carpeta de su sistema,
-    que exista y ESTÉ VACÍA. 100% VACÍA. EN SERIO GURISES, VACÍA.
-    Que lo que tenga vuela al carajo cada vez que ejecutan la cuestión.
-    */
     static String getAudioFolder() {
-        return "/Users/santiagoserantes/Vacia/";
+        final String dir = System.getProperty("user.dir") + "/audiofolder/";
+        new File(dir).mkdirs();
+        return dir;
     }
 }

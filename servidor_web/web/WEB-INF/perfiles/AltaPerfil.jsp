@@ -62,7 +62,6 @@
                 if(ValidarCamposVacios()) {
                     $("#camposvacios").hide();
                     if(pass===confirm) {
-                    $("#camposvacios").show();
                     $("#registro-form").submit();
                     } else {
                         $("#passnotmatch").show();
@@ -115,20 +114,20 @@
                     <h1><i class="fa fa-spotify default-color"></i>Espotify</h1>
                     <div class="logo"><h2>Crea tu cuenta</h2></div>
                     <!-- Main Form -->
-                    <form id="registro-form" class="text-center" action="Registrarme" method="POST">
+                    <form id="registro-form" class="text-center" action="Registrarme" method="POST"  enctype="multipart/form-data">
                         <div id="seleccion_tipo"> 
                             <ul class="rig columns-2">
                                 <li>
                                     <input class="radioImg" type="radio" id="elegir_cliente" name="tipo" value="cliente">
                                     <label for="elegir_cliente">
-                                        <image src="/assets/img/profile.png"/>
+                                        <image class="image-circle" src="/assets/img/profile.png"/>
                                         <h3>Cliente</h3>
                                     </label>
                                 </li>
                                 <li>
                                     <input class="radioImg" type="radio" id="elegir_artista" name="tipo" value="artista">
                                     <label for="elegir_artista">
-                                        <image src="/assets/img/artista.png"/>
+                                        <image class="image-circle" src="/assets/img/artista.png"/>
                                         <h3>Artista</h3>
                                     </label>
                                 </li>
@@ -176,7 +175,8 @@
                                             <input type="text" class="form-control" id="lg_fecha" name="fechaNac" placeholder="fecha de nacimiento (dd/mm/aaaa)">
                                         </div>
                                         <div class="form-group">
-                                            Imagen D:
+                                            <label class="sr-only" for="filebutton">Imagen</label>
+                                            Imagen(opcional): <input id="imagen" name="imagen" class="input-file" type="file">
                                         </div>
                                     </div>
                                     <div id="exclusivos_artista">
