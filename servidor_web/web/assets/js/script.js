@@ -21,7 +21,31 @@ $(".boton-archivo").click( function(){
     $form_archivo.addClass("active");
 });
 
-function agregarTema(){
+function crearTema(data) {
+    var datos = JSON.parse(data);
+    var $temas = $('.temas');
+    var $tema = $temas.children('.tema').first().clone();
+    $tema.children('.orden').text(datos["orden"]);
+    $tema.children('.nombre').text(datos["nombre"]);
+    $tema.children('.duracion').text(datos["duracion"]);
+    $tema.children('.tipo').text(datos["tipo"]);
+
+    $temas.append($tema);
+    $tema.show();
+}
+
+
+
+function clearFormTema() {
+    $('#orden').val("");
+    $('#nombre').val("");
+    $('#duracion').val("");
+    $('#tipo').val("");
+    $('#url').val("");
+    $('#archivo').empty();
+}
+
+$("#aceptar").click(function(){
     var has_error = false;
     var album = $('#album').val();
     var orden = $('#orden').val();
@@ -50,29 +74,14 @@ function agregarTema(){
     }
     var tema = $('.active').find('input').val();
     if(!has_error){
-    $.post("/AltaAlbum/paso2?album="+album, '{orden:"'+orden+'",nombre:"'+nombre+'", duracion: "'+duracion+'", tipo: "'+tipo+'", tema: "'+tema+'"}', function(){
-        
-    });
+        var parameters = '{"orden":"' + orden + '", "nombre":"' + nombre + '", "duracion_f": "' + $duracion_str.val() + '", "duracion": "' + duracion + '", "tipo": "' + tipo + '", "tema": "' + tema + '"}';
+    $.post("/AltaAlbum/paso2?album="+album, parameters, function(data, status){
+        if(status === "success"){
+            crearTema(data);
+            clearFormTema();
+        }
+    }, "json");
     }
 }
 
 
-function crearTema(){
-    var tr = '<tr class="tema">\
-                <td class = "orden" > < /td>\
-                <td class = "nombre" > < /td>\
-                <td class = "duracion" > < /td>\
-                <td class = "tipo" > < /td>\
-                <td class = "tools" > < button class = "btn btn-custom" onclick = "agregarTema()" type = "button" > Agregar </button> </td>\
-                </tr>';
-    
-}
-
-function AgregarTema(){
-    var $form_web = $(".form-web");
-    var $form_archivo = $(".form-archivo");
-    $form_archivo.hide();
-    $form_archivo.removeClass("active");
-    $form_web.show();
-    $form_web.addClass("active");
-}
