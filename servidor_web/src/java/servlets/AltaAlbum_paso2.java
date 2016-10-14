@@ -12,6 +12,8 @@ import espotify.interfaces.web.IAltaAlbumWeb;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -103,11 +105,13 @@ public class AltaAlbum_paso2 extends HttpServlet {
             String duracion_str_aux = request.getParameter("duracion_str");
             String tipo = request.getParameter("tipo");
             String url;
+            List<String> errores = new ArrayList<String>();
             BufferedInputStream archivo;
             if (tipo.equals("web")) {
                 url = request.getParameter("url");
                 if (url.equals("")) {
-                    request.setAttribute("error_url", "La url es requerida para temas web.");
+                    errores.add("'error_url':'La url es requerida para temas web.'");
+//                    request.setAttribute("error_url", "La url es requerida para temas web.");
                     has_errors = true;
                 }               
             } else if(tipo.equals("archivo")){
@@ -117,17 +121,21 @@ public class AltaAlbum_paso2 extends HttpServlet {
                     InputStream is = part.getInputStream();
                     archivo = new BufferedInputStream(is);
                 }else{
-                    request.setAttribute("error_archivo", "El archivo es requerido para temas de archivo.");
+                    errores.add("'error_archivo':'El archivo es requerido para temas de archivo.'");
+//                    request.setAttribute("error_archivo", "El archivo es requerido para temas de archivo.");
                     has_errors = true;
                 }
             }else{
+                errores.add("'error_tipo':'No has ingresado una fuente para el tema, seleciona un tipo y completa el dato.'");
                 request.setAttribute("error_tipo", "No has ingresado una fuente para el tema, seleciona un tipo y completa el dato.");
                 has_errors = true;
             }
             if (nombre.equals("")) {
-                request.setAttribute("error_nombre", "El nombre del tema es requerido.");
+                errores.add("'error_nombre':'El nombre del tema es requerido.'");
+//                request.setAttribute("error_nombre", "El nombre del tema es requerido.");
                 has_errors = true;
             } else if (album.tieneTema(nombre)) {
+                errores.add("'error_nombre':'No puedes ingresar dos temas con el mismo nombre.'");
                 request.setAttribute("error_nombre", "No puedes ingresar dos temas con el mismo nombre.");
                 has_errors = true;
             }
@@ -155,7 +163,8 @@ public class AltaAlbum_paso2 extends HttpServlet {
             if (has_errors) {
                 request.setAttribute("has_errors", true);
             }else{
-                String json = "{"
+                String json_success = "{"
+                        + "'success':true"
                         + "'orden':'"+orden_str+"'"
                         + "'nombre':'"+nombre+"'"
                         + "'duracion':'"+duracion_str_aux+"'"
@@ -163,8 +172,7 @@ public class AltaAlbum_paso2 extends HttpServlet {
                         + "}"; 
                 response.setContentType("application/json");
                 response.setCharacterEncoding("UTF-8");
-                response.getWriter().print("{success: true}");
-                response.getWriter().write(json);
+                response.getWriter().write(json_success);
             }
         } catch (ArtistaInexistenteException ex) {
             Logger.getLogger(AltaAlbum_paso2.class.getName()).log(Level.SEVERE, null, ex);
