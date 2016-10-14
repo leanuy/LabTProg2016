@@ -6,15 +6,10 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IObtenerImagen;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
@@ -26,7 +21,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.EstadoSesion;
 
 /**
  *
@@ -152,13 +146,4 @@ public class VerImagen extends HttpServlet {
         return "Short description";
     }// </editor-fold>
 
-    private String getExtension(File file) {
-        String ext = null;
-        String nomArchivo = file.getName();
-        int idx = nomArchivo.lastIndexOf('.');
-        if (idx > 0 &&  idx < nomArchivo.length() - 1) {
-            ext = nomArchivo.substring(idx + 1).toLowerCase();
-        }
-        return ext;
-    }
 }

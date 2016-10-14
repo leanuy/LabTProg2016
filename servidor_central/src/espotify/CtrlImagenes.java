@@ -1,7 +1,6 @@
 package espotify;
 
 import espotify.datatypes.DataAlbumExt;
-import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataUsuario;
 import espotify.excepciones.AlbumInexistenteException;
@@ -11,8 +10,6 @@ import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IObtenerImagen;
 import java.awt.image.BufferedImage;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CtrlImagenes implements IObtenerImagen {
     
@@ -63,10 +60,13 @@ public class CtrlImagenes implements IObtenerImagen {
     @Override
     public BufferedImage getImageLista(String nickUsr, String lista) {
         try {
-            DataLista list = new CtrlListas().darInfoParticular(lista, nickUsr);
-            BufferedImage img = list.getImg();
-            if (img == null) {
+            DataLista list;
+            BufferedImage img;
+            if (nickUsr == null || nickUsr.equals("null")){
                 list = new CtrlListas().darInfoDefecto(lista);
+                img = list.getImg();
+            } else {
+                list = new CtrlListas().darInfoParticular(lista, nickUsr);
                 img = list.getImg();
             }
             return img;
