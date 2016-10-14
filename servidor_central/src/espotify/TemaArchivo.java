@@ -22,17 +22,17 @@ class TemaArchivo extends Tema {
         super(dta, album);
         OutputStream out = null;
         try {
-            InputStream in = dta.getArchivo();
+            InputStream inStream = dta.getArchivo();
             file = new File(ManejadorColecciones.getAudioFolder() + dta.getNomArtista()
                     + "|" + dta.getAlbum() + "|" + dta.getNombre() + ".mp3");
             out = new FileOutputStream(file);
             byte[] buffer = new byte[1024];
-            int len = in.read(buffer);
+            int len = inStream.read(buffer);
             while (len != -1) {
                 out.write(buffer, 0, len);
-                len = in.read(buffer);
+                len = inStream.read(buffer);
             }
-            in.close();
+            inStream.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TemaArchivo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

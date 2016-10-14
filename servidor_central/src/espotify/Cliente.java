@@ -312,8 +312,8 @@ public class Cliente extends Usuario {
         return suscripcionActiva.estaVigente();
     }
     
-    public void encajarSuscripcion(Suscripcion s) {
-        suscripcionActiva = s;
+    public void encajarSuscripcion(Suscripcion suscripcion) {
+        suscripcionActiva = suscripcion;
         suscripciones.put(suscripcionActiva.getFechaDesde(),suscripcionActiva);
     }
 }

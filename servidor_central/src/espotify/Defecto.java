@@ -18,7 +18,7 @@ class Defecto extends Lista implements Favoriteable {
     }
     
     public DataDefecto getData() {
-        return new DataDefecto(genero.getNombre(),nombre,img);
+        return new DataDefecto(genero.getNombre(), nombre, img);
     }
 
 }
