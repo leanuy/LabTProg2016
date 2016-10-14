@@ -7,16 +7,11 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
-import espotify.datatypes.DataPreview;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.interfaces.web.IAltaAlbumWeb;
-import espotify.interfaces.web.IListarArtistas;
-import espotify.interfaces.web.IListarGeneros;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
