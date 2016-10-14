@@ -60,18 +60,6 @@ public class DataTema implements DataFavoriteable {
     }
     
     @Override
-    public String toString() {
-        return "DataTema{" 
-                + "nombre=" 
-                + nombre 
-                + ", nomArtista=" 
-                + nomArtista
-                + ", album="
-                + album
-                + '}';
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;

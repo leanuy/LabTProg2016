@@ -6,7 +6,6 @@ public class DataTemaWeb extends DataTema {
     public String getUrl() {
         return url;
     }
-
     
     public DataTemaWeb(String url, String nombre, int duracion,
             int num, String artista, String album) {

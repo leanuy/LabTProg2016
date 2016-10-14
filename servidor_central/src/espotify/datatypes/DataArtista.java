@@ -16,13 +16,6 @@ public class DataArtista extends DataUsuario {
     public String getUrl() {
         return url;
     }
-
-    public DataArtista(String bio, String url, String nick, String nombre, String apellido,
-            String correo, Calendar fechaNac, BufferedImage img, List<String> segdores) {
-        super(nick, nombre, apellido, correo, fechaNac, img, segdores);
-        this.bio = bio;
-        this.url = url;
-    }
     
     public DataArtista(String bio, String url, String nick, String nombre, String apellido,
             String correo, Calendar fechaNac, BufferedImage img, String pwd) {
