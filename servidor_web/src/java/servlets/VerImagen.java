@@ -75,7 +75,7 @@ public class VerImagen extends HttpServlet {
                 if (img == null) {
                     url = sc.getResource("/assets/img/default_cover.png");
                 }
-            }
+            }/*
             if (tipo.equals("ImagenListaDefecto")) {
                 img = interfaz.getImageListaDefecto(extra);
                 if (img == null) {
@@ -87,7 +87,7 @@ public class VerImagen extends HttpServlet {
                 if (img == null) {
                     url = sc.getResource("/assets/img/default_cover.png");
                 }
-            }
+            }*/
             if (tipo.equals("ImagenLista")) {
                 img = interfaz.getImageLista(nomUsuario, extra);
                 if (img == null) {
@@ -105,10 +105,10 @@ public class VerImagen extends HttpServlet {
 
         } catch (UsuarioInexistenteException ex) {
             response.sendError(404);
-        } catch (ListaInexistenteException ex) {
+        /*} catch (ListaInexistenteException ex) {
             response.sendError(404);
         } catch (ClienteInexistenteException ex) {
-            response.sendError(404);
+            response.sendError(404);*/
         }
         
     }
