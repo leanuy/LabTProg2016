@@ -14,10 +14,7 @@ public class DataAlbumExt extends DataAlbum {
     public boolean tieneTema(String tema) {
         return temas.stream().anyMatch((t) -> (t.getNombre().equals(tema)));
     }
-    public void addTema(DataTema tema){
-        this.temas.add(tema);
-    }
-    
+
     public void addTema(DataTema tema){
         this.temas.add(tema);
     }

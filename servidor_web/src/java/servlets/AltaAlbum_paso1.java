@@ -70,46 +70,32 @@ public class AltaAlbum_paso1 extends HttpServlet {
         
         
         if(nombre.equals("")){
-            request.setAttribute("has_errors", true);
             request.setAttribute("error_nombre", "El nombre del álbum es requerido");
             has_errors = true;
         }else{
             boolean ya_existe = false;
             try {
                 ya_existe = inter.esAlbumDeArtista((String) session.getAttribute("nick_sesion"), nombre);
-            } catch (ArtistaInexistenteException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (AlbumRepetidoException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (GeneroInexistenteException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (DuracionInvalidaException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (NumeroTemaInvalidoException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (TemaRepetidoException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (CampoVacioException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (TemaTipoInvalidoException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                response.sendError(500);
             }
             if(ya_existe){
-                request.setAttribute("has_errors", true);
                 request.setAttribute("error_nombre", "Ya tienes un álbum con este nombre");
                 has_errors = true;
             }
         }
         
         if(anio_str.equals("")){
-            request.setAttribute("has_errors", true);
             request.setAttribute("error_anio", "El año del álbum es requerido");
             has_errors = true;
         }else{
             anio = Integer.parseInt(anio_str);
+            if(anio < 0){
+                request.setAttribute("error_anio", "El año del álbum no es correcto");
+                has_errors = true;
+            }
         }
         if(generos_arr == null || generos_arr.length == 0){
-            request.setAttribute("has_errors", true);
             request.setAttribute("error_generos", "Debes elegir al menos un año para el álbum");
             has_errors = true;
         }else{
@@ -121,6 +107,8 @@ public class AltaAlbum_paso1 extends HttpServlet {
         if(has_errors){
             IListarGeneros interf = Fabrica.getIListarGeneros();
             Map<String, String> data = interf.stringifyDataGeneros();
+            
+            request.setAttribute("has_errors", true);
 
             request.setAttribute("generos", data);
             
