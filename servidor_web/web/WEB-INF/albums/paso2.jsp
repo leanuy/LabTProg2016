@@ -35,7 +35,7 @@
                                     <button type="button" class="btn btn-custom boton-archivo"><i class="fa fa-file"></i></button>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="button" name="submit" class="btn btn-custom" onclick="agregarTema()">Aceptar</button>
+                                    <button type="button" id="aceptar" class="btn btn-custom">Aceptar</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -62,8 +62,14 @@
                                         <th>tipo</th>
                                         <th>&nbsp;</th>
                                         </thead>
-                                        <tbody>
-                                            
+                                        <tbody class="temas">
+                                            <tr class="tema" hidden>
+                                                <td class="orden"></td>
+                                                <td class="nombre"></td>
+                                                <td class="duracion"></td>
+                                                <td class="tipo"></td>
+                                                <td class="tools"><button class="btn btn-custom delete" onclick="agregarTema()" type="button">Agregar</button></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
