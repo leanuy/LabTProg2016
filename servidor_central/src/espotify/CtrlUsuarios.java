@@ -10,7 +10,6 @@ import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
-import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
@@ -50,7 +49,6 @@ import espotify.interfaces.web.IValidar;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 import java.io.BufferedInputStream;
-import java.io.File;
 
 import java.util.ArrayList;
 import java.util.Iterator;

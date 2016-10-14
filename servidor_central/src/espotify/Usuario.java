@@ -1,6 +1,5 @@
 package espotify;
 
-import espotify.datatypes.DataPreview;
 import espotify.datatypes.DataUsuario;
 import espotify.excepciones.SeguidoRepetidoException;
 
@@ -88,9 +87,5 @@ class Usuario {
         this.img = dataUsuario.getImg();
         this.seguidores = new HashMap();
         this.password = dataUsuario.getPassword();
-    }
-    
-    DataPreview getPreview() {
-        return new DataPreview(getNick(), getImg());
     }
 }

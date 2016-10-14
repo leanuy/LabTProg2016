@@ -31,7 +31,6 @@ public class DataSuscripcion {
         return sdf.format(fechaCreacion.getTime());
     }
     
-    
     public String info() {
         return "Estado: " + estado + "tipo: " + tipo + "creada: " + getfCreacionStr();
     }

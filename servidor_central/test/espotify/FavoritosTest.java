@@ -5,10 +5,16 @@
  */
 package espotify;
 
+import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataFavoriteable;
+import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IFavoritear;
@@ -46,6 +52,11 @@ public class FavoritosTest {
             DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica", null);
             IAltaLista instance = Fabrica.getIAltaLista();
             instance.altaListaParticular(dLista);
+            new AltaPerfilTest().testAltaArtista1();
+            IAltaGenero interf = Fabrica.getIAltaGenero();
+            interf.altaGenero(new DataGenero("Pop", ""));
+            interf.altaGenero(new DataGenero("Jazz", ""));
+            new AltaAlbumTest().testAltaAlbum();
         } catch (Exception ex) {
              Logger.getLogger("Algo salió mal").log(Level.SEVERE, null, ex);
         }
@@ -62,5 +73,36 @@ public class FavoritosTest {
     public void test2ListarFavoritos() throws ClienteInexistenteException {
         System.out.println("Lista de favoritos: cliente inexistente");
         List<DataFavoriteable> lista = interf.listarFavoritos("asdf");
+    }
+    
+    @Test (expected=ClienteInexistenteException.class)
+    public void testEsFavorito() throws ClienteInexistenteException,
+            ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        System.out.println("es favorito?: cliente inexistente");
+        interf.esFavorito("asdf",null);
+    }
+    
+    @Test (expected=ArtistaInexistenteException.class)
+    public void testEsFavorito2() throws ClienteInexistenteException,
+            ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        DataAlbum dataFav = new DataAlbum("asdf", 0, null, null, "asdf");
+        System.out.println("es favorito?: artista inexistente");
+        interf.esFavorito("TesterLista",dataFav);
+    }
+    
+    @Test (expected=AlbumInexistenteException.class)
+    public void testEsFavorito3() throws ClienteInexistenteException,
+            ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        DataAlbum dataFav = new DataAlbum("asdf", 0, null, null, "ElGordoAxl");
+        System.out.println("es favorito?: álbum inexistente");
+        interf.esFavorito("TesterLista",dataFav);
+    }
+    
+    @Test
+    public void testEsFavorito4() throws ClienteInexistenteException,
+            ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        DataAlbum dataFav = new DataAlbum("Album 1", 0, null, null, "ElGordoAxl");
+        System.out.println("es favorito?: álbum, no");
+        assert(!interf.esFavorito("TesterLista",dataFav));
     }
 }

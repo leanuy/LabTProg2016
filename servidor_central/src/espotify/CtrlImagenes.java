@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package espotify;
 
 import espotify.datatypes.DataAlbumExt;
@@ -19,10 +14,6 @@ import java.awt.image.BufferedImage;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Santiago
- */
 public class CtrlImagenes implements IObtenerImagen {
     
     @Override
@@ -34,13 +25,13 @@ public class CtrlImagenes implements IObtenerImagen {
     
     @Override
     public boolean esArtista(String nickUsr) {
+        boolean salida = true;
         try {
-            Artista dataArt = new CtrlUsuarios().buscarArtista(nickUsr);
-            return dataArt != null;
+            new CtrlUsuarios().buscarArtista(nickUsr);
         } catch (ArtistaInexistenteException ex) {
-            Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+            salida = false;
         }
-        return false;
+        return salida;
     }
     
     @Override
@@ -55,7 +46,7 @@ public class CtrlImagenes implements IObtenerImagen {
         }
     }
     
-    @Override
+/*    @Override
     public BufferedImage getImageListaDefecto(String nomLista) throws ListaInexistenteException {
         DataLista list = new CtrlListas().darInfoDefecto(nomLista);
         BufferedImage img = list.getImg();
@@ -67,7 +58,7 @@ public class CtrlImagenes implements IObtenerImagen {
         DataLista list = new CtrlListas().darInfoParticular(lista, nickUsr);
         BufferedImage img = list.getImg();
         return img;
-    }
+    }*/
     
     @Override
     public BufferedImage getImageLista(String nickUsr, String lista) {
