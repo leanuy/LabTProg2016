@@ -7,11 +7,14 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataTemaArchivo;
+import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.interfaces.web.IAltaAlbumWeb;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,32 +32,6 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
  * @author agus
  */
 public class AltaAlbum_paso2 extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ArtistaInexistenteException {
-        response.setContentType("text/html;charset=UTF-8");
-        HttpSession session = request.getSession();
-        String album = new String(request.getParameter("album").getBytes("iso-8859-1"), "UTF-8");
-
-        IAltaAlbumWeb interf = Fabrica.getIAltaAlbumWeb();
-        DataAlbumExt data = interf.getAlbumTemp((String) session.getAttribute("nick_sesion"), album);
-        if (data != null) {
-            request.setAttribute("album", data);
-            request.getRequestDispatcher("/WEB-INF/albums/paso2.jsp").forward(request, response);
-
-        }
-
-    }
-
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -66,13 +43,6 @@ public class AltaAlbum_paso2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(500);
-        }
-
-        request.setAttribute("album", new String(request.getParameter("album").getBytes("iso-8859-1"), "UTF-8"));
         request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso2.jsp").forward(request, response);
     }
 
@@ -87,95 +57,42 @@ public class AltaAlbum_paso2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(500);
-        }
+        
         IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
         boolean has_errors = false;
         HttpSession session = request.getSession();
         try {
-            DataAlbumExt album = inter.getAlbumTemp((String) session.getAttribute("nick_sesion"), new String(request.getParameter("album").getBytes("iso-8859-1"), "UTF-8"));
+            String artista = (String) session.getAttribute("nick_sesion");
+            DataAlbumExt album = inter.getAlbumTemp( artista, new String(request.getParameter("album").getBytes("iso-8859-1"), "UTF-8"));
 
-            String orden_str = request.getParameter("orden");
-            int orden;
+            int orden = Integer.parseInt(request.getParameter("orden"));
             String nombre = new String(request.getParameter("nombre").getBytes("iso-8859-1"), "UTF-8");
-            String duracion_str = request.getParameter("duracion");
-            String duracion_str_aux = request.getParameter("duracion_str");
+            int duracion = Integer.parseInt(request.getParameter("duracion"));
             String tipo = request.getParameter("tipo");
             String url;
-            List<String> errores = new ArrayList<String>();
             BufferedInputStream archivo;
             if (tipo.equals("web")) {
                 url = request.getParameter("url");
-                if (url.equals("")) {
-                    errores.add("'error_url':'La url es requerida para temas web.'");
-//                    request.setAttribute("error_url", "La url es requerida para temas web.");
-                    has_errors = true;
-                }               
+                DataTemaWeb temaWeb = new DataTemaWeb(url, nombre, duracion, orden, artista, album.getNombre());
+                album.addTema(temaWeb);
             } else if(tipo.equals("archivo")){
                 boolean isMultipart = ServletFileUpload.isMultipartContent(request);
                 if (isMultipart) {
                     Part part = request.getPart("imagen");
                     InputStream is = part.getInputStream();
                     archivo = new BufferedInputStream(is);
-                }else{
-                    errores.add("'error_archivo':'El archivo es requerido para temas de archivo.'");
-//                    request.setAttribute("error_archivo", "El archivo es requerido para temas de archivo.");
-                    has_errors = true;
-                }
-            }else{
-                errores.add("'error_tipo':'No has ingresado una fuente para el tema, seleciona un tipo y completa el dato.'");
-                request.setAttribute("error_tipo", "No has ingresado una fuente para el tema, seleciona un tipo y completa el dato.");
-                has_errors = true;
-            }
-            if (nombre.equals("")) {
-                errores.add("'error_nombre':'El nombre del tema es requerido.'");
-//                request.setAttribute("error_nombre", "El nombre del tema es requerido.");
-                has_errors = true;
-            } else if (album.tieneTema(nombre)) {
-                errores.add("'error_nombre':'No puedes ingresar dos temas con el mismo nombre.'");
-                request.setAttribute("error_nombre", "No puedes ingresar dos temas con el mismo nombre.");
-                has_errors = true;
-            }
-            if (orden_str.equals("")) {
-                request.setAttribute("error_orden", "El orden del tema es requerido.");
-                has_errors = true;
-            }else{
-                orden = Integer.parseInt(orden_str);
-                if (orden < 0) {
-                    request.setAttribute("error_orden", "El orden del tema debe ser positivo");
-                    has_errors = true;
+                    DataTemaArchivo temaArchivo = new DataTemaArchivo(archivo, nombre, duracion, orden, artista, album.getNombre());
+                    album.addTema(temaArchivo);
                 }
             }
-            if (duracion_str.equals("")) {
-                request.setAttribute("error_duracion", "La duración del tema es requerida.");
-                has_errors = true;
-            }else{
-                orden = Integer.parseInt(orden_str);
-                if (orden < 0) {
-                    request.setAttribute("error_duracion", "La duración del tema debe ser positivo");
-                    has_errors = true;
-                }
+            //Check si quedo agregado
+            if (album.tieneTema(nombre)) {
+                out.print("false");
+            } else {
+                out.print("true");
             }
-
-            if (has_errors) {
-                request.setAttribute("has_errors", true);
-            }else{
-                String json_success = "{"
-                        + "'success':true"
-                        + "'orden':'"+orden_str+"'"
-                        + "'nombre':'"+nombre+"'"
-                        + "'duracion':'"+duracion_str_aux+"'"
-                        + "'tipo':'"+tipo+"'"
-                        + "}"; 
-                response.setContentType("application/json");
-                response.setCharacterEncoding("UTF-8");
-                response.getWriter().write(json_success);
-            }
-        } catch (ArtistaInexistenteException ex) {
-            Logger.getLogger(AltaAlbum_paso2.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(ArtistaInexistenteException ex){
+            response.sendError(500);
         }
     }
 
