@@ -2,10 +2,13 @@ package espotify;
 
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataFavoriteable;
+import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
+import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
+import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.web.IObtenerImagen;
@@ -41,6 +44,11 @@ public class ObtenerImagenTest {
             IAltaLista instance = Fabrica.getIAltaLista();
             instance.altaListaParticular(dLista);
             new AltaListaTest().testAltaListaDefecto1();
+            new AltaPerfilTest().testAltaArtista1();
+            IAltaGenero interf = Fabrica.getIAltaGenero();
+            interf.altaGenero(new DataGenero("Pop", ""));
+            interf.altaGenero(new DataGenero("Jazz", ""));
+            new AltaAlbumTest().testAltaAlbum();
         } catch (Exception ex) {
              Logger.getLogger("Algo salió mal").log(Level.SEVERE, null, ex);
         }
@@ -112,6 +120,27 @@ public class ObtenerImagenTest {
     public void testImagenDefecto2() {
         System.out.println("Obtener imagen de lista defecto: inexistente");
         BufferedImage imagen = interf.getImageLista("","Lista Genasdférica");
+        assertEquals(imagen,null);
+    }
+    
+    @Test
+    public void testImagenAlbum() {
+        System.out.println("Obtener imagen de álbum: artista inexistente");
+        BufferedImage imagen = interf.getImageAlbum("asdf","asdf");
+        assertEquals(imagen,null);
+    }
+    
+    @Test
+    public void testImagenAlbum2() {
+        System.out.println("Obtener imagen de álbum: album inexistente");
+        BufferedImage imagen = interf.getImageAlbum("ElGordoAxl", "asdf");
+        assertEquals(imagen,null);
+    }
+
+    @Test
+    public void testImagenAlbum3() {
+        System.out.println("Obtener imagen de álbum: sin imagen");
+        BufferedImage imagen = interf.getImageAlbum("ElGordoAxl", "Album 1");
         assertEquals(imagen,null);
     }
     
