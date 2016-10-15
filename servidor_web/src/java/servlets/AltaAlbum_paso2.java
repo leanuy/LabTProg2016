@@ -16,12 +16,16 @@ import espotify.interfaces.web.IListarGeneros;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +38,8 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
  *
  * @author agus
  */
+@WebServlet
+@MultipartConfig
 public class AltaAlbum_paso2 extends HttpServlet {
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -46,7 +52,8 @@ public class AltaAlbum_paso2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/albums/AltaAlbum/paso2.jsp").forward(request, response);
+        request.setAttribute("album", request.getParameter("album"));
+        request.getRequestDispatcher("/WEB-INF/albums/paso2.jsp").forward(request, response);
     }
 
     /**
@@ -60,42 +67,61 @@ public class AltaAlbum_paso2 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        
         IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
         boolean has_errors = false;
         HttpSession session = request.getSession();
         try {
             String artista = (String) session.getAttribute("nick_sesion");
-            DataAlbumExt album = inter.getAlbumTemp( artista, new String(request.getParameter("album").getBytes("iso-8859-1"), "UTF-8"));
+            Part part;
+            Scanner s;
+            
+            part = request.getPart("album");
+            s = new Scanner(part.getInputStream());
+            String album_str = s.nextLine();
+            
+            DataAlbumExt album = inter.getAlbumTemp( artista, album_str);
+            
+            part = request.getPart("orden");
+            s = new Scanner(part.getInputStream());
+            int orden = Integer.parseInt(s.nextLine());
+            
+            part = request.getPart("nombre");
+            s = new Scanner(part.getInputStream());
+            String nombre = s.nextLine();
+            
+            part = request.getPart("duracion");
+            s = new Scanner(part.getInputStream());
+            int duracion = Integer.parseInt(s.nextLine());
 
-            int orden = Integer.parseInt(request.getParameter("orden"));
-            String nombre = new String(request.getParameter("nombre").getBytes("iso-8859-1"), "UTF-8");
-            int duracion = Integer.parseInt(request.getParameter("duracion"));
-            String tipo = request.getParameter("tipo");
-            String url;
-            BufferedInputStream archivo;
+            part = request.getPart("tipo");
+            s = new Scanner(part.getInputStream());
+            String tipo = s.nextLine();
             if (tipo.equals("web")) {
-                url = request.getParameter("url");
+                part = request.getPart("url");
+                s = new Scanner(part.getInputStream());
+                String url = s.nextLine();
+
                 DataTemaWeb temaWeb = new DataTemaWeb(url, nombre, duracion, orden, artista, album.getNombre());
                 album.addTema(temaWeb);
+                out.print("true");
             } else if(tipo.equals("archivo")){
                 boolean isMultipart = ServletFileUpload.isMultipartContent(request);
                 if (isMultipart) {
-                    Part part = request.getPart("imagen");
+                    part = request.getPart("archivo");
                     InputStream is = part.getInputStream();
-                    archivo = new BufferedInputStream(is);
+                    BufferedInputStream archivo = new BufferedInputStream(is);
                     DataTemaArchivo temaArchivo = new DataTemaArchivo(archivo, nombre, duracion, orden, artista, album.getNombre());
                     album.addTema(temaArchivo);
+                    out.print("true");
                 }
             }
-            //Check si quedo agregado
-            if (album.tieneTema(nombre)) {
-                out.print("false");
-            } else {
-                out.print("true");
-            }
+   
         }catch(ArtistaInexistenteException ex){
-            response.sendError(500);
+            out.print("false");
         }
     }
 

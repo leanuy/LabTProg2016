@@ -128,6 +128,14 @@
         <servlet-name>Escuchar</servlet-name>
         <servlet-class>servlets.Escuchar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ValidarNombreTema</servlet-name>
+        <servlet-class>servlets.ValidarTemaNombre</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BorrarTema</servlet-name>
+        <servlet-class>servlets.BorrarTema</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -255,6 +263,14 @@
     <servlet-mapping>
         <servlet-name>Escuchar</servlet-name>
         <url-pattern>/Escuchar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ValidarNombreTema</servlet-name>
+        <url-pattern>/ValidarNombreTema</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrarTema</servlet-name>
+        <url-pattern>/BorrarTema</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
