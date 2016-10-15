@@ -15,6 +15,7 @@ import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IPublicarLista;
+import espotify.interfaces.web.IAgregarTemaListaWeb;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -40,6 +41,7 @@ public class AgregarTemaListaTest {
         
         new AltaListaTest().testAltaListaDefecto1();
         new AltaPerfilTest().testAltaArtista1();
+        new AltaPerfilTest().testAltaCliente1();
         IAltaGenero iAltaGenero = Fabrica.getIAltaGenero();
         iAltaGenero.altaGenero(new DataGenero("Pop", ""));
         iAltaGenero.altaGenero(new DataGenero("Jazz", ""));
@@ -123,7 +125,29 @@ public class AgregarTemaListaTest {
         iAdd.agregarTemaLista(web, "Lista genérica");
     }
     
-
+    @Test (expected = ClienteInexistenteException.class)
+    public void testAgregarTemaListaWeb_1() throws Exception {
+        
+        IAgregarTemaListaWeb interf = Fabrica.getIAgregarTemaListaWeb();
+        DataParticular dataLista = new DataParticular("JavierM42", "Lista1", null);
+        IAltaLista instance = Fabrica.getIAltaLista();
+        instance.altaListaParticular(dataLista);
+        interf.agregarTemaWebxAlbum("excepcion_cliente_inexistente", "Lista1", "tema 4", "Album 1", "ElGordoAxl");
+    }
+    
+    @Test (expected = Exception.class)
+    public void testAgregarTemaListaWeb_2() throws Exception {
+        
+        IAgregarTemaListaWeb interf = Fabrica.getIAgregarTemaListaWeb();
+        interf.agregarTemaWebxAlbum("JavierM42", "excepcion_no_existe_la_lista", "tema 4", "Album 1", "ElGordoAxl");
+    }
+    
+    @Test
+    public void testAgregarTemaListaWeb_3() throws Exception {
+        
+        IAgregarTemaListaWeb interf = Fabrica.getIAgregarTemaListaWeb();
+        interf.agregarTemaWebxAlbum("JavierM42", "Lista1", "tema 4", "Album 1", "ElGordoAxl");
+    }
     
     @Test (expected = ListaInexistenteException.class)
     public void tirameExcepcion() throws Exception {
