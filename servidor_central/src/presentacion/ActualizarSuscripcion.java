@@ -2,6 +2,7 @@ package presentacion;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataSuscripcion;
+import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.EstadoSuscripcion;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.NoHaySuscripcionException;
@@ -13,6 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  *
@@ -23,6 +26,7 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
     String cliente;
     IActualizarSuscripcion interf = Fabrica.getIActualizarSuscripcion();
     private DefaultListModel modeloSuscripciones; 
+    
     /**
      * Creates new form ActualizarSuscripcion
      */
@@ -30,14 +34,12 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
         initComponents();
         aprobarbtn.setEnabled(false);
         cancelarbtn.setEnabled(false);
-        List<String> clientes = interf.listarClientes();
-        for (String str : clientes) {
-            nickClientecmb.addItem(str);
-        }
+        renovarButton.setEnabled(false);
         modeloSuscripciones = new DefaultListModel();
         suscripciones.setModel(modeloSuscripciones);
+        actual.setText("");
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,13 +59,16 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
         suscripciones = new javax.swing.JList<>();
         cerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        cargarClientes = new javax.swing.JButton();
+        actual = new javax.swing.JLabel();
+        renovarButton = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Actualizar Suscripción");
 
-        nickClientecmb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nickClientecmbActionPerformed(evt);
+        nickClientecmb.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                nickClientecmbItemStateChanged(evt);
             }
         });
 
@@ -85,6 +90,7 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
             }
         });
 
+        suscripciones.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(suscripciones);
 
         cerrar.setText("Cerrar");
@@ -96,95 +102,97 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Selecione un cliente");
 
+        cargarClientes.setText("Cargar Clientes");
+        cargarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargarClientesActionPerformed(evt);
+            }
+        });
+
+        renovarButton.setText("Renovar");
+        renovarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                renovarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(suscriLabel)
-                        .addGap(59, 59, 59)
-                        .addComponent(suscTxt)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(aprobarbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cancelarbtn)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(renovarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cerrar, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                                .addGap(15, 15, 15))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(suscriLabel)
+                                        .addGap(75, 75, 75)
+                                        .addComponent(suscTxt))
+                                    .addComponent(actual, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
+                        .addGap(43, 43, 43)
                         .addComponent(clienteLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(nickClientecmb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(43, 43, 43)))))
-                .addGap(212, 212, 212))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(aprobarbtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelarbtn))
-                    .addComponent(cerrar))
-                .addContainerGap(30, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cargarClientes)))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
+                .addGap(14, 14, 14)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nickClientecmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clienteLabel))
-                .addGap(29, 29, 29)
+                    .addComponent(clienteLabel)
+                    .addComponent(cargarClientes))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(suscTxt)
-                .addGap(16, 16, 16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(suscriLabel)
-                .addGap(2, 2, 2)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(aprobarbtn)
-                            .addComponent(cancelarbtn))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cerrar)
-                        .addGap(30, 30, 30)))
-                .addGap(45, 45, 45))
+                .addGap(7, 7, 7)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(actual, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(aprobarbtn)
+                    .addComponent(cancelarbtn)
+                    .addComponent(cerrar)
+                    .addComponent(renovarButton))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nickClientecmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nickClientecmbActionPerformed
-        cliente = String.valueOf(nickClientecmb.getSelectedItem());
-        try {
-            ArrayList<DataSuscripcion> dataSusc = (ArrayList<DataSuscripcion>) interf.listarSuscripcionesCliente(cliente);
-            
-//            if (dataSusc.getEstado()==EstadoSuscripcion.PENDIENTE) {
-//                aprobarbtn.setEnabled(true);
-//                cancelarbtn.setEnabled(true);
-//            }
-            if ((dataSusc == null)||(dataSusc.isEmpty())) {
-                modeloSuscripciones.addElement("Sin suscripciones");
-            } else {
-                
-                for(DataSuscripcion d : dataSusc){
-                    modeloSuscripciones.addElement(d.info());
-                }
-            }
-        } catch (ClienteInexistenteException ex) {
-            JOptionPane.showMessageDialog(this, "El cliente no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
-        } 
-        
-    }//GEN-LAST:event_nickClientecmbActionPerformed
-
     private void aprobarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aprobarbtnActionPerformed
         try {
             interf.aprobarSuscripcion(cliente);
+            JOptionPane.showMessageDialog(this, "Suscripcion Aprobada.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(this, "El cliente no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (NoHaySuscripcionException ex) {
@@ -197,6 +205,8 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
     private void cancelarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarbtnActionPerformed
         try {
             interf.cancelarSuscripcion(cliente);
+            JOptionPane.showMessageDialog(this, "Suscripcion Cancelada.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         } catch (ClienteInexistenteException ex) {
             JOptionPane.showMessageDialog(this, "El cliente no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
         } catch (NoHaySuscripcionException ex) {
@@ -210,15 +220,85 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
 
+    private void cargarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarClientesActionPerformed
+        List<String> clientes = interf.listarClientes();
+        for (String str : clientes) {
+            nickClientecmb.addItem(str);
+        }
+    }//GEN-LAST:event_cargarClientesActionPerformed
+
+    private void nickClientecmbItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_nickClientecmbItemStateChanged
+        modeloSuscripciones.removeAllElements();
+        cliente = String.valueOf(nickClientecmb.getSelectedItem());
+        try {
+            ArrayList<DataSuscripcion> dataSusc = interf.listarSuscripcionesCliente(cliente);
+            if ((dataSusc == null)||(dataSusc.isEmpty())) {
+                modeloSuscripciones.addElement("Sin suscripciones");
+            } else {
+                for(DataSuscripcion d : dataSusc){
+                    if (d instanceof DataSuscripcionVigente) {
+                        modeloSuscripciones.addElement("Estado: " + d.getEstado() + " tipo: " + d.getTipo() + " Updated: " + d.getfUpdate() + " Vence: " + ((DataSuscripcionVigente) d).getfVenStr());
+                    } else {
+                        modeloSuscripciones.addElement(d.info());
+                    }
+                }
+            }
+            DataSuscripcion data = interf.getSuscripcionDeCliente(cliente);
+            if (data.getEstado() == EstadoSuscripcion.VIGENTE) {
+                aprobarbtn.setEnabled(false);
+                cancelarbtn.setEnabled(false);
+                renovarButton.setEnabled(false);
+                actual.setText("Suscripcion Actual Vigente");
+            } else {
+                if (data.getEstado() == EstadoSuscripcion.PENDIENTE) {
+                    aprobarbtn.setEnabled(true);
+                    cancelarbtn.setEnabled(true);
+                    renovarButton.setEnabled(false);
+                    actual.setText("Suscripcion Actual Pendiente");
+                } else {
+                    if (data.getEstado() == EstadoSuscripcion.VENCIDA) {
+                        aprobarbtn.setEnabled(false);
+                        cancelarbtn.setEnabled(true);
+                        renovarButton.setEnabled(true);
+                        actual.setText("Suscripcion Actual Vencida");
+                    }
+                }
+            }
+        } catch (ClienteInexistenteException ex) {
+            System.out.printf(ex.getMessage());
+            JOptionPane.showMessageDialog(this, "El cliente no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (NoHaySuscripcionException ex) {
+            actual.setText("No tiene suscripciones el cliente seleccionado");
+        } 
+    }//GEN-LAST:event_nickClientecmbItemStateChanged
+
+    private void renovarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_renovarButtonActionPerformed
+        try {
+            interf.renovarSuscripcion(cliente);
+            JOptionPane.showMessageDialog(this, "Suscripcion Renovada.", "Info", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } catch (ClienteInexistenteException ex) {
+            JOptionPane.showMessageDialog(this, "El cliente no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (NoHaySuscripcionException ex) {
+            JOptionPane.showMessageDialog(this, "La suscripción no existe.", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } catch (TransicionSuscripcionInvalidaException ex) {
+            JOptionPane.showMessageDialog(this, "Esta operación no es válida", "ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_renovarButtonActionPerformed
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel actual;
     private javax.swing.JButton aprobarbtn;
     private javax.swing.JButton cancelarbtn;
+    private javax.swing.JButton cargarClientes;
     private javax.swing.JButton cerrar;
     private javax.swing.JLabel clienteLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> nickClientecmb;
+    private javax.swing.JButton renovarButton;
     private javax.swing.JLabel suscTxt;
     private javax.swing.JLabel suscriLabel;
     private javax.swing.JList<String> suscripciones;
