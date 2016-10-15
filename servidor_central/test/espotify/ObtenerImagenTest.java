@@ -39,7 +39,6 @@ public class ObtenerImagenTest {
             File file = new File("./src/presentacion/img/clientes/ElPadrino.png");
             img = ImageIO.read(file);
             iPerfil.altaCliente(new DataCliente("TengoImagen", "Test", "asdf", "test2@imagen.com", Calendar.getInstance(), img, ""));
-            new AltaPerfilTest().testAltaArtista1();
             DataParticular dLista = new DataParticular("TesterLista", "Mi Lista Publica", null);
             IAltaLista instance = Fabrica.getIAltaLista();
             instance.altaListaParticular(dLista);
