@@ -33,6 +33,7 @@ public class BuscarTest {
             interf.altaGenero(new DataGenero("Jazz", ""));
             new AltaAlbumTest().testAltaAlbum();
             new AltaListaTest().testAltaListaParticular1();
+            Fabrica.getIPublicarLista().publicarLista("Mi Lista", "TesterLista");
             new AltaListaTest().testAltaListaDefecto1();
         } catch (Exception ex) {
              Logger.getLogger("Algo salió mal").log(Level.SEVERE, null, ex);
@@ -72,5 +73,12 @@ public class BuscarTest {
         System.out.println("Buscar temas: ");
         List<String[]> result = Fabrica.getIBuscar().buscarTemas("asdf");
         assert(result.isEmpty());
+    }
+    
+    @Test
+    public void buscarTemasTest2() {
+        System.out.println("Buscar temas: ");
+        List<String[]> result = Fabrica.getIBuscar().buscarTemas("Pop");
+        assert(!result.isEmpty());
     }
 }
