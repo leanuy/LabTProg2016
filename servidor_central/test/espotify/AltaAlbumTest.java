@@ -48,8 +48,6 @@ public class AltaAlbumTest {
     public void testAltaAlbum() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test 1");
 
-        //this.testExisteArtista();
-
         //Crear DataTemas
         ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1"));
