@@ -7,8 +7,11 @@ import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataLista;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
+import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IConsultaLista;
+import espotify.interfaces.IPublicarLista;
+import espotify.interfaces.web.IVerListaParticular;
 
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
@@ -110,9 +113,29 @@ public class ConsultaListaTest {
         DataLista result = iConsultaLista.darInfoParticular("Mi Liasfsta", "TesterLista");
     }
     
-
+    @Test
+    public void testListaesPrivada_1() throws ListaInexistenteException, ClienteInexistenteException {
+        System.out.println("Es particular la lista");
+        IVerListaParticular verl = Fabrica.getIVerListaParticular();
+        boolean prueba = verl.listaEsPrivada("Mi Lista", "TesterLista");
+        assertEquals(true, prueba);
+    }
     
+    @Test
+    public void testListaesPrivada_2() throws ListaInexistenteException, ClienteInexistenteException, YaPublicaException {
+        System.out.println("No es particular la lista");
+        IPublicarLista publis = Fabrica.getIPublicarLista();
+        publis.publicarLista("Mi Lista", "TesterLista");
+        IVerListaParticular verl = Fabrica.getIVerListaParticular();
+        boolean prueba = verl.listaEsPrivada("Mi Lista", "TesterLista");
+        assertEquals(false, prueba);
+    }
     
-    
+    @Test (expected = YaPublicaException.class)
+    public void testListaesPrivada_3() throws ListaInexistenteException, ClienteInexistenteException, YaPublicaException {
+        System.out.println("Ya es particular la lista");
+        IPublicarLista publis = Fabrica.getIPublicarLista();
+        publis.publicarLista("Mi Lista", "TesterLista");
+    }
     
 }

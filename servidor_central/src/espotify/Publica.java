@@ -1,6 +1,5 @@
 package espotify;
 
-import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
 import espotify.excepciones.YaPublicaException;
 

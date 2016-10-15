@@ -3,18 +3,23 @@ package espotify;
 import static org.junit.Assert.assertEquals;
 
 import espotify.datatypes.DataCliente;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
+import espotify.excepciones.ListaRepetidaException;
 import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IPublicarLista;
+import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IAgregarTemaListaWeb;
 
 import org.junit.BeforeClass;
@@ -125,6 +130,27 @@ public class AgregarTemaListaTest {
         iAdd.agregarTemaLista(web, "Lista genérica");
     }
     
+    @Test (expected = Exception.class)
+    public void testAgregarTemaLista_2() throws Exception {
+        System.out.println("Agregar Tema a Lista Generica");
+        DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
+        iAdd.agregarTemaLista(web, "Lista genérica");
+    }
+    
+    @Test (expected = Exception.class)
+    public void testAgregarTemaLista_3() throws Exception {
+        System.out.println("Agregar Tema a Lista Generica");
+        iAdd.agregarTemaLista(null, "Lista genérica");
+    }
+    
+    @Test (expected = Exception.class)
+    public void testAgregarTemaLista_4() throws Exception {
+        iAdd.listarListasDeCliente("TesterLista");
+        System.out.println("Agregar Tema a Lista Generica");
+        DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
+        iAdd.agregarTemaLista(web, "Mi Lista");
+    }
+    
     @Test (expected = ClienteInexistenteException.class)
     public void testAgregarTemaListaWeb_1() throws Exception {
         
@@ -152,6 +178,38 @@ public class AgregarTemaListaTest {
     @Test (expected = ListaInexistenteException.class)
     public void tirameExcepcion() throws Exception {
         DataTemaWeb web = new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1");
-        iAdd.agregarTemaLista(web, null);
+        iAdd.listarListasDefecto();
+        iAdd.agregarTemaLista(web, "nada");
     }
+    
+    @Test
+    public void testRemoverTemaLista_1() throws ListaInexistenteException, ClienteInexistenteException, ListaRepetidaException, CampoVacioException {
+        System.out.println("remover tema lista particular");
+        DataParticular dataLista = new DataParticular("TesterLista", "Mi Lista", null);
+        IAltaLista instance = Fabrica.getIAltaLista();
+        instance.altaListaParticular(dataLista);
+        
+        IQuitarTemaLista interf = Fabrica.getIQuitarTemaLista();
+        interf.listarListasDeCliente("TesterLista");
+        List<DataTema> listaini = interf.listarTemasLista("Mi Lista");
+        interf.removerTemaLista("tema 4", "Mi Lista");
+        List<DataTema> listares = interf.listarTemasLista("Mi Lista");
+        assertEquals(listaini, listares);
+    }
+    
+    @Test
+    public void testRemoverTemaLista_2() throws ListaInexistenteException, ClienteInexistenteException, ListaRepetidaException, CampoVacioException, GeneroInexistenteException, Exception {
+        System.out.println("remover tema lista generica");
+        
+        IQuitarTemaLista interf = Fabrica.getIQuitarTemaLista();
+        interf.listarListasDefecto();
+        List<DataTema> listaini = interf.listarTemasLista("Lista genérica");
+        listaini.removeAll(listaini);
+        
+        interf.listarListasDefecto();
+        interf.removerTemaLista("tema 1", "Album 1");
+        List<DataTema> listares = interf.listarTemasLista("Lista genérica");
+        assertEquals(listaini, listares);
+    }
+   
 }
