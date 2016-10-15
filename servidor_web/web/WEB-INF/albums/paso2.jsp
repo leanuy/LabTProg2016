@@ -11,12 +11,18 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="row">
+                <h2>Agregar temas a <c:out value="${album}" /></h2>
                 <div id="caja" class="col-lg-12">
-                    <form action="/CrearAlbum" method="POST" enctype="multipart/form-data">
+                    <div class="alert alert-danger" role="alert" hidden><span class="help"></span></div>
+                </div>
+                <div id="caja" class="col-lg-12">
+                    <form id="form-tema" action="/CrearAlbum" method="POST" enctype="multipart/form-data">
+                        <input id="album" name="album" value="<c:out value="${album}" />" hidden>
+                        <input id="tipo" name="tipo" value="" hidden>
                         <div class="row">
                             <div class="col-md-1">
                                 <div class="form-group <c:if test="${not empty error_orden}">has-error</c:if>">
-                                        <input id="orden" name="nombre" type="text" placeholder="#*" class="form-control input-md">
+                                        <input id="orden" name="orden" type="text" placeholder="#*" class="form-control input-md">
                                     </div>
                                 </div>
                                 <div class="col-md-5">
@@ -26,7 +32,7 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-group <c:if test="${not empty error_duracion}">has-error</c:if>">
-                                        <input id="duracion" name="nombre" type="text" placeholder="Duración*" class="form-control input-md">
+                                        <input id="duracion" name="duracion" type="text" placeholder="Duración*" class="form-control input-md">
                                     </div>
                                 </div>
                                 <div class="col-md-2">
@@ -54,13 +60,13 @@
                             </div>
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <table width>
+                                    <table width="100%">
                                         <thead>
-                                        <th style="width:30px">Núm</th>
+                                        <th width="50px">#</th>
                                         <th>Nombre</th>
-                                        <th style="width:50px">Duración</th>
-                                        <th>tipo</th>
-                                        <th>&nbsp;</th>
+                                        <th width="100px">Duración</th>
+                                        <th width="30px">tipo</th>
+                                        <th width="20px">&nbsp;</th>
                                         </thead>
                                         <tbody class="temas">
                                             <tr class="tema" hidden>
@@ -68,7 +74,7 @@
                                                 <td class="nombre"></td>
                                                 <td class="duracion"></td>
                                                 <td class="tipo"></td>
-                                                <td class="tools"><button class="btn btn-custom delete" onclick="agregarTema()" type="button">Agregar</button></td>
+                                                <td class="tools"><button class="btn btn-link delete-tema" type="button"><i class="fa fa-trash"></i></button></td>
                                             </tr>
                                         </tbody>
                                     </table>

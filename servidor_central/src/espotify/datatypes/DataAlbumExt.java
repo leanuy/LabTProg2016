@@ -17,6 +17,19 @@ public class DataAlbumExt extends DataAlbum {
     public void addTema(DataTema tema){
         this.temas.add(tema);
     }
+    public void deleteTema(String tema){
+        DataTema data = null;
+        if(temas != null){
+            for (DataTema t : temas) {
+                if (t.getNombre().equals(tema)) {
+                    data = t;
+                }
+            }
+            if (data != null) {
+                this.temas.remove(data);
+            }
+        }
+    }
     
     public DataAlbumExt(List<DataTema> temas, String nombre, int anio, List<String> generos,
             BufferedImage img, String nickArtista) {
