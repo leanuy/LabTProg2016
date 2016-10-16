@@ -29,7 +29,6 @@ import java.util.Map;
 public class CtrlListas implements IAltaLista, IPublicarLista,
         IConsultaLista, IAgregarTemaLista, IQuitarTemaLista, 
         IVerListaParticular, IVerListaDefecto, IAgregarTemaListaWeb {
-    private static CtrlListas instancia;
     private String nickMem;
     private String nomListaMem;
     private List<DataTema> temasLista;
@@ -215,8 +214,8 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         
         CtrlUsuarios ctrlU = new CtrlUsuarios();
         Artista art = ctrlU.buscarArtista(artista);
-        DataTema dt = art.consultaTema(album, nom_tema);
-        Tema tem = art.devolverTema(dt);
+        DataTema dataTem = art.consultaTema(album, nom_tema);
+        Tema tem = art.devolverTema(dataTem);
         Cliente clie = ctrlU.buscarCliente(nick_sesion);
         clie.agregarTemaLista(tem, lista_poner);
     }

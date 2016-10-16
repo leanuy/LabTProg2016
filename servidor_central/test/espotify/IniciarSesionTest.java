@@ -35,7 +35,7 @@ public class IniciarSesionTest {
         }
     }
     
-    @Test (expected=UsuarioInexistenteException.class)
+    @Test (expected = UsuarioInexistenteException.class)
     public void testBuscar() throws UsuarioInexistenteException {
         System.out.println("Buscar usuario, no existe");
         interf.buscarUsuario("asdf");
@@ -44,10 +44,10 @@ public class IniciarSesionTest {
     @Test
     public void testBuscar2() throws UsuarioInexistenteException {
         System.out.println("Buscar artista");
-        assert(interf.buscarUsuario("ElGordoAxl")!=null);
+        assert (interf.buscarUsuario("ElGordoAxl") != null);
     }
     
-    @Test (expected=UsuarioInexistenteException.class)
+    @Test (expected = UsuarioInexistenteException.class)
     public void testPassword1() throws UsuarioInexistenteException {
         System.out.println("check password, no existe usuario");
         interf.checkPassword("asdf", "no");
@@ -56,19 +56,19 @@ public class IniciarSesionTest {
     @Test
     public void testPassword2() throws UsuarioInexistenteException {
         System.out.println("check password, sí");
-        assert(interf.checkPassword("TesterLista", "pass"));
+        assert (interf.checkPassword("TesterLista", "pass"));
     }
     
     @Test
     public void testPassword3() throws UsuarioInexistenteException {
         System.out.println("check password, no");
-        assert(!interf.checkPassword("TesterLista", "noPass"));
+        assert (!interf.checkPassword("TesterLista", "noPass"));
     }
     
     @Test
     public void testPassword4() throws UsuarioInexistenteException {
         System.out.println("check password artista, no");
-        assert(!interf.checkPassword("ElGordoAxl", "noPass"));
+        assert (!interf.checkPassword("ElGordoAxl", "noPass"));
     }
 
 }

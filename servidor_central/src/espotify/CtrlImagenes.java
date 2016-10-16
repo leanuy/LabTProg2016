@@ -32,7 +32,7 @@ public class CtrlImagenes implements IObtenerImagen {
     }
     
     @Override
-    public BufferedImage getImageAlbum(String nickUsr, String album){
+    public BufferedImage getImageAlbum(String nickUsr, String album) {
         try {
             DataAlbumExt alb = new CtrlUsuarios().consultaAlbum(album, nickUsr);
             BufferedImage img = null;
@@ -62,7 +62,7 @@ public class CtrlImagenes implements IObtenerImagen {
         try {
             DataLista list;
             BufferedImage img;
-            if (nickUsr == null || nickUsr.equals("null")){
+            if (nickUsr == null || nickUsr.equals("null")) {
                 list = new CtrlListas().darInfoDefecto(lista);
                 img = list.getImg();
             } else {
