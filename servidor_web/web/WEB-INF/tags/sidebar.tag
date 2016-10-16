@@ -121,9 +121,11 @@
         
         repr.addEventListener("timeupdate", function () {
         var audio = $(this);
+        console.log(audio[0].duration);
         var progreso = (audio[0].currentTime.toFixed(2)*100)/audio[0].duration.toFixed(2);
+        console.log(progreso);
         $('#progress').attr('aria-valuenow', progreso).css('width', progreso);
-                }, false);
+                });
         
     });    
 </script>

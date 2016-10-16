@@ -53,7 +53,7 @@ public class Escuchar extends HttpServlet {
                 stream.write(readBytes);
             }
             response.setContentLength(length);
-            
+            response.addHeader("Content-Range", "bytes 0-1"); 
           } catch (IOException ioe) {
             throw new ServletException(ioe.getMessage());
           } catch (ArtistaInexistenteException ex) {
