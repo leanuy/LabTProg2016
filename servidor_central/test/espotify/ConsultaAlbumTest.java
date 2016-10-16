@@ -11,6 +11,7 @@ import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
+import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IConsultaAlbum;
@@ -88,10 +89,10 @@ public class ConsultaAlbumTest {
         List<String> result = iConsultaAlbum.listarAlbumesDeArtista("CHPP");
     }
     
+
     @Test
     public void testConsultaAlbum() throws Exception {
         System.out.println("Consulta Album: ok");
-        
         List<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Alb"));
@@ -123,7 +124,19 @@ public class ConsultaAlbumTest {
         DataAlbumExt result = iConsultaAlbum.consultaAlbum("Album 2", "ElGordoAxl");
     }
     
-        
+    @Test
+    public void testListarTemasAlbum() throws ArtistaInexistenteException, AlbumInexistenteException {
+        List<DataTema> temas = new ArrayList<>();
+        temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 4", 70, 4, "ElGordoAxl", "Album 1"));
+        temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 5", 230, 5, "ElGordoAxl", "Album 1"));
+        System.out.println("Listar temas album");
+        IAgregarTemaLista interf = Fabrica.getIAgregarTemaLista();
+        List<DataTema> temasres = interf.listarTemasAlbum("ElGordoAxl", "Album 1");
+        assertEquals(temas,temasres);
+    }
 
     
 }
