@@ -3,7 +3,6 @@ package espotify;
 import static org.junit.Assert.assertEquals;
 
 import espotify.datatypes.DataCliente;
-import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;

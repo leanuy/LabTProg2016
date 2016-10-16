@@ -2,6 +2,7 @@ package espotify.datatypes;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class DataSuscripcion {
     private final Calendar fechaCreacion;
@@ -45,5 +46,26 @@ public class DataSuscripcion {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(fUpdate.getTime());
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else {
+            final DataSuscripcion other = (DataSuscripcion) obj;
+            boolean pene1 = Objects.equals(this.estado, other.estado);
+            boolean pene2 = Objects.equals(this.fUpdate, other.fUpdate);
+            boolean pene3 = Objects.equals(this.fechaCreacion, other.fechaCreacion);
+            boolean pene4 = Objects.equals(this.tipo, other.tipo);
+
+            return !(other == null 
+                    || !(pene1)
+                    || !(pene2)
+                    || !(pene3)
+                    || !(pene4)
+                    );
+        }
+    }
+
     
 }
