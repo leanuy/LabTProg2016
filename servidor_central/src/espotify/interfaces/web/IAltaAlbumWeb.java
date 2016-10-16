@@ -28,10 +28,7 @@ public interface IAltaAlbumWeb {
             CampoVacioException, TemaTipoInvalidoException;
     
     public boolean esAlbumDeArtista(String nickArtista, String album)
-            throws ArtistaInexistenteException, AlbumRepetidoException,
-            GeneroInexistenteException, DuracionInvalidaException,
-            NumeroTemaInvalidoException, TemaRepetidoException,
-            CampoVacioException, TemaTipoInvalidoException;
+            throws ArtistaInexistenteException;
     
     public void addTemaAlbumTemp(String artista, DataTema tema)
             throws ArtistaInexistenteException;
