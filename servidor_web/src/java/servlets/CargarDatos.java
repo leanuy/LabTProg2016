@@ -147,7 +147,7 @@ public class CargarDatos extends HttpServlet {
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         cal.set(1056, 2, 7);
-        dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null,"heinsenberg");
+        dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null,"heisenberg");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
 
