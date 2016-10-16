@@ -107,7 +107,6 @@ public class MainFrame extends javax.swing.JFrame {
         cargarDatosDePrueba = new javax.swing.JMenuItem();
         suscripcionesMenu = new javax.swing.JMenu();
         suscripcionesMenuItem = new javax.swing.JMenuItem();
-        vencerSuscripcion = new javax.swing.JCheckBoxMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -416,14 +415,6 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         suscripcionesMenu.add(suscripcionesMenuItem);
-
-        vencerSuscripcion.setText("Vencer Suscripcion");
-        vencerSuscripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vencerSuscripcionActionPerformed(evt);
-            }
-        });
-        suscripcionesMenu.add(vencerSuscripcion);
 
         menuPrincipal.add(suscripcionesMenu);
 
@@ -1163,14 +1154,6 @@ public class MainFrame extends javax.swing.JFrame {
         frameSusc.setVisible(true);
     }//GEN-LAST:event_suscripcionesMenuItemActionPerformed
 
-    private void vencerSuscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vencerSuscripcionActionPerformed
-        MainPanel.removeAll();
-        VencerSuscripcion frameVencSusc = new VencerSuscripcion();
-        MainPanel.add(frameVencSusc);
-        MainPanel.repaint();
-        frameVencSusc.setVisible(true);
-    }//GEN-LAST:event_vencerSuscripcionActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1252,6 +1235,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu socialMenu;
     private javax.swing.JMenu suscripcionesMenu;
     private javax.swing.JMenuItem suscripcionesMenuItem;
-    private javax.swing.JCheckBoxMenuItem vencerSuscripcion;
     // End of variables declaration//GEN-END:variables
 }

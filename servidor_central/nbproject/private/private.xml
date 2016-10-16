@@ -9,8 +9,9 @@
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/Suscripcion.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/presentacion/ActualizarSuscripcion.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/datatypes/DataSuscripcion.java</file>
-            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/web/ISuscripcionWeb.java</file>
             <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/presentacion/MainFrame.java</file>
+            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/presentacion/AltaAlbum.java</file>
+            <file>file:/home/leandro/tprog/tpgr16/servidor_central/src/espotify/interfaces/IActualizarSuscripcion.java</file>
         </group>
     </open-files>
 </project-private>
