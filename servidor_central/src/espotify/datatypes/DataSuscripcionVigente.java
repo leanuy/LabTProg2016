@@ -7,9 +7,9 @@ public class DataSuscripcionVigente extends DataSuscripcion {
     private final Calendar vencimiento;
     private final Calendar desde;
     
-    public DataSuscripcionVigente(Calendar fechaCreacion, EstadoSuscripcion estado,
+    public DataSuscripcionVigente(Calendar fechaCreacion, Calendar fUp, EstadoSuscripcion estado,
             TipoSuscripcion tipo, Calendar vencimiento, Calendar fDesde) {
-        super(fechaCreacion, estado, tipo);
+        super(fechaCreacion, fUp, estado, tipo);
         this.vencimiento = vencimiento;
         this.desde = fDesde;
     }

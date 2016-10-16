@@ -18,12 +18,12 @@
                     <c:choose>
                         <c:when test="${not empty vigente and vigente}">
                             <li>
-                                <p>Fecha creacion: ${suscvigente.fCreacionStr} Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Vencimiento: ${suscvigente.fVenStr}</p>
+                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Vencimiento: ${suscvigente.fVenStr} Ultima modificacion: ${suscvigente.fUpdate}</p>
                             </li>
                         </c:when>
                         <c:when test="${not empty pendiente and pendiente}">
                             <li>
-                                <p>Fecha creacion: ${suscvigente.fCreacionStr}    Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo}</p>
+                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Ultima modificacion: ${suscvigente.fUpdate}</p>
                             </li>
                             <p>Suscripcion pendiente de aprobacion, puede cancelarla si asi lo desea</p>
                             <form action="/CancelarSuscripcion" method="POST">
@@ -32,7 +32,7 @@
                         </c:when>
                         <c:when test="${not empty vencida and vencida}">
                             <li>
-                                <p>Fecha creacion: ${suscvigente.fCreacionStr}    Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo}</p>
+                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Ultima modificacion: ${suscvigente.fUpdate}</p>
                             </li>
                             <p>La suscripcion se encuentra vencida, puede renovar o cancelar</p>
                             <form action="/RenovarSuscripcion" method="POST">
@@ -70,7 +70,7 @@
                 <c:when test="${not empty historial}">
                     <c:forEach items="${historial}" var="item">
                         <li>
-                            <p>Fecha creacion: ${item.fCreacionStr}    Estado: ${item.estado} Tipo: ${item.tipo}</p>
+                            <p>Estado: ${item.estado} Tipo: ${item.tipo} Ultima modificacion: ${item.fUpdate}</p>
                         </li>
                     </c:forEach>
                 </c:when>
