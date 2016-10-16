@@ -2,7 +2,7 @@
 <script src="assets/js/jquery-3.1.0.min.js"></script>
 <c:choose>
     <c:when test="${esWeb}">
-        <a href="">Escuchar(vínculo externo)</a>
+        <a href="${link}">Escuchar(vínculo externo)</a>
     </c:when>
     <c:otherwise>
         <c:choose>

@@ -57,7 +57,11 @@ public class OpcionesTema extends HttpServlet {
         IVerAlbum interf = Fabrica.getIVerAlbum();
         try {
             DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
-            request.setAttribute("esWeb",data instanceof DataTemaWeb);
+            boolean esWeb = data instanceof DataTemaWeb;
+            request.setAttribute("esWeb",esWeb);
+            if(esWeb) {
+                request.setAttribute("link",((DataTemaWeb)data).getUrl());
+            }
             request.setAttribute("tieneVigente",tieneVigente);
             request.setAttribute("nickArtista",nickArtista);
             request.setAttribute("nombreAlbum",nombreAlbum);
