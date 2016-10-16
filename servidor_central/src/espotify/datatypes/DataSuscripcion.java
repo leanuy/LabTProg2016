@@ -10,7 +10,7 @@ public class DataSuscripcion {
     private final EstadoSuscripcion estado;
     private final TipoSuscripcion tipo;
 
-    public DataSuscripcion(Calendar fechaCreacion, Calendar fUp,EstadoSuscripcion estado, TipoSuscripcion tipo) {
+    public DataSuscripcion(Calendar fechaCreacion, Calendar fUp, EstadoSuscripcion estado, TipoSuscripcion tipo) {
         this.fechaCreacion = fechaCreacion;
         this.fechaUpdate = fUp;
         this.estado = estado;
