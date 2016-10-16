@@ -53,16 +53,12 @@ public class DataSuscripcion {
             return true;
         } else {
             final DataSuscripcion other = (DataSuscripcion) obj;
-            boolean pene1 = Objects.equals(this.estado, other.estado);
-            boolean pene2 = Objects.equals(this.fUpdate, other.fUpdate);
-            boolean pene3 = Objects.equals(this.fechaCreacion, other.fechaCreacion);
-            boolean pene4 = Objects.equals(this.tipo, other.tipo);
-
+            
             return !(other == null 
-                    || !(pene1)
-                    || !(pene2)
-                    || !(pene3)
-                    || !(pene4)
+                    || !Objects.equals(this.estado, other.estado)
+                    || !Objects.equals(this.fUpdate, other.fUpdate)
+                    || !Objects.equals(this.fechaCreacion, other.fechaCreacion)
+                    || !Objects.equals(this.tipo, other.tipo)
                     );
         }
     }
