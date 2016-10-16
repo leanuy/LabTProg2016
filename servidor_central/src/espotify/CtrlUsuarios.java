@@ -478,9 +478,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public ArrayList<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
+    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
         Cliente client;
-        ArrayList<DataSuscripcion> suscripciones = null;
+        List<DataSuscripcion> suscripciones = null;
         client = buscarCliente(nickname);
         suscripciones = client.getSuscripciones();
         return suscripciones;
