@@ -5,11 +5,9 @@
  */
 package espotify;
 
-import static espotify.AltaAlbumTest.iAltaAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataTema;
-import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.AlbumRepetidoException;
 import espotify.excepciones.ArtistaInexistenteException;
@@ -26,7 +24,6 @@ import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.web.IAltaAlbumWeb;
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
@@ -79,7 +76,11 @@ public class AltaAlbumWebTest {
         
         DataTema tema = new DataTemaWeb("url1", "Sweet Child O' Mine", 160, 1, "ElGordoAxl", "Apetite for Destruction");
         
+        DataTema tema2 = new DataTemaWeb("url1", "Welcome to the Jungle", 160, 3, "ElGordoAxl", "Apetite for Destruction");
+
         interf.addTemaAlbumTemp("ElGordoAxl", tema);
+        interf.addTemaAlbumTemp("ElGordoAxl", tema2);
+        interf.deleteTemaAlbumTemp("ElGordoAxl", "Welcome to the Jungle");
         
         interf.aceptarAltaAlbum("ElGordoAxl");
     }
@@ -258,4 +259,9 @@ public class AltaAlbumWebTest {
         interf.aceptarAltaAlbum("ElGordoAxl");
     }
     
+    @Test
+    public void testZEsAlbumDeArtista() throws ArtistaInexistenteException {
+        System.out.println("Test: esAlbumDeArtista");
+        assert (interf.esAlbumDeArtista("ElGordoAxl", "Apetite for Destruction"));
+    }
 }

@@ -204,7 +204,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         altaAlbum(data);
     }
     @Override
-    public boolean esAlbumDeArtista(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
+    public boolean esAlbumDeArtista(String nick_artista, String album) throws ArtistaInexistenteException {
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
         Artista art = ctrlUsuarios.buscarArtista(nick_artista);
         return art.tieneAlbum(album);
