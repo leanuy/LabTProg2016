@@ -19,7 +19,7 @@ class Artista extends Usuario {
     private final String bio;
     private final String url;
     private final Map<String,Album> albums;
-    private final Map<String,DataAlbumExt> albumsTemp;
+    private DataAlbumExt albumTemp;
     
     //getters
     
@@ -27,35 +27,31 @@ class Artista extends Usuario {
         this.albums.put(album.getNombre(), album);
     }
     void addAlbumTemp(DataAlbumExt album) {
-        deleteAlbumTemp(album.getNombre());
-        this.albumsTemp.put(album.getNombre(), album);
+        this.albumTemp = album;
     }
-    void deleteAlbumTemp(String album) {
-        this.albumsTemp.remove(album);
+    void deleteAlbumTemp() {
+        this.albumTemp = null;
     }
 
     boolean tieneAlbum(String album) {
         return this.albums.containsKey(album);
     }
     boolean tieneAlbumTemp(String album) {
-        return this.albumsTemp.containsKey(album);
+        return this.albumTemp.getNombre().equals(album);
     }
     
     Map<String, Album> getAlbums() {
         return this.albums;
     }
-    Map<String, DataAlbumExt> getAlbumsTemp() {
-        return this.albumsTemp;
-    }
-    DataAlbumExt getAlbumTemp(String album) {
-        return this.albumsTemp.get(album);
+    DataAlbumExt getAlbumTemp() {
+        return this.albumTemp;
     }
     
     //constructores
     Artista(DataArtista data) {
         super(data);
         albums = new HashMap<>();
-        albumsTemp = new HashMap<>();
+        albumTemp = null;
         bio = data.getBio();
         url = data.getUrl();
     }
@@ -118,4 +114,12 @@ class Artista extends Usuario {
     BufferedInputStream getAudio(String album, String tema) throws AlbumInexistenteException, TemaTipoInvalidoException {
         return buscarAlbum(album).getAudio(tema);
     }
+
+    void addTemaAlbumTemp(DataTema tema){
+        this.albumTemp.addTema(tema);
+    }
+    void deleteTemaAlbumTemp(String tema){
+        this.albumTemp.deleteTema(tema);
+    }
+
 }

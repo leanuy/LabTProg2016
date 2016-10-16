@@ -41,7 +41,7 @@ public class ValidarTemaNombre extends HttpServlet {
             throws ServletException, IOException, ArtistaInexistenteException {
         HttpSession session = request.getSession();
         IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
-        DataAlbumExt album = inter.getAlbumTemp((String) session.getAttribute("nick_sesion"), new String(request.getParameter("album").getBytes("iso-8859-1"), "UTF-8"));
+        DataAlbumExt album = inter.getAlbumTemp((String) session.getAttribute("nick_sesion"));
 
         
         response.setContentType("text/html;charset=UTF-8");

@@ -41,7 +41,7 @@
                                     <button type="button" class="btn btn-custom boton-archivo"><i class="fa fa-file"></i></button>
                                 </div>
                                 <div class="col-md-2">
-                                    <button type="button" id="aceptar" class="btn btn-custom">Aceptar</button>
+                                    <button type="button" id="agregar" class="btn btn-custom">Agregar</button>
                                 </div>
                             </div>
                             <div class="row">
@@ -80,12 +80,11 @@
                                     </table>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <div class="col-md-4 col-md-offset-4">
+                            <div class="row">
+                                <div class="col-lg-12" style="text-align:center">
+                                    <button class="btn btn-custom aceptar" type="button">Aceptar</button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>

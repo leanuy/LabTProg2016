@@ -78,12 +78,8 @@ public class AltaAlbum_paso2 extends HttpServlet {
             String artista = (String) session.getAttribute("nick_sesion");
             Part part;
             Scanner s;
-            
-            part = request.getPart("album");
-            s = new Scanner(part.getInputStream());
-            String album_str = s.nextLine();
-            
-            DataAlbumExt album = inter.getAlbumTemp( artista, album_str);
+                        
+            DataAlbumExt album = inter.getAlbumTemp(artista);
             
             part = request.getPart("orden");
             s = new Scanner(part.getInputStream());
@@ -106,7 +102,7 @@ public class AltaAlbum_paso2 extends HttpServlet {
                 String url = s.nextLine();
 
                 DataTemaWeb temaWeb = new DataTemaWeb(url, nombre, duracion, orden, artista, album.getNombre());
-                album.addTema(temaWeb);
+                inter.addTemaAlbumTemp(artista, temaWeb);
                 out.print("true");
             } else if(tipo.equals("archivo")){
                 boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -115,7 +111,7 @@ public class AltaAlbum_paso2 extends HttpServlet {
                     InputStream is = part.getInputStream();
                     BufferedInputStream archivo = new BufferedInputStream(is);
                     DataTemaArchivo temaArchivo = new DataTemaArchivo(archivo, nombre, duracion, orden, artista, album.getNombre());
-                    album.addTema(temaArchivo);
+                    inter.addTemaAlbumTemp(artista, temaArchivo);
                     out.print("true");
                 }
             }

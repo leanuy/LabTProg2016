@@ -60,7 +60,7 @@ $(".temas").on('click', '.delete-tema', function () {
     });
 });
 
-$("#aceptar").click(function(){
+$("#agregar").click(function(){
     var has_error = false;
     var $help = $(".help");
     var $album = $('#album');
@@ -81,27 +81,27 @@ $("#aceptar").click(function(){
     }else if($(".active").hasClass('form-archivo')){
         tipo = "archivo";
     }else{
-        $help.append("<br />Debes elegir un tipo de tema y completar los datos.");
+        $help.append("<br />- Debes elegir un tipo de tema y completar los datos.");
         has_error = true;
     }
     var duracion = 0;
     var multiplicador = 1;
     var $duracion = $('#duracion');
-    var duracion_str = $duracion.val()
+    var duracion_str = $duracion.val();
     var duracion_arr = $duracion.val().split(":");
     
     //VALIDACIONES
     if($orden.val() === ""){
         $orden.parent().addClass("has-error");
-        $help.append("<br />El orden del tema es requerido.");
+        $help.append("<br />- El orden del tema es requerido.");
         has_error = true;
     }else{
         orden = parseInt($orden.val());
         if(isNaN(orden)){
-            $help.append("<br />El orden del tema debe ser numerico.");
+            $help.append("<br />- El orden del tema debe ser numerico.");
             has_error = true;
         }else if(orden <= 0){
-            $help.append("<br />El orden del tema debe mayor a 0.");
+            $help.append("<br />- El orden del tema debe mayor a 0.");
             has_error = true;
         }else{
             var repetido = false;
@@ -111,23 +111,23 @@ $("#aceptar").click(function(){
                } 
             });
             if(repetido){
-                $help.append("<br />Ya tienes otro tema en este álbum con ese orden.");
+                $help.append("<br />- Ya tienes otro tema en este álbum con ese orden.");
                 has_error = true;
             }
         }
     }
     if ($nombre.val() === ""){
         $nombre.parent().addClass("has-error");
-        $help.append("<br />El nombre del tema es requerido.");
+        $help.append("<br />- El nombre del tema es requerido.");
         has_error = true;
     }else{
         $.ajax({
             type: "GET",
-            url: "/ValidarNombreTema?album=" + $album.val()+"&tema="+$nombre.val(),
+            url: "/ValidarNombreTema?tema="+$nombre.val(),
             success: function (msg) {
                 if (msg !== "true") {
                     $nombre.parent().addClass("has_error");
-                    $help.append("<br />El álbum ya tiene un tema con ese nombre.");
+                    $help.append("<br />- El álbum ya tiene un tema con ese nombre.");
                     has_error = true;
                 }
             }
@@ -135,21 +135,21 @@ $("#aceptar").click(function(){
     }
     if($duracion.val() === ""){
         $duracion.parent().addClass("has-error");
-        $help.append("<br />La duración del tema es requerida");
+        $help.append("<br />- La duración del tema es requerida");
         has_error = true;
     }else if(duracion_arr.length > 3){
         $duracion.parent().addClass("has-error");
-        $help.append("<br />La duración del tema no es correcta");
+        $help.append("<br />- La duración del tema no es correcta");
         has_error = true;
     }else{
         var parte_duracion;
         for(i= duracion_arr.length-1; i >= 0; i--){
             parte_duracion = parseInt(duracion_arr[i]);
             if (isNaN(parte_duracion)) {
-                $help.append("<br />La duracion del tema tiene caracteres inesperados");
+                $help.append("<br />- La duracion del tema tiene caracteres inesperados");
                 has_error = true;
             }else{
-            duracion =+ duracion_arr[i]*multiplicador;
+            duracion += duracion_arr[i]*multiplicador;
             multiplicador *= 60;
             }
         }
@@ -157,7 +157,7 @@ $("#aceptar").click(function(){
     var $tema = $('.active').find('input');
         if($tema.val() === ""){
             $tema.parent().addClass("has-error");
-            $help.append("<br />La URL o archivo del tema es requerido.");
+            $help.append("<br />- La URL o archivo del tema es requerido.");
             has_error = true;
         }
     if(!has_error){
@@ -173,6 +173,7 @@ $("#aceptar").click(function(){
             data: data,
             success: function (msg) {
                 if (msg === "true") {
+                    $duracion.val(duracion_str);
                     crearTema(tipo);
                     clearFormTema();
                 }
@@ -184,6 +185,7 @@ $("#aceptar").click(function(){
     
 });
 
+<<<<<<< 7f629e3990b3f6c8769dbdc48d67bba4d7a77f36
 $(".remove-tema").click(function(){
     var $nombre = $(this).siblings(".nombre");
     $.ajax({
@@ -195,3 +197,41 @@ $(".remove-tema").click(function(){
         }
     });
 });
+=======
+$(".aceptar").click(function(){
+    $help = $(".help");
+    $help.parent().hide();
+    $help.html("<strong>Errores:</string>");
+
+    var has_error = false;
+    var cantidad = 0;
+    var max = 0;
+    $(".orden").each(function(){
+        cantidad++;
+        if(cantidad !== 1 && parseInt($(this).text()) > max){
+            max = parseInt($(this).text());
+        }
+    });
+    if((cantidad -1) === 0){
+        $help.append("<br />-No puedes crear un álbum sin temas.");
+        has_error = true;
+    }else if(max > cantidad -1){
+        $help.append("<br />- La numeración de los temas no es correcta. Tienes un tema con numeración "+ max + " y la cantidad de temas del álbum es "+ cantidad
+                        + ". Debes eliminar los temas con numeración incorrecta y volverlos a crear");
+        has_error = true;
+    }
+    if(!has_error){
+        $.ajax({
+            type: "GET",
+            url: "/AltaAlbum/paso3",
+            success: function (artista) {
+                if (artista !== "") {
+                        window.location = "/VerAlbum?nick="+artista+"&album="+$("#album").val();
+                }
+            }
+        });
+    }else{
+        $help.parent().show();
+    }
+});
+>>>>>>> terminado

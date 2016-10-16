@@ -178,22 +178,34 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         art.addAlbumTemp(album);
     }
     @Override
-    public DataAlbumExt getAlbumTemp(String nick_artista, String album) throws ArtistaInexistenteException {
+    public void addTemaAlbumTemp(String artista, DataTema tema) throws ArtistaInexistenteException {
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        return art.getAlbumTemp(album);
+        Artista art = ctrlUsuarios.buscarArtista(artista);
+        art.addTemaAlbumTemp(tema);
     }
     @Override
-    public void cancelarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException {
+    public void deleteTemaAlbumTemp(String artista, String tema) throws ArtistaInexistenteException {
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        art.deleteAlbumTemp(album);
+        Artista art = ctrlUsuarios.buscarArtista(artista);
+        art.deleteTemaAlbumTemp(tema);
     }
     @Override
-    public void AceptarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
+    public DataAlbumExt getAlbumTemp(String nick_artista) throws ArtistaInexistenteException {
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
         Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        DataAlbumExt data = art.getAlbumTemp(album);
+        return art.getAlbumTemp();
+    }
+    @Override
+    public void cancelarAltaAlbum(String nick_artista) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        art.deleteAlbumTemp();
+    }
+    @Override
+    public void aceptarAltaAlbum(String nick_artista) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        DataAlbumExt data = art.getAlbumTemp();
         altaAlbum(data);
     }
     @Override

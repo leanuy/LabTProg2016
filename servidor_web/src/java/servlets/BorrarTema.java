@@ -36,16 +36,13 @@ public class BorrarTema extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, ArtistaInexistenteException {
-        HttpSession session = request.getSession();
-        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
-        DataAlbumExt album = inter.getAlbumTemp((String) session.getAttribute("nick_sesion"), new String(request.getParameter("album").getBytes("iso-8859-1"), "UTF-8"));
-
         response.setContentType("text/html;charset=UTF-8");
-        String tema = new String(request.getParameter("tema").getBytes(
-                "iso-8859-1"), "UTF-8");
-        PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
 
-        album.deleteTema(tema);
+        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        String tema = new String(request.getParameter("tema").getBytes("iso-8859-1"), "UTF-8");
+        inter.deleteTemaAlbumTemp((String) session.getAttribute("nick_sesion"), tema);
+        PrintWriter out = response.getWriter();
         out.print("true");
         
     }

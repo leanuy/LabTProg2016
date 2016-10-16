@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-12"><h2>Crear nuevo Álbum</h2></div>
                 <div class="col-lg-12">
-                    <form action="/AltaAlbum/paso1" method="POST" class="form-horizontal">
+                    <form action="/AltaAlbum/paso1" method="POST" class="form-horizontal"  enctype="multipart/form-data">
                         <fieldset>
                             <div class="form-group <c:if test="${not empty error_nombre}">has-error</c:if>">
                                     <label class="col-md-4 control-label" for="textinput">Nombre*:</label>  
