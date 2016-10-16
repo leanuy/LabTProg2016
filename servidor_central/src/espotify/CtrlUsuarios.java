@@ -74,6 +74,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     Artista buscarArtista(String nombre) throws ArtistaInexistenteException {
+        
         Artista artista = ManejadorColecciones.getInstancia().buscarArtista(nombre);
         if (artista == null) {
             throw new ArtistaInexistenteException();
@@ -477,9 +478,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public ArrayList<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
+    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
         Cliente client;
-        ArrayList<DataSuscripcion> suscripciones = null;
+        List<DataSuscripcion> suscripciones = null;
         client = buscarCliente(nickname);
         suscripciones = client.getSuscripciones();
         return suscripciones;

@@ -57,7 +57,7 @@ public class ObtenerImagenTest {
     public void testImagenUsuario() throws UsuarioInexistenteException {
         System.out.println("Obtener imagen de usuario: vacía");
         BufferedImage imagen = interf.getImageUsuario("TesterLista");
-        assert (imagen == null);
+        assert imagen == null;
     }
     
     @Test
@@ -77,14 +77,14 @@ public class ObtenerImagenTest {
     public void testEsArtista() throws UsuarioInexistenteException {
         System.out.println("es artista: sí");
         boolean result = interf.esArtista("ElGordoAxl");
-        assert (result);
+        assert result;
     }
     
     @Test
     public void testEsArtista2() throws UsuarioInexistenteException {
         System.out.println("es artista: no");
         boolean result = interf.esArtista("TesterLista");
-        assert (!result);
+        assert !result;
     }
     
     @Test

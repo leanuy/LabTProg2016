@@ -77,7 +77,7 @@ public class ObtenerAudioTest {
     @Test
     public void testAudio4() throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException, IOException {
         System.out.println("Obtener audio: ok");
-        assert (interf.getAudio("ElGordoAxl","Album 1","tema 5") != null);
+        assert interf.getAudio("ElGordoAxl","Album 1","tema 5") != null;
     }
     
     

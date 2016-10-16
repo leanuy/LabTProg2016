@@ -26,9 +26,9 @@ public class Suscripcion {
         this.estado = EstadoSuscripcion.PENDIENTE;
     }
     
-    public Suscripcion(Calendar ups, TipoSuscripcion type, boolean cancel, int numSuscDatos){
-        Calendar up = (Calendar)ups.clone();
-        this.fechaUpdate = up;
+    public Suscripcion(Calendar ups, TipoSuscripcion type, boolean cancel, int numSuscDatos) {
+        Calendar update = (Calendar)ups.clone();
+        this.fechaUpdate = update;
         this.tipo = type;
         this.cancelada = cancel;
         switch (numSuscDatos) {

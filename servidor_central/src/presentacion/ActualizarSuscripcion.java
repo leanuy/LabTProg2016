@@ -231,7 +231,7 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
         modeloSuscripciones.removeAllElements();
         cliente = String.valueOf(nickClientecmb.getSelectedItem());
         try {
-            ArrayList<DataSuscripcion> dataSusc = interf.listarSuscripcionesCliente(cliente);
+            List<DataSuscripcion> dataSusc = interf.listarSuscripcionesCliente(cliente);
             if ((dataSusc == null)||(dataSusc.isEmpty())) {
                 modeloSuscripciones.addElement("Sin suscripciones");
             } else {

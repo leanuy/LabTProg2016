@@ -229,8 +229,8 @@ public class Cliente extends Usuario {
         }
     }
     
-    public ArrayList<DataSuscripcion> getSuscripciones() {
-        ArrayList<DataSuscripcion> lstSusc = new ArrayList();
+    public List<DataSuscripcion> getSuscripciones() {
+        List<DataSuscripcion> lstSusc = new ArrayList();
         Iterator iterador = suscripciones.entrySet().iterator();
         Suscripcion suscActual;
         while (iterador.hasNext()) {
