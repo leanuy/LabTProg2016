@@ -25,7 +25,6 @@ import org.junit.Test;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 public class AltaAlbumTest {
@@ -55,7 +54,7 @@ public class AltaAlbumTest {
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Album 1"));
         temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 4", 70, 4, "ElGordoAxl", "Album 1"));
         temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 5", 230, 5, "ElGordoAxl", "Album 1"));
-
+            
         String nombre = "Album 1";
         int anio = 2013;
         ArrayList<String> generos = new ArrayList<>();
@@ -72,7 +71,6 @@ public class AltaAlbumTest {
     @Test(expected = CampoVacioException.class)
     public void testAltaAlbumSinGeneros() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test Sin generos");
-        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList<DataTema> temas = new ArrayList<>();
@@ -89,7 +87,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 
@@ -99,7 +96,6 @@ public class AltaAlbumTest {
     @Test(expected = GeneroInexistenteException.class)
     public void testAltaAlbumGeneroInexistente() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test con genero inexistente");
-        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList<DataTema> temas = new ArrayList<>();
@@ -118,16 +114,13 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 
     @Test(expected = AlbumRepetidoException.class)
     public void testAltaAlbumRepetido() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception {
         System.out.println("Alta Album - Test con album repetido");
-        //this.testExisteArtista();
 
-        //Crear DataTemas
         ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Album valido"));
 
@@ -139,7 +132,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
         iAltaAlbum.altaAlbum(data);
     }
@@ -147,7 +139,6 @@ public class AltaAlbumTest {
     @Test(expected = DuracionInvalidaException.class)
     public void testAltaAlbumTemaDuracionInvalida() throws CampoVacioException, NickRepetidoException, CorreoRepetidoException, FormatoIncorrectoException, ArtistaInexistenteException, Exception, DuracionInvalidaException {
         System.out.println("Alta Album - Test tema duracion invalida");
-        //this.testExisteArtista();
 
         //Crear DataTemas
         ArrayList<DataTema> temas = new ArrayList<>();
@@ -161,7 +152,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 
@@ -183,7 +173,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 
@@ -205,7 +194,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 
@@ -227,7 +215,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 
@@ -249,7 +236,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 
@@ -271,7 +257,6 @@ public class AltaAlbumTest {
         String nickArtista = "ElGordoAxl";
         DataAlbumExt data = new DataAlbumExt(temas, nombre, anio, generos, img, nickArtista);
 
-        //IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
         iAltaAlbum.altaAlbum(data);
     }
 }
