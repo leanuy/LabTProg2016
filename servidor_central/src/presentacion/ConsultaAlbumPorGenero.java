@@ -5,7 +5,6 @@ import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataGenero;
 import espotify.interfaces.IConsultaAlbum;
 
-import java.awt.FlowLayout;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;

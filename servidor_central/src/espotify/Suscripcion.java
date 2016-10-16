@@ -5,7 +5,6 @@ import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.EstadoSuscripcion;
 import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
-import java.text.SimpleDateFormat;
 
 import java.util.Calendar;
 

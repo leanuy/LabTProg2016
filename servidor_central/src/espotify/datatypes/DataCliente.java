@@ -2,7 +2,6 @@ package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.Calendar;
-import java.util.List;
 
 public class DataCliente extends DataUsuario {
     public DataCliente(String nick, String nombre, String apellido, String correo,

@@ -12,10 +12,7 @@ import espotify.excepciones.FavoritoRepetidoException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.interfaces.IFavoritear;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 

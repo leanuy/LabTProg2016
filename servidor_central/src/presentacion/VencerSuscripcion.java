@@ -6,12 +6,10 @@
 package presentacion;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.EstadoSuscripcion;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.NoHaySuscripcionException;
-import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.interfaces.IActualizarSuscripcion;
 import java.util.List;
 import javax.swing.JOptionPane;

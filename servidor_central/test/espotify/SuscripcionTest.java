@@ -59,13 +59,13 @@ public class SuscripcionTest {
         acts.listarClientes();
         Calendar cal = Calendar.getInstance();
         cal.set(2016,9,1);
-        espotify.Suscripcion s3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
-        acts.encajarSuscripcion("TesterLista", s3);
+        espotify.Suscripcion susc3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
+        acts.encajarSuscripcion("TesterLista", susc3);
         acts.aprobarSuscripcion("TesterLista");
-        DataSuscripcion ds = acts.getSuscripcionDeCliente("TesterLista");
-        Calendar cal2 = ds.getFechaUpdate();
+        DataSuscripcion datasusc = acts.getSuscripcionDeCliente("TesterLista");
+        Calendar cal2 = datasusc.getFechaUpdate();
         DataSuscripcion dsesp = new DataSuscripcion(cal, cal2,EstadoSuscripcion.VIGENTE, TipoSuscripcion.MENSUAL);
-        assertEquals(ds, dsesp);
+        assertEquals(datasusc, dsesp);
     }
     
     @Test (expected = ClienteInexistenteException.class)
@@ -73,8 +73,8 @@ public class SuscripcionTest {
         acts.listarClientes();
         Calendar cal = Calendar.getInstance();
         cal.set(2016,9,1);
-        espotify.Suscripcion s3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
-        acts.encajarSuscripcion("Excepcion", s3);
+        espotify.Suscripcion susc3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
+        acts.encajarSuscripcion("Excepcion", susc3);
     }
     
     @Test (expected = NoHaySuscripcionException.class)
@@ -82,13 +82,13 @@ public class SuscripcionTest {
         acts.listarClientes();
         Calendar cal = Calendar.getInstance();
         cal.set(2016,9,1);
-        espotify.Suscripcion s3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
-        acts.encajarSuscripcion("TesterLista", s3);
+        espotify.Suscripcion susc3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
+        acts.encajarSuscripcion("TesterLista", susc3);
         acts.aprobarSuscripcion("TesterLista2");
-        DataSuscripcion ds = acts.getSuscripcionDeCliente("TesterLista");
-        Calendar cal2 = ds.getFechaUpdate();
+        DataSuscripcion datasusc = acts.getSuscripcionDeCliente("TesterLista");
+        Calendar cal2 = datasusc.getFechaUpdate();
         DataSuscripcion dsesp = new DataSuscripcion(cal, cal2,EstadoSuscripcion.VIGENTE, TipoSuscripcion.MENSUAL);
-        assertEquals(ds, dsesp);
+        assertEquals(datasusc, dsesp);
     }
     
     @Test (expected = TransicionSuscripcionInvalidaException.class)
@@ -96,13 +96,13 @@ public class SuscripcionTest {
         acts.listarClientes();
         Calendar cal = Calendar.getInstance();
         cal.set(2016,8,3);
-        espotify.Suscripcion s2 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 2);
-        acts.encajarSuscripcion("TesterLista", s2);
+        espotify.Suscripcion susc2 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 2);
+        acts.encajarSuscripcion("TesterLista", susc2);
         acts.aprobarSuscripcion("TesterLista");
-        DataSuscripcion ds = acts.getSuscripcionDeCliente("TesterLista");
-        Calendar cal2 = ds.getFechaUpdate();
+        DataSuscripcion datasusc = acts.getSuscripcionDeCliente("TesterLista");
+        Calendar cal2 = datasusc.getFechaUpdate();
         DataSuscripcion dsesp = new DataSuscripcion(cal, cal2,EstadoSuscripcion.VIGENTE, TipoSuscripcion.MENSUAL);
-        assertEquals(ds, dsesp);
+        assertEquals(datasusc, dsesp);
     }
     
     @Test
@@ -110,31 +110,31 @@ public class SuscripcionTest {
         Calendar cal2 = Calendar.getInstance();
         Calendar cal = Calendar.getInstance();
         cal2.set(2016,8,2);
-        espotify.Suscripcion s1 = new espotify.Suscripcion(cal2, TipoSuscripcion.SEMANAL, false, 1);
+        espotify.Suscripcion susc1 = new espotify.Suscripcion(cal2, TipoSuscripcion.SEMANAL, false, 1);
         
         cal.set(2016,8,3);
-        espotify.Suscripcion s2 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 2);
+        espotify.Suscripcion susc2 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 2);
         
         cal.set(2016,9,1);
-        espotify.Suscripcion s3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
+        espotify.Suscripcion susc3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
         
         cal.set(2016,2,1);
-        espotify.Suscripcion s4 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 4);
+        espotify.Suscripcion susc4 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 4);
         
         cal.set(2016,4,3);
-        espotify.Suscripcion s5 = new espotify.Suscripcion(cal,TipoSuscripcion.MENSUAL,true, 5);
+        espotify.Suscripcion susc5 = new espotify.Suscripcion(cal,TipoSuscripcion.MENSUAL,true, 5);
         
         cal.set(2016,9,16);
-        espotify.Suscripcion s6 = new espotify.Suscripcion(cal, TipoSuscripcion.SEMANAL, false, 6);
+        espotify.Suscripcion susc6 = new espotify.Suscripcion(cal, TipoSuscripcion.SEMANAL, false, 6);
         
         cal.set(2015,5,10);
-        espotify.Suscripcion s7 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 7);
+        espotify.Suscripcion susc7 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 7);
         
         cal.set(2016,9,15);
-        espotify.Suscripcion s8 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 8);
+        espotify.Suscripcion susc8 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 8);
         
         cal.set(2016,8,2);
-        espotify.Suscripcion s9 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, true, 9);
+        espotify.Suscripcion susc9 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, true, 9);
         
         cal2.set(2016,8,25);
         espotify.Suscripcion s10 = new espotify.Suscripcion(cal2, TipoSuscripcion.MENSUAL, false, 10);
@@ -153,8 +153,8 @@ public class SuscripcionTest {
     public void cancelar_suscripcion() throws ClienteInexistenteException, NoHaySuscripcionException, TransicionSuscripcionInvalidaException {
         Calendar cal = Calendar.getInstance();
         cal.set(2016,9,1);
-        espotify.Suscripcion s3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
-        acts.encajarSuscripcion("TesterLista3", s3);
+        espotify.Suscripcion susc3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
+        acts.encajarSuscripcion("TesterLista3", susc3);
         acts.cancelarSuscripcion("TesterLista3");
         acts.getSuscripcionDeCliente("TesterLista3");
     }
@@ -163,8 +163,8 @@ public class SuscripcionTest {
     public void vencer_suscripcion() throws ClienteInexistenteException, NoHaySuscripcionException, TransicionSuscripcionInvalidaException {
         Calendar cal = Calendar.getInstance();
         cal.set(2016,9,1);
-        espotify.Suscripcion s3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
-        acts.encajarSuscripcion("TesterLista3", s3);
+        espotify.Suscripcion susc3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
+        acts.encajarSuscripcion("TesterLista3", susc3);
         acts.aprobarSuscripcion("TesterLista3");
         acts.vencerSuscripcionActual("TesterLista3");
         acts.getSuscripcionDeCliente("TesterLista3");
@@ -175,11 +175,11 @@ public class SuscripcionTest {
     public void altaSuscripcionTestWEB_1() throws ClienteInexistenteException, TransicionSuscripcionInvalidaException, NoHaySuscripcionException {
         susweb.contratarSuscripcion(TipoSuscripcion.MENSUAL, "TesterLista");
         susweb.aprobarSuscripcionPendiente("TesterLista");
-        DataSuscripcion ds = susweb.obtenerSuscripcionActual("TesterLista");
-        Calendar cal = ds.getFechaCreacion();
-        Calendar cal2 = ds.getFechaUpdate();
+        DataSuscripcion datasusc = susweb.obtenerSuscripcionActual("TesterLista");
+        Calendar cal = datasusc.getFechaCreacion();
+        Calendar cal2 = datasusc.getFechaUpdate();
         DataSuscripcion dsesp = new DataSuscripcion(cal, cal2,EstadoSuscripcion.VIGENTE, TipoSuscripcion.MENSUAL);
-        assertEquals(ds, dsesp);
+        assertEquals(datasusc, dsesp);
     }
     
     @Test

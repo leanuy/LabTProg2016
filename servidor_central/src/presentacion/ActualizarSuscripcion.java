@@ -8,14 +8,9 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.interfaces.IActualizarSuscripcion;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 /**
  *

@@ -5,7 +5,6 @@ import espotify.datatypes.DataSuscripcion;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
-import java.util.ArrayList;
 
 import java.util.List;
 

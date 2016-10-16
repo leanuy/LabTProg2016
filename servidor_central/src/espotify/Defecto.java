@@ -1,7 +1,6 @@
 package espotify;
 
 import espotify.datatypes.DataDefecto;
-import espotify.datatypes.DataLista;
 import java.awt.image.BufferedImage;
 
 

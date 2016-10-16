@@ -1,10 +1,8 @@
 package presentacion;
 
-import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *

@@ -428,11 +428,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
 
     @Override
     public DataUsuario buscarUsuario(String nickUsuario) throws UsuarioInexistenteException {
-        if (!this.existeUsuarioNick(nickUsuario)) {
-            throw new UsuarioInexistenteException();
-        }
         Usuario usuario;
-        DataUsuario dataUsuario;
+        DataUsuario dataUsuario = null;
         try {
             usuario = this.buscarArtista(nickUsuario);
             dataUsuario = ((Artista)usuario).getDataArtistaExt();
@@ -441,7 +438,27 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
                 usuario = this.buscarCliente(nickUsuario);
                 dataUsuario = ((Cliente)usuario).getDataClienteExt();
             } catch (ClienteInexistenteException e) {
-                throw new UsuarioInexistenteException();
+                
+                boolean encontre = false;
+                Iterator<Entry<String,Cliente>> iterator = getClientes().entrySet().iterator();
+                while (iterator.hasNext() && !encontre) {
+                    Map.Entry<String,Cliente> entry = (Map.Entry<String,Cliente>) iterator.next();
+                    encontre = entry.getValue().getCorreo().equals(nickUsuario);
+                    if (encontre) {
+                        dataUsuario = ((Cliente)entry.getValue()).getDataClienteExt();
+                    }
+                }
+                Iterator<Entry<String,Artista>> iterator2 = getArtistas().entrySet().iterator();
+                while (iterator2.hasNext() && !encontre) {
+                    Map.Entry<String,Artista> entry = (Map.Entry<String,Artista>) iterator2.next();
+                    encontre = entry.getValue().getCorreo().equals(nickUsuario);
+                    if (encontre) {
+                        dataUsuario = ((Artista)entry.getValue()).getDataArtistaExt();
+                    }
+                }
+                if (dataUsuario == null) {
+                    throw new UsuarioInexistenteException();
+                }
             }
         }
         return dataUsuario;

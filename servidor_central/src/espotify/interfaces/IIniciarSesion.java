@@ -13,6 +13,7 @@ import espotify.excepciones.UsuarioInexistenteException;
  * @author agustina
  */
 public interface IIniciarSesion {
+    
     public DataUsuario buscarUsuario(String nickUsuario) throws UsuarioInexistenteException;
     public boolean checkPassword(String nickUsuario, String password) throws UsuarioInexistenteException;
 }

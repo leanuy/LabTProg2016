@@ -8,8 +8,6 @@ import espotify.excepciones.SeguidorInexistenteException;
 import espotify.interfaces.IAltaSeguir;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 

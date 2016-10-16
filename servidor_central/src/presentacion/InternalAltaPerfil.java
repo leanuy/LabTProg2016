@@ -9,7 +9,6 @@ import espotify.excepciones.NickRepetidoException;
 import espotify.excepciones.PasswordsDistintasException;
 import espotify.interfaces.IAltaPerfil;
 
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;

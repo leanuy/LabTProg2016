@@ -1,7 +1,6 @@
 package espotify.datatypes;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 
 public class DataTemaArchivo extends DataTema {
     private final BufferedInputStream archivo;

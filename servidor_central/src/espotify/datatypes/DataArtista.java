@@ -2,7 +2,6 @@ package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.Calendar;
-import java.util.List;
 
 
 public class DataArtista extends DataUsuario {

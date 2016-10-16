@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class DataSuscripcion {
     private final Calendar fechaCreacion;
-    private final Calendar fUpdate;
+    private final Calendar fechaUpdate;
     private final EstadoSuscripcion estado;
     private final TipoSuscripcion tipo;
 
     public DataSuscripcion(Calendar fechaCreacion, Calendar fUp,EstadoSuscripcion estado, TipoSuscripcion tipo) {
         this.fechaCreacion = fechaCreacion;
-        this.fUpdate = fUp;
+        this.fechaUpdate = fUp;
         this.estado = estado;
         this.tipo = tipo;
     }
@@ -22,7 +22,7 @@ public class DataSuscripcion {
     }
     
     public Calendar getFechaUpdate() {
-        return fUpdate;
+        return fechaUpdate;
     }
     
     public EstadoSuscripcion getEstado() {
@@ -44,7 +44,7 @@ public class DataSuscripcion {
     
     public String getfUpdate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        return sdf.format(fUpdate.getTime());
+        return sdf.format(fechaUpdate.getTime());
     }
     
     @Override
@@ -56,7 +56,7 @@ public class DataSuscripcion {
             
             return !(other == null 
                     || !Objects.equals(this.estado, other.estado)
-                    || !Objects.equals(this.fUpdate, other.fUpdate)
+                    || !Objects.equals(this.fechaUpdate, other.fechaUpdate)
                     || !Objects.equals(this.fechaCreacion, other.fechaCreacion)
                     || !Objects.equals(this.tipo, other.tipo)
                     );
