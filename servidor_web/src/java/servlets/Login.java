@@ -36,16 +36,16 @@ public class Login extends HttpServlet {
 		try {
                         IIniciarSesion iIniciarSesion = Fabrica.getIIniciarSesion();
                         DataUsuario dataUsr = iIniciarSesion.buscarUsuario(login);
-			if(iIniciarSesion.checkPassword(login, password)) {
+			if(iIniciarSesion.checkPassword(dataUsr.getNick(), password)) {
                             nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
                             // setea el usuario logueado
                             objSesion.setAttribute("usuario_logueado", dataUsr.getCorreo());
-                            objSesion.setAttribute("nick_sesion", login);
+                            objSesion.setAttribute("nick_sesion", dataUsr.getNick());
                             boolean esCliente = dataUsr instanceof DataClienteExt;
                             objSesion.setAttribute("es_cliente",esCliente);
                             if (esCliente) {
                                 try {
-                                    objSesion.setAttribute("tiene_suscripcion",Fabrica.getISuscripcionWeb().tieneSuscripcionVigente(login));
+                                    objSesion.setAttribute("tiene_suscripcion",Fabrica.getISuscripcionWeb().tieneSuscripcionVigente(dataUsr.getNick()));
                                 } catch (ClienteInexistenteException ex) {
                                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                                 }
