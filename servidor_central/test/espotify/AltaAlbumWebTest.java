@@ -75,7 +75,6 @@ public class AltaAlbumWebTest {
         interf.addAlbumTemp(data);
         
         DataTema tema = new DataTemaWeb("url1", "Sweet Child O' Mine", 160, 1, "ElGordoAxl", "Apetite for Destruction");
-        
         DataTema tema2 = new DataTemaWeb("url1", "Welcome to the Jungle", 160, 3, "ElGordoAxl", "Apetite for Destruction");
 
         interf.addTemaAlbumTemp("ElGordoAxl", tema);
