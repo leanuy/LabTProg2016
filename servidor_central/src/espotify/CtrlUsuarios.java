@@ -558,7 +558,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public void encajarSuscripcion(String nick, Suscripcion suscripcion) throws ClienteInexistenteException{
+    public void encajarSuscripcion(String nick, Suscripcion suscripcion) throws ClienteInexistenteException {
         Cliente client;
         client = buscarCliente(nick);
         client.encajarSuscripcion(suscripcion);

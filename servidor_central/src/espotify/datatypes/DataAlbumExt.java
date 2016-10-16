@@ -12,15 +12,15 @@ public class DataAlbumExt extends DataAlbum {
         return this.temas;
     }
     public boolean tieneTema(String tema) {
-        return temas.stream().anyMatch((t) -> (t.getNombre().equals(tema)));
+        return temas.stream().anyMatch((dataTema) -> (dataTema.getNombre().equals(tema)));
     }
 
-    public void addTema(DataTema tema){
+    public void addTema(DataTema tema) {
         this.temas.add(tema);
     }
-    public void deleteTema(String tema){
+    public void deleteTema(String tema) {
         DataTema data = null;
-        if(temas != null){
+        if (temas != null) {
             for (DataTema t : temas) {
                 if (t.getNombre().equals(tema)) {
                     data = t;

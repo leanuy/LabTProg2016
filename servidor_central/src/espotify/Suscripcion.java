@@ -22,7 +22,7 @@ public class Suscripcion {
         this.cancelada = false;
     }
     
-    public Suscripcion(Calendar creacion, Calendar desde, TipoSuscripcion type, boolean cancel){
+    public Suscripcion(Calendar creacion, Calendar desde, TipoSuscripcion type, boolean cancel) {
         this.fechaCreacion = creacion;
         this.fechaDesde = desde;
         this.tipo = type;

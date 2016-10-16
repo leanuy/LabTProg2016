@@ -34,7 +34,6 @@ import java.util.TreeMap;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         IVerAlbum, IVerGenero, IListarGeneros, IBuscar, IAltaAlbumWeb{
-    private Artista artistaMem;
 
 //constructor
     public CtrlMusica() {
@@ -66,9 +65,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         return getGeneroBase().listarseRecursivo("");
     }
     
-    private TreeMap<String, String> stringifyGenerosRecursivo(DataGenero root, String path) {
-        TreeMap<String, String> mapa = new TreeMap<>();
-        mapa.put(path+root.getNombre(), root.getNombre());
+    private Map<String, String> stringifyGenerosRecursivo(DataGenero root, String path) {
+        Map<String, String> mapa = new TreeMap<>();
+        mapa.put(path + root.getNombre(), root.getNombre());
         List<DataGenero> hijos = root.getHijos();
         for (DataGenero next : hijos) {
             mapa.putAll(stringifyGenerosRecursivo(next, path + root.getNombre() + " / "));
@@ -77,7 +76,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     }
     
     @Override
-    public TreeMap<String, String> stringifyDataGeneros(){
+    public TreeMap<String, String> stringifyDataGeneros() {
         TreeMap<String, String> mapa = new TreeMap<>();
         DataGenero root = listarGeneros();
         List<DataGenero> hijos = root.getHijos();

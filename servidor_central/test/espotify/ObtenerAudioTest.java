@@ -50,25 +50,25 @@ public class ObtenerAudioTest {
         }
     }
     
-    @Test (expected=ArtistaInexistenteException.class)
+    @Test (expected = ArtistaInexistenteException.class)
     public void testAudio() throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
         System.out.println("Obtener audio: artista inexistente");
         interf.getAudio("asdf","asdf","asdf");
     }
     
-    @Test (expected=AlbumInexistenteException.class)
+    @Test (expected = AlbumInexistenteException.class)
     public void testAudio2() throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
         System.out.println("Obtener audio: album inexistente");
         interf.getAudio("ElGordoAxl","asdf","asdf");
     }
     
-    @Test (expected=TemaTipoInvalidoException.class)
+    @Test (expected = TemaTipoInvalidoException.class)
     public void testAudio3() throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
         System.out.println("Obtener audio: el tema es web");
         interf.getAudio("ElGordoAxl","Album 1","tema 1");
     }
     
-    @Test (expected=TemaTipoInvalidoException.class)
+    @Test (expected = TemaTipoInvalidoException.class)
     public void testAudio5() throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
         System.out.println("Obtener audio: el tema no existe");
         interf.getAudio("ElGordoAxl","Album 1","tema asdf1");
@@ -77,7 +77,7 @@ public class ObtenerAudioTest {
     @Test
     public void testAudio4() throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException, IOException {
         System.out.println("Obtener audio: ok");
-        assert(interf.getAudio("ElGordoAxl","Album 1","tema 5") != null);
+        assert (interf.getAudio("ElGordoAxl","Album 1","tema 5") != null);
     }
     
     

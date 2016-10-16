@@ -31,7 +31,11 @@ public class DataTema implements DataFavoriteable {
     }
     
     public String getDuracionStr() {
-        return duracion / 60 + ":" + duracion % 60;
+        if ((duracion % 60) < 10) {
+            return duracion / 60 + ":0" + duracion % 60;
+        } else {
+            return duracion / 60 + ":" + duracion % 60;
+        }
     }
     
 

@@ -115,10 +115,10 @@ class Artista extends Usuario {
         return buscarAlbum(album).getAudio(tema);
     }
 
-    void addTemaAlbumTemp(DataTema tema){
+    void addTemaAlbumTemp(DataTema tema) {
         this.albumTemp.addTema(tema);
     }
-    void deleteTemaAlbumTemp(String tema){
+    void deleteTemaAlbumTemp(String tema) {
         this.albumTemp.deleteTema(tema);
     }
 
