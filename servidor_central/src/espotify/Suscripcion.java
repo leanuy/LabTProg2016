@@ -26,72 +26,12 @@ public class Suscripcion {
         this.estado = EstadoSuscripcion.PENDIENTE;
     }
     
-    public Suscripcion(Calendar ups, TipoSuscripcion type, boolean cancel, int numSuscDatos) {
-        Calendar update = (Calendar)ups.clone();
+    public Suscripcion(Calendar creacion, Calendar update, Calendar desde, TipoSuscripcion type, boolean cancel){
         this.fechaUpdate = update;
         this.tipo = type;
         this.cancelada = cancel;
-        switch (numSuscDatos) {
-            case 1:
-                this.fechaCreacion = Calendar.getInstance();  //vencida
-                this.fechaCreacion.set(2016, 7, 26);
-                this.fechaDesde = this.fechaCreacion;
-                break;
-            case 2:
-                this.fechaCreacion = this.fechaUpdate;         //vigente
-                this.fechaDesde = this.fechaUpdate;
-                break;
-            case 3:
-                this.fechaCreacion = this.fechaUpdate;          // pendiente
-                this.fechaDesde = null;
-                break;
-            case 4:
-                this.fechaCreacion = Calendar.getInstance();      //vencida
-                this.fechaCreacion.set(2015, 1, 28);
-                this.fechaDesde = this.fechaCreacion;
-                break;
-            case 5:
-                this.fechaCreacion = Calendar.getInstance();  //cancelada
-                this.fechaCreacion.set(2016, 4, 2);
-                this.fechaDesde = this.fechaCreacion;
-                break;
-            case 6:
-                this.fechaCreacion = this.fechaUpdate;         //vigente
-                this.fechaDesde = this.fechaUpdate;
-                break;
-            case 7:
-                this.fechaCreacion = Calendar.getInstance();      //vencida
-                this.fechaCreacion.set(2015, 5, 9);
-                this.fechaDesde = this.fechaCreacion;
-                break;
-            case 8:
-                this.fechaCreacion = this.fechaUpdate;          // pendiente
-                this.fechaDesde = null;
-                break;
-            case 9:
-                this.fechaCreacion = Calendar.getInstance();  //cancelada
-                this.fechaCreacion.set(2016, 8, 1);
-                this.fechaDesde = this.fechaCreacion;
-                break;
-            case 10:
-                this.fechaCreacion = this.fechaUpdate;         //vigente
-                this.fechaDesde = this.fechaUpdate;
-                break;
-            case 11:
-                this.fechaCreacion = Calendar.getInstance();      //vencida
-                this.fechaCreacion.set(2016, 3, 23);
-                this.fechaDesde = this.fechaCreacion;
-                break;
-            case 12:
-                this.fechaCreacion = Calendar.getInstance();  //cancelada
-                this.fechaCreacion.set(2016, 8, 25);
-                this.fechaDesde = this.fechaCreacion;
-                break;
-            case 13:
-                this.fechaCreacion = this.fechaUpdate;          // pendiente
-                this.fechaDesde = null;
-                break;
-        }
+        this.fechaCreacion = creacion;
+        this.fechaDesde = desde;
     }
     
     public Calendar getFechaCreacion() {
