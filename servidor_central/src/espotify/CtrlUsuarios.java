@@ -74,6 +74,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     Artista buscarArtista(String nombre) throws ArtistaInexistenteException {
+        
         Artista artista = ManejadorColecciones.getInstancia().buscarArtista(nombre);
         if (artista == null) {
             throw new ArtistaInexistenteException();

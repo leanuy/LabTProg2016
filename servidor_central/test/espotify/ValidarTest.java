@@ -44,37 +44,37 @@ public class ValidarTest {
     @Test
     public void testValidar() {
         System.out.println("Validar nick, sí");
-        assert (interf.existeUsuarioNick("TesterLista"));
+        assert interf.existeUsuarioNick("TesterLista");
     }
     
     @Test
     public void testValidar2() {
         System.out.println("Validar nick, no");
-        assert (!interf.existeUsuarioNick("TeasfdsterLista"));
+        assert !interf.existeUsuarioNick("TeasfdsterLista");
     }
     
     @Test
     public void testValidar3() {
         System.out.println("Validar nick, artista sí");
-        assert (interf.existeUsuarioNick("ElGordoAxl"));
+        assert interf.existeUsuarioNick("ElGordoAxl");
     }
     
     @Test
     public void testValidar4() {
         System.out.println("Validar correo, sí");
-        assert (interf.existeUsuarioCorreo("test@lista.com"));
+        assert interf.existeUsuarioCorreo("test@lista.com");
     }
     
     @Test
     public void testValidar5() {
         System.out.println("Validar correo, no");
-        assert (!interf.existeUsuarioCorreo("TeasfdsterLista"));
+        assert !interf.existeUsuarioCorreo("TeasfdsterLista");
     }
     
     @Test
     public void testValidar6() {
         System.out.println("Validar correo, artista sí");
-        assert (interf.existeUsuarioCorreo("axl@rose.com"));
+        assert interf.existeUsuarioCorreo("axl@rose.com");
     }
     
 

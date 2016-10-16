@@ -64,7 +64,7 @@ public class FavoritosTest {
     public void testListarFavoritos() throws ClienteInexistenteException {
         System.out.println("Lista de favoritos: vacía");
         List<DataFavoriteable> lista = interf.listarFavoritos("TesterLista");
-        assert (lista.isEmpty());
+        assert lista.isEmpty();
     }
     
     @Test (expected = ClienteInexistenteException.class)
@@ -101,6 +101,6 @@ public class FavoritosTest {
             ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
         DataAlbum dataFav = new DataAlbum("Album 1", 0, null, null, "ElGordoAxl");
         System.out.println("es favorito?: álbum, no");
-        assert (!interf.esFavorito("TesterLista",dataFav));
+        assert !interf.esFavorito("TesterLista",dataFav);
     }
 }
