@@ -14,9 +14,16 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
-public class ValidarTest {
+/**
+ *
+ * @author santiagoserantes
+ */
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
+public class SuscripcionTest {
     
     private static IValidar interf;
     
@@ -36,43 +43,11 @@ public class ValidarTest {
         } catch (Exception ex) {
              Logger.getLogger("Algo salió mal").log(Level.SEVERE, null, ex);
         }
-    } 
+    }
+    
+    @Test
+    public void altaSuscripcionTest() {
         
-    @Test
-    public void testValidar() {
-        System.out.println("Validar nick, sí");
-        assert interf.existeUsuarioNick("TesterLista");
     }
     
-    @Test
-    public void testValidar2() {
-        System.out.println("Validar nick, no");
-        assert !interf.existeUsuarioNick("TeasfdsterLista");
-    }
-    
-    @Test
-    public void testValidar3() {
-        System.out.println("Validar nick, artista sí");
-        assert interf.existeUsuarioNick("ElGordoAxl");
-    }
-    
-    @Test
-    public void testValidar4() {
-        System.out.println("Validar correo, sí");
-        assert interf.existeUsuarioCorreo("test@lista.com");
-    }
-    
-    @Test
-    public void testValidar5() {
-        System.out.println("Validar correo, no");
-        assert !interf.existeUsuarioCorreo("TeasfdsterLista");
-    }
-    
-    @Test
-    public void testValidar6() {
-        System.out.println("Validar correo, artista sí");
-        assert interf.existeUsuarioCorreo("axl@rose.com");
-    }
-    
-
 }
