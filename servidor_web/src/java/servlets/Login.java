@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package servlets;
 
 import exceptions.UsuarioNoEncontrado;
@@ -22,9 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * @author Igui
- */
 public class Login extends HttpServlet {
    
     /** 
