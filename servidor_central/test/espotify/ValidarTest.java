@@ -7,9 +7,6 @@ package espotify;
 
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataGenero;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.web.IValidar;
