@@ -107,7 +107,6 @@ public class MainFrame extends javax.swing.JFrame {
         cargarDatosDePrueba = new javax.swing.JMenuItem();
         suscripcionesMenu = new javax.swing.JMenu();
         suscripcionesMenuItem = new javax.swing.JMenuItem();
-        vencerSuscripcion = new javax.swing.JCheckBoxMenuItem();
 
         internalAltaAlbum.setBorder(null);
         internalAltaAlbum.setClosable(true);
@@ -417,14 +416,6 @@ public class MainFrame extends javax.swing.JFrame {
         });
         suscripcionesMenu.add(suscripcionesMenuItem);
 
-        vencerSuscripcion.setText("Vencer Suscripcion");
-        vencerSuscripcion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vencerSuscripcionActionPerformed(evt);
-            }
-        });
-        suscripcionesMenu.add(vencerSuscripcion);
-
         menuPrincipal.add(suscripcionesMenu);
 
         setJMenuBar(menuPrincipal);
@@ -556,47 +547,47 @@ public class MainFrame extends javax.swing.JFrame {
         file = new File("./src/presentacion/img/clientes/ElPadrino.png");
         img = ImageIO.read(file);
         Calendar cal = Calendar.getInstance();
-        cal.set(1972, 3, 8);
+        cal.set(1972, 2, 8);
         DataCliente dataCliente = new DataCliente("el_padrino", "Vito", "Corleone", "el_padrino@tuta.io", cal, img,"elpadrino");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/presentacion/img/clientes/ScarlettOHara.jpg");
         img = ImageIO.read(file);
-        cal.set(1984, 11, 27);
+        cal.set(1984, 10, 27);
         dataCliente = new DataCliente("scarlettO", "Scarlett", "O'Hara", "scarlettO@tuta.io", cal, img,"scarletto");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/presentacion/img/clientes/PepeArgento.png");
         img = ImageIO.read(file);
-        cal.set(1955, 2, 14);
+        cal.set(1955, 1, 14);
         dataCliente = new DataCliente("ppArgento", "Pepe", "Argento", "ppArgento@hotmail.com", cal, img,"ppargento");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
-        cal.set(1056, 3, 7);
+        cal.set(1056, 2, 7);
         dataCliente = new DataCliente("Heisenberg", "Walter", "White", "Heisenberg@tuta.io", cal, null,"heisenberg");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/presentacion/img/clientes/BenKenobi.png");
         img = ImageIO.read(file);
-        cal.set(1914, 4, 2);
+        cal.set(1914, 3, 2);
         dataCliente = new DataCliente("benKenobi", "Obi-Wan", "Kenobi", "benKenobi@gmail.com", cal, img,"benkenobi");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/presentacion/img/clientes/lachiqui.jpg");
         img = ImageIO.read(file);
-        cal.set(1927, 2, 23);
+        cal.set(1927, 1, 23);
         dataCliente = new DataCliente("lachiqui", "Mirtha", "Legrand", "lachiqui@hotmail.com.ar", cal, img,"lachiqui");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/presentacion/img/clientes/CachoBochinche.jpg");
         img = ImageIO.read(file);
-        cal.set(1937, 5, 8);
+        cal.set(1937, 4, 8);
         dataCliente = new DataCliente("cbochinche", "Cacho", "Bochinche", "cbochinche@vera.com.uy", cal, img,"cbochinche");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
         file = new File("./src/presentacion/img/clientes/eleven.jpg");
         img = ImageIO.read(file);
-        cal.set(1971, 12, 31);
+        cal.set(1971, 11, 31);
         dataCliente = new DataCliente("Eleven11", "Eleven", "o'clock", "Eleven11@gmail.com", cal, img,"eleven11");
         ctrlAltaPerfil.altaCliente(dataCliente);
         
@@ -605,75 +596,75 @@ public class MainFrame extends javax.swing.JFrame {
         
         file = new File("./src/presentacion/img/artistas/VillagePeople.jpg");
         img = ImageIO.read(file);
-        cal.set(1977, 1, 1);
+        cal.set(1977, 0, 1);
         bio = "Village People es una innovadora formación musical de estilo disco de finales de los años 70. Fue famosa tanto por sus peculiares disfraces, como por sus canciones pegadizas, con letras sugerentes y llenas de dobles sentidos.";
         dataArtista = new DataArtista(bio, "www.officialvillagepeople.com", "vpeople", "Village", "People", "vpeople@tuta.io", cal, img,"vpeople");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/presentacion/img/artistas/DepecheMode.jpg");
         img = ImageIO.read(file);
-        cal.set(1980, 6, 14);
+        cal.set(1980, 5, 14);
         bio = "";
         dataArtista = new DataArtista(bio, "www.depechemode.com", "dmode", "Depeche", "Mode", "dmode@tuta.io", cal, img,"dmode");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/presentacion/img/artistas/CyndiLauper.jpg");
         img = ImageIO.read(file);
-        cal.set(1953, 6, 22);
+        cal.set(1953, 5, 22);
         bio = "Cynthia Ann Stephanie Lauper, conocida simplemente como Cyndi Lauper, es una cantautora, actriz y empresaria estadounidense. Después de participar en el grupo musical, Blue Angel, en 1983 firmó con Portrait Records (filial de Epic Records) y lanzó su exitoso álbum debut She's So Unusual a finales de ese mismo año. Siguió lanzando una serie de álbumes en los que encontró una inmensa popularidad, superando los límites de contenido de las letras de sus canciones.";
         dataArtista = new DataArtista(bio, "cyndilauper.com", "clauper", "Cyndi", "Lauper", "clauper@hotmail.com", cal, img,"clauper");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/presentacion/img/artistas/BruceTheBoss.jpg");
         img = ImageIO.read(file);
-        cal.set(1949, 9, 23);
+        cal.set(1949, 8, 23);
         bio = "";
         dataArtista = new DataArtista(bio, "brucespringsteen.net", "bruceTheBoss", "Bruce", "Springsteen", "bruceTheBoss@gmail.com", cal, img,"bruceTheBoss");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/presentacion/img/artistas/LaTripleNelson.jpg");
         img = ImageIO.read(file);
-        cal.set(1998, 1, 1);
+        cal.set(1998, 0, 1);
         bio = "La Triple Nelson es un grupo de rock uruguayo formado en enero de 1998 e integrado inicialmente por Christian Cary (guitarra y voz), Fernando Paco"
             +" Pintos (bajo y coros) y Rubén Otonello (actualmente su nuevo baterista es Rafael Ugo).";
         dataArtista = new DataArtista(bio, "", "tripleNelson", "La Triple", "Nelson", "tripleNelson@tuta.io", cal, img,"tripleNelson");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        cal.set(1987, 2, 14);
+        cal.set(1987, 1, 14);
         bio = "";
         dataArtista = new DataArtista(bio, "", "la_ley", "La", "Ley", "la_ley@tuta.io", cal, null,"la_ley");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        cal.set(1940, 6, 7);
+        cal.set(1940, 5, 7);
         bio = "Sir Thomas John, conocido por su nombre artístico de Tom Jones, es un cantante británico. Ha vendido más de 100 millones de discos en todo el mundo.";
         dataArtista = new DataArtista(bio, "", "tigerOfWales", "Tom", "Jones", "tigerOfWales@tuta.io", cal, null,"tiger");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        cal.set(1840, 4, 25);
+        cal.set(1840, 3, 25);
         bio = "Piotr Ilich Chaikovski fue un compositor ruso del período del Romanticismo";
         dataArtista = new DataArtista(bio, "", "chaiko", "Piotr", "Tchaikovsky", "chaiko@tuta.io", cal, null,"chaiko");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/presentacion/img/artistas/NicoleNeumann.jpg");
         img = ImageIO.read(file);
-        cal.set(1980, 10, 31);
+        cal.set(1980, 9, 31);
         bio = "";
         dataArtista = new DataArtista(bio, "", "nicoleneu", "Nicole", "Neumann", "nicoleneu@hotmail.com", cal, img,"nicoleneu");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
         file = new File("./src/presentacion/img/artistas/Pimpinela.jpg");
         img = ImageIO.read(file);
-        cal.set(1981, 8, 13);
+        cal.set(1981, 7, 13);
         bio = "";
         dataArtista = new DataArtista(bio, "www.pimpinela.net", "lospimpi", "Pimpinela", "pega la vuelta", "lospimpi@gmail.com", cal, img,"lospimpi");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        cal.set(1940, 3, 5);
+        cal.set(1940, 2, 5);
         bio = "José Gómez Romero, conocido artísticamente como Dyango es un cantante español de música romántica.";
         dataArtista = new DataArtista(bio, "", "dyangounchained", "Dyango", "Unchained", "dyangounchained@gmail.com", cal, null,"dyango");
         ctrlAltaPerfil.altaArtista(dataArtista);
 
-        cal.set(1952, 7, 17);
+        cal.set(1952, 6, 17);
         bio = "Su carrera comienza en 1976 cuando forma la banda Los Playeros junto a su hermano Víctor. Al poco tiempo se mudan a San Luis donde comienzan a hacerse conocidos en la escena musical. Su éxito a nivel nacional llega a comienzos de los años 1990 cuando desembarca en Buenos Aires y graba el éxito Violeta"
             + ", originalmente compuesta e nterpretada en 1985 por el músico brasileño Luiz Caldas bajo el título «Fricote».";
         dataArtista = new DataArtista(bio, "", "alcides", "Alcides", "Palacio", "alcides@tuta.io", cal, null,"alcides");
@@ -682,54 +673,44 @@ public class MainFrame extends javax.swing.JFrame {
         //SUSCRIPCIONES
         
         Calendar cal2 = Calendar.getInstance();
-        cal.set(2010,10,10);
-        cal2.set(2016,9,2);
-        Suscripcion s1 = new Suscripcion(cal,cal2,TipoSuscripcion.SEMANAL,false);
+        cal2.set(2016,8,2);
+        espotify.Suscripcion s1 = new espotify.Suscripcion(cal2, TipoSuscripcion.SEMANAL, false, 1);
         
-        cal.set(2016,9,3);
-        Suscripcion s2 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        cal.set(2016,8,3);
+        espotify.Suscripcion s2 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 2);
         
-        cal.set(2016,10,1);
-        Suscripcion s3 = new Suscripcion(cal,null ,TipoSuscripcion.MENSUAL,false);
+        cal.set(2016,9,1);
+        espotify.Suscripcion s3 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 3);
         
-        cal.set(2016,3,1);
-        cal2.set(2015,2,28);
-        Suscripcion s4 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        cal.set(2016,2,1);
+        espotify.Suscripcion s4 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 4);
         
-        cal.set(2016,5,3);
-        cal2.set(2016,5,2);
-        Suscripcion s5 = new Suscripcion(cal2,cal,TipoSuscripcion.MENSUAL,true);
+        cal.set(2016,4,3);
+        espotify.Suscripcion s5 = new espotify.Suscripcion(cal,TipoSuscripcion.MENSUAL,true, 5);
         
-        cal.set(2016,10,16);
-        cal2.set(2016,10,15);
-        Suscripcion s6 = new Suscripcion(cal2,cal,TipoSuscripcion.SEMANAL,false);
+        cal.set(2016,9,16);
+        espotify.Suscripcion s6 = new espotify.Suscripcion(cal, TipoSuscripcion.SEMANAL, false, 6);
         
-        cal.set(2015,6,10);
-        cal2.set(2014,3,3);
-        Suscripcion s7 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        cal.set(2015,5,10);
+        espotify.Suscripcion s7 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 7);
         
-        cal.set(2016,10,15);
-        Suscripcion s8 = new Suscripcion(cal,null,TipoSuscripcion.MENSUAL,false);
+        cal.set(2016,9,15);
+        espotify.Suscripcion s8 = new espotify.Suscripcion(cal, TipoSuscripcion.MENSUAL, false, 8);
         
-        cal.set(2016,9,2);
+        cal.set(2016,8,2);
+        espotify.Suscripcion s9 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, true, 9);
+        
         cal2.set(2016,8,25);
-        Suscripcion s9 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,true);
+        espotify.Suscripcion s10 = new espotify.Suscripcion(cal2, TipoSuscripcion.MENSUAL, false, 10);
         
-        cal.set(2016,9,24);
-        cal2.set(2016,9,25);
-        Suscripcion s10 = new Suscripcion(cal,cal2,TipoSuscripcion.MENSUAL,false);
+        cal.set(2016,4,1);
+        espotify.Suscripcion s11 = new espotify.Suscripcion(cal, TipoSuscripcion.SEMANAL, false, 11);
+       
+        cal2.set(2016,9,2);
+        espotify.Suscripcion s12 = new espotify.Suscripcion(cal2, TipoSuscripcion.ANUAL, true, 12);
         
-        cal.set(2016,5,1);
-        cal2.set(2016,1,1);
-        Suscripcion s11 = new Suscripcion(cal2,cal,TipoSuscripcion.SEMANAL,false);
-        
-        cal.set(2016,10,2);
-        cal2.set(2016,10,1);
-        Suscripcion s12 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,true);
-        
-        cal.set(2016,10,15);
-        cal2.set(2016,10,14);
-        Suscripcion s13 = new Suscripcion(cal2,cal,TipoSuscripcion.ANUAL,false);
+        cal.set(2016,9,15);
+        espotify.Suscripcion s13 = new espotify.Suscripcion(cal, TipoSuscripcion.ANUAL, false, 13);
         
         IActualizarSuscripcion isuscripcion = Fabrica.getIActualizarSuscripcion();
         
@@ -1173,14 +1154,6 @@ public class MainFrame extends javax.swing.JFrame {
         frameSusc.setVisible(true);
     }//GEN-LAST:event_suscripcionesMenuItemActionPerformed
 
-    private void vencerSuscripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vencerSuscripcionActionPerformed
-        MainPanel.removeAll();
-        VencerSuscripcion frameVencSusc = new VencerSuscripcion();
-        MainPanel.add(frameVencSusc);
-        MainPanel.repaint();
-        frameVencSusc.setVisible(true);
-    }//GEN-LAST:event_vencerSuscripcionActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1262,6 +1235,5 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu socialMenu;
     private javax.swing.JMenu suscripcionesMenu;
     private javax.swing.JMenuItem suscripcionesMenuItem;
-    private javax.swing.JCheckBoxMenuItem vencerSuscripcion;
     // End of variables declaration//GEN-END:variables
 }
