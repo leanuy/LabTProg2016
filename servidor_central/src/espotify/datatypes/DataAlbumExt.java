@@ -1,6 +1,7 @@
 package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,11 +11,36 @@ public class DataAlbumExt extends DataAlbum {
     public List<DataTema> getTemas() {
         return this.temas;
     }
+    public boolean tieneTema(String tema) {
+        return temas.stream().anyMatch((t) -> (t.getNombre().equals(tema)));
+    }
+
+    public void addTema(DataTema tema){
+        this.temas.add(tema);
+    }
+    public void deleteTema(String tema){
+        DataTema data = null;
+        if(temas != null){
+            for (DataTema t : temas) {
+                if (t.getNombre().equals(tema)) {
+                    data = t;
+                }
+            }
+            if (data != null) {
+                this.temas.remove(data);
+            }
+        }
+    }
     
     public DataAlbumExt(List<DataTema> temas, String nombre, int anio, List<String> generos,
             BufferedImage img, String nickArtista) {
         super(nombre, anio, generos, img, nickArtista);
         this.temas = temas;
+    }
+    public DataAlbumExt(String nombre, int anio, List<String> generos,
+            BufferedImage img, String nickArtista) {
+        super(nombre, anio, generos, img, nickArtista);
+        this.temas = new ArrayList<>();
     }
     
     @Override

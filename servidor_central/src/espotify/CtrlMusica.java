@@ -16,6 +16,7 @@ import espotify.excepciones.NumeroTemaInvalidoException;
 import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaAlbum;
+import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.IConsultaAlbum;
@@ -32,7 +33,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
-        IVerAlbum, IVerGenero, IListarGeneros, IBuscar {
+        IVerAlbum, IVerGenero, IListarGeneros, IBuscar, IAltaAlbumWeb{
     private Artista artistaMem;
 
 //constructor
@@ -168,6 +169,50 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             entry.getValue().addAlbum(album);
         });
         art.addAlbum(album);
+    }
+    
+    @Override
+    public void addAlbumTemp(DataAlbumExt album) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(album.getNickArtista());
+        art.addAlbumTemp(album);
+    }
+    @Override
+    public void addTemaAlbumTemp(String artista, DataTema tema) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(artista);
+        art.addTemaAlbumTemp(tema);
+    }
+    @Override
+    public void deleteTemaAlbumTemp(String artista, String tema) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(artista);
+        art.deleteTemaAlbumTemp(tema);
+    }
+    @Override
+    public DataAlbumExt getAlbumTemp(String nick_artista) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        return art.getAlbumTemp();
+    }
+    @Override
+    public void cancelarAltaAlbum(String nick_artista) throws ArtistaInexistenteException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        art.deleteAlbumTemp();
+    }
+    @Override
+    public void aceptarAltaAlbum(String nick_artista) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        DataAlbumExt data = art.getAlbumTemp();
+        altaAlbum(data);
+    }
+    @Override
+    public boolean esAlbumDeArtista(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
+        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
+        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
+        return art.tieneAlbum(album);
     }
     
     @Override

@@ -9,7 +9,7 @@
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
 <t:wrapper>
-    <t:navbar user="${user}"/> //????
+    <t:navbar user="${user}"/>
     <div class="container-fluid main" style="padding:0">
         <div class="row main_row">
             <t:sidebar user="${user}" />
@@ -17,7 +17,4 @@
                 <jsp:doBody />
             </div>
         </div>
-        <script src="assets/js/jquery-3.1.0.min.js"></script>
-        <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/script.js"></script>
     </t:wrapper>
