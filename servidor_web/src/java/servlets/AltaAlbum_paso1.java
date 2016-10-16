@@ -90,20 +90,6 @@ public class AltaAlbum_paso1 extends HttpServlet {
                 ya_existe = inter.esAlbumDeArtista((String) session.getAttribute("nick_sesion"), nombre);
             } catch (ArtistaInexistenteException ex) {
                 response.sendError(500, "no existe el artista.");
-            } catch (AlbumRepetidoException ex) {
-                response.sendError(500, "álbum repetido.");
-            } catch (GeneroInexistenteException ex) {
-                response.sendError(500, "género inexistente.");
-            } catch (DuracionInvalidaException ex) {
-                response.sendError(500, "duración inválida.");
-            } catch (NumeroTemaInvalidoException ex) {
-                response.sendError(500, "numeración de tema inválida.");
-            } catch (TemaRepetidoException ex) {
-                response.sendError(500, "tema repetido.");
-            } catch (CampoVacioException ex) {
-                response.sendError(500, "campo vacío.");
-            } catch (TemaTipoInvalidoException ex) {
-                response.sendError(500, "tipo de tema inválido");
             }
             if(ya_existe){
                 request.setAttribute("error_nombre", "Ya tienes un álbum con este nombre");
