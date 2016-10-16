@@ -74,9 +74,11 @@
                             </ul>
                         </div>
                         <div id="listas" class="tab">
-                            <c:when test="${tiene_suscripcion}">
-                                <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/crearlistaparticular">Crear lista</a>
-                            </c:when>
+                            <c:choose>
+                                <c:when test="${tiene_suscripcion}">
+                                    <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/crearlistaparticular">Crear lista</a>
+                                </c:when>
+                            </c:choose>
                             <ul class="rig columns-4">
                                 <c:forEach items="${listasPub}" var="item">
                                     <li>

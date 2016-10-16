@@ -50,7 +50,8 @@ public class Login extends HttpServlet {
                                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
-                        } else nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
+                        } else
+                            nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
 		} catch(UsuarioInexistenteException ex){
 			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
 		}
@@ -60,7 +61,7 @@ public class Login extends HttpServlet {
         // redirige a la página principal para que luego redirija a la página
         // que corresponde
         request.getRequestDispatcher("/inicio").forward(request, response);
-    } 
+    }
 	
 	/**
 	 * Devuelve el usuario logueado
