@@ -74,7 +74,9 @@
                             </ul>
                         </div>
                         <div id="listas" class="tab">
-                            <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/crearlistaparticular">Crear lista</a>
+                            <c:when test="${tiene_suscripcion}">
+                                <a class="btn btn-custom pull-right" style="padding-bottom:10px" href="/crearlistaparticular">Crear lista</a>
+                            </c:when>
                             <ul class="rig columns-4">
                                 <c:forEach items="${listasPub}" var="item">
                                     <li>
