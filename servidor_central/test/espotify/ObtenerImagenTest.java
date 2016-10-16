@@ -61,7 +61,7 @@ public class ObtenerImagenTest {
     public void testImagenUsuario2() throws UsuarioInexistenteException {
         System.out.println("Obtener imagen de usuario: existente");
         BufferedImage imagen = interf.getImageUsuario("TengoImagen");
-        assertEquals(imagen,img);
+        assertEquals(imagen, img);
     }
     
     @Test (expected = UsuarioInexistenteException.class)
@@ -87,57 +87,57 @@ public class ObtenerImagenTest {
     @Test
     public void testImagenParticular() throws ListaInexistenteException, ClienteInexistenteException {
         System.out.println("Obtener imagen de lista: sin imagen");
-        BufferedImage imagen = interf.getImageLista("TesterLista","Mi Lista Publica");
-        assertEquals(imagen,null);
+        BufferedImage imagen = interf.getImageLista("TesterLista", "Mi Lista Publica");
+        assertEquals(imagen, null);
     }
     
     @Test
     public void testImagenParticular2() throws ListaInexistenteException, ClienteInexistenteException {
         System.out.println("Obtener imagen de lista: lista inexistente");
-        BufferedImage imagen = interf.getImageLista("TesterLista","Mi Listasdfa Publica");
-        assertEquals(imagen,null);
+        BufferedImage imagen = interf.getImageLista("TesterLista", "Mi Listasdfa Publica");
+        assertEquals(imagen, null);
     }
     
     @Test
     public void testImagenParticular3() throws ListaInexistenteException, ClienteInexistenteException {
         System.out.println("Obtener imagen de lista: cliente inexistente");
-        BufferedImage imagen = interf.getImageLista("TesterLasdfista","Publiasdfca");
-        assertEquals(imagen,null);
+        BufferedImage imagen = interf.getImageLista("TesterLasdfista", "Publiasdfca");
+        assertEquals(imagen, null);
     }
     
     @Test
     public void testImagenDefecto() throws ListaInexistenteException, ClienteInexistenteException {
         System.out.println("Obtener imagen de lista defecto: sin imagen");
-        BufferedImage imagen = interf.getImageLista("","Lista Genérica");
-        assertEquals(imagen,null);
+        BufferedImage imagen = interf.getImageLista("", "Lista Genérica");
+        assertEquals(imagen, null);
     }
     
     @Test 
     public void testImagenDefecto2() {
         System.out.println("Obtener imagen de lista defecto: inexistente");
-        BufferedImage imagen = interf.getImageLista("","Lista Genasdférica");
-        assertEquals(imagen,null);
+        BufferedImage imagen = interf.getImageLista("", "Lista Genasdférica");
+        assertEquals(imagen, null);
     }
     
     @Test
     public void testImagenAlbum() {
         System.out.println("Obtener imagen de álbum: artista inexistente");
-        BufferedImage imagen = interf.getImageAlbum("asdf","asdf");
-        assertEquals(imagen,null);
+        BufferedImage imagen = interf.getImageAlbum("asdf", "asdf");
+        assertEquals(imagen, null);
     }
     
     @Test
     public void testImagenAlbum2() {
         System.out.println("Obtener imagen de álbum: album inexistente");
         BufferedImage imagen = interf.getImageAlbum("ElGordoAxl", "asdf");
-        assertEquals(imagen,null);
+        assertEquals(imagen, null);
     }
 
     @Test
     public void testImagenAlbum3() {
         System.out.println("Obtener imagen de álbum: sin imagen");
         BufferedImage imagen = interf.getImageAlbum("ElGordoAxl", "Album 1");
-        assertEquals(imagen,null);
+        assertEquals(imagen, null);
     }
     
 }

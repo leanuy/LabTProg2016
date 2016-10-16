@@ -36,8 +36,8 @@ public class DataListaTest {
         iAltaGenero.altaGenero(new DataGenero("Jazz", ""));
         new AltaAlbumTest().testAltaAlbum();
         IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
-        iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null,""));
-        iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null,""));
+        iPerfil.altaCliente(new DataCliente("TesterLista", "Test", "Lista", "test@lista.com", Calendar.getInstance(), null, ""));
+        iPerfil.altaCliente(new DataCliente("TesterLista2", "Test", "Lista", "test2@lista.com", Calendar.getInstance(), null, ""));
         DataParticular data = new DataParticular("TesterLista", "Mi Lista Publica", null);
         IAltaLista instance = Fabrica.getIAltaLista();
         instance.altaListaParticular(data);

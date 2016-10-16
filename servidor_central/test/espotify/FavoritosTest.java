@@ -77,7 +77,7 @@ public class FavoritosTest {
     public void testEsFavorito() throws ClienteInexistenteException,
             ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
         System.out.println("es favorito?: cliente inexistente");
-        interf.esFavorito("asdf",null);
+        interf.esFavorito("asdf", null);
     }
     
     @Test (expected = ArtistaInexistenteException.class)
@@ -85,7 +85,7 @@ public class FavoritosTest {
             ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
         DataAlbum dataFav = new DataAlbum("asdf", 0, null, null, "asdf");
         System.out.println("es favorito?: artista inexistente");
-        interf.esFavorito("TesterLista",dataFav);
+        interf.esFavorito("TesterLista", dataFav);
     }
     
     @Test (expected = AlbumInexistenteException.class)
@@ -93,7 +93,7 @@ public class FavoritosTest {
             ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
         DataAlbum dataFav = new DataAlbum("asdf", 0, null, null, "ElGordoAxl");
         System.out.println("es favorito?: álbum inexistente");
-        interf.esFavorito("TesterLista",dataFav);
+        interf.esFavorito("TesterLista", dataFav);
     }
     
     @Test
@@ -101,6 +101,6 @@ public class FavoritosTest {
             ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
         DataAlbum dataFav = new DataAlbum("Album 1", 0, null, null, "ElGordoAxl");
         System.out.println("es favorito?: álbum, no");
-        assert !interf.esFavorito("TesterLista",dataFav);
+        assert !interf.esFavorito("TesterLista", dataFav);
     }
 }
