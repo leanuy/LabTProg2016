@@ -29,9 +29,6 @@ class Artista extends Usuario {
     void addAlbumTemp(DataAlbumExt album) {
         this.albumTemp = album;
     }
-    void deleteAlbumTemp() {
-        this.albumTemp = null;
-    }
 
     boolean tieneAlbum(String album) {
         return this.albums.containsKey(album);

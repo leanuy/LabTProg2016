@@ -3,7 +3,6 @@ package espotify;
 import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataGenero;
-import espotify.datatypes.DataLista;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.AlbumRepetidoException;
@@ -158,6 +157,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         //Validar unicidad de nombre para el album
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
         Artista art = ctrlUsuarios.buscarArtista(dataAlbum.getNickArtista());
+        if (dataAlbum.getNombre().isEmpty()) {
+            throw new CampoVacioException();
+        }
         if (art.tieneAlbum(dataAlbum.getNombre())) {
             throw new AlbumRepetidoException();
         }
@@ -193,12 +195,6 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
         Artista art = ctrlUsuarios.buscarArtista(nick_artista);
         return art.getAlbumTemp();
-    }
-    @Override
-    public void cancelarAltaAlbum(String nick_artista) throws ArtistaInexistenteException {
-        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        art.deleteAlbumTemp();
     }
     @Override
     public void aceptarAltaAlbum(String nick_artista) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
