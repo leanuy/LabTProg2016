@@ -169,8 +169,8 @@ public final class Fabrica {
     public static IAgregarTemaListaWeb getIAgregarTemaListaWeb() {
         return new CtrlListas();
     }
+    
     public static IAltaAlbumWeb getIAltaAlbumWeb() {
         return new CtrlMusica();
     }
-
 }

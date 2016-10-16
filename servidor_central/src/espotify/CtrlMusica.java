@@ -216,38 +216,6 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     }
     
     @Override
-    public void addAlbumTemp(DataAlbumExt album) throws ArtistaInexistenteException {
-        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(album.getNickArtista());
-        art.addAlbumTemp(album);
-    }
-    @Override
-    public DataAlbumExt getAlbumTemp(String nick_artista, String album) throws ArtistaInexistenteException {
-        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        return art.getAlbumTemp(album);
-    }
-    @Override
-    public void cancelarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException {
-        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        art.deleteAlbumTemp(album);
-    }
-    @Override
-    public void AceptarAltaAlbum(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
-        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        DataAlbumExt data = art.getAlbumTemp(album);
-        altaAlbum(data);
-    }
-    @Override
-    public boolean esAlbumDeArtista(String nick_artista, String album) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
-        CtrlUsuarios ctrlUsuarios = new CtrlUsuarios();
-        Artista art = ctrlUsuarios.buscarArtista(nick_artista);
-        return art.tieneAlbum(album);
-    }
-    
-    @Override
     public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException {
         return new CtrlListas().listarListasDeGenero(nomGenero);
     }

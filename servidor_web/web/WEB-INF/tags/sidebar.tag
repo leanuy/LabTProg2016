@@ -123,7 +123,7 @@
         var audio = $(this);
         var progreso = (audio[0].currentTime.toFixed(2)*100)/audio[0].duration.toFixed(2);
         $('#progress').attr('aria-valuenow', progreso).css('width', progreso);
-                });
+                }, false);
         
     });    
 </script>

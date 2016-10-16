@@ -17,14 +17,22 @@ import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IListarGeneros;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 /**
  *
@@ -80,8 +88,22 @@ public class AltaAlbum_paso1 extends HttpServlet {
             boolean ya_existe = false;
             try {
                 ya_existe = inter.esAlbumDeArtista((String) session.getAttribute("nick_sesion"), nombre);
-            } catch (Exception ex) {
-                response.sendError(500);
+            } catch (ArtistaInexistenteException ex) {
+                response.sendError(500, "no existe el artista.");
+            } catch (AlbumRepetidoException ex) {
+                response.sendError(500, "álbum repetido.");
+            } catch (GeneroInexistenteException ex) {
+                response.sendError(500, "género inexistente.");
+            } catch (DuracionInvalidaException ex) {
+                response.sendError(500, "duración inválida.");
+            } catch (NumeroTemaInvalidoException ex) {
+                response.sendError(500, "numeración de tema inválida.");
+            } catch (TemaRepetidoException ex) {
+                response.sendError(500, "tema repetido.");
+            } catch (CampoVacioException ex) {
+                response.sendError(500, "campo vacío.");
+            } catch (TemaTipoInvalidoException ex) {
+                response.sendError(500, "tipo de tema inválido");
             }
             if(ya_existe){
                 request.setAttribute("error_nombre", "Ya tienes un álbum con este nombre");
@@ -137,7 +159,7 @@ public class AltaAlbum_paso1 extends HttpServlet {
             try {
                 inter.addAlbumTemp(data);
             } catch (ArtistaInexistenteException ex) {
-                Logger.getLogger(AltaAlbum_paso1.class.getName()).log(Level.SEVERE, null, ex);
+                response.sendError(500, "artista inexistente.");
             }
         response.sendRedirect("/AltaAlbum/paso2?album="+nombre);
         }

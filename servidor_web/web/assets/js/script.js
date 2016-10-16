@@ -146,6 +146,7 @@ $("#agregar").click(function(){
         for(i= duracion_arr.length-1; i >= 0; i--){
             parte_duracion = parseInt(duracion_arr[i]);
             if (isNaN(parte_duracion)) {
+                $duracion.parent().addClass("has-error");
                 $help.append("<br />- La duracion del tema tiene caracteres inesperados");
                 has_error = true;
             }else{
@@ -185,19 +186,6 @@ $("#agregar").click(function(){
     
 });
 
-<<<<<<< 7f629e3990b3f6c8769dbdc48d67bba4d7a77f36
-$(".remove-tema").click(function(){
-    var $nombre = $(this).siblings(".nombre");
-    $.ajax({
-        type: "GET",
-        url: "/BorrarTema?album=" + $(".album").val() + "&tema=" + $nombre.val(),
-        success: function (msg) {
-            $(this).parent().addClass("to-remove");
-            $(document).remove(".to-remove");
-        }
-    });
-});
-=======
 $(".aceptar").click(function(){
     $help = $(".help");
     $help.parent().hide();
@@ -234,4 +222,3 @@ $(".aceptar").click(function(){
         $help.parent().show();
     }
 });
->>>>>>> terminado
