@@ -14,7 +14,7 @@
         <div class="panel-body">
             <div class="row">         
                 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-                    <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nick}&extra=${nomLista}" class="image-square" style="width:100%"/> <%--imagen del album--%>
+                    <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=${nomCliente}&extra=${nomLista}" class="image-square" style="width:100%"/> <%--imagen del album--%>
                 </div>
                 <%--datos basicos--%>
                 <div>

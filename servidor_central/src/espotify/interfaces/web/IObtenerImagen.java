@@ -1,7 +1,5 @@
 package espotify.interfaces.web;
 
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 
 import java.awt.image.BufferedImage;

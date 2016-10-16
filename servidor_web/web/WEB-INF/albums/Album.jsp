@@ -83,10 +83,14 @@
                                         <c:otherwise>
                                             <c:choose>
                                                 <c:when test="${es_favorito_temas[temaStatus.index]}">
-                                                    <a class="btn btn-link-inverse pull-left" href="#"><i class="glyphicon glyphicon-star"></i></a>
+                                                    <a class="btn btn-link-inverse pull-left" href="/DesFavoritear?tipo=tema&artista=${nomArtista}&album=${nomAlbum}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <a class="btn btn-link pull-left" href="/Favoritear?tipo=tema&artista=${nomArtista}&album=${nomAlbum}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
+                                                    <c:choose>
+                                                        <c:when test="${tiene_suscripcion}">
+                                                            <a class="btn btn-link pull-left" href="/Favoritear?tipo=tema&artista=${nomArtista}&album=${nomAlbum}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
+                                                        </c:when>
+                                                    </c:choose>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:otherwise>

@@ -7,20 +7,16 @@ package espotify;
 
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataGenero;
-import espotify.datatypes.DataParticular;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.IAltaGenero;
-import espotify.interfaces.IAltaLista;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.web.IObtenerAudio;
-import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static org.junit.Assert.assertEquals;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

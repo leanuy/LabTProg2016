@@ -118,15 +118,6 @@
         repr.onended = function() {
             reproducirSiguiente();
         };
-        
-        repr.addEventListener("timeupdate", function () {
-        var audio = $(this);
-        console.log(audio[0].duration);
-        var progreso = (audio[0].currentTime.toFixed(2)*100)/audio[0].duration.toFixed(2);
-        console.log(progreso);
-        $('#progress').attr('aria-valuenow', progreso).css('width', progreso);
-                });
-        
     });    
 </script>
 
@@ -150,12 +141,6 @@
         <div class="col-lg-12 hidden-sm hidden-xs"><img id="trackImage" src="assets/img/cover.jpg" style="width:100%"></div>
         <div id="TemaReproduccion" class="col-lg-12">---</div>
         <div  class="col-lg-12"><span id="ArtistaReproduccion"></span> - <span id="AlbumReproduccion"></span></div>
-        <div class="col-lg-12">
-            <div class="progress" style=" height:4px">
-                <div id="progress" class="progress-bar progress-bar-custom progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0;">
-                </div>
-            </div>
-        </div>
         <div class="col-lg-12">
             <div class="row">
                 <div class="col-xs-offset-2 col-xs-4">

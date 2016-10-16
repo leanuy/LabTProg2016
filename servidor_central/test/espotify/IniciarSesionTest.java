@@ -6,7 +6,6 @@ import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IIniciarSesion;
-import espotify.interfaces.web.IValidar;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;

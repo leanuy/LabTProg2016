@@ -2,7 +2,6 @@ package espotify;
 
 import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataCliente;
-import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
 import espotify.interfaces.IAltaGenero;
@@ -44,41 +43,41 @@ public class BuscarTest {
     public void buscarListasTest() {
         System.out.println("Buscar listas: ");
         List<String[]> result = Fabrica.getIBuscar().buscarListas("asdf");
-        assert (result.isEmpty());
+        assert result.isEmpty();
     }
     
     @Test
     public void buscarListasTest2() {
         System.out.println("Buscar listas: ");
         List<String[]> result = Fabrica.getIBuscar().buscarListas("i");
-        assert (!result.isEmpty());
+        assert !result.isEmpty();
     }
     
     @Test
     public void buscarAlbumsTest() {
         System.out.println("Buscar albums: ");
         List<DataAlbum> result = Fabrica.getIBuscar().buscarAlbums("asdf");
-        assert (result.isEmpty());
+        assert result.isEmpty();
     }
     
     @Test
     public void buscarAlbumsTest2() {
         System.out.println("Buscar albums: ");
         List<DataAlbum> result = Fabrica.getIBuscar().buscarAlbums("1");
-        assert (!result.isEmpty());
+        assert !result.isEmpty();
     }
     
     @Test
     public void buscarTemasTest() {
         System.out.println("Buscar temas: ");
         List<String[]> result = Fabrica.getIBuscar().buscarTemas("asdf");
-        assert (result.isEmpty());
+        assert result.isEmpty();
     }
     
     @Test
     public void buscarTemasTest2() {
         System.out.println("Buscar temas: ");
         List<String[]> result = Fabrica.getIBuscar().buscarTemas("Pop");
-        assert (!result.isEmpty());
+        assert !result.isEmpty();
     }
 }

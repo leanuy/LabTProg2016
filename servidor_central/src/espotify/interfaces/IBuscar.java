@@ -6,10 +6,7 @@
 package espotify.interfaces;
 
 import espotify.datatypes.DataAlbum;
-import espotify.datatypes.DataLista;
-import espotify.datatypes.DataTema;
 import java.util.List;
-import java.util.regex.Pattern;
 
 /**
  *

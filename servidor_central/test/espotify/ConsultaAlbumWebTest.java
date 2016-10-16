@@ -1,18 +1,10 @@
 package espotify;
 
-import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataTema;
-import espotify.datatypes.DataTemaArchivo;
-import espotify.datatypes.DataTemaWeb;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
-import espotify.interfaces.IAltaAlbum;
 import espotify.interfaces.web.IVerAlbum;
-import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.util.ArrayList;
-import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,10 +1,8 @@
 package espotify;
 
 import espotify.datatypes.DataCliente;
-import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataGenero;
 import espotify.datatypes.DataParticular;
-import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
@@ -15,7 +13,6 @@ import espotify.interfaces.web.IObtenerImagen;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Calendar;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;

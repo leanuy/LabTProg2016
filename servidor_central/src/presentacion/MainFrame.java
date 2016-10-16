@@ -1,7 +1,6 @@
 package presentacion;
 
 import espotify.Fabrica;
-import espotify.Suscripcion;
 import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
