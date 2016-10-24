@@ -33,6 +33,7 @@ import espotify.interfaces.web.IVerListaParticular;
 import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 import espotify.interfaces.web.IListarUsuarios;
+import espotify.interfaces.web.IRanking;
 
 public final class Fabrica {
 
@@ -172,5 +173,9 @@ public final class Fabrica {
     
     public static IAltaAlbumWeb getIAltaAlbumWeb() {
         return new CtrlMusica();
+    }
+    
+    public static IRanking getIRanking() {
+        return new CtrlUsuarios();
     }
 }

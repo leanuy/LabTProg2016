@@ -1,5 +1,6 @@
 package espotify;
 
+import espotify.datatypes.DataRanking;
 import espotify.datatypes.DataUsuario;
 import espotify.excepciones.SeguidoRepetidoException;
 
@@ -87,5 +88,13 @@ class Usuario {
         this.img = dataUsuario.getImg();
         this.seguidores = new HashMap();
         this.password = dataUsuario.getPassword();
+    }
+    
+    public DataRanking getDataRanking() {
+        if(seguidores.isEmpty()) {
+            return null;
+        } else {
+            return new DataRanking(this.nick,seguidores.size());
+        }
     }
 }
