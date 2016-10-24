@@ -7,6 +7,8 @@ class Tema implements Favoriteable {
     private final int duracion;
     private final int num;
     private final Album album;
+    private int cantReproducciones;
+    private int cantDescargas;
 
     String getNombre() {
         return nombre;
@@ -33,5 +35,15 @@ class Tema implements Favoriteable {
         this.duracion = dataTema.getDuracion();
         this.num = dataTema.getNum();
         this.album = album;
+        this.cantDescargas=0;
+        this.cantReproducciones=0;
+    }
+
+    void registrarUso(boolean esDescarga) {
+        if (esDescarga) {
+            cantDescargas++;
+        } else {
+            cantReproducciones++;
+        }
     }
 }

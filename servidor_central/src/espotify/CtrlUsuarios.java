@@ -566,9 +566,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarArtista(nick).consultaTema(nomAlbum,nomTema);
     }
     
-    public BufferedInputStream getAudio(String nick, String album, String tema)
+    public BufferedInputStream getAudio(String nick, String album, String tema,boolean esDescarga)
             throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
-        return buscarArtista(nick).getAudio(album,tema);
+        return buscarArtista(nick).getAudio(album,tema,esDescarga);
     }
     
     @Override

@@ -152,14 +152,17 @@ public class Album implements Favoriteable {
         return salida;
     }
 
-    BufferedInputStream getAudio(String tema) throws AlbumInexistenteException, TemaTipoInvalidoException  {
+    BufferedInputStream getAudio(String tema,boolean esDescarga) throws AlbumInexistenteException, TemaTipoInvalidoException  {
         Tema tem = devolverTema(tema);
         if (tem == null) {
             throw new TemaTipoInvalidoException();
-        } else if (tem instanceof TemaArchivo) {
-            return ((TemaArchivo) tem).getAudio();
         } else {
-            throw new TemaTipoInvalidoException();
+            tem.registrarUso(esDescarga);
+            if (tem instanceof TemaArchivo) {
+            return ((TemaArchivo) tem).getAudio();
+            } else {
+                throw new TemaTipoInvalidoException();
+            }
         }
     }
     

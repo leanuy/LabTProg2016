@@ -10,6 +10,6 @@ import java.io.BufferedInputStream;
  * @author JavierM42
  */
 public interface IObtenerAudio {
-    public BufferedInputStream getAudio(String nick, String album, String tema)
+    public BufferedInputStream getAudio(String nick, String album, String tema,boolean esDescarga)
         throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException;
 }
