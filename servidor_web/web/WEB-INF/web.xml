@@ -144,6 +144,10 @@
         <servlet-name>Ranking</servlet-name>
         <servlet-class>servlets.Ranking</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Descargar</servlet-name>
+        <servlet-class>servlets.Descargar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -287,6 +291,10 @@
     <servlet-mapping>
         <servlet-name>Ranking</servlet-name>
         <url-pattern>/Ranking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Descargar</servlet-name>
+        <url-pattern>/Descargar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

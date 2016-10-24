@@ -11,6 +11,7 @@ import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JavierM42
  */
-public class Escuchar extends HttpServlet {
+public class Descargar extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,12 +41,13 @@ public class Escuchar extends HttpServlet {
             "iso-8859-1"), "UTF-8");
         String artista = new String(request.getParameter("artista").getBytes(
             "iso-8859-1"), "UTF-8");
+        
         ServletOutputStream stream = null;
         BufferedInputStream buf = null;
         try {
             int length = 0;
             stream = response.getOutputStream();
-            buf = Fabrica.getIObtenerAudio().getAudio(artista,album,tema,false);
+            buf = Fabrica.getIObtenerAudio().getAudio(artista,album,tema,true);
             int readBytes;
             while ((readBytes = buf.read()) != -1) {
                 length++;
