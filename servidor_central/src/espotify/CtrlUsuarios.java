@@ -10,6 +10,7 @@ import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataParticular;
+import espotify.datatypes.DataRanking;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
@@ -56,11 +57,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import espotify.interfaces.web.IListarUsuarios;
+import espotify.interfaces.web.IRanking;
+import java.util.Collections;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
         IVerPerfil, IIniciarSesion, IWebSeguir, IListarUsuarios, IValidar, 
-        IFavoritos, ISuscripcionWeb, IObtenerAudio {
+        IFavoritos, ISuscripcionWeb, IObtenerAudio, IRanking {
 //Constructor
     public CtrlUsuarios() {
     }
@@ -502,6 +505,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         suscripciones = client.getSuscripciones();
         return suscripciones;
     }
+    
     @Override
     public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException {
         Cliente client;
@@ -532,16 +536,12 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     public void cancelarSuscripcionVencida(String nickname) throws 
             NoHaySuscripcionException, TransicionSuscripcionInvalidaException,
             ClienteInexistenteException {
-        Cliente client;
-        client = buscarCliente(nickname);
-        client.cancelarSuscripcion();
+        buscarCliente(nickname).cancelarSuscripcion();
     }
     @Override
     public void aprobarSuscripcionPendiente(String nickname) throws NoHaySuscripcionException,
             TransicionSuscripcionInvalidaException, ClienteInexistenteException {
-        Cliente client;
-        client = buscarCliente(nickname);
-        client.aprobarSuscripcion();
+        buscarCliente(nickname).aprobarSuscripcion();
     }
     @Override
     public void actualizarEstadoSuscripcion(String nickname) {
@@ -550,15 +550,11 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     @Override
     public void renovarSuscripcion(String nickname) throws ClienteInexistenteException,
             TransicionSuscripcionInvalidaException, NoHaySuscripcionException {
-        Cliente client;
-        client = buscarCliente(nickname);
-        client.renovarSuscripcion();
+        buscarCliente(nickname).renovarSuscripcion();
     }
     @Override
     public void vencerSuscripcionActual(String nickname) throws ClienteInexistenteException {
-        Cliente client;
-        client = buscarCliente(nickname);
-        client.vencerSuscripcion();
+        buscarCliente(nickname).vencerSuscripcion();
     }
     
     public boolean tieneSuscripcionVigente(String nick) throws ClienteInexistenteException {
@@ -570,16 +566,36 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarArtista(nick).consultaTema(nomAlbum,nomTema);
     }
     
-    public BufferedInputStream getAudio(String nick, String album, String tema)
+    public BufferedInputStream getAudio(String nick, String album, String tema,boolean esDescarga)
             throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
-        return buscarArtista(nick).getAudio(album,tema);
+        return buscarArtista(nick).getAudio(album,tema,esDescarga);
     }
     
     @Override
     public void encajarSuscripcion(String nick, Suscripcion suscripcion) throws ClienteInexistenteException {
-        Cliente client;
-        client = buscarCliente(nick);
-        client.encajarSuscripcion(suscripcion);
+        buscarCliente(nick).encajarSuscripcion(suscripcion);
     }
 
+    @Override
+    public List<DataRanking> darRanking() {
+        List<DataRanking> salida = new ArrayList();
+        Map<String, Cliente> mapCli = getClientes();
+        for (Map.Entry<String, Cliente> entry : mapCli.entrySet()) {
+            Cliente cli = entry.getValue();
+            DataRanking data = cli.getDataRanking();
+            if (data!=null) {
+                salida.add(data);
+            }
+        }
+        Map<String, Artista> mapArt = getArtistas();
+        for (Map.Entry<String, Artista> entry : mapArt.entrySet()) {
+            Artista art = entry.getValue();
+            DataRanking data = art.getDataRanking();
+            if (data!=null) {
+                salida.add(data);
+            }
+        }
+        Collections.sort(salida);
+        return salida;
+    }
 }

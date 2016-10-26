@@ -140,6 +140,14 @@
         <servlet-name>AltaAlbum_paso3</servlet-name>
         <servlet-class>servlets.AltaAlbum_paso3</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Ranking</servlet-name>
+        <servlet-class>servlets.Ranking</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Descargar</servlet-name>
+        <servlet-class>servlets.Descargar</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -279,6 +287,14 @@
     <servlet-mapping>
         <servlet-name>AltaAlbum_paso3</servlet-name>
         <url-pattern>/AltaAlbum/paso3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Ranking</servlet-name>
+        <url-pattern>/Ranking</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Descargar</servlet-name>
+        <url-pattern>/Descargar</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

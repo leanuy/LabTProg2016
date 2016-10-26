@@ -6,13 +6,13 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.TemaTipoInvalidoException;
-import java.io.BufferedInputStream;
+import espotify.datatypes.DataRanking;
+import espotify.interfaces.web.IListarUsuarios;
+import espotify.interfaces.web.IRanking;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JavierM42
  */
-public class Escuchar extends HttpServlet {
+public class Ranking extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,38 +34,14 @@ public class Escuchar extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String tema = new String(request.getParameter("tema").getBytes(
-            "iso-8859-1"), "UTF-8");
-        String album = new String(request.getParameter("album").getBytes(
-            "iso-8859-1"), "UTF-8");
-        String artista = new String(request.getParameter("artista").getBytes(
-            "iso-8859-1"), "UTF-8");
-        ServletOutputStream stream = null;
-        BufferedInputStream buf = null;
-        try {
-            int length = 0;
-            stream = response.getOutputStream();
-            buf = Fabrica.getIObtenerAudio().getAudio(artista,album,tema,false);
-            int readBytes;
-            while ((readBytes = buf.read()) != -1) {
-                length++;
-                stream.write(readBytes);
-            }
-            response.setContentLength(length);
-          } catch (IOException ioe) {
-            throw new ServletException(ioe.getMessage());
-          } catch (ArtistaInexistenteException ex) {
-              response.sendError(500);
-          } catch (AlbumInexistenteException ex) {
-              response.sendError(500);
-          } catch (TemaTipoInvalidoException ex) {
-              response.sendError(500);
-          } finally {
-          if (stream != null)
-            stream.close();
-          if (buf != null)
-            buf.close();
-        }
+        response.setContentType("text/html;charset=UTF-8");
+        
+        IRanking interf = Fabrica.getIRanking();
+        List<DataRanking> data = interf.darRanking();
+        
+        request.setAttribute("usuarios", data);
+        
+        request.getRequestDispatcher("/WEB-INF/perfiles/Ranking.jsp").forward(request,response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

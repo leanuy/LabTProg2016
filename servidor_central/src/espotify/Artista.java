@@ -108,8 +108,8 @@ class Artista extends Usuario {
         return buscarAlbum(nomAlbum).devolverTema(nomTema).getData();
     }
 
-    BufferedInputStream getAudio(String album, String tema) throws AlbumInexistenteException, TemaTipoInvalidoException {
-        return buscarAlbum(album).getAudio(tema);
+    BufferedInputStream getAudio(String album, String tema,boolean esDescarga) throws AlbumInexistenteException, TemaTipoInvalidoException {
+        return buscarAlbum(album).getAudio(tema,esDescarga);
     }
 
     void addTemaAlbumTemp(DataTema tema) {
