@@ -154,8 +154,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public List<String> listarArtistas() {
-        List salida = new ArrayList();
+    public ArrayList<String> listarArtistas() {
+        ArrayList salida = new ArrayList();
         getArtistas().keySet().stream().forEach((key) -> {
             salida.add(key);
         });
@@ -167,13 +167,13 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public List<String> listarListasPrivadasDeCliente(String nick)
+    public ArrayList<String> listarListasPrivadasDeCliente(String nick)
             throws ClienteInexistenteException {
         return buscarCliente(nick).listarListasPrivadas();
     }
     
     @Override
-    public List<String> listarListasPublicasDeCliente(String nick)
+    public ArrayList<String> listarListasPublicasDeCliente(String nick)
             throws ClienteInexistenteException {
         return buscarCliente(nick).listarListasPublicas();
     }
@@ -218,7 +218,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public List<String> listarAlbumesDeArtista(String nomArtista)
+    public ArrayList<String> listarAlbumesDeArtista(String nomArtista)
             throws ArtistaInexistenteException {
         return buscarArtista(nomArtista).listarAlbumes();
     }
@@ -407,13 +407,6 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public void cancelarSuscripcion(String nick)
-            throws ClienteInexistenteException, NoHaySuscripcionException,
-            TransicionSuscripcionInvalidaException {
-        buscarCliente(nick).cancelarSuscripcion();
-    }
-    
-    @Override
     public boolean esCliente(String nick) throws UsuarioInexistenteException {
         boolean esCliente = true;
         try {
@@ -501,11 +494,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
+    public ArrayList<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException {
         Cliente client;
-        List<DataSuscripcion> suscripciones = null;
-        client = buscarCliente(nickname);
-        suscripciones = client.getSuscripciones();
+        ArrayList<DataSuscripcion> suscripciones = buscarCliente(nickname).getSuscripciones();
         return suscripciones;
     }
     
@@ -536,7 +527,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
     
     @Override
-    public void cancelarSuscripcionVencida(String nickname) throws 
+    public void cancelarSuscripcion(String nickname) throws 
             NoHaySuscripcionException, TransicionSuscripcionInvalidaException,
             ClienteInexistenteException {
         buscarCliente(nickname).cancelarSuscripcion();

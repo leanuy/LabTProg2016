@@ -87,7 +87,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     
 
     @Override
-    public List<String[]> listarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
+    public ArrayList<String[]> listarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
         Genero genero = buscarGenero(nomGenero);
         return genero.listarAlbumes();
     }
@@ -211,7 +211,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     }
     
     @Override
-    public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException {
+    public ArrayList<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException {
         return new CtrlListas().listarListasDeGenero(nomGenero);
     }
     

@@ -35,6 +35,7 @@ import java.util.Calendar;
 import javax.imageio.ImageIO;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import servidor.Publicador;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -42,6 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
+
         initComponents();
         this.setSize((int)(Toolkit.getDefaultToolkit().getScreenSize().getWidth()), (int)(Toolkit.getDefaultToolkit().getScreenSize().getHeight()));
         
@@ -49,7 +51,8 @@ public class MainFrame extends javax.swing.JFrame {
         //MainPanel.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
         this.setTitle("ESPOTIFY");
-        
+        Publicador p = new Publicador();
+        p.publicar();
     }
 
     /**

@@ -2,12 +2,29 @@ package espotify.datatypes;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataGenero {
-    private final String nombre;
-    private final String padre;
-    private final List<DataGenero> hijos;
+    private String nombre;
+    private String padre;
+    private ArrayList<DataGenero> hijos;
+
+    public DataGenero() {
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setPadre(String padre) {
+        this.padre = padre;
+    }
+
+    public void setHijos(ArrayList<DataGenero> hijos) {
+        this.hijos = hijos;
+    }
 
     public String getNombre() {
         return nombre;
@@ -27,7 +44,7 @@ public class DataGenero {
         this.hijos = new ArrayList<>();
     }
     //para testing
-    public DataGenero(String nombre,String padre,List<DataGenero> hijos) {
+    public DataGenero(String nombre,String padre,ArrayList<DataGenero> hijos) {
         this.nombre = nombre;
         this.padre = padre;
         this.hijos = hijos;

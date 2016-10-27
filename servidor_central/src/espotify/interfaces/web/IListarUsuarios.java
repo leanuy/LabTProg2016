@@ -1,9 +1,9 @@
 package espotify.interfaces.web;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface IListarUsuarios {
-    public List<String> listarArtistas();
+    public ArrayList<String> listarArtistas();
     
-    public List<String> listarClientes();
+    public ArrayList<String> listarClientes();
 }

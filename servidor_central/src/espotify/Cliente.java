@@ -131,8 +131,8 @@ public class Cliente extends Usuario {
         return salida;
     }
     
-    public List<String> listarListasPrivadas() {
-        List<String> salida = new ArrayList();
+    public ArrayList<String> listarListasPrivadas() {
+        ArrayList<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
             if (part instanceof Privada) {
@@ -142,8 +142,8 @@ public class Cliente extends Usuario {
         return salida;
     }
     
-    public List<String> listarListasPublicas() {
-        List<String> salida = new ArrayList();
+    public ArrayList<String> listarListasPublicas() {
+        ArrayList<String> salida = new ArrayList();
         for (Map.Entry<String, Particular> entry : listas.entrySet()) {
             Particular part = entry.getValue();
             if (!(part instanceof Privada)) {
@@ -230,8 +230,8 @@ public class Cliente extends Usuario {
         }
     }
     
-    public List<DataSuscripcion> getSuscripciones() {
-        List<DataSuscripcion> lstSusc = new ArrayList();
+    public ArrayList<DataSuscripcion> getSuscripciones() {
+        ArrayList<DataSuscripcion> lstSusc = new ArrayList();
         Iterator iterador = suscripciones.entrySet().iterator();
         Suscripcion suscActual;
         while (iterador.hasNext()) {
