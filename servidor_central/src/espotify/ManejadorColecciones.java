@@ -64,6 +64,10 @@ final class ManejadorColecciones {
         artistas.put(nick, art);
     }
     
+    void eliminarArtista(String nick) {
+        artistas.remove(nick);
+    }
+    
 //ListasDefecto
     Map<String, Defecto> getListas() {
         return listas;

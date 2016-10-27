@@ -25,6 +25,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class Cliente extends Usuario {
     private final Map<String, Usuario> seguidos;
@@ -315,5 +316,38 @@ public class Cliente extends Usuario {
     public void encajarSuscripcion(Suscripcion suscripcion) {
         suscripcionActiva = suscripcion;
         suscripciones.put(suscripcionActiva.getFechaDesde(),suscripcionActiva);
+    }
+    
+    public void BajaArtista(Artista art) {
+        String nick = art.getNick();
+        // lo remuevo de los seguidos si es que lo sigue
+        Usuario usr = seguidos.get(nick);
+        if (usr != null) {
+            seguidos.remove(nick);
+        }
+        // saco sus canciones de las listas del cliente
+        List<DataTema> temasArtista = art.DevolverTemas(); //todos los temas de todos los albums
+        Iterator entries = listas.entrySet().iterator();
+        while (entries.hasNext()) {
+          Entry thisEntry = (Entry) entries.next();
+          Particular part = (Particular)thisEntry.getValue();
+          part.BajaArtista(temasArtista);
+        }
+        
+        // desfavoriteo sus canciones y albums
+        Album alb1;
+        Tema tem1;
+        for (Favoriteable fav : favoritos) {
+            alb1 = (Album)fav;
+            if ((alb1 != null) && nick.equals(alb1.getNickArtista())) {
+                favoritos.remove(fav);
+            }else{
+                tem1 = (Tema)fav;
+                if ((tem1 != null) && nick.equals(tem1.getNomArtista())) {
+                    favoritos.remove(fav);
+                }
+            }
+        }
+        // no hago nada mas :)
     }
 }

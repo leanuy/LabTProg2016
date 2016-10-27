@@ -59,6 +59,8 @@ import java.util.Map.Entry;
 import espotify.interfaces.web.IListarUsuarios;
 import espotify.interfaces.web.IRanking;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
@@ -597,5 +599,31 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         }
         Collections.sort(salida);
         return salida;
+    }
+    
+    public void BajaArtista(String nick) {
+        try {
+            Artista art = buscarArtista(nick);
+            // saco todo lo que tengan los clientes de el
+            ArrayList<String> lista = listarClientes();
+            for (String client: lista) {
+                try {
+                    Cliente cli = buscarCliente(client);
+                    cli.BajaArtista(art);
+                } catch (ClienteInexistenteException ex) {
+                    Logger.getLogger(CtrlUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            // saco los temas de las listas por defecto 
+            new CtrlListas().BajaArtista(art);
+            
+            //Eliminar al artista
+            ManejadorColecciones.getInstancia().eliminarArtista(nick);
+            
+            
+        } catch (ArtistaInexistenteException ex) {            
+            Logger.getLogger(CtrlUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -100,4 +100,13 @@ class Lista {
         }
         throw new TemaInexistenteException("No existe el tema en la lista");
     }
+    
+    public void BajaArtista(List<DataTema> temasartista) {
+        for (DataTema dtema : temasartista) {
+            String clave = dtema.getNombre() + dtema.getAlbum();
+            if (temas.containsKey(clave)) {
+                temas.remove(clave);
+            }
+        }
+    }
 }
