@@ -32,7 +32,7 @@ class Genero {
         this.albums = new HashMap<>();
     }
 
-    List<String[]> listarAlbumes() {
+    ArrayList<String[]> listarAlbumes() {
         ArrayList<String[]> listaAlbums = new ArrayList();
         Iterator iterador = albums.entrySet().iterator();
         Album actual;

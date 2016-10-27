@@ -120,8 +120,8 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     }
     
     @Override
-    public List<String> listarListasDeGenero(String nomGenero) {
-        List<String> salida = new ArrayList();
+    public ArrayList<String> listarListasDeGenero(String nomGenero) {
+        ArrayList<String> salida = new ArrayList();
         for (Map.Entry<String, Defecto> entry : getListas().entrySet()) {
             Defecto def = entry.getValue();
             if (def.getNomGenero().equals(nomGenero)) {
