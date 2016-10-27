@@ -326,27 +326,33 @@ public class Cliente extends Usuario {
             seguidos.remove(nick);
         }
         // saco sus canciones de las listas del cliente
-        List<DataTema> temasArtista = art.DevolverTemas(); //todos los temas de todos los albums
-        Iterator entries = listas.entrySet().iterator();
-        while (entries.hasNext()) {
-          Entry thisEntry = (Entry) entries.next();
-          Particular part = (Particular)thisEntry.getValue();
-          part.BajaArtista(temasArtista);
+        Particular part;
+        for (Map.Entry<String, Particular> entry : listas.entrySet()) {
+                part = entry.getValue();
+                part.BajaArtista(nick);
         }
+        
         
         // desfavoriteo sus canciones y albums
         Album alb1;
         Tema tem1;
+        ArrayList<Favoriteable> borrar = new ArrayList();
         for (Favoriteable fav : favoritos) {
-            alb1 = (Album)fav;
-            if ((alb1 != null) && nick.equals(alb1.getNickArtista())) {
-                favoritos.remove(fav);
-            }else{
-                tem1 = (Tema)fav;
-                if ((tem1 != null) && nick.equals(tem1.getNomArtista())) {
-                    favoritos.remove(fav);
+            if (fav instanceof Album) {
+                alb1 = (Album)fav;
+                if (nick.equals(alb1.getNickArtista())) {
+                    borrar.add(fav);
                 }
             }
+            if (fav instanceof Tema) {
+                tem1 = (Tema)fav;
+                if (nick.equals(tem1.getNomArtista())) {
+                    borrar.add(fav);
+                }
+            }
+        }
+        for (Favoriteable favo : borrar) {
+            favoritos.remove(favo);
         }
         // no hago nada mas :)
     }

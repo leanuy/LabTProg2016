@@ -101,12 +101,19 @@ class Lista {
         throw new TemaInexistenteException("No existe el tema en la lista");
     }
     
-    public void BajaArtista(List<DataTema> temasartista) {
-        for (DataTema dtema : temasartista) {
-            String clave = dtema.getNombre() + dtema.getAlbum();
-            if (temas.containsKey(clave)) {
-                temas.remove(clave);
-            }
+    public void BajaArtista(String nickart) {
+        Tema temita;
+        String clave;
+        ArrayList<String> borrar = new ArrayList();
+        for (Map.Entry<String, Tema> entry : temas.entrySet()) {
+                temita = entry.getValue();
+                clave = entry.getKey();
+                if (nickart.equals(temita.getNomArtista())) {
+                    borrar.add(clave);
+                }
+        }
+        for (String adios : borrar) {
+            temas.remove(adios);
         }
     }
 }

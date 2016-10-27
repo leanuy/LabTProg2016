@@ -5,8 +5,13 @@
  */
 package servlets;
 
+import espotify.Fabrica;
+import espotify.excepciones.ArtistaInexistenteException;
+import espotify.interfaces.web.IBajaArtista;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,16 +40,19 @@ public class BajaArtista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
+        String nickart = new String(request.getParameter("nickArt").getBytes(
+            "iso-8859-1"), "UTF-8");
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            /*
-                String nickart = (String) session.getAttribute("nick");
+            try {
                 IBajaArtista baja = Fabrica.getIBajaArtista();
                 baja.BajaArtista(nickart);
-            */
-            session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
-            session.setAttribute("nick_sesion", null);
-            session.setAttribute("es_cliente",null);
-            request.getRequestDispatcher("/inicio").forward(request,response);
+                session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
+                session.setAttribute("nick_sesion", null);
+                session.setAttribute("es_cliente",null);
+                request.getRequestDispatcher("/inicio").forward(request,response);
+            } catch (ArtistaInexistenteException ex) {
+                response.sendError(500, "Artista Inexistente, la esta viajando...  nick art: " + nickart);
+            }
         }
     }
 
