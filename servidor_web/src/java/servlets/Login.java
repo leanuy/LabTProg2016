@@ -1,13 +1,6 @@
 package servlets;
 
-import exceptions.UsuarioNoEncontrado;
 import model.EstadoSesion;
-import espotify.Fabrica;
-import espotify.datatypes.DataClienteExt;
-import espotify.interfaces.IIniciarSesion;
-import espotify.datatypes.DataUsuario;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.UsuarioInexistenteException;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataCliente;
+import servidor.DataUsuario;
+import servidor.UsuarioInexistenteException_Exception;
 
 public class Login extends HttpServlet {
    
@@ -27,55 +24,41 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException, UsuarioInexistenteException {
+            HttpServletResponse response) throws ServletException, IOException {
         HttpSession objSesion = request.getSession();
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         EstadoSesion nuevoEstado;
 		// chequea contraseña
 		try {
-                        IIniciarSesion iIniciarSesion = Fabrica.getIIniciarSesion();
-                        DataUsuario dataUsr = iIniciarSesion.buscarUsuario(login);
-			if(iIniciarSesion.checkPassword(dataUsr.getNick(), password)) {
+                        servidor.PublicadorService service =  new servidor.PublicadorService();
+                        servidor.Publicador port = service.getPublicadorPort();
+                        DataUsuario dataUsr = port.buscarUsuario(login);
+			if(port.checkPassword(dataUsr.getNick(), password)) {
                             nuevoEstado = EstadoSesion.LOGIN_CORRECTO;
                             // setea el usuario logueado
                             objSesion.setAttribute("usuario_logueado", dataUsr.getCorreo());
                             objSesion.setAttribute("nick_sesion", dataUsr.getNick());
-                            boolean esCliente = dataUsr instanceof DataClienteExt;
+                            boolean esCliente = dataUsr instanceof DataCliente;
                             objSesion.setAttribute("es_cliente",esCliente);
                             if (esCliente) {
                                 try {
-                                    objSesion.setAttribute("tiene_suscripcion",Fabrica.getISuscripcionWeb().tieneSuscripcionVigente(dataUsr.getNick()));
-                                } catch (ClienteInexistenteException ex) {
+                                    objSesion.setAttribute("tiene_suscripcion",port.tieneSuscripcionVigente(dataUsr.getNick()));
+                                } catch (ClienteInexistenteException_Exception ex) {
                                     Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
                                 }
                             }
                         } else
                             nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
-		} catch(UsuarioInexistenteException ex){
-			nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
+		} catch(UsuarioInexistenteException_Exception ex){
+                    nuevoEstado = EstadoSesion.LOGIN_INCORRECTO;
 		}
-		
         objSesion.setAttribute("estado_sesion", nuevoEstado);
 		
         // redirige a la página principal para que luego redirija a la página
         // que corresponde
         request.getRequestDispatcher("/inicio").forward(request, response);
     }
-	
-	/**
-	 * Devuelve el usuario logueado
-	 * @param request
-	 * @return
-	 * @throws UsuarioNoEncontrado 
-	 */
-	static public DataUsuario getUsuarioLogueado(HttpServletRequest request)
-			throws UsuarioNoEncontrado, UsuarioInexistenteException
-	{
-            IIniciarSesion iIniciarSesion = Fabrica.getIIniciarSesion();
-            DataUsuario dataUsr = iIniciarSesion.buscarUsuario((String) request.getSession().getAttribute("usuario_logueado"));
-		return dataUsr;
-	}
 
      /** 
      * Handles the HTTP <code>GET</code> method.
@@ -87,12 +70,8 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (UsuarioInexistenteException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } 
+        processRequest(request, response);
+    }
 
     /** 
      * Handles the HTTP <code>POST</code> method.
@@ -104,10 +83,6 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (UsuarioInexistenteException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 }

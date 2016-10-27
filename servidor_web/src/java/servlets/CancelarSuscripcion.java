@@ -1,26 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.NoHaySuscripcionException;
-import espotify.excepciones.TransicionSuscripcionInvalidaException;
-import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.NoHaySuscripcionException_Exception;
+import servidor.TransicionSuscripcionInvalidaException_Exception;
 
-/**
- *
- * @author leandro
- */
 public class CancelarSuscripcion extends HttpServlet {
 
     /**
@@ -37,16 +25,17 @@ public class CancelarSuscripcion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String inputNick = new String(request.getParameter("cancelar").getBytes(
                 "iso-8859-1"), "UTF-8");
-        ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         try {
-           inter.cancelarSuscripcionVencida(inputNick);
-        } catch ( NoHaySuscripcionException e) {
+            port.cancelarSuscripcion(inputNick);
+        } catch (ClienteInexistenteException_Exception ex) {  
             response.sendError(500);
-        } catch ( TransicionSuscripcionInvalidaException e) {
+        } catch (NoHaySuscripcionException_Exception ex) {
             response.sendError(500);
-        } catch ( ClienteInexistenteException e) {
+        } catch (TransicionSuscripcionInvalidaException_Exception ex) {
             response.sendError(500);
-        }  
+        }
         response.sendRedirect("/Suscripcion");
     }            
 

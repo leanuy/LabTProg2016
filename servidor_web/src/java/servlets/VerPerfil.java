@@ -6,21 +6,19 @@ package servlets;
  * and open the template in the editor.
  */
 
-import espotify.Fabrica;
-import espotify.datatypes.DataArtistaExt;
-import espotify.datatypes.DataClienteExt;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.UsuarioInexistenteException;
-import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataArtistaExt;
+import servidor.DataClienteExt;
+import servidor.DataColeccionString;
+import servidor.UsuarioInexistenteException_Exception;
 
 /**
  *
@@ -42,47 +40,46 @@ public class VerPerfil extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String inputNick = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
-        
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         HttpSession session = request.getSession();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && 
                 inputNick.equals((String)session.getAttribute("nick_sesion"))){
             request.getRequestDispatcher("/MiPerfil").forward(request,response);
         } else {
-            IVerPerfil iPerfil = Fabrica.getIVerPerfil();
             try {
                 //obtener el tipo de usuario.
-                boolean esCli = iPerfil.esCliente(inputNick);
+                boolean esCli = port.esCliente(inputNick);
                 if (esCli) {
                     try {
-                        DataClienteExt d = iPerfil.consultaCliente(inputNick);
+                        DataClienteExt d = port.consultaCliente(inputNick);
                         request.setAttribute("nick", d.getNick());
                         if (d.getImg() == null) {
                             request.setAttribute("imagen", "./assets/img/profile.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
                         }
-                        List<String> listas = iPerfil.listarListasPublicasDeCliente(inputNick);
-                        request.setAttribute("listas", listas);
+                        DataColeccionString listas = port.listarListasPublicasDeCliente(inputNick);
+                        request.setAttribute("listas", listas.getData());
 
                         if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && Boolean.valueOf(session.getAttribute("es_cliente").toString())  ) {
-                            boolean siguiendo = iPerfil.siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
+                            boolean siguiendo = port.siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
                             request.setAttribute("siguiendo", siguiendo);
                         }
                         
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilCliente.jsp").forward(request,response);
 
-                    } catch (ClienteInexistenteException e) {
+                    } catch (ClienteInexistenteException_Exception ex) {
                         response.sendError(404);
-                        //problemas consultando el cliente
                     }
                 } else { //es artista
                     try {
-                        DataArtistaExt d = iPerfil.consultaArtista(inputNick);
+                        DataArtistaExt d = port.consultaArtista(inputNick);
                         request.setAttribute("nick",d.getNick());
                         request.setAttribute("nombre", d.getNombre());
                         request.setAttribute("apellido", d.getApellido());
                         request.setAttribute("correo", d.getCorreo());
-                        request.setAttribute("fechaNac", d.getfNacStr());
+                        request.setAttribute("fechaNac", d.getFNacStr());
                         if(d.getUrl().equals("")) {
                             request.setAttribute("url", "-");
                         } else {
@@ -100,25 +97,23 @@ public class VerPerfil extends HttpServlet {
                         }
                         request.setAttribute("seguidores", d.getSeguidores());
                         
-                        List<String> albums = iPerfil.listarAlbumesDeArtista(inputNick);
-                        request.setAttribute("albums", albums);
+                        DataColeccionString albums = port.listarAlbumesDeArtista(inputNick);
+                        request.setAttribute("albums", albums.getData());
 
                         if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && Boolean.valueOf(session.getAttribute("es_cliente").toString())  ) {
-                            boolean siguiendo = iPerfil.siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
+                            boolean siguiendo = port.siguiendo((String) session.getAttribute("nick_sesion"),inputNick);
                             request.setAttribute("siguiendo", siguiendo);
                         }
                         
                         request.getRequestDispatcher("/WEB-INF/perfiles/PerfilArtista.jsp").forward(request,response);
-                    } catch (ArtistaInexistenteException e) {
+                    } catch (ArtistaInexistenteException_Exception ex) {
+                        response.sendError(404);
+                    } catch (ClienteInexistenteException_Exception ex) {
                         response.sendError(404);
                     }
                 }
-            } catch (UsuarioInexistenteException ex) {
+            } catch (UsuarioInexistenteException_Exception ex) {
                 response.sendError(404);
-                //el nick no existe en el sistema
-            } catch (ClienteInexistenteException ex ) {
-                response.sendError(404);
-                //el nick no existe en el sistema
             }
         }
     }

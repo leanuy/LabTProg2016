@@ -2,16 +2,11 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbum;
-import espotify.datatypes.DataArtistaExt;
-import espotify.datatypes.DataClienteExt;
 import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataTema;
-import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.UsuarioInexistenteException;
-import espotify.interfaces.web.IVerPerfil;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataArtistaExt;
+import servidor.DataClienteExt;
+import servidor.DataColeccionString;
+import servidor.UsuarioInexistenteException_Exception;
 
 public class MiPerfil extends HttpServlet {
 
@@ -40,30 +41,31 @@ public class MiPerfil extends HttpServlet {
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
             String nick = (String) session.getAttribute("nick_sesion");
             
-            IVerPerfil iPerfil = Fabrica.getIVerPerfil();
+            servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();
             try {
                 //obtener el tipo de usuario.
-                boolean esCli = iPerfil.esCliente(nick);
+                boolean esCli = port.esCliente(nick);
                 if (esCli) {
                     try {
-                        DataClienteExt d = iPerfil.consultaCliente(nick);
+                        DataClienteExt d = port.consultaCliente(nick);
                         request.setAttribute("nick", d.getNick());
                         request.setAttribute("nombre", d.getNombre());
                         request.setAttribute("apellido", d.getApellido());
                         request.setAttribute("correo", d.getCorreo());
-                        request.setAttribute("fechaNac", d.getfNacStr());
+                        request.setAttribute("fechaNac", d.getFNacStr());
                         if (d.getImg() == null) {
                             request.setAttribute("imagen", "./assets/img/profile.png");
                         } else {
                             request.setAttribute("imagen", d.getImg());
                         }
-                        request.setAttribute("seguidos", d.getSeguidos());
+                        request.setAttribute("seguidos", d.getSeg());
                         request.setAttribute("seguidores", d.getSeguidores());
                         
-                        List<String> listasPub = iPerfil.listarListasPublicasDeCliente(nick);
-                        request.setAttribute("listasPub", listasPub);
-                        List<String> listasPriv = iPerfil.listarListasPrivadasDeCliente(nick);
-                        request.setAttribute("listasPriv", listasPriv);
+                        DataColeccionString listasPub = port.listarListasPublicasDeCliente(nick);
+                        request.setAttribute("listasPub", listasPub.getData());
+                        DataColeccionString listasPriv = port.listarListasPrivadasDeCliente(nick);
+                        request.setAttribute("listasPriv", listasPriv.getData());
                         
                         List<DataFavoriteable> favoritos = Fabrica.getIFavoritos().listarFavoritos(d.getNick());
                         List<DataAlbum> albumsFavoritos = new ArrayList();
@@ -90,15 +92,17 @@ public class MiPerfil extends HttpServlet {
                     } catch (ClienteInexistenteException e) {
                         response.sendError(404);
                         //problemas consultando el cliente
+                    } catch (ClienteInexistenteException_Exception ex) {
+                        response.sendError(404);
                     }
                 } else { //es artista
                     try {
-                        DataArtistaExt d = iPerfil.consultaArtista(nick);
+                        DataArtistaExt d = port.consultaArtista(nick);
                         request.setAttribute("nick", d.getNick());
                         request.setAttribute("nombre", d.getNombre());
                         request.setAttribute("apellido", d.getApellido());
                         request.setAttribute("correo", d.getCorreo());
-                        request.setAttribute("fechaNac", d.getfNacStr());
+                        request.setAttribute("fechaNac", d.getFNacStr());
                         if(d.getUrl().equals("")) {
                             request.setAttribute("url", "-");
                         } else {
@@ -116,23 +120,20 @@ public class MiPerfil extends HttpServlet {
                         }
                         request.setAttribute("seguidores", d.getSeguidores());
                         
-                        List<String> albums = iPerfil.listarAlbumesDeArtista(nick);
-                        request.setAttribute("albums", albums);
+                        DataColeccionString albums = port.listarAlbumesDeArtista(nick);
+                        request.setAttribute("albums", albums.getData());
 
                         request.getRequestDispatcher("/WEB-INF/perfiles/MiPerfilArtista.jsp").forward(request,response);
-                    } catch (ArtistaInexistenteException e) {
-
+                    } catch (ArtistaInexistenteException_Exception ex) {
+                        response.sendError(404);
                     }
                 }
-            } catch (UsuarioInexistenteException ex) {
+            } catch (UsuarioInexistenteException_Exception ex) {
                 response.sendError(404);
-                //el nick no existe en el sistema
             }
         } else {
             request.getRequestDispatcher("/inicio").forward(request, response);
         }
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

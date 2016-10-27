@@ -6,15 +6,13 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataLista;
+import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataParticular;
-import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.interfaces.web.IFavoritos;
-import espotify.interfaces.web.IVerListaParticular;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,6 +20,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataLista;
+import servidor.DataTema;
+import servidor.ListaInexistenteException_Exception;
 
 /**
  *
@@ -41,17 +43,17 @@ public class VerListaParticular extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         HttpSession session = request.getSession();
         String inputNick = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
         String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
 
-        IVerListaParticular interf = Fabrica.getIVerListaParticular();
         try {
-            DataLista data = interf.darInfoParticular(inputNom, inputNick);
-            boolean esPrivada = interf.listaEsPrivada(inputNom,inputNick);
+            DataLista data = port.darInfoParticular(inputNom, inputNick);
+            boolean esPrivada = port.listaEsPrivada(inputNom,inputNick);
             if(esPrivada && !inputNick.equals(session.getAttribute("nick_sesion"))) {
                 response.sendError(500);
             } else {
@@ -77,18 +79,13 @@ public class VerListaParticular extends HttpServlet {
                     
                     int idx = 0;
                     for (DataTema t : data.getTemas()) {
-                        es_favorito_temas[idx] = ifav.esFavorito(nickSesion, t);
+                        es_favorito_temas[idx] = ifav.esFavorito(nickSesion, (DataFavoriteable) t);
                         idx++;
                     }
                     request.setAttribute("es_favorito_temas",es_favorito_temas);
                 }
-                
                 request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);
-            
             }
-            
-            
-            
         } catch (ClienteInexistenteException ex) {
             response.sendError(404);
         } catch (ListaInexistenteException ex) {
@@ -96,6 +93,10 @@ public class VerListaParticular extends HttpServlet {
         } catch (ArtistaInexistenteException ex) {
             response.sendError(404);
         } catch (AlbumInexistenteException ex) {
+            response.sendError(404);
+        } catch (ClienteInexistenteException_Exception ex) {
+            response.sendError(404);
+        } catch (ListaInexistenteException_Exception ex) {
             response.sendError(404);
         }
         

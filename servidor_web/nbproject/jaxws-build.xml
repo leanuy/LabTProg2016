@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+        *** GENERATED FROM jax-ws.xml - DO NOT EDIT !                             ***
+        *** TO MODIFY wsimport options USE Web Service node -> Edit WS Attributes ***
+        *** TO CHANGE TARGETS GENERATED TO jaxws-build.xml COPY THOSE             ***
+        *** TARGETS TO ../build.xml AND MODIFY THAT FILE INSTEAD                  ***
+
+        --><project xmlns:xalan="http://xml.apache.org/xslt" xmlns:webproject2="http://www.netbeans.org/ns/web-project/2" xmlns:jaxws="http://www.netbeans.org/ns/jax-ws/1">
+    <!--
+                ===================
+                JAX-WS WSGEN SECTION
+                ===================
+            -->
+    <!--
+                ===================
+                JAX-WS WSIMPORT SECTION
+                ===================
+            -->
+    <target name="wsimport-init" depends="init">
+        <fail if="${wsimport.bad.version}" message="WsImport ant task defined in the classpath ${j2ee.platform.wsimport.classpath} has a serious bug. See http://wiki.netbeans.org/MetroIssue for details."/>
+        <mkdir dir="${build.generated.sources.dir}/jax-ws"/>
+        <property name="j2ee.platform.wsimport.classpath" value="${libs.jaxws21.classpath}"/>
+        <taskdef name="wsimport" classname="com.sun.tools.ws.ant.WsImport">
+            <classpath path="${java.home}/../lib/tools.jar:${j2ee.platform.wsimport.classpath}:${javac.classpath}"/>
+        </taskdef>
+        <condition property="conf-dir" value="${conf.dir}/" else="">
+            <isset property="conf.dir"/>
+        </condition>
+    </target>
+    <target name="wsimport-client-publicador" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador" destdir="${build.generated.dir}/jax-wsCache/publicador" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador"/>
+    </target>
+    <target name="wsimport-client-publicador_1" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_1"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_1" destdir="${build.generated.dir}/jax-wsCache/publicador_1" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_1/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_1/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_1"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_1">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_1" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_1"/>
+    </target>
+    <target name="wsimport-client-publicador_2" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_2"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_2" destdir="${build.generated.dir}/jax-wsCache/publicador_2" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_2/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_2/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_2"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_2">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_2" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_2"/>
+    </target>
+    <target name="wsimport-client-publicador_3" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_3"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_3" destdir="${build.generated.dir}/jax-wsCache/publicador_3" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_3/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_3/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_3"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_3">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_3" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_3"/>
+    </target>
+    <target name="wsimport-client-publicador_4" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_4"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_4" destdir="${build.generated.dir}/jax-wsCache/publicador_4" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_4/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_4/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_4"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_4">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_4" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_4"/>
+    </target>
+    <target name="wsimport-client-publicador_5" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_5"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_5" destdir="${build.generated.dir}/jax-wsCache/publicador_5" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_5/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_5/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_5"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_5">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_5" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_5"/>
+    </target>
+    <target name="wsimport-client-publicador_6" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_6"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_6" destdir="${build.generated.dir}/jax-wsCache/publicador_6" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_6/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_6/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_6"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_6">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_6" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_6"/>
+    </target>
+    <target name="wsimport-client-publicador_7" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_7"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_7" destdir="${build.generated.dir}/jax-wsCache/publicador_7" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_7/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_7/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_7"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_7">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_7" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_7"/>
+    </target>
+    <target name="wsimport-client-publicador_8" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_8"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_8" destdir="${build.generated.dir}/jax-wsCache/publicador_8" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_8/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_8/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_8"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_8">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_8" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_8"/>
+    </target>
+    <target name="wsimport-client-publicador_9" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_9"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_9" destdir="${build.generated.dir}/jax-wsCache/publicador_9" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_9/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_9/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_9"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_9">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_9" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_9"/>
+    </target>
+    <target name="wsimport-client-publicador_10" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_10"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_10" destdir="${build.generated.dir}/jax-wsCache/publicador_10" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_10/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_10/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_10"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_10">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_10" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_10"/>
+    </target>
+    <target name="wsimport-client-publicador_11" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_11"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_11" destdir="${build.generated.dir}/jax-wsCache/publicador_11" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_11/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_11/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_11"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_11">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_11" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_11"/>
+    </target>
+    <target name="wsimport-client-publicador_12" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_12"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_12" destdir="${build.generated.dir}/jax-wsCache/publicador_12" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_12/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_12/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_12"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_12">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_12" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_12"/>
+    </target>
+    <target name="wsimport-client-publicador_13" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_13"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_13" destdir="${build.generated.dir}/jax-wsCache/publicador_13" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_13/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_13/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_13"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_13">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_13" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_13"/>
+    </target>
+    <target name="wsimport-client-publicador_14" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_14"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_14" destdir="${build.generated.dir}/jax-wsCache/publicador_14" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_14/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_14/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_14"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_14">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_14" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_14"/>
+    </target>
+    <target name="wsimport-client-publicador_15" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_15"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_15" destdir="${build.generated.dir}/jax-wsCache/publicador_15" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_15/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_15/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_15"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_15">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_15" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_15"/>
+    </target>
+    <target name="wsimport-client-publicador_16" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_16"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_16" destdir="${build.generated.dir}/jax-wsCache/publicador_16" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_16/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_16/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_16"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_16">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_16" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_16"/>
+    </target>
+    <target name="wsimport-client-publicador_17" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_17"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_17" destdir="${build.generated.dir}/jax-wsCache/publicador_17" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_17/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_17/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_17"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_17">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_17" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_17"/>
+    </target>
+    <target name="wsimport-client-publicador_18" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_18"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_18" destdir="${build.generated.dir}/jax-wsCache/publicador_18" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_18/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_18/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_18"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_18">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_18" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_18"/>
+    </target>
+    <target name="wsimport-client-publicador_19" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_19"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_19" destdir="${build.generated.dir}/jax-wsCache/publicador_19" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_19/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_19/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_19"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_19">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_19" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_19"/>
+    </target>
+    <target name="wsimport-client-publicador_20" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_20"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_20" destdir="${build.generated.dir}/jax-wsCache/publicador_20" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_20/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_20/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador_20"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_20">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="wsimport-client-clean-publicador_20" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador_20"/>
+    </target>
+    <target name="wsimport-client-generate" depends="wsimport-client-publicador, wsimport-client-publicador_1, wsimport-client-publicador_2, wsimport-client-publicador_3, wsimport-client-publicador_4, wsimport-client-publicador_5, wsimport-client-publicador_6, wsimport-client-publicador_7, wsimport-client-publicador_8, wsimport-client-publicador_9, wsimport-client-publicador_10, wsimport-client-publicador_11, wsimport-client-publicador_12, wsimport-client-publicador_13, wsimport-client-publicador_14, wsimport-client-publicador_15, wsimport-client-publicador_16, wsimport-client-publicador_17, wsimport-client-publicador_18, wsimport-client-publicador_19, wsimport-client-publicador_20"/>
+</project>

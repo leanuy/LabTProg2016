@@ -5,10 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataGenero;
-import espotify.excepciones.GeneroInexistenteException;
-import espotify.interfaces.web.IVerGenero;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.java.dev.jaxb.array.StringArray;
+import servidor.BeanConsultaGenero;
+import servidor.DataGenero;
+import servidor.GeneroInexistenteException_Exception;
 
 /**
  *
@@ -37,18 +37,19 @@ public class VerGenero extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String inputNom = new String(request.getParameter("genero").getBytes(
                 "iso-8859-1"), "UTF-8");
-
-        IVerGenero interf = Fabrica.getIVerGenero();
+        
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         try {
-            DataGenero data = interf.consultaGenero(inputNom);
+            BeanConsultaGenero bean = port.consultaGenero(inputNom);
+            DataGenero data = bean.getData();
             request.setAttribute("nombre", data.getNombre());
 
-            List<String> listas = interf.listarListasDeGenero(inputNom);
+            List<String> listas = bean.getListas();
             request.setAttribute("listas", listas);
             
-            List<String[]> albums = interf.listarAlbumesDeGenero(inputNom);
+            List<StringArray> albums = bean.getAlbums();
             request.setAttribute("albums", albums);
-            
             List<String> subgeneros = new ArrayList<String>();
             for(DataGenero dgen : data.getHijos()) {
                 subgeneros.add(dgen.getNombre());
@@ -57,10 +58,8 @@ public class VerGenero extends HttpServlet {
             
             request.getRequestDispatcher("/WEB-INF/generos/VerGenero.jsp").forward(request,response);
             
-            
-        } catch (GeneroInexistenteException ex) {
+        } catch (GeneroInexistenteException_Exception ex) {
             response.sendError(404);
-            //el nick no es un artista
         }
     }
 
