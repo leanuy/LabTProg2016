@@ -43,6 +43,7 @@ import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
+import espotify.interfaces.web.IBajaArtista;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IObtenerAudio;
 import espotify.interfaces.web.ISuscripcionWeb;
@@ -59,11 +60,13 @@ import java.util.Map.Entry;
 import espotify.interfaces.web.IListarUsuarios;
 import espotify.interfaces.web.IRanking;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
         IVerPerfil, IIniciarSesion, IWebSeguir, IListarUsuarios, IValidar, 
-        IFavoritos, ISuscripcionWeb, IObtenerAudio, IRanking {
+        IFavoritos, ISuscripcionWeb, IObtenerAudio, IRanking, IBajaArtista {
 //Constructor
     public CtrlUsuarios() {
     }
@@ -76,9 +79,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         ManejadorColecciones.getInstancia().agregarArtista(nick, art);
     }
     
-    Artista buscarArtista(String nombre) throws ArtistaInexistenteException {
+    Artista buscarArtista(String nick) throws ArtistaInexistenteException {
         
-        Artista artista = ManejadorColecciones.getInstancia().buscarArtista(nombre);
+        Artista artista = ManejadorColecciones.getInstancia().buscarArtista(nick);
         if (artista == null) {
             throw new ArtistaInexistenteException();
         }
@@ -597,5 +600,27 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         }
         Collections.sort(salida);
         return salida;
+    }
+    
+    @Override
+    public void BajaArtista(String nick) throws ArtistaInexistenteException {
+            Artista art = buscarArtista(nick);
+            // saco todo lo que tengan los clientes de el
+            ArrayList<String> lista = listarClientes();
+            for (String client: lista) {
+                try {
+                    Cliente cli = buscarCliente(client);
+                    cli.BajaArtista(art);
+                } catch (ClienteInexistenteException ex) {
+                    Logger.getLogger(CtrlUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            // saco los temas de las listas por defecto 
+            new CtrlListas().BajaArtista(nick);
+            
+            //Eliminar al artista
+            ManejadorColecciones.getInstancia().eliminarArtista(nick);
+            
     }
 }

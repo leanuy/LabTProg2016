@@ -252,4 +252,13 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         return new CtrlUsuarios().listaEsPrivada(nomLista, nick);
     }
     
+    public void BajaArtista(String nick) {
+        Map<String, Defecto> lisdefecto = getListas();
+        for (Map.Entry<String, Defecto> entry : lisdefecto.entrySet()) {
+            entry.getKey();
+            Defecto lista = (Defecto)entry.getValue();
+            lista.BajaArtista(nick);
+        }
+    }
+    
 }

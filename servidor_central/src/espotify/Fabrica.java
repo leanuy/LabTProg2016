@@ -20,6 +20,7 @@ import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
 import espotify.interfaces.web.IAgregarTemaListaWeb;
 import espotify.interfaces.web.IAltaAlbumWeb;
+import espotify.interfaces.web.IBajaArtista;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.IObtenerAudio;
@@ -176,6 +177,10 @@ public final class Fabrica {
     }
     
     public static IRanking getIRanking() {
+        return new CtrlUsuarios();
+    }
+    
+    public static IBajaArtista getIBajaArtista() {
         return new CtrlUsuarios();
     }
 }

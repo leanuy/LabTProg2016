@@ -148,6 +148,10 @@
         <servlet-name>Descargar</servlet-name>
         <servlet-class>servlets.Descargar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BajaArtista</servlet-name>
+        <servlet-class>servlets.BajaArtista</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -296,15 +300,19 @@
         <servlet-name>Descargar</servlet-name>
         <url-pattern>/Descargar</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BajaArtista</servlet-name>
+        <url-pattern>/BajaArtista</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
-    <error-page>
+    <!--<error-page>
         <error-code>404</error-code>
         <location>/WEB-INF/errors/404.jsp</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
         <location>/WEB-INF/errors/500.jsp</location>
-    </error-page>
+    </error-page>-->
 </web-app>

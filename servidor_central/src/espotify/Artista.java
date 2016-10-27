@@ -118,5 +118,17 @@ class Artista extends Usuario {
     void deleteTemaAlbumTemp(String tema) {
         this.albumTemp.deleteTema(tema);
     }
+    
+    public List<DataTema> DevolverTemas() {
+        List<DataTema> temas = new ArrayList();
+        Iterator entries = albums.entrySet().iterator();
+        while (entries.hasNext()) {
+          Map.Entry thisEntry = (Map.Entry) entries.next();
+          Album alb1 = (Album)thisEntry.getValue();
+            List<DataTema> datatem = alb1.getDataTemas();
+            temas.addAll(datatem);
+        }
+        return temas;
+    }
 
 }

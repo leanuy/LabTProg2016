@@ -28,6 +28,7 @@
                         <li class="active"><a href="#datosPersonales">Datos Personales</a></li>
                         <li><a href="#seguidores">Seguidores (<c:out value="${fn:length(seguidores)}"/>)</a></li>
                         <li><a href="#albums">Álbums (<c:out value="${fn:length(albums)}"/>)</a></li>
+                        <li><a href="#BajaPerfil">Baja Perfil </a></li>
                     </ul>
                 
                     <div class="tab-content">
@@ -85,6 +86,16 @@
                                     </ul>
                                 </div>
                             </div>
+                        </div>
+                        <div id="BajaPerfil" class="tab">
+                            <h5>
+                                ¿Está seguro que desea dar de baja su perfil?
+                            </h5>
+                            <br>
+                                <ul class="rig columns-2">
+                                    <a class="btn btn-custom" style="padding-bottom:5px" href="/BajaArtista?nickArt=${nick_sesion}&nick=algo">Dar de Baja</a>
+                                </ul>
+                            </br>
                         </div>
                     </div>
                 </div>
