@@ -5,8 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.interfaces.web.IValidar;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,8 +34,10 @@ public class ValidarCorreo extends HttpServlet {
         String correo = new String(request.getParameter("correo").getBytes(
                 "iso-8859-1"), "UTF-8");
         
-        IValidar interf = Fabrica.getIValidar();
-        if(interf.existeUsuarioCorreo(correo)) {
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+        boolean existe = port.existeUsuarioCorreo(correo);
+        if(existe) {
             out.print("true");
         } else {
             out.print("false");

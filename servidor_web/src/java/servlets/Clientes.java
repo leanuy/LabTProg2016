@@ -5,14 +5,12 @@
  */
 package servlets;
 
-import espotify.Fabrica;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import espotify.interfaces.web.IListarUsuarios;
+import servidor.DataColeccionString;
 
 /**
  *
@@ -33,10 +31,11 @@ public class Clientes extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        IListarUsuarios interf = Fabrica.getIListarUsuarios();
-        List<String> data = interf.listarClientes();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         
-        request.setAttribute("clientes", data);
+        DataColeccionString respuesta = port.listarClientes();
+        request.setAttribute("clientes", respuesta.getData());
         
         request.getRequestDispatcher("/WEB-INF/perfiles/Clientes.jsp").forward(request,response);
     }

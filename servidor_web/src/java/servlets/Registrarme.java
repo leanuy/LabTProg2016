@@ -5,19 +5,13 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataArtista;
-import espotify.datatypes.DataCliente;
-import espotify.excepciones.CorreoRepetidoException;
-import espotify.excepciones.FormatoIncorrectoException;
-import espotify.excepciones.NickRepetidoException;
-import espotify.interfaces.IAltaPerfil;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -25,7 +19,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import servidor.CorreoRepetidoException_Exception;
+import servidor.DataArtista;
+import servidor.DataCliente;
+import servidor.FormatoIncorrectoException_Exception;
+import servidor.NickRepetidoException_Exception;
 
 /**
  *
@@ -69,7 +71,7 @@ public class Registrarme extends HttpServlet {
         String password = request.getParameter("password");
         String nombre = request.getParameter("nombre");
         String apellido = request.getParameter("apellido");
-        Calendar fechaNac = Calendar.getInstance(); //TODO
+        Calendar fechaNac = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
         
         BufferedImage img = null;
@@ -82,47 +84,76 @@ public class Registrarme extends HttpServlet {
         
         String tipo = request.getParameter("tipo");
         if(tipo.equals("cliente")) {
-            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
             
             try {
                 fechaNac.setTime(sdf.parse(request.getParameter("fechaNac")));
-                DataCliente dataCli = new DataCliente(login,nombre,apellido,correo,fechaNac,img,password);
-                iPerfil.altaCliente(dataCli);
+                DataCliente dataCli = new DataCliente();
+                dataCli.setNick(login);
+                dataCli.setNombre(nombre);
+                dataCli.setApellido(apellido);
+                dataCli.setCorreo(correo);
+                //http://ravindrap07.blogspot.com.uy/2009/08/convert-calendar-to-xmlgregoriancalenda.html
+                GregorianCalendar gc = new GregorianCalendar();
+                gc.setTimeInMillis(fechaNac.getTimeInMillis());
+                XMLGregorianCalendar xc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
+                dataCli.setFechaNac(xc);
+                    
+                //dataCli.setImg(img);
+                dataCli.setPassword(password);
+                
+                servidor.PublicadorService service =  new servidor.PublicadorService();
+                servidor.Publicador port = service.getPublicadorPort();
+                port.altaCliente(dataCli);
                 request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
-            } catch (NickRepetidoException ex) {
-                response.sendError(500);
-            } catch (CorreoRepetidoException ex) {
-                response.sendError(500);
-            } catch (FormatoIncorrectoException ex) {
-                response.sendError(500);
             } catch (ParseException ex) {
                     response.sendError(500);
+            } catch (CorreoRepetidoException_Exception ex) {
+                response.sendError(500);
+            } catch (FormatoIncorrectoException_Exception ex) {
+                response.sendError(500);
+            } catch (NickRepetidoException_Exception ex) {
+                response.sendError(500);
+            } catch (DatatypeConfigurationException ex) {
+                response.sendError(500);
             }
         } else if (tipo.equals("artista")) {
             String url = request.getParameter("url");
             String bio = request.getParameter("bio");
-            IAltaPerfil iPerfil = Fabrica.getIAltaPerfil();
             
             try {
                 fechaNac.setTime(sdf.parse(request.getParameter("fechaNac")));
-                DataArtista dataArt = new DataArtista(bio,url,login,nombre,apellido,correo,fechaNac,img,password);
-                iPerfil.altaArtista(dataArt);
+                DataArtista dataArt = new DataArtista();
+                dataArt.setBio(bio);
+                dataArt.setUrl(url);
+                dataArt.setNick(login);
+                dataArt.setNombre(nombre);
+                dataArt.setApellido(apellido);
+                dataArt.setCorreo(correo);
+                GregorianCalendar gc = new GregorianCalendar();
+                gc.setTimeInMillis(fechaNac.getTimeInMillis());
+                XMLGregorianCalendar xc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
+                dataArt.setFechaNac(xc);
+                //dataArt.setImg(img);
+                dataArt.setPassword(password);                
+                
+                servidor.PublicadorService service =  new servidor.PublicadorService();
+                servidor.Publicador port = service.getPublicadorPort();
+                port.altaArtista(dataArt);
                 request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
-            } catch (NickRepetidoException ex) {
-                response.sendError(500);
-            } catch (CorreoRepetidoException ex) {
-                response.sendError(500);
-            } catch (FormatoIncorrectoException ex) {
-                response.sendError(500);
             } catch (ParseException ex) {
+                response.sendError(500);
+            } catch (CorreoRepetidoException_Exception ex) {
+                response.sendError(500);
+            } catch (FormatoIncorrectoException_Exception ex) {
+                response.sendError(500);
+            } catch (NickRepetidoException_Exception ex) {
+                response.sendError(500);
+            } catch (DatatypeConfigurationException ex) {
                 response.sendError(500);
             }
         } else {
             response.sendError(500);
         }
-        
-        
-
     }
 
     /**

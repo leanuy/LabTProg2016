@@ -6,29 +6,20 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataSuscripcion;
-import espotify.datatypes.DataSuscripcionVigente;
-import espotify.datatypes.EstadoSuscripcion;
 import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import espotify.interfaces.web.ISuscripcionWeb;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataSuscripcion;
+import servidor.EstadoSuscripcion;
 
 /**
  *
@@ -53,22 +44,18 @@ public class Suscripcion extends HttpServlet {
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
             String nick = (String) session.getAttribute("nick_sesion");
             request.setAttribute("nick_sesion", nick);
-            ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
-            List<DataSuscripcion> historial = null;
+            servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();        
             try {
-                historial = inter.listarSuscripcionesCliente(nick);
-            } catch (ClienteInexistenteException ex) {
-                response.sendError(500);
-            }
-            if (historial == null) {
-                request.setAttribute("historial", null);
-            } else {
+                List<DataSuscripcion> historial = port.listarSuscripcionesCliente(nick).getData();
                 request.setAttribute("historial", historial);
+            } catch (ClienteInexistenteException_Exception ex) {
+                response.sendError(500);
             }
             DataSuscripcion actual = null;
             try {
-                actual = inter.obtenerSuscripcionActual(nick);
-            } catch (ClienteInexistenteException ex) {
+                actual = port.obtenerSuscripcionActual(nick);
+            } catch (ClienteInexistenteException_Exception ex) {
                 response.sendError(500);
             }
             if ( request.getAttribute("suscvigente") != null ) {

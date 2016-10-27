@@ -70,7 +70,7 @@
                 <c:when test="${not empty historial}">
                     <c:forEach items="${historial}" var="item">
                         <li>
-                            <p>Estado: ${item.estado} Tipo: ${item.tipo} Ultima modificacion: ${item.fUpdate}</p>
+                            <p>Estado: ${item.estado} Tipo: ${item.tipo} Ultima modificacion: ${item.fechaUpdateStr}</p>
                         </li>
                     </c:forEach>
                 </c:when>
