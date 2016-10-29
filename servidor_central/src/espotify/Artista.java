@@ -131,4 +131,12 @@ class Artista extends Usuario {
         return temas;
     }
 
+    FixedSizePriorityQueue<Tema> aportarSugerencias(FixedSizePriorityQueue<Tema> cola) {
+        for (Map.Entry<String, Album> entry : albums.entrySet()) {
+            Album alb = entry.getValue();
+            cola = alb.aportarSugerencias(cola);
+        }
+        return cola;
+    }
+
 }

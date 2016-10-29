@@ -35,8 +35,11 @@ import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 import espotify.interfaces.web.IListarUsuarios;
 import espotify.interfaces.web.IRanking;
+import espotify.interfaces.web.ISugerencias;
 
 public final class Fabrica {
+
+
 
     private Fabrica() {
     }
@@ -182,5 +185,9 @@ public final class Fabrica {
     
     public static IBajaArtista getIBajaArtista() {
         return new CtrlUsuarios();
+    }
+    
+    public static ISugerencias getISugerencias() {
+        return new CtrlMusica();
     }
 }

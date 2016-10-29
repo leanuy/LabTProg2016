@@ -571,8 +571,8 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
 
     @Override
-    public List<DataRanking> darRanking() {
-        List<DataRanking> salida = new ArrayList();
+    public ArrayList<DataRanking> darRanking() {
+        ArrayList<DataRanking> salida = new ArrayList();
         Map<String, Cliente> mapCli = getClientes();
         for (Map.Entry<String, Cliente> entry : mapCli.entrySet()) {
             Cliente cli = entry.getValue();

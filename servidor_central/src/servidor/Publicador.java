@@ -1,5 +1,6 @@
 package servidor;
 import espotify.Fabrica;
+import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
@@ -8,9 +9,13 @@ import espotify.datatypes.DataClienteExt;
 import espotify.datatypes.DataColeccionString;
 import espotify.datatypes.DataColeccionSuscripcion;
 import espotify.datatypes.DataLista;
+import espotify.datatypes.DataColeccionRanking;
+import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataUsuario;
+import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
@@ -18,8 +23,13 @@ import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.NickRepetidoException;
 import espotify.excepciones.NoHaySuscripcionException;
+import espotify.excepciones.SeguidoInexistenteException;
+import espotify.excepciones.SeguidoRepetidoException;
+import espotify.excepciones.SeguidorInexistenteException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.UsuarioInexistenteException;
+import espotify.excepciones.YaPublicaException;
+import espotify.interfaces.IBuscar;
 import espotify.interfaces.web.IVerGenero;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -158,8 +168,12 @@ public class Publicador {
     }
     
     @WebMethod
-    public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException {
-        return Fabrica.getISuscripcionWeb().obtenerSuscripcionActual(nickname);
+    public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException, NoHaySuscripcionException {
+        DataSuscripcion salida = Fabrica.getISuscripcionWeb().obtenerSuscripcionActual(nickname);
+        if (salida == null) {
+            throw new NoHaySuscripcionException();
+        }
+        return salida;
     }
     
     @WebMethod
@@ -177,5 +191,51 @@ public class Publicador {
         salida.setAlbums(inter.listarAlbumesDeGenero(nomGenero));
         salida.setData(inter.consultaGenero(nomGenero));
         return salida;
+    }
+    
+    @WebMethod
+    public void altaSeguir(String nomSeguidor, String nomSeguido)
+            throws SeguidorInexistenteException, SeguidoInexistenteException,
+            SeguidoRepetidoException, AutoSeguirseException {
+        Fabrica.getIWebSeguir().altaSeguir(nomSeguidor, nomSeguido);
+    }
+    
+    @WebMethod
+    public void dejarDeSeguir(String nomSeguidor, String nomSeguido)
+            throws SeguidoInexistenteException, SeguidorInexistenteException {
+        Fabrica.getIWebSeguir().dejarDeSeguir(nomSeguidor, nomSeguido);
+    }
+
+    @WebMethod
+    public BeanBusqueda buscar(String busqueda) {
+        BeanBusqueda salida = new BeanBusqueda();
+        IBuscar inter = Fabrica.getIBuscar();
+        salida.setAlbums(inter.buscarAlbums(busqueda));
+        salida.setListas(inter.buscarListas(busqueda));
+        salida.setTemas(inter.buscarTemas(busqueda));
+        return salida;
+    }
+    
+    @WebMethod
+    public void publicarLista(String nomLista, String nick)
+            throws ClienteInexistenteException,
+            ListaInexistenteException,
+            YaPublicaException {
+        Fabrica.getIPublicarLista().publicarLista(nomLista, nick);
+    }
+    
+    @WebMethod
+    public DataColeccionRanking darRanking() {
+        return new DataColeccionRanking(Fabrica.getIRanking().darRanking());
+    }
+    
+    @WebMethod
+    public boolean contratarSuscripcion(TipoSuscripcion tipo, String nickname) throws ClienteInexistenteException {
+        return Fabrica.getISuscripcionWeb().contratarSuscripcion(tipo, nickname);
+    }
+    
+    @WebMethod
+    public DataColeccionTemas sugerir() {
+        return Fabrica.getISugerencias().sugerir();
     }
 }
