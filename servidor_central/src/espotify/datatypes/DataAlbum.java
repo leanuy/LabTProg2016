@@ -2,14 +2,16 @@ package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataAlbum implements DataFavoriteable {
-    private final String nombre;
-    private final int anio;
-    private final List<String> generos;
-    private final BufferedImage img;
-    private final String nickArtista; //nickname
+    private String nombre;
+    private int anio;
+    private List<String> generos;
+    private BufferedImage img;
+    private String nickArtista;
 
     public String getNombre() {
         return nombre;
@@ -39,4 +41,27 @@ public class DataAlbum implements DataFavoriteable {
         this.img = img;
         this.nickArtista = artista;
     }    
+
+    public DataAlbum() {
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    public void setGeneros(List<String> generos) {
+        this.generos = generos;
+    }
+
+    public void setImg(BufferedImage img) {
+        this.img = img;
+    }
+
+    public void setNickArtista(String nickArtista) {
+        this.nickArtista = nickArtista;
+    }
 }

@@ -57,8 +57,8 @@ class Lista {
         this.anoCreacion = currentDate();
     }
 
-    List<DataTema> listarTemas() {
-        List<DataTema> salida = new ArrayList();
+    ArrayList<DataTema> listarTemas() {
+        ArrayList<DataTema> salida = new ArrayList();
         Tema tema;
         for (Map.Entry<String, Tema> entry : temas.entrySet()) {
             tema = entry.getValue();
@@ -74,10 +74,12 @@ class Lista {
             throw new TemaRepetidoException("El tema ya existe en la lista");
         }
         temas.put(clave, tema);
+        tema.fueAgregadoALista();
     }
 
     void quitarTema(String nomTema,String nomAlbum) {
         String clave = nomTema + nomAlbum;
+        temas.get(clave).fueQuitadoDeLista();
         temas.remove(clave);
     }
     

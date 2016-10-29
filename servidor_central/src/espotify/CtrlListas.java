@@ -219,33 +219,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
         Cliente clie = ctrlU.buscarCliente(nick_sesion);
         clie.agregarTemaLista(tem, lista_poner);
     }
-    
-/*    @Override
-    public void agregarTemaWebxListaPub(String nick_sesion, String lista_poner, 
-            String nom_tema, String lista_sacar, String usuario) throws ClienteInexistenteException, 
-            ListaInexistenteException, TemaInexistenteException, Exception {
-        
-        CtrlUsuarios ctrlU = new CtrlUsuarios();
-        Cliente usuar = ctrlU.buscarCliente(usuario);
-        Particular part = usuar.buscarListaPublica(lista_sacar);
-        Tema tem = part.buscarTema(nom_tema);
-        Cliente clie = ctrlU.buscarCliente(nick_sesion);
-        clie.agregarTemaLista(tem, lista_poner);
-    }
-    
-    @Override
-    public void agregarTemaWebxListaDefecto(String nick_sesion, String lista_poner, 
-            String nom_tema, String lista_sacar) throws ListaInexistenteException, 
-            TemaInexistenteException, ClienteInexistenteException, Exception {
-        
-        CtrlUsuarios ctrlU = new CtrlUsuarios();
-        Defecto def = buscarLista(lista_sacar);
-        Tema tem = def.buscarTema(nom_tema);
-        Cliente clie = ctrlU.buscarCliente(nick_sesion);
-        clie.agregarTemaLista(tem, lista_poner);
-    }*/
-    
-    
+     
     @Override
     public boolean listaEsPrivada(String nomLista, String nick)
             throws ClienteInexistenteException, ListaInexistenteException {

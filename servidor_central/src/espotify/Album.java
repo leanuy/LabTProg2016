@@ -165,6 +165,13 @@ public class Album implements Favoriteable {
             }
         }
     }
+
+    FixedSizePriorityQueue<Tema> aportarSugerencias(FixedSizePriorityQueue<Tema> cola) {
+        for (Tema tem : temas) {
+            cola.add(tem);
+        }
+        return cola;
+    }
     
     
 }

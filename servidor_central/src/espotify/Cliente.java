@@ -188,6 +188,9 @@ public class Cliente extends Usuario {
         if (favoritos.contains(fav)) {
             throw new FavoritoRepetidoException();
         } else {
+            if(fav instanceof Tema) {
+                ((Tema) fav).fueFavoriteado();
+            }
             favoritos.add(fav);
         }
     }
@@ -203,6 +206,9 @@ public class Cliente extends Usuario {
 
     public void desFavoritear(Favoriteable fav) throws FavoritoRepetidoException {
         if (favoritos.contains(fav)) {
+            if(fav instanceof Tema) {
+                ((Tema) fav).fueDesFavoriteado();
+            }
             favoritos.remove(fav);
         } else {
             throw new FavoritoRepetidoException();

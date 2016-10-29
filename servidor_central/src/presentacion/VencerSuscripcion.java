@@ -118,7 +118,7 @@ public class VencerSuscripcion extends javax.swing.JInternalFrame {
             String suscripcion = "Estado: "
                     + dataSusc.getEstado().toString()
                     + " updated: "
-                    + dataSusc.getfDesdeStr()
+                    + dataSusc.getFechaDesdeStr()
                     + " tipo: "
                     + dataSusc.getTipo().toString();
             if (dataSusc.getEstado()==EstadoSuscripcion.VIGENTE) {

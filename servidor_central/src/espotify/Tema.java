@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.datatypes.DataTema;
+import java.util.Comparator;
 
 class Tema implements Favoriteable {
     private final String nombre;
@@ -9,6 +10,8 @@ class Tema implements Favoriteable {
     private final Album album;
     private int cantReproducciones;
     private int cantDescargas;
+    private int listasCon;
+    private int favoritosCon;
 
     String getNombre() {
         return nombre;
@@ -37,6 +40,8 @@ class Tema implements Favoriteable {
         this.album = album;
         this.cantDescargas=0;
         this.cantReproducciones=0;
+        this.listasCon=0;
+        this.favoritosCon=0;
     }
 
     void registrarUso(boolean esDescarga) {
@@ -45,5 +50,34 @@ class Tema implements Favoriteable {
         } else {
             cantReproducciones++;
         }
+    }
+
+    void fueAgregadoALista() {
+        listasCon++;
+    }
+
+    void fueQuitadoDeLista() {
+        listasCon--;
+    }
+
+    void fueDesFavoriteado() {
+        favoritosCon--;
+    }
+
+    void fueFavoriteado() {
+        favoritosCon++;
+    }
+    
+    public static Comparator comparadorTemas() {
+        return new Comparator<Tema>() {
+                @Override
+                public int compare(Tema o1, Tema o2) {
+                    return (int)(1000000*(o2.puntaje() - o1.puntaje()) + Math.random()*2000 - 1000);
+                }
+            };
+    }
+
+    private double puntaje() {
+        return cantDescargas*0.2 + cantReproducciones*0.3 + listasCon*0.2 + favoritosCon*0.3;
     }
 }

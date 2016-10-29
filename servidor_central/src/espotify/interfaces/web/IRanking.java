@@ -1,9 +1,9 @@
 package espotify.interfaces.web;
 
 import espotify.datatypes.DataRanking;
-import java.util.List;
+import java.util.ArrayList;
 
 
 public interface IRanking {
-    public List<DataRanking> darRanking();
+    public ArrayList<DataRanking> darRanking();
 }
