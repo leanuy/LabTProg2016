@@ -125,6 +125,7 @@
 <div class="menu-izquierda col-lg-2 col-md-2 hidden-sm hidden-xs">
     <div class="row">
         <ul class="list-group">
+            <li class="list-group-item"><i class="glyphicon glyphicon-headphones"></i> <a class="btn-link-sidebar" href="/Sugerencias">Sugerencias</a></li>
             <li class="list-group-item"><i class="glyphicon glyphicon-cd"></i> <a class="btn-link-sidebar" href="/VerGenero?genero=Genero">Géneros</a></li>
             <li class="list-group-item"><i class="glyphicon glyphicon-user"></i> <a class="btn-link-sidebar" href="/Artistas">Artistas</a></li>
             <li class="list-group-item"><i class="glyphicon glyphicon-user"></i> <a class="btn-link-sidebar" href="/Clientes">Clientes</a></li>

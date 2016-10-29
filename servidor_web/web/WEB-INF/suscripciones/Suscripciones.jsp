@@ -18,12 +18,12 @@
                     <c:choose>
                         <c:when test="${not empty vigente and vigente}">
                             <li>
-                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Vencimiento: ${suscvigente.fVenStr} Ultima modificacion: ${suscvigente.fUpdate}</p>
+                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} <%--Vencimiento: ${suscvigente.fechaVenStr}--%> Ultima modificacion: ${suscvigente.fechaUpdateStr}</p>
                             </li>
                         </c:when>
                         <c:when test="${not empty pendiente and pendiente}">
                             <li>
-                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Ultima modificacion: ${suscvigente.fUpdate}</p>
+                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Ultima modificacion: ${suscvigente.fechaUpdateStr}</p>
                             </li>
                             <p>Suscripcion pendiente de aprobacion, puede cancelarla si asi lo desea</p>
                             <form action="/CancelarSuscripcion" method="POST">
@@ -32,7 +32,7 @@
                         </c:when>
                         <c:when test="${not empty vencida and vencida}">
                             <li>
-                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Ultima modificacion: ${suscvigente.fUpdate}</p>
+                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Ultima modificacion: ${suscvigente.fechaUpdateStr}</p>
                             </li>
                             <p>La suscripcion se encuentra vencida, puede renovar o cancelar</p>
                             <form action="/RenovarSuscripcion" method="POST">
@@ -41,7 +41,7 @@
                             <form action="/CancelarSuscripcion" method="POST">
                                 <button class="btn btn-custom" type="submit" name="cancelar" value="${nick_sesion}">Cancelar</button>
                             </form>
-                        </c:when>                        
+                        </c:when>                     
                     </c:choose>
                 </c:when>                        
                 <c:otherwise>

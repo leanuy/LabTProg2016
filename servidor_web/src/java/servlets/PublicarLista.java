@@ -9,12 +9,8 @@ import espotify.Fabrica;
 import espotify.datatypes.DataParticular;
 import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
-import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IAltaLista;
-import espotify.interfaces.IPublicarLista;
-import espotify.interfaces.web.ISuscripcionWeb;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,6 +24,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.ListaInexistenteException_Exception;
+import servidor.YaPublicaException_Exception;
 
 /**
  *
@@ -51,22 +50,22 @@ public class PublicarLista extends HttpServlet {
                 "iso-8859-1"), "UTF-8");
         String nick = (String) session.getAttribute("nick_sesion");
         try {
-            ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
-            if (isusc.tieneSuscripcionVigente(nick)) {
-                IPublicarLista ipl = Fabrica.getIPublicarLista();
-                ipl.publicarLista(lista, nick);
+            servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();
+            if (port.tieneSuscripcionVigente(nick)) {
+                port.publicarLista(lista, nick);
                 response.sendRedirect("/VerListaParticular?nick="+nick+"&lista=" + request.getParameter("lista"));
             } else {
                 response.sendError(500);
             }
-        } catch (ClienteInexistenteException e) {
-            response.sendError(500, "cliente inexistente");
-        } catch (ListaInexistenteException e) {
-            response.sendError(500, "lista inexistente ");
-        } catch (YaPublicaException e) {
-            response.sendError(500, "lista ya publicada");
         } catch (IOException e) {
             response.sendError(500);
+        } catch (ClienteInexistenteException_Exception ex) {
+            response.sendError(500, "cliente inexistente");
+        } catch (ListaInexistenteException_Exception ex) {
+            response.sendError(500, "lista inexistente ");
+        } catch (YaPublicaException_Exception ex) {
+            response.sendError(500, "lista ya publicada");
         }
     }
 

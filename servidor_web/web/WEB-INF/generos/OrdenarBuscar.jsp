@@ -19,7 +19,7 @@
                 <ul>
                     <c:forEach items="${temas}" var="item">
                         <li>
-                            <a href="/VerAlbum?album=${item[1]}&nick=${item[2]}">${item[0]} - ${item[3]}</a>
+                            <a href="/VerAlbum?album=${item.item[1]}&nick=${item.item[2]}">${item.item[0]} - ${item.item[3]}</a>
                         </li>
                     </c:forEach>
                 </ul>
@@ -38,11 +38,11 @@
                     <c:forEach items="${listas}" var="item">
                         <li>
                             <c:choose>
-                                <c:when test="${item[1] == 'Defecto'}">
-                                    <a href="/VerListaDefecto?lista=${item[0]}">${item[0]} - ${item[2]}</a>
+                                <c:when test="${item.item[1] == 'Defecto'}">
+                                    <a href="/VerListaDefecto?lista=${item.item[0]}">${item.item[0]} - ${item.item[2]}</a>
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="/VerListaParticular?lista=${item[0]}&nick=${item[3]}">${item[0]} - ${item[2]}</a>
+                                    <a href="/VerListaParticular?lista=${item.item[0]}&nick=${item.item[3]}">${item.item[0]} - ${item.item[2]}</a>
                                 </c:otherwise>
                             </c:choose>
                         </li>

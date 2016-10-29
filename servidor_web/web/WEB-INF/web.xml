@@ -148,6 +148,10 @@
         <servlet-name>Descargar</servlet-name>
         <servlet-class>servlets.Descargar</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Sugerencias</servlet-name>
+        <servlet-class>servlets.Sugerencias</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Inicio</servlet-name>
         <url-pattern>/inicio</url-pattern>
@@ -295,6 +299,10 @@
     <servlet-mapping>
         <servlet-name>Descargar</servlet-name>
         <url-pattern>/Descargar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sugerencias</servlet-name>
+        <url-pattern>/Sugerencias</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
