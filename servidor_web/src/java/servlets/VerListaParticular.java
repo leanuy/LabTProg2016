@@ -58,11 +58,6 @@ public class VerListaParticular extends HttpServlet {
                 response.sendError(500);
             } else {
                 request.setAttribute("nomLista", data.getNombre());
-                if(data.getImg() == null) {
-                    request.setAttribute("imagen", "./assets/img/default_cover.png");
-                } else {
-                    request.setAttribute("imagen", data.getImg());
-                }
                 request.setAttribute("nomCliente", inputNick);
 
                 request.setAttribute("temas", data.getTemas());

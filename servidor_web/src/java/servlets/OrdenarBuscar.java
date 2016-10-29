@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import net.java.dev.jaxb.array.StringArray;
+import servidor.BeanBusqueda;
 
 /**
  *
@@ -55,7 +57,8 @@ public class OrdenarBuscar extends HttpServlet {
         }
         request.setAttribute("busqueda", busqueda);
         if (!busqueda.equals("") && busqueda != null) {
-            IBuscar buscador = Fabrica.getIBuscar();
+            servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();
             Comparator tem_comp;
             Comparator alb_comp;
             Comparator list_comp = alf_list_comp();;
@@ -69,11 +72,12 @@ public class OrdenarBuscar extends HttpServlet {
                 alb_comp = ano_alb_comp();
                 list_comp = ano_list_comp();
             }
-            List<String[]> temas = buscador.buscarTemas(busqueda);
+            BeanBusqueda resultado = port.buscar(busqueda);
+            List<StringArray> temas = resultado.getTemas();
             Collections.sort(temas, tem_comp);
-            List<DataAlbum> albums = buscador.buscarAlbums(busqueda);
+            List<servidor.DataAlbum> albums = resultado.getAlbums();
             Collections.sort(albums, alb_comp);
-            List<String[]> listas = buscador.buscarListas(busqueda);
+            List<StringArray> listas = resultado.getListas();
             request.setAttribute("temas", temas);
             request.setAttribute("albums", albums);
             request.setAttribute("listas", listas);
@@ -81,22 +85,22 @@ public class OrdenarBuscar extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/generos/OrdenarBuscar.jsp").forward(request,response);
     }
     
-    private Comparator alf_tema_comp() {
-        return new Comparator<String[]>() {
+     private Comparator alf_tema_comp() {
+        return new Comparator<StringArray>() {
                 @Override
-                public int compare(String[] o1, String[] o2) {
-                    return o1[0].compareToIgnoreCase(o2[0]);
+                public int compare(StringArray o1, StringArray o2) {
+                    return o1.getItem().get(0).compareToIgnoreCase(o2.getItem().get(0));
                 }
             };   
     }
     
     private Comparator ano_tema_comp() {
-        return new Comparator<String[]>() {
+        return new Comparator<StringArray>() {
             @Override
-            public int compare(String[] o1, String[] o2) {
+            public int compare(StringArray o1, StringArray o2) {
                 int result;
-                int o1Int = Integer.parseInt(o1[3]);
-                int o2Int = Integer.parseInt(o2[3]);
+                int o1Int = Integer.parseInt(o1.getItem().get(3));
+                int o2Int = Integer.parseInt(o2.getItem().get(3));
                 if (o1Int > o2Int) {
                     result = -1;
                 }
@@ -112,18 +116,18 @@ public class OrdenarBuscar extends HttpServlet {
     }
     
     private Comparator alf_alb_comp() {
-        return new Comparator<DataAlbum>() {
+        return new Comparator<servidor.DataAlbum>() {
             @Override
-            public int compare(DataAlbum o1, DataAlbum o2) {
+            public int compare(servidor.DataAlbum o1, servidor.DataAlbum o2) {
                 return o1.getNombre().compareToIgnoreCase(o2.getNombre());
             }
         };
     }
     
     private Comparator ano_alb_comp() {
-        return new Comparator<DataAlbum>() {
+        return new Comparator<servidor.DataAlbum>() {
             @Override
-            public int compare(DataAlbum o1, DataAlbum o2) {
+            public int compare(servidor.DataAlbum o1, servidor.DataAlbum o2) {
                 int result;
                 int o1Int = o1.getAnio();
                 int o2Int = o2.getAnio();
@@ -142,21 +146,21 @@ public class OrdenarBuscar extends HttpServlet {
     }
     
     private Comparator alf_list_comp() {
-        return new Comparator<String[]>() {
+        return new Comparator<StringArray>() {
             @Override
-            public int compare(String[] o1, String[] o2) {
-                return o1[0].compareToIgnoreCase(o2[0]);
+            public int compare(StringArray o1, StringArray o2) {
+                return o1.getItem().get(0).compareToIgnoreCase(o2.getItem().get(0));
             }
         };
     }
     
     private Comparator ano_list_comp() {
-        return new Comparator<String[]>() {
+        return new Comparator<StringArray>() {
             @Override
-            public int compare(String[] o1, String[] o2) {
+            public int compare(StringArray o1, StringArray o2) {
                 int result;
-                int o1Int = Integer.parseInt(o1[2]);
-                int o2Int = Integer.parseInt(o2[2]);
+                int o1Int = Integer.parseInt(o1.getItem().get(2));
+                int o2Int = Integer.parseInt(o2.getItem().get(2));
                 if (o1Int > o2Int) {
                     result = -1;
                 }

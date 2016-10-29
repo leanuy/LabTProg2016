@@ -6,11 +6,12 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,8 @@ import model.EstadoSesion;
 import servidor.ClienteInexistenteException_Exception;
 import servidor.DataSuscripcion;
 import servidor.EstadoSuscripcion;
+import servidor.NoHaySuscripcionException_Exception;
+import servidor.TipoSuscripcion;
 
 /**
  *
@@ -57,6 +60,8 @@ public class Suscripcion extends HttpServlet {
                 actual = port.obtenerSuscripcionActual(nick);
             } catch (ClienteInexistenteException_Exception ex) {
                 response.sendError(500);
+            } catch (NoHaySuscripcionException_Exception ex) {
+                actual = null;
             }
             if ( request.getAttribute("suscvigente") != null ) {
                 request.setAttribute("suscvigente", null);
@@ -126,15 +131,17 @@ public class Suscripcion extends HttpServlet {
         HttpSession session = request.getSession();
         String nick = (String) session.getAttribute("nick_sesion");
         String tipo = (String)request.getParameter("tipo");
-        ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
-        boolean contratacionExitosa = false;
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();        
+            boolean contratacionExitosa = false;
         try {
-            contratacionExitosa = inter.contratarSuscripcion(devolverTipoSuscripcion(tipo), nick);
+            contratacionExitosa = port.contratarSuscripcion(devolverTipoSuscripcion(tipo), nick);
             response.sendRedirect("/Suscripcion");
-        } catch (ClienteInexistenteException ex) {
+        } catch (ClienteInexistenteException_Exception ex) {
             response.sendError(500);
         }        
     }
+    
     private TipoSuscripcion devolverTipoSuscripcion(String tip) {
         TipoSuscripcion tipo;
         if ( tip.equals("semanal") ){

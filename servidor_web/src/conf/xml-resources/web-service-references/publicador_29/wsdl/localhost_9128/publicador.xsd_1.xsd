@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is JAX-WS RI 2.2.9-b130926.1035 svn-revision#5f6196f2b90e9460065a4c2f4e30e065b245e51e. --><xs:schema xmlns:tns="http://servidor/" xmlns:ns1="http://jaxb.dev.java.net/array" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://servidor/">
+
+<xs:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://localhost:9128/publicador?xsd=2"></xs:import>
+
+<xs:element name="ArtistaInexistenteException" type="tns:ArtistaInexistenteException"></xs:element>
+
+<xs:element name="AutoSeguirseException" type="tns:AutoSeguirseException"></xs:element>
+
+<xs:element name="ClienteInexistenteException" type="tns:ClienteInexistenteException"></xs:element>
+
+<xs:element name="CorreoRepetidoException" type="tns:CorreoRepetidoException"></xs:element>
+
+<xs:element name="FormatoIncorrectoException" type="tns:FormatoIncorrectoException"></xs:element>
+
+<xs:element name="GeneroInexistenteException" type="tns:GeneroInexistenteException"></xs:element>
+
+<xs:element name="ListaInexistenteException" type="tns:ListaInexistenteException"></xs:element>
+
+<xs:element name="NickRepetidoException" type="tns:NickRepetidoException"></xs:element>
+
+<xs:element name="NoHaySuscripcionException" type="tns:NoHaySuscripcionException"></xs:element>
+
+<xs:element name="SeguidoInexistenteException" type="tns:SeguidoInexistenteException"></xs:element>
+
+<xs:element name="SeguidoRepetidoException" type="tns:SeguidoRepetidoException"></xs:element>
+
+<xs:element name="SeguidorInexistenteException" type="tns:SeguidorInexistenteException"></xs:element>
+
+<xs:element name="TransicionSuscripcionInvalidaException" type="tns:TransicionSuscripcionInvalidaException"></xs:element>
+
+<xs:element name="UsuarioInexistenteException" type="tns:UsuarioInexistenteException"></xs:element>
+
+<xs:element name="YaPublicaException" type="tns:YaPublicaException"></xs:element>
+
+<xs:complexType name="dataColeccionString">
+<xs:sequence>
+<xs:element name="data" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ClienteInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ListaInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="YaPublicaException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataArtistaExt">
+<xs:complexContent>
+<xs:extension base="tns:dataArtista">
+<xs:sequence>
+<xs:element name="alb" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="dataArtista">
+<xs:complexContent>
+<xs:extension base="tns:dataUsuario">
+<xs:sequence>
+<xs:element name="bio" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="url" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="dataUsuario">
+<xs:sequence>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="apellido" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="correo" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="fechaNac" type="xs:dateTime" minOccurs="0"></xs:element>
+<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
+<xs:element name="seguidores" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="password" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+<xs:attribute name="fNacStr" type="xs:string"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="bufferedImage">
+<xs:sequence>
+<xs:element name="data" type="tns:raster" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="raster">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ArtistaInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionSuscripcion">
+<xs:sequence>
+<xs:element name="data" type="tns:dataSuscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataSuscripcion">
+<xs:sequence>
+<xs:element name="fechaCreacion" type="xs:dateTime" minOccurs="0"></xs:element>
+<xs:element name="fechaUpdate" type="xs:dateTime" minOccurs="0"></xs:element>
+<xs:element name="estado" type="tns:estadoSuscripcion" minOccurs="0"></xs:element>
+<xs:element name="tipo" type="tns:tipoSuscripcion" minOccurs="0"></xs:element>
+</xs:sequence>
+<xs:attribute name="fechaCreacionStr" type="xs:string"></xs:attribute>
+<xs:attribute name="fechaUpdateStr" type="xs:string"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="UsuarioInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionRanking">
+<xs:sequence>
+<xs:element name="data" type="tns:dataRanking" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataRanking">
+<xs:sequence>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="cantSeguidores" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NoHaySuscripcionException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TransicionSuscripcionInvalidaException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="NickRepetidoException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CorreoRepetidoException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="FormatoIncorrectoException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataLista">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
+<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataTema">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="duracion" type="xs:int"></xs:element>
+<xs:element name="num" type="xs:int"></xs:element>
+<xs:element name="nomArtista" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="album" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="esWeb" type="xs:boolean"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="beanBusqueda">
+<xs:sequence>
+<xs:element name="albums" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="listas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="temas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataAlbum">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="anio" type="xs:int"></xs:element>
+<xs:element name="generos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
+<xs:element name="nickArtista" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SeguidorInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SeguidoInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="SeguidoRepetidoException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="AutoSeguirseException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataCliente">
+<xs:complexContent>
+<xs:extension base="tns:dataUsuario">
+<xs:sequence></xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="dataClienteExt">
+<xs:complexContent>
+<xs:extension base="tns:dataCliente">
+<xs:sequence>
+<xs:element name="seg" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="lis" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="beanConsultaGenero">
+<xs:sequence>
+<xs:element name="albums" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="data" type="tns:dataGenero" minOccurs="0"></xs:element>
+<xs:element name="listas" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataGenero">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="padre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="hijos" type="tns:dataGenero" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="GeneroInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:simpleType name="estadoSuscripcion">
+<xs:restriction base="xs:string">
+<xs:enumeration value="PENDIENTE"></xs:enumeration>
+<xs:enumeration value="VIGENTE"></xs:enumeration>
+<xs:enumeration value="CANCELADA"></xs:enumeration>
+<xs:enumeration value="VENCIDA"></xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="tipoSuscripcion">
+<xs:restriction base="xs:string">
+<xs:enumeration value="SEMANAL"></xs:enumeration>
+<xs:enumeration value="MENSUAL"></xs:enumeration>
+<xs:enumeration value="ANUAL"></xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+</xs:schema>

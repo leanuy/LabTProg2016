@@ -5,13 +5,7 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.SeguidoInexistenteException;
-import espotify.excepciones.SeguidorInexistenteException;
-import espotify.interfaces.web.IWebSeguir;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.SeguidoInexistenteException_Exception;
+import servidor.SeguidorInexistenteException_Exception;
 
 /**
  *
@@ -44,13 +40,14 @@ public class DejarSeguirUsuario extends HttpServlet {
             String Seguidor = (String) session.getAttribute("nick_sesion");
             String aSeguir = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
-            IWebSeguir iws = Fabrica.getIWebSeguir();
+            servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();
             try {
-                iws.dejarDeSeguir(Seguidor, aSeguir);
+                port.dejarDeSeguir(Seguidor, aSeguir);
                 request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request, response);
-            } catch (SeguidoInexistenteException ex) {
+            } catch (SeguidoInexistenteException_Exception ex) {
                 response.sendError(404);
-            } catch (SeguidorInexistenteException ex) {
+            } catch (SeguidorInexistenteException_Exception ex) {
                 response.sendError(404);
             }
             

@@ -5,17 +5,7 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.AutoSeguirseException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.SeguidoInexistenteException;
-import espotify.excepciones.SeguidoRepetidoException;
-import espotify.excepciones.SeguidorInexistenteException;
-import espotify.interfaces.web.ISuscripcionWeb;
-import espotify.interfaces.web.IWebSeguir;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.AutoSeguirseException_Exception;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.SeguidoInexistenteException_Exception;
+import servidor.SeguidoRepetidoException_Exception;
+import servidor.SeguidorInexistenteException_Exception;
 
 /**
  *
@@ -48,25 +43,25 @@ public class SeguirUsuario extends HttpServlet {
             String Seguidor = (String) session.getAttribute("nick_sesion");
             String aSeguir = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
-            ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
+            servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();
             try {
-                if (isusc.tieneSuscripcionVigente(Seguidor)) {
-                    IWebSeguir iws = Fabrica.getIWebSeguir();
-                    iws.altaSeguir(Seguidor, aSeguir);
+                if (port.tieneSuscripcionVigente(Seguidor)) {
+                    port.altaSeguir(Seguidor, aSeguir);
                     request.getRequestDispatcher("/VerPerfil?nick="+aSeguir).forward(request, response);
                 } else {
                     response.sendError(500);
                 }
-            } catch (SeguidorInexistenteException ex) {
+            } catch (ClienteInexistenteException_Exception ex) {
+                response.sendError(500);
+            } catch (AutoSeguirseException_Exception ex) {
+                response.sendError(500);
+            } catch (SeguidoInexistenteException_Exception ex) {
                 response.sendError(404);
-            } catch (SeguidoInexistenteException ex) {
+            } catch (SeguidoRepetidoException_Exception ex) {
+                response.sendError(500);
+            } catch (SeguidorInexistenteException_Exception ex) {
                 response.sendError(404);
-            } catch (SeguidoRepetidoException ex) {
-                response.sendError(500);
-            } catch (AutoSeguirseException ex) {
-                response.sendError(500);
-            } catch (ClienteInexistenteException ex) {
-                response.sendError(500);
             }
         }
     }
