@@ -2,6 +2,8 @@
 
 <xs:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://localhost:9128/publicador?xsd=2"></xs:import>
 
+<xs:element name="AlbumInexistenteException" type="tns:AlbumInexistenteException"></xs:element>
+
 <xs:element name="ArtistaInexistenteException" type="tns:ArtistaInexistenteException"></xs:element>
 
 <xs:element name="AutoSeguirseException" type="tns:AutoSeguirseException"></xs:element>
@@ -30,6 +32,8 @@
 
 <xs:element name="UsuarioInexistenteException" type="tns:UsuarioInexistenteException"></xs:element>
 
+<xs:element name="YaPublicaException" type="tns:YaPublicaException"></xs:element>
+
 <xs:complexType name="dataColeccionString">
 <xs:sequence>
 <xs:element name="data" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
@@ -43,6 +47,12 @@
 </xs:complexType>
 
 <xs:complexType name="ListaInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="YaPublicaException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
@@ -122,6 +132,19 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="dataColeccionRanking">
+<xs:sequence>
+<xs:element name="data" type="tns:dataRanking" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataRanking">
+<xs:sequence>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="cantSeguidores" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="NoHaySuscripcionException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
@@ -170,6 +193,30 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="dataColeccionTemas">
+<xs:sequence>
+<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataTema">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="duracion" type="xs:int"></xs:element>
+<xs:element name="num" type="xs:int"></xs:element>
+<xs:element name="nomArtista" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="album" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="esWeb" type="xs:boolean"></xs:element>
+</xs:sequence>
+<xs:attribute name="duracionStr" type="xs:string"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="AlbumInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="SeguidorInexistenteException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
@@ -208,10 +255,6 @@
 <xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
 <xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataTema">
-<xs:sequence></xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="dataClienteExt">

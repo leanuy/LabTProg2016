@@ -2,6 +2,8 @@
 
 <xs:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://localhost:9128/publicador?xsd=2"></xs:import>
 
+<xs:element name="AlbumInexistenteException" type="tns:AlbumInexistenteException"></xs:element>
+
 <xs:element name="ArtistaInexistenteException" type="tns:ArtistaInexistenteException"></xs:element>
 
 <xs:element name="AutoSeguirseException" type="tns:AutoSeguirseException"></xs:element>
@@ -207,6 +209,12 @@
 <xs:element name="esWeb" type="xs:boolean"></xs:element>
 </xs:sequence>
 <xs:attribute name="duracionStr" type="xs:string"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="AlbumInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="SeguidorInexistenteException">

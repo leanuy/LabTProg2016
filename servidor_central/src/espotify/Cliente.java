@@ -123,8 +123,8 @@ public class Cliente extends Usuario {
         listas.put(nomLista, listaPublica);
     }
 
-    public List<String> listarListas() {
-        List salida = new ArrayList();
+    public ArrayList<String> listarListas() {
+        ArrayList salida = new ArrayList();
         listas.keySet().stream().forEach((key) -> {
             salida.add(key);
         });
