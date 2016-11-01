@@ -5,15 +5,19 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataUsuario {
-    private final String nick;
-    private final String nombre;
-    private final String apellido;
-    private final String correo;
-    private final Calendar fechaNac;
-    private final BufferedImage img;
-    private final List<String> seguidores;
+    private String nick;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private Calendar fechaNac;
+    private BufferedImage img;
+    private List<String> seguidores;
     private String password;
 
     public String getNick() {
@@ -44,7 +48,7 @@ public class DataUsuario {
         return this.seguidores;
     }
     
-    
+    @XmlAttribute
     public String getfNacStr() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(fechaNac.getTime());
@@ -76,4 +80,41 @@ public class DataUsuario {
     public String getPassword() {
         return this.password;
     }
+
+    public DataUsuario() {
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setFechaNac(Calendar fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public void setImg(BufferedImage img) {
+        this.img = img;
+    }
+
+    public void setSeguidores(List<String> seguidores) {
+        this.seguidores = seguidores;
+    }
+    
+    
 }

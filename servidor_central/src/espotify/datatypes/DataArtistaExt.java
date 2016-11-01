@@ -8,23 +8,16 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author Santiago
  */
-public class DataArtistaExt extends DataUsuario {
-    private final String bio;
-    private final String url;
-    private final String[] alb;
-
-    public String getBio() {
-        return bio;
-    }
-    
-    public String getUrl() {
-        return url;
-    }
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DataArtistaExt extends DataArtista {
+    private String[] alb;
     
     public String[] getAlbums() {
         return alb;
@@ -34,9 +27,7 @@ public class DataArtistaExt extends DataUsuario {
             Calendar fechaNac, BufferedImage img, String bio, String url, Map<String, Album> albums,
             List<String> segdores) {
 
-        super(nick, nombre, apellido, correo, fechaNac, img, segdores);
-        this.bio = bio;
-        this.url = url;
+        super(bio, url, nick, nombre, apellido, correo, fechaNac, img, segdores);
         int cant = albums.size();
         alb = new String[cant];
         int idx = 0;
@@ -50,10 +41,7 @@ public class DataArtistaExt extends DataUsuario {
     public DataArtistaExt(String nick, String nombre, String apellido, String correo, Calendar fechaNac,
             BufferedImage img, String bio, String url, Map<String, Album> albums, String pwd) {
 
-        super(nick, nombre, apellido, correo, fechaNac, img, pwd);
-
-        this.bio = bio;
-        this.url = url;
+        super(bio, url, nick, nombre, apellido, correo, fechaNac, img, pwd);
         int cant = albums.size();
         alb = new String[cant];
         int idx = 0;
@@ -72,8 +60,6 @@ public class DataArtistaExt extends DataUsuario {
             final DataArtistaExt other = (DataArtistaExt) obj;
             return !(other == null 
                     || !(Objects.equals(this.getfNac(), other.getfNac())) 
-                    || !(Objects.equals(this.bio, other.bio))
-                    || !(Objects.equals(this.url, other.url))
                     || !(Objects.equals(this.getNick(), other.getNick())) 
                     || !(Objects.equals(this.getNombre(), other.getNombre()))
                     || !(Objects.equals(this.getApellido(), other.getApellido()))
@@ -81,5 +67,17 @@ public class DataArtistaExt extends DataUsuario {
                     || !(Objects.equals(this.getImg(), other.getImg()))
                     || !(Arrays.deepEquals(this.alb, other.alb)));
         }
+    }
+
+    public DataArtistaExt() {
+        super();
+    }
+
+    public String[] getAlb() {
+        return alb;
+    }
+
+    public void setAlb(String[] alb) {
+        this.alb = alb;
     }
 }

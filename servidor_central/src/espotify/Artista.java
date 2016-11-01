@@ -84,8 +84,8 @@ class Artista extends Usuario {
         return album;
     }
     
-    List<String> listarAlbumes() {
-        List<String> listaAlbums = new ArrayList();
+    ArrayList<String> listarAlbumes() {
+        ArrayList<String> listaAlbums = new ArrayList();
         Iterator iterador = albums.entrySet().iterator();
         Album albumActual;
         while (iterador.hasNext()) {
@@ -129,6 +129,14 @@ class Artista extends Usuario {
             temas.addAll(datatem);
         }
         return temas;
+    }
+
+    FixedSizePriorityQueue<Tema> aportarSugerencias(FixedSizePriorityQueue<Tema> cola) {
+        for (Map.Entry<String, Album> entry : albums.entrySet()) {
+            Album alb = entry.getValue();
+            cola = alb.aportarSugerencias(cola);
+        }
+        return cola;
     }
 
 }

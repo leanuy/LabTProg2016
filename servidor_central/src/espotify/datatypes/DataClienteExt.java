@@ -5,14 +5,17 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
 /**
  *
  * @author Santiago
  */
-public class DataClienteExt extends DataUsuario {
-    private final String[] seg;
-    private final String[] lis;
+@XmlAccessorType(XmlAccessType.FIELD)
+public class DataClienteExt extends DataCliente {
+    private String[] seg;
+    private String[] lis;
     
     public String[] getSeguidos() {
         return seg;
@@ -54,4 +57,24 @@ public class DataClienteExt extends DataUsuario {
                    || !(Objects.equals(this.getImg(), other.getImg())));
         }
     }    
+
+    public String[] getSeg() {
+        return seg;
+    }
+
+    public String[] getLis() {
+        return lis;
+    }
+
+    public void setSeg(String[] seg) {
+        this.seg = seg;
+    }
+
+    public void setLis(String[] lis) {
+        this.lis = lis;
+    }
+
+    public DataClienteExt() {
+        super();
+    }
 }

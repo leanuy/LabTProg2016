@@ -1,12 +1,16 @@
 package espotify.datatypes;
 
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataTema implements DataFavoriteable {
-    private final String nombre;
-    private final int duracion;
-    private final int num;
-    private final String nomArtista;
+    private String nombre;
+    private int duracion;
+    private int num;
+    private String nomArtista;
     private String album;
     private boolean esWeb;
     
@@ -30,6 +34,7 @@ public class DataTema implements DataFavoriteable {
         return album;
     }
     
+    @XmlAttribute
     public String getDuracionStr() {
         if ((duracion % 60) < 10) {
             return duracion / 60 + ":0" + duracion % 60;
@@ -91,7 +96,30 @@ public class DataTema implements DataFavoriteable {
         return esWeb;
     }
 
+    public DataTema() {
+    }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+
+    public void setNomArtista(String nomArtista) {
+        this.nomArtista = nomArtista;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public void setEsWeb(boolean esWeb) {
+        this.esWeb = esWeb;
+    }
 }

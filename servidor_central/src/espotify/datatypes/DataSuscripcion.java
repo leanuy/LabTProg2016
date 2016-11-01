@@ -3,12 +3,19 @@ package espotify.datatypes;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataSuscripcion {
-    private final Calendar fechaCreacion;
-    private final Calendar fechaUpdate;
-    private final EstadoSuscripcion estado;
-    private final TipoSuscripcion tipo;
+    private Calendar fechaCreacion;
+    private Calendar fechaUpdate;
+    private EstadoSuscripcion estado;
+    private TipoSuscripcion tipo;
+
+    public DataSuscripcion() {
+    }    
 
     public DataSuscripcion(Calendar fechaCreacion, Calendar fUp, EstadoSuscripcion estado, TipoSuscripcion tipo) {
         this.fechaCreacion = fechaCreacion;
@@ -16,7 +23,7 @@ public class DataSuscripcion {
         this.estado = estado;
         this.tipo = tipo;
     }
-    
+
     public Calendar getFechaCreacion() {
         return fechaCreacion;
     }
@@ -33,16 +40,18 @@ public class DataSuscripcion {
         return tipo;
     }
     
-    public String getfCreacionStr() {
+    @XmlAttribute
+    public String getFechaCreacionStr() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(fechaCreacion.getTime());
     }
     
     public String info() {
-        return "Estado: " + estado + " tipo: " + tipo + " Updated: " + getfUpdate();
+        return "Estado: " + estado + " tipo: " + tipo + " Updated: " + getFechaUpdateStr();
     }
     
-    public String getfUpdate() {
+    @XmlAttribute
+    public String getFechaUpdateStr() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(fechaUpdate.getTime());
     }
@@ -63,5 +72,19 @@ public class DataSuscripcion {
         }
     }
 
-    
+    public void setFechaCreacion(Calendar fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public void setFechaUpdate(Calendar fechaUpdate) {
+        this.fechaUpdate = fechaUpdate;
+    }
+
+    public void setEstado(EstadoSuscripcion estado) {
+        this.estado = estado;
+    }
+
+    public void setTipo(TipoSuscripcion tipo) {
+        this.tipo = tipo;
+    }
 }

@@ -1,11 +1,21 @@
 package espotify.datatypes;
 
 public class DataTemaWeb extends DataTema {
-    private final String url;
+    private String url;
 
     public String getUrl() {
         return url;
     }
+
+    public DataTemaWeb() {
+        super();
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+    
+    
     
     public DataTemaWeb(String url, String nombre, int duracion,
             int num, String artista, String album) {

@@ -6,16 +6,16 @@
 package espotify.interfaces;
 
 import espotify.datatypes.DataAlbum;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author DJA
  */
 public interface IBuscar {
-    public List<String[]> buscarTemas(String busqueda);
+    public ArrayList<String[]> buscarTemas(String busqueda);
     
-    public List<DataAlbum> buscarAlbums(String busqueda);
+    public ArrayList<DataAlbum> buscarAlbums(String busqueda);
     
-    public List<String[]> buscarListas(String busqueda);
+    public ArrayList<String[]> buscarListas(String busqueda);
 }

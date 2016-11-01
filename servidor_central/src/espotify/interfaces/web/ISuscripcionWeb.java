@@ -5,20 +5,20 @@ import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
  * @author leandro
  */
 public interface ISuscripcionWeb {
-    public List<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException;
+    public ArrayList<DataSuscripcion> listarSuscripcionesCliente(String nickname) throws ClienteInexistenteException;
     
     public DataSuscripcion obtenerSuscripcionActual(String nickname) throws ClienteInexistenteException;
     
     public boolean contratarSuscripcion(TipoSuscripcion tipo, String nickname) throws ClienteInexistenteException;
     
-    public void cancelarSuscripcionVencida(String nickname) throws 
+    public void cancelarSuscripcion(String nickname) throws 
             NoHaySuscripcionException, TransicionSuscripcionInvalidaException,
             ClienteInexistenteException;
     

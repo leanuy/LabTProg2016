@@ -2,7 +2,9 @@ package espotify;
 
 import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
+import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataGenero;
+import espotify.datatypes.DataLista;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.AlbumRepetidoException;
@@ -20,9 +22,12 @@ import espotify.interfaces.IAltaGenero;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.IConsultaAlbum;
 import espotify.interfaces.web.IListarGeneros;
+import espotify.interfaces.web.ISugerencias;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerGenero;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -32,7 +37,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
-        IVerAlbum, IVerGenero, IListarGeneros, IBuscar, IAltaAlbumWeb{
+        IVerAlbum, IVerGenero, IListarGeneros, IBuscar, IAltaAlbumWeb, ISugerencias{
 
 //constructor
     public CtrlMusica() {
@@ -87,7 +92,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     
 
     @Override
-    public List<String[]> listarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
+    public ArrayList<String[]> listarAlbumesDeGenero(String nomGenero)throws GeneroInexistenteException {
         Genero genero = buscarGenero(nomGenero);
         return genero.listarAlbumes();
     }
@@ -211,7 +216,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
     }
     
     @Override
-    public List<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException {
+    public ArrayList<String> listarListasDeGenero(String nomGenero) throws GeneroInexistenteException {
         return new CtrlListas().listarListasDeGenero(nomGenero);
     }
     
@@ -224,9 +229,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         return new CtrlUsuarios().consultaTema(nick,nomAlbum,nomTema);
     }
 
-    public List<String[]> buscarTemas(String busqueda) {
+    public ArrayList<String[]> buscarTemas(String busqueda) {
         busqueda = busqueda.toLowerCase();
-        List<String[]> result = new ArrayList<String[]>();
+        ArrayList<String[]> result = new ArrayList<String[]>();
         ManejadorColecciones manejador = ManejadorColecciones.getInstancia(); 
         Map<String, Artista> artistas = manejador.getArtistas();
         List<Artista> listaArtistas = new ArrayList<Artista>(artistas.values());
@@ -269,9 +274,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
        return result;
     }
     
-    public List<DataAlbum> buscarAlbums(String busqueda) {
+    public ArrayList<DataAlbum> buscarAlbums(String busqueda) {
         busqueda = busqueda.toLowerCase();
-        List<DataAlbum> result = new ArrayList<DataAlbum>();
+        ArrayList<DataAlbum> result = new ArrayList<DataAlbum>();
         ManejadorColecciones manejador = ManejadorColecciones.getInstancia(); 
         Map<String, Artista> artistas = manejador.getArtistas();
         List<Artista> listaArtistas = new ArrayList<Artista>(artistas.values());
@@ -303,9 +308,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         return result;
     }
     
-    public List<String[]> buscarListas(String busqueda) {
+    public ArrayList<String[]> buscarListas(String busqueda) {
         busqueda = busqueda.toLowerCase();
-        List<String[]> result = new ArrayList<String[]>();
+        ArrayList<String[]> result = new ArrayList<String[]>();
         ManejadorColecciones manejador = ManejadorColecciones.getInstancia();
         Map<String, ? extends Lista> listasPorDefecto = manejador.getListas();
         List<? extends Lista> listasPorDefectoLista = new ArrayList(listasPorDefecto.values());
@@ -373,5 +378,22 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             }
         }
         return result;
+    }
+    
+    @Override
+    public DataColeccionTemas sugerir() {
+        ArrayList<DataTema> temas = new ArrayList();
+        FixedSizePriorityQueue<Tema> cola = new FixedSizePriorityQueue<>(10, Tema.comparadorTemas());
+        Map<String, Artista> mapArt = ManejadorColecciones.getInstancia().getArtistas();
+        for (Map.Entry<String, Artista> entry : mapArt.entrySet()) {
+            Artista art = entry.getValue();
+            cola = art.aportarSugerencias(cola);
+        }
+        Tema tem = cola.pollFirst();
+        while (tem!=null) {
+            temas.add(tem.getData());
+            tem = cola.pollFirst();
+        }
+        return new DataColeccionTemas(temas);
     }
 }

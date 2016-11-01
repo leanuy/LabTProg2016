@@ -45,10 +45,10 @@
                             <ul class="rig columns-4">
                                 <c:forEach items="${albums}" var="item">
                                     <li>
-                                        <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${item[1]}&extra=${item[0]}" class="image-square"/>
-                                        <h3><a class="link-user" href="/VerPerfil?nick=${item[1]}">${item[1]}</a>
+                                        <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${item.item[1]}&extra=${item.item[0]}" class="image-square"/>
+                                        <h3><a class="link-user" href="/VerPerfil?nick=${item.item[1]}">${item.item[1]}</a>
                                          - 
-                                        <a class="btn-link" href="/VerAlbum?nick=${item[1]}&amp;album=${item[0]}">${item[0]}</a></h3>
+                                        <a class="btn-link" href="/VerAlbum?nick=${item.item[1]}&amp;album=${item.item[0]}">${item.item[0]}</a></h3>
                                     </li>
                                 </c:forEach>
                             </ul>    

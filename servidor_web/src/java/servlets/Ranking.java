@@ -1,21 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataRanking;
-import espotify.interfaces.web.IListarUsuarios;
-import espotify.interfaces.web.IRanking;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servidor.DataColeccionRanking;
 
 /**
  *
@@ -36,10 +26,11 @@ public class Ranking extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        IRanking interf = Fabrica.getIRanking();
-        List<DataRanking> data = interf.darRanking();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         
-        request.setAttribute("usuarios", data);
+        DataColeccionRanking respuesta = port.darRanking();
+        request.setAttribute("usuarios", respuesta.getData());
         
         request.getRequestDispatcher("/WEB-INF/perfiles/Ranking.jsp").forward(request,response);
     }

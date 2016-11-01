@@ -232,7 +232,7 @@ public class ActualizarSuscripcion extends javax.swing.JInternalFrame {
             } else {
                 for(DataSuscripcion d : dataSusc){
                     if (d instanceof DataSuscripcionVigente) {
-                        modeloSuscripciones.addElement("Estado: " + d.getEstado() + " tipo: " + d.getTipo() + " Updated: " + d.getfUpdate() + " Vence: " + ((DataSuscripcionVigente) d).getfVenStr());
+                        modeloSuscripciones.addElement("Estado: " + d.getEstado() + " tipo: " + d.getTipo() + " Updated: " + d.getFechaUpdateStr() + " Vence: " + ((DataSuscripcionVigente) d).getFechaVenStr());
                     } else {
                         modeloSuscripciones.addElement(d.info());
                     }
