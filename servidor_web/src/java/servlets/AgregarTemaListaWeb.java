@@ -5,10 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.interfaces.web.IAgregarTemaListaWeb;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +13,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.ListaInexistenteException_Exception;
+import servidor.TemaRepetidoException_Exception;
 
 /**
  *
@@ -48,17 +49,22 @@ public class AgregarTemaListaWeb extends HttpServlet {
             "iso-8859-1"), "UTF-8");
         String artista = new String(request.getParameter("artista").getBytes(
             "iso-8859-1"), "UTF-8");
-        IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         try {
             if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-                    inter.agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
-                }
-        } catch (AlbumInexistenteException ex) {
+                port.agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
+            }
+        } catch (AlbumInexistenteException_Exception ex) {
             response.sendError(404);
-        } catch (ClienteInexistenteException ex) {
+        } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(404);
-        } catch (Exception ex) {
+        } catch (ClienteInexistenteException_Exception ex) {
             response.sendError(404);
+        } catch (ListaInexistenteException_Exception ex) {
+            response.sendError(404);
+        } catch (TemaRepetidoException_Exception ex) {
+            response.sendError(500);
         }
     }
 
