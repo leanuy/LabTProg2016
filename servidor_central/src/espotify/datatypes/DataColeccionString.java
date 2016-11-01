@@ -20,7 +20,6 @@ public class DataColeccionString {
 
     public DataColeccionString() {
     }
-    
 
     public ArrayList<String> getData() {
         return data;
@@ -28,7 +27,5 @@ public class DataColeccionString {
 
     public void setData(ArrayList<String> data) {
         this.data = data;
-    }
-    
-    
+    }   
 }
