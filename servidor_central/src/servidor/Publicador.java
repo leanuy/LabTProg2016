@@ -11,6 +11,7 @@ import espotify.datatypes.DataColeccionSuscripcion;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaWeb;
@@ -34,7 +35,6 @@ import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.web.IVerGenero;
-import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -264,5 +264,22 @@ public class Publicador {
         } else {
             return "";
         }
+    }
+    
+    public DataLista darInfoDefecto(String nombre)
+            throws ClienteInexistenteException, ListaInexistenteException {
+        return Fabrica.getIVerListaDefecto().darInfoDefecto(nombre);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoTema(String nick, String artista, String album, String nomtema) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataTema data = new DataTema(nomtema, 0, 0, artista, album);
+            return Fabrica.getIFavoritos().esFavorito(nick, data);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoDefecto(String nick, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataDefecto cabeza = new DataDefecto("", nomlista, null);
+            return Fabrica.getIFavoritos().esFavorito(nick, cabeza);
     }
 }

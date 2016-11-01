@@ -26,21 +26,21 @@
             <isset property="conf.dir"/>
         </condition>
     </target>
-    <target name="wsimport-client-publicador_42" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador_42"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador_42" destdir="${build.generated.dir}/jax-wsCache/publicador_42" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_42/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador_42/wsdl/localhost_9128/publicador.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/publicador_42"/>
+    <target name="wsimport-client-publicador" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/publicador"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/publicador" destdir="${build.generated.dir}/jax-wsCache/publicador" wsdl="${basedir}/${conf-dir}xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" wsdlLocation="http://localhost:9128/publicador?wsdl" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/publicador"/>
         </wsimport>
         <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/publicador_42">
+            <fileset dir="${build.generated.dir}/jax-wsCache/publicador">
                 <include name="**/*.java"/>
             </fileset>
         </copy>
     </target>
-    <target name="wsimport-client-clean-publicador_42" depends="-init-project">
+    <target name="wsimport-client-clean-publicador" depends="-init-project">
         <delete dir="${build.generated.sources.dir}/jax-ws/servidor"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/publicador_42"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/publicador"/>
     </target>
-    <target name="wsimport-client-generate" depends="wsimport-client-publicador_42"/>
+    <target name="wsimport-client-generate" depends="wsimport-client-publicador"/>
 </project>

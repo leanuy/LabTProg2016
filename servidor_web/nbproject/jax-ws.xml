@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
-  <services>
-  </services>
+  <services/>
   <clients>
-    <client name="publicador_42">
+    <client name="publicador">
       <wsdl-url>http://localhost:9128/publicador?wsdl</wsdl-url>
       <local-wsdl-file>localhost_9128/publicador.wsdl</local-wsdl-file>
       <package-name>servidor</package-name>
@@ -36,5 +35,4 @@
       </wsimport-options>
     </client>
   </clients>
-  <jsr109>false</jsr109>
 </jax-ws>

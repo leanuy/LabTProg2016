@@ -5,23 +5,21 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataDefecto;
-import espotify.datatypes.DataLista;
-import espotify.datatypes.DataTema;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.ListaInexistenteException;
-import espotify.interfaces.web.IFavoritos;
-import espotify.interfaces.web.IVerListaDefecto;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataLista;
+import servidor.DataTema;
+import servidor.ListaInexistenteException_Exception;
 
 /**
  *
@@ -46,9 +44,10 @@ public class VerListaDefecto extends HttpServlet {
         String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
 
-        IVerListaDefecto interf = Fabrica.getIVerListaDefecto();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         try {
-            DataLista data = interf.darInfoDefecto(inputNom);
+            DataLista data = port.darInfoDefecto(inputNom);
             request.setAttribute("nomLista", data.getNombre());
             if(data.getImg() == null) {
                 request.setAttribute("imagen", "./assets/img/default_cover.png");
@@ -67,16 +66,14 @@ public class VerListaDefecto extends HttpServlet {
                 soyCli = false;
             }
             if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
-                IFavoritos ifav = Fabrica.getIFavoritos();
                 boolean es_favorito;
                 String nickSesion = session.getAttribute("nick_sesion").toString();
-                DataDefecto dataFav = new DataDefecto("",data.getNombre(),null);
-                es_favorito = ifav.esFavorito(nickSesion, dataFav);
+                es_favorito = port.esFavoritoDefecto(nickSesion, data.getNombre());
                 request.setAttribute("es_favorito", es_favorito);
 
                 int idx = 0;
                 for (DataTema t : data.getTemas()) {
-                    es_favorito_temas[idx] = ifav.esFavorito(nickSesion, t);
+                    es_favorito_temas[idx] = port.esFavoritoTema(nickSesion, t.getNomArtista(), t.getAlbum(), t.getNombre());
                     idx++;
                 }
                 request.setAttribute("es_favorito_temas",es_favorito_temas);
@@ -84,13 +81,13 @@ public class VerListaDefecto extends HttpServlet {
 
             request.getRequestDispatcher("/WEB-INF/listas/ListaDefecto.jsp").forward(request,response);
             
-        } catch (ClienteInexistenteException ex) {
+        } catch (AlbumInexistenteException_Exception ex) {
             response.sendError(500);
-        } catch (ListaInexistenteException ex) {
+        } catch (ClienteInexistenteException_Exception ex) {
+            response.sendError(500);
+        } catch (ListaInexistenteException_Exception ex) {
             response.sendError(404);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(500);
-        } catch (AlbumInexistenteException ex) {
+        } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(500);
         }
     }
