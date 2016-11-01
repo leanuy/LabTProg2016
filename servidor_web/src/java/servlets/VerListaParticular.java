@@ -65,7 +65,7 @@ public class VerListaParticular extends HttpServlet {
 
                 boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
                 if(!esPrivada && session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && Boolean.valueOf(session.getAttribute("es_cliente").toString())) {
-                    IFavoritos ifav = Fabrica.getIFavoritos();
+                    /*IFavoritos ifav = Fabrica.getIFavoritos();
                     boolean es_favorito;
                     String nickSesion = session.getAttribute("nick_sesion").toString();
                     DataParticular dataFav = new DataParticular(inputNick,data.getNombre(),null);
@@ -77,11 +77,11 @@ public class VerListaParticular extends HttpServlet {
                         es_favorito_temas[idx] = ifav.esFavorito(nickSesion, (DataFavoriteable) t);
                         idx++;
                     }
-                    request.setAttribute("es_favorito_temas",es_favorito_temas);
+                    request.setAttribute("es_favorito_temas",es_favorito_temas);*/
                 }
                 request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);
             }
-        } catch (ClienteInexistenteException ex) {
+        }/* catch (ClienteInexistenteException ex) {
             response.sendError(404);
         } catch (ListaInexistenteException ex) {
             response.sendError(404);
@@ -89,7 +89,7 @@ public class VerListaParticular extends HttpServlet {
             response.sendError(404);
         } catch (AlbumInexistenteException ex) {
             response.sendError(404);
-        } catch (ClienteInexistenteException_Exception ex) {
+        }*/ catch (ClienteInexistenteException_Exception ex) {
             response.sendError(404);
         } catch (ListaInexistenteException_Exception ex) {
             response.sendError(404);

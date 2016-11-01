@@ -1,13 +1,4 @@
 package servlets;
-import espotify.Fabrica;
-import espotify.datatypes.DataTema;
-import espotify.datatypes.DataTemaWeb;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.interfaces.web.IAgregarTemaListaWeb;
-import espotify.interfaces.web.ISuscripcionWeb;
-import espotify.interfaces.web.IVerAlbum;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -18,6 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataTema;
 /**
  *
  * @author JavierM42
@@ -42,25 +37,24 @@ public class OpcionesTema extends HttpServlet {
         String nombreTema = new String(request.getParameter("tema").getBytes(
                 "iso-8859-1"), "UTF-8");
         PrintWriter out = response.getWriter();
-        
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         HttpSession session = request.getSession();
         boolean tieneVigente = false;
         String nick = (String) session.getAttribute("nick_sesion");
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
-            ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
             try {
-                tieneVigente = isusc.tieneSuscripcionVigente(nick);
-            } catch (ClienteInexistenteException e) {
+                tieneVigente = port.tieneSuscripcionVigente(nick);
+            } catch (ClienteInexistenteException_Exception ex) {
                 tieneVigente = false;
             }
         }
-        IVerAlbum interf = Fabrica.getIVerAlbum();
         try {
-            DataTema data = interf.consultaTema(nickArtista, nombreAlbum, nombreTema);
-            boolean esWeb = data instanceof DataTemaWeb;
+            DataTema data = port.consultaTema(nickArtista, nombreAlbum, nombreTema);
+            boolean esWeb = data.isEsWeb();
             request.setAttribute("esWeb",esWeb);
             if(esWeb) {
-                request.setAttribute("link",((DataTemaWeb)data).getUrl());
+                request.setAttribute("link",port.consultaURLTema(nickArtista,nombreAlbum,nombreTema));
             }
             request.setAttribute("tieneVigente",tieneVigente);
             request.setAttribute("nickArtista",nickArtista);
@@ -68,16 +62,15 @@ public class OpcionesTema extends HttpServlet {
             request.setAttribute("nombreTema",nombreTema);
             List<String> list = new ArrayList();
             if (tieneVigente) {
-                IAgregarTemaListaWeb inter = Fabrica.getIAgregarTemaListaWeb();
-                list = inter.listarListasDeCliente(nick);
+                list = port.listarListasDeCliente(nick).getData();
             }
             request.setAttribute("listas",list);
             request.getRequestDispatcher("/WEB-INF/listas/OpcionesTema.jsp").forward(request,response);
-        } catch (ArtistaInexistenteException ex) {
+        } catch (ArtistaInexistenteException_Exception ex) {
             out.write("Error");
-        } catch (AlbumInexistenteException ex) {
+        } catch (AlbumInexistenteException_Exception ex) {
             out.write("Error");
-        } catch (ClienteInexistenteException ex) {
+        } catch (ClienteInexistenteException_Exception ex) {
             out.write("Error");
         }
     }
