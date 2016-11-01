@@ -11,9 +11,12 @@ import espotify.datatypes.DataColeccionSuscripcion;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataSuscripcion;
+import espotify.datatypes.DataTema;
 import espotify.datatypes.DataUsuario;
 import espotify.datatypes.TipoSuscripcion;
+import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.ClienteInexistenteException;
@@ -30,6 +33,7 @@ import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
+import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IVerGenero;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -237,5 +241,23 @@ public class Publicador {
     @WebMethod
     public DataColeccionTemas sugerir() {
         return Fabrica.getISugerencias().sugerir();
+    }
+    
+    @WebMethod
+    public DataLista darInfoDefecto(String nombre)
+            throws ClienteInexistenteException, ListaInexistenteException {
+        return Fabrica.getIVerListaDefecto().darInfoDefecto(nombre);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoTema(String nick, String artista, String album, String nomtema) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataTema data = new DataTema(nomtema, 0, 0, artista, album);
+            return Fabrica.getIFavoritos().esFavorito(nick, data);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoDefecto(String nick, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataDefecto cabeza = new DataDefecto("", nomlista, null);
+            return Fabrica.getIFavoritos().esFavorito(nick, cabeza);
     }
 }
