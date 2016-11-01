@@ -162,7 +162,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return salida;
     }
     
-    List<String> listarListasDeCliente(String nick) throws ClienteInexistenteException {
+    ArrayList<String> listarListasDeCliente(String nick) throws ClienteInexistenteException {
         return buscarCliente(nick).listarListas();
     }
     

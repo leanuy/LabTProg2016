@@ -60,7 +60,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     }
     
     @Override
-    public List<String> listarListasDeCliente(String nick)
+    public ArrayList<String> listarListasDeCliente(String nick)
             throws ClienteInexistenteException {
         nickMem = nick;
         return new CtrlUsuarios().listarListasDeCliente(nick);

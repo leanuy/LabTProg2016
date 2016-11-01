@@ -31,6 +31,7 @@ import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.web.IVerGenero;
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -237,5 +238,11 @@ public class Publicador {
     @WebMethod
     public DataColeccionTemas sugerir() {
         return Fabrica.getISugerencias().sugerir();
+    }
+    
+    @WebMethod
+    public DataColeccionString listarListasDeCliente(String nick)
+            throws ClienteInexistenteException {
+        return new DataColeccionString(Fabrica.getIAgregarTemaListaWeb().listarListasDeCliente(nick));
     }
 }

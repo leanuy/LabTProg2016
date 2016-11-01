@@ -114,7 +114,5 @@ public class DataUsuario {
 
     public void setSeguidores(List<String> seguidores) {
         this.seguidores = seguidores;
-    }
-    
-    
+    }   
 }

@@ -8,6 +8,7 @@ package espotify.interfaces.web;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,7 +21,7 @@ public interface IAgregarTemaListaWeb {
             String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
             AlbumInexistenteException, ClienteInexistenteException, Exception;
     
-    public List<String> listarListasDeCliente(String nick)
+    public ArrayList<String> listarListasDeCliente(String nick)
             throws ClienteInexistenteException;
     
 }
