@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
-  <services>
-  </services>
+  <services/>
   <clients>
     <client name="publicador">
+<<<<<<< 41f595d093c09a594709ea57798433a54913962f
       <wsdl-url>http://localhost:9128/publicador?wsdl</wsdl-url>
       <local-wsdl-file>localhost_9128/publicador.wsdl</local-wsdl-file>
       <package-name>servidor</package-name>
@@ -36,6 +36,8 @@
       </wsimport-options>
     </client>
     <client name="publicador_1">
+=======
+>>>>>>> perqueria defecto
       <wsdl-url>http://localhost:9128/publicador?wsdl</wsdl-url>
       <local-wsdl-file>localhost_9128/publicador.wsdl</local-wsdl-file>
       <package-name>servidor</package-name>
@@ -68,5 +70,4 @@
       </wsimport-options>
     </client>
   </clients>
-  <jsr109>false</jsr109>
 </jax-ws>

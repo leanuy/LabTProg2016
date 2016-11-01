@@ -12,6 +12,7 @@ import espotify.datatypes.DataColeccionSuscripcion;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
+import espotify.datatypes.DataDefecto;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
@@ -42,7 +43,6 @@ import espotify.interfaces.web.IVerGenero;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.jws.WebMethod;
@@ -319,5 +319,23 @@ public class Publicador {
         public DataAlbumExt consultaAlbum(String nomAlbum, String nomArtista)
         throws ArtistaInexistenteException, AlbumInexistenteException {
         return Fabrica.getIVerAlbum().consultaAlbum(nomAlbum, nomArtista);
+    }
+
+    @WebMethod
+    public DataLista darInfoDefecto(String nombre)
+        throws ClienteInexistenteException, ListaInexistenteException {
+        return Fabrica.getIVerListaDefecto().darInfoDefecto(nombre);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoTema(String nick, String artista, String album, String nomtema) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataTema data = new DataTema(nomtema, 0, 0, artista, album);
+            return Fabrica.getIFavoritos().esFavorito(nick, data);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoDefecto(String nick, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataDefecto cabeza = new DataDefecto("", nomlista, null);
+            return Fabrica.getIFavoritos().esFavorito(nick, cabeza);
     }
 }
