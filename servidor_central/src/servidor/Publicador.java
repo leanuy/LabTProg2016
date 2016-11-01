@@ -12,8 +12,11 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataSuscripcion;
+import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaWeb;
 import espotify.datatypes.DataUsuario;
 import espotify.datatypes.TipoSuscripcion;
+import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.ClienteInexistenteException;
@@ -244,5 +247,22 @@ public class Publicador {
     public DataColeccionString listarListasDeCliente(String nick)
             throws ClienteInexistenteException {
         return new DataColeccionString(Fabrica.getIAgregarTemaListaWeb().listarListasDeCliente(nick));
+    }
+
+    @WebMethod
+    public DataTema consultaTema(String nick, String nomAlbum, String nomTema)
+        throws ArtistaInexistenteException, AlbumInexistenteException {
+        return Fabrica.getIVerAlbum().consultaTema(nick, nomAlbum, nomTema);
+    }
+    
+    @WebMethod
+    public String consultaURLTema(String nick, String nomAlbum, String nomTema)
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        DataTema data = Fabrica.getIVerAlbum().consultaTema(nick, nomAlbum, nomTema);
+        if (data instanceof DataTemaWeb) {
+            return ((DataTemaWeb) data).getUrl();
+        } else {
+            return "";
+        }
     }
 }
