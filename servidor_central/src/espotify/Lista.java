@@ -67,7 +67,7 @@ class Lista {
         return salida;
     }
     
-    void agregarTema(Tema tema) throws Exception {
+    void agregarTema(Tema tema) throws TemaRepetidoException {
         String clave = tema.getNombre() + tema.getNombreAlbum();
         Tema tema2 = temas.get(clave);
         if (tema2 != null) {

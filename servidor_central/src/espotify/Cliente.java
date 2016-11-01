@@ -16,6 +16,7 @@ import espotify.excepciones.ListaRepetidaException;
 import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
+import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.YaPublicaException;
 
@@ -216,10 +217,10 @@ public class Cliente extends Usuario {
         }
     }
     
-    public void agregarTemaLista(Tema tema, String lis) throws Exception {
+    public void agregarTemaLista(Tema tema, String lis) throws ListaInexistenteException, TemaRepetidoException {
         Lista lista = listas.get(lis);
         if (lista == null) {
-            throw new Exception("La lista que tiene que existir no se encontro");
+            throw new ListaInexistenteException();
         }
         lista.agregarTema(tema);
     }

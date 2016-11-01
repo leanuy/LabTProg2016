@@ -12,6 +12,7 @@ import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
+import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IAgregarTemaLista;
 import espotify.interfaces.IAltaLista;
@@ -210,7 +211,7 @@ public class CtrlListas implements IAltaLista, IPublicarLista,
     @Override
     public void agregarTemaWebxAlbum(String nick_sesion, String lista_poner, 
             String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
-            AlbumInexistenteException, ClienteInexistenteException, Exception {
+            AlbumInexistenteException, ClienteInexistenteException, ListaInexistenteException, TemaRepetidoException {
         
         CtrlUsuarios ctrlU = new CtrlUsuarios();
         Artista art = ctrlU.buscarArtista(artista);
