@@ -18,7 +18,7 @@
                     <c:choose>
                         <c:when test="${not empty vigente and vigente}">
                             <li>
-                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} <%--Vencimiento: ${suscvigente.fechaVenStr}--%> Ultima modificacion: ${suscvigente.fechaUpdateStr}</p>
+                                <p>Estado: ${suscvigente.estado} Tipo: ${suscvigente.tipo} Vencimiento: ${fVencimiento} Ultima modificacion: ${suscvigente.fechaUpdateStr}</p>
                             </li>
                         </c:when>
                         <c:when test="${not empty pendiente and pendiente}">

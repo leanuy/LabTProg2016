@@ -3,7 +3,7 @@
   <services>
   </services>
   <clients>
-    <client name="publicador_42">
+    <client name="publicador_1">
       <wsdl-url>http://localhost:9128/publicador?wsdl</wsdl-url>
       <local-wsdl-file>localhost_9128/publicador.wsdl</local-wsdl-file>
       <package-name>servidor</package-name>
