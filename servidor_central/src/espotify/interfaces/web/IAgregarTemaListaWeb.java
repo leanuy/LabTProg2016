@@ -8,8 +8,9 @@ package espotify.interfaces.web;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.ClienteInexistenteException;
+import espotify.excepciones.ListaInexistenteException;
+import espotify.excepciones.TemaRepetidoException;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -19,7 +20,7 @@ public interface IAgregarTemaListaWeb {
     
     public void agregarTemaWebxAlbum(String nick_sesion, String lista_poner, 
             String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
-            AlbumInexistenteException, ClienteInexistenteException, Exception;
+            AlbumInexistenteException, ClienteInexistenteException, ListaInexistenteException, TemaRepetidoException ;
     
     public ArrayList<String> listarListasDeCliente(String nick)
             throws ClienteInexistenteException;

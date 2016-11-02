@@ -29,6 +29,7 @@ import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
+import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
@@ -264,5 +265,12 @@ public class Publicador {
         } else {
             return "";
         }
+    }
+    
+    @WebMethod
+    public void agregarTemaWebxAlbum(String nick_sesion, String lista_poner, 
+            String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
+            AlbumInexistenteException, ClienteInexistenteException, ListaInexistenteException, TemaRepetidoException {
+        Fabrica.getIAgregarTemaListaWeb().agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
     }
 }
