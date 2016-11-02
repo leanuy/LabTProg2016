@@ -16,6 +16,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.NoHaySuscripcionException_Exception;
+import servidor.TransicionSuscripcionInvalidaException_Exception;
 
 /**
  *
@@ -37,14 +40,15 @@ public class RenovarSuscripcion extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String inputNick = new String(request.getParameter("renovar").getBytes(
                 "iso-8859-1"), "UTF-8");
-        ISuscripcionWeb inter = Fabrica.getISuscripcionWeb();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort(); 
         try {
-           inter.renovarSuscripcion(inputNick);
-        } catch ( NoHaySuscripcionException e) {
+           port.renovarSuscripcion(inputNick);
+        } catch ( NoHaySuscripcionException_Exception e) {
             response.sendError(500);
-        } catch ( TransicionSuscripcionInvalidaException e) {
+        } catch ( TransicionSuscripcionInvalidaException_Exception e) {
             response.sendError(500);
-        } catch ( ClienteInexistenteException e) {
+        } catch ( ClienteInexistenteException_Exception e) {
             response.sendError(500);
         }  
         response.sendRedirect("/Suscripcion");

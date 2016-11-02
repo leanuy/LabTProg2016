@@ -12,6 +12,7 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataSuscripcion;
+import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaWeb;
 import espotify.datatypes.DataUsuario;
@@ -272,5 +273,17 @@ public class Publicador {
             String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
             AlbumInexistenteException, ClienteInexistenteException, ListaInexistenteException, TemaRepetidoException {
         Fabrica.getIAgregarTemaListaWeb().agregarTemaWebxAlbum(nick_sesion, lista_poner, nom_tema, album, artista);
+    }
+    
+    @WebMethod
+    public String consultaFechaVencimientoSuscripcionVigente(String nick) throws ClienteInexistenteException {
+        DataSuscripcionVigente sus = (DataSuscripcionVigente) Fabrica.getISuscripcionWeb().obtenerSuscripcionActual(nick);
+        return sus.getFechaVenStr();
+    }
+    
+    @WebMethod
+    public void renovarSuscripcion(String nick) throws ClienteInexistenteException,
+            TransicionSuscripcionInvalidaException, NoHaySuscripcionException {
+        Fabrica.getISuscripcionWeb().renovarSuscripcion(nick);
     }
 }

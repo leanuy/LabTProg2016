@@ -56,6 +56,7 @@ public class Suscripcion extends HttpServlet {
                 response.sendError(500);
             }
             DataSuscripcion actual = null;
+            String fVencimiento = "";
             try {
                 actual = port.obtenerSuscripcionActual(nick);
             } catch (ClienteInexistenteException_Exception ex) {
@@ -89,6 +90,13 @@ public class Suscripcion extends HttpServlet {
                 }
                 if ( actual.getEstado() == EstadoSuscripcion.VIGENTE ) {
                     request.setAttribute("vigente", true);
+                    try {
+                        fVencimiento = port.consultaFechaVencimientoSuscripcionVigente(nick);
+                    } catch (ClienteInexistenteException_Exception ex) {
+                        // nada, si llego hasta aca el pibe existe...
+                    }
+                    request.setAttribute("fVencimiento", fVencimiento);
+                    
                 }
                 if ( actual.getEstado() == EstadoSuscripcion.CANCELADA ) {
                     request.setAttribute("cancelada", true);
@@ -100,7 +108,7 @@ public class Suscripcion extends HttpServlet {
         }
         request.getRequestDispatcher("/WEB-INF/suscripciones/Suscripciones.jsp").forward(request,response);
     }
-
+ 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
