@@ -12,6 +12,7 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataDefecto;
+import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaWeb;
@@ -279,7 +280,13 @@ public class Publicador {
     
     @WebMethod
     public boolean esFavoritoDefecto(String nick, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
-            DataDefecto cabeza = new DataDefecto("", nomlista, null);
-            return Fabrica.getIFavoritos().esFavorito(nick, cabeza);
+            DataDefecto lisdefecto = new DataDefecto("", nomlista, null);
+            return Fabrica.getIFavoritos().esFavorito(nick, lisdefecto);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoParticular(String nickSesion, String nomCliente, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataParticular lispart = new DataParticular(nomCliente, nomlista, null);
+            return Fabrica.getIFavoritos().esFavorito(nickSesion, lispart);
     }
 }

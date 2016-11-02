@@ -9,8 +9,8 @@ public class DataParticular extends DataLista {
         return nomCliente;
     }
 
-    public DataParticular(String nomCliente, String nombre, BufferedImage img) {
-        super(nombre, img);
+    public DataParticular(String nomCliente, String nombreLista, BufferedImage img) {
+        super(nombreLista, img);
         this.nomCliente = nomCliente;
     }
     
