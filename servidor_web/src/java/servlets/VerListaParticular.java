@@ -37,13 +37,15 @@ public class VerListaParticular extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        servidor.PublicadorService service =  new servidor.PublicadorService();
-        servidor.Publicador port = service.getPublicadorPort();
+        
         HttpSession session = request.getSession();
         String inputNick = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
         String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
+
+		servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
 
         try {
             DataLista data = port.darInfoParticular(inputNom, inputNick);
@@ -61,7 +63,7 @@ public class VerListaParticular extends HttpServlet {
                 if(!esPrivada && session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && Boolean.valueOf(session.getAttribute("es_cliente").toString())) {
                     boolean es_favorito;
                     String nickSesion = session.getAttribute("nick_sesion").toString();
-                    es_favorito = port.esFavoritoDefecto(nickSesion, data.getNombre());
+                    es_favorito = port.esFavoritoParticular(nickSesion, inputNick, data.getNombre());
                     request.setAttribute("es_favorito", es_favorito);
                     
                     int idx = 0;

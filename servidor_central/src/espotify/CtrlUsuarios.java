@@ -129,10 +129,6 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarCliente(nick).esFavorito(buscarFavoriteable(fav));
     }
     
-    public boolean esFavoritoTema(String nick, String artista, String album, String tema) {
-        return true;
-    }
-    
     private Publica buscarListaPublicaDeCliente(String nickCliente, String nomLista) throws
             ClienteInexistenteException, ListaInexistenteException {
         return buscarCliente(nickCliente).buscarListaPublica(nomLista);

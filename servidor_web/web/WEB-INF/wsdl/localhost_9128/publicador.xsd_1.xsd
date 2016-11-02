@@ -173,6 +173,12 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="TemaTipoInvalidoException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="NickRepetidoException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
@@ -186,12 +192,6 @@
 </xs:complexType>
 
 <xs:complexType name="FormatoIncorrectoException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="TemaTipoInvalidoException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>

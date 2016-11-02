@@ -13,12 +13,18 @@
     
     
     
+<<<<<<< 56d19d4ba834e8971016425753e2ff2fee5d6730
 >>>>>>> perqueria defecto
 
     
     
     
     
+    
+    
+=======
+    
+>>>>>>> arregle bug de lista particualar
     <system systemId="http://localhost:9128/publicador?wsdl" uri="src/conf/xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.wsdl"/>
     <system systemId="http://localhost:9128/publicador?xsd=1" uri="src/conf/xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.xsd_1.xsd"/>
     <system systemId="http://localhost:9128/publicador?xsd=2" uri="src/conf/xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.xsd_2.xsd"/>
