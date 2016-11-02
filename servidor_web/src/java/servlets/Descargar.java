@@ -17,6 +17,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.TemaTipoInvalidoException_Exception;
 
 /**
  *
@@ -41,26 +44,22 @@ public class Descargar extends HttpServlet {
             "iso-8859-1"), "UTF-8");
         String artista = new String(request.getParameter("artista").getBytes(
             "iso-8859-1"), "UTF-8");
-        
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         ServletOutputStream stream = null;
         BufferedInputStream buf = null;
         try {
-            int length = 0;
             stream = response.getOutputStream();
-            buf = Fabrica.getIObtenerAudio().getAudio(artista,album,tema,true);
-            int readBytes;
-            while ((readBytes = buf.read()) != -1) {
-                length++;
-                stream.write(readBytes);
-            }
-            response.setContentLength(length);
+            byte[] data = port.getAudio(artista,album,tema,true);
+            stream.write(data);
+            response.setContentLength(data.length);
           } catch (IOException ioe) {
             throw new ServletException(ioe.getMessage());
-          } catch (ArtistaInexistenteException ex) {
+          } catch (ArtistaInexistenteException_Exception ex) {
               response.sendError(500);
-          } catch (AlbumInexistenteException ex) {
+          } catch (AlbumInexistenteException_Exception ex) {
               response.sendError(500);
-          } catch (TemaTipoInvalidoException ex) {
+          } catch (TemaTipoInvalidoException_Exception ex) {
               response.sendError(500);
           } finally {
           if (stream != null)

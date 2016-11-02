@@ -30,6 +30,8 @@
 
 <xs:element name="TemaRepetidoException" type="tns:TemaRepetidoException"></xs:element>
 
+<xs:element name="TemaTipoInvalidoException" type="tns:TemaTipoInvalidoException"></xs:element>
+
 <xs:element name="TransicionSuscripcionInvalidaException" type="tns:TransicionSuscripcionInvalidaException"></xs:element>
 
 <xs:element name="UsuarioInexistenteException" type="tns:UsuarioInexistenteException"></xs:element>
@@ -166,6 +168,12 @@
 </xs:complexType>
 
 <xs:complexType name="TransicionSuscripcionInvalidaException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TemaTipoInvalidoException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
