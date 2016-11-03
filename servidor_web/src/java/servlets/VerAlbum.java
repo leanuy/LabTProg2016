@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
@@ -15,12 +9,17 @@ import espotify.excepciones.ListaInexistenteException;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IVerAlbum;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.DataAlbumExt;
 
 /**
  *
@@ -45,10 +44,11 @@ public class VerAlbum extends HttpServlet {
                 "iso-8859-1"), "UTF-8");
         String inputNom = new String(request.getParameter("album").getBytes(
                 "iso-8859-1"), "UTF-8");
-
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         IVerAlbum interf = Fabrica.getIVerAlbum();
         try {
-            DataAlbumExt data = interf.consultaAlbum(inputNom,inputNick);
+            DataAlbumExt data = port.consultaAlbum(inputNom,inputNick);
             request.setAttribute("nomAlbum", data.getNombre());
             if(data.getImg() == null) {
             request.setAttribute("imagen", "./assets/img/default_cover.png");
@@ -69,7 +69,7 @@ public class VerAlbum extends HttpServlet {
             catch (NullPointerException e) {
                 soyCli = false;
             }
-            if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
+            /*if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
                 IFavoritos ifav = Fabrica.getIFavoritos();
                 boolean es_favorito;
                 String nickSesion = session.getAttribute("nick_sesion").toString();
@@ -81,20 +81,12 @@ public class VerAlbum extends HttpServlet {
                     idx++;
                 }
                 request.setAttribute("es_favorito_temas",es_favorito_temas);
-            }
+            }*/
 
             request.getRequestDispatcher("/WEB-INF/albums/Album.jsp").forward(request,response);
-            
-            
-        } catch (ArtistaInexistenteException ex) {
+        } catch (AlbumInexistenteException_Exception ex) {
             response.sendError(404);
-            //el nick no es un artista
-        } catch (AlbumInexistenteException ex) {
-            response.sendError(404);
-            //el album no existe del artista
-        } catch (ClienteInexistenteException ex) {
-            response.sendError(404);
-        } catch (ListaInexistenteException ex) {
+        } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(404);
         }
     }

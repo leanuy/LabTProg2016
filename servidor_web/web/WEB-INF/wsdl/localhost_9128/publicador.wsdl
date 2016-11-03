@@ -7,61 +7,69 @@
 <xsd:import namespace="http://jaxb.dev.java.net/array" schemaLocation="http://localhost:9128/publicador?xsd=2"></xsd:import>
 </xsd:schema>
 </types>
-<message name="existeUsuarioNick">
+<message name="listarAlbumesDeArtista">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="existeUsuarioNickResponse">
-<part name="return" type="xsd:boolean"></part>
+<message name="listarAlbumesDeArtistaResponse">
+<part name="return" type="tns:dataColeccionString"></part>
 </message>
-<message name="existeUsuarioCorreo">
+<message name="ArtistaInexistenteException">
+<part name="fault" element="tns:ArtistaInexistenteException"></part>
+</message>
+<message name="consultaAlbum">
 <part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
 </message>
-<message name="existeUsuarioCorreoResponse">
-<part name="return" type="xsd:boolean"></part>
+<message name="consultaAlbumResponse">
+<part name="return" type="tns:dataAlbumExt"></part>
 </message>
-<message name="tieneSuscripcionVigente">
+<message name="AlbumInexistenteException">
+<part name="fault" element="tns:AlbumInexistenteException"></part>
+</message>
+<message name="darInfoParticular">
 <part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
 </message>
-<message name="tieneSuscripcionVigenteResponse">
-<part name="return" type="xsd:boolean"></part>
+<message name="darInfoParticularResponse">
+<part name="return" type="tns:dataLista"></part>
 </message>
 <message name="ClienteInexistenteException">
 <part name="fault" element="tns:ClienteInexistenteException"></part>
 </message>
-<message name="esCliente">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="esClienteResponse">
-<part name="return" type="xsd:boolean"></part>
-</message>
-<message name="UsuarioInexistenteException">
-<part name="fault" element="tns:UsuarioInexistenteException"></part>
-</message>
-<message name="siguiendo">
-<part name="arg0" type="xsd:string"></part>
-<part name="arg1" type="xsd:string"></part>
-</message>
-<message name="siguiendoResponse">
-<part name="return" type="xsd:boolean"></part>
-</message>
-<message name="listaEsPrivada">
-<part name="arg0" type="xsd:string"></part>
-<part name="arg1" type="xsd:string"></part>
-</message>
-<message name="listaEsPrivadaResponse">
-<part name="return" type="xsd:boolean"></part>
-</message>
 <message name="ListaInexistenteException">
 <part name="fault" element="tns:ListaInexistenteException"></part>
 </message>
-<message name="obtenerSuscripcionActual">
+<message name="listarListasPublicasDeCliente">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="obtenerSuscripcionActualResponse">
-<part name="return" type="tns:dataSuscripcion"></part>
+<message name="listarListasPublicasDeClienteResponse">
+<part name="return" type="tns:dataColeccionString"></part>
 </message>
+<message name="cancelarSuscripcion">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="cancelarSuscripcionResponse"></message>
 <message name="NoHaySuscripcionException">
 <part name="fault" element="tns:NoHaySuscripcionException"></part>
+</message>
+<message name="TransicionSuscripcionInvalidaException">
+<part name="fault" element="tns:TransicionSuscripcionInvalidaException"></part>
+</message>
+<message name="listarSuscripcionesCliente">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="listarSuscripcionesClienteResponse">
+<part name="return" type="tns:dataColeccionSuscripcion"></part>
+</message>
+<message name="renovarSuscripcion">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="renovarSuscripcionResponse"></message>
+<message name="consultaFechaVencimientoSuscripcionVigente">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="consultaFechaVencimientoSuscripcionVigenteResponse">
+<part name="return" type="xsd:string"></part>
 </message>
 <message name="consultaGenero">
 <part name="arg0" type="xsd:string"></part>
@@ -72,17 +80,10 @@
 <message name="GeneroInexistenteException">
 <part name="fault" element="tns:GeneroInexistenteException"></part>
 </message>
-<message name="buscarUsuario">
+<message name="tieneSuscripcionVigente">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="buscarUsuarioResponse">
-<part name="return" type="tns:dataUsuario"></part>
-</message>
-<message name="checkPassword">
-<part name="arg0" type="xsd:string"></part>
-<part name="arg1" type="xsd:string"></part>
-</message>
-<message name="checkPasswordResponse">
+<message name="tieneSuscripcionVigenteResponse">
 <part name="return" type="xsd:boolean"></part>
 </message>
 <message name="buscar">
@@ -91,59 +92,47 @@
 <message name="buscarResponse">
 <part name="return" type="tns:beanBusqueda"></part>
 </message>
-<message name="darRanking"></message>
-<message name="darRankingResponse">
-<part name="return" type="tns:dataColeccionRanking"></part>
+<message name="buscarUsuario">
+<part name="arg0" type="xsd:string"></part>
 </message>
-<message name="contratarSuscripcion">
-<part name="arg0" type="tns:tipoSuscripcion"></part>
+<message name="buscarUsuarioResponse">
+<part name="return" type="tns:dataUsuario"></part>
+</message>
+<message name="UsuarioInexistenteException">
+<part name="fault" element="tns:UsuarioInexistenteException"></part>
+</message>
+<message name="obtenerSuscripcionActual">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="obtenerSuscripcionActualResponse">
+<part name="return" type="tns:dataSuscripcion"></part>
+</message>
+<message name="listaEsPrivada">
+<part name="arg0" type="xsd:string"></part>
 <part name="arg1" type="xsd:string"></part>
 </message>
-<message name="contratarSuscripcionResponse">
+<message name="listaEsPrivadaResponse">
 <part name="return" type="xsd:boolean"></part>
 </message>
-<message name="sugerir"></message>
-<message name="sugerirResponse">
-<part name="return" type="tns:dataColeccionTemas"></part>
-</message>
-<message name="consultaTema">
+<message name="checkPassword">
 <part name="arg0" type="xsd:string"></part>
 <part name="arg1" type="xsd:string"></part>
-<part name="arg2" type="xsd:string"></part>
 </message>
-<message name="consultaTemaResponse">
-<part name="return" type="tns:dataTema"></part>
+<message name="checkPasswordResponse">
+<part name="return" type="xsd:boolean"></part>
 </message>
-<message name="ArtistaInexistenteException">
-<part name="fault" element="tns:ArtistaInexistenteException"></part>
+<message name="esCliente">
+<part name="arg0" type="xsd:string"></part>
 </message>
-<message name="AlbumInexistenteException">
-<part name="fault" element="tns:AlbumInexistenteException"></part>
+<message name="esClienteResponse">
+<part name="return" type="xsd:boolean"></part>
 </message>
-<message name="consultaURLTema">
+<message name="siguiendo">
 <part name="arg0" type="xsd:string"></part>
 <part name="arg1" type="xsd:string"></part>
-<part name="arg2" type="xsd:string"></part>
 </message>
-<message name="consultaURLTemaResponse">
-<part name="return" type="xsd:string"></part>
-</message>
-<message name="agregarTemaWebxAlbum">
-<part name="arg0" type="xsd:string"></part>
-<part name="arg1" type="xsd:string"></part>
-<part name="arg2" type="xsd:string"></part>
-<part name="arg3" type="xsd:string"></part>
-<part name="arg4" type="xsd:string"></part>
-</message>
-<message name="agregarTemaWebxAlbumResponse"></message>
-<message name="TemaRepetidoException">
-<part name="fault" element="tns:TemaRepetidoException"></part>
-</message>
-<message name="consultaFechaVencimientoSuscripcionVigente">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="consultaFechaVencimientoSuscripcionVigenteResponse">
-<part name="return" type="xsd:string"></part>
+<message name="siguiendoResponse">
+<part name="return" type="xsd:boolean"></part>
 </message>
 <message name="getAudio">
 <part name="arg0" type="xsd:string"></part>
@@ -157,36 +146,9 @@
 <message name="TemaTipoInvalidoException">
 <part name="fault" element="tns:TemaTipoInvalidoException"></part>
 </message>
-<message name="listarArtistas"></message>
-<message name="listarArtistasResponse">
-<part name="return" type="tns:dataColeccionString"></part>
-</message>
-<message name="consultaArtista">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="consultaArtistaResponse">
-<part name="return" type="tns:dataArtistaExt"></part>
-</message>
-<message name="consultaCliente">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="consultaClienteResponse">
-<part name="return" type="tns:dataClienteExt"></part>
-</message>
-<message name="listarClientes"></message>
-<message name="listarClientesResponse">
-<part name="return" type="tns:dataColeccionString"></part>
-</message>
-<message name="dejarDeSeguir">
-<part name="arg0" type="xsd:string"></part>
-<part name="arg1" type="xsd:string"></part>
-</message>
-<message name="dejarDeSeguirResponse"></message>
-<message name="SeguidoInexistenteException">
-<part name="fault" element="tns:SeguidoInexistenteException"></part>
-</message>
-<message name="SeguidorInexistenteException">
-<part name="fault" element="tns:SeguidorInexistenteException"></part>
+<message name="sugerir"></message>
+<message name="sugerirResponse">
+<part name="return" type="tns:dataColeccionTemas"></part>
 </message>
 <message name="altaCliente">
 <part name="arg0" type="tns:dataCliente"></part>
@@ -210,6 +172,12 @@
 <part name="arg1" type="xsd:string"></part>
 </message>
 <message name="altaSeguirResponse"></message>
+<message name="SeguidorInexistenteException">
+<part name="fault" element="tns:SeguidorInexistenteException"></part>
+</message>
+<message name="SeguidoInexistenteException">
+<part name="fault" element="tns:SeguidoInexistenteException"></part>
+</message>
 <message name="SeguidoRepetidoException">
 <part name="fault" element="tns:SeguidoRepetidoException"></part>
 </message>
@@ -230,18 +198,30 @@
 <message name="listarListasDeClienteResponse">
 <part name="return" type="tns:dataColeccionString"></part>
 </message>
-<message name="darInfoParticular">
+<message name="listarClientes"></message>
+<message name="listarClientesResponse">
+<part name="return" type="tns:dataColeccionString"></part>
+</message>
+<message name="dejarDeSeguir">
 <part name="arg0" type="xsd:string"></part>
 <part name="arg1" type="xsd:string"></part>
 </message>
-<message name="darInfoParticularResponse">
-<part name="return" type="tns:dataLista"></part>
-</message>
-<message name="listarListasPublicasDeCliente">
+<message name="dejarDeSeguirResponse"></message>
+<message name="consultaCliente">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="listarListasPublicasDeClienteResponse">
+<message name="consultaClienteResponse">
+<part name="return" type="tns:dataClienteExt"></part>
+</message>
+<message name="listarArtistas"></message>
+<message name="listarArtistasResponse">
 <part name="return" type="tns:dataColeccionString"></part>
+</message>
+<message name="consultaArtista">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="consultaArtistaResponse">
+<part name="return" type="tns:dataArtistaExt"></part>
 </message>
 <message name="listarListasPrivadasDeCliente">
 <part name="arg0" type="xsd:string"></part>
@@ -249,42 +229,138 @@
 <message name="listarListasPrivadasDeClienteResponse">
 <part name="return" type="tns:dataColeccionString"></part>
 </message>
-<message name="listarAlbumesDeArtista">
+<message name="existeUsuarioNick">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="listarAlbumesDeArtistaResponse">
-<part name="return" type="tns:dataColeccionString"></part>
+<message name="existeUsuarioNickResponse">
+<part name="return" type="xsd:boolean"></part>
 </message>
-<message name="renovarSuscripcion">
+<message name="consultaURLTema">
+<part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
+<part name="arg2" type="xsd:string"></part>
+</message>
+<message name="consultaURLTemaResponse">
+<part name="return" type="xsd:string"></part>
+</message>
+<message name="consultaTema">
+<part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
+<part name="arg2" type="xsd:string"></part>
+</message>
+<message name="consultaTemaResponse">
+<part name="return" type="tns:dataTema"></part>
+</message>
+<message name="darRanking"></message>
+<message name="darRankingResponse">
+<part name="return" type="tns:dataColeccionRanking"></part>
+</message>
+<message name="contratarSuscripcion">
+<part name="arg0" type="tns:tipoSuscripcion"></part>
+<part name="arg1" type="xsd:string"></part>
+</message>
+<message name="contratarSuscripcionResponse">
+<part name="return" type="xsd:boolean"></part>
+</message>
+<message name="existeUsuarioCorreo">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="renovarSuscripcionResponse"></message>
-<message name="TransicionSuscripcionInvalidaException">
-<part name="fault" element="tns:TransicionSuscripcionInvalidaException"></part>
+<message name="existeUsuarioCorreoResponse">
+<part name="return" type="xsd:boolean"></part>
 </message>
-<message name="cancelarSuscripcion">
+<message name="agregarTemaWebxAlbum">
 <part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
+<part name="arg2" type="xsd:string"></part>
+<part name="arg3" type="xsd:string"></part>
+<part name="arg4" type="xsd:string"></part>
 </message>
-<message name="cancelarSuscripcionResponse"></message>
-<message name="listarSuscripcionesCliente">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="listarSuscripcionesClienteResponse">
-<part name="return" type="tns:dataColeccionSuscripcion"></part>
+<message name="agregarTemaWebxAlbumResponse"></message>
+<message name="TemaRepetidoException">
+<part name="fault" element="tns:TemaRepetidoException"></part>
 </message>
 <portType name="Publicador">
-<operation name="existeUsuarioNick">
-<input wsam:Action="http://servidor/Publicador/existeUsuarioNickRequest" message="tns:existeUsuarioNick"></input>
-<output wsam:Action="http://servidor/Publicador/existeUsuarioNickResponse" message="tns:existeUsuarioNickResponse"></output>
+<operation name="listarAlbumesDeArtista">
+<input wsam:Action="http://servidor/Publicador/listarAlbumesDeArtistaRequest" message="tns:listarAlbumesDeArtista"></input>
+<output wsam:Action="http://servidor/Publicador/listarAlbumesDeArtistaResponse" message="tns:listarAlbumesDeArtistaResponse"></output>
+<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/listarAlbumesDeArtista/Fault/ArtistaInexistenteException"></fault>
 </operation>
-<operation name="existeUsuarioCorreo">
-<input wsam:Action="http://servidor/Publicador/existeUsuarioCorreoRequest" message="tns:existeUsuarioCorreo"></input>
-<output wsam:Action="http://servidor/Publicador/existeUsuarioCorreoResponse" message="tns:existeUsuarioCorreoResponse"></output>
+<operation name="consultaAlbum" parameterOrder="arg0 arg1">
+<input wsam:Action="http://servidor/Publicador/consultaAlbumRequest" message="tns:consultaAlbum"></input>
+<output wsam:Action="http://servidor/Publicador/consultaAlbumResponse" message="tns:consultaAlbumResponse"></output>
+<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/consultaAlbum/Fault/ArtistaInexistenteException"></fault>
+<fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/consultaAlbum/Fault/AlbumInexistenteException"></fault>
+</operation>
+<operation name="darInfoParticular" parameterOrder="arg0 arg1">
+<input wsam:Action="http://servidor/Publicador/darInfoParticularRequest" message="tns:darInfoParticular"></input>
+<output wsam:Action="http://servidor/Publicador/darInfoParticularResponse" message="tns:darInfoParticularResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/darInfoParticular/Fault/ClienteInexistenteException"></fault>
+<fault message="tns:ListaInexistenteException" name="ListaInexistenteException" wsam:Action="http://servidor/Publicador/darInfoParticular/Fault/ListaInexistenteException"></fault>
+</operation>
+<operation name="listarListasPublicasDeCliente">
+<input wsam:Action="http://servidor/Publicador/listarListasPublicasDeClienteRequest" message="tns:listarListasPublicasDeCliente"></input>
+<output wsam:Action="http://servidor/Publicador/listarListasPublicasDeClienteResponse" message="tns:listarListasPublicasDeClienteResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listarListasPublicasDeCliente/Fault/ClienteInexistenteException"></fault>
+</operation>
+<operation name="cancelarSuscripcion">
+<input wsam:Action="http://servidor/Publicador/cancelarSuscripcionRequest" message="tns:cancelarSuscripcion"></input>
+<output wsam:Action="http://servidor/Publicador/cancelarSuscripcionResponse" message="tns:cancelarSuscripcionResponse"></output>
+<fault message="tns:NoHaySuscripcionException" name="NoHaySuscripcionException" wsam:Action="http://servidor/Publicador/cancelarSuscripcion/Fault/NoHaySuscripcionException"></fault>
+<fault message="tns:TransicionSuscripcionInvalidaException" name="TransicionSuscripcionInvalidaException" wsam:Action="http://servidor/Publicador/cancelarSuscripcion/Fault/TransicionSuscripcionInvalidaException"></fault>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/cancelarSuscripcion/Fault/ClienteInexistenteException"></fault>
+</operation>
+<operation name="listarSuscripcionesCliente">
+<input wsam:Action="http://servidor/Publicador/listarSuscripcionesClienteRequest" message="tns:listarSuscripcionesCliente"></input>
+<output wsam:Action="http://servidor/Publicador/listarSuscripcionesClienteResponse" message="tns:listarSuscripcionesClienteResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listarSuscripcionesCliente/Fault/ClienteInexistenteException"></fault>
+</operation>
+<operation name="renovarSuscripcion">
+<input wsam:Action="http://servidor/Publicador/renovarSuscripcionRequest" message="tns:renovarSuscripcion"></input>
+<output wsam:Action="http://servidor/Publicador/renovarSuscripcionResponse" message="tns:renovarSuscripcionResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/renovarSuscripcion/Fault/ClienteInexistenteException"></fault>
+<fault message="tns:TransicionSuscripcionInvalidaException" name="TransicionSuscripcionInvalidaException" wsam:Action="http://servidor/Publicador/renovarSuscripcion/Fault/TransicionSuscripcionInvalidaException"></fault>
+<fault message="tns:NoHaySuscripcionException" name="NoHaySuscripcionException" wsam:Action="http://servidor/Publicador/renovarSuscripcion/Fault/NoHaySuscripcionException"></fault>
+</operation>
+<operation name="consultaFechaVencimientoSuscripcionVigente">
+<input wsam:Action="http://servidor/Publicador/consultaFechaVencimientoSuscripcionVigenteRequest" message="tns:consultaFechaVencimientoSuscripcionVigente"></input>
+<output wsam:Action="http://servidor/Publicador/consultaFechaVencimientoSuscripcionVigenteResponse" message="tns:consultaFechaVencimientoSuscripcionVigenteResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/consultaFechaVencimientoSuscripcionVigente/Fault/ClienteInexistenteException"></fault>
+</operation>
+<operation name="consultaGenero">
+<input wsam:Action="http://servidor/Publicador/consultaGeneroRequest" message="tns:consultaGenero"></input>
+<output wsam:Action="http://servidor/Publicador/consultaGeneroResponse" message="tns:consultaGeneroResponse"></output>
+<fault message="tns:GeneroInexistenteException" name="GeneroInexistenteException" wsam:Action="http://servidor/Publicador/consultaGenero/Fault/GeneroInexistenteException"></fault>
 </operation>
 <operation name="tieneSuscripcionVigente">
 <input wsam:Action="http://servidor/Publicador/tieneSuscripcionVigenteRequest" message="tns:tieneSuscripcionVigente"></input>
 <output wsam:Action="http://servidor/Publicador/tieneSuscripcionVigenteResponse" message="tns:tieneSuscripcionVigenteResponse"></output>
 <fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/tieneSuscripcionVigente/Fault/ClienteInexistenteException"></fault>
+</operation>
+<operation name="buscar">
+<input wsam:Action="http://servidor/Publicador/buscarRequest" message="tns:buscar"></input>
+<output wsam:Action="http://servidor/Publicador/buscarResponse" message="tns:buscarResponse"></output>
+</operation>
+<operation name="buscarUsuario">
+<input wsam:Action="http://servidor/Publicador/buscarUsuarioRequest" message="tns:buscarUsuario"></input>
+<output wsam:Action="http://servidor/Publicador/buscarUsuarioResponse" message="tns:buscarUsuarioResponse"></output>
+<fault message="tns:UsuarioInexistenteException" name="UsuarioInexistenteException" wsam:Action="http://servidor/Publicador/buscarUsuario/Fault/UsuarioInexistenteException"></fault>
+</operation>
+<operation name="obtenerSuscripcionActual">
+<input wsam:Action="http://servidor/Publicador/obtenerSuscripcionActualRequest" message="tns:obtenerSuscripcionActual"></input>
+<output wsam:Action="http://servidor/Publicador/obtenerSuscripcionActualResponse" message="tns:obtenerSuscripcionActualResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/obtenerSuscripcionActual/Fault/ClienteInexistenteException"></fault>
+<fault message="tns:NoHaySuscripcionException" name="NoHaySuscripcionException" wsam:Action="http://servidor/Publicador/obtenerSuscripcionActual/Fault/NoHaySuscripcionException"></fault>
+</operation>
+<operation name="listaEsPrivada" parameterOrder="arg0 arg1">
+<input wsam:Action="http://servidor/Publicador/listaEsPrivadaRequest" message="tns:listaEsPrivada"></input>
+<output wsam:Action="http://servidor/Publicador/listaEsPrivadaResponse" message="tns:listaEsPrivadaResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listaEsPrivada/Fault/ClienteInexistenteException"></fault>
+<fault message="tns:ListaInexistenteException" name="ListaInexistenteException" wsam:Action="http://servidor/Publicador/listaEsPrivada/Fault/ListaInexistenteException"></fault>
+</operation>
+<operation name="checkPassword" parameterOrder="arg0 arg1">
+<input wsam:Action="http://servidor/Publicador/checkPasswordRequest" message="tns:checkPassword"></input>
+<output wsam:Action="http://servidor/Publicador/checkPasswordResponse" message="tns:checkPasswordResponse"></output>
+<fault message="tns:UsuarioInexistenteException" name="UsuarioInexistenteException" wsam:Action="http://servidor/Publicador/checkPassword/Fault/UsuarioInexistenteException"></fault>
 </operation>
 <operation name="esCliente">
 <input wsam:Action="http://servidor/Publicador/esClienteRequest" message="tns:esCliente"></input>
@@ -296,76 +372,6 @@
 <output wsam:Action="http://servidor/Publicador/siguiendoResponse" message="tns:siguiendoResponse"></output>
 <fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/siguiendo/Fault/ClienteInexistenteException"></fault>
 </operation>
-<operation name="listaEsPrivada" parameterOrder="arg0 arg1">
-<input wsam:Action="http://servidor/Publicador/listaEsPrivadaRequest" message="tns:listaEsPrivada"></input>
-<output wsam:Action="http://servidor/Publicador/listaEsPrivadaResponse" message="tns:listaEsPrivadaResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listaEsPrivada/Fault/ClienteInexistenteException"></fault>
-<fault message="tns:ListaInexistenteException" name="ListaInexistenteException" wsam:Action="http://servidor/Publicador/listaEsPrivada/Fault/ListaInexistenteException"></fault>
-</operation>
-<operation name="obtenerSuscripcionActual">
-<input wsam:Action="http://servidor/Publicador/obtenerSuscripcionActualRequest" message="tns:obtenerSuscripcionActual"></input>
-<output wsam:Action="http://servidor/Publicador/obtenerSuscripcionActualResponse" message="tns:obtenerSuscripcionActualResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/obtenerSuscripcionActual/Fault/ClienteInexistenteException"></fault>
-<fault message="tns:NoHaySuscripcionException" name="NoHaySuscripcionException" wsam:Action="http://servidor/Publicador/obtenerSuscripcionActual/Fault/NoHaySuscripcionException"></fault>
-</operation>
-<operation name="consultaGenero">
-<input wsam:Action="http://servidor/Publicador/consultaGeneroRequest" message="tns:consultaGenero"></input>
-<output wsam:Action="http://servidor/Publicador/consultaGeneroResponse" message="tns:consultaGeneroResponse"></output>
-<fault message="tns:GeneroInexistenteException" name="GeneroInexistenteException" wsam:Action="http://servidor/Publicador/consultaGenero/Fault/GeneroInexistenteException"></fault>
-</operation>
-<operation name="buscarUsuario">
-<input wsam:Action="http://servidor/Publicador/buscarUsuarioRequest" message="tns:buscarUsuario"></input>
-<output wsam:Action="http://servidor/Publicador/buscarUsuarioResponse" message="tns:buscarUsuarioResponse"></output>
-<fault message="tns:UsuarioInexistenteException" name="UsuarioInexistenteException" wsam:Action="http://servidor/Publicador/buscarUsuario/Fault/UsuarioInexistenteException"></fault>
-</operation>
-<operation name="checkPassword" parameterOrder="arg0 arg1">
-<input wsam:Action="http://servidor/Publicador/checkPasswordRequest" message="tns:checkPassword"></input>
-<output wsam:Action="http://servidor/Publicador/checkPasswordResponse" message="tns:checkPasswordResponse"></output>
-<fault message="tns:UsuarioInexistenteException" name="UsuarioInexistenteException" wsam:Action="http://servidor/Publicador/checkPassword/Fault/UsuarioInexistenteException"></fault>
-</operation>
-<operation name="buscar">
-<input wsam:Action="http://servidor/Publicador/buscarRequest" message="tns:buscar"></input>
-<output wsam:Action="http://servidor/Publicador/buscarResponse" message="tns:buscarResponse"></output>
-</operation>
-<operation name="darRanking">
-<input wsam:Action="http://servidor/Publicador/darRankingRequest" message="tns:darRanking"></input>
-<output wsam:Action="http://servidor/Publicador/darRankingResponse" message="tns:darRankingResponse"></output>
-</operation>
-<operation name="contratarSuscripcion" parameterOrder="arg0 arg1">
-<input wsam:Action="http://servidor/Publicador/contratarSuscripcionRequest" message="tns:contratarSuscripcion"></input>
-<output wsam:Action="http://servidor/Publicador/contratarSuscripcionResponse" message="tns:contratarSuscripcionResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/contratarSuscripcion/Fault/ClienteInexistenteException"></fault>
-</operation>
-<operation name="sugerir">
-<input wsam:Action="http://servidor/Publicador/sugerirRequest" message="tns:sugerir"></input>
-<output wsam:Action="http://servidor/Publicador/sugerirResponse" message="tns:sugerirResponse"></output>
-</operation>
-<operation name="consultaTema" parameterOrder="arg0 arg1 arg2">
-<input wsam:Action="http://servidor/Publicador/consultaTemaRequest" message="tns:consultaTema"></input>
-<output wsam:Action="http://servidor/Publicador/consultaTemaResponse" message="tns:consultaTemaResponse"></output>
-<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/consultaTema/Fault/ArtistaInexistenteException"></fault>
-<fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/consultaTema/Fault/AlbumInexistenteException"></fault>
-</operation>
-<operation name="consultaURLTema" parameterOrder="arg0 arg1 arg2">
-<input wsam:Action="http://servidor/Publicador/consultaURLTemaRequest" message="tns:consultaURLTema"></input>
-<output wsam:Action="http://servidor/Publicador/consultaURLTemaResponse" message="tns:consultaURLTemaResponse"></output>
-<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/consultaURLTema/Fault/ArtistaInexistenteException"></fault>
-<fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/consultaURLTema/Fault/AlbumInexistenteException"></fault>
-</operation>
-<operation name="agregarTemaWebxAlbum" parameterOrder="arg0 arg1 arg2 arg3 arg4">
-<input wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbumRequest" message="tns:agregarTemaWebxAlbum"></input>
-<output wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbumResponse" message="tns:agregarTemaWebxAlbumResponse"></output>
-<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/ArtistaInexistenteException"></fault>
-<fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/AlbumInexistenteException"></fault>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/ClienteInexistenteException"></fault>
-<fault message="tns:ListaInexistenteException" name="ListaInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/ListaInexistenteException"></fault>
-<fault message="tns:TemaRepetidoException" name="TemaRepetidoException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/TemaRepetidoException"></fault>
-</operation>
-<operation name="consultaFechaVencimientoSuscripcionVigente">
-<input wsam:Action="http://servidor/Publicador/consultaFechaVencimientoSuscripcionVigenteRequest" message="tns:consultaFechaVencimientoSuscripcionVigente"></input>
-<output wsam:Action="http://servidor/Publicador/consultaFechaVencimientoSuscripcionVigenteResponse" message="tns:consultaFechaVencimientoSuscripcionVigenteResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/consultaFechaVencimientoSuscripcionVigente/Fault/ClienteInexistenteException"></fault>
-</operation>
 <operation name="getAudio" parameterOrder="arg0 arg1 arg2 arg3">
 <input wsam:Action="http://servidor/Publicador/getAudioRequest" message="tns:getAudio"></input>
 <output wsam:Action="http://servidor/Publicador/getAudioResponse" message="tns:getAudioResponse"></output>
@@ -373,29 +379,9 @@
 <fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/getAudio/Fault/AlbumInexistenteException"></fault>
 <fault message="tns:TemaTipoInvalidoException" name="TemaTipoInvalidoException" wsam:Action="http://servidor/Publicador/getAudio/Fault/TemaTipoInvalidoException"></fault>
 </operation>
-<operation name="listarArtistas">
-<input wsam:Action="http://servidor/Publicador/listarArtistasRequest" message="tns:listarArtistas"></input>
-<output wsam:Action="http://servidor/Publicador/listarArtistasResponse" message="tns:listarArtistasResponse"></output>
-</operation>
-<operation name="consultaArtista">
-<input wsam:Action="http://servidor/Publicador/consultaArtistaRequest" message="tns:consultaArtista"></input>
-<output wsam:Action="http://servidor/Publicador/consultaArtistaResponse" message="tns:consultaArtistaResponse"></output>
-<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/consultaArtista/Fault/ArtistaInexistenteException"></fault>
-</operation>
-<operation name="consultaCliente">
-<input wsam:Action="http://servidor/Publicador/consultaClienteRequest" message="tns:consultaCliente"></input>
-<output wsam:Action="http://servidor/Publicador/consultaClienteResponse" message="tns:consultaClienteResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/consultaCliente/Fault/ClienteInexistenteException"></fault>
-</operation>
-<operation name="listarClientes">
-<input wsam:Action="http://servidor/Publicador/listarClientesRequest" message="tns:listarClientes"></input>
-<output wsam:Action="http://servidor/Publicador/listarClientesResponse" message="tns:listarClientesResponse"></output>
-</operation>
-<operation name="dejarDeSeguir" parameterOrder="arg0 arg1">
-<input wsam:Action="http://servidor/Publicador/dejarDeSeguirRequest" message="tns:dejarDeSeguir"></input>
-<output wsam:Action="http://servidor/Publicador/dejarDeSeguirResponse" message="tns:dejarDeSeguirResponse"></output>
-<fault message="tns:SeguidoInexistenteException" name="SeguidoInexistenteException" wsam:Action="http://servidor/Publicador/dejarDeSeguir/Fault/SeguidoInexistenteException"></fault>
-<fault message="tns:SeguidorInexistenteException" name="SeguidorInexistenteException" wsam:Action="http://servidor/Publicador/dejarDeSeguir/Fault/SeguidorInexistenteException"></fault>
+<operation name="sugerir">
+<input wsam:Action="http://servidor/Publicador/sugerirRequest" message="tns:sugerir"></input>
+<output wsam:Action="http://servidor/Publicador/sugerirResponse" message="tns:sugerirResponse"></output>
 </operation>
 <operation name="altaCliente">
 <input wsam:Action="http://servidor/Publicador/altaClienteRequest" message="tns:altaCliente"></input>
@@ -431,50 +417,77 @@
 <output wsam:Action="http://servidor/Publicador/listarListasDeClienteResponse" message="tns:listarListasDeClienteResponse"></output>
 <fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listarListasDeCliente/Fault/ClienteInexistenteException"></fault>
 </operation>
-<operation name="darInfoParticular" parameterOrder="arg0 arg1">
-<input wsam:Action="http://servidor/Publicador/darInfoParticularRequest" message="tns:darInfoParticular"></input>
-<output wsam:Action="http://servidor/Publicador/darInfoParticularResponse" message="tns:darInfoParticularResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/darInfoParticular/Fault/ClienteInexistenteException"></fault>
-<fault message="tns:ListaInexistenteException" name="ListaInexistenteException" wsam:Action="http://servidor/Publicador/darInfoParticular/Fault/ListaInexistenteException"></fault>
+<operation name="listarClientes">
+<input wsam:Action="http://servidor/Publicador/listarClientesRequest" message="tns:listarClientes"></input>
+<output wsam:Action="http://servidor/Publicador/listarClientesResponse" message="tns:listarClientesResponse"></output>
 </operation>
-<operation name="listarListasPublicasDeCliente">
-<input wsam:Action="http://servidor/Publicador/listarListasPublicasDeClienteRequest" message="tns:listarListasPublicasDeCliente"></input>
-<output wsam:Action="http://servidor/Publicador/listarListasPublicasDeClienteResponse" message="tns:listarListasPublicasDeClienteResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listarListasPublicasDeCliente/Fault/ClienteInexistenteException"></fault>
+<operation name="dejarDeSeguir" parameterOrder="arg0 arg1">
+<input wsam:Action="http://servidor/Publicador/dejarDeSeguirRequest" message="tns:dejarDeSeguir"></input>
+<output wsam:Action="http://servidor/Publicador/dejarDeSeguirResponse" message="tns:dejarDeSeguirResponse"></output>
+<fault message="tns:SeguidoInexistenteException" name="SeguidoInexistenteException" wsam:Action="http://servidor/Publicador/dejarDeSeguir/Fault/SeguidoInexistenteException"></fault>
+<fault message="tns:SeguidorInexistenteException" name="SeguidorInexistenteException" wsam:Action="http://servidor/Publicador/dejarDeSeguir/Fault/SeguidorInexistenteException"></fault>
+</operation>
+<operation name="consultaCliente">
+<input wsam:Action="http://servidor/Publicador/consultaClienteRequest" message="tns:consultaCliente"></input>
+<output wsam:Action="http://servidor/Publicador/consultaClienteResponse" message="tns:consultaClienteResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/consultaCliente/Fault/ClienteInexistenteException"></fault>
+</operation>
+<operation name="listarArtistas">
+<input wsam:Action="http://servidor/Publicador/listarArtistasRequest" message="tns:listarArtistas"></input>
+<output wsam:Action="http://servidor/Publicador/listarArtistasResponse" message="tns:listarArtistasResponse"></output>
+</operation>
+<operation name="consultaArtista">
+<input wsam:Action="http://servidor/Publicador/consultaArtistaRequest" message="tns:consultaArtista"></input>
+<output wsam:Action="http://servidor/Publicador/consultaArtistaResponse" message="tns:consultaArtistaResponse"></output>
+<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/consultaArtista/Fault/ArtistaInexistenteException"></fault>
 </operation>
 <operation name="listarListasPrivadasDeCliente">
 <input wsam:Action="http://servidor/Publicador/listarListasPrivadasDeClienteRequest" message="tns:listarListasPrivadasDeCliente"></input>
 <output wsam:Action="http://servidor/Publicador/listarListasPrivadasDeClienteResponse" message="tns:listarListasPrivadasDeClienteResponse"></output>
 <fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listarListasPrivadasDeCliente/Fault/ClienteInexistenteException"></fault>
 </operation>
-<operation name="listarAlbumesDeArtista">
-<input wsam:Action="http://servidor/Publicador/listarAlbumesDeArtistaRequest" message="tns:listarAlbumesDeArtista"></input>
-<output wsam:Action="http://servidor/Publicador/listarAlbumesDeArtistaResponse" message="tns:listarAlbumesDeArtistaResponse"></output>
-<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/listarAlbumesDeArtista/Fault/ArtistaInexistenteException"></fault>
+<operation name="existeUsuarioNick">
+<input wsam:Action="http://servidor/Publicador/existeUsuarioNickRequest" message="tns:existeUsuarioNick"></input>
+<output wsam:Action="http://servidor/Publicador/existeUsuarioNickResponse" message="tns:existeUsuarioNickResponse"></output>
 </operation>
-<operation name="renovarSuscripcion">
-<input wsam:Action="http://servidor/Publicador/renovarSuscripcionRequest" message="tns:renovarSuscripcion"></input>
-<output wsam:Action="http://servidor/Publicador/renovarSuscripcionResponse" message="tns:renovarSuscripcionResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/renovarSuscripcion/Fault/ClienteInexistenteException"></fault>
-<fault message="tns:TransicionSuscripcionInvalidaException" name="TransicionSuscripcionInvalidaException" wsam:Action="http://servidor/Publicador/renovarSuscripcion/Fault/TransicionSuscripcionInvalidaException"></fault>
-<fault message="tns:NoHaySuscripcionException" name="NoHaySuscripcionException" wsam:Action="http://servidor/Publicador/renovarSuscripcion/Fault/NoHaySuscripcionException"></fault>
+<operation name="consultaURLTema" parameterOrder="arg0 arg1 arg2">
+<input wsam:Action="http://servidor/Publicador/consultaURLTemaRequest" message="tns:consultaURLTema"></input>
+<output wsam:Action="http://servidor/Publicador/consultaURLTemaResponse" message="tns:consultaURLTemaResponse"></output>
+<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/consultaURLTema/Fault/ArtistaInexistenteException"></fault>
+<fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/consultaURLTema/Fault/AlbumInexistenteException"></fault>
 </operation>
-<operation name="cancelarSuscripcion">
-<input wsam:Action="http://servidor/Publicador/cancelarSuscripcionRequest" message="tns:cancelarSuscripcion"></input>
-<output wsam:Action="http://servidor/Publicador/cancelarSuscripcionResponse" message="tns:cancelarSuscripcionResponse"></output>
-<fault message="tns:NoHaySuscripcionException" name="NoHaySuscripcionException" wsam:Action="http://servidor/Publicador/cancelarSuscripcion/Fault/NoHaySuscripcionException"></fault>
-<fault message="tns:TransicionSuscripcionInvalidaException" name="TransicionSuscripcionInvalidaException" wsam:Action="http://servidor/Publicador/cancelarSuscripcion/Fault/TransicionSuscripcionInvalidaException"></fault>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/cancelarSuscripcion/Fault/ClienteInexistenteException"></fault>
+<operation name="consultaTema" parameterOrder="arg0 arg1 arg2">
+<input wsam:Action="http://servidor/Publicador/consultaTemaRequest" message="tns:consultaTema"></input>
+<output wsam:Action="http://servidor/Publicador/consultaTemaResponse" message="tns:consultaTemaResponse"></output>
+<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/consultaTema/Fault/ArtistaInexistenteException"></fault>
+<fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/consultaTema/Fault/AlbumInexistenteException"></fault>
 </operation>
-<operation name="listarSuscripcionesCliente">
-<input wsam:Action="http://servidor/Publicador/listarSuscripcionesClienteRequest" message="tns:listarSuscripcionesCliente"></input>
-<output wsam:Action="http://servidor/Publicador/listarSuscripcionesClienteResponse" message="tns:listarSuscripcionesClienteResponse"></output>
-<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/listarSuscripcionesCliente/Fault/ClienteInexistenteException"></fault>
+<operation name="darRanking">
+<input wsam:Action="http://servidor/Publicador/darRankingRequest" message="tns:darRanking"></input>
+<output wsam:Action="http://servidor/Publicador/darRankingResponse" message="tns:darRankingResponse"></output>
+</operation>
+<operation name="contratarSuscripcion" parameterOrder="arg0 arg1">
+<input wsam:Action="http://servidor/Publicador/contratarSuscripcionRequest" message="tns:contratarSuscripcion"></input>
+<output wsam:Action="http://servidor/Publicador/contratarSuscripcionResponse" message="tns:contratarSuscripcionResponse"></output>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/contratarSuscripcion/Fault/ClienteInexistenteException"></fault>
+</operation>
+<operation name="existeUsuarioCorreo">
+<input wsam:Action="http://servidor/Publicador/existeUsuarioCorreoRequest" message="tns:existeUsuarioCorreo"></input>
+<output wsam:Action="http://servidor/Publicador/existeUsuarioCorreoResponse" message="tns:existeUsuarioCorreoResponse"></output>
+</operation>
+<operation name="agregarTemaWebxAlbum" parameterOrder="arg0 arg1 arg2 arg3 arg4">
+<input wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbumRequest" message="tns:agregarTemaWebxAlbum"></input>
+<output wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbumResponse" message="tns:agregarTemaWebxAlbumResponse"></output>
+<fault message="tns:ArtistaInexistenteException" name="ArtistaInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/ArtistaInexistenteException"></fault>
+<fault message="tns:AlbumInexistenteException" name="AlbumInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/AlbumInexistenteException"></fault>
+<fault message="tns:ClienteInexistenteException" name="ClienteInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/ClienteInexistenteException"></fault>
+<fault message="tns:ListaInexistenteException" name="ListaInexistenteException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/ListaInexistenteException"></fault>
+<fault message="tns:TemaRepetidoException" name="TemaRepetidoException" wsam:Action="http://servidor/Publicador/agregarTemaWebxAlbum/Fault/TemaRepetidoException"></fault>
 </operation>
 </portType>
 <binding name="PublicadorPortBinding" type="tns:Publicador">
 <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc"></soap:binding>
-<operation name="existeUsuarioNick">
+<operation name="listarAlbumesDeArtista">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -482,8 +495,11 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
+<fault name="ArtistaInexistenteException">
+<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
+</fault>
 </operation>
-<operation name="existeUsuarioCorreo">
+<operation name="consultaAlbum">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -491,6 +507,111 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
+<fault name="ArtistaInexistenteException">
+<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="AlbumInexistenteException">
+<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="darInfoParticular">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="ListaInexistenteException">
+<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="listarListasPublicasDeCliente">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="cancelarSuscripcion">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="NoHaySuscripcionException">
+<soap:fault name="NoHaySuscripcionException" use="literal"></soap:fault>
+</fault>
+<fault name="TransicionSuscripcionInvalidaException">
+<soap:fault name="TransicionSuscripcionInvalidaException" use="literal"></soap:fault>
+</fault>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="listarSuscripcionesCliente">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="renovarSuscripcion">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="TransicionSuscripcionInvalidaException">
+<soap:fault name="TransicionSuscripcionInvalidaException" use="literal"></soap:fault>
+</fault>
+<fault name="NoHaySuscripcionException">
+<soap:fault name="NoHaySuscripcionException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="consultaFechaVencimientoSuscripcionVigente">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="consultaGenero">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="GeneroInexistenteException">
+<soap:fault name="GeneroInexistenteException" use="literal"></soap:fault>
+</fault>
 </operation>
 <operation name="tieneSuscripcionVigente">
 <soap:operation soapAction=""></soap:operation>
@@ -504,7 +625,16 @@
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="esCliente">
+<operation name="buscar">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+</operation>
+<operation name="buscarUsuario">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -514,33 +644,6 @@
 </output>
 <fault name="UsuarioInexistenteException">
 <soap:fault name="UsuarioInexistenteException" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="siguiendo">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="listaEsPrivada">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="ListaInexistenteException">
-<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="obtenerSuscripcionActual">
@@ -558,7 +661,7 @@
 <soap:fault name="NoHaySuscripcionException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="consultaGenero">
+<operation name="listaEsPrivada">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -566,20 +669,11 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="GeneroInexistenteException">
-<soap:fault name="GeneroInexistenteException" use="literal"></soap:fault>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
-</operation>
-<operation name="buscarUsuario">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="UsuarioInexistenteException">
-<soap:fault name="UsuarioInexistenteException" use="literal"></soap:fault>
+<fault name="ListaInexistenteException">
+<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="checkPassword">
@@ -594,7 +688,7 @@
 <soap:fault name="UsuarioInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="buscar">
+<operation name="esCliente">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -602,92 +696,11 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-</operation>
-<operation name="darRanking">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-</operation>
-<operation name="contratarSuscripcion">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+<fault name="UsuarioInexistenteException">
+<soap:fault name="UsuarioInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="sugerir">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-</operation>
-<operation name="consultaTema">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ArtistaInexistenteException">
-<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="AlbumInexistenteException">
-<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="consultaURLTema">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ArtistaInexistenteException">
-<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="AlbumInexistenteException">
-<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="agregarTemaWebxAlbum">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ArtistaInexistenteException">
-<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="AlbumInexistenteException">
-<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="ListaInexistenteException">
-<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="TemaRepetidoException">
-<soap:fault name="TemaRepetidoException" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="consultaFechaVencimientoSuscripcionVigente">
+<operation name="siguiendo">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -717,7 +730,7 @@
 <soap:fault name="TemaTipoInvalidoException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="listarArtistas">
+<operation name="sugerir">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -725,54 +738,6 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-</operation>
-<operation name="consultaArtista">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ArtistaInexistenteException">
-<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="consultaCliente">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
-</fault>
-</operation>
-<operation name="listarClientes">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-</operation>
-<operation name="dejarDeSeguir">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://servidor/"></soap:body>
-</output>
-<fault name="SeguidoInexistenteException">
-<soap:fault name="SeguidoInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="SeguidorInexistenteException">
-<soap:fault name="SeguidorInexistenteException" use="literal"></soap:fault>
-</fault>
 </operation>
 <operation name="altaCliente">
 <soap:operation soapAction=""></soap:operation>
@@ -861,7 +826,7 @@
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="darInfoParticular">
+<operation name="listarClientes">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -869,14 +834,23 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</operation>
+<operation name="dejarDeSeguir">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="SeguidoInexistenteException">
+<soap:fault name="SeguidoInexistenteException" use="literal"></soap:fault>
 </fault>
-<fault name="ListaInexistenteException">
-<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
+<fault name="SeguidorInexistenteException">
+<soap:fault name="SeguidorInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="listarListasPublicasDeCliente">
+<operation name="consultaCliente">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -886,6 +860,27 @@
 </output>
 <fault name="ClienteInexistenteException">
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="listarArtistas">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+</operation>
+<operation name="consultaArtista">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ArtistaInexistenteException">
+<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="listarListasPrivadasDeCliente">
@@ -900,7 +895,16 @@
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
-<operation name="listarAlbumesDeArtista">
+<operation name="existeUsuarioNick">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+</operation>
+<operation name="consultaURLTema">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -911,8 +915,35 @@
 <fault name="ArtistaInexistenteException">
 <soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
 </fault>
+<fault name="AlbumInexistenteException">
+<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
+</fault>
 </operation>
-<operation name="renovarSuscripcion">
+<operation name="consultaTema">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ArtistaInexistenteException">
+<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="AlbumInexistenteException">
+<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="darRanking">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+</operation>
+<operation name="contratarSuscripcion">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -923,14 +954,8 @@
 <fault name="ClienteInexistenteException">
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
-<fault name="TransicionSuscripcionInvalidaException">
-<soap:fault name="TransicionSuscripcionInvalidaException" use="literal"></soap:fault>
-</fault>
-<fault name="NoHaySuscripcionException">
-<soap:fault name="NoHaySuscripcionException" use="literal"></soap:fault>
-</fault>
 </operation>
-<operation name="cancelarSuscripcion">
+<operation name="existeUsuarioCorreo">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -938,17 +963,8 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="NoHaySuscripcionException">
-<soap:fault name="NoHaySuscripcionException" use="literal"></soap:fault>
-</fault>
-<fault name="TransicionSuscripcionInvalidaException">
-<soap:fault name="TransicionSuscripcionInvalidaException" use="literal"></soap:fault>
-</fault>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
-</fault>
 </operation>
-<operation name="listarSuscripcionesCliente">
+<operation name="agregarTemaWebxAlbum">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
@@ -956,8 +972,20 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
+<fault name="ArtistaInexistenteException">
+<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="AlbumInexistenteException">
+<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
+</fault>
 <fault name="ClienteInexistenteException">
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="ListaInexistenteException">
+<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="TemaRepetidoException">
+<soap:fault name="TemaRepetidoException" use="literal"></soap:fault>
 </fault>
 </operation>
 </binding>

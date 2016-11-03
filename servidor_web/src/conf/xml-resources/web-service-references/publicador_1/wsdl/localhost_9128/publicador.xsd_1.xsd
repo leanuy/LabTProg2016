@@ -306,6 +306,16 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="dataAlbumExt">
+<xs:complexContent>
+<xs:extension base="tns:dataAlbum">
+<xs:sequence>
+<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
 <xs:simpleType name="estadoSuscripcion">
 <xs:restriction base="xs:string">
 <xs:enumeration value="PENDIENTE"></xs:enumeration>
