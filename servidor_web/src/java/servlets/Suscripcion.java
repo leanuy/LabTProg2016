@@ -5,9 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;

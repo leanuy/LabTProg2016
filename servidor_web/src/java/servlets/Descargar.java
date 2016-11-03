@@ -5,10 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.TemaTipoInvalidoException;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;

@@ -2,7 +2,6 @@ package servidor;
 import espotify.Fabrica;
 import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
-import espotify.datatypes.DataArchivo;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataCliente;
