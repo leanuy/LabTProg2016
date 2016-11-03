@@ -7,7 +7,6 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
-import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
@@ -16,8 +15,6 @@ import espotify.excepciones.ListaInexistenteException;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IVerAlbum;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
