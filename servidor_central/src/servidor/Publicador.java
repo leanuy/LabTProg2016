@@ -14,6 +14,7 @@ import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
 import espotify.datatypes.DataUsuario;
 import espotify.datatypes.TipoSuscripcion;
@@ -31,12 +32,18 @@ import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
 import espotify.excepciones.TemaRepetidoException;
+import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.web.IVerGenero;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -285,5 +292,25 @@ public class Publicador {
     public void renovarSuscripcion(String nick) throws ClienteInexistenteException,
             TransicionSuscripcionInvalidaException, NoHaySuscripcionException {
         Fabrica.getISuscripcionWeb().renovarSuscripcion(nick);
+    }
+    
+    @WebMethod
+    public byte[] getAudio(String nick, String album, String tema,boolean esDescarga) throws ArtistaInexistenteException,
+            AlbumInexistenteException, TemaTipoInvalidoException {
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        try {
+            BufferedInputStream is = Fabrica.getIObtenerAudio().getAudio(nick, album, tema, esDescarga);
+            int nRead;
+            byte[] data = new byte[16384];
+            
+            while ((nRead = is.read(data, 0, data.length)) != -1) {
+                buffer.write(data, 0, nRead);
+            }
+            
+            buffer.flush();            
+        } catch (IOException ex) {
+            Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return buffer.toByteArray();
     }
 }
