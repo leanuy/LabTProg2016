@@ -2,6 +2,7 @@ package servidor;
 import espotify.Fabrica;
 import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
+import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataCliente;
@@ -312,5 +313,11 @@ public class Publicador {
             Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         }
         return buffer.toByteArray();
+    }
+    
+    @WebMethod
+        public DataAlbumExt consultaAlbum(String nomAlbum, String nomArtista)
+        throws ArtistaInexistenteException, AlbumInexistenteException {
+        return Fabrica.getIVerAlbum().consultaAlbum(nomAlbum, nomArtista);
     }
 }
