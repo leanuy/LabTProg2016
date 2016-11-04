@@ -58,7 +58,7 @@
                                 <c:forEach items="${listas}" var="item">
                                     <li>
                                         <a class="btn-link" href="/VerListaDefecto?lista=${item}">
-                                        <image src="/VerImagen?tipo=ImagenListaDefecto&nombreUsuario=null&extra=${item}" class="image-square"/>
+                                        <image src="/VerImagen?tipo=ImagenLista&nombreUsuario=null&extra=${item}" class="image-square"/>
                                         <h3>${item}</h3></a>
                                     </li>
                                 </c:forEach>
