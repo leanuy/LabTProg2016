@@ -47,12 +47,6 @@ public class VerListaDefecto extends HttpServlet {
         try {
             DataLista data = port.darInfoDefecto(inputNom);
             request.setAttribute("nomLista", data.getNombre());
-            if(data.getImg() == null) {
-                request.setAttribute("imagen", "./assets/img/default_cover.png");
-            } else {
-                request.setAttribute("imagen", data.getImg());
-            }
-
             request.setAttribute("temas", data.getTemas());
 
             boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
