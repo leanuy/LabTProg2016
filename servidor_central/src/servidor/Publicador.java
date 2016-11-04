@@ -2,6 +2,7 @@ package servidor;
 import espotify.Fabrica;
 import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
+import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
@@ -344,6 +345,12 @@ public class Publicador {
     public boolean esFavoritoParticular(String nickSesion, String nomCliente, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
             DataParticular lispart = new DataParticular(nomCliente, nomlista, null);
             return Fabrica.getIFavoritos().esFavorito(nickSesion, lispart);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoAlbum(String nick, String artista, String album) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataAlbum data = new DataAlbum(album,0,null,null,artista);
+            return Fabrica.getIFavoritos().esFavorito(nick, data);
     }
     
     @WebMethod
