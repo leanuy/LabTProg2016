@@ -197,24 +197,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="dataColeccionTemas">
-<xs:sequence>
-<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataTema">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="duracion" type="xs:int"></xs:element>
-<xs:element name="num" type="xs:int"></xs:element>
-<xs:element name="nomArtista" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="album" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="esWeb" type="xs:boolean"></xs:element>
-</xs:sequence>
-<xs:attribute name="duracionStr" type="xs:string"></xs:attribute>
-</xs:complexType>
-
 <xs:complexType name="beanBusqueda">
 <xs:sequence>
 <xs:element name="albums" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
@@ -231,6 +213,24 @@
 <xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
 <xs:element name="nickArtista" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionTemas">
+<xs:sequence>
+<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataTema">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="duracion" type="xs:int"></xs:element>
+<xs:element name="num" type="xs:int"></xs:element>
+<xs:element name="nomArtista" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="album" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="esWeb" type="xs:boolean"></xs:element>
+</xs:sequence>
+<xs:attribute name="duracionStr" type="xs:string"></xs:attribute>
 </xs:complexType>
 
 <xs:complexType name="SeguidorInexistenteException">
