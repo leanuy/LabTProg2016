@@ -2,6 +2,8 @@ package servidor;
 import espotify.Fabrica;
 import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
+import espotify.datatypes.BeanListarFavoritos;
+import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
@@ -13,6 +15,7 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataDefecto;
+import espotify.datatypes.DataFavoriteable;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
@@ -46,6 +49,8 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -347,6 +352,12 @@ public class Publicador {
     }
     
     @WebMethod
+    public boolean esFavoritoAlbum(String nick, String artista, String album) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataAlbum data = new DataAlbum(album,0,null,null,artista);
+            return Fabrica.getIFavoritos().esFavorito(nick, data);
+    }
+    
+    @WebMethod
     public byte[] getImageUsuario(String nickUsr) throws UsuarioInexistenteException {
         BufferedImage img = Fabrica.getIImagen().getImageUsuario(nickUsr);
         return Fabrica.getIImagen().getByteImage(img);
@@ -368,5 +379,27 @@ public class Publicador {
     public boolean esArtista(String nickUsr) {
         return Fabrica.getIImagen().esArtista(nickUsr);
     }
+    
+    @WebMethod
+    public BeanListarFavoritos listarFavoritos(String nick) throws ClienteInexistenteException {
+        List<DataFavoriteable> favoritos = Fabrica.getIFavoritos().listarFavoritos(nick);
+        ArrayList<DataAlbum> albumsFavoritos = new ArrayList();
+        ArrayList<DataParticular> particularesFavoritas = new ArrayList();
+        ArrayList<DataTema> temasFavoritos = new ArrayList();
+        ArrayList<DataDefecto> defectoFavoritas = new ArrayList();
+        for (DataFavoriteable fav : favoritos) {
+            if(fav instanceof DataAlbum) {
+                albumsFavoritos.add((DataAlbum)fav);
+            } else if (fav instanceof DataParticular) {
+                particularesFavoritas.add((DataParticular)fav);
+            } else if (fav instanceof DataTema) {
+                temasFavoritos.add((DataTema) fav);
+            } else if (fav instanceof DataDefecto) {
+                defectoFavoritas.add((DataDefecto)fav);
+            }
+        }
+        return new BeanListarFavoritos(albumsFavoritos,particularesFavoritas,temasFavoritos,defectoFavoritas);
+    }
+    
     
 }

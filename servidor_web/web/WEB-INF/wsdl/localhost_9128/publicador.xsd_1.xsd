@@ -233,6 +233,43 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="beanListarFavoritos">
+<xs:sequence>
+<xs:element name="albumsFavoritos" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="defectoFavoritas" type="tns:dataDefecto" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="particularesFavoritas" type="tns:dataParticular" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="temasFavoritos" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataDefecto">
+<xs:complexContent>
+<xs:extension base="tns:dataLista">
+<xs:sequence>
+<xs:element name="genero" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="dataLista">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
+<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataParticular">
+<xs:complexContent>
+<xs:extension base="tns:dataLista">
+<xs:sequence>
+<xs:element name="nomCliente" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
 <xs:complexType name="SeguidorInexistenteException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
@@ -263,14 +300,6 @@
 <xs:sequence></xs:sequence>
 </xs:extension>
 </xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="dataLista">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
-<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="dataClienteExt">

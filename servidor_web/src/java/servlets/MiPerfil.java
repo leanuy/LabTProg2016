@@ -1,14 +1,6 @@
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataAlbum;
-import espotify.datatypes.DataDefecto;
-import espotify.datatypes.DataFavoriteable;
-import espotify.datatypes.DataParticular;
-import espotify.datatypes.DataTema;
-import espotify.excepciones.ClienteInexistenteException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,10 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
 import servidor.ArtistaInexistenteException_Exception;
+import servidor.BeanListarFavoritos;
 import servidor.ClienteInexistenteException_Exception;
+import servidor.DataAlbum;
 import servidor.DataArtistaExt;
 import servidor.DataClienteExt;
 import servidor.DataColeccionString;
+import servidor.DataDefecto;
+import servidor.DataParticular;
+import servidor.DataTema;
 import servidor.UsuarioInexistenteException_Exception;
 
 public class MiPerfil extends HttpServlet {
@@ -67,31 +64,17 @@ public class MiPerfil extends HttpServlet {
                         DataColeccionString listasPriv = port.listarListasPrivadasDeCliente(nick);
                         request.setAttribute("listasPriv", listasPriv.getData());
                         
-                        List<DataFavoriteable> favoritos = Fabrica.getIFavoritos().listarFavoritos(d.getNick());
-                        List<DataAlbum> albumsFavoritos = new ArrayList();
-                        List<DataParticular> particularesFavoritas = new ArrayList();
-                        List<DataTema> temasFavoritos = new ArrayList();
-                        List<DataDefecto> defectoFavoritas = new ArrayList();
-                        for (DataFavoriteable fav : favoritos) {
-                            if(fav instanceof DataAlbum) {
-                                albumsFavoritos.add((DataAlbum)fav);
-                            } else if (fav instanceof DataParticular) {
-                                particularesFavoritas.add((DataParticular)fav);
-                            } else if (fav instanceof DataTema) {
-                                temasFavoritos.add((DataTema) fav);
-                            } else if (fav instanceof DataDefecto) {
-                                defectoFavoritas.add((DataDefecto)fav);
-                            }
-                        }
+                        BeanListarFavoritos coleccionFavs = port.listarFavoritos(d.getNick());
+                        List<DataAlbum> albumsFavoritos = coleccionFavs.getAlbumsFavoritos();
+                        List<DataParticular> particularesFavoritas = coleccionFavs.getParticularesFavoritas();
+                        List<DataTema> temasFavoritos = coleccionFavs.getTemasFavoritos();
+                        List<DataDefecto> defectoFavoritas = coleccionFavs.getDefectoFavoritas();
                         request.setAttribute("albumsFavoritos", albumsFavoritos);
                         request.setAttribute("particularesFavoritas", particularesFavoritas);
                         request.setAttribute("temasFavoritos", temasFavoritos);
                         request.setAttribute("defectoFavoritas", defectoFavoritas);
                         
                         request.getRequestDispatcher("/WEB-INF/perfiles/MiPerfilCliente.jsp").forward(request,response);
-                    } catch (ClienteInexistenteException e) {
-                        response.sendError(404);
-                        //problemas consultando el cliente
                     } catch (ClienteInexistenteException_Exception ex) {
                         response.sendError(404);
                     }

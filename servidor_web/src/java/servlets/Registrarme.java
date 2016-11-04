@@ -134,7 +134,7 @@ public class Registrarme extends HttpServlet {
                 XMLGregorianCalendar xc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
                 dataArt.setFechaNac(xc);
                 //dataArt.setImg(img);
-                dataArt.setPassword(password);                
+                dataArt.setPassword(password);
                 
                 servidor.PublicadorService service =  new servidor.PublicadorService();
                 servidor.Publicador port = service.getPublicadorPort();

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
 import java.io.IOException;
@@ -11,7 +6,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.EstadoSesion;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.ClienteInexistenteException_Exception;
 import servidor.DataColeccionTemas;
+import servidor.DataTema;
+import servidor.ListaInexistenteException_Exception;
 
 /**
  *
@@ -39,32 +40,35 @@ public class Sugerencias extends HttpServlet {
         HttpSession session = request.getSession();
         request.setAttribute("temas", data.getData());
 
-        /*boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
-        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && Boolean.valueOf(session.getAttribute("es_cliente").toString())) {
-            try {
-                IFavoritos ifav = Fabrica.getIFavoritos();
-                boolean es_favorito;
-                String nickSesion = session.getAttribute("nick_sesion").toString();
-                DataParticular dataFav = new DataParticular(nickSesion,data.getNombre(),null);
-                es_favorito = ifav.esFavorito(nickSesion, dataFav);
-                request.setAttribute("es_favorito", es_favorito);
-                
-                int idx = 0;
-                for (DataTema t : data.getTemas()) {
-                    es_favorito_temas[idx] = ifav.esFavorito(nickSesion, (DataFavoriteable) t);
+        boolean[] es_favorito_temas = new boolean[data.getData().size()];
+        boolean soyCli;
+        try {
+            soyCli = Boolean.valueOf(session.getAttribute("es_cliente").toString());
+        }
+        catch (NullPointerException e) {
+            soyCli = false;
+        }
+        if(session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && soyCli) {
+            String nickSesion = session.getAttribute("nick_sesion").toString();
+            request.setAttribute("soyCli", true);
+
+            int idx = 0;
+            for (DataTema t : data.getData()) {
+                try {
+                    es_favorito_temas[idx] = port.esFavoritoTema(nickSesion, t.getNomArtista(), t.getAlbum(), t.getNombre());
                     idx++;
+                } catch (AlbumInexistenteException_Exception ex) {
+                    response.sendError(500);
+                } catch (ArtistaInexistenteException_Exception ex) {
+                    response.sendError(500);
+                } catch (ClienteInexistenteException_Exception ex) {
+                    response.sendError(500);
+                } catch (ListaInexistenteException_Exception ex) {
+                    response.sendError(500);
                 }
-                request.setAttribute("es_favorito_temas",es_favorito_temas);
-            } catch (ClienteInexistenteException ex) {
-                Logger.getLogger(Sugerencias.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ListaInexistenteException ex) {
-                Logger.getLogger(Sugerencias.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ArtistaInexistenteException ex) {
-                Logger.getLogger(Sugerencias.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (AlbumInexistenteException ex) {
-                Logger.getLogger(Sugerencias.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }*/
+            request.setAttribute("es_favorito_temas",es_favorito_temas);
+        }
         request.getRequestDispatcher("/WEB-INF/listas/Sugerencias.jsp").forward(request,response);
     }
 
