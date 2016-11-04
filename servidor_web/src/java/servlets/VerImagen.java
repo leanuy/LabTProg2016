@@ -5,11 +5,7 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.UsuarioInexistenteException;
-import espotify.interfaces.web.IObtenerImagen;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URL;
@@ -21,6 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import servidor.BufferedImage;
+import servidor.DataImagen;
+import servidor.UsuarioInexistenteException_Exception;
 
 /**
  *
@@ -48,15 +47,22 @@ public class VerImagen extends HttpServlet {
             "iso-8859-1"), "UTF-8");
         String extra = new String(request.getParameter("extra").getBytes(
             "iso-8859-1"), "UTF-8");
-        IObtenerImagen interfaz = Fabrica.getIImagen();
+        //IObtenerImagen interfaz = Fabrica.getIImagen();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+        
+        DataImagen dtimg;
         BufferedImage img = null;
         URL url = null;
         ServletContext sc = session.getServletContext();
         try {
             if (tipo.equals("ImagenUsuario")) {
-                img = interfaz.getImageUsuario(nomUsuario);
+                dtimg = port.getImageUsuario(nomUsuario);
+                img = dtimg.getImage();
+                //img = interfaz.getImageUsuario(nomUsuario);
                 if (img == null) {
-                    boolean artista = interfaz.esArtista(nomUsuario);
+                    //boolean artista = interfaz.esArtista(nomUsuario);
+                    boolean artista = port.esArtista(nomUsuario);
                     if (artista){
                         url = sc.getResource("/assets/img/artista.png");
                     } else {
@@ -65,7 +71,9 @@ public class VerImagen extends HttpServlet {
                 }
             }
             if (tipo.equals("ImagenAlbum")) {
-                img = interfaz.getImageAlbum(nomUsuario, extra);
+                //img = interfaz.getImageAlbum(nomUsuario, extra);
+                dtimg = port.getImageAlbum(nomUsuario, extra);
+                img = dtimg.getImage();
                 if (img == null) {
                     url = sc.getResource("/assets/img/default_cover.png");
                 }
@@ -83,21 +91,23 @@ public class VerImagen extends HttpServlet {
                 }
             }*/
             if (tipo.equals("ImagenLista")) {
-                img = interfaz.getImageLista(nomUsuario, extra);
+                //img = interfaz.getImageLista(nomUsuario, extra);
+                dtimg = port.getImageLista(nomUsuario, extra);
+                img = dtimg.getImage();
                 if (img == null) {
                     url = sc.getResource("/assets/img/default_cover.png");
                 }
             }
-            if (img == null) {
+            /*if (img == null) {
                 Image imag;
                 imag = ImageIO.read(url);
                 img = (BufferedImage) imag;
-            }
+            }*/
             OutputStream out = response.getOutputStream();
-            ImageIO.write(img, "png", out);
+            ImageIO.write((RenderedImage) img, "png", out);
             out.close();
 
-        } catch (UsuarioInexistenteException ex) {
+        } catch (UsuarioInexistenteException_Exception ex) {
             response.sendError(404);
         /*} catch (ListaInexistenteException ex) {
             response.sendError(404);

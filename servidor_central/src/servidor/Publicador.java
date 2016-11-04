@@ -12,6 +12,7 @@ import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataDefecto;
+import espotify.datatypes.DataImagen;
 import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataTema;
@@ -36,6 +37,7 @@ import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.web.IVerGenero;
+import java.awt.image.BufferedImage;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -288,5 +290,28 @@ public class Publicador {
     public boolean esFavoritoParticular(String nickSesion, String nomCliente, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
             DataParticular lispart = new DataParticular(nomCliente, nomlista, null);
             return Fabrica.getIFavoritos().esFavorito(nickSesion, lispart);
+    }
+    
+    @WebMethod
+    public DataImagen getImageUsuario(String nickUsr) throws UsuarioInexistenteException {
+        BufferedImage img = Fabrica.getIImagen().getImageUsuario(nickUsr);
+        return new DataImagen(img);
+    }
+    
+    @WebMethod
+    public DataImagen getImageAlbum(String nickUsr, String album) {
+        BufferedImage img = Fabrica.getIImagen().getImageAlbum(nickUsr, album);
+        return new DataImagen(img);
+    }
+    
+    @WebMethod
+    public DataImagen getImageLista(String nickUsr, String lista) {
+        BufferedImage img = Fabrica.getIImagen().getImageLista(nickUsr, lista);
+        return new DataImagen(img);
+    }
+    
+    @WebMethod
+    public boolean esArtista(String nickUsr) {
+        return Fabrica.getIImagen().esArtista(nickUsr);
     }
 }

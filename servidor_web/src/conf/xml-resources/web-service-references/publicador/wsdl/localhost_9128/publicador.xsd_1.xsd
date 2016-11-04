@@ -64,6 +64,22 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="dataImagen">
+<xs:sequence>
+<xs:element name="Image" type="tns:bufferedImage" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="bufferedImage">
+<xs:sequence>
+<xs:element name="data" type="tns:raster" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="raster">
+<xs:sequence></xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="YaPublicaException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
@@ -103,16 +119,6 @@
 <xs:element name="password" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 <xs:attribute name="fNacStr" type="xs:string"></xs:attribute>
-</xs:complexType>
-
-<xs:complexType name="bufferedImage">
-<xs:sequence>
-<xs:element name="data" type="tns:raster" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="raster">
-<xs:sequence></xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="dataColeccionSuscripcion">
