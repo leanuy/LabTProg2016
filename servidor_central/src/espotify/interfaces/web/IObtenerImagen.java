@@ -19,4 +19,6 @@ public interface IObtenerImagen {
            throws ClienteInexistenteException, ListaInexistenteException;*/
     
     public BufferedImage getImageLista(String nickUsr, String lista);
+    
+    public byte[] getByteImage(BufferedImage bimg);
 }

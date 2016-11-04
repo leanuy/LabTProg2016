@@ -3,41 +3,6 @@
   <services/>
   <clients>
     <client name="publicador">
-<<<<<<< 41f595d093c09a594709ea57798433a54913962f
-      <wsdl-url>http://localhost:9128/publicador?wsdl</wsdl-url>
-      <local-wsdl-file>localhost_9128/publicador.wsdl</local-wsdl-file>
-      <package-name>servidor</package-name>
-      <catalog-file>catalog.xml</catalog-file>
-      <wsimport-options>
-        <wsimport-option>
-          <wsimport-option-name>extension</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>verbose</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>fork</wsimport-option-name>
-          <wsimport-option-value>false</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>wsdlLocation</wsimport-option-name>
-          <wsimport-option-value>http://localhost:9128/publicador?wsdl</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xnocompile</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-        <wsimport-option>
-          <wsimport-option-name>xendorsed</wsimport-option-name>
-          <wsimport-option-value>true</wsimport-option-value>
-        </wsimport-option>
-      </wsimport-options>
-    </client>
-    <client name="publicador_1">
-=======
->>>>>>> perqueria defecto
       <wsdl-url>http://localhost:9128/publicador?wsdl</wsdl-url>
       <local-wsdl-file>localhost_9128/publicador.wsdl</local-wsdl-file>
       <package-name>servidor</package-name>

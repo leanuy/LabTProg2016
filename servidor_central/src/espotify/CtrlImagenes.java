@@ -10,6 +10,7 @@ import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IObtenerImagen;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -62,7 +63,7 @@ public class CtrlImagenes implements IObtenerImagen {
             BufferedImage img = null;
             img = alb.getImg();
             if (img == null) {
-                File file = new File("./src/presentacion/img/albums/default_cover");
+                File file = new File("./src/presentacion/img/albums/default_cover.png");
                 try {
                     img = ImageIO.read(file);
                 } catch (IOException ex) {
@@ -74,20 +75,6 @@ public class CtrlImagenes implements IObtenerImagen {
             return null;
         }
     }
-    
-/*    @Override
-    public BufferedImage getImageListaDefecto(String nomLista) throws ListaInexistenteException {
-        DataLista list = new CtrlListas().darInfoDefecto(nomLista);
-        BufferedImage img = list.getImg();
-        return img;
-    }
-    
-    @Override
-    public BufferedImage getImageListaParticular(String nickUsr, String lista) throws ClienteInexistenteException, ListaInexistenteException {
-        DataLista list = new CtrlListas().darInfoParticular(lista, nickUsr);
-        BufferedImage img = list.getImg();
-        return img;
-    }*/
     
     @Override
     public BufferedImage getImageLista(String nickUsr, String lista) {
@@ -102,7 +89,7 @@ public class CtrlImagenes implements IObtenerImagen {
                 img = list.getImg();
             }
             if (img == null) {
-                File file = new File("./src/presentacion/img/albums/default_cover");
+                File file = new File("./src/presentacion/img/albums/default_cover.png");
                 try {
                     img = ImageIO.read(file);
                 } catch (IOException ex) {
@@ -113,5 +100,18 @@ public class CtrlImagenes implements IObtenerImagen {
         } catch (ClienteInexistenteException | ListaInexistenteException ex) {
             return null;
         }        
+    }
+    
+    @Override
+    public byte[] getByteImage(BufferedImage bimg) {
+        byte[] imageInByte = null;
+        try (ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            ImageIO.write( bimg, "png", baos );
+            baos.flush();
+            imageInByte = baos.toByteArray();
+        } catch (IOException ex) {
+            Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return imageInByte;
     }
 }
