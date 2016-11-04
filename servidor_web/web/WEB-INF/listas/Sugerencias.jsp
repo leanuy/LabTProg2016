@@ -50,8 +50,8 @@
                                 <td><c:out value="${tema.nombre}"/></td>
                                 <td class="hidden-xs"><c:out value="${tema.duracionStr}"/></td>
                                 <td>
-                                    <%--<c:choose>
-                                        <c:when test="${not empty es_favorito}">
+                                    <c:choose>
+                                        <c:when test="${not empty soyCli}">
                                             <c:choose>
                                                 <c:when test="${es_favorito_temas[temaStatus.index]}">
                                                     <a class="btn btn-link-inverse pull-left" href="/DesFavoritear?tipo=tema&artista=${tema.nomArtista}&album=${tema.album}&tema=${tema.nombre}"><i class="glyphicon glyphicon-star"></i></a>
@@ -65,7 +65,7 @@
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:when>
-                                    </c:choose>--%>
+                                    </c:choose>
                                 </td>
                                 <td>
                                     <button class="btn btn-link pull-right btn-mas-opciones-tema" data-nomArtista="${tema.nomArtista}" data-nomAlbum="${tema.album}" data-nomTema="${tema.nombre}"><i class="glyphicon glyphicon-option-horizontal"></i></button>
