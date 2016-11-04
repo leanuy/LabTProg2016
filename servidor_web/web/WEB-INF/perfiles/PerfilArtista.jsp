@@ -87,7 +87,7 @@
                                 <c:forEach items="${albums}" var="item">
                                     <li>
                                         <a class="btn-link" href="/VerAlbum?nick=${nick}&amp;album=${item}">
-                                            <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${$nick}&extra=${item}" class="image-square"/>
+                                            <image src="/VerImagen?tipo=ImagenAlbum&nombreUsuario=${nick}&extra=${item}" class="image-square"/>
                                             <h3>${item}</h3>
                                         </a>
                                     </li>

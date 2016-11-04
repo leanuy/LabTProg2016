@@ -38,13 +38,19 @@
 
 <xs:element name="YaPublicaException" type="tns:YaPublicaException"></xs:element>
 
-<xs:complexType name="dataColeccionString">
+<xs:complexType name="ClienteInexistenteException">
 <xs:sequence>
-<xs:element name="data" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="ClienteInexistenteException">
+<xs:complexType name="AlbumInexistenteException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="ArtistaInexistenteException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
@@ -53,6 +59,12 @@
 <xs:complexType name="ListaInexistenteException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionString">
+<xs:sequence>
+<xs:element name="data" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
@@ -107,12 +119,6 @@
 <xs:sequence></xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="ArtistaInexistenteException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="dataColeccionSuscripcion">
 <xs:sequence>
 <xs:element name="data" type="tns:dataSuscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
@@ -128,12 +134,6 @@
 </xs:sequence>
 <xs:attribute name="fechaCreacionStr" type="xs:string"></xs:attribute>
 <xs:attribute name="fechaUpdateStr" type="xs:string"></xs:attribute>
-</xs:complexType>
-
-<xs:complexType name="AlbumInexistenteException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="TemaRepetidoException">
@@ -173,12 +173,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="TemaTipoInvalidoException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="NickRepetidoException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
@@ -197,21 +191,9 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="beanBusqueda">
+<xs:complexType name="TemaTipoInvalidoException">
 <xs:sequence>
-<xs:element name="albums" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-<xs:element name="listas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-<xs:element name="temas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataAlbum">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="anio" type="xs:int"></xs:element>
-<xs:element name="generos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
-<xs:element name="nickArtista" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
@@ -231,6 +213,24 @@
 <xs:element name="esWeb" type="xs:boolean"></xs:element>
 </xs:sequence>
 <xs:attribute name="duracionStr" type="xs:string"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="beanBusqueda">
+<xs:sequence>
+<xs:element name="albums" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="listas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="temas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataAlbum">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="anio" type="xs:int"></xs:element>
+<xs:element name="generos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
+<xs:element name="nickArtista" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="SeguidorInexistenteException">

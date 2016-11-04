@@ -12,10 +12,11 @@ import espotify.datatypes.DataColeccionSuscripcion;
 import espotify.datatypes.DataLista;
 import espotify.datatypes.DataColeccionRanking;
 import espotify.datatypes.DataColeccionTemas;
+import espotify.datatypes.DataDefecto;
+import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
-import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
 import espotify.datatypes.DataUsuario;
 import espotify.datatypes.TipoSuscripcion;
@@ -42,9 +43,9 @@ import espotify.interfaces.web.IVerGenero;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.awt.image.BufferedImage;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -320,4 +321,52 @@ public class Publicador {
         throws ArtistaInexistenteException, AlbumInexistenteException {
         return Fabrica.getIVerAlbum().consultaAlbum(nomAlbum, nomArtista);
     }
+
+    @WebMethod
+    public DataLista darInfoDefecto(String nombre)
+        throws ClienteInexistenteException, ListaInexistenteException {
+        return Fabrica.getIVerListaDefecto().darInfoDefecto(nombre);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoTema(String nick, String artista, String album, String nomtema) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataTema data = new DataTema(nomtema, 0, 0, artista, album);
+            return Fabrica.getIFavoritos().esFavorito(nick, data);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoDefecto(String nick, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataDefecto lisdefecto = new DataDefecto("", nomlista, null);
+            return Fabrica.getIFavoritos().esFavorito(nick, lisdefecto);
+    }
+    
+    @WebMethod
+    public boolean esFavoritoParticular(String nickSesion, String nomCliente, String nomlista) throws ClienteInexistenteException, AlbumInexistenteException, ArtistaInexistenteException, ListaInexistenteException {
+            DataParticular lispart = new DataParticular(nomCliente, nomlista, null);
+            return Fabrica.getIFavoritos().esFavorito(nickSesion, lispart);
+    }
+    
+    @WebMethod
+    public byte[] getImageUsuario(String nickUsr) throws UsuarioInexistenteException {
+        BufferedImage img = Fabrica.getIImagen().getImageUsuario(nickUsr);
+        return Fabrica.getIImagen().getByteImage(img);
+    }
+    
+    @WebMethod
+    public byte[] getImageAlbum(String nickUsr, String album) {
+        BufferedImage img = Fabrica.getIImagen().getImageAlbum(nickUsr, album);
+        return Fabrica.getIImagen().getByteImage(img);
+    }
+    
+    @WebMethod
+    public byte[] getImageLista(String nickUsr, String lista) {
+        BufferedImage img = Fabrica.getIImagen().getImageLista(nickUsr, lista);
+        return Fabrica.getIImagen().getByteImage(img);
+    }
+    
+    @WebMethod
+    public boolean esArtista(String nickUsr) {
+        return Fabrica.getIImagen().esArtista(nickUsr);
+    }
+    
 }

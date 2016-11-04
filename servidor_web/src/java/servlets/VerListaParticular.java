@@ -5,14 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataFavoriteable;
-import espotify.datatypes.DataParticular;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.ListaInexistenteException;
-import espotify.interfaces.web.IFavoritos;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
 import servidor.ClienteInexistenteException_Exception;
 import servidor.DataLista;
 import servidor.DataTema;
@@ -43,13 +37,15 @@ public class VerListaParticular extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        servidor.PublicadorService service =  new servidor.PublicadorService();
-        servidor.Publicador port = service.getPublicadorPort();
+        
         HttpSession session = request.getSession();
         String inputNick = new String(request.getParameter("nick").getBytes(
                 "iso-8859-1"), "UTF-8");
         String inputNom = new String(request.getParameter("lista").getBytes(
                 "iso-8859-1"), "UTF-8");
+
+		servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
 
         try {
             DataLista data = port.darInfoParticular(inputNom, inputNick);
@@ -65,33 +61,27 @@ public class VerListaParticular extends HttpServlet {
 
                 boolean[] es_favorito_temas = new boolean[data.getTemas().size()];
                 if(!esPrivada && session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO && Boolean.valueOf(session.getAttribute("es_cliente").toString())) {
-                    /*IFavoritos ifav = Fabrica.getIFavoritos();
                     boolean es_favorito;
                     String nickSesion = session.getAttribute("nick_sesion").toString();
-                    DataParticular dataFav = new DataParticular(inputNick,data.getNombre(),null);
-                    es_favorito = ifav.esFavorito(nickSesion, dataFav);
+                    es_favorito = port.esFavoritoParticular(nickSesion, inputNick, data.getNombre());
                     request.setAttribute("es_favorito", es_favorito);
                     
                     int idx = 0;
                     for (DataTema t : data.getTemas()) {
-                        es_favorito_temas[idx] = ifav.esFavorito(nickSesion, (DataFavoriteable) t);
+                        es_favorito_temas[idx] = port.esFavoritoTema(nickSesion, t.getNomArtista(), t.getAlbum(), t.getNombre());
                         idx++;
                     }
-                    request.setAttribute("es_favorito_temas",es_favorito_temas);*/
+                    request.setAttribute("es_favorito_temas",es_favorito_temas);
                 }
                 request.getRequestDispatcher("/WEB-INF/listas/ListaParticular.jsp").forward(request,response);
             }
-        }/* catch (ClienteInexistenteException ex) {
-            response.sendError(404);
-        } catch (ListaInexistenteException ex) {
-            response.sendError(404);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(404);
-        } catch (AlbumInexistenteException ex) {
-            response.sendError(404);
-        }*/ catch (ClienteInexistenteException_Exception ex) {
+        } catch (ClienteInexistenteException_Exception ex) {
             response.sendError(404);
         } catch (ListaInexistenteException_Exception ex) {
+            response.sendError(404);
+        } catch (AlbumInexistenteException_Exception ex) {
+            response.sendError(404);
+        } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(404);
         }
         
