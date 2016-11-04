@@ -24,7 +24,18 @@
     
 =======
     
+<<<<<<< fbe362ae9978618e442f35828c7391b17ef89102
 >>>>>>> arregle bug de lista particualar
+    
+=======
+    
+    
+    
+    
+    
+    
+    
+>>>>>>> algo que no me acuerdo
     <system systemId="http://localhost:9128/publicador?wsdl" uri="src/conf/xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.wsdl"/>
     <system systemId="http://localhost:9128/publicador?xsd=1" uri="src/conf/xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.xsd_1.xsd"/>
     <system systemId="http://localhost:9128/publicador?xsd=2" uri="src/conf/xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.xsd_2.xsd"/>

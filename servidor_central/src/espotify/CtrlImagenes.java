@@ -10,6 +10,12 @@ import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.interfaces.web.IObtenerImagen;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 public class CtrlImagenes implements IObtenerImagen {
     
@@ -17,6 +23,24 @@ public class CtrlImagenes implements IObtenerImagen {
     public BufferedImage getImageUsuario(String nickUsr) throws UsuarioInexistenteException {
         DataUsuario usr = new CtrlUsuarios().buscarUsuario(nickUsr);
         BufferedImage img = usr.getImg();
+        if (img == null) {
+            File file = null;
+            if (esArtista(nickUsr)) {
+                file = new File("./src/presentacion/img/artistas/artista.png");
+                try {
+                    img = ImageIO.read(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                file = new File("./src/presentacion/img/clientes/profile.png");
+                try {
+                    img = ImageIO.read(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
         return img;
     }
     
@@ -37,6 +61,14 @@ public class CtrlImagenes implements IObtenerImagen {
             DataAlbumExt alb = new CtrlUsuarios().consultaAlbum(album, nickUsr);
             BufferedImage img = null;
             img = alb.getImg();
+            if (img == null) {
+                File file = new File("./src/presentacion/img/albums/default_cover");
+                try {
+                    img = ImageIO.read(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             return img;
         } catch (ArtistaInexistenteException | AlbumInexistenteException ex) {
             return null;
@@ -68,6 +100,14 @@ public class CtrlImagenes implements IObtenerImagen {
             } else {
                 list = new CtrlListas().darInfoParticular(lista, nickUsr);
                 img = list.getImg();
+            }
+            if (img == null) {
+                File file = new File("./src/presentacion/img/albums/default_cover");
+                try {
+                    img = ImageIO.read(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
             return img;
         } catch (ClienteInexistenteException | ListaInexistenteException ex) {
