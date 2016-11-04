@@ -1,48 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-<<<<<<< 41f595d093c09a594709ea57798433a54913962f
-    
-=======
-<<<<<<< b08b07c7c045183f0ead638e8d62793928f44074
-    
-=======
-    
->>>>>>> perqueria defecto
-
-    
-    
-    
-    
-<<<<<<< 56d19d4ba834e8971016425753e2ff2fee5d6730
->>>>>>> perqueria defecto
-
-    
-    
-    
-    
-    
-    
-=======
-    
-<<<<<<< fbe362ae9978618e442f35828c7391b17ef89102
->>>>>>> arregle bug de lista particualar
-    
-=======
-    
-    
-    
-    
-    
-    
-    
->>>>>>> algo que no me acuerdo
-    
-    
-    
-    
-    
-    
-    
+ 
     
     
     <system systemId="http://localhost:9128/publicador?wsdl" uri="src/conf/xml-resources/web-service-references/publicador/wsdl/localhost_9128/publicador.wsdl"/>
