@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataParticular;
-import espotify.excepciones.CampoVacioException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.ListaRepetidaException;
-import espotify.interfaces.IAltaLista;
-import espotify.interfaces.web.ISuscripcionWeb;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
@@ -26,6 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import servidor.CampoVacioException_Exception;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.DataParticular;
+import servidor.ListaRepetidaException_Exception;
 
 /**
  *
@@ -46,15 +39,16 @@ public class CrearListaParticular extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort(); 
         String usuario = (String) session.getAttribute("nick_sesion");
         try {
-            if (isusc.tieneSuscripcionVigente(usuario)) {
+            if (port.tieneSuscripcionVigente(usuario)) {
                 request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
             } else {
                 response.sendError(500);
             }
-        } catch (ClienteInexistenteException ex) {
+        } catch (ClienteInexistenteException_Exception ex) {
             Logger.getLogger(CrearListaParticular.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -72,48 +66,58 @@ public class CrearListaParticular extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort(); 
         String usuario = (String) session.getAttribute("nick_sesion");
 
         String nombre = new String(request.getParameter("nombre").getBytes(
                 "iso-8859-1"), "UTF-8");
         try {
-            if (isusc.tieneSuscripcionVigente(usuario)) {
+            if (port.tieneSuscripcionVigente(usuario)) {
                 try {
                     if (!nombre.equals("")) {
-                        IAltaLista ial = Fabrica.getIAltaLista();
                         DataParticular dataParticular;
 
+                        byte[] img = null;
                         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
                         if (isMultipart) {
                             Part part = request.getPart("imagen");
                             InputStream is = part.getInputStream();
-                            BufferedImage img = ImageIO.read(is);
-                            dataParticular = new DataParticular((String) session.getAttribute("nick_sesion"), nombre, img);
-                        } else {
-                            dataParticular = new DataParticular((String) session.getAttribute("nick_sesion"), nombre, null);
-                        }
+                            BufferedImage bufImg = ImageIO.read(is);
 
-                        ial.altaListaParticular(dataParticular);
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            ImageIO.write(bufImg, "jpg", baos );
+                            baos.flush();
+                            img = baos.toByteArray();
+                            baos.close();
+                        }
+                        dataParticular = new DataParticular();
+                        dataParticular.setNombre(nombre);
+                        dataParticular.setNomCliente(usuario);
+                        if(img!=null) {
+                            port.altaListaParticularConImagen(dataParticular, img);
+                        } else {
+                            port.altaListaParticular(dataParticular);
+                        }
                         request.getRequestDispatcher("/VerListaParticular?nick=" + session.getAttribute("nick_sesion") + "&lista=" + nombre).forward(request, response);
                     } else {
                         request.setAttribute("has_errors", true);
                         request.setAttribute("error_nombre", "El nombre de la lista es requerido");
                         request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
                     }
-                } catch (ListaRepetidaException e) {
+                } catch (ListaRepetidaException_Exception e) {
                     request.setAttribute("has_errors", true);
                     request.setAttribute("error_nombre", "Usted ya tiene una lista con ese nombre");
                     request.getRequestDispatcher("/WEB-INF/listas/CrearListaParticular.jsp").forward(request, response);
-                } catch (ClienteInexistenteException e) {
+                } catch (ClienteInexistenteException_Exception e) {
                     response.sendError(404);
-                } catch (CampoVacioException ex) {
-                    Logger.getLogger(CrearListaParticular.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (CampoVacioException_Exception ex) {
+                    response.sendError(500);
                 }
             } else {
                 response.sendError(500);
             }
-        } catch (ClienteInexistenteException ex) {
+        } catch (ClienteInexistenteException_Exception ex) {
             Logger.getLogger(CrearListaParticular.class.getName()).log(Level.SEVERE, null, ex);
         }
 

@@ -6,6 +6,7 @@
 package servlets;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -74,12 +75,18 @@ public class Registrarme extends HttpServlet {
         Calendar fechaNac = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("d/M/y");
         
-        BufferedImage img = null;
+        byte[] img = null;
         boolean isMultipart = ServletFileUpload.isMultipartContent(request);
         if (isMultipart) {
             Part part = request.getPart("imagen");
             InputStream is = part.getInputStream();
-            img = ImageIO.read(is);
+            BufferedImage bufImg = ImageIO.read(is);
+            
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(bufImg, "jpg", baos );
+            baos.flush();
+            img = baos.toByteArray();
+            baos.close();
         }
         
         String tipo = request.getParameter("tipo");
@@ -98,12 +105,15 @@ public class Registrarme extends HttpServlet {
                 XMLGregorianCalendar xc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
                 dataCli.setFechaNac(xc);
                     
-                //dataCli.setImg(img);
                 dataCli.setPassword(password);
                 
                 servidor.PublicadorService service =  new servidor.PublicadorService();
                 servidor.Publicador port = service.getPublicadorPort();
-                port.altaCliente(dataCli);
+                if(img!=null) {
+                    port.altaClienteConImagen(dataCli,img);
+                } else {
+                    port.altaCliente(dataCli);
+                }
                 request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
             } catch (ParseException ex) {
                     response.sendError(500);
@@ -133,12 +143,15 @@ public class Registrarme extends HttpServlet {
                 gc.setTimeInMillis(fechaNac.getTimeInMillis());
                 XMLGregorianCalendar xc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
                 dataArt.setFechaNac(xc);
-                //dataArt.setImg(img);
                 dataArt.setPassword(password);
                 
                 servidor.PublicadorService service =  new servidor.PublicadorService();
                 servidor.Publicador port = service.getPublicadorPort();
-                port.altaArtista(dataArt);
+                if(img!=null) {
+                    port.altaArtistaConImagen(dataArt,img);
+                } else {
+                    port.altaArtista(dataArt);
+                }
                 request.getRequestDispatcher("/iniciar-sesion").forward(request,response);
             } catch (ParseException ex) {
                 response.sendError(500);

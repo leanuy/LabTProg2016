@@ -8,6 +8,8 @@
 
 <xs:element name="AutoSeguirseException" type="tns:AutoSeguirseException"></xs:element>
 
+<xs:element name="CampoVacioException" type="tns:CampoVacioException"></xs:element>
+
 <xs:element name="ClienteInexistenteException" type="tns:ClienteInexistenteException"></xs:element>
 
 <xs:element name="CorreoRepetidoException" type="tns:CorreoRepetidoException"></xs:element>
@@ -17,6 +19,8 @@
 <xs:element name="GeneroInexistenteException" type="tns:GeneroInexistenteException"></xs:element>
 
 <xs:element name="ListaInexistenteException" type="tns:ListaInexistenteException"></xs:element>
+
+<xs:element name="ListaRepetidaException" type="tns:ListaRepetidaException"></xs:element>
 
 <xs:element name="NickRepetidoException" type="tns:NickRepetidoException"></xs:element>
 
@@ -57,18 +61,6 @@
 </xs:complexType>
 
 <xs:complexType name="ListaInexistenteException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataColeccionString">
-<xs:sequence>
-<xs:element name="data" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="YaPublicaException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
@@ -119,23 +111,6 @@
 <xs:sequence></xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="dataColeccionSuscripcion">
-<xs:sequence>
-<xs:element name="data" type="tns:dataSuscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataSuscripcion">
-<xs:sequence>
-<xs:element name="fechaCreacion" type="xs:dateTime" minOccurs="0"></xs:element>
-<xs:element name="fechaUpdate" type="xs:dateTime" minOccurs="0"></xs:element>
-<xs:element name="estado" type="tns:estadoSuscripcion" minOccurs="0"></xs:element>
-<xs:element name="tipo" type="tns:tipoSuscripcion" minOccurs="0"></xs:element>
-</xs:sequence>
-<xs:attribute name="fechaCreacionStr" type="xs:string"></xs:attribute>
-<xs:attribute name="fechaUpdateStr" type="xs:string"></xs:attribute>
-</xs:complexType>
-
 <xs:complexType name="TemaRepetidoException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
@@ -145,19 +120,6 @@
 <xs:complexType name="UsuarioInexistenteException">
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataColeccionRanking">
-<xs:sequence>
-<xs:element name="data" type="tns:dataRanking" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataRanking">
-<xs:sequence>
-<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="cantSeguidores" type="xs:int"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
@@ -171,6 +133,20 @@
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionString">
+<xs:sequence>
+<xs:element name="data" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataCliente">
+<xs:complexContent>
+<xs:extension base="tns:dataUsuario">
+<xs:sequence></xs:sequence>
+</xs:extension>
+</xs:complexContent>
 </xs:complexType>
 
 <xs:complexType name="NickRepetidoException">
@@ -191,18 +167,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="TemaTipoInvalidoException">
-<xs:sequence>
-<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataColeccionTemas">
-<xs:sequence>
-<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="dataTema">
 <xs:sequence>
 <xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
@@ -213,6 +177,78 @@
 <xs:element name="esWeb" type="xs:boolean"></xs:element>
 </xs:sequence>
 <xs:attribute name="duracionStr" type="xs:string"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="dataLista">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
+<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="YaPublicaException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionSuscripcion">
+<xs:sequence>
+<xs:element name="data" type="tns:dataSuscripcion" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataSuscripcion">
+<xs:sequence>
+<xs:element name="fechaCreacion" type="xs:dateTime" minOccurs="0"></xs:element>
+<xs:element name="fechaUpdate" type="xs:dateTime" minOccurs="0"></xs:element>
+<xs:element name="estado" type="tns:estadoSuscripcion" minOccurs="0"></xs:element>
+<xs:element name="tipo" type="tns:tipoSuscripcion" minOccurs="0"></xs:element>
+</xs:sequence>
+<xs:attribute name="fechaCreacionStr" type="xs:string"></xs:attribute>
+<xs:attribute name="fechaUpdateStr" type="xs:string"></xs:attribute>
+</xs:complexType>
+
+<xs:complexType name="dataParticular">
+<xs:complexContent>
+<xs:extension base="tns:dataLista">
+<xs:sequence>
+<xs:element name="nomCliente" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="ListaRepetidaException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="CampoVacioException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionRanking">
+<xs:sequence>
+<xs:element name="data" type="tns:dataRanking" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataRanking">
+<xs:sequence>
+<xs:element name="nick" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="cantSeguidores" type="xs:int"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="TemaTipoInvalidoException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
 </xs:complexType>
 
 <xs:complexType name="beanBusqueda">
@@ -233,6 +269,12 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="dataColeccionTemas">
+<xs:sequence>
+<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="beanListarFavoritos">
 <xs:sequence>
 <xs:element name="albumsFavoritos" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
@@ -247,24 +289,6 @@
 <xs:extension base="tns:dataLista">
 <xs:sequence>
 <xs:element name="genero" type="xs:string" minOccurs="0"></xs:element>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
-</xs:complexType>
-
-<xs:complexType name="dataLista">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
-<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataParticular">
-<xs:complexContent>
-<xs:extension base="tns:dataLista">
-<xs:sequence>
-<xs:element name="nomCliente" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:extension>
 </xs:complexContent>
@@ -292,14 +316,6 @@
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataCliente">
-<xs:complexContent>
-<xs:extension base="tns:dataUsuario">
-<xs:sequence></xs:sequence>
-</xs:extension>
-</xs:complexContent>
 </xs:complexType>
 
 <xs:complexType name="dataClienteExt">
