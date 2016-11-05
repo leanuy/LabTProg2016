@@ -48,6 +48,7 @@
 <message name="ListaRepetidaException">
 <part name="fault" element="tns:ListaRepetidaException"></part>
 </message>
+<message name="publicarListaResponse"></message>
 <message name="ClienteInexistenteException">
 <part name="fault" element="tns:ClienteInexistenteException"></part>
 </message>
@@ -246,6 +247,13 @@
 <message name="darInfoParticularResponse">
 <part name="return" type="tns:dataLista"></part>
 </message>
+<message name="darInfoParticular">
+<part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
+</message>
+<message name="darInfoParticularResponse">
+<part name="return" type="tns:dataLista"></part>
+</message>
 <message name="darInfoDefecto">
 <part name="arg0" type="xsd:string"></part>
 </message>
@@ -357,7 +365,7 @@
 <part name="arg0" type="tns:tipoSuscripcion"></part>
 <part name="arg1" type="xsd:string"></part>
 </message>
-<message name="contratarSuscripcionResponse">
+<message name="listaEsPrivadaResponse">
 <part name="return" type="xsd:boolean"></part>
 </message>
 <message name="consultaTema">
@@ -370,6 +378,7 @@
 </message>
 <message name="buscar">
 <part name="arg0" type="xsd:string"></part>
+<part name="arg1" type="xsd:string"></part>
 </message>
 <message name="buscarResponse">
 <part name="return" type="tns:beanBusqueda"></part>
@@ -639,6 +648,19 @@
 <input wsam:Action="http://servidor/Publicador/getImageAlbumRequest" message="tns:getImageAlbum"></input>
 <output wsam:Action="http://servidor/Publicador/getImageAlbumResponse" message="tns:getImageAlbumResponse"></output>
 </operation>
+<operation name="esCliente">
+<input wsam:Action="http://servidor/Publicador/esClienteRequest" message="tns:esCliente"></input>
+<output wsam:Action="http://servidor/Publicador/esClienteResponse" message="tns:esClienteResponse"></output>
+<fault message="tns:UsuarioInexistenteException" name="UsuarioInexistenteException" wsam:Action="http://servidor/Publicador/esCliente/Fault/UsuarioInexistenteException"></fault>
+</operation>
+<operation name="existeUsuarioNick">
+<input wsam:Action="http://servidor/Publicador/existeUsuarioNickRequest" message="tns:existeUsuarioNick"></input>
+<output wsam:Action="http://servidor/Publicador/existeUsuarioNickResponse" message="tns:existeUsuarioNickResponse"></output>
+</operation>
+<operation name="existeUsuarioCorreo">
+<input wsam:Action="http://servidor/Publicador/existeUsuarioCorreoRequest" message="tns:existeUsuarioCorreo"></input>
+<output wsam:Action="http://servidor/Publicador/existeUsuarioCorreoResponse" message="tns:existeUsuarioCorreoResponse"></output>
+</operation>
 <operation name="getImageLista" parameterOrder="arg0 arg1">
 <input wsam:Action="http://servidor/Publicador/getImageListaRequest" message="tns:getImageLista"></input>
 <output wsam:Action="http://servidor/Publicador/getImageListaResponse" message="tns:getImageListaResponse"></output>
@@ -849,11 +871,11 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="ArtistaInexistenteException">
-<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
+<fault name="SeguidoInexistenteException">
+<soap:fault name="SeguidoInexistenteException" use="literal"></soap:fault>
 </fault>
-<fault name="AlbumInexistenteException">
-<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
+<fault name="SeguidorInexistenteException">
+<soap:fault name="SeguidorInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="esFavoritoDefecto">
@@ -918,9 +940,6 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
-</fault>
 </operation>
 <operation name="sugerir">
 <soap:operation soapAction=""></soap:operation>
@@ -1104,11 +1123,8 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="ArtistaInexistenteException">
-<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
-</fault>
-<fault name="AlbumInexistenteException">
-<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="darInfoParticular">
@@ -1122,9 +1138,6 @@
 <fault name="ClienteInexistenteException">
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
-<fault name="ListaInexistenteException">
-<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
-</fault>
 </operation>
 <operation name="darInfoDefecto">
 <soap:operation soapAction=""></soap:operation>
@@ -1137,8 +1150,8 @@
 <fault name="ClienteInexistenteException">
 <soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
-<fault name="ListaInexistenteException">
-<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
+<fault name="TransicionSuscripcionInvalidaException">
+<soap:fault name="TransicionSuscripcionInvalidaException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="listarListasPublicasDeCliente">
@@ -1179,8 +1192,8 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+<fault name="ArtistaInexistenteException">
+<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="renovarSuscripcion">
@@ -1191,8 +1204,8 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="ClienteInexistenteException">
-<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
+<fault name="GeneroInexistenteException">
+<soap:fault name="GeneroInexistenteException" use="literal"></soap:fault>
 </fault>
 <fault name="TransicionSuscripcionInvalidaException">
 <soap:fault name="TransicionSuscripcionInvalidaException" use="literal"></soap:fault>
@@ -1209,14 +1222,8 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="NickRepetidoException">
-<soap:fault name="NickRepetidoException" use="literal"></soap:fault>
-</fault>
-<fault name="CorreoRepetidoException">
-<soap:fault name="CorreoRepetidoException" use="literal"></soap:fault>
-</fault>
-<fault name="FormatoIncorrectoException">
-<soap:fault name="FormatoIncorrectoException" use="literal"></soap:fault>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="altaArtistaConImagen">
@@ -1227,14 +1234,11 @@
 <output>
 <soap:body use="literal" namespace="http://servidor/"></soap:body>
 </output>
-<fault name="NickRepetidoException">
-<soap:fault name="NickRepetidoException" use="literal"></soap:fault>
+<fault name="ClienteInexistenteException">
+<soap:fault name="ClienteInexistenteException" use="literal"></soap:fault>
 </fault>
-<fault name="CorreoRepetidoException">
-<soap:fault name="CorreoRepetidoException" use="literal"></soap:fault>
-</fault>
-<fault name="FormatoIncorrectoException">
-<soap:fault name="FormatoIncorrectoException" use="literal"></soap:fault>
+<fault name="ListaInexistenteException">
+<soap:fault name="ListaInexistenteException" use="literal"></soap:fault>
 </fault>
 </operation>
 <operation name="consultaGenero">
@@ -1383,6 +1387,54 @@
 <fault name="AlbumInexistenteException">
 <soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
 </fault>
+</operation>
+<operation name="buscar">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+</operation>
+<operation name="buscarUsuario">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="UsuarioInexistenteException">
+<soap:fault name="UsuarioInexistenteException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="getAudio">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
+<fault name="ArtistaInexistenteException">
+<soap:fault name="ArtistaInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="AlbumInexistenteException">
+<soap:fault name="AlbumInexistenteException" use="literal"></soap:fault>
+</fault>
+<fault name="TemaTipoInvalidoException">
+<soap:fault name="TemaTipoInvalidoException" use="literal"></soap:fault>
+</fault>
+</operation>
+<operation name="sugerir">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://servidor/"></soap:body>
+</output>
 </operation>
 <operation name="buscar">
 <soap:operation soapAction=""></soap:operation>
