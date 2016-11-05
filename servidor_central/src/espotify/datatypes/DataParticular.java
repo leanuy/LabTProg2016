@@ -1,9 +1,12 @@
 package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataParticular extends DataLista {
-    private final String nomCliente;
+    private String nomCliente;
 
     public String getNomCliente() {
         return nomCliente;
@@ -13,5 +16,13 @@ public class DataParticular extends DataLista {
         super(nombreLista, img);
         this.nomCliente = nomCliente;
     }
+
+    public DataParticular() {
+    }
+
+    public void setNomCliente(String nomCliente) {
+        this.nomCliente = nomCliente;
+    }
+    
     
 }

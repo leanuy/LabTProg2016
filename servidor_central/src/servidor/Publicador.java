@@ -26,11 +26,13 @@ import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
+import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
+import espotify.excepciones.ListaRepetidaException;
 import espotify.excepciones.NickRepetidoException;
 import espotify.excepciones.NoHaySuscripcionException;
 import espotify.excepciones.SeguidoInexistenteException;
@@ -49,8 +51,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import javax.imageio.ImageIO;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -97,10 +102,38 @@ public class Publicador {
         Fabrica.getIAltaPerfil().altaCliente(dataCli);
     }
     
+        @WebMethod
+    public void altaClienteConImagen(DataCliente dataCli, byte[] img)
+            throws NickRepetidoException,
+            CorreoRepetidoException, FormatoIncorrectoException {
+        try {
+            InputStream in = new ByteArrayInputStream(img);
+            BufferedImage bufferedImage = ImageIO.read(in);
+            dataCli.setImg(bufferedImage);
+        } catch (IOException ex) {
+            dataCli.setImg(null);
+        }
+        Fabrica.getIAltaPerfil().altaCliente(dataCli);
+    }
+    
     @WebMethod
     public void altaArtista(DataArtista dataArt)
             throws NickRepetidoException, CorreoRepetidoException,
             FormatoIncorrectoException {
+        Fabrica.getIAltaPerfil().altaArtista(dataArt);
+    }  
+    
+    @WebMethod
+    public void altaArtistaConImagen(DataArtista dataArt, byte[] img)
+            throws NickRepetidoException, CorreoRepetidoException,
+            FormatoIncorrectoException {
+        try {
+            InputStream in = new ByteArrayInputStream(img);
+            BufferedImage bufferedImage = ImageIO.read(in);
+            dataArt.setImg(bufferedImage);
+        } catch (IOException ex) {
+            dataArt.setImg(null);
+        }
         Fabrica.getIAltaPerfil().altaArtista(dataArt);
     }
     
@@ -401,5 +434,23 @@ public class Publicador {
         return new BeanListarFavoritos(albumsFavoritos,particularesFavoritas,temasFavoritos,defectoFavoritas);
     }
     
+    @WebMethod
+    public void altaListaParticular(DataParticular dataParticular)
+        throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
+        Fabrica.getIAltaLista().altaListaParticular(dataParticular);
+    }
+    
+    @WebMethod
+    public void altaListaParticularConImagen(DataParticular dataParticular, byte[] img)
+        throws ListaRepetidaException, ClienteInexistenteException, CampoVacioException {
+        try {
+            InputStream in = new ByteArrayInputStream(img);
+            BufferedImage bufferedImage = ImageIO.read(in);
+            dataParticular.setImg(bufferedImage);
+        } catch (IOException ex) {
+            dataParticular.setImg(null);
+        }
+        Fabrica.getIAltaLista().altaListaParticular(dataParticular);
+    }
     
 }
