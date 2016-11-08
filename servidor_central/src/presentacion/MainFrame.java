@@ -96,6 +96,7 @@ public class MainFrame extends javax.swing.JFrame {
         consultaArtistaMenuItem = new javax.swing.JMenuItem();
         consultaAlbumMenuItem = new javax.swing.JMenuItem();
         consultaListaMenuItem = new javax.swing.JMenuItem();
+        registroAccesosMenuItem = new javax.swing.JMenuItem();
         socialMenu = new javax.swing.JMenu();
         seguirMenuItem = new javax.swing.JMenuItem();
         dejarSeguirMenuItem = new javax.swing.JMenuItem();
@@ -329,6 +330,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         consultasDropDown.add(consultaListaMenuItem);
+
+        registroAccesosMenuItem.setText("Registro de Accesos");
+        registroAccesosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registroAccesosMenuItemActionPerformed(evt);
+            }
+        });
+        consultasDropDown.add(registroAccesosMenuItem);
 
         menuPrincipal.add(consultasDropDown);
 
@@ -1226,6 +1235,14 @@ public class MainFrame extends javax.swing.JFrame {
         frameSusc.setVisible(true);
     }//GEN-LAST:event_suscripcionesMenuItemActionPerformed
 
+    private void registroAccesosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroAccesosMenuItemActionPerformed
+        MainPanel.removeAll();
+        RegistroAccesos registro = new RegistroAccesos();
+        MainPanel.add(registro);
+        MainPanel.repaint();
+        registro.setVisible(true);
+    }//GEN-LAST:event_registroAccesosMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1302,6 +1319,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuPrincipal;
     private javax.swing.JMenuItem publicarListaMenuItem;
     private javax.swing.JMenuItem quitarTemaLista;
+    private javax.swing.JMenuItem registroAccesosMenuItem;
     private javax.swing.JMenuItem seguirMenuItem;
     private javax.swing.JMenu sesionDropDown;
     private javax.swing.JMenu socialMenu;

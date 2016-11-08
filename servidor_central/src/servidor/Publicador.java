@@ -1,4 +1,5 @@
 package servidor;
+import espotify.CtrlRegistro;
 import espotify.Fabrica;
 import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
@@ -451,6 +452,11 @@ public class Publicador {
             dataParticular.setImg(null);
         }
         Fabrica.getIAltaLista().altaListaParticular(dataParticular);
+    }
+    
+    @WebMethod
+    public void RegistrarAcceso(String ip, String url, String browser, String so) {
+        Fabrica.getIRegistrarAcceso().RegistrarAcceso(ip, url, browser, so);
     }
     
 }

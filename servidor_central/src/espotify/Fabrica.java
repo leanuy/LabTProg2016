@@ -18,6 +18,7 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.IVerRegistroAccesos;
 import espotify.interfaces.web.IAgregarTemaListaWeb;
 import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IBajaArtista;
@@ -35,6 +36,7 @@ import espotify.interfaces.web.IVerPerfil;
 import espotify.interfaces.web.IWebSeguir;
 import espotify.interfaces.web.IListarUsuarios;
 import espotify.interfaces.web.IRanking;
+import espotify.interfaces.web.IRegistrarAcceso;
 import espotify.interfaces.web.ISugerencias;
 
 public final class Fabrica {
@@ -189,5 +191,13 @@ public final class Fabrica {
     
     public static ISugerencias getISugerencias() {
         return new CtrlMusica();
+    }
+    
+    public static IVerRegistroAccesos getIVerRegistroAccesos() {
+        return new CtrlRegistro();
+    }
+        
+    public static IRegistrarAcceso getIRegistrarAcceso() {
+        return new CtrlRegistro();
     }
 }
