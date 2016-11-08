@@ -30,6 +30,7 @@ import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
+import espotify.excepciones.FavoritoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
 import espotify.excepciones.GeneroInexistenteException;
 import espotify.excepciones.ListaInexistenteException;
@@ -45,6 +46,8 @@ import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
+import espotify.interfaces.IDesFavoritear;
+import espotify.interfaces.IFavoritear;
 import espotify.interfaces.web.IVerGenero;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -459,4 +462,59 @@ public class Publicador {
         Fabrica.getIRegistrarAcceso().RegistrarAcceso(ip, url, browser, so);
     }
     
+     @WebMethod
+    public void favoritearTema(String nick, String artista, String album, String nomtema) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException{
+        DataTema data = new DataTema(nomtema, 0, 0, artista, album);
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        ifav.favoritear(nick, data);
+    }
+    
+    @WebMethod
+    public void favoritearDefecto(String nick, String nomlista) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException{
+        DataDefecto lisdefecto = new DataDefecto("", nomlista, null);
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        ifav.favoritear(nick, lisdefecto);
+    }
+    
+    @WebMethod
+    public void favoritearParticular(String nick, String nomCliente, String nomlista) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException{
+        DataParticular lispart = new DataParticular(nomCliente, nomlista, null);
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        ifav.favoritear(nick, lispart);
+    }
+    
+    @WebMethod
+    public void favoritearAlbum(String nick, String artista, String album) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException{
+        DataAlbum data = new DataAlbum(album,0,null,null,artista);
+        IFavoritear ifav = Fabrica.getIFavoritear();
+        ifav.favoritear(nick, data);
+    }
+    
+    @WebMethod
+    public void desFavoritearTema(String nick, String artista, String album, String nomtema) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        DataTema data = new DataTema(nomtema, 0, 0, artista, album);
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
+        ifav.desFavoritear(nick, data);
+    }
+    
+    @WebMethod
+    public void desFavoritearDefecto(String nick, String nomlista) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        DataDefecto lisdefecto = new DataDefecto("", nomlista, null);
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
+        ifav.desFavoritear(nick, lisdefecto);
+    }
+    
+    @WebMethod
+    public void desFavoritearParticular(String nick, String nomCliente, String nomlista) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        DataParticular lispart = new DataParticular(nomCliente, nomlista, null);
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
+        ifav.desFavoritear(nick, lispart);
+    }
+
+    @WebMethod
+    public void desFavoritearAlbum(String nick, String artista, String album) throws ClienteInexistenteException, FavoritoRepetidoException, ListaInexistenteException, ArtistaInexistenteException, AlbumInexistenteException {
+        DataAlbum data = new DataAlbum(album,0,null,null,artista);
+        IDesFavoritear ifav = Fabrica.getIDesFavoritear();
+        ifav.desFavoritear(nick, data);
+    }    
 }
