@@ -26,7 +26,7 @@ public class RegistroAccesos extends javax.swing.JInternalFrame {
         
         String[] columnas = {"#", "IP", "URL", "Browser", "SO", "Fecha"}; 
         DefaultTableModel model = new DefaultTableModel(columnas,6);
-        int numerador = 0;
+        int numerador = 1;
         for (Acceso s : listaAccesos) {
             String[] o = new String[6];
             o[0] = ""+numerador;
