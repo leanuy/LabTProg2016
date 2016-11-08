@@ -14,6 +14,8 @@
 
 <xs:element name="CorreoRepetidoException" type="tns:CorreoRepetidoException"></xs:element>
 
+<xs:element name="FavoritoRepetidoException" type="tns:FavoritoRepetidoException"></xs:element>
+
 <xs:element name="FormatoIncorrectoException" type="tns:FormatoIncorrectoException"></xs:element>
 
 <xs:element name="GeneroInexistenteException" type="tns:GeneroInexistenteException"></xs:element>
@@ -135,6 +137,12 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="FavoritoRepetidoException">
+<xs:sequence>
+<xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="dataColeccionString">
 <xs:sequence>
 <xs:element name="data" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
@@ -251,12 +259,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="dataColeccionTemas">
-<xs:sequence>
-<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="beanBusqueda">
 <xs:sequence>
 <xs:element name="albums" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
@@ -272,6 +274,12 @@
 <xs:element name="generos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 <xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
 <xs:element name="nickArtista" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataColeccionTemas">
+<xs:sequence>
+<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
