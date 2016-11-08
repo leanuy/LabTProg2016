@@ -5,25 +5,25 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataAlbum;
-import espotify.datatypes.DataDefecto;
-import espotify.datatypes.DataParticular;
-import espotify.datatypes.DataTema;
-import espotify.excepciones.AlbumInexistenteException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.ClienteInexistenteException;
-import espotify.excepciones.FavoritoRepetidoException;
-import espotify.excepciones.ListaInexistenteException;
-import espotify.interfaces.IFavoritear;
 import espotify.interfaces.web.ISuscripcionWeb;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.ClienteInexistenteException_Exception;
+import servidor.FavoritoRepetidoException;
+import servidor.AlbumInexistenteException;
+import servidor.AlbumInexistenteException_Exception;
+import servidor.ArtistaInexistenteException;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.FavoritoRepetidoException_Exception;
+import servidor.ListaInexistenteException;
+import servidor.ListaInexistenteException_Exception;
 
 /**
  *
@@ -48,18 +48,16 @@ public class Favoritear extends HttpServlet {
             String nick = (String) session.getAttribute("nick_sesion");
             String tipoFav = new String(request.getParameter("tipo").getBytes(
                 "iso-8859-1"), "UTF-8");
-            IFavoritear ifav = Fabrica.getIFavoritear();
-
+            servidor.PublicadorService service =  new servidor.PublicadorService();
+            servidor.Publicador port = service.getPublicadorPort();
             try{
-                ISuscripcionWeb isusc = Fabrica.getISuscripcionWeb();
-                if (isusc.tieneSuscripcionVigente(nick)) {
+                if (port.tieneSuscripcionVigente(nick)) {
                     if(tipoFav.equals("album")) {
                         String nomAlbum = new String(request.getParameter("album").getBytes(
                         "iso-8859-1"), "UTF-8");
                         String nomArtista = new String(request.getParameter("artista").getBytes(
                         "iso-8859-1"), "UTF-8");
-                        DataAlbum d = new DataAlbum(nomAlbum,0,null,null,nomArtista);
-                        ifav.favoritear(nick, d);
+                        port.favoritearAlbum(nick, nomArtista, nomAlbum);
 
                         request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
                     } else if(tipoFav.equals("particular")) {
@@ -67,8 +65,7 @@ public class Favoritear extends HttpServlet {
                         "iso-8859-1"), "UTF-8");
                         String nomCliente = new String(request.getParameter("nick").getBytes(
                         "iso-8859-1"), "UTF-8");
-                        DataParticular d = new DataParticular(nomCliente,nomLista,null);
-                        ifav.favoritear(nick, d);
+                        port.favoritearParticular(nick, nomCliente, nomLista);
 
                         request.getRequestDispatcher("/VerListaParticular?nick="+nomCliente+"&lista="+nomLista).forward(request,response);
                     } else if(tipoFav.equals("tema")) {
@@ -78,30 +75,28 @@ public class Favoritear extends HttpServlet {
                         "iso-8859-1"), "UTF-8");
                         String nomArtista = new String(request.getParameter("artista").getBytes(
                         "iso-8859-1"), "UTF-8");
-                        DataTema d = new DataTema(nomTema,0,0,nomArtista,nomAlbum);
-                        ifav.favoritear(nick, d);
+                        port.favoritearTema(nick, nomArtista, nomAlbum, nomTema);
                         //esto no funciona exactamente como querríamos, si favoriteás desde una lista va al álbum.
                         request.getRequestDispatcher("/VerAlbum?nick="+nomArtista+"&album="+nomAlbum).forward(request,response);
                     } else if(tipoFav.equals("defecto")) {
                         String nomLista = new String(request.getParameter("lista").getBytes(
                         "iso-8859-1"), "UTF-8");
-                        DataDefecto d = new DataDefecto("",nomLista,null);
-                        ifav.favoritear(nick, d);
+                        port.favoritearDefecto(nick, nomLista);
 
                         request.getRequestDispatcher("/VerListaDefecto?lista="+nomLista).forward(request,response);
                     }
                 } else {
                     response.sendError(500);
                 }
-            } catch (ClienteInexistenteException ex) {
+            } catch (ClienteInexistenteException_Exception ex) {
                 response.sendError(500);
-            } catch (FavoritoRepetidoException ex) {
+            } catch (AlbumInexistenteException_Exception ex) {
                 response.sendError(500);
-            } catch (ListaInexistenteException ex) {
+            } catch (ArtistaInexistenteException_Exception ex) {
                 response.sendError(500);
-            } catch (ArtistaInexistenteException ex) {
+            } catch (FavoritoRepetidoException_Exception ex) {
                 response.sendError(500);
-            } catch (AlbumInexistenteException ex) {
+            } catch (ListaInexistenteException_Exception ex) {
                 response.sendError(500);
             }
         } else {
