@@ -1,7 +1,9 @@
 package espotify;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 final class ManejadorColecciones {
@@ -12,6 +14,7 @@ final class ManejadorColecciones {
     private final Map<String,Defecto> listas; //POR DEFECTO
     private final Map<String,Genero> generos;
     private final Genero generoBase;
+    private final List<Acceso> accesos;
 
 //SINGLETON
     static ManejadorColecciones getInstancia() {
@@ -28,6 +31,7 @@ final class ManejadorColecciones {
         this.generoBase = new Genero("Genero");
         this.generos = new HashMap<>();
         generos.put(generoBase.getNombre(), generoBase);
+        this.accesos = new ArrayList<>();
     }
     
     static void clear() {
@@ -42,10 +46,6 @@ final class ManejadorColecciones {
     Map<String, Cliente> getClientes() {
         return clientes;
     }
-    
-/*    Cliente buscarCliente(String nick) {
-        return clientes.get(nick);
-    }*/
     
     void agregarCliente(String nick, Cliente cli) {
         clientes.put(nick, cli);
@@ -102,5 +102,13 @@ final class ManejadorColecciones {
         final String dir = System.getProperty("user.dir") + "/audiofolder/";
         new File(dir).mkdirs();
         return dir;
+    }
+    
+    List<Acceso> getAccesos() {
+        return accesos;
+    }
+    
+    void agregarAcceso(Acceso acceso) {
+        accesos.add(acceso);
     }
 }

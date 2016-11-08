@@ -4,7 +4,6 @@ import espotify.datatypes.DataAlbum;
 import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataColeccionTemas;
 import espotify.datatypes.DataGenero;
-import espotify.datatypes.DataLista;
 import espotify.datatypes.DataTema;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.AlbumRepetidoException;
@@ -25,9 +24,7 @@ import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.ISugerencias;
 import espotify.interfaces.web.IVerAlbum;
 import espotify.interfaces.web.IVerGenero;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import java.util.HashMap;
 import java.util.Iterator;
