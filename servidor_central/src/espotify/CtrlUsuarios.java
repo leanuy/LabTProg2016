@@ -62,6 +62,9 @@ import espotify.interfaces.web.IRanking;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
@@ -596,6 +599,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     @Override
     public void BajaArtista(String nick) throws ArtistaInexistenteException {
             Artista art = buscarArtista(nick);
+            persistirArtista(art);
             // saco todo lo que tengan los clientes de el
             ArrayList<String> lista = listarClientes();
             for (String client: lista) {
@@ -613,5 +617,14 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             //Eliminar al artista
             ManejadorColecciones.getInstancia().eliminarArtista(nick);
             
+    }
+
+    private void persistirArtista(Artista art) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BaseArtistasEliminados");
+        EntityManager em = emf.createEntityManager();
+        ArtistaBobo test = new ArtistaBobo("holi", "google.com");
+        em.getTransaction().begin();
+        em.persist(test);
+        em.getTransaction().commit();
     }
 }
