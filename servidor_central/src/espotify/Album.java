@@ -19,13 +19,29 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class Album implements Favoriteable {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Album implements Favoriteable, Serializable {
     //attrs
+    
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private final String nombre;
     private final int anio;
     private final BufferedImage img;
     private final Artista artista;
+    @ManyToMany
     private final Map<String, Genero> generos;
+    @OneToMany(mappedBy="album")
     private final List<Tema> temas;
     
     //getters

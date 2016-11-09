@@ -1,9 +1,20 @@
 package espotify;
 
 import espotify.datatypes.DataTema;
+import java.io.Serializable;
 import java.util.Comparator;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-class Tema implements Favoriteable {
+@Entity
+class Tema implements Favoriteable, Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    
     private final String nombre;
     private final int duracion;
     private final int num;
