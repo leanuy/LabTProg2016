@@ -8,6 +8,7 @@ package presentacion;
 import espotify.Acceso;
 import espotify.Fabrica;
 import java.util.List;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -25,8 +26,9 @@ public class RegistroAccesos extends javax.swing.JInternalFrame {
         List<Acceso> listaAccesos = Fabrica.getIVerRegistroAccesos().listarAccesos();
         
         String[] columnas = {"#", "IP", "URL", "Browser", "SO", "Fecha"}; 
-        DefaultTableModel model = new DefaultTableModel(columnas,6);
+        DefaultTableModel model = new DefaultTableModel(columnas,0);
         int numerador = 1;
+        tabla.removeAll();
         for (Acceso s : listaAccesos) {
             String[] o = new String[6];
             o[0] = ""+numerador;
@@ -39,6 +41,14 @@ public class RegistroAccesos extends javax.swing.JInternalFrame {
             model.addRow(o);
         }
         tabla.setModel(model);
+        
+        tabla.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tabla.getColumnModel().getColumn(0).setPreferredWidth(27);
+        tabla.getColumnModel().getColumn(1).setPreferredWidth(160);
+        tabla.getColumnModel().getColumn(2).setPreferredWidth(450);
+        tabla.getColumnModel().getColumn(3).setPreferredWidth(90);
+        tabla.getColumnModel().getColumn(4).setPreferredWidth(90);
+        tabla.getColumnModel().getColumn(5).setPreferredWidth(160);
     }
 
     /**
@@ -70,17 +80,11 @@ public class RegistroAccesos extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 989, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
         );
 
         pack();
