@@ -1,6 +1,8 @@
 package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -9,7 +11,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 public class DataAlbum implements DataFavoriteable {
     private String nombre;
     private int anio;
-    private List<String> generos;
+    private ArrayList<String> generos;
     private BufferedImage img;
     private String nickArtista;
 
@@ -21,7 +23,7 @@ public class DataAlbum implements DataFavoriteable {
         return anio;
     }
     
-    public List<String> getGeneros() {
+    public ArrayList<String> getGeneros() {
         return generos;
     }
     
@@ -33,7 +35,7 @@ public class DataAlbum implements DataFavoriteable {
         return nickArtista;
     }
 
-    public DataAlbum(String nombre, int anio, List<String> generos, BufferedImage img,
+    public DataAlbum(String nombre, int anio, ArrayList<String> generos, BufferedImage img,
             String artista) {
         this.nombre = nombre;
         this.anio = anio;
@@ -53,7 +55,7 @@ public class DataAlbum implements DataFavoriteable {
         this.anio = anio;
     }
 
-    public void setGeneros(List<String> generos) {
+    public void setGeneros(ArrayList<String> generos) {
         this.generos = generos;
     }
 

@@ -6,7 +6,7 @@
 package servlets;
 
 import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
+import servidor.DataAlbumExt;
 import espotify.excepciones.AlbumRepetidoException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.CampoVacioException;
@@ -23,6 +23,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -33,6 +35,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.DataColeccionString;
+import javax.ejb.Stateless;
+import org.apache.catalina.tribes.util.Arrays;
 
 /**
  *
@@ -70,16 +76,18 @@ public class AltaAlbum_paso1 extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        
+        servidor.PublicadorService service = new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+        
+        
         boolean has_errors = false;
+        String generos_str = "";
         int anio = 0;
         HttpSession session = request.getSession();
         String nombre = new String(request.getParameter("nombre").getBytes("iso-8859-1"), "UTF-8");
         String anio_str = request.getParameter("anio");
         String[] generos_arr = request.getParameterValues("generos");
-        
-        List<String> generos = new ArrayList<String>();
-        
         
         if(nombre.equals("")){
             request.setAttribute("error_nombre", "El nombre del álbum es requerido");
@@ -87,8 +95,8 @@ public class AltaAlbum_paso1 extends HttpServlet {
         }else{
             boolean ya_existe = false;
             try {
-                ya_existe = inter.esAlbumDeArtista((String) session.getAttribute("nick_sesion"), nombre);
-            } catch (ArtistaInexistenteException ex) {
+                ya_existe = port.esAlbumDeArtista((String) session.getAttribute("nick_sesion"), nombre);
+            } catch (ArtistaInexistenteException_Exception ex) {
                 response.sendError(500, "no existe el artista.");
             }
             if(ya_existe){
@@ -112,7 +120,11 @@ public class AltaAlbum_paso1 extends HttpServlet {
             has_errors = true;
         }else{
             for (String genero : generos_arr) {
-                generos.add(new String(genero.getBytes("iso-8859-1"), "UTF-8"));
+                generos_str = generos_str.concat(new String(genero.getBytes("iso-8859-1"), "UTF-8"));
+                generos_str = generos_str.concat(", ");
+            }
+            if(!generos_str.isEmpty()){
+                generos_str = generos_str.substring(0, generos_str.length()-3);
             }
         }
         
@@ -132,20 +144,29 @@ public class AltaAlbum_paso1 extends HttpServlet {
             
             DataAlbumExt data;
             
+            
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
             if (isMultipart) {
                 Part part = request.getPart("imagen");
                 InputStream is = part.getInputStream();
                 BufferedImage img = ImageIO.read(is);
-                data = new DataAlbumExt(nombre, anio, generos, img, (String) session.getAttribute("nick_sesion"));
+                data = new DataAlbumExt();
+                data.setNombre(nombre);
+                data.setAnio(anio);
+                data.setImg(img);
+                data.setNickArtista((String) session.getAttribute("nick_sesion"));
             } else {
-                data = new DataAlbumExt(nombre, anio, generos, null, (String) session.getAttribute("nick_sesion"));
+                data = new DataAlbumExt();
+                data.setNombre(nombre);
+                data.setAnio(anio);
+                data.setImg(null);
+                data.setNickArtista((String) session.getAttribute("nick_sesion"));
             }
             
             try {
-                inter.addAlbumTemp(data);
-            } catch (ArtistaInexistenteException ex) {
-                response.sendError(500, "artista inexistente.");
+                port.addAlbumTemp(data, generos_str);
+            } catch (ArtistaInexistenteException_Exception ex) {
+                response.sendError(500, "Artista inexistente");
             }
         response.sendRedirect("/AltaAlbum/paso2?album="+nombre);
         }
