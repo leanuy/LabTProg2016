@@ -9,7 +9,6 @@ import espotify.Fabrica;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.interfaces.web.IBajaArtista;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.EstadoSesion;
+import servidor.ArtistaInexistenteException_Exception;
 
 /**
  *
@@ -42,16 +42,18 @@ public class BajaArtista extends HttpServlet {
         HttpSession session = request.getSession();
         String nickart = new String(request.getParameter("nickArt").getBytes(
             "iso-8859-1"), "UTF-8");
+        
+        servidor.PublicadorService service =  new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
             try {
-                IBajaArtista baja = Fabrica.getIBajaArtista();
-                baja.BajaArtista(nickart);
+                port.darBajaArtista(nickart);
                 session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
                 session.setAttribute("nick_sesion", null);
                 session.setAttribute("es_cliente",null);
                 request.getRequestDispatcher("/inicio").forward(request,response);
-            } catch (ArtistaInexistenteException ex) {
-                response.sendError(500, "Artista Inexistente, la esta viajando...  nick art: " + nickart);
+            } catch (ArtistaInexistenteException_Exception ex) {
+                response.sendError(404);
             }
         }
     }

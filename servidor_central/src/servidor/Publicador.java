@@ -48,6 +48,7 @@ import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
+import espotify.interfaces.web.IBajaArtista;
 import espotify.interfaces.web.IVerGenero;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -517,4 +518,10 @@ public class Publicador {
         IDesFavoritear ifav = Fabrica.getIDesFavoritear();
         ifav.desFavoritear(nick, data);
     }    
+    
+    @WebMethod
+    public void darBajaArtista(String nick) throws ArtistaInexistenteException {
+        IBajaArtista baja = Fabrica.getIBajaArtista();
+        baja.BajaArtista(nick);
+    }
 }
