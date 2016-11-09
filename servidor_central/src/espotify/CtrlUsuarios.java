@@ -620,11 +620,14 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     }
 
     private void persistirArtista(Artista art) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("BaseArtistasEliminados");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
         EntityManager em = emf.createEntityManager();
-        ArtistaBobo test = new ArtistaBobo("holi", "google.com");
+        
+        List artistas = em.createQuery("SELECT a FROM Artista a").
+                getResultList();
         em.getTransaction().begin();
-        em.persist(test);
+        em.persist(art);
+        art.persistirTemas(em);
         em.getTransaction().commit();
     }
 }

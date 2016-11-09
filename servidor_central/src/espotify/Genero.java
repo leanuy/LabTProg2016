@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
 
 @Entity
 class Genero implements Serializable {
@@ -24,10 +25,11 @@ class Genero implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    private final String nombre;
-    private final Map<String,Genero> subgeneros;
-    @ManyToMany(mappedBy="generos")
-    private final Map<List<String>, Album> albums;
+    private String nombre;
+    @Transient
+    private Map<String,Genero> subgeneros;
+    @Transient
+    private Map<List<String>, Album> albums;
 
     String getNombre() {
         return nombre;
@@ -82,4 +84,8 @@ class Genero implements Serializable {
         }
         return salida;
     }
+
+    public Genero() {
+    }
+    
 }

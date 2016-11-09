@@ -20,12 +20,16 @@ import java.util.List;
 import java.util.Map;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 public class Album implements Favoriteable, Serializable {
@@ -35,14 +39,16 @@ public class Album implements Favoriteable, Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private final String nombre;
-    private final int anio;
-    private final BufferedImage img;
-    private final Artista artista;
-    @ManyToMany
-    private final Map<String, Genero> generos;
-    @OneToMany(mappedBy="album")
-    private final List<Tema> temas;
+    private String nombre;
+    private int anio;
+    @Transient
+    private BufferedImage img;
+    private Artista artista;
+    //@ManyToMany(cascade=CascadeType.PERSIST)
+    @Transient
+    private Map<String, Genero> generos;
+    @Transient
+    private List<Tema> temas;
     
     //getters
     String getNombre() {
@@ -188,6 +194,14 @@ public class Album implements Favoriteable, Serializable {
         }
         return cola;
     }
-    
+
+    public Album() {
+    }
+
+    void persistirTemas(EntityManager em) {
+        for (Tema tem : temas) {
+            //em.persist((Tema)tem);
+        }
+    }
     
 }

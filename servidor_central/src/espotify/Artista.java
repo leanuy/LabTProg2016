@@ -4,6 +4,7 @@ import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataTema;
+import espotify.datatypes.DataUsuario;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
 
@@ -14,11 +15,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 @Entity
 class Artista extends Usuario implements Serializable {
@@ -28,10 +33,11 @@ class Artista extends Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    private final String bio;
-    private final String url;
-    @OneToMany(mappedBy="artista")
-    private final Map<String,Album> albums;
+    private String bio;
+    private String url;
+    @OneToMany(mappedBy="artista", cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+    private Map<String,Album> albums;
+    @Transient
     private DataAlbumExt albumTemp;
     
     //getters
@@ -150,6 +156,16 @@ class Artista extends Usuario implements Serializable {
             cola = alb.aportarSugerencias(cola);
         }
         return cola;
+    }
+
+    public Artista() {
+    }
+
+    void persistirTemas(EntityManager em) {
+         for (Map.Entry<String, Album> entry : albums.entrySet()) {
+            Album alb = entry.getValue();
+            alb.persistirTemas(em);
+        }
     }
 
 }
