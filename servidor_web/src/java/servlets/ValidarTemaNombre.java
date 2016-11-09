@@ -5,10 +5,7 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
 import espotify.excepciones.ArtistaInexistenteException;
-import espotify.interfaces.web.IAltaAlbumWeb;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -17,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import servidor.ArtistaInexistenteException_Exception;
 
 /**
  *
@@ -34,20 +32,25 @@ public class ValidarTemaNombre extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      * @throws espotify.excepciones.ArtistaInexistenteException
+     * @throws servidor.ArtistaInexistenteException_Exception
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ArtistaInexistenteException {
+            throws ServletException, IOException, ArtistaInexistenteException, ArtistaInexistenteException_Exception {
         HttpSession session = request.getSession();
-        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
-        DataAlbumExt album = inter.getAlbumTemp((String) session.getAttribute("nick_sesion"));
-
         
         response.setContentType("text/html;charset=UTF-8");
         String tema = new String(request.getParameter("tema").getBytes(
                 "iso-8859-1"), "UTF-8");
+        
+        servidor.PublicadorService service = new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+        boolean tieneTema = port.albumTempTieneTema((String) session.getAttribute("nick_sesion"), tema);
+
+        
+        
         PrintWriter out = response.getWriter();
 
-        if (album.tieneTema(tema)) {
+        if (tieneTema) {
             out.print("false");
         } else {
             out.print("true");
@@ -70,6 +73,8 @@ public class ValidarTemaNombre extends HttpServlet {
             processRequest(request, response);
         } catch (ArtistaInexistenteException ex) {
             response.sendError(500, "el artista no existe");
+        } catch (ArtistaInexistenteException_Exception ex) {
+            response.sendError(500, "el artista no existe");
         }
     }
 
@@ -87,6 +92,8 @@ public class ValidarTemaNombre extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (ArtistaInexistenteException ex) {
+            response.sendError(500, "el artista no existe");
+        } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(500, "el artista no existe");
         }
     }

@@ -2,6 +2,7 @@ package servidor;
 import espotify.Fabrica;
 import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
+import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataCliente;
@@ -31,6 +32,8 @@ import espotify.excepciones.UsuarioInexistenteException;
 import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.web.IVerGenero;
+import java.util.ArrayList;
+import java.util.Arrays;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -237,5 +240,24 @@ public class Publicador {
     @WebMethod
     public DataColeccionTemas sugerir() {
         return Fabrica.getISugerencias().sugerir();
+    }
+    
+    @WebMethod
+    public boolean albumTempTieneTema(String nick, String tema) throws ArtistaInexistenteException {
+        DataAlbumExt albumTemp = Fabrica.getIAltaAlbumWeb().getAlbumTemp(nick);
+        return albumTemp.tieneTema(tema);
+    }
+    
+    @WebMethod
+    public boolean esAlbumDeArtista(String nick, String album) throws ArtistaInexistenteException {
+        return Fabrica.getIAltaAlbumWeb().esAlbumDeArtista(nick, album);
+    }
+    
+    @WebMethod
+    public void addAlbumTemp(DataAlbumExt album, String generos_str) throws ArtistaInexistenteException {
+        ArrayList generos = new ArrayList<>();
+        generos.addAll(Arrays.asList(generos_str.split(", ")));
+        album.setGeneros(generos);
+        Fabrica.getIAltaAlbumWeb().addAlbumTemp(album);
     }
 }

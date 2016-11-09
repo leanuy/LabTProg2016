@@ -93,7 +93,7 @@ public class ConsultaAlbumTest {
     @Test
     public void testConsultaAlbum() throws Exception {
         System.out.println("Consulta Album: ok");
-        List<DataTema> temas = new ArrayList<>();
+        ArrayList<DataTema> temas = new ArrayList<>();
         temas.add(new DataTemaWeb("url1", "tema 1", 160, 1, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url2", "tema 2", 190, 2, "ElGordoAxl", "Alb"));
         temas.add(new DataTemaWeb("url3", "tema 3", 200, 3, "ElGordoAxl", "Alb"));
@@ -101,7 +101,7 @@ public class ConsultaAlbumTest {
         temas.add(new DataTemaArchivo(new BufferedInputStream(null), "tema 5", 230, 5, "ElGordoAxl", "Alb"));
         String nombre = "Alb";
         int anio = 2013;
-        List<String> generos = new ArrayList<>();
+        ArrayList<String> generos = new ArrayList<>();
         generos.add("Pop");
         BufferedImage img = null;
         String nickArtista = "ElGordoAxl";

@@ -2,14 +2,19 @@ package espotify.datatypes;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataAlbumExt extends DataAlbum {
-    private final List<DataTema> temas;
+    private ArrayList<DataTema> temas;
     
-    public List<DataTema> getTemas() {
+    public ArrayList<DataTema> getTemas() {
         return this.temas;
+    }
+    public void setTemas(ArrayList<DataTema> temas){
+        this .temas = temas;
     }
     public boolean tieneTema(String tema) {
         return temas.stream().anyMatch((dataTema) -> (dataTema.getNombre().equals(tema)));
@@ -32,12 +37,12 @@ public class DataAlbumExt extends DataAlbum {
         }
     }
     
-    public DataAlbumExt(List<DataTema> temas, String nombre, int anio, List<String> generos,
+    public DataAlbumExt(ArrayList<DataTema> temas, String nombre, int anio, ArrayList<String> generos,
             BufferedImage img, String nickArtista) {
         super(nombre, anio, generos, img, nickArtista);
         this.temas = temas;
     }
-    public DataAlbumExt(String nombre, int anio, List<String> generos,
+    public DataAlbumExt(String nombre, int anio, ArrayList<String> generos,
             BufferedImage img, String nickArtista) {
         super(nombre, anio, generos, img, nickArtista);
         this.temas = new ArrayList<>();
