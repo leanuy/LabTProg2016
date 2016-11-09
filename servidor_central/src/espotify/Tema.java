@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 class Tema implements Favoriteable, Serializable {
@@ -15,13 +16,17 @@ class Tema implements Favoriteable, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    private final String nombre;
-    private final int duracion;
-    private final int num;
-    private final Album album;
+    private String nombre;
+    private int duracion;
+    private int num;
+    private Album album;
+    @Transient
     private int cantReproducciones;
+    @Transient
     private int cantDescargas;
+    @Transient
     private int listasCon;
+    @Transient
     private int favoritosCon;
 
     String getNombre() {
@@ -91,4 +96,8 @@ class Tema implements Favoriteable, Serializable {
     private double puntaje() {
         return cantDescargas*0.2 + cantReproducciones*0.3 + listasCon*0.2 + favoritosCon*0.3;
     }
+
+    public Tema() {
+    }
+    
 }

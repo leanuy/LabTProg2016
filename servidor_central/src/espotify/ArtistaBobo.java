@@ -22,11 +22,16 @@ public class ArtistaBobo implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
-    private final String bio;
-    private final String url;
+    private String bio;
+    private String url;
 
     public ArtistaBobo(String bio, String url) {
         this.bio = bio;
         this.url = url;
     }
+
+    public ArtistaBobo() {
+    }
+    
+    
 }

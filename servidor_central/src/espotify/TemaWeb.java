@@ -2,9 +2,14 @@ package espotify;
 
 import espotify.datatypes.DataTema;
 import espotify.datatypes.DataTemaWeb;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 class TemaWeb extends Tema {
-    private final String url;
+    private String url;
     
     TemaWeb(DataTemaWeb dtw, final Album album) {
         super(dtw, album);
@@ -21,4 +26,8 @@ class TemaWeb extends Tema {
         return new DataTemaWeb(url, root.getNombre(), root.getDuracion(), root.getNum(),
                 root.getNomArtista(), root.getAlbum()); 
     }  
+
+    public TemaWeb() {
+    }
+    
 }

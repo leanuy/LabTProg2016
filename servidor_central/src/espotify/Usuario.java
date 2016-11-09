@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
+import javax.persistence.Transient;
 
 class Usuario {
     private String nick;
@@ -15,7 +16,9 @@ class Usuario {
     private String apellido;
     private String correo;
     private Calendar fechaNac;
+    @Transient
     private BufferedImage img;
+    @Transient
     private Map<String, Cliente> seguidores;
     private String password;
 
@@ -97,4 +100,7 @@ class Usuario {
             return new DataRanking(this.nick,seguidores.size());
         }
     }
+
+    public Usuario() {
+    }    
 }
