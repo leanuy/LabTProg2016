@@ -5,12 +5,12 @@
  */
 package espotify.interfaces.web;
 
-import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
  * @author agustina
  */
 public interface IListarGeneros {
-    public Map<String, String> stringifyDataGeneros();
+    public TreeMap<String, String> stringifyDataGeneros();
 }

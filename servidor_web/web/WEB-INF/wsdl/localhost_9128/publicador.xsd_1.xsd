@@ -187,6 +187,26 @@
 <xs:attribute name="duracionStr" type="xs:string"></xs:attribute>
 </xs:complexType>
 
+<xs:complexType name="dataAlbumExt">
+<xs:complexContent>
+<xs:extension base="tns:dataAlbum">
+<xs:sequence>
+<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+
+<xs:complexType name="dataAlbum">
+<xs:sequence>
+<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="anio" type="xs:int"></xs:element>
+<xs:element name="generos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
+<xs:element name="nickArtista" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="dataLista">
 <xs:sequence>
 <xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
@@ -259,21 +279,24 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="dataColeccionGenerosStrfy">
+<xs:sequence>
+<xs:element name="data" type="tns:dataCollectionGenerosStrfyItems" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="dataCollectionGenerosStrfyItems">
+<xs:sequence>
+<xs:element name="key" type="xs:string" minOccurs="0"></xs:element>
+<xs:element name="value" type="xs:string" minOccurs="0"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="beanBusqueda">
 <xs:sequence>
 <xs:element name="albums" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 <xs:element name="listas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 <xs:element name="temas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataAlbum">
-<xs:sequence>
-<xs:element name="nombre" type="xs:string" minOccurs="0"></xs:element>
-<xs:element name="anio" type="xs:int"></xs:element>
-<xs:element name="generos" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-<xs:element name="img" type="tns:bufferedImage" minOccurs="0"></xs:element>
-<xs:element name="nickArtista" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
 </xs:complexType>
 
@@ -357,16 +380,6 @@
 <xs:sequence>
 <xs:element name="message" type="xs:string" minOccurs="0"></xs:element>
 </xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataAlbumExt">
-<xs:complexContent>
-<xs:extension base="tns:dataAlbum">
-<xs:sequence>
-<xs:element name="temas" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:extension>
-</xs:complexContent>
 </xs:complexType>
 
 <xs:simpleType name="estadoSuscripcion">

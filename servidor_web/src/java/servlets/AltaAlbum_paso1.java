@@ -6,25 +6,15 @@
 package servlets;
 
 import espotify.Fabrica;
+import servidor.DataCollectionGenerosStrfyItems;
 import servidor.DataAlbumExt;
-import espotify.excepciones.AlbumRepetidoException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.CampoVacioException;
-import espotify.excepciones.DuracionInvalidaException;
-import espotify.excepciones.GeneroInexistenteException;
-import espotify.excepciones.NumeroTemaInvalidoException;
-import espotify.excepciones.TemaRepetidoException;
-import espotify.excepciones.TemaTipoInvalidoException;
-import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IListarGeneros;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -36,9 +26,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import servidor.ArtistaInexistenteException_Exception;
-import servidor.DataColeccionString;
-import javax.ejb.Stateless;
-import org.apache.catalina.tribes.util.Arrays;
+import servidor.DataColeccionGenerosStrfy;
 
 /**
  *
@@ -58,8 +46,11 @@ public class AltaAlbum_paso1 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        IListarGeneros interf = Fabrica.getIListarGeneros();
-        Map<String, String> data = interf.stringifyDataGeneros();
+        servidor.PublicadorService service = new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+
+        DataColeccionGenerosStrfy generos = port.getGenerosStringified();
+        List<DataCollectionGenerosStrfyItems> data = generos.getData();
                 
         request.setAttribute("generos", data);
         request.getRequestDispatcher("/WEB-INF/albums/paso1.jsp").forward(request, response);
@@ -116,7 +107,7 @@ public class AltaAlbum_paso1 extends HttpServlet {
             }
         }
         if(generos_arr == null || generos_arr.length == 0){
-            request.setAttribute("error_generos", "Debes elegir al menos un año para el álbum");
+            request.setAttribute("error_generos", "Debes elegir al menos un género para el álbum");
             has_errors = true;
         }else{
             for (String genero : generos_arr) {
@@ -146,15 +137,23 @@ public class AltaAlbum_paso1 extends HttpServlet {
             
             
             boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+            byte[] img = null;
             if (isMultipart) {
                 Part part = request.getPart("imagen");
                 InputStream is = part.getInputStream();
-                BufferedImage img = ImageIO.read(is);
+                BufferedImage bufImg = ImageIO.read(is);
+                if(bufImg != null){
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    ImageIO.write(bufImg, "jpg", baos);
+                    baos.flush();
+                    img = baos.toByteArray();
+                    baos.close();
+                }
                 data = new DataAlbumExt();
                 data.setNombre(nombre);
                 data.setAnio(anio);
-                data.setImg(img);
                 data.setNickArtista((String) session.getAttribute("nick_sesion"));
+                
             } else {
                 data = new DataAlbumExt();
                 data.setNombre(nombre);
@@ -164,9 +163,14 @@ public class AltaAlbum_paso1 extends HttpServlet {
             }
             
             try {
+                
+                if (img != null) {
+                    port.addAlbumTempConImagen(data, generos_str, img);
+                } else {
+                    port.addAlbumTemp(data, generos_str);
+                }
                 port.addAlbumTemp(data, generos_str);
             } catch (ArtistaInexistenteException_Exception ex) {
-                response.sendError(500, "Artista inexistente");
             }
         response.sendRedirect("/AltaAlbum/paso2?album="+nombre);
         }

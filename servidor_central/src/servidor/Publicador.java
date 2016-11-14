@@ -10,6 +10,7 @@ import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataCliente;
 import espotify.datatypes.DataClienteExt;
+import espotify.datatypes.DataColeccionGenerosStrfy;
 import espotify.datatypes.DataColeccionString;
 import espotify.datatypes.DataColeccionSuscripcion;
 import espotify.datatypes.DataLista;
@@ -49,6 +50,7 @@ import espotify.interfaces.IBuscar;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.web.IBajaArtista;
+import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.IVerGenero;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -58,11 +60,11 @@ import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.TreeMap;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
@@ -527,6 +529,7 @@ public class Publicador {
         baja.BajaArtista(nick);
     }
 
+    @WebMethod
     public boolean albumTempTieneTema(String nick, String tema) throws ArtistaInexistenteException {
         DataAlbumExt albumTemp = Fabrica.getIAltaAlbumWeb().getAlbumTemp(nick);
         return albumTemp.tieneTema(tema);
@@ -544,4 +547,30 @@ public class Publicador {
         album.setGeneros(generos);
         Fabrica.getIAltaAlbumWeb().addAlbumTemp(album);
     }
+    
+    @WebMethod
+    public void addAlbumTempConImagen(DataAlbumExt album, String generos_str, byte[] img)
+            throws ArtistaInexistenteException {
+        try {
+            InputStream in = new ByteArrayInputStream(img);
+            BufferedImage bufferedImage = ImageIO.read(in);
+            album.setImg(bufferedImage);
+        } catch (IOException ex) {
+            album.setImg(null);
+        }
+        ArrayList generos = new ArrayList<>();
+        generos.addAll(Arrays.asList(generos_str.split(", ")));
+        album.setGeneros(generos);
+        Fabrica.getIAltaAlbumWeb().addAlbumTemp(album);
+    }
+    
+    @WebMethod
+    public DataColeccionGenerosStrfy getGenerosStringified(){
+        IListarGeneros interf = Fabrica.getIListarGeneros();
+        TreeMap<String, String> data = interf.stringifyDataGeneros();
+        DataColeccionGenerosStrfy ret = new DataColeccionGenerosStrfy();
+        ret.setData(data);
+        return ret;
+    }
+
 }
