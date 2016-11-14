@@ -15,12 +15,8 @@
                     <h1><i class="fa fa-spotify default-color"></i>Espotify</h1>
                     <div class="logo"><h2>Iniciar sesión</h2></div>
                     <!-- Main Form -->
-                    <div class="alert alert-danger" role="alert">
-                        <strong>La combinación de correo electrónico/contraseña es incorrecta.</strong> <br />
-                        Por favor vuelva a intentarlo. Si ha olvidado su contraseña comuniquese con el soporte.
-                    </div>
                     <div class="login-form-1">
-                        <form id="login-form" class="text-center" action="iniciar-sesion" method="POST">
+                        <form id="login-form" class="text-center" action="login_mobile" method="POST">
                             <div class="login-form-main-message"></div>
                             <div class="main-login-form">
                                 <div class="login-group">
@@ -42,5 +38,5 @@
             </div>
         </div>
     </div>
-    
+
 </t:wrapper>

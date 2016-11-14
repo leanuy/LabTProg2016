@@ -13,6 +13,14 @@
         <servlet-class>servlets.Home</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>LoginMobile</servlet-name>
+        <servlet-class>servlets.LoginMobile</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomeMobile</servlet-name>
+        <servlet-class>servlets.HomeMobile</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>iniciar-Sesion</servlet-name>
         <servlet-class>servlets.Login</servlet-class>
     </servlet>
@@ -261,6 +269,14 @@
         <url-pattern>/Bienvenida</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LoginMobile</servlet-name>
+        <url-pattern>/login_mobile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeMobile</servlet-name>
+        <url-pattern>/home_mobile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>OrdenarBuscar</servlet-name>
         <url-pattern>/ordenar_busqueda</url-pattern>
     </servlet-mapping>
@@ -303,6 +319,10 @@
     <servlet-mapping>
         <servlet-name>Sugerencias</servlet-name>
         <url-pattern>/Sugerencias</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ArtistasMobile</servlet-name>
+        <url-pattern>/ArtistasMobile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
