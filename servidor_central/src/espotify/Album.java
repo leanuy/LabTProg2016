@@ -20,11 +20,14 @@ import java.util.List;
 import java.util.Map;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.Transient;
 
 @Entity
@@ -40,8 +43,7 @@ public class Album implements Favoriteable, Serializable {
     @Transient
     private BufferedImage img;
     private Artista artista;
-    //@ManyToMany(cascade=CascadeType.PERSIST)
-    @Transient
+    @ManyToMany @MapKeyColumn(name="nomGenero", table="ALBUM_GENERO")
     private Map<String, Genero> generos;
     @Transient
     private List<Tema> temas;

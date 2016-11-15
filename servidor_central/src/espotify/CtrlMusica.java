@@ -32,6 +32,10 @@ import java.util.List;
 import java.util.Map;
 
 import java.util.TreeMap;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         IVerAlbum, IVerGenero, IListarGeneros, IBuscar, IAltaAlbumWeb, ISugerencias{
@@ -133,6 +137,7 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
                 Genero nuevoGenero = new Genero(data);
                 agregarGenero(data.getNombre(), nuevoGenero);
                 buscarGenero(padre).addHijo(nuevoGenero);
+                persistirGenero(nuevoGenero);
             } else {
                 throw new GeneroInexistenteException("No existe el género padre");
             }
@@ -392,5 +397,18 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
             tem = cola.pollFirst();
         }
         return new DataColeccionTemas(temas);
+    }
+
+    private void persistirGenero(Genero genero) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        
+        Query queryExiste = em.createQuery("SELECT g FROM Genero g WHERE g.nombre=?1");
+        queryExiste.setParameter(1, genero.getNombre());
+        if (queryExiste.getResultList().isEmpty()) {
+            em.persist(genero);
+        }
+        em.getTransaction().commit();
     }
 }
