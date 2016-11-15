@@ -8,7 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+@Entity
 class TemaWeb extends Tema {
+    @Transient
     private String url;
     
     TemaWeb(DataTemaWeb dtw, final Album album) {

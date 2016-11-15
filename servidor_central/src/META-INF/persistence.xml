@@ -6,9 +6,11 @@
     <class>espotify.Artista</class>
     <class>espotify.Genero</class>
     <class>espotify.Album</class>
-    <class>espotify.Tema</class>
+    <class>espotify.TemaArchivo</class>
+    <class>espotify.TemaWeb</class>
+    <class>espotify.Usuario</class>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/espotify_db"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:espotify_db"/>
       <property name="javax.persistence.jdbc.user" value="nbuser"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="nbuser"/>

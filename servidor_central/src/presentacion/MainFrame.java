@@ -97,6 +97,7 @@ public class MainFrame extends javax.swing.JFrame {
         consultaAlbumMenuItem = new javax.swing.JMenuItem();
         consultaListaMenuItem = new javax.swing.JMenuItem();
         registroAccesosMenuItem = new javax.swing.JMenuItem();
+        eliminadosMenuItem = new javax.swing.JMenuItem();
         socialMenu = new javax.swing.JMenu();
         seguirMenuItem = new javax.swing.JMenuItem();
         dejarSeguirMenuItem = new javax.swing.JMenuItem();
@@ -338,6 +339,14 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
         consultasDropDown.add(registroAccesosMenuItem);
+
+        eliminadosMenuItem.setText("Artistas Eliminados");
+        eliminadosMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminadosMenuItemActionPerformed(evt);
+            }
+        });
+        consultasDropDown.add(eliminadosMenuItem);
 
         menuPrincipal.add(consultasDropDown);
 
@@ -1243,6 +1252,14 @@ public class MainFrame extends javax.swing.JFrame {
         registro.setVisible(true);
     }//GEN-LAST:event_registroAccesosMenuItemActionPerformed
 
+    private void eliminadosMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminadosMenuItemActionPerformed
+        MainPanel.removeAll();
+        VerArtistasEliminados elim = new VerArtistasEliminados();
+        MainPanel.add(elim);
+        MainPanel.repaint();
+        elim.setVisible(true);
+    }//GEN-LAST:event_eliminadosMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1311,6 +1328,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu consultasDropDown;
     private javax.swing.JMenuItem dejarSeguirMenuItem;
     private javax.swing.JMenuItem desfavoritearMItem;
+    private javax.swing.JMenuItem eliminadosMenuItem;
     private javax.swing.JMenuItem favoritearMItem;
     private javax.swing.JInternalFrame internalAltaAlbum;
     private javax.swing.JInternalFrame internalAltaPerfil;

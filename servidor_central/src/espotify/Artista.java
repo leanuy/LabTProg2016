@@ -28,10 +28,6 @@ import javax.persistence.Transient;
 @Entity
 class Artista extends Usuario implements Serializable {
     //attr
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
     
     private String bio;
     private String url;
@@ -86,10 +82,12 @@ class Artista extends Usuario implements Serializable {
         List<String> segdores = new ArrayList();
         String namef;
         Cliente cli;
-        for (Map.Entry<String, Cliente> entry : this.getSeguidores().entrySet()) {
-            cli = entry.getValue();
-            namef = cli.getNick();
-            segdores.add(namef);
+        if(this.getSeguidores()!=null) {
+            for (Map.Entry<String, Cliente> entry : this.getSeguidores().entrySet()) {
+                cli = entry.getValue();
+                namef = cli.getNick();
+                segdores.add(namef);
+            }
         }
         return new DataArtistaExt(getNick(), getNombre(), getApellido(),
                 getCorreo(), getFechaNac(), getImg(), bio, url, albums, segdores);

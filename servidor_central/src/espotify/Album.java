@@ -20,15 +20,11 @@ import java.util.List;
 import java.util.Map;
 
 import java.io.Serializable;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 @Entity
@@ -83,19 +79,23 @@ public class Album implements Favoriteable, Serializable {
     
     DataAlbumExt getDataExt() {
         final ArrayList<DataTema> dataTemas = new ArrayList();
-        final Iterator<Tema> iterador = temas.iterator();
-        Tema temaActual;
-        while (iterador.hasNext()) {
-            temaActual = iterador.next();
-            dataTemas.add(temaActual.getData());
+        if (temas!=null) {
+            final Iterator<Tema> iterador = temas.iterator();
+            Tema temaActual;
+            while (iterador.hasNext()) {
+                temaActual = iterador.next();
+                dataTemas.add(temaActual.getData());
+            }
         }
-        final Iterator itg = generos.entrySet().iterator();
-        Genero generoActual;
         final ArrayList<String> nombreGeneros = new ArrayList<String>();
-        while (itg.hasNext()) {
-            final Map.Entry pair = (Map.Entry)itg.next();
-            generoActual = (Genero) pair.getValue();
-            nombreGeneros.add(generoActual.getNombre());
+        if(generos!=null) {
+            final Iterator itg = generos.entrySet().iterator();
+            Genero generoActual;
+            while (itg.hasNext()) {
+                final Map.Entry pair = (Map.Entry)itg.next();
+                generoActual = (Genero) pair.getValue();
+                nombreGeneros.add(generoActual.getNombre());
+            }
         }
         return new DataAlbumExt(dataTemas, this.nombre, this.anio,
                 nombreGeneros, this.img, artista.getNick());
@@ -200,7 +200,7 @@ public class Album implements Favoriteable, Serializable {
 
     void persistirTemas(EntityManager em) {
         for (Tema tem : temas) {
-            //em.persist((Tema)tem);
+            em.persist(tem);
         }
     }
     
