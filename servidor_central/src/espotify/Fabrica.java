@@ -18,6 +18,7 @@ import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
 import espotify.interfaces.IPublicarLista;
 import espotify.interfaces.IQuitarTemaLista;
+import espotify.interfaces.IVerEliminados;
 import espotify.interfaces.IVerRegistroAccesos;
 import espotify.interfaces.web.IAgregarTemaListaWeb;
 import espotify.interfaces.web.IAltaAlbumWeb;
@@ -40,7 +41,6 @@ import espotify.interfaces.web.IRegistrarAcceso;
 import espotify.interfaces.web.ISugerencias;
 
 public final class Fabrica {
-
 
 
     private Fabrica() {
@@ -199,5 +199,9 @@ public final class Fabrica {
         
     public static IRegistrarAcceso getIRegistrarAcceso() {
         return new CtrlRegistro();
+    }
+
+    public static IVerEliminados getIVerEliminados() {
+        return new CtrlUsuarios();
     }
 }
