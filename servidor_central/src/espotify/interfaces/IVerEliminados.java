@@ -18,6 +18,7 @@ public interface IVerEliminados {
 
     public DataArtistaExt consultaArtistaEliminado(String usr);
     
+    public List<String> consultaGenerosAlbumEliminado(String usr, String alb);
     public List<String> consultaTemasAlbumEliminado(String usr, String alb);
     
     

@@ -625,8 +625,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
         EntityManager em = emf.createEntityManager();
         
-        List artistas = em.createQuery("SELECT a FROM Artista a").
-                getResultList();
+        //List artistas = em.createQuery("SELECT a FROM Artista a").getResultList();
         em.getTransaction().begin();
         em.persist(art);
         art.persistirTemas(em);
@@ -668,10 +667,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         q.setParameter(1, usr);
         Artista art = (Artista)q.getSingleResult();
         
-        Query q2 = em.createQuery("SELECT a FROM Album a WHERE a.artista=?1 AND a.nombre=?2");
-        q2.setParameter(1, art);
-        q2.setParameter(2, nomAlbum);
-        Album alb = (Album)q2.getSingleResult();
+        Album alb = art.getAlbums().get(nomAlbum);
         
         Query q3 = em.createQuery("SELECT t FROM TemaArchivo t WHERE t.album=?1");
         q3.setParameter(1, alb);
@@ -691,5 +687,21 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         
         return salida;
     }
-    
+
+    @Override
+    public List<String> consultaGenerosAlbumEliminado(String usr, String nomAlbum) {
+
+        List<String> salida = new ArrayList<>();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        
+        Query q = em.createQuery("SELECT a FROM Artista a WHERE a.nick=?1");
+        q.setParameter(1, usr);
+        Artista art = (Artista)q.getSingleResult();
+        
+        Album alb = art.getAlbums().get(nomAlbum);
+        
+        return alb.getData().getGeneros();        
+    }
 }
