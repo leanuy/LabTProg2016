@@ -4,7 +4,6 @@ import espotify.datatypes.DataAlbumExt;
 import espotify.datatypes.DataArtista;
 import espotify.datatypes.DataArtistaExt;
 import espotify.datatypes.DataTema;
-import espotify.datatypes.DataUsuario;
 import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
 
@@ -19,9 +18,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
