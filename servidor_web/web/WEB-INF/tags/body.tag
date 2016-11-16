@@ -7,7 +7,7 @@
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <%@taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
+<%@attribute name="user" type="servidor.DataUsuario"%>
 <t:wrapper>
     <t:navbar user="${user}"/>
     <div class="container-fluid main" style="padding:0">

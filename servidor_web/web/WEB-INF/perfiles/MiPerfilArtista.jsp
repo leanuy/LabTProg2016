@@ -93,7 +93,7 @@
                             </h5>
                             <br>
                                 <ul class="rig columns-2">
-                                    <a class="btn btn-custom" style="padding-bottom:5px" href="/BajaArtista?nickArt=${nick_sesion}&nick=algo">Dar de Baja</a>
+                                    <a class="btn btn-custom" style="padding-bottom:5px" href="/BajaArtista">Dar de Baja</a>
                                 </ul>
                             </br>
                         </div>

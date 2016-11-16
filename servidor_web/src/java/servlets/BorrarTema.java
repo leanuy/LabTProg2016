@@ -5,21 +5,8 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
-import espotify.excepciones.AlbumRepetidoException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.CampoVacioException;
-import espotify.excepciones.DuracionInvalidaException;
-import espotify.excepciones.GeneroInexistenteException;
-import espotify.excepciones.NumeroTemaInvalidoException;
-import espotify.excepciones.TemaRepetidoException;
-import espotify.excepciones.TemaTipoInvalidoException;
-import espotify.interfaces.web.IAltaAlbumWeb;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

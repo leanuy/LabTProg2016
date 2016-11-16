@@ -6,7 +6,7 @@
 
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
-<%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
+<%@attribute name="user" type="servidor.DataUsuario"%>
 
 <script>
     var idxTrack=0;

@@ -5,9 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.interfaces.web.IBajaArtista;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,13 +35,12 @@ public class BajaArtista extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-        String nickart = new String(request.getParameter("nickArt").getBytes(
-            "iso-8859-1"), "UTF-8");
         
         servidor.PublicadorService service =  new servidor.PublicadorService();
         servidor.Publicador port = service.getPublicadorPort();
         if (session.getAttribute("estado_sesion") == EstadoSesion.LOGIN_CORRECTO) {
             try {
+                String nickart = (String)session.getAttribute("nick_sesion");
                 port.darBajaArtista(nickart);
                 session.setAttribute("estado_sesion", EstadoSesion.NO_LOGIN);
                 session.setAttribute("nick_sesion", null);
