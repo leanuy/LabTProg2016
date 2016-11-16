@@ -209,13 +209,13 @@ h1{
     }
  
     .tab-links li {
-        margin:0% 5%;
+        margin:0px 5px;
         float:left;
         list-style:none;
     }
  
         .tab-links a {
-            padding:9% 15%;
+            padding:9px 15px;
             display:inline-block;
             border-radius:3px 3px 0px 0px;
             font-weight:600;
@@ -252,43 +252,45 @@ h1{
     
 /*Unordered Lists con imagenes*/
 
-
 ul.rig {
-	list-style: none;
-	font-size: 0px;
-	margin-left: -2.5%; /* should match li left margin */
+        list-style: none;
+        font-size: 0px;
+        margin-left: -2.5%; /* should match li left margin */
 }
-ul.rig li {
-	display: inline-block;
-	padding: 10px;
-	margin: 0 0 2.5% 2.5%;
-	background: #393B39;
-	border: 1px solid #ddd;
-	font-size: 16px;
-	font-size: 1rem;
-	vertical-align: top;
-	box-shadow: 0 0 5px #ddd;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-}
-ul.rig li img {
-	margin: 0 0 10px;
-}
-ul.rig li h3 {
-	margin: 0 0 5px;
-}
-/* class for 2 columns */
-ul.rig.columns-2 li {
-	width: 47.5%; /* this value + 2.5 should = 50% */
-}
-/* class for 3 columns */
-ul.rig.columns-3 li {
-	width: 30.83%; /* this value + 2.5 should = 33% */
-}
-/* class for 4 columns */
-ul.rig.columns-4 li {
-	width: 22.5%; /* this value + 2.5 should = 25% */
+@media screen and (min-width:800px){
+    ul.rig li {
+            display: inline-block;
+            padding: 10px;
+            margin: 0 0 2.5% 2.5%;
+            background: #393B39;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            font-size: 1rem;
+            vertical-align: top;
+            box-shadow: 0 0 5px #ddd;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+    }
+    ul.rig li img {
+            margin: 0 0 10px;
+    }
+
+    ul.rig li h3 {
+            margin: 0 0 5px;
+    }
+    /* class for 2 columns */
+    ul.rig.columns-2 li {
+            width: 47.5%; /* this value + 2.5 should = 50% */
+    }
+    /* class for 3 columns */
+    ul.rig.columns-3 li {
+            width: 30.83%; /* this value + 2.5 should = 33% */
+    }
+    /* class for 4 columns */
+    ul.rig.columns-4 li {
+            width: 22.5%; /* this value + 2.5 should = 25% */
+    }
 }
  
 @media (max-width: 480px) {
@@ -383,15 +385,32 @@ select {
   border-bottom: none;
 }
 
-.image-circle {
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    object-fit: cover;
+@media screen and (max-width:800px){
+    .image-circle {
+        width:100px;
+        height:100px;
+        border-radius:50%;
+        object-fit: cover;
+    }
+
+    .image-square {
+        width:150px;
+        height:150px;
+        object-fit: cover;
+    }
 }
 
-.image-square {
-    width:150px;
-    height:150px;
-    object-fit: cover;
+@media screen and (min-width:800px){
+    .image-circle {
+        width:150px;
+        height:150px;
+        border-radius:50%;
+        object-fit: cover;
+    }
+
+    .image-square {
+        width:150px;
+        height:150px;
+        object-fit: cover;
+    }
 }
