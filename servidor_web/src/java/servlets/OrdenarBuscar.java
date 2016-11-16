@@ -5,9 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataAlbum;
-import espotify.interfaces.IBuscar;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;

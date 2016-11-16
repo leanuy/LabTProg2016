@@ -5,9 +5,6 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.interfaces.web.IBajaArtista;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

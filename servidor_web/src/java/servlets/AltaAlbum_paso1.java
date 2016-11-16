@@ -5,16 +5,13 @@
  */
 package servlets;
 
-import espotify.Fabrica;
 import servidor.DataCollectionGenerosStrfyItems;
 import servidor.DataAlbumExt;
-import espotify.interfaces.web.IListarGeneros;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -129,8 +126,9 @@ public class AltaAlbum_paso1 extends HttpServlet {
             }
 
             if (has_errors) {
-                IListarGeneros interf = Fabrica.getIListarGeneros();
-                Map<String, String> data = interf.stringifyDataGeneros();
+                
+                DataColeccionGenerosStrfy generos = port.getGenerosStringified();
+                List<DataCollectionGenerosStrfyItems> data = generos.getData();
 
                 request.setAttribute("has_errors", true);
 

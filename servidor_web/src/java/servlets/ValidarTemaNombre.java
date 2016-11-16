@@ -5,7 +5,6 @@
  */
 package servlets;
 
-import espotify.excepciones.ArtistaInexistenteException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,7 +34,7 @@ public class ValidarTemaNombre extends HttpServlet {
      * @throws servidor.ArtistaInexistenteException_Exception
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ArtistaInexistenteException, ArtistaInexistenteException_Exception {
+            throws ServletException, IOException, ArtistaInexistenteException_Exception {
         HttpSession session = request.getSession();
         
         response.setContentType("text/html;charset=UTF-8");
@@ -71,8 +70,6 @@ public class ValidarTemaNombre extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(500, "el artista no existe");
         } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(500, "el artista no existe");
         }
@@ -91,8 +88,6 @@ public class ValidarTemaNombre extends HttpServlet {
             throws ServletException, IOException {
         try {
             processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(500, "el artista no existe");
         } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(500, "el artista no existe");
         }
