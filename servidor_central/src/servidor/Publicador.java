@@ -63,11 +63,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Properties;
 import java.util.TreeMap;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -86,11 +89,27 @@ public class Publicador {
     //Constructor
     public Publicador(){}
 
-    //Operaciones las cuales quiero publicar
-
     @WebMethod(exclude = true)
-    public void publicar(){
-         endpoint = Endpoint.publish("http://localhost:9128/publicador", this);
+    public void publicar() {
+        FileInputStream in = null;
+        Properties props = new Properties();
+        try {
+            in = new FileInputStream("espotify_properties");
+            props.load(in);
+            in.close();
+            String puerto = props.getProperty("puerto", "8080");
+            endpoint = Endpoint.publish("http://localhost:"+puerto+"/publicador", this);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     @WebMethod(exclude = true)
@@ -604,5 +623,4 @@ public class Publicador {
         IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
         inter.deleteTemaAlbumTemp(artista, tema);
     }
-
 }
