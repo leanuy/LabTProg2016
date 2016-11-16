@@ -164,14 +164,20 @@ $("#agregar").click(function(){
     if(!has_error){
         $duracion.val(duracion);
         $("#tipo").val(tipo);
-        var data = new FormData($("form#form-tema")[0]);
+        var data = new FormData();
+        var archivo = $('#archivo')[0].files[0];
+        data.append('orden', $("#orden").val());
+        data.append('nombre', $("#nombre").val());
+        data.append('duracion', $("#duracion").val());
+        data.append('url', $("#url").val());
+        data.append('archivo', archivo);
 
         $.ajax({
-            type: "POST",
             url: "/AltaAlbum/paso2",
+            data: data,
+            type: "POST",
             processData: false,
             contentType: false,
-            data: data,
             success: function (msg) {
                 if (msg === "true") {
                     $duracion.val(duracion_str);

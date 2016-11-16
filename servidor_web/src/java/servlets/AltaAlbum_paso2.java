@@ -5,13 +5,10 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.datatypes.DataAlbumExt;
-import espotify.datatypes.DataTemaArchivo;
-import espotify.datatypes.DataTemaWeb;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.interfaces.web.IAltaAlbumWeb;
-import java.io.BufferedInputStream;
+import servidor.DataAlbumExt;
+import servidor.DataTemaArchivo;
+import servidor.DataTemaWeb;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
@@ -25,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+import servidor.ArtistaInexistenteException_Exception;
 
 /**
  *
@@ -44,8 +42,18 @@ public class AltaAlbum_paso2 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        
+        servidor.PublicadorService service = new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+
+        String artista = (String) session.getAttribute("nick_sesion");
+        if (port.esArtista(artista)) {
         request.setAttribute("album", request.getParameter("album"));
         request.getRequestDispatcher("/WEB-INF/albums/paso2.jsp").forward(request, response);
+        } else {
+            response.sendError(401, "Usted no tiene permitido el acceso a esta funcionalidad de la app.");
+        }
     }
 
     /**
@@ -60,18 +68,23 @@ public class AltaAlbum_paso2 extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+
+        servidor.PublicadorService service = new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+        
+        String artista = (String) session.getAttribute("nick_sesion");
+        if (!"".equals(artista)) {
+            
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
         boolean has_errors = false;
-        HttpSession session = request.getSession();
         try {
-            String artista = (String) session.getAttribute("nick_sesion");
             Part part;
             Scanner s;
                         
-            DataAlbumExt album = inter.getAlbumTemp(artista);
+            DataAlbumExt album = port.getAlbumTemp(artista);
             
             part = request.getPart("orden");
             s = new Scanner(part.getInputStream());
@@ -88,29 +101,50 @@ public class AltaAlbum_paso2 extends HttpServlet {
             part = request.getPart("tipo");
             s = new Scanner(part.getInputStream());
             String tipo = s.nextLine();
+            
+            
             if (tipo.equals("web")) {
                 part = request.getPart("url");
                 s = new Scanner(part.getInputStream());
                 String url = s.nextLine();
 
-                DataTemaWeb temaWeb = new DataTemaWeb(url, nombre, duracion, orden, artista, album.getNombre());
-                inter.addTemaAlbumTemp(artista, temaWeb);
+                DataTemaWeb temaWeb = new DataTemaWeb();
+                temaWeb.setUrl(url);
+                temaWeb.setNombre(nombre);
+                temaWeb.setDuracion(duracion);
+                temaWeb.setNum(orden);
+                temaWeb.setNomArtista(artista);
+                temaWeb.setAlbum(album.getNombre());
+                port.addTemaWebAlbumTemp(artista, temaWeb);
                 out.print("true");
             } else if(tipo.equals("archivo")){
                 boolean isMultipart = ServletFileUpload.isMultipartContent(request);
                 if (isMultipart) {
                     part = request.getPart("archivo");
-                    InputStream is = part.getInputStream();
-                    BufferedInputStream archivo = new BufferedInputStream(is);
-                    DataTemaArchivo temaArchivo = new DataTemaArchivo(archivo, nombre, duracion, orden, artista, album.getNombre());
-                    inter.addTemaAlbumTemp(artista, temaArchivo);
+                    InputStream input = part.getInputStream();
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    ByteArrayOutputStream output = new ByteArrayOutputStream();
+                    while ((bytesRead = input.read(buffer)) != -1) {
+                        output.write(buffer, 0, bytesRead);
+                    }
+                    DataTemaArchivo temaArchivo = new DataTemaArchivo();
+                    temaArchivo.setNombre(nombre);
+                    temaArchivo.setDuracion(duracion);
+                    temaArchivo.setNum(orden);
+                    temaArchivo.setNomArtista(artista);
+                    temaArchivo.setAlbum(album.getNombre());
+                    port.addTemaArchivoAlbumTemp(artista, temaArchivo, output.toByteArray());
                     out.print("true");
                 }
             }
    
-        }catch(ArtistaInexistenteException ex){
+        } catch (ArtistaInexistenteException_Exception ex) {
             out.print("false");
         }
+        }else{
+            response.sendError(401, "Usted no tiene permitido el acceso a esta funcionalidad de la app.");
+    }
     }
 
     /**

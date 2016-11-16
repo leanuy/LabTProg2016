@@ -43,7 +43,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
     private String pathAImagen;
     private boolean primeraVez;
     private static int numeroTema;
-    private static List<DataTema> listaTemas;
+    private static ArrayList<DataTema> listaTemas;
     
     private static boolean web;
     private static String url;
@@ -453,7 +453,7 @@ public class AltaAlbum extends javax.swing.JInternalFrame {
             return;
         }
         
-        List<String> genders = new ArrayList();
+        ArrayList<String> genders = new ArrayList();
         TreePath[] path = ArbolGeneros.getSelectionPaths();
         if(path == null){
             JOptionPane.showMessageDialog(this, "Debe seleccionar al menos un genero", "Error", JOptionPane.ERROR_MESSAGE);

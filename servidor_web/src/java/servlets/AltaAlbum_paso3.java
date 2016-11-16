@@ -5,25 +5,21 @@
  */
 package servlets;
 
-import espotify.Fabrica;
-import espotify.excepciones.AlbumRepetidoException;
-import espotify.excepciones.ArtistaInexistenteException;
-import espotify.excepciones.CampoVacioException;
-import espotify.excepciones.DuracionInvalidaException;
-import espotify.excepciones.GeneroInexistenteException;
-import espotify.excepciones.NumeroTemaInvalidoException;
-import espotify.excepciones.TemaRepetidoException;
-import espotify.excepciones.TemaTipoInvalidoException;
-import espotify.interfaces.web.IAltaAlbumWeb;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import servidor.AlbumRepetidoException_Exception;
+import servidor.ArtistaInexistenteException_Exception;
+import servidor.CampoVacioException_Exception;
+import servidor.DuracionInvalidaException_Exception;
+import servidor.GeneroInexistenteException_Exception;
+import servidor.NumeroTemaInvalidoException_Exception;
+import servidor.TemaRepetidoException_Exception;
+import servidor.TemaTipoInvalidoException_Exception;
 
 /**
  *
@@ -39,25 +35,41 @@ public class AltaAlbum_paso3 extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws espotify.excepciones.ArtistaInexistenteException
-     * @throws espotify.excepciones.AlbumRepetidoException
-     * @throws espotify.excepciones.GeneroInexistenteException
-     * @throws espotify.excepciones.DuracionInvalidaException
-     * @throws espotify.excepciones.NumeroTemaInvalidoException
-     * @throws espotify.excepciones.TemaRepetidoException
-     * @throws espotify.excepciones.CampoVacioException
-     * @throws espotify.excepciones.TemaTipoInvalidoException
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-
-        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        
+        servidor.PublicadorService service = new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
         String artista = (String) session.getAttribute("nick_sesion");
-        inter.aceptarAltaAlbum(artista);
+        if(!"".equals(artista)){
+        
+        try {
+            port.aceptarAltaAlbum(artista);
+        } catch (ArtistaInexistenteException_Exception ex) {
+            response.sendError(500, "artista inexistente.");
+        } catch (AlbumRepetidoException_Exception ex) {
+            response.sendError(500, "album repetido.");
+        } catch (GeneroInexistenteException_Exception ex) {
+            response.sendError(500, "genero inexistente.");
+        } catch (DuracionInvalidaException_Exception ex) {
+            response.sendError(500, "duracion invalida.");
+        } catch (NumeroTemaInvalidoException_Exception ex) {
+            response.sendError(500, "numero tema invalido.");
+        } catch (TemaRepetidoException_Exception ex) {
+            response.sendError(500, "tema repetido.");
+        } catch (CampoVacioException_Exception ex) {
+            response.sendError(500, "campo vacio.");
+        } catch (TemaTipoInvalidoException_Exception ex) {
+            response.sendError(500, "tema tipo invalido.");
+        }
         PrintWriter out = response.getWriter();
         out.print(artista);
+        }else{
+            response.sendError(401, "Usted no tiene permitido el acceso a esta funcionalidad de la app.");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -72,60 +84,10 @@ public class AltaAlbum_paso3 extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
             processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(500, "artista inexistente.");
-        } catch (AlbumRepetidoException ex) {
-            response.sendError(500, "album repetido.");
-        } catch (GeneroInexistenteException ex) {
-            response.sendError(500, "genero inexistente.");
-        } catch (DuracionInvalidaException ex) {
-            response.sendError(500, "duracion invalida.");
-        } catch (NumeroTemaInvalidoException ex) {
-            response.sendError(500, "numero tema invalido.");
-        } catch (TemaRepetidoException ex) {
-            response.sendError(500, "tema repetido.");
-        } catch (CampoVacioException ex) {
-            response.sendError(500, "campo vacio.");
-        } catch (TemaTipoInvalidoException ex) {
-            response.sendError(500, "tema tipo invalido.");
-        }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
-            response.sendError(500, "artista inexistente.");
-        } catch (AlbumRepetidoException ex) {
-            response.sendError(500, "album repetido.");
-        } catch (GeneroInexistenteException ex) {
-            response.sendError(500, "genero inexistente.");
-        } catch (DuracionInvalidaException ex) {
-            response.sendError(500, "duracion invalida.");
-        } catch (NumeroTemaInvalidoException ex) {
-            response.sendError(500, "numero tema invalido.");
-        } catch (TemaRepetidoException ex) {
-            response.sendError(500, "tema repetido.");
-        } catch (CampoVacioException ex) {
-            response.sendError(500, "campo vacio.");
-        } catch (TemaTipoInvalidoException ex) {
-            response.sendError(500, "tema tipo invalido.");
-        }
-    }
-
-    /**
+/**
      * Returns a short description of the servlet.
      *
      * @return a String containing servlet description

@@ -50,7 +50,7 @@ public class Album implements Favoriteable {
     public DataAlbum getData() {
         final Iterator itg = generos.entrySet().iterator();
         Genero generoActual;
-        final List<String> nombreGeneros = new ArrayList<String>();
+        final ArrayList<String> nombreGeneros = new ArrayList<String>();
         while (itg.hasNext()) {
             final Map.Entry pair = (Map.Entry)itg.next();
             generoActual = (Genero) pair.getValue();
@@ -60,7 +60,7 @@ public class Album implements Favoriteable {
     }
     
     DataAlbumExt getDataExt() {
-        final List<DataTema> dataTemas = new ArrayList();
+        final ArrayList<DataTema> dataTemas = new ArrayList();
         final Iterator<Tema> iterador = temas.iterator();
         Tema temaActual;
         while (iterador.hasNext()) {
@@ -69,7 +69,7 @@ public class Album implements Favoriteable {
         }
         final Iterator itg = generos.entrySet().iterator();
         Genero generoActual;
-        final List<String> nombreGeneros = new ArrayList<String>();
+        final ArrayList<String> nombreGeneros = new ArrayList<String>();
         while (itg.hasNext()) {
             final Map.Entry pair = (Map.Entry)itg.next();
             generoActual = (Genero) pair.getValue();
