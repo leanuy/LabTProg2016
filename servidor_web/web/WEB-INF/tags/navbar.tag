@@ -53,18 +53,18 @@
                                         <li><a href="/Suscripcion">Suscripción</a></li>
                                     </c:when>
                                 </c:choose>
-                                <li class="hidden-lg hidden-md divider" role="separator" class="divider"></li>
-                                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Sugerencias">Sugerencias</a></li>
-                                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/VerGenero?genero=Genero">Géneros</a></li>
-                                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Artistas">Artistas</a></li>
-                                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Clientes">Clientes</a></li>
-                                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Ranking">Ranking</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/cerrar-sesion">Cerrar sesión</a></li>
                             </ul>
                         </li>
                     </c:otherwise>
                 </c:choose>
+                <li class="hidden-lg hidden-md divider" role="separator" class="divider"></li>
+                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Sugerencias">Sugerencias</a></li>
+                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/VerGenero?genero=Genero">Géneros</a></li>
+                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Artistas">Artistas</a></li>
+                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Clientes">Clientes</a></li>
+                <li class="hidden-lg hidden-md"><a class="btn-link-sidebar" href="/Ranking">Ranking</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
