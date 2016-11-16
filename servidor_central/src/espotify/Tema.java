@@ -1,16 +1,30 @@
 package espotify;
 
 import espotify.datatypes.DataTema;
+import java.io.Serializable;
 import java.util.Comparator;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 
-class Tema implements Favoriteable {
-    private final String nombre;
-    private final int duracion;
-    private final int num;
-    private final Album album;
+@MappedSuperclass
+class Tema implements Favoriteable, Serializable {
+   
+    @Id
+    private String nombre;
+    private int duracion;
+    private int num;
+    private Album album;
+    @Transient
     private int cantReproducciones;
+    @Transient
     private int cantDescargas;
+    @Transient
     private int listasCon;
+    @Transient
     private int favoritosCon;
 
     String getNombre() {
@@ -80,4 +94,8 @@ class Tema implements Favoriteable {
     private double puntaje() {
         return cantDescargas*0.2 + cantReproducciones*0.3 + listasCon*0.2 + favoritosCon*0.3;
     }
+
+    public Tema() {
+    }
+    
 }

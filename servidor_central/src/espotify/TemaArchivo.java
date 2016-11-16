@@ -13,9 +13,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.Entity;
+import javax.persistence.Transient;
 
-
+@Entity
 class TemaArchivo extends Tema {
+    @Transient
     private File file;
     
     TemaArchivo(DataTemaArchivo dta, final Album album) {
@@ -62,4 +65,8 @@ class TemaArchivo extends Tema {
         }
         return null;
     }
+
+    public TemaArchivo() {
+    }
+    
 }

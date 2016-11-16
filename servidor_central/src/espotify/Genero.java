@@ -1,6 +1,7 @@
 package espotify;
 
 import espotify.datatypes.DataGenero;
+import java.io.Serializable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,12 +10,21 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
-class Genero {
+@Entity
+class Genero implements Serializable {
     //attrs
-    private final String nombre;
-    private final Map<String,Genero> subgeneros;
-    private final Map<List<String>, Album> albums;
+    @Id
+    private String nombre;
+    @Transient
+    private Map<String,Genero> subgeneros;
+    @Transient
+    private Map<List<String>, Album> albums;
 
     String getNombre() {
         return nombre;
@@ -69,4 +79,8 @@ class Genero {
         }
         return salida;
     }
+
+    public Genero() {
+    }
+    
 }

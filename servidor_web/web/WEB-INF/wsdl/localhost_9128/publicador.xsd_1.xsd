@@ -362,17 +362,17 @@
 </xs:sequence>
 </xs:complexType>
 
+<xs:complexType name="dataColeccionTemas">
+<xs:sequence>
+<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
+</xs:sequence>
+</xs:complexType>
+
 <xs:complexType name="beanBusqueda">
 <xs:sequence>
 <xs:element name="albums" type="tns:dataAlbum" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 <xs:element name="listas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 <xs:element name="temas" type="ns1:stringArray" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
-</xs:sequence>
-</xs:complexType>
-
-<xs:complexType name="dataColeccionTemas">
-<xs:sequence>
-<xs:element name="data" type="tns:dataTema" nillable="true" minOccurs="0" maxOccurs="unbounded"></xs:element>
 </xs:sequence>
 </xs:complexType>
 

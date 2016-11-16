@@ -19,14 +19,34 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-public class Album implements Favoriteable {
+import java.io.Serializable;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapKeyColumn;
+import javax.persistence.Transient;
+
+@Entity
+public class Album implements Favoriteable, Serializable {
     //attrs
-    private final String nombre;
-    private final int anio;
-    private final BufferedImage img;
-    private final Artista artista;
-    private final Map<String, Genero> generos;
-    private final List<Tema> temas;
+    
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+    private String nombre;
+    private int anio;
+    @Transient
+    private BufferedImage img;
+    private Artista artista;
+    @ManyToMany @MapKeyColumn(name="nomGenero", table="ALBUM_GENERO")
+    private Map<String, Genero> generos;
+    @Transient
+    private List<Tema> temas;
     
     //getters
     String getNombre() {
@@ -61,19 +81,23 @@ public class Album implements Favoriteable {
     
     DataAlbumExt getDataExt() {
         final ArrayList<DataTema> dataTemas = new ArrayList();
-        final Iterator<Tema> iterador = temas.iterator();
-        Tema temaActual;
-        while (iterador.hasNext()) {
-            temaActual = iterador.next();
-            dataTemas.add(temaActual.getData());
+        if (temas!=null) {
+            final Iterator<Tema> iterador = temas.iterator();
+            Tema temaActual;
+            while (iterador.hasNext()) {
+                temaActual = iterador.next();
+                dataTemas.add(temaActual.getData());
+            }
         }
-        final Iterator itg = generos.entrySet().iterator();
-        Genero generoActual;
         final ArrayList<String> nombreGeneros = new ArrayList<String>();
-        while (itg.hasNext()) {
-            final Map.Entry pair = (Map.Entry)itg.next();
-            generoActual = (Genero) pair.getValue();
-            nombreGeneros.add(generoActual.getNombre());
+        if(generos!=null) {
+            final Iterator itg = generos.entrySet().iterator();
+            Genero generoActual;
+            while (itg.hasNext()) {
+                final Map.Entry pair = (Map.Entry)itg.next();
+                generoActual = (Genero) pair.getValue();
+                nombreGeneros.add(generoActual.getNombre());
+            }
         }
         return new DataAlbumExt(dataTemas, this.nombre, this.anio,
                 nombreGeneros, this.img, artista.getNick());
@@ -172,6 +196,14 @@ public class Album implements Favoriteable {
         }
         return cola;
     }
-    
+
+    public Album() {
+    }
+
+    void persistirTemas(EntityManager em) {
+        for (Tema tem : temas) {
+            em.persist(tem);
+        }
+    }
     
 }

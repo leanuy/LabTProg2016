@@ -43,6 +43,7 @@ import espotify.interfaces.IDejarDeSeguir;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IIniciarSesion;
+import espotify.interfaces.IVerEliminados;
 import espotify.interfaces.web.IBajaArtista;
 import espotify.interfaces.web.IFavoritos;
 import espotify.interfaces.web.IObtenerAudio;
@@ -62,11 +63,15 @@ import espotify.interfaces.web.IRanking;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsultaArtista,
         IAltaSeguir, IDejarDeSeguir, IAltaPerfil, IFavoritear, IActualizarSuscripcion,
         IVerPerfil, IIniciarSesion, IWebSeguir, IListarUsuarios, IValidar, 
-        IFavoritos, ISuscripcionWeb, IObtenerAudio, IRanking, IBajaArtista {
+        IFavoritos, ISuscripcionWeb, IObtenerAudio, IRanking, IBajaArtista, IVerEliminados {
 //Constructor
     public CtrlUsuarios() {
     }
@@ -596,6 +601,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     @Override
     public void BajaArtista(String nick) throws ArtistaInexistenteException {
             Artista art = buscarArtista(nick);
+            persistirArtista(art);
             // saco todo lo que tengan los clientes de el
             ArrayList<String> lista = listarClientes();
             for (String client: lista) {
@@ -613,5 +619,89 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
             //Eliminar al artista
             ManejadorColecciones.getInstancia().eliminarArtista(nick);
             
+    }
+
+    private void persistirArtista(Artista art) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        
+        //List artistas = em.createQuery("SELECT a FROM Artista a").getResultList();
+        em.getTransaction().begin();
+        em.persist(art);
+        art.persistirTemas(em);
+        em.getTransaction().commit();
+    }
+
+    @Override
+    public List<String> cargarArtistasEliminados() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        List artistas = em.createQuery("SELECT a FROM Artista a").
+                getResultList();
+        List<String> salida = new ArrayList<>();
+        for (Object art : artistas) {
+            salida.add(((Artista)art).getNick());
+        }
+        return salida;
+    }
+    
+    @Override
+    public DataArtistaExt consultaArtistaEliminado(String usr) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        Query q = em.createQuery("SELECT a FROM Artista a WHERE a.nick=?1");
+        q.setParameter(1, usr);
+        Artista art = (Artista)q.getSingleResult();
+        return art.getDataArtistaExt();
+    }
+
+    @Override
+    public List<String> consultaTemasAlbumEliminado(String usr, String nomAlbum) {
+        
+        List<String> salida = new ArrayList<>();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        
+        Query q = em.createQuery("SELECT a FROM Artista a WHERE a.nick=?1");
+        q.setParameter(1, usr);
+        Artista art = (Artista)q.getSingleResult();
+        
+        Album alb = art.getAlbums().get(nomAlbum);
+        
+        Query q3 = em.createQuery("SELECT t FROM TemaArchivo t WHERE t.album=?1");
+        q3.setParameter(1, alb);
+        
+        List<TemaArchivo> list1 = q3.getResultList();
+        for (Tema t : list1) {
+            salida.add(t.getNombre());
+        }
+        
+        Query q4 = em.createQuery("SELECT t FROM TemaWeb t WHERE t.album=?1");
+        q4.setParameter(1, alb);
+        
+        List<TemaArchivo> list2 = q4.getResultList();
+        for (Tema t : list2) {
+            salida.add(t.getNombre());
+        }
+        
+        return salida;
+    }
+
+    @Override
+    public List<String> consultaGenerosAlbumEliminado(String usr, String nomAlbum) {
+
+        List<String> salida = new ArrayList<>();
+
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        
+        Query q = em.createQuery("SELECT a FROM Artista a WHERE a.nick=?1");
+        q.setParameter(1, usr);
+        Artista art = (Artista)q.getSingleResult();
+        
+        Album alb = art.getAlbums().get(nomAlbum);
+        
+        return alb.getData().getGeneros();        
     }
 }

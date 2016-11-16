@@ -8,17 +8,28 @@ import espotify.excepciones.AlbumInexistenteException;
 import espotify.excepciones.TemaTipoInvalidoException;
 
 import java.io.BufferedInputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
-class Artista extends Usuario {
+@Entity
+class Artista extends Usuario implements Serializable {
     //attr
-    private final String bio;
-    private final String url;
-    private final Map<String,Album> albums;
+    
+    private String bio;
+    private String url;
+    @OneToMany(mappedBy="artista", cascade=CascadeType.PERSIST, fetch=FetchType.LAZY)
+    private Map<String,Album> albums;
+    @Transient
     private DataAlbumExt albumTemp;
     
     //getters
@@ -67,10 +78,12 @@ class Artista extends Usuario {
         List<String> segdores = new ArrayList();
         String namef;
         Cliente cli;
-        for (Map.Entry<String, Cliente> entry : this.getSeguidores().entrySet()) {
-            cli = entry.getValue();
-            namef = cli.getNick();
-            segdores.add(namef);
+        if(this.getSeguidores()!=null) {
+            for (Map.Entry<String, Cliente> entry : this.getSeguidores().entrySet()) {
+                cli = entry.getValue();
+                namef = cli.getNick();
+                segdores.add(namef);
+            }
         }
         return new DataArtistaExt(getNick(), getNombre(), getApellido(),
                 getCorreo(), getFechaNac(), getImg(), bio, url, albums, segdores);
@@ -137,6 +150,16 @@ class Artista extends Usuario {
             cola = alb.aportarSugerencias(cola);
         }
         return cola;
+    }
+
+    public Artista() {
+    }
+
+    void persistirTemas(EntityManager em) {
+         for (Map.Entry<String, Album> entry : albums.entrySet()) {
+            Album alb = entry.getValue();
+            alb.persistirTemas(em);
+        }
     }
 
 }
