@@ -45,6 +45,7 @@ public class DataAlbum implements DataFavoriteable {
     }    
 
     public DataAlbum() {
+        this.generos = new ArrayList<>();
     }
 
     public void setNombre(String nombre) {

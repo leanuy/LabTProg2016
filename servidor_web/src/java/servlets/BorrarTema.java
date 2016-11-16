@@ -7,7 +7,14 @@ package servlets;
 
 import espotify.Fabrica;
 import espotify.datatypes.DataAlbumExt;
+import espotify.excepciones.AlbumRepetidoException;
 import espotify.excepciones.ArtistaInexistenteException;
+import espotify.excepciones.CampoVacioException;
+import espotify.excepciones.DuracionInvalidaException;
+import espotify.excepciones.GeneroInexistenteException;
+import espotify.excepciones.NumeroTemaInvalidoException;
+import espotify.excepciones.TemaRepetidoException;
+import espotify.excepciones.TemaTipoInvalidoException;
 import espotify.interfaces.web.IAltaAlbumWeb;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,6 +25,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import servidor.ArtistaInexistenteException_Exception;
 
 /**
  *
@@ -35,15 +43,16 @@ public class BorrarTema extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ArtistaInexistenteException {
+            throws ServletException, IOException, ArtistaInexistenteException_Exception{
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
 
-        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        servidor.PublicadorService service = new servidor.PublicadorService();
+        servidor.Publicador port = service.getPublicadorPort();
+        
+        
         String tema = new String(request.getParameter("tema").getBytes("iso-8859-1"), "UTF-8");
-        inter.deleteTemaAlbumTemp((String) session.getAttribute("nick_sesion"), tema);
-        PrintWriter out = response.getWriter();
-        out.print("true");
+        port.deleteTemaAlbumTemp((String) session.getAttribute("nick_sesion"), tema);
         
     }
 
@@ -59,11 +68,13 @@ public class BorrarTema extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         try {
             processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
+        } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(500, "artista no encontrado");
         }
+        out.print("true");
     }
 
     /**
@@ -77,11 +88,13 @@ public class BorrarTema extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        PrintWriter out = response.getWriter();
         try {
             processRequest(request, response);
-        } catch (ArtistaInexistenteException ex) {
+        } catch (ArtistaInexistenteException_Exception ex) {
             response.sendError(500, "artista no encontrado");
         }
+        out.print("true");
     }
 
     /**

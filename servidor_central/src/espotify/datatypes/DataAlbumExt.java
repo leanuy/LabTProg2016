@@ -47,6 +47,9 @@ public class DataAlbumExt extends DataAlbum {
         super(nombre, anio, generos, img, nickArtista);
         this.temas = new ArrayList<>();
     }
+    public DataAlbumExt(){
+        this.temas = new ArrayList<>();
+    }
     
     @Override
     public boolean equals(Object obj) {

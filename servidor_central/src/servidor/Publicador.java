@@ -22,15 +22,18 @@ import espotify.datatypes.DataParticular;
 import espotify.datatypes.DataSuscripcion;
 import espotify.datatypes.DataSuscripcionVigente;
 import espotify.datatypes.DataTema;
+import espotify.datatypes.DataTemaArchivo;
 import espotify.datatypes.DataTemaWeb;
 import espotify.datatypes.DataUsuario;
 import espotify.datatypes.TipoSuscripcion;
 import espotify.excepciones.AlbumInexistenteException;
+import espotify.excepciones.AlbumRepetidoException;
 import espotify.excepciones.ArtistaInexistenteException;
 import espotify.excepciones.AutoSeguirseException;
 import espotify.excepciones.CampoVacioException;
 import espotify.excepciones.ClienteInexistenteException;
 import espotify.excepciones.CorreoRepetidoException;
+import espotify.excepciones.DuracionInvalidaException;
 import espotify.excepciones.FavoritoRepetidoException;
 import espotify.excepciones.FormatoIncorrectoException;
 import espotify.excepciones.GeneroInexistenteException;
@@ -38,6 +41,7 @@ import espotify.excepciones.ListaInexistenteException;
 import espotify.excepciones.ListaRepetidaException;
 import espotify.excepciones.NickRepetidoException;
 import espotify.excepciones.NoHaySuscripcionException;
+import espotify.excepciones.NumeroTemaInvalidoException;
 import espotify.excepciones.SeguidoInexistenteException;
 import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.SeguidorInexistenteException;
@@ -49,6 +53,7 @@ import espotify.excepciones.YaPublicaException;
 import espotify.interfaces.IBuscar;
 import espotify.interfaces.IDesFavoritear;
 import espotify.interfaces.IFavoritear;
+import espotify.interfaces.web.IAltaAlbumWeb;
 import espotify.interfaces.web.IBajaArtista;
 import espotify.interfaces.web.IListarGeneros;
 import espotify.interfaces.web.IVerGenero;
@@ -571,6 +576,34 @@ public class Publicador {
         DataColeccionGenerosStrfy ret = new DataColeccionGenerosStrfy();
         ret.setData(data);
         return ret;
+    }
+    @WebMethod
+    public DataAlbumExt getAlbumTemp(String artista) throws ArtistaInexistenteException{
+        IAltaAlbumWeb interf = Fabrica.getIAltaAlbumWeb();
+        return interf.getAlbumTemp(artista);
+    }
+    @WebMethod
+    public void addTemaWebAlbumTemp(String artista, DataTemaWeb temaWeb) throws ArtistaInexistenteException{
+        IAltaAlbumWeb interf = Fabrica.getIAltaAlbumWeb();
+        interf.addTemaAlbumTemp(artista, temaWeb);
+    }
+    @WebMethod
+    public void addTemaArchivoAlbumTemp(String artista, DataTemaArchivo temaArchivo, byte[] temaBytes) throws ArtistaInexistenteException{
+        InputStream is = new ByteArrayInputStream(temaBytes);
+        BufferedInputStream tema = new BufferedInputStream(is);
+        temaArchivo.setArchivo(tema);
+        IAltaAlbumWeb interf = Fabrica.getIAltaAlbumWeb();
+        interf.addTemaAlbumTemp(artista, temaArchivo);
+    }
+    @WebMethod
+    public void aceptarAltaAlbum(String artista) throws ArtistaInexistenteException, AlbumRepetidoException, GeneroInexistenteException, DuracionInvalidaException, NumeroTemaInvalidoException, TemaRepetidoException, CampoVacioException, TemaTipoInvalidoException{
+        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        inter.aceptarAltaAlbum(artista);
+    }
+    @WebMethod
+    public void deleteTemaAlbumTemp(String artista, String tema) throws ArtistaInexistenteException{
+        IAltaAlbumWeb inter = Fabrica.getIAltaAlbumWeb();
+        inter.deleteTemaAlbumTemp(artista, tema);
     }
 
 }

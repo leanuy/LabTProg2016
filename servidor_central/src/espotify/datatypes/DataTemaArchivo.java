@@ -1,7 +1,10 @@
 package espotify.datatypes;
 
 import java.io.BufferedInputStream;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataTemaArchivo extends DataTema {
     private BufferedInputStream archivo;
 
