@@ -7,7 +7,7 @@
 <%@tag description="put the tag description here" pageEncoding="UTF-8"%>
 
 <%-- The list of normal or fragment attributes can be specified here: --%>
-<%@attribute name="user" type="espotify.datatypes.DataUsuario"%>
+<%@attribute name="user" type="servidor.DataUsuario"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
