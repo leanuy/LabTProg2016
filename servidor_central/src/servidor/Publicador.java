@@ -1,5 +1,4 @@
 package servidor;
-import espotify.CtrlRegistro;
 import espotify.Fabrica;
 import espotify.datatypes.BeanBusqueda;
 import espotify.datatypes.BeanConsultaGenero;
