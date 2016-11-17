@@ -348,6 +348,12 @@ public class Publicador {
     }
     
     @WebMethod
+    public int consultaCantDescargas(String nick, String nomAlbum, String nomTema)
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        return Fabrica.getIVerAlbum().cantDescargas(nick, nomAlbum, nomTema);
+    }
+    
+    @WebMethod
     public void agregarTemaWebxAlbum(String nick_sesion, String lista_poner, 
             String nom_tema, String album, String artista) throws ArtistaInexistenteException, 
             AlbumInexistenteException, ClienteInexistenteException, ListaInexistenteException, TemaRepetidoException {
@@ -367,11 +373,11 @@ public class Publicador {
     }
     
     @WebMethod
-    public byte[] getAudio(String nick, String album, String tema,boolean esDescarga) throws ArtistaInexistenteException,
+    public byte[] getAudio(String nick, String album, String tema) throws ArtistaInexistenteException,
             AlbumInexistenteException, TemaTipoInvalidoException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         try {
-            BufferedInputStream is = Fabrica.getIObtenerAudio().getAudio(nick, album, tema, esDescarga);
+            BufferedInputStream is = Fabrica.getIObtenerAudio().getAudio(nick, album, tema);
             int nRead;
             byte[] data = new byte[16384];
             
@@ -384,6 +390,18 @@ public class Publicador {
             Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         }
         return buffer.toByteArray();
+    }
+    
+    @WebMethod
+    public void registrarEscucha(String nick, String album, String tema) throws ArtistaInexistenteException,
+            AlbumInexistenteException {
+        Fabrica.getIObtenerAudio().registrarEscucha(nick, album, tema);
+    }
+    
+    @WebMethod
+    public void registrarDescarga(String nick, String album, String tema) throws ArtistaInexistenteException,
+            AlbumInexistenteException {
+        Fabrica.getIObtenerAudio().registrarDescarga(nick, album, tema);
     }
     
     @WebMethod

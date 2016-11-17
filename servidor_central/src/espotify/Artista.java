@@ -121,8 +121,16 @@ class Artista extends Usuario implements Serializable {
         return buscarAlbum(nomAlbum).devolverTema(nomTema).getData();
     }
 
-    BufferedInputStream getAudio(String album, String tema,boolean esDescarga) throws AlbumInexistenteException, TemaTipoInvalidoException {
-        return buscarAlbum(album).getAudio(tema,esDescarga);
+    BufferedInputStream getAudio(String album, String tema) throws AlbumInexistenteException, TemaTipoInvalidoException {
+        return buscarAlbum(album).getAudio(tema);
+    }
+    
+    void registrarEscucha(String album, String tema) throws AlbumInexistenteException {
+        buscarAlbum(album).registrarEscucha(tema);
+    }
+    
+    void registrarDescarga(String album, String tema) throws AlbumInexistenteException {
+        buscarAlbum(album).registrarDescarga(tema);
     }
 
     void addTemaAlbumTemp(DataTema tema) {
@@ -160,6 +168,10 @@ class Artista extends Usuario implements Serializable {
             Album alb = entry.getValue();
             alb.persistirTemas(em);
         }
+    }
+
+    int getCantDescargasTema(String nomAlbum, String nomTema) throws AlbumInexistenteException {
+        return buscarAlbum(nomAlbum).devolverTema(nomTema).getCantDescargas();
     }
 
 }

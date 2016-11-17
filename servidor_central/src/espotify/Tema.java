@@ -58,12 +58,12 @@ class Tema implements Favoriteable, Serializable {
         this.favoritosCon=0;
     }
 
-    void registrarUso(boolean esDescarga) {
-        if (esDescarga) {
-            cantDescargas++;
-        } else {
-            cantReproducciones++;
-        }
+    void fueDescargado() {
+        cantDescargas++;
+    }
+    
+    void fueEscuchado() {
+        cantReproducciones++;
     }
 
     void fueAgregadoALista() {
@@ -97,5 +97,10 @@ class Tema implements Favoriteable, Serializable {
 
     public Tema() {
     }
+
+    public int getCantDescargas() {
+        return cantDescargas;
+    }
+    
     
 }

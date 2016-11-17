@@ -11,4 +11,7 @@ public interface IVerAlbum {
 
     public DataTema consultaTema(String nick, String nomAlbum, String nomTema)
             throws ArtistaInexistenteException, AlbumInexistenteException;
+
+    public int cantDescargas(String nick, String nomAlbum, String nomTema)
+            throws ArtistaInexistenteException, AlbumInexistenteException;
 }
