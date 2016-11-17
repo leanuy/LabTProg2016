@@ -55,6 +55,8 @@ public class OpcionesTema extends HttpServlet {
             request.setAttribute("esWeb",esWeb);
             if(esWeb) {
                 request.setAttribute("link",port.consultaURLTema(nickArtista,nombreAlbum,nombreTema));
+            } else {
+                request.setAttribute("cantDescargas",port.consultaCantDescargas(nickArtista,nombreAlbum,nombreTema));
             }
             request.setAttribute("tieneVigente",tieneVigente);
             request.setAttribute("nickArtista",nickArtista);

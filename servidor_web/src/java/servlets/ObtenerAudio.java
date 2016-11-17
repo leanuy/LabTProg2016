@@ -8,8 +8,7 @@ package servlets;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +22,7 @@ import servidor.TemaTipoInvalidoException_Exception;
  *
  * @author JavierM42
  */
-public class Escuchar extends HttpServlet {
+public class ObtenerAudio extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,14 +44,31 @@ public class Escuchar extends HttpServlet {
         servidor.PublicadorService service =  new servidor.PublicadorService();
         servidor.Publicador port = service.getPublicadorPort();
         
+        ServletOutputStream stream = null;
+        BufferedInputStream buf = null;
+        File f = null;
         try {
-            port.registrarEscucha(artista, album, tema);
-        } catch (AlbumInexistenteException_Exception ex) {
+            stream = response.getOutputStream();
+            byte[] data = port.getAudio(artista,album,tema);
+            
+            
+            stream.write(data);
+
+            response.setContentLength(data.length);
+          } catch (IOException ioe) {
+            throw new ServletException(ioe.getMessage());
+          } catch (ArtistaInexistenteException_Exception ex) {
               response.sendError(500);
-        } catch (ArtistaInexistenteException_Exception ex) {
+          } catch (AlbumInexistenteException_Exception ex) {
               response.sendError(500);
+          } catch (TemaTipoInvalidoException_Exception ex) {
+              response.sendError(500);
+          } finally {
+          if (stream != null)
+            stream.close();
+          if (buf != null)
+            buf.close();
         }
-        response.sendRedirect("/ObtenerAudio?artista="+artista+"&album="+album+"&tema="+tema);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
