@@ -67,6 +67,8 @@ public class VerArtistasEliminados extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         GenerosList = new javax.swing.JList<>();
+        jLabel11 = new javax.swing.JLabel();
+        FechaBajaText = new javax.swing.JLabel();
 
         setClosable(true);
 
@@ -128,6 +130,10 @@ public class VerArtistasEliminados extends javax.swing.JInternalFrame {
 
         jScrollPane4.setViewportView(GenerosList);
 
+        jLabel11.setText("Eliminado el");
+
+        FechaBajaText.setText("    ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -173,27 +179,34 @@ public class VerArtistasEliminados extends javax.swing.JInternalFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(jScrollPane2))))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(36, 36, 36))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(26, 26, 26)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ApellidoText)
-                                .addComponent(NombreText)
-                                .addComponent(CorreoText)))
-                        .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addGap(18, 18, 18)
                             .addComponent(FechaText))
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel1)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addGap(36, 36, 36))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(jLabel3))
+                                            .addGap(26, 26, 26)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ApellidoText)
+                                        .addComponent(NombreText)
+                                        .addComponent(CorreoText))))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(nickArtistasCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(6, 6, 6)
+                                    .addComponent(jLabel11)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(FechaBajaText))
+                                .addComponent(nickArtistasCmb, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -204,9 +217,13 @@ public class VerArtistasEliminados extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(nickArtistasCmb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(NombreText)
-                    .addComponent(jLabel2))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(FechaBajaText)
+                        .addComponent(jLabel11))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(NombreText)
+                        .addComponent(jLabel2)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ApellidoText)
@@ -279,6 +296,13 @@ public class VerArtistasEliminados extends javax.swing.JInternalFrame {
         AlbumsList.clearSelection();
         AlbumsList.setListData(albums);
         TemasList.removeAll();
+        
+        Calendar fechaBaja = interf.consultaFechaBajaArtista(usr);
+        String fechaB = null;
+        if (fechaBaja != null) {
+            fechaB = sdf.format(fechaBaja.getTime());
+        }
+        FechaBajaText.setText(fechaB);
     }//GEN-LAST:event_nickArtistasCmbActionPerformed
 
     private void VerAlbumBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VerAlbumBtnActionPerformed
@@ -311,6 +335,7 @@ public class VerArtistasEliminados extends javax.swing.JInternalFrame {
     private javax.swing.JLabel ApellidoText;
     private javax.swing.JLabel CantidadSeguidoresText;
     private javax.swing.JLabel CorreoText;
+    private javax.swing.JLabel FechaBajaText;
     private javax.swing.JLabel FechaText;
     private javax.swing.JList<String> GenerosList;
     private javax.swing.JLabel NombreText;
@@ -319,6 +344,7 @@ public class VerArtistasEliminados extends javax.swing.JInternalFrame {
     private javax.swing.JButton VerAlbumBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

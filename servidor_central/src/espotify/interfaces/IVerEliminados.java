@@ -6,6 +6,7 @@
 package espotify.interfaces;
 
 import espotify.datatypes.DataArtistaExt;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -17,9 +18,10 @@ public interface IVerEliminados {
     public List<String> cargarArtistasEliminados();
 
     public DataArtistaExt consultaArtistaEliminado(String usr);
-    
+
+    public Calendar consultaFechaBajaArtista(String usr);
+
     public List<String> consultaGenerosAlbumEliminado(String usr, String alb);
+
     public List<String> consultaTemasAlbumEliminado(String usr, String alb);
-    
-    
 }
