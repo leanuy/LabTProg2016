@@ -411,4 +411,9 @@ public class CtrlMusica implements IAltaGenero, IAltaAlbum, IConsultaAlbum,
         }
         em.getTransaction().commit();
     }
+
+    @Override
+    public int cantDescargas(String nick, String nomAlbum, String nomTema) throws ArtistaInexistenteException, AlbumInexistenteException {
+        return new CtrlUsuarios().getCantDescargasTema(nick,nomAlbum,nomTema);
+    }
 }

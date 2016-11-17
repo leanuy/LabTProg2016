@@ -41,27 +41,15 @@ public class Descargar extends HttpServlet {
             "iso-8859-1"), "UTF-8");
         servidor.PublicadorService service =  new servidor.PublicadorService();
         servidor.Publicador port = service.getPublicadorPort();
-        ServletOutputStream stream = null;
-        BufferedInputStream buf = null;
+        
         try {
-            stream = response.getOutputStream();
-            byte[] data = port.getAudio(artista,album,tema,true);
-            stream.write(data);
-            response.setContentLength(data.length);
-          } catch (IOException ioe) {
-            throw new ServletException(ioe.getMessage());
-          } catch (ArtistaInexistenteException_Exception ex) {
+            port.registrarDescarga(artista, album, tema);
+        } catch (AlbumInexistenteException_Exception ex) {
               response.sendError(500);
-          } catch (AlbumInexistenteException_Exception ex) {
+        } catch (ArtistaInexistenteException_Exception ex) {
               response.sendError(500);
-          } catch (TemaTipoInvalidoException_Exception ex) {
-              response.sendError(500);
-          } finally {
-          if (stream != null)
-            stream.close();
-          if (buf != null)
-            buf.close();
         }
+        response.sendRedirect("/ObtenerAudio?artista="+artista+"&album="+album+"&tema="+tema);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

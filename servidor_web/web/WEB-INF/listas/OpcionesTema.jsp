@@ -7,10 +7,11 @@
     <c:otherwise>
         <c:choose>
             <c:when test="${tieneVigente}">
-                <a class="link-user" href="/Escuchar?artista=${nickArtista}&album=${nombreAlbum}&tema=${nombreTema}">Descargar</a>
+                <a class="link-user" href="/Descargar?artista=${nickArtista}&album=${nombreAlbum}&tema=${nombreTema}">Descargar</a>
+                (${cantDescargas} descargas).
             </c:when>
             <c:otherwise>
-                <a href="/Suscripcion">Suscríbete</a> para poder descargar este y muchos temas más.
+                <a href="/Suscripcion">Suscríbete</a> para poder descargar este y muchos temas más. (${cantDescargas} descargas).
             </c:otherwise>
         </c:choose>
     </c:otherwise>

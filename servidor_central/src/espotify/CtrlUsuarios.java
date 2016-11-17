@@ -79,7 +79,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
     private void agregarCliente(String nick, Cliente cli) {
         ManejadorColecciones.getInstancia().agregarCliente(nick, cli);
     }
-    
+        
     private void agregarArtista(String nick, Artista art) {
         ManejadorColecciones.getInstancia().agregarArtista(nick, art);
     }
@@ -565,9 +565,19 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         return buscarArtista(nick).consultaTema(nomAlbum,nomTema);
     }
     
-    public BufferedInputStream getAudio(String nick, String album, String tema,boolean esDescarga)
+    public BufferedInputStream getAudio(String nick, String album, String tema)
             throws ArtistaInexistenteException, AlbumInexistenteException, TemaTipoInvalidoException {
-        return buscarArtista(nick).getAudio(album,tema,esDescarga);
+        return buscarArtista(nick).getAudio(album,tema);
+    }
+    
+    public void registrarEscucha(String nick, String album, String tema) 
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        buscarArtista(nick).registrarEscucha(album, tema);
+    }
+    
+    public void registrarDescarga(String nick, String album, String tema) 
+            throws ArtistaInexistenteException, AlbumInexistenteException {
+        buscarArtista(nick).registrarDescarga(album, tema);
     }
     
     @Override
@@ -703,5 +713,9 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         Album alb = art.getAlbums().get(nomAlbum);
         
         return alb.getData().getGeneros();        
+    }
+
+    int getCantDescargasTema(String nick, String nomAlbum, String nomTema) throws ArtistaInexistenteException, AlbumInexistenteException {
+        return buscarArtista(nick).getCantDescargasTema(nomAlbum,nomTema);
     }
 }
