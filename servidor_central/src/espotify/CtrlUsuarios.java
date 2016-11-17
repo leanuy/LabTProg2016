@@ -60,6 +60,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import espotify.interfaces.web.IListarUsuarios;
 import espotify.interfaces.web.IRanking;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -635,6 +636,7 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
         EntityManager em = emf.createEntityManager();
         
+        art.prepararBaja();
         //List artistas = em.createQuery("SELECT a FROM Artista a").getResultList();
         em.getTransaction().begin();
         em.persist(art);
@@ -717,5 +719,16 @@ public class CtrlUsuarios implements IDesFavoritear, IConsultaCliente, IConsulta
 
     int getCantDescargasTema(String nick, String nomAlbum, String nomTema) throws ArtistaInexistenteException, AlbumInexistenteException {
         return buscarArtista(nick).getCantDescargasTema(nomAlbum,nomTema);
+    }
+
+    @Override
+    public Calendar consultaFechaBajaArtista(String usr) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("EspotifyPU");
+        EntityManager em = emf.createEntityManager();
+        
+        Query q = em.createQuery("SELECT a FROM Artista a WHERE a.nick=?1");
+        q.setParameter(1, usr);
+        Artista art = (Artista)q.getSingleResult();
+        return art.getFechaBaja();
     }
 }

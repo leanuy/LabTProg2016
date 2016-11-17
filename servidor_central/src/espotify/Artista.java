@@ -10,6 +10,7 @@ import espotify.excepciones.TemaTipoInvalidoException;
 import java.io.BufferedInputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +20,8 @@ import javax.persistence.Entity;
 import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import static javax.persistence.TemporalType.DATE;
 import javax.persistence.Transient;
 
 @Entity
@@ -31,7 +34,8 @@ class Artista extends Usuario implements Serializable {
     private Map<String,Album> albums;
     @Transient
     private DataAlbumExt albumTemp;
-    
+    @Temporal(DATE)
+    private Calendar fechaBaja;
     //getters
     
     void addAlbum(Album album) {
@@ -174,4 +178,11 @@ class Artista extends Usuario implements Serializable {
         return buscarAlbum(nomAlbum).devolverTema(nomTema).getCantDescargas();
     }
 
+    void prepararBaja() {
+        this.fechaBaja = Calendar.getInstance();
+    }
+
+    Calendar getFechaBaja() {
+        return this.fechaBaja;
+    }
 }
