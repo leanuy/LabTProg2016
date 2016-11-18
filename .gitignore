@@ -11,3 +11,4 @@ servidor_web/nbbuild/
 servidor_web/dist/
 servidor_web/nbdist/
 servidor_web/.nb-gradle/
+/dist/
