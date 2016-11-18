@@ -27,7 +27,7 @@
             </not>
         </condition>
     </fail>
-    <target depends="dist,javadoc" description="Build whole project." name="default"/>
+    <target depends="dist" description="Build whole project." name="default"/>
     <!--
                 INITIALIZATION SECTION
             -->
