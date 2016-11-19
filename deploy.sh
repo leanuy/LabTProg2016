@@ -1,3 +1,7 @@
+ANT_HOME=/ens/apps/netbeans-8.0/extide/ant
+ANT_OPS="-Xms256M -Xmx512M"
+PATH=$PATH:$HOME/bin:$ANT_HOME/bin
+export ANT_HOME ANT_OPS PATH
 cd servidor_central
 ant compile
 ant jar
