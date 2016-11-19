@@ -1,8 +1,6 @@
 
 package servidor;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -34,28 +32,20 @@ public class PublicadorService
 
     static {
         URL url = null;
-        FileInputStream in = null;
+        java.io.InputStream in = null;
         String ip = "";
         String puerto = "";
         
         Properties props = new Properties();
+        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        in = classLoader.getResourceAsStream("/espotifyweb_properties");
         try {
-            in = new FileInputStream("espotifyweb_properties");
             props.load(in);
-            in.close();
-            ip = props.getProperty("ip", "8080");
-            puerto = props.getProperty("puerto", "8080");
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                in.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } //hola
+            throw new NullPointerException("no logra hacer el load");
+        }
+        ip = props.getProperty("ip", "8080");
+        puerto = props.getProperty("puerto", "8080");
         
         WebServiceException e = null;
         try {

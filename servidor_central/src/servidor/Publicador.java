@@ -97,8 +97,9 @@ public class Publicador {
             in = new FileInputStream("espotify_properties");
             props.load(in);
             in.close();
+            String ip = props.getProperty("ip", "localhost");
             String puerto = props.getProperty("puerto", "8080");
-            endpoint = Endpoint.publish("http://localhost:"+puerto+"/publicador", this);
+            endpoint = Endpoint.publish("http://"+ip+":"+puerto+"/publicador", this);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Publicador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
