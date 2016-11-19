@@ -21,6 +21,7 @@ import espotify.interfaces.IAltaPerfil;
 import espotify.interfaces.IAltaSeguir;
 import espotify.interfaces.IFavoritear;
 import espotify.interfaces.IPublicarLista;
+import espotify.interfaces.web.IObtenerAudio;
 import java.awt.Image;
 
 import java.awt.Toolkit;
@@ -924,6 +925,7 @@ public class MainFrame extends javax.swing.JFrame {
         ArrayList<String> generos;
         DataAlbumExt dataAlbumExt;
         IAltaAlbum iAltaAlbum = Fabrica.getIAltaAlbum();
+        IObtenerAudio ioa = Fabrica.getIObtenerAudio();
         File tema;
         InputStream input;
         BufferedInputStream buf;
@@ -941,10 +943,17 @@ public class MainFrame extends javax.swing.JFrame {
         buf = new BufferedInputStream(new FileInputStream(tema));
         temas.add(new DataTemaArchivo(buf, "Macho Man", 208, 2, nickArtista, nombreAlbum));
         temas.add(new DataTemaWeb("bit.ly/SCvpinthenavy", "In the Navy", 193, 3, nickArtista, nombreAlbum));
-
+               
+        
         dataAlbumExt = new DataAlbumExt(temas, "Village People Live and Sleazy", 1980, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
-
+        for(int g = 0; g < 10; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "YMCA");
+        }
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Macho Man");
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "In the Navy");
+        
+        
         nickArtista = "dmode";
         nombreAlbum = "Violator";
         generos = new ArrayList<>();
@@ -959,7 +968,13 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "Violator", 1990, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
-
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Personal Jesus");
+        for(int g = 0; g < 3; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "Personal Jesus");
+        }
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Enjoy The Silence");
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "Enjoy The Silence");
+        
         nickArtista = "clauper";
         nombreAlbum = "She's So Unusual";
         generos = new ArrayList<>();
@@ -975,6 +990,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "She's So Unusual", 1983, generos, img, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "Girls Just Want To Have Fun");
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Time After Time");
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Time After Time");
+        
 
         nickArtista = "bruceTheBoss";
         nombreAlbum = "Born In The U.S.A.";
@@ -991,6 +1010,15 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "Born In The U.S.A.", 1984, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        for(int g = 0; g < 5; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "Born In The U.S.A.");
+        }
+        for(int g = 0; g < 7; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "Glory Days");
+        }
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "Dancing In The Park");
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Dancing In The Park");
+        
 
         nickArtista = "tigerOfWales";
         nombreAlbum = "It's Not Unusual";
@@ -1006,6 +1034,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "It's Not Unusual", 1965, generos, img, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "It’s Not Unusual");
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "It’s Not Unusual");
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "It’s Not Unusual");
 
         nickArtista = "tripleNelson";
         nombreAlbum = "Agua Y Sal";
@@ -1016,6 +1047,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "Agua Y Sal", 2012, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        for(int g = 0; g < 5; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "Adagio De Mi País");
+        }
+        
 
         nickArtista = "la_ley";
         nombreAlbum = "MTV Unplugged";
@@ -1034,6 +1069,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "MTV Unplugged", 2001, generos, img, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        for(int g = 0; g < 3; g++) {
+            ioa.registrarDescarga(nickArtista, nombreAlbum, "El Duelo");
+        }
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "El Duelo");
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "Mentira");
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Mentira");
 
         nickArtista = "chaiko";
         nombreAlbum = "El Lago De Los Cisnes";
@@ -1044,6 +1085,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "El Lago De Los Cisnes", 1875, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        for(int g = 0; g < 3; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "Acto 2, Número 10, Escena (Moderato)");
+        }
+        
 
         nickArtista = "chaiko";
         nombreAlbum = "Concierto Para Piano No. 1 En Si Menor, Opus 23";
@@ -1054,6 +1099,10 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "Concierto Para Piano No. 1 En Si Menor, Opus 23", 1875, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        for(int g = 0; g < 6; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "Primer Movimiento (Allegro non troppo e molto maestoso – Allegro con spirito)");
+        }
+        
 
         nickArtista = "nicoleneu";
         nombreAlbum = "Primer Amor";
@@ -1066,6 +1115,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "Primer Amor", 1994, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "No Quiero Estudiar");
+        
 
         nickArtista = "lospimpi";
         nombreAlbum = "Hay Amores Que Matan";
@@ -1079,6 +1130,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "Hay Amores Que Matan", 1993, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "Por Ese Hombre");
+        ioa.registrarDescarga(nickArtista, nombreAlbum, "Por Ese Hombre");
 
         nickArtista = "dyangounchained";
         nombreAlbum = "Un Loco Como Yo";
@@ -1090,6 +1143,9 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "Un Loco Como Yo", 1993, generos, null, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        for(int g = 0; g < 3; g++) {
+            ioa.registrarEscucha(nickArtista, nombreAlbum, "Por Ese Hombre");
+        }
 
         nickArtista = "alcides";
         nombreAlbum = "20 Grandes Éxitos";
@@ -1102,6 +1158,8 @@ public class MainFrame extends javax.swing.JFrame {
 
         dataAlbumExt = new DataAlbumExt(temas, "20 Grandes Éxitos", 1989, generos, img, nickArtista);
         iAltaAlbum.altaAlbum(dataAlbumExt);
+        ioa.registrarEscucha(nickArtista, nombreAlbum, "Violeta");
+        
         
         //ALTA DE LISTAS
         //DEFECTO

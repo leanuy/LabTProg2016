@@ -9,3 +9,4 @@ cp -r servidor_central/src/presentacion/img dist
 cp -r servidor_central/src/presentacion/mp3 dist
 cp servidor_central/espotify_properties dist
 cp servidor_central/espotify_db dist
+cp servidor_web/espotifyweb_properties dist

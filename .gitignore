@@ -6,7 +6,6 @@ servidor_central/nbdist/
 servidor_central/.nb-gradle/
 .jacocoverage
 servidor_web/nbproject/private/
-servidor_web/build/
 servidor_web/nbbuild/
 servidor_web/dist/
 servidor_web/nbdist/

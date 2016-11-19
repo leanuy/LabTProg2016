@@ -1,0 +1,77 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+
+        <title>Espotify</title>
+        <meta name="description" content="Music">
+        <link href="Espotify_files/css.css" rel="stylesheet"> 
+        <meta name="author" content="SitePoint">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="Espotify_files/bootstrap.css">
+        <link rel="stylesheet" href="Espotify_files/font-awesome.html" type="text/css">
+        <link rel="stylesheet" href="Espotify_files/css_002.css">
+    </head>
+    <body>
+        
+    <link href="Espotify_files/css.css" rel="stylesheet"> 
+    <style>
+        body{
+            background-color:black;
+            text-align: center;
+            color:white;
+            font-family: 'Raleway', sans-serif;
+
+        }
+        h1{
+            color:#1ED760;
+            font-size: 60px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        #logo{
+            width:80px;
+        }
+        input.form-control{
+            background-color: #393B39;
+            color:white;
+            border-color:black;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
+                <div class="text-center" style="padding:50px 0">
+                    <h1><img id="logo" src="Espotify_files/logo.png"> Espotify</h1>
+                    <div class="logo"><h2><i class="fa fa-pencil"></i>Iniciar sesión</h2></div>
+                    <!-- Main Form -->
+                    <div class="login-form-1">
+                        <form id="login-form" class="text-center" action="iniciar-sesion" method="POST">
+                            <div class="login-form-main-message"></div>
+                            <div class="main-login-form">
+                                <div class="login-group">
+                                    <div class="form-group">
+                                        <label for="lg_username" class="sr-only">Username</label>
+                                        <input class="form-control" id="lg_username" name="login" placeholder="usuario" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lg_password" class="sr-only">Password</label>
+                                        <input class="form-control" id="lg_password" name="password" placeholder="contraseña" type="password">
+                                    </div>
+                                </div>
+                                <button class="btn btn-success" type="button" value="Entrar" onclick="submit()">Iniciar sesión</button>
+                            </div>
+                            <div class="etc-login-form">
+                                <!--<p>forgot your password? <a href="#">click here</a></p>-->
+                                <br>
+                                <p>Nuevo usuario? <a href="http://localhost:10016/registrarme">crea tu cuenta</a></p>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- end:Main Form -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    
+</body></html>
