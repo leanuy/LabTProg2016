@@ -19,6 +19,7 @@ import espotify.excepciones.SeguidoRepetidoException;
 import espotify.excepciones.TemaRepetidoException;
 import espotify.excepciones.TransicionSuscripcionInvalidaException;
 import espotify.excepciones.YaPublicaException;
+import java.text.SimpleDateFormat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -27,6 +28,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 public class Cliente extends Usuario {
     private final Map<String, Usuario> seguidos;
@@ -255,6 +262,7 @@ public class Cliente extends Usuario {
             throw new NoHaySuscripcionException();
         } else {
             suscripcionActiva.aprobar();
+            enviarMail();
         }
     }
 
@@ -362,5 +370,46 @@ public class Cliente extends Usuario {
             favoritos.remove(favo);
         }
         // no hago nada mas :)
+        
+    }
+    
+    public void enviarMail() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        String to = this.getCorreo();
+        String from = "no-reply@espotify.com";
+        String host = "localhost";
+        Properties properties = System.getProperties();
+
+        properties.put("mail.smtp.port",3016);
+
+        properties.setProperty("mail.smtp.host",host);
+        Session session = Session.getDefaultInstance(properties);
+        try {
+            MimeMessage message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(from));
+            message.addRecipient(Message.RecipientType.TO,
+            new InternetAddress(to));
+            message.setSubject("[Espotify] [" + sdf.format(Calendar.getInstance().getTime()) +"]");
+            message.setContent("<h3>Enhorabuena!!!</h3>\n"
+            + "<br>\n"
+            + "Estimado/a " + this.getNombre() + ", su suscripcion en Espotify ha sido aprobada \n"
+            + "y se encuentra Vigente.\n"
+            + "<br>\n"
+            + "--Detalles de la Suscripcion\n"
+            + "<br>\n"
+            + "-Tipo: "+suscripcionActiva.getTipo().toString()+"\n"
+            + "<br>\n"
+            + "-Fecha inicio: "+sdf.format(suscripcionActiva.getFechaUpdate().getTime())+"<br>\n"
+            + "<br>\n"
+            + "-Fecha fin: "+sdf.format(suscripcionActiva.getVencimiento().getTime())+"<br>\n"
+            + "<br>\n"
+            + "Gracias por preferirnos<br>\n"
+            + "Saludos.<br>\n"
+            + "Espotify<br>\n"
+            + "", "text/html");
+            Transport.send(message);
+        }catch(Exception e){
+            System.err.println(e.getMessage());
+        }
     }
 }
