@@ -12,8 +12,11 @@ import espotify.interfaces.web.IObtenerImagen;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -22,27 +25,43 @@ public class CtrlImagenes implements IObtenerImagen {
     
     @Override
     public BufferedImage getImageUsuario(String nickUsr) throws UsuarioInexistenteException {
-        DataUsuario usr = new CtrlUsuarios().buscarUsuario(nickUsr);
-        BufferedImage img = usr.getImg();
-        if (img == null) {
-            File file = null;
-            if (esArtista(nickUsr)) {
-                file = new File("./src/presentacion/img/artistas/artista.png");
-                try {
-                    img = ImageIO.read(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                file = new File("./src/presentacion/img/clientes/profile.png");
-                try {
-                    img = ImageIO.read(file);
-                } catch (IOException ex) {
-                    Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            DataUsuario usr = new CtrlUsuarios().buscarUsuario(nickUsr);
+            BufferedImage img = usr.getImg();
+            FileInputStream in = null;
+            Properties props = new Properties();
+            in = new FileInputStream("espotify_properties");
+            props.load(in);
+            in.close();
+            String rutaDatosPrueba = props.getProperty("rutaDatosPrueba", "/");
+            in.close();
+            
+            
+            
+            if (img == null) {
+                File file = null;
+                if (esArtista(nickUsr)) {
+                    file = new File("."+rutaDatosPrueba+"img/artistas/artista.png");
+                    try {
+                        img = ImageIO.read(file);
+                    } catch (IOException ex) {
+                        Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } else {
+                    file = new File("."+rutaDatosPrueba+"img/clientes/profile.png");
+                    try {
+                        img = ImageIO.read(file);
+                    } catch (IOException ex) {
+                        Logger.getLogger(CtrlImagenes.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
             }
+            return img;
+        } catch (FileNotFoundException ex) {
+            return null;
+        } catch (IOException ex) {
+            return null;
         }
-        return img;
     }
     
     @Override
