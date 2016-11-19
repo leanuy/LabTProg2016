@@ -131,5 +131,8 @@ public class Suscripcion {
     Calendar getFechaDesde() {
         return this.fechaDesde;
     }
-    
+
+    public TipoSuscripcion getTipo() {
+        return tipo;
+    }
 }
