@@ -81,8 +81,17 @@ public class CtrlImagenes implements IObtenerImagen {
             DataAlbumExt alb = new CtrlUsuarios().consultaAlbum(album, nickUsr);
             BufferedImage img = null;
             img = alb.getImg();
+            
+            FileInputStream in = null;
+            Properties props = new Properties();
+            in = new FileInputStream("espotify_properties");
+            props.load(in);
+            in.close();
+            String rutaDatosPrueba = props.getProperty("rutaDatosPrueba", "/");
+            in.close();
+            
             if (img == null) {
-                File file = new File("./src/presentacion/img/albums/default_cover.png");
+                File file = new File("."+rutaDatosPrueba+"img/albums/default_cover.png");
                 try {
                     img = ImageIO.read(file);
                 } catch (IOException ex) {
@@ -92,6 +101,10 @@ public class CtrlImagenes implements IObtenerImagen {
             return img;
         } catch (ArtistaInexistenteException | AlbumInexistenteException ex) {
             return null;
+        } catch (FileNotFoundException ex) {
+            return null;
+        } catch (IOException ex) {
+            return null;
         }
     }
     
@@ -100,6 +113,16 @@ public class CtrlImagenes implements IObtenerImagen {
         try {
             DataLista list;
             BufferedImage img;
+            
+            FileInputStream in = null;
+            Properties props = new Properties();
+            in = new FileInputStream("espotify_properties");
+            props.load(in);
+            in.close();
+            String rutaDatosPrueba = props.getProperty("rutaDatosPrueba", "/");
+            in.close();
+            
+            
             if (nickUsr == null || nickUsr.equals("null")) {
                 list = new CtrlListas().darInfoDefecto(lista);
                 img = list.getImg();
@@ -108,7 +131,7 @@ public class CtrlImagenes implements IObtenerImagen {
                 img = list.getImg();
             }
             if (img == null) {
-                File file = new File("./src/presentacion/img/albums/default_cover.png");
+                File file = new File("."+rutaDatosPrueba+"img/albums/default_cover.png");
                 try {
                     img = ImageIO.read(file);
                 } catch (IOException ex) {
@@ -117,6 +140,10 @@ public class CtrlImagenes implements IObtenerImagen {
             }
             return img;
         } catch (ClienteInexistenteException | ListaInexistenteException ex) {
+            return null;
+        } catch (FileNotFoundException ex) {
+            return null;
+        } catch (IOException ex) {
             return null;
         }        
     }
