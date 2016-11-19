@@ -413,33 +413,3 @@ public class Cliente extends Usuario {
         }
     }
 }
-/*
-
-Cuerpo
-Estimada Scarlett O'Hara. Su suscripción en Espotify ha sido aprob
-ada y se encuentra Vigente. 
----
-Detalles de la Suscripción
--
-Tipo:
--
-Mensual: U$$:2 
--
-Fecha inicio:
--
-25
--
-10
--
-2016 13:25
--
-Fecha fin:
--
-25
--
-11
--
-2016 13:25
-Gracias por preferirnos,
-Saludos. 
-Espotify*/
